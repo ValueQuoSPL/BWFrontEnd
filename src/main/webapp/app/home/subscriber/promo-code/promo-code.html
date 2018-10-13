@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h4 class="modal-title">Enter Your Promo-Code Here</h4>
+    <button aria-label="Close" data-dismiss="modal" class="close" type="button" (click)="activeModal.dismiss('closed')"><span aria-hidden="true">x</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row justify-content-center">
+        <div class="col-md-8" *ngIf="clicked">
+            <div class="alert alert-danger" *ngIf="promocodeError">
+                <strong>Failed to apply promo code! </strong><br> 
+                <div *ngIf="expired">
+                    This Promo-Code is expired <br> 
+                </div>
+                <div *ngIf="!valid">
+                    This Promo-Code is not Valid
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-md-8">
+            <form class="form" role="form" (ngSubmit)="apply()" #promo="ngForm">
+                <div>
+                    <!-- <label for="username">Login</label> -->
+                    <mat-form-field style="width: 100%;">
+                        <input matInput type="text"  name="promocode" id="promocode" placeholder="Your Promo-Code" #promocodeInput="ngModel" [(ngModel)]="promocode" required>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="promocodeInput.dirty && promocodeInput.touched && promocodeInput.invalid">
+                    <small class="form-text text-danger" *ngIf="promocodeInput.errors.required">
+                        Please Enter valid PromoCode
+                    </small>
+                </div>
+                <div >
+                    <button type="submit" class="btn btn-primary" [disabled]="promo.form.invalid"> Apply</button>
+                </div>
+            </form>
+            <p></p>
+        </div>
+    </div>
+</div>

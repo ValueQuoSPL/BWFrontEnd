@@ -1,0 +1,131 @@
+
+
+<nav id="main-menu" >
+            <!-- <div class="navbar-header" style="background-color: white">
+                <a class="navbar-brand" href="/" >
+                    <i class="fa logo-img" style="color: magenta"> BucksWise</i>                    
+                </a>
+            </div> -->
+
+    <div class="navbar-header">
+
+        <div [ngSwitch]="isAuthenticated()">
+            <div *ngSwitchCase="true">
+                <ul>
+                    <br>
+                    <br>
+                    <li>
+                        <a routerLink="familyroute" routerLinkActive="active"  >
+                            <i class="fa fa-user fa-2x"></i>
+                            <span class="nav-text" >
+                                Profile
+                            </span>
+                        </a>
+                    </li>
+                    <li class="has-subnav">
+                            <a routerLink="dashboard" routerLinkActive="active">
+                                <i class="fa fa-tachometer-alt fa-2x"></i>
+                                
+                                <span class="nav-text">
+                                    Dashboard
+                                </span>
+                            </a>
+                    </li>
+                    <li class="has-subnav">
+                        <a routerLink="income" routerLinkActive="active">
+                            <i class="fa fa-rupee-sign fa-2x"></i>
+                            <span class="nav-text">
+                                Income
+                            </span>
+                        </a>
+                        
+                    </li>
+                    <li class="has-subnav">
+                        <a routerLink="spend" routerLinkActive="active">
+                            <i class="fa fa-cart-arrow-down fa-2x"></i>
+                            <span class="nav-text">
+                                Expense
+                            </span>
+                        </a>
+                        
+                    </li>
+                    <li>
+                        <a routerLink="asstesroute" routerLinkActive="active">
+                            <i class="fa fa-user-plus fa-2x"></i>
+                            <span class="nav-text">
+                                Assets
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="liability" routerLinkActive="active">
+                            <i class="fa fa-tasks fa-2x"></i>
+                            <span class="nav-text">
+                                Liabilities
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="goalselect" routerLinkActive="active">
+                            <i class="fa fa-bullseye fa-2x"></i>
+                            <span class="nav-text">
+                                Goals
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="tax" routerLinkActive="active">
+                            <i class="fa fa-chart-line fa-2x"></i>
+                            <span class="nav-text">
+                                Tax
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="risk" routerLinkActive="active">
+                            <i class="fa fa-user-md fa-2x"></i>
+                            <span class="nav-text">
+                                Risk
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                            <a routerLink="appointment" routerLinkActive="active">
+                                <i class="fa fa-chart-line fa-2x"></i>
+                                <span class="nav-text">
+                                        Appointment
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                    <li>
+                        <a routerLink="advice" routerLinkActive="active">
+                            <i class="fa fa-info fa-2x"></i>
+                            <span class="nav-text">
+                                Advice
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div *ngSwitchCase="false">
+                <ul> 
+                    <li>
+                        <a (click)="Login()"  >
+                            <i class="fa fa-user fa-2x"></i>
+                            <span class="nav-text" >
+                                Login 
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+
+  
+   

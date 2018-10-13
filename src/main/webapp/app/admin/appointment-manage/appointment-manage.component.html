@@ -1,0 +1,32 @@
+<div class="container">
+    <table class="table table-hover table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Time</th>
+                <th scope="col">Date</th>
+                <th scope="col">UserName</th>
+                <th scope="col">Email</th>
+                <th scope="col">action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let l of appointmentManage; let i = index">
+                <td>{{l.time}}</td>
+                <td>{{l.date}}</td>
+                <td>{{l.name}}</td>
+                <td>{{l.email}}</td>
+                <td>
+                    <button class="btn btn-outline-info" type="button">
+                        <span>
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                    <td>
+                        <button class="btn  btn-outline-danger"  type="button" (click)="RemoveAppointment(i,l.id)" >
+                            <span> <i class="fa fa-trash" aria-hidden="true"></i></span></button>
+                    </td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
