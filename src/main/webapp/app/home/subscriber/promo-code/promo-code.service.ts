@@ -17,7 +17,7 @@ export class PromoCodeService {
     }
   }
 
-  changeMessage(message: number) {
+  changeMessage(message) {
     this.messageSource.next(message);
   }
 }

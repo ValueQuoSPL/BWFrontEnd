@@ -7,6 +7,9 @@ import { CommonModule } from '@angular/common';
 import { subscriberRoute } from 'app/home/subscriber/subscriber.route';
 import { PaymentComponent, PaymentService } from 'app/home/subscriber';
 import { CustomMaterialModule } from '../../custom-material.module';
+import { UserPlanService } from './userplan.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { PromoCodeService, PromoCodeModalService, PromoCodeComponent } from './promo-code';
 // import { FooterComponent } from '../layouts';
 @NgModule({
   imports: [
@@ -21,8 +24,8 @@ import { CustomMaterialModule } from '../../custom-material.module';
     // FooterComponent
     PaymentComponent
   ],
-  entryComponents: [],
-  providers: [PaymentService],
+  entryComponents: [PromoCodeComponent],
+  providers: [PaymentService, UserPlanService, NgbActiveModal],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SubscriberModule {}

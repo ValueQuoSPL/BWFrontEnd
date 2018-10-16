@@ -86,7 +86,7 @@
                                         <span>Logs</span>
                                     </a>
                                 </li>
-                                <li *ngIf="swaggerEnabled">
+                                <li >
                                     <a class="dropdown-item" routerLink="admin/docs" routerLinkActive="active" (click)="collapseNavbar()">
                                         <fa-icon [icon]="'book'" [fixedWidth]="true"></fa-icon>
                                         <span>API</span>
@@ -147,7 +147,7 @@
             </nav>    
         </div>
         <div *ngSwitchCase="false">
-            <nav class="navbar navbar-dark navbar-expand-md jh-navbar fixed-top" [ngClass]="navIsFixed ? 'solid' : 'transparent'" >
+            <nav class="navbar navbar-dark navbar-expand-md jh-navbar fixed-top" [ngClass]="navIsFixed ? solid : transparent" >
                 <div class="jh-logo-container float-left">
 
                         <a > Logo</a>

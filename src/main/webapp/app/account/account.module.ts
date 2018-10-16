@@ -11,11 +11,16 @@ import {
     PasswordResetInitComponent,
     PasswordResetFinishComponent,
     SettingsComponent,
-    accountState
+    accountState,
 } from './';
+import { Register } from './register/register.service';
+import { CustomMaterialModule } from 'app/custom-material.module';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
-    imports: [BuckswiseFrontEndSharedModule, RouterModule.forChild(accountState)],
+    imports: [BuckswiseFrontEndSharedModule, RouterModule.forChild(accountState),
+        RecaptchaModule.forRoot(), CustomMaterialModule,
+    ],
     declarations: [
         ActivateComponent,
         RegisterComponent,
@@ -23,8 +28,9 @@ import {
         PasswordStrengthBarComponent,
         PasswordResetInitComponent,
         PasswordResetFinishComponent,
-        SettingsComponent
+        SettingsComponent,
     ],
+    providers: [Register],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BuckswiseFrontEndAccountModule {}

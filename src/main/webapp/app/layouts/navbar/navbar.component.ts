@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, AfterViewInit, OnChanges, AfterContentInit, DoCheck } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HostListener } from '@angular/core';
 import { Inject } from '@angular/core';
@@ -12,13 +12,14 @@ import { Principal, LoginModalService, LoginService } from 'app/core';
 import { VERSION } from 'app/app.constants';
 import { JhiMainComponent } from '../main/main.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
+import { Register } from 'app/account';
 
 @Component({
   selector: 'jhi-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['navbar.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, DoCheck {
   inProduction: boolean;
   isNavbarCollapsed: boolean;
   languages: any[];
@@ -27,6 +28,10 @@ export class NavbarComponent implements OnInit {
   version: string;
   navIsFixed = false;
   flag = false;
+  param;
+  isHomePage = false;
+  transparent;
+  solid;
 
   constructor(
     private loginService: LoginService,
@@ -36,6 +41,7 @@ export class NavbarComponent implements OnInit {
     private router: Router,
     private main: JhiMainComponent,
     private sidebar: SidebarComponent,
+    private register: Register,
     @Inject(DOCUMENT) private document: Document,
     @Inject(WINDOW) private window: Window
   ) {
@@ -63,6 +69,33 @@ export class NavbarComponent implements OnInit {
       this.inProduction = profileInfo.inProduction;
       this.swaggerEnabled = profileInfo.swaggerEnabled;
     });
+
+    // this.register.isRegisterPage.subscribe(state => {
+    //   console.log('is register page', state);
+    //   if (state === true) {
+    //     this.transparent = 'solid';
+    //   } else {
+    //     this.transparent = 'transparent';
+    //   }
+    // });
+
+  }
+
+  ngDoCheck() {
+    this.param = this.router.url;
+
+    if (this.param === '/') {
+      console.log('home');
+      this.isHomePage = true;
+      this.solid = 'solid';
+      this.transparent = 'transparent';
+    } else {
+      console.log('not home');
+      this.isHomePage = false;
+      this.solid = 'solid';
+      this.transparent = 'solid';
+    }
+
   }
 
   collapseNavbar() {
@@ -94,7 +127,7 @@ export class NavbarComponent implements OnInit {
   toggle() {
     // let flag = false;
     this.flag = !this.flag;
-    console.log('inside navbar', this.flag);
+    // console.log('inside navbar', this.flag);
     this.main.toggleSide(this.flag);
     this.sidebar.showSidebar();
   }

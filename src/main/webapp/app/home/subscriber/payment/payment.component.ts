@@ -1,9 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { User } from 'app/home/subscriber/payment/payment.model';
 import { PaymentService } from 'app/home/subscriber/payment/payment.service';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-// import { SuccessComponent } from '../../success/success.component';
-import { JhiEventManager } from 'ng-jhipster';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-payment',
@@ -13,7 +11,8 @@ import { JhiEventManager } from 'ng-jhipster';
 export class PaymentComponent implements OnInit {
   user: User = new User();
   amount: any;
-  sUrl = 'http://localhost:8080/Success';
+  // element: any;
+  sUrl = 'http://localhost:8080/api/success';
   fUrl = 'http://localhost:8080/Fail';
   public paymentDetail: any = [];
 
@@ -25,17 +24,17 @@ export class PaymentComponent implements OnInit {
   ) {}
 
   submitUser() {
-    console.log(this.user);
+    // console.log(this.user);
     this.user.sUrl = this.sUrl;
     this.user.fUrl = this.fUrl;
     this.paymentService.submitUser(this.user).subscribe(data => {
+      // console.log('response of submit');
       this.paymentDetail.push(data);
-      console.log(this.paymentDetail);
     });
   }
 
   ngOnInit() {
-    console.log(this.offer);
+    // console.log(this.offer);
     const paymoney = this.offer.payable;
     this.amount = paymoney.toString();
     this.user.amount = this.amount;

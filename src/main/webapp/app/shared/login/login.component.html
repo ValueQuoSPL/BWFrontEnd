@@ -1,4 +1,56 @@
 <div class="modal-header">
+        <h4 class="modal-title">Sign in</h4>
+        <button aria-label="Close" data-dismiss="modal" class="close" type="button" (click)="activeModal.dismiss('closed')"><span aria-hidden="true">x</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="alert alert-danger" *ngIf="authenticationError">
+                    <strong>Failed to sign in!</strong> Please check your credentials and try again.
+                </div>
+            </div>
+            <div class="col-md-8">
+                <form class="form" role="form" (ngSubmit)="login()">
+                    <div >
+                        <!-- <label for="username">Login</label> -->
+                        <mat-form-field style="width: 100%;">
+                            <input matInput type="text"  name="username" id="username" placeholder="Your username" [(ngModel)]="username">
+                        </mat-form-field>
+                    </div>
+                    <div >
+                        <!-- <label for="password">Password</label> -->
+                        <mat-form-field style="width: 100%;">
+                                <input matInput type="password"  name="password" id="password" placeholder="Your password" [(ngModel)]="password" (keyup.enter)="login()">
+                        </mat-form-field>
+                    </div>
+                    <div class="form-check">
+                        <!-- <label class="form-check-label" for="rememberMe"> </label>-->
+                          <section>
+                                <mat-checkbox class="form-check-input" type="checkbox" name="rememberMe" id="rememberMe"  [(ngModel)]="rememberMe" checked>Remember me</mat-checkbox>
+                          </section>  
+                        
+                    </div>
+
+                </form>
+                <div class="modal-footer" style="border-top: 0px">
+                    <button type="submit" class="btn btn-primary" (click)="login()"  >Sign in</button>
+                </div>
+                <p></p>
+                <div class="alert alert-warning">
+                    <a class="alert-link" (click)="requestResetPassword()">Did you forget your password?</a>
+                </div>
+                <div class="alert alert-warning">
+                    <span>You don't have an account yet?</span>
+                    <a class="alert-link" (click)="register()">Register a new account</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<!-- <div class="modal-header">
     <h4 class="modal-title">Sign in</h4>
     <button aria-label="Close" data-dismiss="modal" class="close" type="button" (click)="activeModal.dismiss('closed')"><span aria-hidden="true">x</span>
     </button>
@@ -40,4 +92,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

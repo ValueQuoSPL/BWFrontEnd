@@ -22,7 +22,7 @@
                             <div class="form-group">
                                 <div class="row justify-content-center">
                                     <mat-form-field style="width: 80%;">
-                                        <input matInput [(ngModel)]="user.amount" placeholder="Amount Payable" #amount="ngModel" name="amount" id="amount" readonly
+                                        <input matInput [(ngModel)]="user.amount" placeholder="Amount Payable" #amount="ngModel" name="amount" id="amount" 
                                             required>
                                     </mat-form-field>
                                     <mat-form-field style="width: 80%;">
@@ -41,8 +41,8 @@
                                     <input type="hidden" name="service_provider" value="payu_paisa" />
                                     <input type="hidden" name="surl" [(ngModel)]="sUrl" />
 
-                                    <button class="btn btn-success btn-lg btn-block" style="width: 80%;" (click)="form.submit()" (click)="submitUser()">pay</button>
-                                    <!-- <button type="submit" class="btn btn-success" >Submit</button> -->
+                                    <button class="btn btn-success btn-lg btn-block" style="width: 80%;" (click)="form.submit()" >pay</button>
+                                    <button type="submit" class="btn btn-success" (click)="submitUser()">Submit</button>
                                 </div>
                             </div>
                         </form>
@@ -61,6 +61,7 @@
         </div>
     </div>
 </div>
+<jhi-success [parentData]="element"></jhi-success>
 <!-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
