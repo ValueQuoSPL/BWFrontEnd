@@ -1,0 +1,70 @@
+.topbar {
+    opacity: 10;
+      transition: all 700ms ease;
+      right: 0;
+      left: 0;
+      background: #fff;
+      -webkit-box-shadow: 0px -5px 15px rgba(0, 0, 0, 0.5);
+              box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5);
+      z-index: 5;
+      line-height: 20px;
+      font-size: 0.75em;
+      font-weight: 500;
+      vertical-align: middle;
+      border-radius: 10px;
+    }
+
+.nav-shadow {
+  opacity: 10;
+  transition: all 700ms ease;
+  right: 0;
+  left: 0;
+  background: #fff;
+  -webkit-box-shadow: 9px 7px 18px -4px rgba(0,0,0,0.75);
+  -moz-box-shadow: 9px 7px 18px -4px rgba(0,0,0,0.75);
+  box-shadow: 9px 7px 18px -4px rgba(0,0,0,0.75);
+      z-index: 5;
+  line-height: 20px;
+  font-size: 0.75em;
+  font-weight: 500;
+  vertical-align: middle;
+  border-radius: 10px;
+}
+
+.accordion {
+  background: rgb(255, 255, 255);
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+::ng-deep .cdk-overlay-container {
+  z-index: 1200 !important;
+}
+
+table {
+  width: 100%;
+}

@@ -1,5 +1,5 @@
-import { Component, OnInit, AfterViewInit, OnChanges, AfterContentInit, DoCheck } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, OnInit, DoCheck } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HostListener } from '@angular/core';
 import { Inject } from '@angular/core';

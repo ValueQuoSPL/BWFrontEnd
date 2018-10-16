@@ -1,0 +1,103 @@
+<div> <!--start of buttons -->
+  <div class="float-right">
+  <button type="button" class="btn btn-link" data-toggle="modal" (click)="openHealth(healthModal)">
+          <span>
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              <span>Add</span>
+          </span>
+  </button>
+  </div>
+</div>
+
+<!-- health table -->
+<div>
+  <table class="table table-responsive-md table-hover table-sm">
+      <thead>
+          <tr>
+              <th scope="col">Insured name </th>
+              <th scope="col">Policy Name </th>
+              <th scope="col">Annual Premium </th>
+              <th scope="col">Policy Term </th>
+              <th scope="col">Sum Assured </th>
+          </tr>
+      </thead>
+      <tbody>
+
+          <tr *ngFor="let field of dynamicHealth; let i = index">
+              <td> {{ field.insureName }}</td>
+              <td> {{ field.policyName }} </td>
+              <td> {{ field.premium }} </td>
+              <td> {{ field.premiumTerm }} </td>
+              <td> {{ field.sum }} </td>
+              <td><button class="btn btn-sm btn-outline-info"  type="button" (click)="onEditHealth(field.id, healthModal)" >
+                  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span></button>
+              </td>
+              <td><button class="btn btn-sm btn-outline-danger"  type="button" (click)="RemoveHealth(i, field.id)" >
+                  <span> <fa-icon [icon]="'trash'"></fa-icon></span></button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</div><!-- /health table -->
+
+<!-- health modal -->
+<ng-template #healthModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <h4 class="modal-title" id="healthModal">Add Your Health Insurance Details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+      <form class="example-container" #incomeAdd="ngForm">
+         <!-- form start-->
+         <div class="row">
+              <div class="col-md-6">
+                  <mat-form-field  style="width: 100%;">
+                      <input required matInput jhiNumberOnly placeholder="Policy Number" name="polno" [(ngModel)]="health.policy_no" >
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput placeholder="Policy issuer Name" name="h_pol_issuer" [(ngModel)]="health.issuer" >
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput placeholder="Policy Name" name="polname" [(ngModel)]="health.policy_name" >
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput placeholder="Proposer Name" name="propname" [(ngModel)]="health.proposer_name" >
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput jhiNumberOnly placeholder="Policy Term(yrs)" name="polterm" [(ngModel)]="health.policy_term" >
+                  </mat-form-field>
+              </div>
+              <!-- right start -->
+              <div class="col-md-6">
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput [matDatepicker]="picker4" placeholder="Policy Start Date" 
+                      [formControl]="healthDate">
+                      <mat-datepicker-toggle matSuffix [for]="picker4" ></mat-datepicker-toggle>
+                      <mat-datepicker #picker4 ></mat-datepicker>
+                  </mat-form-field>        
+                  <mat-form-field style="width: 100%;">
+                      <mat-select placeholder="Premium Mode" name="type3" [(ngModel)]="health.premium_mode">
+                          <mat-option *ngFor="let type of PremiumTypeArray" [value]="type.name">
+                          {{type.name}}
+                          </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput placeholder="Insured Name" name="insname" [(ngModel)]="health.ins_name" >
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput jhiNumberOnly placeholder="Sum Assured" name="insname" [(ngModel)]="health.sum" >
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput jhiNumberOnly placeholder="Premium" name="hprem" [(ngModel)]="health.premium" >
+                  </mat-form-field>
+              </div>  <!-- right end-->
+          </div>  <!-- form end -->
+      </form>
+  </div>
+  <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+  </div>
+</ng-template>

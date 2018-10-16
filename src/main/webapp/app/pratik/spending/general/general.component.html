@@ -1,0 +1,109 @@
+<div> <!--start of buttons -->
+  <div class="float-right">
+  <button type="button" class="btn btn-link" data-toggle="modal" (click)="openGeneral(generalModal)">
+          <span>
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              <span>Add</span>
+          </span>
+  </button>
+
+  </div>
+  </div>
+
+  <!-- general table -->
+  <div>
+      <table class="table table-responsive-md table-hover table-sm">
+          <thead>
+              <tr>
+                  <th scope="col">Insured Object </th>
+                  <th scope="col">Policy Name </th>
+                  <th scope="col">Annual Premium </th>
+                  <th scope="col">Plan Issuer </th>
+                  <th scope="col">Policy Term </th>
+                  <th scope="col">Policy Date </th>
+                  <th scope="col">Sum Assured </th>
+                  <th scope="col">Action</th>
+              </tr>
+          </thead>
+          <tbody>
+
+              <tr *ngFor="let field of dynamicGeneral; let i = index">
+                  <td> {{ field.insureName }}</td>
+                  <td> {{ field.policyName }} </td>
+                  <td> {{ field.premium }} </td>
+                  <td> {{ field.issuer }} </td>
+                  <td> {{ field.premiumTerm }} </td>
+                  <td> {{ field.policyDate | date : 'shortDate'}} </td>
+                  <td> {{ field.sum }} </td>
+                  <td><button class="btn btn-sm btn-outline-info"  type="button" (click)="onEditGeneral(field.id, generalModal)" >
+                      <span> <fa-icon [icon]="'edit'"></fa-icon></i></span></button>
+                  </td>
+                  <td><button class="btn btn-sm btn-outline-danger"  type="button" (click)="RemoveGeneral(i, field.id)" >
+                      <span> <fa-icon [icon]="'trash'"></fa-icon></span></button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div> <!-- /general table -->
+
+  <!-- General modal -->
+  <ng-template #generalModal let-c="close" let-d="dismiss">
+      <div class="modal-header">
+          <h4 class="modal-title" id="generalModal">Add Your General Insurance Details</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+              <form class="example-container" #incomeAdd="ngForm">
+                      <!-- form start-->
+                      <div class="row">
+                           <div class="col-md-6">
+                               <mat-form-field style="width: 100%;">
+                                   <input required matInput jhiNumberOnly placeholder="Policy Number" name="polno" [(ngModel)]="general.policy_no" >
+                               </mat-form-field>
+                               <mat-form-field style="width: 100%;">
+                                   <input required matInput placeholder="Policy issuer Name" name="h_pol_issuer" [(ngModel)]="general.issuer" >
+                               </mat-form-field>
+                               <mat-form-field style="width: 100%;">
+                                   <input required matInput placeholder="Policy Name" name="polname" [(ngModel)]="general.policy_name" >
+                               </mat-form-field>
+                               <mat-form-field style="width: 100%;">
+                                   <input required matInput placeholder="Proposer Name" name="propname" [(ngModel)]="general.proposer_name" >
+                               </mat-form-field>
+                               <mat-form-field style="width: 100%;">
+                                   <input required matInput jhiNumberOnly placeholder="Policy Term(yrs)" name="polterm" [(ngModel)]="general.policy_term" >
+                               </mat-form-field>
+                           </div>
+                           <!-- right start -->
+                           <div class="col-md-6">
+                               <mat-form-field style="width: 100%;">
+                                   <input required matInput [matDatepicker]="picker5" placeholder="Policy Start Date" 
+                                   [formControl]="generalDate">
+                                   <mat-datepicker-toggle matSuffix [for]="picker5" ></mat-datepicker-toggle>
+                                   <mat-datepicker #picker5 ></mat-datepicker>
+                               </mat-form-field>        
+                               <mat-form-field style="width: 100%;">
+                                   <mat-select placeholder="Premium Mode" name="type3" [(ngModel)]="general.premium_mode">
+                                       <mat-option *ngFor="let type of PremiumTypeArray" [value]="type.name">
+                                       {{type.name}}
+                                       </mat-option>
+                                   </mat-select>
+                               </mat-form-field>
+                               <mat-form-field style="width: 100%;">
+                                   <input required matInput placeholder="Insured Object Name" name="insname" [(ngModel)]="general.ins_obj" >
+                               </mat-form-field>
+                               <mat-form-field style="width: 100%;">
+                                   <input required matInput jhiNumberOnly placeholder="Sum Assured" name="insname" [(ngModel)]="general.sum" >
+                               </mat-form-field>
+                               <mat-form-field style="width: 100%;">
+                                   <input required matInput jhiNumberOnly placeholder="Premium" name="hprem" [(ngModel)]="general.premium" >
+                               </mat-form-field>
+                           </div>  <!-- right end-->
+                       </div>  <!-- form end -->
+                   </form>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+      </div>
+  </ng-template>

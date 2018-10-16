@@ -28,6 +28,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { SubscriberModule } from './home/subscriber/subscriber.module';
 import { PromoCodeModule } from './home/subscriber/promo-code';
+import { BuckswiseFrontEndPratikModule } from './pratik/pratik.module';
 
 @NgModule({
     imports: [
@@ -44,7 +45,8 @@ import { PromoCodeModule } from './home/subscriber/promo-code';
         BuckswiseFrontEndEntityModule,
         CustomMaterialModule,
         SubscriberModule,
-        PromoCodeModule
+        PromoCodeModule,
+        BuckswiseFrontEndPratikModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent,

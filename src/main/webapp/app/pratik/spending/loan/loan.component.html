@@ -1,0 +1,184 @@
+<!-- loan modal -->
+<ng-template #loanModal let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <h4 class="modal-title" id="loanModal">Add Your Loan Details</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+      <form class="example-container" #incomeAdd="ngForm">
+          <!-- form start-->
+          <div class="row">
+              <div class="col-md-6">
+                  <mat-form-field style="width: 100%;">
+                      <mat-select placeholder="Choose Loan Type" [(ngModel)]="loan.loan_type" name="loantype">
+                          <mat-option *ngFor="let type of LoanTypeArray" [value]="type.name">
+                          {{type.name}}
+                          </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput  placeholder="Lender Name" name="lender" [(ngModel)]="loan.lender">
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput  placeholder="Applicant Name" name="applicant" [(ngModel)]="loan.applicant">
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput jhiNumberOnly placeholder="Rate of Interest" name="applicant" [(ngModel)]="loan.roi">
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput [matDatepicker]="picker1" placeholder="Loan Date" 
+                      [formControl]="loanDate">
+                      <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+                      <mat-datepicker #picker1 ></mat-datepicker>
+                  </mat-form-field>
+              </div>
+
+              <!-- right start -->
+              <div class="col-md-6">
+                  <mat-form-field  style="width: 100%;">
+                          <mat-select placeholder="Choose Interest Type" [(ngModel)]="loan.intrest_type" name="inttype">
+                              <mat-option *ngFor="let type of InterestTypeArray" [value]="type.name">
+                              {{type.name}}
+                              </mat-option>
+                          </mat-select>
+                  </mat-form-field>
+
+                  <mat-checkbox [(ngModel)]="loan.check" name="check">Is Loan Insured</mat-checkbox>
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput jhiNumberOnly placeholder="Amount of Loan" name="amnt" [(ngModel)]="loan.amnt">
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput jhiNumberOnly placeholder="Loan Tenure" name="tenure" [(ngModel)]="loan.tenure">
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 100%;">
+                      <input required matInput [matDatepicker]="picker2" placeholder="Repayment date" 
+                      [formControl]="repDate">
+                      <mat-datepicker-toggle matSuffix [for]="picker2" style="z-index:1200"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2 ></mat-datepicker>
+                  </mat-form-field>
+              </div>  <!-- right end-->
+          </div>  <!-- row end -->
+          <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+          </div>
+      </form>
+  </div>
+  
+</ng-template>
+
+<!--start of buttons -->
+<div>
+  <div class="float-right">
+  <button type="button" class="btn btn-link" data-toggle="modal" (click)="openLoan(loanModal)">
+          <span>
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              <span>Add</span>
+          </span>
+  </button>
+
+<!-- <span [ngSwitch]="isLoanData">
+    <div *ngSwitchCase="true">
+            <button type="button" class="btn btn-link" (click)="UpdateLoan()">
+                    <span>
+                        <i class="fa fa-save" aria-hidden="true"></i>
+                        <span>Update</span>
+                    </span>
+            </button>
+    </div>
+    <div *ngSwitchCase="false">
+            <button type="button" class="btn btn-link" (click)="onLoanSave()">
+                    <span>
+                        <i class="fa fa-save" aria-hidden="true"></i>
+                        <span>Save</span>
+                    </span>
+            </button>
+    </div>
+
+</span> -->
+
+  </div>
+</div>
+
+
+<!-- loan table -->
+<div>
+    <span [ngSwitch]="isLoanData">
+        <div *ngSwitchCase="true">
+            <table class="table table-responsive-md table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col"># </th>
+                        <th scope="col">Loan Type </th>
+                        <th scope="col">Lender Name </th>
+                        <th scope="col">Amount </th>
+                        <th scope="col">Monthly Tenure </th>
+                        <th scope="col">Outstanding Amount </th>
+                        <th scope="col">ROI </th>
+                        <th scope="col">Action </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- loan_type lender applicant amnt ldate check tenure intrest_type roi rdate -->
+                    <tr *ngFor="let field of dynamicLoanArray; let i = index">
+                        <td> {{ field.id }}</td>
+                        <td> {{ field.ltype }}</td>
+                        <td> {{ field.lenderName }} </td>
+                        <td> {{ field.amount }} </td>
+                        <td> {{ field.tenure }} </td>
+                        <td> {{ field.outstandingpricipal }} </td>
+                        <td> {{ field.roi }} </td>
+                        <td>
+                                <button class="btn btn-outline-info" type="button" (click)="onEditLoan(field.id, loanModal)">
+                                        <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                                    </button>
+                        </td>
+                        <td><button class="btn btn-outline-danger"  type="button" (click)="RemoveLoan(i, field.id)" >
+                            <span> <fa-icon [icon]="'trash'"></fa-icon></span></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngSwitchCase="false">
+            <table class="table table-responsive-md table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Loan Type </th>
+                        <th scope="col">Lender Name </th>
+                        <th scope="col">Amount </th>
+                        <th scope="col">Monthly Tenure </th>
+                        <th scope="col">ROI </th>
+                        <th scope="col">Action </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- loan_type lender applicant amnt ldate check tenure intrest_type roi rdate -->
+                    <tr *ngFor="let field of dynamicLoanArray; let i = index">
+                        <td> {{ field.ltype }}</td>
+                        <td> {{ field.lenderName }} </td>
+                        <td> {{ field.amount }} </td>
+                        <td> {{ field.tenure }} </td>
+                        <td> {{ field.roi }} </td>
+                        <td>
+                            <button class="btn btn-outline-info" type="button" (click)="onEditLoan(field.id, loanModal)">
+                                <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                            </button>
+                        </td>
+                        <td><button class="btn btn-outline-danger"  type="button" (click)="RemoveLoan(i, field.id)" >
+                            <span> <fa-icon [icon]="'trash'"></fa-icon></span></button>
+                        </td>                       
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </span>
+</div> <!-- end of loan table --> 

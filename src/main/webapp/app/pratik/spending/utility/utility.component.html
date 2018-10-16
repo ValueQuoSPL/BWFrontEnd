@@ -1,0 +1,332 @@
+<!-- expense modal -->
+<ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" id="expense-modal">Add Extra Utility Expense</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form class="example-container" #incomeAdd="ngForm">
+                <div>
+                        <mat-form-field class="example-full-width">
+                            <input required matInput required placeholder="Name" value="" [(ngModel)]="resource" name="resource-name" >
+                            <mat-hint >Please enter your resource of expense </mat-hint>
+                        </mat-form-field>
+                        </div>
+                    
+                        <div>
+                        <mat-form-field class="example-full-width">
+                            <input required matInput required jhiNumberOnly placeholder="Amount" type="number" value="" name="expense"
+                            [(ngModel)]="expense" 
+                            >
+                            <mat-hint >Please enter amount</mat-hint>
+                        </mat-form-field>
+                        </div>
+                        <br> <br>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+                    </div>
+            </form>
+            </div>
+</ng-template>
+
+<!-- modal, edit dialog -->
+<ng-template #utilityEditContent let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" id="utilityEditContent">Utility Edit</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+        <form class="example-container" #incomeAdd="ngForm">
+            <div>
+                    <mat-label>{{ nameField }}</mat-label>
+                </div>
+            
+                <div>
+                <mat-form-field class="example-full-width">
+                    <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name" >
+                    <mat-hint>Please enter amount</mat-hint>
+                </mat-form-field>
+                </div>
+                <br> <br>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+            </div>
+        </form>
+        </div>
+    </ng-template>
+
+<!--start of buttons -->
+<div>
+    <div class="float-right">
+        <button type="button" class="btn btn-link" data-toggle="modal" (click)="openUtility(content)">
+            <span>
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <span>Add</span>
+            </span>
+        </button>
+
+        <span [ngSwitch]="isUtilityData">
+            <p *ngSwitchCase="true">
+                <button type="button" class="btn btn-link" (click)="UpdateUtility()">
+                    <span>
+                        <i class="fa fa-save" aria-hidden="true"></i>
+                        <span>Update</span>
+                    </span>
+                </button>
+            </p>
+            <p *ngSwitchCase="false">
+                <button type="button" class="btn btn-link" (click)="SaveUtility()">
+                    <span>
+                        <i class="fa fa-save" aria-hidden="true"></i>
+                        <span>Save</span>
+                    </span>
+                </button>
+            </p>
+        </span>
+    </div>
+</div>
+
+
+<span [ngSwitch]="isUtilityData">
+    <div *ngSwitchCase="true">
+        <table class="table table-responsive-md table-hover table-sm">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Monthly Amount</th>
+                <th scope="col">Yearly Amount</th>
+                <th scope="col">Actions</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td> Electricity </td>
+                <td> {{utility.electricity }} </td>
+                <td> {{utility.electricity * 12}} </td>
+                <td>
+                    <button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('electricity', utilityEditContent)" >
+                        <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Gas </td>
+                <td> {{utility.gas }} </td>
+                <td> {{utility.gas * 12}} </td>
+                <td>
+                    <button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('gas', utilityEditContent)" >
+                        <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Water </td>
+                <td>{{utility.water }} </td>
+                <td>{{utility.water * 12}} </td>
+                <td>
+                    <button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('water', utilityEditContent)" >
+                        <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Telephone </td>
+                <td> {{utility.telephone }} </td>
+                <td> {{utility.telephone * 12}} </td>
+                <td>
+                    <button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('telephone', utilityEditContent)" >
+                        <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Mobile </td>
+                <td> {{utility.mobile}} </td>
+                <td> {{utility.mobile * 12}} </td>
+                <td>
+                    <button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('mobile', utilityEditContent)" >
+                        <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Internet </td>
+                <td> {{utility.internet }} </td>
+                <td> {{utility.internet * 12}} </td>
+                <td>
+                    <button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('internet', utilityEditContent)" >
+                        <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Satellite TV </td>
+                <td> {{utility.tv }} </td>
+                <td> {{utility.tv * 12}} </td>
+                <td>
+                    <button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('tv', utilityEditContent)" >
+                        <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Video / CD Rentals </td>
+                <td> {{utility.vcd }} </td>
+                <td> {{utility.vcd * 12}} </td>
+                <td>
+                    <button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('vcd', utilityEditContent)" >
+                        <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> News Paper </td>
+                <td> {{utility.news }} </td>
+                <td> {{utility.news * 12}} </td>
+                <td>
+                    <button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('news', utilityEditContent)" >
+                        <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                    </button>
+                </td>
+                <td></td>
+            </tr>
+            <tr *ngFor="let field of dynamicUtilityArray; let i = index">
+                <td> {{field.name}} </td>
+                <td> {{field.value }} </td>
+                <td> {{field.value * 12}} </td>
+                <td>
+                    <button class="btn btn-outline-info"  type="button" (click)="onEditDynamicField(i, utilityEditContent)" >
+                        <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                    </button> </td>
+                 <td>  <button class="btn btn-outline-danger"  type="button" (click)="RemoveUtility(i, field.id)" >
+                        <span> <fa-icon [icon]="'trash'"></fa-icon></span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th scope="col">Total</th>
+                    <th> {{utility.electricity + utility.gas + utility.water + utility.telephone + utility.mobile + utility.internet + utility.tv + utility.vcd + utility.news + totalUtility}} </th>
+                    <th> {{(utility.electricity + utility.gas + utility.water + utility.telephone + utility.mobile + utility.internet + utility.tv + utility.vcd + utility.news + totalUtility) * 12 }} </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>      
+    </div>
+    <div *ngSwitchCase="false">
+        <table class="table table-responsive-md table-hover table-sm">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Monthly Amount</th>
+                <th scope="col">Yearly Amount</th>
+                <th scope="col">Actions</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td> Electricity </td>
+                <td> <input required jhiNumberOnly type="number" id="11" [(ngModel)]="utility.electricity"  [ngModelOptions]="{standalone: true}"   > </td>
+                <td> {{utility.electricity * 12}} </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Gas </td>
+                <td> <input required jhiNumberOnly type="number" id="21" [(ngModel)]="utility.gas"  [ngModelOptions]="{standalone: true}"  > </td>
+                <td> {{utility.gas * 12}} </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Water </td>
+                <td> <input required jhiNumberOnly type="number" id="31" [(ngModel)]="utility.water"  [ngModelOptions]="{standalone: true}"   > </td>
+                <td>{{utility.water * 12}} </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Telephone </td>
+                <td> <input required jhiNumberOnly type="number" id="41" [(ngModel)]="utility.telephone" [ngModelOptions]="{standalone: true}"    > </td>
+                <td> {{utility.telephone * 12}} </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Mobile </td>
+                <td> <input required jhiNumberOnly type="number" id="51" [(ngModel)]="utility.mobile"  [ngModelOptions]="{standalone: true}"   > </td>
+                <td> {{utility.mobile * 12}} </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Internet </td>
+                <td> <input required jhiNumberOnly type="number" id="61" [(ngModel)]="utility.internet"  [ngModelOptions]="{standalone: true}"   > </td>
+                <td> {{utility.internet * 12}} </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Satellite TV </td>
+                <td> <input required jhiNumberOnly type="number" id="71" [(ngModel)]="utility.tv"  [ngModelOptions]="{standalone: true}"   > </td>
+                <td> {{utility.tv * 12}} </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> Video / CD Rentals </td>
+                <td> <input required jhiNumberOnly type="number" id="81" [(ngModel)]="utility.vcd"  [ngModelOptions]="{standalone: true}"   > </td>
+                <td> {{utility.vcd * 12}} </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> News Paper </td>
+                <td> <input required jhiNumberOnly type="number" id="91" [(ngModel)]="utility.news" [ngModelOptions]="{standalone: true}"    > </td>
+                <td> {{utility.news * 12}} </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr *ngFor="let field of dynamicUtilityArray; let i = index">
+                <td> {{field.name}} </td>
+                <td> <input required  type="number" value="{{field.value}}" disabled> </td>
+                <td> {{field.value * 12}} </td>
+                <td>
+                    <button class="btn btn-outline-info"  type="button" (click)="onEditDynamicField(i, utilityEditContent)" >
+                        <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                    </button> </td>
+                <td>    <button class="btn btn-outline-danger"  type="button" (click)="RemoveUtility(i, field.id)" >
+                        <span> <fa-icon [icon]="'trash'"></fa-icon></span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th scope="col">Total</th>
+                    <th> {{utility.electricity + utility.gas + utility.water + utility.telephone + utility.mobile + utility.internet + utility.tv + utility.vcd + utility.news + totalUtility}} </th>
+                    <th> {{(utility.electricity + utility.gas + utility.water + utility.telephone + utility.mobile + utility.internet + utility.tv + utility.vcd + utility.news + totalUtility) * 12 }} </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</span>

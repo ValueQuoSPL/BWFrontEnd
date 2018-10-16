@@ -1,0 +1,260 @@
+<!-- expense modal -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <h4 class="modal-title" id="expense-modal">Add Extra Expense</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+      <form class="example-container" #incomeAdd="ngForm">
+          <div>
+                  <mat-form-field class="example-full-width">
+                      <input required matInput required placeholder="Name" value="" [(ngModel)]="resource" name="resource-name" >
+                      <mat-hint >Please enter your resource of expense </mat-hint>
+                  </mat-form-field>
+                  </div>
+              
+                  <div>
+                  <mat-form-field class="example-full-width">
+                      <input required matInput required jhiNumberOnly placeholder="Amount" type="number" value="" name="expense"
+                      [(ngModel)]="expense" 
+                      >
+                      <mat-hint >Please enter amount</mat-hint>
+                  </mat-form-field>
+                  </div>
+                  <br> <br>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+              </div>
+      </form>
+      </div>
+</ng-template>
+
+<!-- modal, edit dialog -->
+<ng-template #editMisc let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <h4 class="modal-title" id="miscModal">Miscellaneous Edit</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+  <form class="example-container" #incomeAdd="ngForm">
+      <div>
+              <mat-label>{{ nameField }}</mat-label>
+          </div>
+      
+          <div>
+          <mat-form-field class="example-full-width">
+              <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name" >
+              <mat-hint>Please enter amount</mat-hint>
+          </mat-form-field>
+          </div>
+          <br> <br>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+      </div>
+  </form>
+  </div>
+</ng-template>
+
+<!--start of buttons -->
+<div>
+  <div class="float-right">
+  <button type="button" class="btn btn-link" data-toggle="modal" (click)="openMisc(content)">
+          <span>
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              <span>Add</span>
+          </span>
+  </button>
+
+  <span [ngSwitch]="isMiscData">
+    <p *ngSwitchCase="true">
+      <button type="button" class="btn btn-link" (click)="UpdateMisc()">
+        <span>
+            <i class="fa fa-save" aria-hidden="true"></i>
+            <span>Update</span>
+        </span>
+      </button>
+    </p>
+    <p *ngSwitchCase="false">
+      <button type="button" class="btn btn-link" (click)="SaveMisc()">
+        <span>
+            <i class="fa fa-save" aria-hidden="true"></i>
+            <span>Save</span>
+        </span>
+      </button>
+    </p>
+  </span>
+
+  </div>
+</div>
+
+<span [ngSwitch]="isMiscData">
+  <div *ngSwitchCase="true">
+    <table class="table table-responsive-md table-hover table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Monthly Amount</th>
+          <th scope="col">Yearly Amount</th>
+          <th scope="col">Actions</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td> Shoes </td>
+          <td> {{misc.shoes }} </td>
+          <td> {{misc.shoes * 12}} </td> 
+          <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('shoes', editMisc)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+          <td></td>
+        </tr>
+        <tr>
+          <td> Pet Care </td>
+          <td> {{misc.pet }} </td>
+          <td> {{misc.pet * 12}} </td>
+          <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('pet', editMisc)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+          <td> </td>
+        </tr>
+        <tr>
+          <td> Electronics </td>
+          <td> {{misc.electronics }} </td>
+          <td> {{misc.electronics * 12}} </td>
+          <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('electronics', editMisc)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td> 
+          <td> </td>
+        </tr>
+        <tr>
+          <td> Furniture </td>
+          <td> {{misc.furniture }} </td>
+          <td> {{misc.furniture * 12}} </td>
+          <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('furniture', editMisc)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td> 
+          <td> </td>
+        </tr>
+        <tr>
+          <td> Charity </td>
+          <td> {{misc.charity }}</td>
+          <td> {{misc.charity * 12}}</td>
+          <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('charity', editMisc)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td> 
+          <td> </td>
+        </tr>
+        <tr>
+          <td> Gifts </td>
+          <td> {{misc.gift }} </td>
+          <td> {{misc.gift * 12}} </td>
+          <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('gift', editMisc)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td> 
+          <td> </td>
+        </tr>
+        <tr>
+          <td> Clothes </td>
+          <td> {{misc.cloth }} </td>
+          <td> {{misc.cloth * 12}} </td>
+          <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('cloth', editMisc)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td> 
+          <td> </td>
+        </tr>
+        <tr *ngFor="let field of dynamicMisc; let i = index">
+            <td> {{field.name}} </td>
+            <td>{{field.value }}</td>
+            <td>{{field.value * 12}}</td>
+            <td><button class="btn btn-outline-info"  type="button" (click)="editDynamicField(i, editMisc)" ><span> <fa-icon [icon]="'edit'"></fa-icon></i></span></button>
+            </td>
+            <td><button class="btn btn-outline-danger"  type="button" (click)="RemoveMisc(i, field.id)" ><span> <fa-icon [icon]="'trash'"></fa-icon></span></button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+              <th scope="col">Total</th>
+              <th> {{misc.shoes+misc.pet+misc.electronics+misc.furniture+misc.charity+misc.gift+misc.cloth + totalMisc}} </th>
+              <th> {{ (misc.shoes+misc.pet+misc.electronics+misc.furniture+misc.charity+misc.gift+misc.cloth)*12 + totalMisc}} </th>
+              <th> </th>
+              <th> </th>
+            </tr>
+        </tfoot>
+    </table>
+  </div>
+  <div *ngSwitchCase="false">
+    <table class="table table-responsive-md table-hover table-sm">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Monthly Amount</th>
+          <th scope="col">Yearly Amount</th>
+          <th scope="col">Actions</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td> Shoes </td>
+          <td> <input required jhiNumberOnly type="number" id="11" [(ngModel)]="misc.shoes"  [ngModelOptions]="{standalone: true}"   > </td>
+          <td> {{misc.shoes * 12}} </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> Pet Care </td>
+          <td> <input required jhiNumberOnly type="number" id="21" [(ngModel)]="misc.pet"  [ngModelOptions]="{standalone: true}"   > </td>
+          <td> {{misc.pet * 12}} </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> Electronics </td>
+          <td> <input required jhiNumberOnly type="number" id="31" [(ngModel)]="misc.electronics"  [ngModelOptions]="{standalone: true}"   > </td>
+          <td> {{misc.electronics * 12}} </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> Furniture </td>
+          <td> <input required jhiNumberOnly type="number" id="41" [(ngModel)]="misc.furniture"  [ngModelOptions]="{standalone: true}"   > </td>
+          <td> {{misc.furniture * 12}} </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> Charity </td>
+          <td> <input required jhiNumberOnly type="number" id="51" [(ngModel)]="misc.charity"  [ngModelOptions]="{standalone: true}"   > </td>
+          <td> {{misc.charity * 12}}</td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> Gifts </td>
+          <td> <input required jhiNumberOnly type="number" id="61" [(ngModel)]="misc.gift"  [ngModelOptions]="{standalone: true}"   > </td>
+          <td> {{misc.gift * 12}} </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> Clothes </td>
+          <td> <input required jhiNumberOnly type="number" id="71" [(ngModel)]="misc.cloth"  [ngModelOptions]="{standalone: true}"   > </td>
+          <td> {{misc.cloth * 12}} </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr *ngFor="let field of dynamicMisc; let i = index">
+            <td> {{field.name}} </td>
+            <td><input required  type="number" value="{{field.value}}" disabled> </td>
+            <td>{{field.value * 12}}</td>
+            <td><button class="btn btn-outline-info"  type="button" (click)="editDynamicField(i, editMisc)" ><span> <fa-icon [icon]="'edit'"></fa-icon></i></span></button>
+            </td>
+            <td><button class="btn btn-outline-danger"  type="button" (click)="RemoveMisc(i, field.id)" ><span> <fa-icon [icon]="'trash'"></fa-icon></span></button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+              <th scope="col">Total</th>
+              <th> {{misc.shoes+misc.pet+misc.electronics+misc.furniture+misc.charity+misc.gift+misc.cloth + totalMisc}} </th>
+              <th> {{ (misc.shoes+misc.pet+misc.electronics+misc.furniture+misc.charity+misc.gift+misc.cloth)*12 + totalMisc}} </th>
+              <th> </th>
+              <th> </th>
+            </tr>
+        </tfoot>
+    </table>
+  </div>
+</span>
+<!-- table -->

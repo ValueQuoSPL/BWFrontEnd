@@ -1,0 +1,189 @@
+
+
+
+<span [ngSwitch]="isAuthenticated()">
+    <div *ngSwitchCase="false">
+        <div class="alert alert-warning" *ngSwitchCase="false">
+            <span>You are not signed in. <br> If you want to sign in</span>
+            <a class="alert-link" (click)="login()">Click here</a>
+        </div>
+    </div>
+    <div *ngSwitchCase="true">
+        <div class="container">
+
+                <!-- Start expense panel -->
+                <div class="row justify-content-md-center bwtitle">
+                    <h5>Expense</h5>
+                </div>
+        
+                <div> <!-- start expense content -->
+                <mat-accordion>
+        
+                    <!-- expense modal -->
+                    <ng-template #content let-c="close" let-d="dismiss">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="expense-modal">Add Extra Expense</h4>
+                                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="example-container" #incomeAdd="ngForm">
+                                    <div>
+                                            <mat-form-field class="example-full-width">
+                                                <input required matInput required placeholder="Name" value="" [(ngModel)]="resource" name="resource-name" >
+                                                <mat-hint >Please enter your resource of expense </mat-hint>
+                                            </mat-form-field>
+                                            </div>
+                                        
+                                            <div>
+                                            <mat-form-field class="example-full-width">
+                                                <input required matInput required jhiNumberOnly placeholder="Amount" type="number" value="" name="expense"
+                                                [(ngModel)]="expense" 
+                                                >
+                                                <mat-hint >Please enter amount</mat-hint>
+                                            </mat-form-field>
+                                            </div>
+                                            <br> <br>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+                                        </div>
+                                </form>
+                                </div>
+                    </ng-template>
+        
+                    <!-- utilities -->
+                    <mat-expansion-panel class="accordion" >
+                        <!-- header -->
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Utilities </mat-panel-title>
+                            <mat-panel-description>Add your Utilities</mat-panel-description>
+                        </mat-expansion-panel-header>
+                
+                        <jhi-utility></jhi-utility>
+                    
+                    </mat-expansion-panel>     
+                    
+                    <!-- household -->
+                    <mat-expansion-panel>
+                        <!-- header -->
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Household</mat-panel-title>
+                            <mat-panel-description>Your household expense</mat-panel-description>
+                        </mat-expansion-panel-header>
+                    
+                        <jhi-household></jhi-household>
+        
+                    </mat-expansion-panel>    
+                    
+                    <!-- Loan -->
+                    <mat-expansion-panel>
+        
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>Loans and Debts </mat-panel-title>
+                            <mat-panel-description>Add Your Loan Details</mat-panel-description>
+                        </mat-expansion-panel-header>
+                    
+                        <jhi-loan></jhi-loan> 
+        
+                    </mat-expansion-panel>   
+                    
+                    <!-- Insurance -->
+                    <mat-expansion-panel [expanded]="true">
+        
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>Insurance</mat-panel-title>
+                                <mat-panel-description>Add your Insurance Details</mat-panel-description>
+                            </mat-expansion-panel-header>
+        
+                            <mat-accordion>
+                                <!-- life -->
+                                <mat-expansion-panel >
+                                    <mat-expansion-panel-header>
+                                            <mat-panel-title>Life Insurance</mat-panel-title>
+                                            <mat-panel-description>Add your other Life insurance</mat-panel-description>
+                                    </mat-expansion-panel-header>
+        
+                                    <jhi-life></jhi-life>
+        
+                                </mat-expansion-panel>
+        
+                                <!-- health -->
+                                <mat-expansion-panel >
+                                    <mat-expansion-panel-header>
+                                            <mat-panel-title>Health Insurance</mat-panel-title>
+                                            <mat-panel-description>Add your other Health insurance</mat-panel-description>
+                                    </mat-expansion-panel-header>
+        
+                                    <jhi-health></jhi-health>
+        
+                                </mat-expansion-panel>
+        
+                                <!-- General -->
+                                <mat-expansion-panel >
+                                    <mat-expansion-panel-header>
+                                            <mat-panel-title>General Insurance</mat-panel-title>
+                                            <mat-panel-description>Add your other general insurance</mat-panel-description>
+                                    </mat-expansion-panel-header>
+        
+                                    <jhi-general></jhi-general>
+        
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                    
+                    </mat-expansion-panel> 
+                    
+                    <!-- Credit Cards -->
+                    <mat-expansion-panel>
+        
+                            <mat-expansion-panel-header>
+                                <mat-panel-title> Credit Cards</mat-panel-title>
+                                <mat-panel-description>Your Credit card details(we never disclose it)</mat-panel-description>
+                            </mat-expansion-panel-header>
+                    
+                            <jhi-credit></jhi-credit>
+        
+                    </mat-expansion-panel>  
+                    
+                    <!-- Entertainment & Travel -->
+                    <mat-expansion-panel>
+                            <!-- header -->
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Entertainment & Travel
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                Add your extra expense on Entertainment & Travel
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                    
+                            <jhi-travel></jhi-travel>
+                    
+                    </mat-expansion-panel> 
+                    
+                    <!-- Misc -->
+                    <mat-expansion-panel>
+                            <!-- header -->
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Miscellaneous
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                Any another miscellaneous expense? Add here to keep track
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+        
+                            <jhi-misc></jhi-misc>
+                    
+                    </mat-expansion-panel>    
+                </mat-accordion> 
+                </div>  <!-- end expense content -->
+                </mat-expansion-panel> <!-- end expense panel -->
+
+        </div>
+    </div>
+</span>
+
+
+
+

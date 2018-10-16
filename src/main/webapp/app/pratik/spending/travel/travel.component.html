@@ -1,0 +1,234 @@
+<!-- expense modal -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+      <h4 class="modal-title" id="expense-modal">Add Extra Expense</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+      <form class="example-container" #incomeAdd="ngForm">
+          <div>
+                  <mat-form-field class="example-full-width">
+                      <input required matInput required placeholder="Name" value="" [(ngModel)]="resource" name="resource-name" >
+                      <mat-hint >Please enter your resource of expense </mat-hint>
+                  </mat-form-field>
+                  </div>
+              
+                  <div>
+                  <mat-form-field class="example-full-width">
+                      <input required matInput required jhiNumberOnly placeholder="Amount" type="number" value="" name="expense"
+                      [(ngModel)]="expense" 
+                      >
+                      <mat-hint >Please enter amount</mat-hint>
+                  </mat-form-field>
+                  </div>
+                  <br> <br>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+              </div>
+      </form>
+      </div>
+</ng-template>
+
+<!-- modal, edit dialog -->
+<ng-template #editTravel let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="travelModal">Miscellaneous Edit</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+    <form class="example-container" #incomeAdd="ngForm">
+        <div>
+                <mat-label>{{ nameField }}</mat-label>
+            </div>
+        
+            <div>
+            <mat-form-field class="example-full-width">
+                <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name" >
+                <mat-hint>Please enter amount</mat-hint>
+            </mat-form-field>
+            </div>
+            <br> <br>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+        </div>
+    </form>
+    </div>
+  </ng-template>
+
+<!--start of buttons -->
+<div>
+    <div class="float-right">
+    <button type="button" class="btn btn-link" data-toggle="modal" (click)="openTravel(content)">
+            <span>
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <span>Add</span>
+            </span>
+    </button>
+
+    <span [ngSwitch]="isTravelData">
+      <p *ngSwitchCase="true">
+        <button type="button" class="btn btn-link" (click)="UpdateTravel()">
+          <span>
+              <i class="fa fa-save" aria-hidden="true"></i>
+              <span>Update</span>
+          </span>
+        </button>
+      </p>
+      <p *ngSwitchCase="false">
+          <button type="button" class="btn btn-link" (click)="SaveTravel()">
+              <span>
+                  <i class="fa fa-save" aria-hidden="true"></i>
+                  <span>Save</span>
+              </span>
+      </button>
+      </p>
+    </span>
+
+
+    </div>
+</div>
+
+
+<span [ngSwitch]="isTravelData">
+  <div *ngSwitchCase="true">
+    <!-- table -->
+<table class="table table-responsive-md table-hover table-sm">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Monthly Amount</th>
+        <th scope="col">Yearly Amount</th>
+        <th scope="col">Actions</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td> Work Expenses (lunch, coffee) </td>
+        <td> {{travel.food }} </td>
+        <td> {{travel.food * 12}} </td>
+        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('food', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+        <td></td>
+      </tr>
+      <tr>
+        <td> Entertainment (movies, plays, etc.) </td>
+        <td> {{travel.entertainment }} </td>
+        <td> {{travel.entertainment * 12}} </td>
+        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('food', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+        <td></td>
+      </tr>
+      <tr>
+        <td> Dining out </td>
+        <td> {{travel.dineout }} </td>
+        <td> {{travel.dineout * 12}} </td>
+        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('food', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+        <td></td>
+      </tr>
+      <tr>
+        <td> Travel / Vacation </td>
+        <td> {{travel.vacation }} </td>
+        <td> {{travel.vacation * 12}} </td>
+        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('food', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+        <td></td>
+      </tr>
+      <tr>
+        <td> Hobbies </td>
+        <td> {{travel.hobby }} </td>
+        <td> {{travel.hobby * 12}} </td>
+        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('food', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+        <td></td>
+      </tr>
+      <tr *ngFor="let field of dynamicTravel; let i = index">
+        <td> {{field.name}} </td>
+        <td>{{field.value }} </td>
+        <td>{{field.value * 12}} </td>
+        <td><button class="btn btn-outline-info"  type="button" (click)="editDynamicField(i, editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+        <td><button class="btn btn-outline-danger"  type="button" (click)="RemoveTravel(i, field.id)" >
+          <span> <fa-icon [icon]="'trash'"></fa-icon></span></button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+          <tr>
+            <th scope="col">Total</th>
+            <th> {{travel.food+ travel.entertainment+ travel.dineout+ travel.vacation+ travel.hobby+ totalTravel}}</th>
+            <th> {{ (travel.food+travel.entertainment+travel.dineout+travel.vacation+travel.hobby + totalTravel) * 12}}</th>
+            <th></th>
+            <th></th>
+          </tr>
+    </tfoot>
+</table>
+  </div>
+  <div *ngSwitchCase="false">
+    <!-- table -->
+    <table class="table table-responsive-md table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Monthly Amount</th>
+            <th scope="col">Yearly Amount</th>
+            <th scope="col">Actions</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> Work Expenses (lunch, coffee) </td>
+            <td> <input required jhiNumberOnly type="number" id="10" [(ngModel)]="travel.food"  [ngModelOptions]="{standalone: true}"   > </td>
+            <td> {{travel.food * 12}} </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td> Entertainment (movies, plays, etc.) </td>
+            <td> <input required jhiNumberOnly type="number" id="10" [(ngModel)]="travel.entertainment" [ngModelOptions]="{standalone: true}"    > </td>
+            <td> {{travel.entertainment * 12}} </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td> Dining out </td>
+            <td> <input required jhiNumberOnly type="number" id="10" [(ngModel)]="travel.dineout"  [ngModelOptions]="{standalone: true}"   > </td>
+            <td> {{travel.dineout * 12}} </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td> Travel / Vacation </td>
+            <td> <input required jhiNumberOnly type="number" id="10" [(ngModel)]="travel.vacation"  [ngModelOptions]="{standalone: true}"   > </td>
+            <td> {{travel.vacation * 12}} </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td> Hobbies </td>
+            <td> <input required jhiNumberOnly type="number" id="10" [(ngModel)]="travel.hobby"  [ngModelOptions]="{standalone: true}"   > </td>
+            <td> {{travel.hobby * 12}} </td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr *ngFor="let field of dynamicTravel; let i = index">
+            <td> {{field.name}} </td>
+            <td><input required  type="number" value="{{field.value}}"    disabled> </td>
+            <td>{{field.value * 12}} </td>
+            <td><button class="btn btn-outline-info"  type="button" (click)="editDynamicField(i, editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+            <td><button class="btn btn-outline-danger"  type="button" (click)="RemoveTravel(i, field.id)" ><span> <fa-icon [icon]="'trash'"></fa-icon></span></button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+              <tr>
+                <th scope="col">Total</th>
+                <th> {{travel.food+ travel.entertainment+ travel.dineout+ travel.vacation+ travel.hobby+ totalTravel}}</th>
+                <th> {{ (travel.food+travel.entertainment+travel.dineout+travel.vacation+travel.hobby + totalTravel) * 12}}</th>
+                <th></th>
+                <th></th>
+              </tr>
+        </tfoot>
+    </table>
+  </div>
+</span>

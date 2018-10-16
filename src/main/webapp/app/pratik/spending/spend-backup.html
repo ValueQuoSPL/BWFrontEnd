@@ -1,0 +1,1880 @@
+
+
+
+    <!--start of main tab header-->
+    <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist" style="margin-top:20px">
+              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Income</a>
+              <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Expense</a>
+            </div>
+          </nav> <!--end of tab -->
+      
+          <!--start of main-tab-content -->
+          <div class="tab-content" id="nav-tabContent">
+      
+            <!--start of income -->
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      
+                <!--start income of buttons -->
+                <div class="float-right">
+                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#incomeModal">
+                            <span>
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                <span>Add</span>
+                            </span>
+                    </button>
+                    <button type="button" class="btn btn-link" (click)="onIncomeSave()">
+                            <span>
+                                <i class="fa fa-save" aria-hidden="true"></i>
+                                <span>Save</span>
+                            </span>
+                    </button>
+                    <button type="button" class="btn btn-link" (click)="onIncomeGet()">
+                            <span>
+                                <i class="far fa-arrow-alt-circle-down"></i>
+                                <span>Get</span>
+                            </span>
+                    </button>
+                    <!-- <button type="button" class="btn btn-link">
+                            <span>
+                                <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                                <span>Reset</span>
+                            </span>
+                    </button> -->
+                    <button type="button" class="btn btn-link">
+                            <span>
+                                <i class="fa fa-info" aria-hidden="true"></i>
+                                <span>Help</span>
+                            </span>
+                    </button>
+                </div><!--end of buttons -->
+      
+                <div><!-- income modal start -->
+                    <div class="modal fade" id="incomeModal" tabindex="-1" role="dialog" aria-labelledby="incomeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+      
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="incomeModalLabel">Add new Income field</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+      
+                            <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                <label for="resource-name" class="col-form-label">Resource:</label>
+                                <input type="text"  class="form-control" id="resource-name"
+                                [(ngModel)]="resource" name="resource-name"required>
+                                </div>
+                                <div class="form-group">
+                                <label for="amount-text" class="col-form-label">Monthly Income:</label>
+                                <input type="number" class="form-control" id="amount-text"
+                                [(ngModel)]="amount" name="amount-name"  required>
+                                </div>
+                            </form>
+                            </div>
+      
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary"
+                            data-dismiss="modal" (click)="addFieldValue()">Add</button>
+                            </div>
+      
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- end of modal -->
+      
+                <!-- table starts here -->
+                <div>
+                    <table class="table table-hover table-sm">
+                      <thead>
+                        <tr>
+                          <th scope="col">Name</th>
+                          <th scope="col">Monthly Amount</th>
+                          <th scope="col">Yearly Amount</th>
+                          <th scope="col">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td> Post Tax Take Home Salary of # </td>
+                          <td> <input type="number" [(ngModel)]="income.incomeSalary" name="income-salary" > </td>
+                          <td> <input type="number"   value="{{income.incomeSalary * 12}}" disabled > </td>
+                        </tr>
+                        <tr>
+                          <td> Performance award / bonus </td>
+                          <td> <input type="number" id="21" [(ngModel)]="income.incomeAward"  name="income-award"  > </td>
+                          <td> <input type="number" id="22" value="{{income.incomeAward * 12}}"    disabled> </td>
+                        </tr>
+                        <tr>
+                          <td> Sign-up bonus </td>
+                          <td> <input type="number" id="31" [(ngModel)]="income.incomeBonus"  name="income-bonus"  > </td>
+                          <td> <input type="number" id="32" value="{{income.incomeBonus * 12}}"   disabled> </td>
+                        </tr>
+                        <tr>
+                          <td> Pensions </td>
+                          <td> <input type="number" id="41" [(ngModel)]="income.incomePension"  name="income-pension"  > </td>
+                          <td> <input type="number" id="42" value="{{income.incomePension * 12}}"   disabled> </td>
+                        </tr>
+                        <tr>
+                          <td> Interest earned on savings </td>
+                          <td> <input type="number" id="51" [(ngModel)]="income.incomeSaving"  name="income-saving"  > </td>
+                          <td> <input type="number" id="52" value="{{income.incomeSaving * 12}}"    disabled> </td>
+                        </tr>
+                        <tr>
+                          <td> Income from investments(Deposites, Securities) </td>
+                          <td> <input type="number" id="61" [(ngModel)]="income.incomeDeposit"  name="income-deposit"  > </td>
+                          <td> <input type="number" id="62" value="{{income.incomeDeposit * 12}}"   disabled> </td>
+                        </tr>
+                        <tr>
+                          <td> Rental Income </td>
+                          <td> <input type="number" id="71" [(ngModel)]="income.incomeRental"  name="income-rental"  > </td>
+                          <td> <input type="number" id="72" value="{{income.incomeRental * 12}}"    disabled> </td>
+                        </tr>
+                        <!-- </tbody>
+                        <tbody *ngIf="incomeStatus === saved">
+                          <tr *ngFor="let field of IncomeArray">
+                              <td> {{field.name}} </td>
+                              <td><input  type="number" value="{{field.value}}"    > </td>
+                              <td><input  type="number" value="{{field.value * 12}}"    disabled> </td>
+                          </tr>
+                        </tbody> -->
+                         <tr *ngFor="let field of dynamicIncome; let i = index">
+                            <td> {{field.name}} </td>
+                            <td><input  type="number" value="{{field.value}}"    disabled> </td>
+                            <td><input  type="number" value="{{field.value * 12}}"    disabled> </td>
+                            <td><button class="btn btn-outline-info"  type="button" (click)="deleteFieldValue(i)" >
+                              <span> <i class="fa fa-trash" aria-hidden="true"></i></span></button>
+                            </td>
+                        </tr>
+                      </tbody>
+                      <tfoot>
+                            <tr >
+                              <th scope="col">Total</th>
+                              <th >
+                                  {{income.incomeSalary + income.incomeAward + income.incomeSaving + income.incomeRental + income.incomeBonus + income.incomePension + income.incomeDeposit + totalIncome}}
+                              </th>
+                              <th> {{(income.incomeSalary + income.incomeAward + income.incomeSaving + income.incomeRental + income.incomeBonus + income.incomePension + income.incomeDeposit + totalIncome) * 12 }}
+                              </th>
+                            </tr>
+                      </tfoot>
+                    </table>
+                </div> <!-- table ends here -->
+      
+            </div>  <!-- income  ends here  -->
+      
+            <!-- start of expense -->
+            <div class="tab-pane fade"  id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+      
+              <!-- start of inner tab -->
+              <div class="row">
+      
+                 <!-- start of inner tab header -->
+                <div class="col-3">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      
+                        <a class="nav-link active" id="v-pills-utility-tab" data-toggle="pill"
+                        href="#v-pills-utility" role="tab"
+                        aria-controls="v-pills-utility" aria-selected="true">Utility</a>
+      
+                        <a class="nav-link" id="v-pills-house-tab" data-toggle="pill"
+                        href="#v-pills-house" role="tab"
+                        aria-controls="v-pills-house" aria-selected="false">household</a>
+      
+                        <a class="nav-link" id="v-pills-loan-tab" data-toggle="pill"
+                        href="#v-pills-loan" role="tab"
+                        aria-controls="v-pills-loan" aria-selected="false">loan and debts</a>
+      
+                        <a class="nav-link" id="v-pills-insurance-tab" data-toggle="pill"
+                         href="#v-pills-insurance" role="tab"
+                         aria-controls="v-pills-insurance" aria-selected="false">insurance payment</a>
+      
+                        <a class="nav-link" id="v-pills-credit-tab" data-toggle="pill"
+                        href="#v-pills-credit" role="tab"
+                        aria-controls="v-pills-credit" aria-selected="false">credit cards</a>
+      
+                        <a class="nav-link" id="v-pills-travel-tab" data-toggle="pill"
+                        href="#v-pills-travel" role="tab"
+                        aria-controls="v-pills-travel" aria-selected="false">entertainment and travel</a>
+      
+                        <a class="nav-link" id="v-pills-misc-tab" data-toggle="pill"
+                        href="#v-pills-misc" role="tab"
+                        aria-controls="v-pills-misc" aria-selected="false">miscellaneous</a>
+                         <!-- start of inner tab header -->
+                    </div>
+                </div> <!-- end of inner tab header -->
+      
+                <!--start of inner-tab-content -->
+                <div class="col-9">
+                  <div class="tab-content" id="v-pills-tabContent">
+      
+                    <!-- utility -->
+                    <div class="tab-pane fade show active" id="v-pills-utility" role="tabpanel" aria-labelledby="v-pills-utility-tab">
+                      <h3><p class="font-weight-bold">Utilities</h3>
+      
+                          <!--start of buttons -->
+                        <div style="margin-top: -50px" class="pull-right" >
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#utilityModal">
+                                <span>
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <span>Add</span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-link"  (click)="SaveUtility()">
+                              <span>
+                                  <i class="fa fa-save" aria-hidden="true"></i>
+                                  <span>Save</span>
+                              </span>
+                          </button>
+                            <button type="button" class="btn btn-link"  (click)="GetUtility()">
+                                <span>
+                                  <i class="far fa-arrow-alt-circle-down"></i>
+                                    <span>Get</span>
+                                </span>
+                            </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                          <!-- <button type="button" class="btn btn-link">
+                                <span>
+                                    <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                                    <span>Reset</span>
+                                </span>
+                            </button> -->
+                            <button type="button" class="btn btn-link">
+                                <span>
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                    <span>Help</span>
+                                </span>
+                            </button>
+                        </div>   <!--end of buttons -->
+      
+                        <!-- modal start -->
+                        <div class="modal fade" id="utilityModal" tabindex="-1" role="dialog" aria-labelledby="utilityModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+      
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="utilityModalLabel">Add new utility expense</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+      
+                                <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                    <label for="utility-name" class="col-form-label">Utility Name:</label>
+                                    <input type="text"  class="form-control" [(ngModel)]="resource"
+                                    [ngModelOptions]="{standalone: true}"  required>
+                                    </div>
+                                    <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Monthly Expense:</label>
+                                    <input type="number" class="form-control" [(ngModel)]="expense"
+                                    [ngModelOptions]="{standalone: true}" required>
+                                    </div>
+                                </form>
+                                </div>
+      
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary"
+                                data-dismiss="modal" (click)="AddUtility()">Add</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>  <!-- end of modal -->
+      
+                        <table class="table table-hover table-sm">
+                            <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Monthly Amount</th>
+                                <th scope="col">Yearly Amount</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td> Electricity </td>
+                                <td> <input type="number" id="11" [(ngModel)]="utility.electricity"  [ngModelOptions]="{standalone: true}"   > </td>
+                                <td> <input type="number" id="12" value="{{utility.electricity * 12}}"   disabled > </td>
+                            </tr>
+                            <tr>
+                                <td> Gas </td>
+                                <td> <input type="number" id="21" [(ngModel)]="utility.gas"  [ngModelOptions]="{standalone: true}"  > </td>
+                                <td> <input type="number" id="22"  value="{{utility.gas * 12}}"   disabled> </td>
+                            </tr>
+                            <tr>
+                                <td> Water </td>
+                                <td> <input type="number" id="31" [(ngModel)]="utility.water"  [ngModelOptions]="{standalone: true}"   > </td>
+                                <td> <input type="number" id="32"  value="{{utility.water * 12}}"   disabled> </td>
+                            </tr>
+                            <tr>
+                                <td> Telephone </td>
+                                <td> <input type="number" id="41" [(ngModel)]="utility.telephone" [ngModelOptions]="{standalone: true}"    > </td>
+                                <td> <input type="number" id="42"  value="{{utility.telephone * 12}}"   disabled> </td>
+                            </tr>
+                            <tr>
+                                <td> Mobile </td>
+                                <td> <input type="number" id="51" [(ngModel)]="utility.mobile"  [ngModelOptions]="{standalone: true}"   > </td>
+                                <td> <input type="number" id="52"  value="{{utility.mobile * 12}}"   disabled> </td>
+                            </tr>
+                            <tr>
+                                <td> Internet </td>
+                                <td> <input type="number" id="61" [(ngModel)]="utility.internet"  [ngModelOptions]="{standalone: true}"   > </td>
+                                <td> <input type="number" id="62"  value="{{utility.internet * 12}}"   disabled> </td>
+                            </tr>
+                            <tr>
+                                <td> Satellite TV </td>
+                                <td> <input type="number" id="71" [(ngModel)]="utility.tv"  [ngModelOptions]="{standalone: true}"   > </td>
+                                <td> <input type="number" id="72"  value="{{utility.tv * 12}}"   disabled> </td>
+                            </tr>
+                            <tr>
+                                <td> Video / CD Rentals </td>
+                                <td> <input type="number" id="81" [(ngModel)]="utility.vcd"  [ngModelOptions]="{standalone: true}"   > </td>
+                                <td> <input type="number" id="82"  value="{{utility.vcd * 12}}"   disabled> </td>
+                            </tr>
+                            <tr>
+                                <td> News Paper </td>
+                                <td> <input type="number" id="91" [(ngModel)]="utility.news" [ngModelOptions]="{standalone: true}"    > </td>
+                                <td> <input type="number" id="92"  value="{{utility.news * 12}}"   disabled> </td>
+                            </tr>
+                            <tr *ngFor="let field of dynamicUtilityArray; let i = index">
+                                <td> {{field.name}} </td>
+                                <td><input  type="number" value="{{field.value}}" disabled> </td>
+                                <td><input  type="number" value="{{field.value * 12}}" disabled> </td>
+                                <td><button class="btn btn-outline-info"  type="button" (click)="RemoveUtility(i)" >
+                                <span> <i class="fa fa-trash" aria-hidden="true"></i></span></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th scope="col">Total</th>
+                                    <th> {{utility.electricity + utility.gas + utility.water + utility.telephone + utility.mobile + utility.internet + utility.tv + utility.vcd + utility.news + totalUtility}} </th>
+                                    <th> {{(utility.electricity + utility.gas + utility.water + utility.telephone + utility.mobile + utility.internet + utility.tv + utility.vcd + utility.news + totalUtility) * 12 }} </th>
+      
+                                </tr>
+                            </tfoot>
+                        </table>
+      
+                    </div>
+      
+                    <!-- house -->
+                    <div class="tab-pane fade" id="v-pills-house" role="tabpanel" aria-labelledby="v-pills-house-tab">
+                        <h3><p class="font-weight-bold">Household</h3>
+                         <!--start of house buttons -->
+                        <div style="margin-top: -50px" class="pull-right">
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#houseModal">
+                                <span>
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <span>Add</span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-link" (click)="SaveHousehold()">
+                                <span>
+                                    <i class="fa fa-save" aria-hidden="true"></i>
+                                    <span>Save</span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-link" (click)="GetHousehold()">
+                                <span>
+                                  <i class="far fa-arrow-alt-circle-down"></i>
+                                    <span>Get</span>
+                                </span>
+                            </button>&nbsp;&nbsp;&nbsp;
+                            <!-- <button type="button" class="btn btn-link">
+                                <span>
+                                    <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                                    <span>Reset</span>
+                                </span>
+                            </button> -->
+                            <button type="button" class="btn btn-link">
+                                <span>
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                    <span>Help</span>
+                                </span>
+                            </button>
+                        </div>
+                        <!--end of buttons -->
+      
+      
+                        <!--house modal start -->
+                        <div class="modal fade" id="houseModal" tabindex="-1" role="dialog" aria-labelledby="houseModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="houseModalLabel">Add new Household expense</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <form>
+                                    <div class="form-group">
+                                      <label for="household-name" class="col-form-label">Household Name:</label>
+                                      <input type="text"  class="form-control" [(ngModel)]="resource"
+                                      [ngModelOptions]="{standalone: true}"  required>
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="message-text" class="col-form-label">Monthly Expense:</label>
+                                      <input type="number" class="form-control" [(ngModel)]="expense"
+                                      [ngModelOptions]="{standalone: true}" required>
+                                    </div>
+                                  </form>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-primary"
+                                  data-dismiss="modal" (click)="AddHousehold()">Add</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>  <!-- end of modal -->
+      
+                          <!--start of household table -->
+                          <table class="table table-hover table-sm">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Monthly Amount</th>
+                                    <th scope="col">Yearly Amount</th>
+                                    <th scope="col">Actions</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td> Milk </td>
+                                    <td> <input type="number" id="10" [(ngModel)]="house.milk"  [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="11" value="{{house.milk * 12}}"   disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Veg / Non Veg / Fruits </td>
+                                    <td> <input type="number" id="21" [(ngModel)]="house.fruit"  [ngModelOptions]="{standalone: true}"  > </td>
+                                    <td> <input type="number" id="22" value="{{house.fruit * 12}}"    disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Rent </td>
+                                    <td> <input type="number" id="31" [(ngModel)]="house.rent" [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="32" value="{{house.rent * 12}}"    disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Fuel </td>
+                                    <td> <input type="number" id="41" [(ngModel)]="house.fuel"  [ngModelOptions]="{standalone: true}"  > </td>
+                                    <td> <input type="number" id="42" value="{{house.fuel * 12}}"    disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Medical expenses </td>
+                                    <td> <input type="number" id="51" [(ngModel)]="house.medical"  [ngModelOptions]="{standalone: true}"  > </td>
+                                    <td> <input type="number" id="52" value="{{house.medical * 12}}"    disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Monthly Society Maintainance </td>
+                                    <td> <input type="number" id="61" [(ngModel)]="house.society"  [ngModelOptions]="{standalone: true}"  > </td>
+                                    <td> <input type="number" id="62" value="{{house.society * 12}}"    disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Auto Maintainance </td>
+                                    <td> <input type="number" id="71" [(ngModel)]="house.auto"  [ngModelOptions]="{standalone: true}"  > </td>
+                                    <td> <input type="number" id="72" value="{{house.auto * 12}}"    disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Education  </td>
+                                    <td> <input type="number" id="81" [(ngModel)]="house.edu"  [ngModelOptions]="{standalone: true}"  > </td>
+                                    <td> <input type="number" id="82" value="{{house.edu * 12}}"    disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Groceries and Supplies </td>
+                                    <td> <input type="number" id="91" [(ngModel)]="house.grocery"  [ngModelOptions]="{standalone: true}"  > </td>
+                                    <td> <input type="number" id="92" value="{{house.grocery * 12}}"    disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Maid / Cook / Nanny / Driver </td>
+                                    <td> <input type="number" id="101" [(ngModel)]="house.servent"  [ngModelOptions]="{standalone: true}"  > </td>
+                                    <td> <input type="number" id="102" value="{{house.servent * 12}}"    disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Laundry / Dhobi </td>
+                                    <td> <input type="number" id="111" [(ngModel)]="house.laundry"  [ngModelOptions]="{standalone: true}"  > </td>
+                                    <td> <input type="number" id="112" value="{{house.laundry * 12}}"    disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Video / CD Rentals </td>
+                                    <td> <input type="number" id="121" [(ngModel)]="house.vcd" [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="122" value="{{house.vcd * 12}}"    disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Personal care (haircut / Salon / spa / gym etc.) </td>
+                                    <td> <input type="number" id="131" [(ngModel)]="house.selfcare" [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="132" value="{{house.selfcare * 12}}"    disabled > </td>
+                                    <td></td>
+                                  </tr>
+                                  <tr>
+                                      <td> Property Tax </td>
+                                      <td> <input type="number" id="141" [(ngModel)]="house.property" [ngModelOptions]="{standalone: true}"   > </td>
+                                      <td> <input type="number" id="142" value="{{house.property * 12}}"    disabled > </td>
+                                      <td> </td>
+                                  </tr>
+                                 <tr *ngFor="let field of dynamicHousehold; let i = index">
+                                    <td> {{field.name}} </td>
+                                    <td><input  type="number" value="{{field.value}}" disabled> </td>
+                                    <td><input  type="number" value="{{field.value * 12}}" disabled> </td>
+                                    <td><button class="btn btn-outline-info"  type="button" (click)="RemoveHousehold(i)" >
+                                      <span> <i class="fa fa-trash" aria-hidden="true"></i></span></button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                                <tfoot>
+                                      <tr>
+                                        <th scope="col">Total</th>
+                                        <th> {{house.milk+house.fruit+house.rent+house.fuel+house.medical+house.society+house.auto+house.edu+house.grocery+house.servent+house.laundry+house.vcd+house.selfcare+house.property + totalHousehold}} </th>
+                                        <th> {{ (house.milk+house.fruit+house.rent+house.fuel+house.medical+house.society+house.auto+house.edu+house.grocery+house.servent+house.laundry+house.vcd+house.selfcare+house.property + totalHousehold)*12}} </th>
+                                        <th></th>
+                                      </tr>
+                                </tfoot>
+                          </table>
+                    </div>
+      
+                    <!-- loan -->
+                    <div class="tab-pane fade" id="v-pills-loan" role="tabpanel" aria-labelledby="v-pills-loan-tab">
+                        <h3><p class="font-weight-bold">Loans and Debt</h3>
+      
+                        <!--start of loan buttons -->
+                        <div style="margin-top: -50px" class="pull-right">
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#loanModal">
+                                <span>
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <span>Add</span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-link" (click)="onLoanSave()">
+                                <span>
+                                    <i class="fa fa-save" aria-hidden="true"></i>
+                                    <span>Save</span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-link" (click)="onGetLoan()">
+                                <span>
+                                  <i class="far fa-arrow-alt-circle-down"></i>
+                                    <span>Get</span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-link">
+                                <span>
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                    <span>Help</span>
+                                </span>
+                            </button>
+      
+                        </div><!--end of buttons -->
+      
+                        <!-- loan table -->
+                        <div>
+                            <table class="table table-hover table-sm">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Loan Type </th>
+                                        <th scope="col">Lender Name </th>
+                                        <th scope="col">Amount </th>
+                                        <th scope="col">Monthly Tenure </th>
+                                        <th scope="col">ROI </th>
+                                        <th scope="col">Action </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- loan_type lender applicant amnt ldate check tenure intrest_type roi rdate -->
+                                    <tr *ngFor="let field of dynamicLoanArray; let i = index">
+                                        <td> {{ field.ltype }}</td>
+                                        <td> {{ field.lender }} </td>
+                                        <td> {{ field.amnt }} </td>
+                                        <td> {{ field.tenure }} </td>
+                                        <td> {{ field.roi }} </td>
+                                        <td><button class="btn btn-sm btn-outline-danger"  type="button" (click)="RemoveLoan(i)" >
+                                            <span> <i class="fa fa-trash" aria-hidden="true"></i></span></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> <!-- end of loan table -->
+      
+                        <!--loan modal start -->
+                        <div class="modal fade" id="loanModal" tabindex="-1" role="dialog" aria-labelledby="loanModalLabel" aria-hidden="true">
+                            <div class="modal-dialog " role="document" style="max-width:920px">
+                                <div class="modal-content">
+      
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="loanModalLabel">Enter Your New Loan Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+      
+                                    <div class="modal-body">
+      
+                                        <form >
+                                            <!-- form start-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group row">
+                                                        <label for="lender-name"
+                                                        class="col-sm-5 col-form-label">Choose Loan Type:</label>
+                                                        <div class="col-sm-6">
+                                                            <select class="form-control" name="type" [(ngModel)]="loan.loan_type">
+                                                               
+                                                                <option *ngFor="let type of LoanTypeArray" value="{{ type.name }}">
+                                                                    {{ type.name }}
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+      
+                                                    <div class="form-group row">
+                                                        <label for="lender-name"
+                                                        class="col-sm-5 col-form-label">Lender Name:</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control form-control-sm"
+                                                            [(ngModel)]="loan.lender"
+                                                            [ngModelOptions]="{standalone: true}"  required>
+                                                        </div>
+                                                    </div>
+      
+                                                    <div class="form-group row">
+                                                        <label for="app-name"
+                                                        class="col-sm-5 col-form-label">Applicant Name:</label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text"  class="form-control form-control-sm"
+                                                            [(ngModel)]="loan.applicant"
+                                                            [ngModelOptions]="{standalone: true}"  required>
+                                                        </div>
+                                                    </div>
+      
+                                                    <div class="form-group row">
+                                                        <label for="roi"
+                                                        class="col-sm-5 col-form-label">Rate of Interest:</label>
+                                                        <div class="col-sm-6">
+                                                        <input type="number"  class="form-control form-control-sm"
+                                                        [(ngModel)]="loan.roi"
+                                                        [ngModelOptions]="{standalone: true}"  required>
+                                                        </div>
+                                                    </div>
+      
+                                                    <div class="form-group row">
+                                                        <label for="ldate"
+                                                        class="col-sm-5 col-form-label">Loan Disbursment Date:</label>
+                                                        <div class="col-sm-6">
+                                                            <input  id="ldate"
+                                                            type="text"
+                                                            placeholder="Datepicker"
+                                                            class="form-control form-control-sm"
+                                                            bsDatepicker
+                                                            [(ngModel)]="loan.ldate"
+                                                            [ngModelOptions]="{standalone: true}"
+                                                            required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+      
+                                                <!-- right start -->
+                                                <div class="col-md-6">
+      
+                                                    <div class="form-group row">
+                                                        <label for="int"
+                                                        class="col-sm-5 col-form-label">Choose Interest type:</label>
+                                                        <div class="col-sm-6">
+                                                            <select class="form-control" name="type" [(ngModel)]="loan.intrest_type">
+                                                                    <option>Choose your interest type</option>
+                                                                    <option *ngFor="let type of InterestTypeArray" value="{{ type.name }}">
+                                                                        {{ type.name }}
+                                                                    </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+      
+                                                    <div class="form-group row">
+                                                        <label for="checkinsure"
+                                                        class="col-sm-5 col-form-label">Is Loan Insured :</label>
+                                                        <div class="col-sm-6">
+                                                            <input class="" type="checkbox" value="1" id="checkinsure"
+                                                            [(ngModel)]="loan.check" [ngModelOptions]="{standalone: true}" >                                                </div>
+                                                    </div>
+      
+                                                    <div class="form-group row">
+                                                            <label for="loan-amnt"
+                                                            class="col-sm-5 col-form-label">Loan Amount:</label>
+                                                            <div class="col-sm-6">
+                                                            <input type="number"  class="form-control form-control-sm"
+                                                            [(ngModel)]="loan.amnt"
+                                                            [ngModelOptions]="{standalone: true}"  required>
+                                                            </div>
+                                                        </div>
+      
+      
+                                                    <div class="form-group row">
+                                                        <label for="tenure1"
+                                                        class="col-sm-5 col-form-label">Loan Tenure (month):</label>
+                                                        <div class="col-sm-6">
+                                                            <input id="tenure1" type="number"  class="form-control form-control-sm"
+                                                             [(ngModel)]="loan.tenure" [ngModelOptions]="{standalone: true}"  required>
+                                                        </div>
+                                                    </div>
+      
+                                                    <div class="form-group row">
+                                                        <label for="rdate"
+                                                        class="col-sm-5 col-form-label">Loan Repayment Date:</label>
+                                                        <div class="col-sm-6">
+                                                            <input  id="rdate"
+                                                            type="text"
+                                                            placeholder="Datepicker"
+                                                            class="form-control form-control-sm"
+                                                            bsDatepicker
+                                                            [(ngModel)]="loan.rdate"
+                                                            [ngModelOptions]="{standalone: true}"
+                                                            required>
+                                                        </div>
+                                                    </div>
+      
+                                                </div>  <!-- right end-->
+                                            </div>  <!-- form end -->
+                                        </form>
+      
+                                    </div>
+      
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary"
+                                        data-dismiss="modal" (click)="AddLoan()">Add</button>
+                                    </div>
+      
+                                </div>
+                            </div>
+                        </div>  <!-- end of modal -->
+      
+                    </div>
+      
+                    <!-- insurance -->
+                    <div class="tab-pane fade" id="v-pills-insurance" role="tabpanel" aria-labelledby="v-pills-insurance-tab">
+                        <h3><p class="font-weight-bold">Insurance and Payment</h3>
+      
+                        <!-- insurance tab header-->
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                              <a class="nav-item nav-link active" id="nav-life-tab" data-toggle="tab" href="#nav-life" role="tab" aria-controls="nav-life" aria-selected="true">Life Insurance</a>
+                               <a class="nav-item nav-link" id="nav-health-tab" data-toggle="tab" href="#nav-health" role="tab" aria-controls="nav-health" aria-selected="false">Health / Mediclaim Plans</a>
+                                <a class="nav-item nav-link" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="false">General Insurance</a>
+                            </div>
+                        </nav>
+      
+                        <!-- Insurance tab content -->
+                        <div class="tab-content" id="nav-tabContent">
+      
+                            <!-- life insurance -->
+                            <div class="tab-pane fade show active" id="nav-life" role="tabpanel" aria-labelledby="nav-life-tab">
+      
+                                <!--start of buttons -->
+                                <div style="margin-top: -50px" class="pull-right">
+                                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#lifeModal">
+                                        <span>
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                            <span>Add</span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-link" (click)="onLifeSave()">
+                                        <span>
+                                            <i class="fa fa-save" aria-hidden="true"></i>
+                                            <span>Save</span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-link" (click)="onGetLife()">
+                                      <span>
+                                          <i class="far fa-arrow-alt-circle-down"></i>
+                                          <span>Get</span>
+                                      </span>
+                                  </button>
+                                    <button type="button" class="btn btn-link">
+                                        <span>
+                                            <i class="fa fa-info" aria-hidden="true"></i>
+                                            <span>Help</span>
+                                        </span>
+                                    </button>
+                                </div>  <!--end of buttons -->
+                                <!-- life table -->
+                                <div>
+                                    <table class="table table-hover table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Insured name </th>
+                                                <th scope="col">Policy Name </th>
+                                                <th scope="col">Annual Premium </th>
+                                                <th scope="col">Premium Payment term </th>
+                                                <th scope="col">Policy Term </th>
+                                                <th scope="col">Sum Assured </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- loan_type lender applicant amnt ldate check tenure intrest_type roi rdate -->
+                                            <tr *ngFor="let field of dynamicLifeArray; let i = index">
+                                                <td> {{ field.iName }}</td>
+                                                <td> {{ field.pName }} </td>
+                                                <td> {{ field.premium }} </td>
+                                                <td> {{ field.term }} </td>
+                                                <td> {{ field.pterm }} </td>
+                                                <td> {{ field.sum }} </td>
+                                                <td><button class="btn btn-sm btn-outline-danger"  type="button" (click)="RemoveLifeInsurance(i)" >
+                                                    <span> <i class="fa fa-trash" aria-hidden="true"></i></span></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /life table -->
+      
+                                <!--life insurance modal start -->
+                                <div class="modal fade" id="lifeModal" tabindex="-1" role="dialog" aria-labelledby="lifeModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:920px">
+                                            <div class="modal-content">
+      
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="lifeModalLabel">Add New Life Insurance</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+      
+                                                <div class="modal-body">
+      
+                                                    <form >
+                                                        <!-- form start-->
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+      
+                                                                <div class="form-group row">
+                                                                    <label for="lender-name"
+                                                                    class="col-sm-5 col-form-label">Select Policy Type:</label>
+                                                                    <div class="col-sm-6">
+                                                                        <select class="form-control" name="type" [(ngModel)]="life.type">
+      
+                                                                            <option *ngFor="let type of PolicyTypeArray" value="{{ type.name }}">
+                                                                                {{ type.name }}
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                    <label for="lender-name"
+                                                                    class="col-sm-5 col-form-label">Policy issuer:</label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="text" class="form-control form-control-sm"
+                                                                        [(ngModel)]="life.issuer"
+                                                                        [ngModelOptions]="{standalone: true}"  required>
+                                                                    </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                    <label for="app-name"
+                                                                    class="col-sm-5 col-form-label">Insured Name:</label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="text"  class="form-control form-control-sm"
+                                                                        [(ngModel)]="life.ins_name"
+                                                                        [ngModelOptions]="{standalone: true}"  required>
+                                                                    </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                    <label for="roi"
+                                                                    class="col-sm-5 col-form-label">Proposer name:</label>
+                                                                    <div class="col-sm-6">
+                                                                    <input type="text"  class="form-control form-control-sm"
+                                                                    [(ngModel)]="life.proposer_name"
+                                                                    [ngModelOptions]="{standalone: true}"  required>
+                                                                    </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                    <label for="pdate"
+                                                                    class="col-sm-5 col-form-label">Policy Start Date:</label>
+                                                                    <div class="col-sm-6">
+                                                                        <input  id="pdate"
+                                                                        type="text"
+                                                                        placeholder="Datepicker"
+                                                                        class="form-control form-control-sm"
+                                                                        bsDatepicker
+                                                                        [(ngModel)]="life.start_date"
+                                                                        [ngModelOptions]="{standalone: true}"
+                                                                        required>
+                                                                    </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                    <label for="roi"
+                                                                    class="col-sm-5 col-form-label">Policy Term(yrs):</label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="number"  class="form-control form-control-sm"
+                                                                        [(ngModel)]="life.policy_term"
+                                                                        [ngModelOptions]="{standalone: true}"  required>
+                                                                    </div>
+                                                                </div>
+      
+                                                            </div>
+      
+                                                            <!-- right start -->
+                                                            <div class="col-md-6">
+      
+                                                                <div class="form-group row">
+                                                                    <label for="int"
+                                                                    class="col-sm-5 col-form-label"> Premium Mode:</label>
+                                                                    <div class="col-sm-6">
+                                                                        <select class="form-control" name="type" [(ngModel)]="life.premium_mode">
+      
+                                                                                <option *ngFor="let type of PremiumTypeArray" value="{{ type.name }}">
+                                                                                    {{ type.name }}
+                                                                                </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                        <label for="life-amnt"
+                                                                        class="col-sm-5 col-form-label">Policy Name:</label>
+                                                                        <div class="col-sm-6">
+                                                                        <input type="text"  class="form-control form-control-sm"
+                                                                        [(ngModel)]="life.policy_name"
+                                                                        [ngModelOptions]="{standalone: true}"  required>
+                                                                        </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                        <label for="life-amnt"
+                                                                        class="col-sm-5 col-form-label">Sum Assured:</label>
+                                                                        <div class="col-sm-6">
+                                                                        <input type="number"  class="form-control form-control-sm"
+                                                                        [(ngModel)]="life.sum"
+                                                                        [ngModelOptions]="{standalone: true}"  required>
+                                                                        </div>
+                                                                </div>
+      
+      
+                                                                <div class="form-group row">
+                                                                    <label for="tenure2"
+                                                                    class="col-sm-5 col-form-label">Premium:</label>
+                                                                    <div class="col-sm-6">
+                                                                        <input id="tenure2" type="number"  class="form-control form-control-sm"
+                                                                        [(ngModel)]="life.premium" [ngModelOptions]="{standalone: true}"  required>
+                                                                    </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                    <label for="tenure3"
+                                                                    class="col-sm-5 col-form-label">Premium Payment Term:</label>
+                                                                    <div class="col-sm-6">
+                                                                        <input id="tenure3" type="number"  class="form-control form-control-sm"
+                                                                        [(ngModel)]="life.premium_term" [ngModelOptions]="{standalone: true}"  required>
+                                                                    </div>
+                                                                </div>
+      
+                                                            </div>  <!-- right end-->
+                                                        </div>  <!-- form end -->
+                                                    </form>
+      
+                                                </div>
+      
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary"
+                                                data-dismiss="modal" (click)="AddLifeInsurance()">Add</button>
+                                                </div>
+      
+                                            </div>
+                                        </div>
+                                </div>  <!-- end of modal -->
+      
+                            </div>
+      
+                            <!-- health insurance -->
+                            <div class="tab-pane fade" id="nav-health" role="tabpanel" aria-labelledby="nav-health-tab">
+      
+                                <!--start of buttons -->
+                                <div style="margin-top: -50px" class="pull-right">
+                                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#healthModal">
+                                        <span>
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                            <span>Add</span>
+                                        </span>
+                                    </button>
+                                    <button type="button" class="btn btn-link" (click)="onHealthSave()">
+                                            <span>
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                                <span>Save</span>
+                                            </span>
+                                        </button>
+                                        <button type="button" class="btn btn-link" (click)="onGetHealth()">
+                                          <span>
+                                              <i class="far fa-arrow-alt-circle-down"></i>
+                                              <span>Get</span>
+                                          </span>
+                                      </button>
+          
+                                    <button type="button" class="btn btn-link">
+                                        <span>
+                                            <i class="fa fa-info" aria-hidden="true"></i>
+                                            <span>Help</span>
+                                        </span>
+                                    </button>
+                                </div>  <!--end of buttons -->
+      
+                                <!-- health table -->
+                                <div>
+                                    <table class="table table-hover table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Insured name </th>
+                                                <th scope="col">Policy Name </th>
+                                                <th scope="col">Annual Premium </th>
+                                                <th scope="col">Policy Term </th>
+                                                <th scope="col">Sum Assured </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+      
+                                            <tr *ngFor="let field of dynamicHealth; let i = index">
+                                                <td> {{ field.iName }}</td>
+                                                <td> {{ field.pName }} </td>
+                                                <td> {{ field.premium }} </td>
+                                                <td> {{ field.pterm }} </td>
+                                                <td> {{ field.sum }} </td>
+                                                <td><button class="btn btn-sm btn-outline-danger"  type="button" (click)="RemoveHealth(i)" >
+                                                    <span> <i class="fa fa-trash" aria-hidden="true"></i></span></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div><!-- /health table -->
+      
+                                <!--health insurance modal start -->
+                                <div class="modal fade" id="healthModal" tabindex="-1" role="dialog" aria-labelledby="healthModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:920px">
+                                            <div class="modal-content">
+      
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="healthModalLabel">Add New Health Insurance</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+      
+                                                <div class="modal-body">
+      
+                                                    <form >
+                                                            <!-- form start-->
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group row">
+                                                                        <label for="lender-name"
+                                                                        class="col-sm-5 col-form-label">Policy Number:</label>
+                                                                        <div class="col-sm-6">
+                                                                            <input type="number" class="form-control form-control-sm"
+                                                                            [(ngModel)]="health.policy_no"
+                                                                            [ngModelOptions]="{standalone: true}"  required>
+                                                                        </div>
+                                                                    </div>
+      
+                                                                    <div class="form-group row">
+                                                                        <label for="lender-name"
+                                                                        class="col-sm-5 col-form-label">Policy issuer:</label>
+                                                                        <div class="col-sm-6">
+                                                                            <input type="text" class="form-control form-control-sm"
+                                                                            [(ngModel)]="health.issuer"
+                                                                            [ngModelOptions]="{standalone: true}"  required>
+                                                                        </div>
+                                                                    </div>
+      
+                                                                    <div class="form-group row">
+                                                                            <label for="health-amnt"
+                                                                            class="col-sm-5 col-form-label">Policy Name:</label>
+                                                                            <div class="col-sm-6">
+                                                                            <input type="text"  class="form-control form-control-sm"
+                                                                            [(ngModel)]="health.policy_name"
+                                                                            [ngModelOptions]="{standalone: true}"  required>
+                                                                            </div>
+                                                                    </div>
+      
+                                                                    <div class="form-group row">
+                                                                            <label for="roi"
+                                                                            class="col-sm-5 col-form-label">Proposer name:</label>
+                                                                            <div class="col-sm-6">
+                                                                            <input type="text"  class="form-control form-control-sm"
+                                                                            [(ngModel)]="health.proposer_name"
+                                                                            [ngModelOptions]="{standalone: true}"  required>
+                                                                            </div>
+                                                                    </div>
+      
+                                                                    <div class="form-group row">
+                                                                        <label for="roi"
+                                                                        class="col-sm-5 col-form-label">Policy Term(yrs):</label>
+                                                                        <div class="col-sm-6">
+                                                                            <input type="number"  class="form-control form-control-sm"
+                                                                            [(ngModel)]="health.policy_term"
+                                                                            [ngModelOptions]="{standalone: true}"  required>
+                                                                        </div>
+                                                                    </div>
+      
+                                                                    <div class="form-group row">
+                                                                        <label for="pdate1"
+                                                                        class="col-sm-5 col-form-label">Policy Start Date:</label>
+                                                                        <div class="col-sm-6">
+                                                                            <input  id="pdate1"
+                                                                            type="text"
+                                                                            placeholder="Datepicker"
+                                                                            class="form-control form-control-sm"
+                                                                            bsDatepicker
+                                                                            [(ngModel)]="health.start_date"
+                                                                            [ngModelOptions]="{standalone: true}"
+                                                                            required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+      
+                                                                <!-- right start -->
+                                                                <div class="col-md-6">
+      
+                                                                    <div class="form-group row">
+                                                                        <label for="int"
+                                                                        class="col-sm-5 col-form-label"> Premium Mode:</label>
+                                                                        <div class="col-sm-6">
+                                                                            <select class="form-control" name="type" [(ngModel)]="health.premium_mode">
+      
+                                                                                    <option *ngFor="let type of PremiumTypeArray" value="{{ type.name }}">
+                                                                                        {{ type.name }}
+                                                                                    </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+      
+                                                                    <div class="form-group row">
+                                                                            <label for="app-name"
+                                                                            class="col-sm-5 col-form-label">Insured Name:</label>
+                                                                            <div class="col-sm-6">
+                                                                                <input type="text"  class="form-control form-control-sm"
+                                                                                [(ngModel)]="health.ins_name"
+                                                                                [ngModelOptions]="{standalone: true}"  required>
+                                                                            </div>
+                                                                        </div>
+      
+                                                                    <div class="form-group row">
+                                                                            <label for="health-amnt"
+                                                                            class="col-sm-5 col-form-label">Sum Assured:</label>
+                                                                            <div class="col-sm-6">
+                                                                            <input type="number"  class="form-control form-control-sm"
+                                                                            [(ngModel)]="health.sum"
+                                                                            [ngModelOptions]="{standalone: true}"  required>
+                                                                            </div>
+                                                                    </div>
+      
+      
+                                                                    <div class="form-group row">
+                                                                        <label for="tenure4"
+                                                                        class="col-sm-5 col-form-label">Premium:</label>
+                                                                        <div class="col-sm-6">
+                                                                            <input id="tenure4" type="number"  class="form-control form-control-sm"
+                                                                            [(ngModel)]="health.premium" [ngModelOptions]="{standalone: true}"  required>
+                                                                        </div>
+                                                                    </div>
+      
+                                                                </div>  <!-- right end-->
+                                                            </div>  <!-- form end -->
+                                                    </form>
+      
+                                                </div>
+      
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary"
+                                                data-dismiss="modal" (click)="AddHealth()">Add</button>
+                                                </div>
+      
+                                            </div>
+                                        </div>
+                                </div>  <!-- end of modal -->
+      
+                            </div>
+      
+                            <!-- general insurance -->
+                            <div class="tab-pane fade" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
+      
+                                <!--start of buttons -->
+                                <div style="margin-top: -50px" class="pull-right">
+                                    <button type="button" class="btn btn-link" data-toggle="modal" data-target="#generalModal">
+                                            <span>
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                                <span>Add</span>
+                                            </span>
+                                    </button>
+                                    <button type="button" class="btn btn-link" (click)="onGeneralSave()">
+                                            <span>
+                                                <i class="fa fa-save" aria-hidden="true"></i>
+                                                <span>Save</span>
+                                            </span>
+                                    </button>
+                                    <button type="button" class="btn btn-link" (click)="onGetGeneral()">
+                                      <span>
+                                          <i class="far fa-arrow-alt-circle-down"></i>
+                                          <span>Get</span>
+                                      </span>
+                                  </button>
+      
+                                    <button type="button" class="btn btn-link">
+                                            <span>
+                                                <i class="fa fa-info" aria-hidden="true"></i>
+                                                <span>Help</span>
+                                            </span>
+                                    </button>
+                                </div> <!--end of buttons -->
+      
+                                 <!-- general table -->
+                                 <div>
+                                        <table class="table table-hover table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Insured Object </th>
+                                                    <th scope="col">Policy Name </th>
+                                                    <th scope="col">Annual Premium </th>
+                                                    <th scope="col">Plan Issuer </th>
+                                                    <th scope="col">Policy Term </th>
+                                                    <th scope="col">Policy Date </th>
+                                                    <th scope="col">Sum Assured </th>
+                                                    <th scope="col">Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+      
+                                                <tr *ngFor="let field of dynamicGeneral; let i = index">
+                                                    <td> {{ field.iName }}</td>
+                                                    <td> {{ field.pName }} </td>
+                                                    <td> {{ field.premium }} </td>
+                                                    <td> {{ field.issuer }} </td>
+                                                    <td> {{ field.pterm }} </td>
+                                                    <td> {{ field.pdate | date : 'shortDate'}} </td>
+                                                    <td> {{ field.sum }} </td>
+                                                    <td><button class="btn btn-sm btn-outline-danger"  type="button" (click)="RemoveGeneral(i)" >
+                                                        <span> <i class="fa fa-trash" aria-hidden="true"></i></span></button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                </div> <!-- /general table -->
+      
+                                <!--general modal start -->
+                                <div class="modal fade" id="generalModal" tabindex="-1" role="dialog" aria-labelledby="generalModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 920px">
+                                        <div class="modal-content">
+      
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="generalModalLabel">Add new General Insurance</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+      
+                                            <div class="modal-body">
+      
+                                                <form >
+                                                        <!-- form start-->
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group row">
+                                                                    <label for="lender-name"
+                                                                    class="col-sm-5 col-form-label">Policy Number:</label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="number" class="form-control form-control-sm"
+                                                                        [(ngModel)]="general.policy_no"
+                                                                        [ngModelOptions]="{standalone: true}"  required>
+                                                                    </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                    <label for="lender-name"
+                                                                    class="col-sm-5 col-form-label">Policy issuer:</label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="text" class="form-control form-control-sm"
+                                                                        [(ngModel)]="general.issuer"
+                                                                        [ngModelOptions]="{standalone: true}"  required>
+                                                                    </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                        <label for="loan-amnt"
+                                                                        class="col-sm-5 col-form-label">Policy Name:</label>
+                                                                        <div class="col-sm-6">
+                                                                        <input type="text"  class="form-control form-control-sm"
+                                                                        [(ngModel)]="general.policy_name"
+                                                                        [ngModelOptions]="{standalone: true}"  required>
+                                                                        </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                    <label for="pdate2"
+                                                                    class="col-sm-5 col-form-label">Policy Start Date:</label>
+                                                                    <div class="col-sm-6">
+                                                                        <input  id="pdate2"
+                                                                        type="text"
+                                                                        placeholder="Datepicker"
+                                                                        class="form-control form-control-sm"
+                                                                        bsDatepicker
+                                                                        [(ngModel)]="general.start_date"
+                                                                        [ngModelOptions]="{standalone: true}"
+                                                                        required>
+                                                                    </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                        <label for="tenure5"
+                                                                        class="col-sm-5 col-form-label">Premium:</label>
+                                                                        <div class="col-sm-6">
+                                                                            <input id="tenure5" type="number"  class="form-control form-control-sm"
+                                                                            [(ngModel)]="general.premium" [ngModelOptions]="{standalone: true}"  required>
+                                                                        </div>
+                                                                    </div>
+                                                            </div>
+      
+                                                            <!-- right start -->
+                                                            <div class="col-md-6">
+      
+                                                                    <div class="form-group row">
+                                                                            <label for="roi"
+                                                                            class="col-sm-5 col-form-label">Proposer name:</label>
+                                                                            <div class="col-sm-6">
+                                                                            <input type="text"  class="form-control form-control-sm"
+                                                                            [(ngModel)]="general.proposer_name"
+                                                                            [ngModelOptions]="{standalone: true}"  required>
+                                                                            </div>
+                                                                    </div>
+      
+                                                                <div class="form-group row">
+                                                                        <label for="app-name"
+                                                                        class="col-sm-5 col-form-label">Insured Object:</label>
+                                                                        <div class="col-sm-6">
+                                                                            <input type="text"  class="form-control form-control-sm"
+                                                                            [(ngModel)]="general.ins_obj"
+                                                                            [ngModelOptions]="{standalone: true}"  required>
+                                                                        </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                            <label for="roi"
+                                                                            class="col-sm-5 col-form-label">Policy Term(yrs):</label>
+                                                                            <div class="col-sm-6">
+                                                                                <input type="number"  class="form-control form-control-sm"
+                                                                                [(ngModel)]="general.policy_term"
+                                                                                [ngModelOptions]="{standalone: true}"  required>
+                                                                            </div>
+                                                                </div>
+      
+                                                                <div class="form-group row">
+                                                                        <label for="loan-amnt"
+                                                                        class="col-sm-5 col-form-label">Sum Assured:</label>
+                                                                        <div class="col-sm-6">
+                                                                        <input type="number"  class="form-control form-control-sm"
+                                                                        [(ngModel)]="general.sum"
+                                                                        [ngModelOptions]="{standalone: true}"  required>
+                                                                        </div>
+                                                                </div>
+                                                            </div>  <!-- right end-->
+                                                        </div>  <!-- form end -->
+                                                </form>
+      
+                                            </div>
+      
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary"
+                                            data-dismiss="modal" (click)="AddGeneral()">Add</button>
+                                            </div>
+      
+                                        </div>
+                                    </div>
+                                </div>  <!-- end of modal -->
+      
+                            </div>
+      
+                        </div>
+      
+                    </div>
+      
+                    <!-- credit -->
+                    <div class="tab-pane fade" id="v-pills-credit" role="tabpanel" aria-labelledby="v-pills-credit-tab">
+                        <h3><p class="font-weight-bold">Credit Cards</h3>
+      
+                    <!--start of buttons -->
+                    <div style="margin-top: -50px" class="pull-right">
+                        <button type="button" class="btn btn-link" data-toggle="modal" data-target="#creditModal">
+                            <span>
+                                <i class="fa fa-plus " aria-hidden="true"></i>
+                                <span>Add</span>
+                            </span>
+                        </button>
+                        <button type="button" class="btn btn-link" (click)="onCreditSave()">
+                                <span>
+                                    <i class="fa fa-save" aria-hidden="true"></i>
+                                    <span>Save</span>
+                                </span>
+                        </button>
+                        <button type="button" class="btn btn-link" (click)="onGetCredit()">
+                          <span>
+                              <i class="far fa-arrow-alt-circle-down"></i>
+                              <span>Get</span>
+                          </span>
+                        </button>
+                        <button type="button" class="btn btn-link">
+                            <span>
+                                <i class="fa fa-info" aria-hidden="true"></i>
+                                <span>Help</span>
+                            </span>
+                        </button>
+                    </div><!--end of buttons -->
+                    <br>
+                    <!-- credit table -->
+                    <div>
+                        <table class="table table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Type </th>
+                                    <th scope="col">Bank</th>
+                                    <th scope="col">ROI</th>
+                                    <th scope="col">Outstanding Balance </th>
+                                    <th scope="col">Action </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+      
+                                <tr *ngFor="let field of dynamicCredit; let i = index">
+                                    <td> {{ field.type }}</td>
+                                    <td> {{ field.bank }} </td>
+                                    <td> {{ field.roi }} </td>
+                                    <td> {{ field.balance }} </td>
+      
+                                    <td><button class="btn btn-sm btn-outline-danger"  type="button" (click)="RemoveCredit(i)" >
+                                        <span> <i class="fa fa-trash" aria-hidden="true"></i></span></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /credit table -->
+      
+                    <!--credit modal start -->
+                    <div class="modal fade" id="creditModal" tabindex="-1" role="dialog" aria-labelledby="creditModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 920px">
+                            <div class="modal-content">
+      
+                                <div class="modal-header">
+                                <h5 class="modal-title" id="creditModalLabel">Add new credit card</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+      
+                                <div class="modal-body">
+                                        <form >
+                                                <!-- form start-->
+                                                <div class="row">
+                                                    <div class="col-md-6">
+      
+      
+                                                        <div class="form-group row">
+                                                            <label for="lender-name"
+                                                            class="col-sm-5 col-form-label">Card issuer:</label>
+                                                            <div class="col-sm-6">
+                                                                <input type="text" class="form-control form-control-sm"
+                                                                [(ngModel)]="credit.issuer"
+                                                                [ngModelOptions]="{standalone: true}"  required>
+                                                            </div>
+                                                        </div>
+      
+                                                        <div class="form-group row">
+                                                                <label for="loan-amnt"
+                                                                class="col-sm-5 col-form-label">Card Limit:</label>
+                                                                <div class="col-sm-6">
+                                                                <input type="text"  class="form-control form-control-sm"
+                                                                [(ngModel)]="credit.limit"
+                                                                [ngModelOptions]="{standalone: true}"  required>
+                                                                </div>
+                                                        </div>
+      
+      
+      
+                                                        <div class="form-group row">
+                                                                <label for="tenure6"
+                                                                class="col-sm-5 col-form-label">Average Monthly Usage:</label>
+                                                                <div class="col-sm-6">
+                                                                    <input id="tenure6" type="number"  class="form-control form-control-sm"
+                                                                    [(ngModel)]="credit.monthly_usage" [ngModelOptions]="{standalone: true}"  required>
+                                                                </div>
+                                                            </div>
+      
+                                                            <div class="form-group row">
+                                                                <label for="tenure7"
+                                                                class="col-sm-5 col-form-label"> Monthly Payment:</label>
+                                                                <div class="col-sm-6">
+                                                                    <input id="tenure7" type="number"  class="form-control form-control-sm"
+                                                                    [(ngModel)]="credit.monthly_pay" [ngModelOptions]="{standalone: true}"  required>
+                                                                </div>
+                                                            </div>
+                                                    </div>
+      
+                                                    <!-- right start -->
+                                                    <div class="col-md-6">
+      
+                                                        <div class="form-group row">
+                                                            <label for="lender-name"
+                                                            class="col-sm-5 col-form-label">Select Card Type:</label>
+                                                            <div class="col-sm-6">
+                                                                <select class="form-control" name="type" [(ngModel)]="credit.type">
+      
+                                                                    <option *ngFor="let type of CardTypeArray" value="{{ type.name }}">
+                                                                        {{ type.name }}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+      
+                                                        <div class="form-group row">
+                                                                <label for="app-name"
+                                                                class="col-sm-5 col-form-label">Rate of Interest:</label>
+                                                                <div class="col-sm-6">
+                                                                    <input type="text"  class="form-control form-control-sm"
+                                                                    [(ngModel)]="credit.roi"
+                                                                    [ngModelOptions]="{standalone: true}"  required>
+                                                                </div>
+                                                        </div>
+      
+                                                        <div class="form-group row">
+                                                                    <label for="roi"
+                                                                    class="col-sm-5 col-form-label">Outstanding Balance:</label>
+                                                                    <div class="col-sm-6">
+                                                                        <input type="number"  class="form-control form-control-sm"
+                                                                        [(ngModel)]="credit.balance"
+                                                                        [ngModelOptions]="{standalone: true}"  required>
+                                                                    </div>
+                                                        </div>
+      
+                                                    </div>  <!-- right end-->
+                                                </div>  <!-- form end -->
+                                        </form>
+      
+                                </div>
+      
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary"
+                                data-dismiss="modal" (click)="AddCredit()">Add</button>
+                                </div>
+      
+                            </div>
+                        </div>
+                    </div>  <!-- end of modal -->
+      
+                    </div>  <!-- credit ends-->
+      
+                    <!-- travel -->
+                    <div class="tab-pane fade" id="v-pills-travel" role="tabpanel" aria-labelledby="v-pills-travel-tab">
+                          <h3><p class="font-weight-bold">Entertainment and Travel</h3>
+                      <!--start of buttons -->
+                      <div style="margin-top: -50px" class="pull-right">
+                          <button type="button" class="btn btn-link" data-toggle="modal" data-target="#travelModal">
+                              <span>
+                                  <i class="fa fa-plus" aria-hidden="true"></i>
+                                  <span>Add</span>
+                              </span>
+                          </button>
+                          <button type="button" class="btn btn-link" (click)="SaveTravel()">
+                              <span>
+                                  <i class="fa fa-save" aria-hidden="true"></i>
+                                  <span>Save</span>
+                              </span>
+                          </button>
+                          <button type="button" class="btn btn-link" (click)="GetTravel()">
+                              <span>
+                                  <i class="far fa-arrow-alt-circle-down"></i>
+                                  <span>Get</span>
+                              </span>
+                          </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                          <!-- <button type="button" class="btn btn-link">
+                              <span>
+                                  <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                                  <span>Reset</span>
+                              </span>
+                          </button> -->
+                          <button type="button" class="btn btn-link">
+                              <span>
+                                  <i class="fa fa-info" aria-hidden="true"></i>
+                                  <span>Help</span>
+                              </span>
+                          </button>
+                      </div> <!--end of buttons -->
+      
+                       <!--travel modal start -->
+                       <div class="modal fade" id="travelModal" tabindex="-1" role="dialog" aria-labelledby="travelModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="travelModalLabel">Add new Travel expense</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form>
+                                <div class="form-group">
+                                  <label for="travel-name" class="col-form-label">Travel Name:</label>
+                                  <input type="text"  class="form-control" [(ngModel)]="resource"
+                                  [ngModelOptions]="{standalone: true}"  required>
+                                </div>
+                                <div class="form-group">
+                                  <label for="message-text" class="col-form-label">Monthly Expense:</label>
+                                  <input type="number" class="form-control" [(ngModel)]="expense"
+                                  [ngModelOptions]="{standalone: true}" required>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary"
+                              data-dismiss="modal" (click)="AddTravel()">Add</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>  <!-- end of modal -->
+      
+                          <table class="table table-hover table-sm">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Monthly Amount</th>
+                                    <th scope="col">Yearly Amount</th>
+                                    <th scope="col">Actions</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td> Work Expenses (lunch, coffee) </td>
+                                    <td> <input type="number" id="10" [(ngModel)]="travel.food"  [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="11" value="{{travel.food * 12}}"   disabled > </td>
+                                    <td></td>
+                                  </tr>
+                                  <tr>
+                                    <td> Entertainment (movies, plays, etc.) </td>
+                                    <td> <input type="number" id="10" [(ngModel)]="travel.entertainment" [ngModelOptions]="{standalone: true}"    > </td>
+                                    <td> <input type="number" id="11" value="{{travel.entertainment * 12}}"   disabled > </td>
+                                    <td></td>
+                                  </tr>
+                                  <tr>
+                                    <td> Dining out </td>
+                                    <td> <input type="number" id="10" [(ngModel)]="travel.dineout"  [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="11" value="{{travel.dineout * 12}}"   disabled > </td>
+                                    <td></td>
+                                  </tr>
+                                  <tr>
+                                    <td> Travel / Vacation </td>
+                                    <td> <input type="number" id="10" [(ngModel)]="travel.vacation"  [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="11" value="{{travel.vacation * 12}}"   disabled > </td>
+                                    <td></td>
+                                  </tr>
+                                  <tr>
+                                    <td> Hobbies </td>
+                                    <td> <input type="number" id="10" [(ngModel)]="travel.hobby"  [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="11" value="{{travel.hobby * 12}}"   disabled > </td>
+                                    <td></td>
+                                  </tr>
+                                  <tr *ngFor="let field of dynamicTravel; let i = index">
+                                    <td> {{field.name}} </td>
+                                    <td><input  type="number" value="{{field.value}}"    disabled> </td>
+                                    <td><input  type="number" value="{{field.value * 12}}"    disabled> </td>
+                                    <td><button class="btn btn-outline-info"  type="button" (click)="RemoveTravel(i)" >
+                                      <span> <i class="fa fa-trash" aria-hidden="true"></i></span></button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                                <tfoot>
+                                      <tr>
+                                        <th scope="col">Total</th>
+                                        <th> {{travel.food+ travel.entertainment+ travel.dineout+ travel.vacation+ travel.hobby+ totalTravel}}</th>
+                                        <th> {{ (travel.food+travel.entertainment+travel.dineout+travel.vacation+travel.hobby + totalTravel) * 12}}</th>
+                                           <th></th>
+                                      </tr>
+                                </tfoot>
+                          </table>
+      
+                    </div>
+      
+                    <!-- misc -->
+                    <div class="tab-pane fade" id="v-pills-misc" role="tabpanel" aria-labelledby="v-pills-misc-tab">
+                          <h3><p class="font-weight-bold">Miscellaneous</h3>
+                        <!--start of buttons -->
+                        <div style="margin-top: -50px" class="pull-right" >
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#miscModal">
+                                <span>
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                    <span>Add</span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-link"  (click)="SaveMisc()">
+                                <span>
+                                    <i class="fa fa-save" aria-hidden="true"></i>
+                                    <span>Save</span>
+                                </span>
+                            </button>
+                            <button type="button" class="btn btn-link"  (click)="GetMisc()">
+                                <span>
+                                  <i class="far fa-arrow-alt-circle-down"></i>
+                                    <span>Get</span>
+                                </span>
+                            </button>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <!-- <button type="button" class="btn btn-link">
+                                <span>
+                                    <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                                    <span>Reset</span>
+                                </span>
+                            </button> -->
+                            <button type="button" class="btn btn-link">
+                                <span>
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                    <span>Help</span>
+                                </span>
+                            </button>
+      
+                      <!-- modal start -->
+                      <div class="modal fade" id="miscModal" tabindex="-1" role="dialog" aria-labelledby="miscModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="miscModalLabel">Add new misc expense</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form>
+                                <div class="form-group">
+                                  <label for="misc-name" class="col-form-label">Misc Name:</label>
+                                  <input type="text"  class="form-control" [(ngModel)]="resource"
+                                  [ngModelOptions]="{standalone: true}"  required>
+                                </div>
+                                <div class="form-group">
+                                  <label for="message-text" class="col-form-label">Monthly Expense:</label>
+                                  <input type="number" class="form-control" [(ngModel)]="expense"
+                                  [ngModelOptions]="{standalone: true}" required>
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary"
+                               data-dismiss="modal" (click)="AddMisc()">Add</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>  <!-- end of modal -->
+      
+                        </div>
+                        <!--end of buttons -->
+      
+                        <table class="table table-hover table-sm">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Monthly Amount</th>
+                                    <th scope="col">Yearly Amount</th>
+                                    <th scope="col">Actions</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td> Shoes </td>
+                                    <td> <input type="number" id="11" [(ngModel)]="misc.shoes"  [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="12" value="{{misc.shoes * 12}}"   disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Pet Care </td>
+                                    <td> <input type="number" id="21" [(ngModel)]="misc.pet"  [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="22" value="{{misc.pet * 12}}"   disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Electronics </td>
+                                    <td> <input type="number" id="31" [(ngModel)]="misc.electronics"  [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="32" value="{{misc.electronics * 12}}"   disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Furniture </td>
+                                    <td> <input type="number" id="41" [(ngModel)]="misc.furniture"  [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="42" value="{{misc.furniture * 12}}"   disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Charity </td>
+                                    <td> <input type="number" id="51" [(ngModel)]="misc.charity"  [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="52" value="{{misc.charity * 12}}"   disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Gifts </td>
+                                    <td> <input type="number" id="61" [(ngModel)]="misc.gift"  [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="62" value="{{misc.gift * 12}}"   disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr>
+                                    <td> Clothes </td>
+                                    <td> <input type="number" id="71" [(ngModel)]="misc.cloth"  [ngModelOptions]="{standalone: true}"   > </td>
+                                    <td> <input type="number" id="72" value="{{misc.cloth * 12}}"   disabled > </td>
+                                    <td> </td>
+                                  </tr>
+                                  <tr *ngFor="let field of dynamicMisc; let i = index">
+                                      <td> {{field.name}} </td>
+                                      <td><input  type="number" value="{{field.value}}" disabled> </td>
+                                      <td><input  type="number" value="{{field.value * 12}}" disabled> </td>
+                                      <td><button class="btn btn-outline-info"  type="button" (click)="RemoveMisc(i)" >
+                                        <span> <i class="fa fa-trash" aria-hidden="true"></i></span></button>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                  <tfoot>
+                                        <tr>
+                                          <th scope="col">Total</th>
+                                          <th> {{misc.shoes+misc.pet+misc.electronics+misc.furniture+misc.charity+misc.gift+misc.cloth + totalMisc}} </th>
+                                          <th> {{ (misc.shoes+misc.pet+misc.electronics+misc.furniture+misc.charity+misc.gift+misc.cloth)*12 + totalMisc}} </th>
+                                            <th> </th>
+                                          </tr>
+                                  </tfoot>
+                        </table>
+      
+                    </div>
+      
+                  </div>
+      
+                </div>  <!--end of inner-tab-content -->
+      
+              </div> <!-- end of inner tab -->
+      
+            </div>  <!-- Expense ends here  -->
+      
+          </div>  <!--end of main-tab-content -->
+      
+        </div>  <!--end of main div -->
+      
+      
