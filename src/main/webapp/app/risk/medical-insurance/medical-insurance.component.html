@@ -1,0 +1,128 @@
+<br><br>
+<div class="container">
+    <h3>
+    <p class="font-weight-bold">Medical Insurance</h3>
+<!--start of buttons -->
+<div>
+    <div class="pull-right">
+    <button type="button" class="btn btn-link" (click)="openMedical(lifeModal)">
+        <span>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span>Add New</span>
+        </span>
+    </button>
+    <button type="button" class="btn btn-link">
+        <span>
+            <i class="fa fa-info" aria-hidden="true"></i>
+            <span>Help</span>
+        </span>
+    </button>
+</div>
+    <!-- modal start -->
+    <ng-template #lifeModal let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" id="lifeModal">Life Insurance Risk</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <div class="modal-body">
+                <mat-form-field style="width: 100%;">
+                    <mat-select placeholder="Hospital Type" name="hosp_type" [(ngModel)]="medicalInsurance.hosp_type">
+      
+                        <mat-option value="corporate">Corporate</mat-option>
+                        <mat-option value="private">Private</mat-option>
+                        <mat-option value="charitable">Charitable</mat-option>
+                        <mat-option value="government">Government</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field style="width: 100%;">
+                    <mat-select placeholder="Room Type" name="room_type" [(ngModel)]="medicalInsurance.room_type">
+                        <mat-option value="private">Single(Private)</mat-option>
+                        <mat-option value="twin">Twin Sharing</mat-option>
+                        <mat-option value="charitable">Charitable</mat-option>
+                        <mat-option value="general">General</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field style="width: 100%;">
+                    <input matInput name="family_members" id="family_members" [(ngModel)]="medicalInsurance.family_members"
+                            type="text"
+                            required
+                            placeholder="Family Members">
+                    <span matPrefix></span>
+                </mat-form-field>
+           
+            <div class="modal-footer">
+
+                <button type="submit" class="btn btn-primary" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary" data-dismiss="modal"
+                (click)="c('Save click')">
+                    <span class="fa fa-save"></span>&nbsp;
+                    <span>Save</span>
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="c('Save click')">
+                    <span class="fa fa-ban"></span>&nbsp;
+                    <span>Cancel</span>
+                </button>
+                <button type="button" class="btn btn-warning" (click)="resetFieldValue()">
+                    <span>
+                        <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                        <span>Reset</span>
+                    </span>
+                </button>
+            </div>
+        </form>
+    </ng-template>
+    <div class="modal fade" id="medicalModal" tabindex="-1" role="dialog" aria-labelledby="medicalModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="medicalModalLabel">Medical Insurance for</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- end of modal -->
+</div>
+<!--end of buttons -->
+
+<!-- table starts here -->
+<div>
+    <table class="table table-hover table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Hospital Type</th>
+                <th scope="col">Room Type</th>
+                <th scope="col">Family Members</th>
+                <th scope="col">Edit/Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor="let medical of riskmedical; let i = index">
+                <!-- <td><a [routerLink]="['../stocks', stocks.id ]">{{stocks.id}}</a></td>
+    <td> {{stocks.id}} </td> -->
+                <td> {{medical.hosp_type}} </td>
+                <td>{{medical.room_type}} </td>
+                <td>{{medical.family_members}} </td>
+                <td>
+                    <button class="btn btn-outline-info" type="button" (click)="opnMedical(medical.id,lifeModal)">
+                        <span> <i class="fa fa-edit" aria-hidden="true"></i></span>
+                    </button>
+                    <button class="btn btn-outline-danger" type="button" (click)="deleteField(i, medical.id)">
+                        <span>
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+</div>

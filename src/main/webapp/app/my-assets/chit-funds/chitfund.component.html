@@ -1,0 +1,478 @@
+  <!--start of buttons -->
+  <div class="pull-right">
+        <button type="button" class="btn btn-link" (click)="openChit(chitModal)" >
+            <span>
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <span>Add</span>
+            </span>
+        </button>
+        <button type="button" class="btn btn-link">
+            <span>
+                <i class="fa fa-info" aria-hidden="true"></i>
+                <span>Help</span>
+            </span>
+        </button>
+    </div>
+    <!-- modal start -->
+    <ng-template #chitModal let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" id="chitModal">Chit Funds</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form name="editForm" role="form" novalidate  #editForm="ngForm"> 
+              <!-- <div class="form-group">
+                    <label class="form-control-label" for="field_chit_name">Chit Fund Name</label>
+                    <input type="text" class="form-control" name="chit_name" id="chit_name" [(ngModel)]="chitfund.chit_name" [ngModelOptions]="{standalone: true}"
+                    />
+                </div> -->
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        class="full-width" 
+                        placeholder="Chit Name"
+                        jhiNumberOnly 
+                        name="chit_name" 
+                        id="chit_name" 
+                        [(ngModel)]="chitfund.chit_name" 
+                        [ngModelOptions]="{standalone: true}"
+                        required
+                    >
+                </mat-form-field>&nbsp;&nbsp;
+                <!-- <div class="form-group">
+                        <label class="form-control-label" for="field_chit_holder_name">Chit Holder Name</label>
+                        <input type="text" class="form-control" name="chit_holder_name" id="chit_holder_name" [(ngModel)]="chitfund.chit_holder_name" [ngModelOptions]="{standalone: true}"
+                        />
+                    </div> -->
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            class="full-width" 
+                            placeholder="Chit Holder Name"
+                            name="chit_holder_name" 
+                            id="chit_holder_name" 
+                            [(ngModel)]="chitfund.chit_holder_name" 
+                            [ngModelOptions]="{standalone: true}"
+                            required
+                        >
+                    </mat-form-field>
+                    <!-- <div class="form-group">
+                            <label class="form-control-label" f7or="field_chit_start_date">Chit Start date</label>
+                            <input type="text" placeholder="" class="form-control" [(ngModel)]="chitfund.chit_start_date" [ngModelOptions]="{standalone: true}"
+                                bsDatepicker>
+                        </div> -->
+                        <mat-form-field>
+                            <input 
+                                required 
+                                matInput 
+                                [matDatepicker]="picker1"
+                                name="chit_start_date"
+                                placeholder="Start Date"
+                                [(ngModel)]="chitfund.chit_start_date" 
+                                [ngModelOptions]="{standalone: true}">
+                            <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+                            <mat-datepicker #picker1 ></mat-datepicker>
+                        </mat-form-field>&nbsp;&nbsp;
+                        <!-- <div class="form-group">
+                                <label class="form-control-label" for="field_chit_value">Chit Value</label>
+                                <input type="number" class="form-control" name="chit_value" id="chit_value" [(ngModel)]="chitfund.chit_value" [ngModelOptions]="{standalone: true}"
+                                />
+                            </div> -->
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    class="full-width" 
+                                    required type="number" 
+                                    jhiNumberOnly Value
+                                    placeholder="Chit Value" 
+                                    name="chit_value" 
+                                    id="chit_value" 
+                                    [(ngModel)]="chitfund.chit_value" 
+                                    [ngModelOptions]="{standalone: true}"
+                                >
+                            </mat-form-field>
+                            <!-- <div class="form-group">
+                                    <label class="form-control-label" for="field_tenure">Tenure (Months)</label>
+                                    <input type="number" class="form-control" name="tenure" id="tenure" [(ngModel)]="chitfund.tenure" [ngModelOptions]="{standalone: true}"
+                                    />
+                                </div> -->
+                                <mat-form-field>
+                                    <input 
+                                        matInput 
+                                        class="full-width" 
+                                        required 
+                                        type="number" 
+                                        jhiNumberOnly 
+                                        placeholder="Tenure [Months]" 
+                                        name="tenure" 
+                                        id="tenure" 
+                                        [(ngModel)]="chitfund.tenure" 
+                                        [ngModelOptions]="{standalone: true}"
+                                    >
+                                </mat-form-field>&nbsp;&nbsp;
+                                <!-- <div class="form-group">
+                                        <label class="form-control-label" for="field_m_payment">Monthly Payment</label>
+                                        <input type="number" class="form-control" name="m_payment" id="m_payment" [(ngModel)]="chitfund.m_payment" [ngModelOptions]="{standalone: true}"
+                                        />
+                                    </div> -->
+                                    <mat-form-field>
+                                        <input 
+                                            matInput 
+                                            class="full-width" 
+                                            required 
+                                            type="number" 
+                                            jhiNumberOnly 
+                                            placeholder="Monthly Payment" 
+                                            name="m_payment" 
+                                            id="m_payment" 
+                                            [(ngModel)]="chitfund.m_payment" 
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                    </mat-form-field>
+                                    <!-- <div class="form-group">
+                                            <label class="form-control-label" for="field_current_value">Current Value</label>
+                                            <input type="text" class="form-control" name="current_value" id="current_value" [(ngModel)]="chitfund.current_value" [ngModelOptions]="{standalone: true}" />
+                                    </div> -->
+                                            <mat-form-field>
+                                                <input 
+                                                    matInput 
+                                                    class="full-width" 
+                                                    required 
+                                                    type="number" 
+                                                    jhiNumberOnly 
+                                                    placeholder="Current Value" 
+                                                    name="current_value" 
+                                                    id="current_value" 
+                                                    [(ngModel)]="chitfund.current_value" 
+                                                    [ngModelOptions]="{standalone: true}"
+                                                >
+                                            </mat-form-field>&nbsp;&nbsp;
+                                        
+                                        <!-- <div class="col-md-6">
+                                            <div class="checkbox form-group">
+                                                <label class="form-control-label" for="field_isChashed"><input type="checkbox" value="" class="form-control" name="isCashed" id="isCashed" [(ngModel)]="chitfund.isCashed" [ngModelOptions]="{standalone: true}" >Is cashed?</label>
+                                              </div>
+                                        </div> -->
+                                    
+                      <!-- <div class="form-group">
+                                <label class="form-control-label" for="field_notes">Notes</label>
+                                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="chitfund.notes" [ngModelOptions]="{standalone: true}"
+                                />
+                            </div> -->
+                            <mat-form-field>
+                                <textarea 
+                                    matInput 
+                                    rows="3" 
+                                    cols="50" 
+                                    placeholder="Comment"
+                                    name="notes" 
+                                    id="notes" 
+                                    [(ngModel)]="chitfund.notes" 
+                                    [ngModelOptions]="{standalone: true}">
+                                </textarea>
+                            </mat-form-field>
+                <div class="modal-footer">
+
+                    <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving"
+                    (click)="c('Save click')">
+                        <span class="fa fa-save"></span>&nbsp;
+                        <span>Save</span>
+                    </button>
+                    <button type="button"  mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                        <span class="fa fa-ban"></span>&nbsp;
+                        <span>Cancel</span>
+                    </button>
+                </div> <!-- footer -->
+            </form>
+        </div> <!-- body -->
+    </ng-template>
+    <!-- <ng-template #editChitModal let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" id="editChitModal">Chit Funds</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form name="editForm" role="form" novalidate  #editForm="ngForm"> 
+              <div class="form-group">
+                    <label class="form-control-label" for="field_chit_name">Chit Fund Name</label>
+                    <input type="text" class="form-control" name="chit_name" id="chit_name" [(ngModel)]="chitfund.chit_name" [ngModelOptions]="{standalone: true}"
+                    />
+                </div>
+                <div class="form-group">
+                        <label class="form-control-label" for="field_chit_holder_name">Chit Holder Name</label>
+                        <input type="text" class="form-control" name="chit_holder_name" id="chit_holder_name" [(ngModel)]="chitfund.chit_holder_name" [ngModelOptions]="{standalone: true}"
+                        />
+                    </div>
+                    <div class="form-group">
+                            <label class="form-control-label" f7or="field_chit_start_date">Chit Start date</label>
+                            <input type="text" placeholder="" class="form-control" [(ngModel)]="chitfund.chit_start_date" [ngModelOptions]="{standalone: true}"
+                                bsDatepicker>
+                        </div>
+                        <div class="form-group">
+                                <label class="form-control-label" for="field_chit_value">Chit Value</label>
+                                <input type="number" class="form-control" name="chit_value" id="chit_value" [(ngModel)]="chitfund.chit_value" [ngModelOptions]="{standalone: true}"
+                                />
+                            </div>
+                            <div class="form-group">
+                                    <label class="form-control-label" for="field_tenure">Tenure (Months)</label>
+                                    <input type="number" class="form-control" name="tenure" id="tenure" [(ngModel)]="chitfund.tenure" [ngModelOptions]="{standalone: true}"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                        <label class="form-control-label" for="field_m_payment">Monthly Payment</label>
+                                        <input type="number" class="form-control" name="m_payment" id="m_payment" [(ngModel)]="chitfund.m_payment" [ngModelOptions]="{standalone: true}"
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                            <label class="form-control-label" for="field_current_value">Current Value</label>
+                                            <input type="text" class="form-control" name="current_value" id="current_value" [(ngModel)]="chitfund.current_value" [ngModelOptions]="{standalone: true}" />
+                                    </div>
+                                    <div class="checkbox form-group">
+                                            <label class="form-control-label" for="field_isChashed"><input type="checkbox" value="" class="form-control" name="isCashed" id="isCashed" [(ngModel)]="chitfund.isCashed" [ngModelOptions]="{standalone: true}" >Is cashed?</label>
+                                          </div>
+                      <div class="form-group">
+                                <label class="form-control-label" for="field_notes">Notes</label>
+                                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="chitfund.notes" [ngModelOptions]="{standalone: true}"
+                                />
+                            </div>
+                <div class="modal-footer">
+
+                    <button type="submit" class="btn btn-primary" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                    (click)="c('Save click')">
+                        <span class="fa fa-save"></span>&nbsp;
+                        <span>Save</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="d('Cross click')">
+                        <span class="fa fa-ban"></span>&nbsp;
+                        <span>Cancel</span>
+                    </button>
+                   
+                </div> <!-- footer -->
+            <!-- </form> -->
+        <!-- </div> body -->
+    <!-- </ng-template>   -->
+
+    <ng-template #editChitModal  let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" id="chitModal">Chit Funds</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form name="editForm" role="form" novalidate  #editForm="ngForm"> 
+              <!-- <div class="form-group">
+                    <label class="form-control-label" for="field_chit_name">Chit Fund Name</label>
+                    <input type="text" class="form-control" name="chit_name" id="chit_name" [(ngModel)]="chitfund.chit_name" [ngModelOptions]="{standalone: true}"
+                    />
+                </div> -->
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        class="full-width" 
+                        placeholder="Chit Name"
+                        jhiNumberOnly 
+                        name="chit_name" 
+                        id="chit_name" 
+                        [(ngModel)]="chitfund.chit_name" 
+                        [ngModelOptions]="{standalone: true}"
+                        required
+                    >
+                </mat-form-field>&nbsp;&nbsp;
+                <!-- <div class="form-group">
+                        <label class="form-control-label" for="field_chit_holder_name">Chit Holder Name</label>
+                        <input type="text" class="form-control" name="chit_holder_name" id="chit_holder_name" [(ngModel)]="chitfund.chit_holder_name" [ngModelOptions]="{standalone: true}"
+                        />
+                    </div> -->
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            class="full-width" 
+                            placeholder="Chit Holder Name"
+                            name="chit_holder_name" 
+                            id="chit_holder_name" 
+                            [(ngModel)]="chitfund.chit_holder_name" 
+                            [ngModelOptions]="{standalone: true}"
+                            required
+                        >
+                    </mat-form-field>
+                    <!-- <div class="form-group">
+                            <label class="form-control-label" f7or="field_chit_start_date">Chit Start date</label>
+                            <input type="text" placeholder="" class="form-control" [(ngModel)]="chitfund.chit_start_date" [ngModelOptions]="{standalone: true}"
+                                bsDatepicker>
+                        </div> -->
+                        <mat-form-field>
+                            <input 
+                                required 
+                                matInput 
+                                [matDatepicker]="picker1"
+                                name="chit_start_date"
+                                placeholder="Start Date"
+                                [(ngModel)]="chitfund.chit_start_date" 
+                                [ngModelOptions]="{standalone: true}">
+                            <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+                            <mat-datepicker #picker1 ></mat-datepicker>
+                        </mat-form-field>&nbsp;&nbsp;
+                        <!-- <div class="form-group">
+                                <label class="form-control-label" for="field_chit_value">Chit Value</label>
+                                <input type="number" class="form-control" name="chit_value" id="chit_value" [(ngModel)]="chitfund.chit_value" [ngModelOptions]="{standalone: true}"
+                                />
+                            </div> -->
+                            <mat-form-field>
+                                <input 
+                                    matInput 
+                                    class="full-width" 
+                                    required type="number" 
+                                    jhiNumberOnly Value
+                                    placeholder="Chit Value" 
+                                    name="chit_value" 
+                                    id="chit_value" 
+                                    [(ngModel)]="chitfund.chit_value" 
+                                    [ngModelOptions]="{standalone: true}"
+                                >
+                            </mat-form-field>
+                            <!-- <div class="form-group">
+                                    <label class="form-control-label" for="field_tenure">Tenure (Months)</label>
+                                    <input type="number" class="form-control" name="tenure" id="tenure" [(ngModel)]="chitfund.tenure" [ngModelOptions]="{standalone: true}"
+                                    />
+                                </div> -->
+                                <mat-form-field>
+                                    <input 
+                                        matInput 
+                                        class="full-width" 
+                                        required 
+                                        type="number" 
+                                        jhiNumberOnly 
+                                        placeholder="Tenure [Months]" 
+                                        name="tenure" 
+                                        id="tenure" 
+                                        [(ngModel)]="chitfund.tenure" 
+                                        [ngModelOptions]="{standalone: true}"
+                                    >
+                                </mat-form-field>&nbsp;&nbsp;
+                                <!-- <div class="form-group">
+                                        <label class="form-control-label" for="field_m_payment">Monthly Payment</label>
+                                        <input type="number" class="form-control" name="m_payment" id="m_payment" [(ngModel)]="chitfund.m_payment" [ngModelOptions]="{standalone: true}"
+                                        />
+                                    </div> -->
+                                    <mat-form-field>
+                                        <input 
+                                            matInput 
+                                            class="full-width" 
+                                            required 
+                                            type="number" 
+                                            jhiNumberOnly 
+                                            placeholder="Monthly Payment" 
+                                            name="m_payment" 
+                                            id="m_payment" 
+                                            [(ngModel)]="chitfund.m_payment" 
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                    </mat-form-field>
+                                    <!-- <div class="form-group">
+                                            <label class="form-control-label" for="field_current_value">Current Value</label>
+                                            <input type="text" class="form-control" name="current_value" id="current_value" [(ngModel)]="chitfund.current_value" [ngModelOptions]="{standalone: true}" />
+                                    </div> -->
+                                   
+                                       
+                                            <mat-form-field>
+                                                <input 
+                                                    matInput 
+                                                    class="full-width" 
+                                                    required 
+                                                    type="number" 
+                                                    jhiNumberOnly 
+                                                    placeholder="Current Value" 
+                                                    name="current_value" 
+                                                    id="current_value" 
+                                                    [(ngModel)]="chitfund.current_value" 
+                                                    [ngModelOptions]="{standalone: true}"
+                                                >
+                                            </mat-form-field>&nbsp;&nbsp;
+                                        
+                                        <!-- <div class="col-md-6">
+                                            <div class="checkbox form-group">
+                                                <label class="form-control-label" for="field_isChashed"><input type="checkbox" value="" class="form-control" name="isCashed" id="isCashed" [(ngModel)]="chitfund.isCashed" [ngModelOptions]="{standalone: true}" >Is cashed?</label>
+                                              </div>
+                                        </div> -->
+                                    <!-- </div> -->
+                      <!-- <div class="form-group">
+                                <label class="form-control-label" for="field_notes">Notes</label>
+                                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="chitfund.notes" [ngModelOptions]="{standalone: true}"
+                                />
+                            </div> -->
+                            <mat-form-field>
+                                <textarea 
+                                    matInput 
+                                    rows="3" 
+                                    cols="50" 
+                                    placeholder="Comment"
+                                    name="notes" 
+                                    id="notes" 
+                                    [(ngModel)]="chitfund.notes" 
+                                    [ngModelOptions]="{standalone: true}">
+                                </textarea>
+                            </mat-form-field>
+                <div class="modal-footer">
+
+                    <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving"
+                    (click)="c('Save click')">
+                        <span class="fa fa-save"></span>&nbsp;
+                        <span>Save</span>
+                    </button>
+                    <button type="button"  mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                        <span class="fa fa-ban"></span>&nbsp;
+                        <span>Cancel</span>
+                    </button>
+                </div> <!-- footer -->
+            </form>
+        </div> <!-- body -->
+    </ng-template>
+    
+    <!-- table -->
+    <table class="table-responsive-md table table-hover table-striped  table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Chit Fund Name</th>
+                <th scope="col">Chit Holder Name</th>
+                <th scope="col">Chit Start date</th>
+                <th scope="col">Chit Value</th>
+                <th scope="col">Tenure (Months)</th>
+                <th scope="col">Current Value</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let chit of chitfundDetails">
+                <td>{{chit.chit_name}}</td>
+                <td>{{chit.chit_holder_name}}</td>
+                <td>{{chit.chit_start_date| date : 'shortDate'}}</td>
+                <td>{{chit.chit_value}}</td>
+                <td>{{chit.tenure}}</td>
+                <td>{{chit.current_value}} </td>
+                <td>
+                    <button 
+                    class="btn btn-outline-info" 
+                    type="button" 
+                    (click)="openEditchit(editChitModal,chit.id)">
+                    <span> <i class="fa fa-edit" aria-hidden="true"></i></span>
+                    </button>             
+                </td>
+                <td>
+                    <button 
+                        class="btn btn-outline-danger" 
+                        type="button"
+                        (click)="opendeleteChit(chit.id)"
+                        >
+                        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>

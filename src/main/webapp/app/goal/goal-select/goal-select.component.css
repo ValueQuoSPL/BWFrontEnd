@@ -1,0 +1,21 @@
+::ng-deep .cdk-overlay-container {
+  z-index: 1200 !important;
+}
+
+.example-card {
+  max-width: 400px;
+  height: 415px;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+.mat-card-header {
+  background: lightgray;
+}
+
+.colored {
+  background: #f7f7f7;
+border-radius: 57px;
+}

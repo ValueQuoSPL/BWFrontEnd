@@ -33,7 +33,9 @@ import { WINDOW_PROVIDERS } from './layouts/navbar/window.service';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 import { SubscriberModule } from './home/subscriber/subscriber.module';
 import { BuckswiseFrontEndPratikModule } from './pratik/pratik.module';
-// import { BuckswiseFrontEndMyAssetsModule } from './my-assets';
+import { BuckswiseFrontEndRiskModule } from './risk/risk.module';
+import { GoalModule } from './goal/goal.module';
+import { BuckswiseFrontEndMyAssetsModule } from './my-assets/my-assets.module';
 
 @NgModule({
     imports: [
@@ -51,9 +53,11 @@ import { BuckswiseFrontEndPratikModule } from './pratik/pratik.module';
         CustomMaterialModule,
         SubscriberModule,
         PromoCodeModule,
+        FamilyModule,
+        GoalModule,
+        BuckswiseFrontEndRiskModule,
         BuckswiseFrontEndPratikModule,
-        // BuckswiseFrontEndMyAssetsModule,
-        FamilyModule
+        BuckswiseFrontEndMyAssetsModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent,

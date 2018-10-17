@@ -1,0 +1,15 @@
+.gray {
+  /* background-color:#A9A9A9; */
+  background: #353d47;
+  color: white;
+}
+.gray1 {
+  background-color: #a9a9a9;
+}
+/* background: #353d47 !important;; */
+#asset:hover {
+  background-color: #a9a9a9;
+}
+#asset1:hover {
+  background-color: #353d47;
+}

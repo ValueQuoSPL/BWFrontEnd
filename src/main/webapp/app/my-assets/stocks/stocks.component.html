@@ -1,0 +1,221 @@
+<div class="pull-right"><!-- div start -->
+    <button 
+        type="button" 
+        class="btn btn-link"
+        (click)="openStocks(stocksModal)" >
+            <span>
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <span>Add</span>
+            </span>
+    </button>
+    <button 
+        type="button" 
+        class="btn btn-link">
+        <span>
+            <i class="fa fa-info" aria-hidden="true"></i>
+            <span>Help</span>
+        </span>
+    </button>
+</div><!-- div end -->
+<!-- stocksModal stock start -->
+<ng-template #stocksModal let-c="close" let-d="dismiss"><!--ng-template start -->
+    <div class="modal-header"><!-- modal header start -->
+        <h4 class="modal-title" id="stocksModal">Add Stocks</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div><!-- modal header end -->
+    <div class="modal-body"><!-- modal body start -->
+        <form name="editForm" role="form" novalidate   #editForm="ngForm"> 
+            <mat-form-field>
+                <input matInput class="full-width" required type="text" placeholder="Company Name" [(ngModel)]="stocks.company_name" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field> &nbsp;&nbsp;
+            <mat-form-field>
+                <input matInput class="full-width" required type="text" placeholder="Investor Name" [(ngModel)]="stocks.investor_name" [ngModelOptions]="{standalone: true}" >
+            </mat-form-field> &nbsp;&nbsp;
+            <mat-form-field>
+                <input matInput style="width: 100%;" type="number" jhiNumberOnly placeholder="No of shares" name="no_of_shares" id="no_of_shares" [(ngModel)]="stocks.no_of_shares" required />
+            </mat-form-field> &nbsp;&nbsp;
+            <mat-form-field>
+                <input matInput style="width: 100%;" type="number" jhiNumberOnly placeholder="Share Price" name="share_price" id="share_price" [(ngModel)]="stocks.share_price"required/>
+            </mat-form-field> &nbsp;&nbsp;
+            <mat-form-field>
+                <input matInput style="width: 100%;" type="textarea" placeholder="Notes" name="notes" id="notes" [(ngModel)]="stocks.notes"  />
+            </mat-form-field>
+            <div class="modal-footer">
+                <button 
+                    type="submit" 
+                    class="btn btn-primary" 
+                    [disabled]="editForm.form.invalid || isSaving" 
+                    class="btn btn-primary"
+                    (click)="c('Save click')">
+                    <span class="fa fa-save"></span>&nbsp;
+                    <span>Save</span>
+                </button>
+                <button 
+                    type="button" 
+                    class="btn btn-secondary" 
+                    data-dismiss="modal" 
+                    (click)="d('Cross click')">
+                    <span class="fa fa-ban"></span>&nbsp;
+                    <span>Cancel</span>
+                </button>
+                <button 
+                    type="button" 
+                    class="btn btn-warning" 
+                    (click)="resetFieldValue()">
+                    <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                        <span>Reset</span>
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div><!-- modal body end -->   
+</ng-template><!--ng-template end -->
+<!-- end of modal stock -->
+<!-- editStocksModal modal start -->
+<ng-template #editStocksModal let-c="close" let-d="dismiss"><!-- editStocksModal ng-template start -->
+    <div class="modal-header"><!-- modal header start -->
+        <h4 
+            class="modal-title" 
+            id="editStocksModal">Add Stocks</h4>
+        <button 
+            type="button" 
+            class="close" 
+            aria-label="Close" 
+            (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div><!-- modal header end -->
+    <div class="modal-body"><!-- modal body start -->
+        <form name="editForm" role="form" novalidate   #editForm="ngForm"> 
+            <mat-form-field>
+                <input
+                    matInput 
+                    class="full-width"
+                    required type="text" 
+                    placeholder="Company Name" 
+                    [(ngModel)]="stocks.company_name" 
+                    [ngModelOptions]="{standalone: true}"
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput
+                    class="full-width"
+                    required
+                    type="text"
+                    placeholder="Investor Name" 
+                    [(ngModel)]="stocks.investor_name" 
+                    [ngModelOptions]="{standalone: true}"
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    style="width: 100%;" 
+                    type="number" 
+                    jhiNumberOnly 
+                    placeholder="No of shares"
+                    name="no_of_shares" id="no_of_shares" 
+                    [(ngModel)]="stocks.no_of_shares" 
+                    required 
+                />
+            </mat-form-field> &nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    style="width: 100%;" 
+                    type="number" 
+                    jhiNumberOnly 
+                    placeholder="Share Price" 
+                    name="share_price" id="share_price" 
+                    [(ngModel)]="stocks.share_price"
+                    required
+                />
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    style="width: 100%;" 
+                    type="textarea" 
+                    placeholder="Notes" 
+                    name="notes" 
+                    id="notes" 
+                    [(ngModel)]="stocks.notes"
+                />
+            </mat-form-field>
+            <div class="modal-footer">
+                <button 
+                    type="submit"
+                    class="btn btn-primary"
+                    [disabled]="editForm.form.invalid || isSaving"
+                    class="btn btn-primary"
+                    (click)="c('Save click')">
+                    <span class="fa fa-save"></span>&nbsp;
+                    <span>Save</span>
+                </button>
+                <button 
+                    type="button" 
+                    class="btn btn-secondary" 
+                    data-dismiss="modal" 
+                    (click)="d('Cross click')">
+                    <span class="fa fa-ban"></span>&nbsp;
+                    <span>Cancel</span>
+                </button>
+                <button 
+                    type="button" 
+                    class="btn btn-warning" 
+                    (click)="resetFieldValue()">
+                    <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                        <span>Reset</span>
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>    
+</ng-template>
+<!-- end of edit modal -->
+<!-- table starts here -->
+<div>
+    <table  class="table-responsive-md table table-hover table-striped  table-sm">
+        <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Company Name</th>
+                <th scope="col">Investor Name</th>
+                <th scope="col">No of Shares</th>
+                <th scope="col">Share Price</th>
+                <th scope="col">Notes</th>
+                <th scope="col">Update</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let stocks of out; let i = index">
+                <td>{{stocks.id}}</td>
+                <td>{{stocks.company_name}}</td>
+                <td>{{stocks.investor_name}}</td>
+                <td>{{stocks.no_of_shares}}</td>
+                <td>{{stocks.share_price}}</td>
+                <td>{{stocks.notes}}</td>
+                <td>
+                    <button 
+                        class="btn btn-outline-info" 
+                        type="button" 
+                        (click)="openEditStocks(editStocksModal,stocks.id)">
+                        <span> <i class="fa fa-edit" aria-hidden="true"></i></span>
+                    </button>             
+                </td>
+                <td>
+                    <button 
+                        class="btn btn-outline-danger" 
+                        type="button"
+                        (click)="opendeleteStocks(stocks.id)">
+                        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                    </button>             
+                </td>
+            </tr>
+        </tbody>
+    </table><!-- table end here -->
+</div>

@@ -1,0 +1,289 @@
+<div class="pull-right">
+    <button type="button" class="btn btn-link" (click)="openAlt(altModal)" >
+        <span>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span>Add</span>
+        </span>
+    </button>
+    <button type="button" class="btn btn-link">
+        <span>
+            <i class="fa fa-info" aria-hidden="true"></i>
+            <span>Help</span>
+        </span>
+    </button>
+</div>
+<!-- modal start -->
+<ng-template #altModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="altModal">Alternative Investment</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="editForm" role="form" novalidate  #editForm="ngForm">
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width" 
+                    required type="number" 
+                    jhiNumberOnly 
+                    placeholder="ID"
+                    name="id"
+                    [(ngModel)]="altInvest.num" 
+                    [ngModelOptions]="{standalone: true}"
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    type="text"
+                    required type="Fund Name" 
+                    jhiNumberOnly 
+                    placeholder="Fund Name"
+                    name="fund_name" 
+                    id="field_fund_name" 
+                    [(ngModel)]="altInvest.fund_name" 
+                    [ngModelOptions]="{standalone: true}"
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width" 
+                    required
+                    type="number" 
+                    jhiNumberOnly 
+                    placeholder="Investor Name"
+                    name="investor_name" 
+                    id="field_investor_name" 
+                    [(ngModel)]="altInvest.investor_name"
+                    [ngModelOptions]="{standalone: true}"
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    required 
+                    matInput 
+                    [matDatepicker]="picker1" 
+                    placeholder="Purchase Date" 
+                    [(ngModel)]="altInvest.p_date" 
+                    [ngModelOptions]="{standalone: true}">
+                <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+                <mat-datepicker #picker1 ></mat-datepicker>
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    placeholder="Amount Invested"
+                    type="number"
+                    jhiNumberOnly 
+                    name="amount_invested" 
+                    id="field_amount_invested" 
+                    [(ngModel)]="altInvest.amount_invested" 
+                    [ngModelOptions]="{standalone: true}"
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width" 
+                    placeholder="Market Value" 
+                    type="number"
+                    jhiNumberOnly 
+                    name="market_value" 
+                    id="field_market_value" 
+                    [(ngModel)]="altInvest.market_value"
+                    [ngModelOptions]="{standalone: true}" 
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    required 
+                    matInput 
+                    [matDatepicker]="picker2" 
+                    placeholder="As Of Date"
+                    name="as_of_date"
+                    [(ngModel)]="altInvest.as_of_date" 
+                    [ngModelOptions]="{standalone: true}">
+                <mat-datepicker-toggle matSuffix [for]="picker2" ></mat-datepicker-toggle>
+                <mat-datepicker #picker2 ></mat-datepicker>
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="field_notes" [(ngModel)]="altInvest.notes" [ngModelOptions]="{standalone: true}"></textarea>
+            </mat-form-field>&nbsp;&nbsp;
+            <div class="modal-footer">
+                <button type="submit" mat-button class=" btn btn-outline-primary" [disabled]="editForm.form.invalid || isSaving"
+                    (click)="c('Save click')">
+                    <span class="fa fa-save"></span>&nbsp;
+                    <span>Save</span>
+                </button>
+                <button type="button"mat-button class=" btn btn-outline-accent" data-dismiss="modal" (click)="d('Cross click')">
+                    <span class="fa fa-ban"></span>&nbsp;
+                    <span>Cancel</span>
+                </button>
+            </div> <!-- footer -->
+        </form>
+    </div> <!-- body -->
+</ng-template>
+<ng-template #editAltModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="editAltModal">Alternative Investment</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="editForm" role="form" novalidate  #editForm="ngForm">
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width" 
+                    required type="number" 
+                    jhiNumberOnly 
+                    placeholder="ID"
+                    name="id"
+                    [(ngModel)]="altInvest.num" 
+                    [ngModelOptions]="{standalone: true}"
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    type="text"
+                    required type="Fund Name" 
+                    jhiNumberOnly 
+                    placeholder="Fund Name"
+                    name="fund_name" 
+                    id="field_fund_name" 
+                    [(ngModel)]="altInvest.fund_name" 
+                    [ngModelOptions]="{standalone: true}"
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width" 
+                    required
+                    type="number" 
+                    jhiNumberOnly 
+                    placeholder="Investor Name"
+                    name="investor_name" 
+                    id="field_investor_name" 
+                    [(ngModel)]="altInvest.investor_name"
+                    [ngModelOptions]="{standalone: true}"
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    required 
+                    matInput 
+                    [matDatepicker]="picker1" 
+                    placeholder="Purchase Date" 
+                    [(ngModel)]="altInvest.p_date" 
+                    [ngModelOptions]="{standalone: true}">
+                <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+                <mat-datepicker #picker1 ></mat-datepicker>
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    placeholder="Amount Invested"
+                    type="number"
+                    jhiNumberOnly 
+                    name="amount_invested" 
+                    id="field_amount_invested" 
+                    [(ngModel)]="altInvest.amount_invested" 
+                    [ngModelOptions]="{standalone: true}"
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width" 
+                    placeholder="Market Value" 
+                    type="number"
+                    jhiNumberOnly 
+                    name="market_value" 
+                    id="field_market_value" 
+                    [(ngModel)]="altInvest.market_value"
+                    [ngModelOptions]="{standalone: true}" 
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    required 
+                    matInput 
+                    [matDatepicker]="picker2" 
+                    placeholder="As Of Date"
+                    name="as_of_date"
+                    [(ngModel)]="altInvest.as_of_date" 
+                    [ngModelOptions]="{standalone: true}">
+                <mat-datepicker-toggle matSuffix [for]="picker2" ></mat-datepicker-toggle>
+                <mat-datepicker #picker2 ></mat-datepicker>
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="field_notes" [(ngModel)]="altInvest.notes" [ngModelOptions]="{standalone: true}"></textarea>
+            </mat-form-field>&nbsp;&nbsp;
+            <div class="modal-footer">
+                <button type="submit" mat-button class=" btn btn-outline-primary" [disabled]="editForm.form.invalid || isSaving"
+                    (click)="c('Save click')">
+                    <span class="fa fa-save"></span>&nbsp;
+                    <span>Save</span>
+                </button>
+                <button type="button"mat-button class=" btn btn-outline-accent" data-dismiss="modal" (click)="d('Cross click')">
+                    <span class="fa fa-ban"></span>&nbsp;
+                    <span>Cancel</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+<!-- table -->
+<table class="table-responsive-md table table-hover table-striped  table-sm">
+    <thead>
+        <tr>
+            <th scope="col">Investor Name</th>
+            <th scope="col">Amount Invested</th>
+            <th scope="col">Current Market Value</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let altInvest of alternateinvest; let i = index">
+            <td> {{altInvest.investor_name}} </td>
+            <td>{{altInvest.amount_invested}} </td>
+            <td>{{altInvest.market_value}}</td>
+            <td>
+                <button 
+                    class="btn btn-outline-info" 
+                    type="button" 
+                    (click)="openEditAltInvest(editAltModal,altInvest.id)">
+                    <span><i class="fa fa-edit" aria-hidden="true"></i></span>
+                </button>             
+            </td>
+            <td>
+                <button 
+                    class="btn btn-outline-danger" 
+                    type="button"
+                    (click)="openDeleteAltInvest(altInvest.id)"
+                    >
+                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,177 @@
+<br>
+<br>
+<div class="container">
+    <h3>
+        <p class="font-weight-bold">Life Insurance</h3>
+    <!--start of buttons -->
+    <div>
+        <div class="pull-right">
+            <button type="button" class="btn btn-link" (click)="openLife(lifeModal)">
+                <span>
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    <span>Add New</span>
+                </span>
+            </button>
+            <button type="button" class="btn btn-link">
+                <span>
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                    <span>Help</span>
+                </span>
+            </button>
+        </div>
+        <!-- modal start -->
+        <ng-template #lifeModal let-c="close" let-d="dismiss">
+            <div class="modal-header">
+                <h4 class="modal-title" id="lifeModal">Life Insurance Risk</h4>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form name="editForm" role="form" novalidate #editForm="ngForm">
+
+                    <mat-form-field>
+                        <!-- <input matInput type="text" placeholder="Risk Coverage for" [(ngModel)]="lifeInsurance.risk_coverage" [ngModelOptions]="{standalone: true}"
+                            required> -->
+                        <mat-select aria-placeholder="select">
+                            <div *ngFor="let name of familyName">
+                                <mat-option value="family name">{{name.firstname}}</mat-option>
+                            </div>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field style="width: 100%;">
+                        <mat-label>How much of Expense would you want to be replaced through insurance cover?</mat-label>
+                        <input matInput type="number" placeholder="Amount in Percentage(%)" [(ngModel)]="lifeInsurance.expense_cover" [ngModelOptions]="{standalone: true}"
+                            required>
+                    </mat-form-field>
+
+                    <mat-card>
+                        <mat-card-header>
+                            <mat-card-title>Which of your goals need to be fulfilled without fail? You can add it to the insurance cover
+                                by checking the boxes below</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <mat-accordion>
+                                <mat-expansion-panel [expanded]="true">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>Future Goals</mat-panel-title>
+                                        <mat-panel-description></mat-panel-description>
+                                    </mat-expansion-panel-header>
+
+                                    <div>
+                                        <table class="table table-hover table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">check</th>
+                                                    <th scope="col">Goal Name</th>
+                                                    <th scope="col">Total Fund Needed</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <tr *ngFor="let goal of dynamicGoalArray; let i = index">
+                                                    <td>
+                                                        <mat-checkbox #cb [ngModel]="get(goal.id)" (ngModelChange)="checklife(cb.checked, goal.id)" [name]="goal.id">
+                                                        </mat-checkbox>
+                                                    </td>
+                                                    <td> {{goal.goalname}} </td>
+                                                    <td>{{goal.futurecost}} </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </mat-expansion-panel>
+                                <mat-expansion-panel [hideToggle]="false">
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>Non Insured Liabilities</mat-panel-title>
+                                        <mat-panel-description></mat-panel-description>
+                                    </mat-expansion-panel-header>
+
+                                    <div>
+                                        <table class="table table-hover table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Liability Type</th>
+                                                    <th scope="col">Oraganisation Name</th>
+                                                    <th scope="col">Outstanding Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let l of liability; let i = index">
+                                                    <td> {{l.ltype}} </td>
+                                                    <td>{{l.lenderName}} </td>
+                                                    <td> {{l.outstandingpricipal}}</td>
+                                                </tr>
+                                                <td>
+                                                    <button class="btn btn-default" type="button" (click)="deleteFieldValue(i)">Delete</button>
+                                                </td>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <div style="width: 100%;">
+                        <mat-label>Total</mat-label>
+                        {{lifeInsurance.total }}
+                    </div>
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-primary" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary" data-dismiss="modal"
+                            (click)="c('Save click')">
+                            <span class="fa fa-save"></span>&nbsp;
+                            <span>Save</span>
+                        </button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="d('Cross click')">
+                            <span class="fa fa-ban"></span>&nbsp;
+                            <span>Cancel</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </ng-template>
+        <!-- end of modal -->
+
+        <!-- table starts here -->
+        <div>
+            <table class="table table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Expense percentage</th>
+                        <th scope="col">Total yearly expenses</th>
+                        <th scope="col">Edit/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let lifeInsurance of goalLife; let i = index">
+                        <!-- <td><a [routerLink]="['../stocks', stocks.id ]">{{stocks.id}}</a></td>
+    <td> {{stocks.id}} </td> -->
+                        <td> {{lifeInsurance.risk_coverage}} </td>
+                        <td>{{lifeInsurance.expense_cover}} </td>
+                        <td>{{lifeInsurance.total}} </td>
+                        <td>
+                            <button class="btn btn-outline-info" type="button" (click)="opnLife(lifeInsurance.id,lifeModal)">
+                                <span>
+                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                            <button class="btn  btn-outline-danger" type="button" (click)="deleteField(i, lifeInsurance.id)">
+                                <span>
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </span>
+                            </button>
+
+                        </td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>

@@ -49,7 +49,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   showSidebar() {
-    // console.log('inside sidebar');
     const x =  document.getElementById('main-menu').classList.toggle('expanded');
     // const x = document.getElementById('main-menu');
     // x.style.width = '-250px';
@@ -64,8 +63,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   Login() {
-    // console.log(this.modalRef);
     this.modalRef = this.loginModalService.open();
-    // console.log(this.modalRef);
   }
 }

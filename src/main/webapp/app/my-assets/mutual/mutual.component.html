@@ -1,0 +1,344 @@
+<div class="pull-right">
+    <button type="button" class="btn btn-link" (click)="openMutual(mutualModal)" >
+        <span>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span>Add</span>
+        </span>
+    </button>
+    <button type="button" class="btn btn-link">
+        <span>
+            <i class="fa fa-info" aria-hidden="true"></i>
+            <span>Help</span>
+        </span>
+    </button>
+</div>
+ <!-- modal start -->
+ <ng-template #mutualModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="mutualModal">Mutual Funds</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body ">
+        <div class=" rowjustify-content-center">
+            <form name="editForm" role="form" novalidate  #editForm="ngForm">
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        class="full-width" 
+                        required type="number" 
+                        jhiNumberOnly 
+                        placeholder="mutualfundid" 
+                        [(ngModel)]="mutualfund.mutualfundid" 
+                        [ngModelOptions]="{standalone: true}"
+                    >
+                </mat-form-field>&nbsp;&nbsp;
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        class="full-width" 
+                        requiredtype="number" 
+                        jhiNumberOnly  
+                        placeholder="MFScheme" 
+                        [(ngModel)]="mutualfund.mfscheme" 
+                        [ngModelOptions]="{standalone: true}"
+                    >
+                </mat-form-field>&nbsp;&nbsp;
+                <mat-form-field>
+                    <input
+                        matInput
+                        class="full-width"
+                        required type="number"
+                        jhiNumberOnly
+                        placeholder="Folio Number" 
+                        [(ngModel)]="mutualfund.folionumber" 
+                        [ngModelOptions]="{standalone: true}" 
+                    >
+                </mat-form-field>&nbsp;&nbsp;
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        style="width: 100%;" 
+                        type="number" 
+                        jhiNumberOnly 
+                        placeholder="Holding Days" 
+                        name="holdingdays" 
+                        id="holdingdays" 
+                        [(ngModel)]="mutualfund.holdingdays" 
+                        required
+                     />
+                </mat-form-field>&nbsp;&nbsp;
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        style="width: 100%;" 
+                        type="number" 
+                        jhiNumberOnly 
+                        placeholder="Purches Price" 
+                        name="purchesprice" 
+                        id="purchesprice" 
+                        [(ngModel)]="mutualfund.purchesprice"
+                        required
+                    />
+                </mat-form-field>&nbsp;&nbsp;
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        style="width: 100%;" 
+                        type="number" 
+                        jhiNumberOnly 
+                        placeholder="current value" 
+                        name="currentvalue" 
+                        id="currentvalue" 
+                        [(ngModel)]="mutualfund.currentvalue" 
+                    />
+                </mat-form-field>&nbsp;&nbsp;
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        style="width: 100%;" 
+                        type="number" 
+                        jhiNumberOnly 
+                        placeholder="Gain/Loss" 
+                        name="gainloss" 
+                        id="gainloss" 
+                        [(ngModel)]="mutualfund.gainloss"
+                    />
+                </mat-form-field>&nbsp;&nbsp;
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        style="width: 100%;" 
+                        type="number" 
+                        jhiNumberOnly 
+                        placeholder="Absolute Return(%)" 
+                        name="absolutereturn" 
+                        id="absolutereturn" 
+                        [(ngModel)]="mutualfund.absolutereturn"
+                    />
+                </mat-form-field>&nbsp;&nbsp;
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        style="width: 100%;" 
+                        type="number" 
+                        jhiNumberOnly 
+                        placeholder="CAGR(%)" 
+                        name="cagr" 
+                        id="cagr"
+                        [(ngModel)]="mutualfund.cagr"
+                    />
+                </mat-form-field>
+                <div class="modal-footer">
+                    <button 
+                        type="submit" 
+                        class="btn btn-secondary" 
+                        data-dismiss="modal" 
+                        (click)="d('Cross click')">
+                            <span class="fa fa-ban"></span>&nbsp;
+                            <span>Cancel</span>
+                    </button>
+                    <button 
+                        type="submit" 
+                        [disabled]="editForm.form.invalid || isSaving" 
+                        class="btn btn-primary" data-dismiss="modal"
+                        (click)="c('Save click')" 
+                        (click)="update()">
+                            <span class="fa fa-save"></span>&nbsp;
+                            <span>Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+<!-- table starts here -->
+<!-- modal start -->
+<ng-template #editMutualModal let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" id="editMutualModal">Mutual Funds</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body ">
+            <div class=" rowjustify-content-center">
+                <form name="editForm" role="form" novalidate  #editForm="ngForm">
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            class="full-width" 
+                            required type="number" 
+                            jhiNumberOnly 
+                            placeholder="mutualfundid" 
+                            [(ngModel)]="mutualfund.mutualfundid" 
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                    </mat-form-field>&nbsp;&nbsp;
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            class="full-width" 
+                            requiredtype="number" 
+                            jhiNumberOnly  
+                            placeholder="MFScheme" 
+                            [(ngModel)]="mutualfund.mfscheme" 
+                            [ngModelOptions]="{standalone: true}"
+                        >
+                    </mat-form-field>&nbsp;&nbsp;
+                    <mat-form-field>
+                        <input
+                            matInput
+                            class="full-width"
+                            required type="number"
+                            jhiNumberOnly
+                            placeholder="Folio Number" 
+                            [(ngModel)]="mutualfund.folionumber" 
+                            [ngModelOptions]="{standalone: true}" 
+                        >
+                    </mat-form-field>&nbsp;&nbsp;
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            style="width: 100%;" 
+                            type="number" 
+                            jhiNumberOnly 
+                            placeholder="Holding Days" 
+                            name="holdingdays" 
+                            id="holdingdays" 
+                            [(ngModel)]="mutualfund.holdingdays" 
+                            required
+                         />
+                    </mat-form-field>&nbsp;&nbsp;
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            style="width: 100%;" 
+                            type="number" 
+                            jhiNumberOnly 
+                            placeholder="Purches Price" 
+                            name="purchesprice" 
+                            id="purchesprice" 
+                            [(ngModel)]="mutualfund.purchesprice"
+                            required
+                        />
+                    </mat-form-field>&nbsp;&nbsp;
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            style="width: 100%;" 
+                            type="number" 
+                            jhiNumberOnly 
+                            placeholder="current value" 
+                            name="currentvalue" 
+                            id="currentvalue" 
+                            [(ngModel)]="mutualfund.currentvalue" 
+                        />
+                    </mat-form-field>&nbsp;&nbsp;
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            style="width: 100%;" 
+                            type="number" 
+                            jhiNumberOnly 
+                            placeholder="Gain/Loss" 
+                            name="gainloss" 
+                            id="gainloss" 
+                            [(ngModel)]="mutualfund.gainloss"
+                        />
+                    </mat-form-field>&nbsp;&nbsp;
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            style="width: 100%;" 
+                            type="number" 
+                            jhiNumberOnly 
+                            placeholder="Absolute Return(%)" 
+                            name="absolutereturn" 
+                            id="absolutereturn" 
+                            [(ngModel)]="mutualfund.absolutereturn"
+                        />
+                    </mat-form-field>&nbsp;&nbsp;
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            style="width: 100%;" 
+                            type="number" 
+                            jhiNumberOnly 
+                            placeholder="CAGR(%)" 
+                            name="cagr" 
+                            id="cagr"
+                            [(ngModel)]="mutualfund.cagr"
+                        />
+                    </mat-form-field>
+                    <div class="modal-footer">
+                        <button 
+                            type="submit" 
+                            class="btn btn-secondary" 
+                            data-dismiss="modal" 
+                            (click)="d('Cross click')">
+                                <span class="fa fa-ban"></span>&nbsp;
+                                <span>Cancel</span>
+                        </button>
+                        <button 
+                            type="submit" 
+                            [disabled]="editForm.form.invalid || isSaving" 
+                            class="btn btn-primary" data-dismiss="modal"
+                            (click)="c('Save click')" 
+                            (click)="update()">
+                                <span class="fa fa-save"></span>&nbsp;
+                                <span>Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </ng-template>
+    <!-- table starts here -->
+<table class="table-responsive-md table table-hover table-striped  table-sm">
+    <thead>
+        <tr>
+            <th scope="col">MFScheme</th>
+            <th scope="col">Folio Number</th>
+            <th scope="col">Holding Days</th>
+            <th scope="col">Purches Price</th>
+            <th scope="col">Current Value</th>
+            <th scope="col">Gain/Loss</th>
+            <th scope="col">Absolute Return(%)</th>
+            <th scope="col">CAGR(%)</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let mf of output; let i = index">
+            <td>{{mf.mfscheme}}</td>
+            <td>{{mf.folionumber}}</td>
+            <td>{{mf.holdingdays}}</td>
+            <td>{{mf.purchesprice}}</td>
+            <td>{{mf.currentvalue}}</td>
+            <td>{{mf.gainloss}}</td>
+            <td>{{mf.absolutereturn}}</td>
+            <td>{{mf.cagr}}</td>
+            <td>
+                <button 
+                class="btn btn-outline-info" 
+                type="button" 
+                (click)="openEditMutual(editMutualModal,mf.id)">
+                <span> <i class="fa fa-edit" aria-hidden="true"></i></span>
+                </button>             
+            </td>
+            <td>
+                <button 
+                    class="btn btn-outline-danger" 
+                    type="button"
+                    (click)="opendeleteStocks(mf.id)"
+                    >
+                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<!-- table starts here -->

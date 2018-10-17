@@ -1,0 +1,93 @@
+<div [ngSwitch]="isAuthenticated()">
+    <div *ngSwitchCase="true">
+        <div class="container">
+            <div>
+                <div class="form-group row justify-content-center"><label><h5>Assets</h5></label>
+                </div>
+                <mat-accordion>
+                    <!-- stocks -->
+                    <mat-expansion-panel id="asset1">
+                        <mat-expansion-panel-header class="gray" id="asset1">
+                            <mat-panel-title style="color:black"> Stocks </mat-panel-title>
+                            <mat-panel-description style="color:black">Total Stock Value&nbsp;&nbsp;{{totalshareprice}}</mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <!--write selector here--> 
+                        <jhi-stock></jhi-stock>           
+                    </mat-expansion-panel>
+                    <!-- Mutual funds -->
+                    <mat-expansion-panel id="asset"  >
+                        <mat-expansion-panel-header id="asset"  class="gray1">
+                            <mat-panel-title style="color:black" > Mutual Funds </mat-panel-title>
+                            <mat-panel-description style="color:black">Total Mutual Value&nbsp;&nbsp;{{totalmutual}} </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <!--write selector here-->
+                        <jhi-mutualfund></jhi-mutualfund>  
+                    </mat-expansion-panel>
+                    <!-- Saving Schemes -->
+                    <mat-expansion-panel id="asset1">
+                        <mat-expansion-panel-header   id="asset1" class="gray">
+                            <mat-panel-title style="color:black"> Saving Schemes </mat-panel-title>
+                            <mat-panel-description style="color:black">Total Saving Schemes Value&nbsp;&nbsp; {{totalSaving}} </mat-panel-description>
+                        </mat-expansion-panel-header>
+                            <!--write selector here-->
+                            <jhi-savingscheme></jhi-savingscheme>
+                    </mat-expansion-panel>
+                    <!-- Alternative Investment -->
+                    <mat-expansion-panel id="asset">
+                        <mat-expansion-panel-header id="asset" class="gray1">
+                            <mat-panel-title style="color:black"> Alternative Investment </mat-panel-title>
+                            <mat-panel-description style="color:black">TotalAlternative Investment Value&nbsp;&nbsp; {{totalAltenateInvest}} </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <!--write selector here-->
+                        <jhi-alternative></jhi-alternative>
+                    </mat-expansion-panel>
+                    <!-- Cash -->
+                    <mat-expansion-panel id="asset1">
+                        <mat-expansion-panel-header  id="asset1" class="gray">
+                            <mat-panel-title style="color:black"> Cash </mat-panel-title>
+                            <mat-panel-description style="color:black">Total Cash Value&nbsp;&nbsp; {{totalCash}} </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <!--write selector here-->
+                        <jhi-cash></jhi-cash>
+                    </mat-expansion-panel>
+                    <!-- Property -->
+                    <mat-expansion-panel id="asset">
+                        <mat-expansion-panel-header id="asset"  class="gray1">
+                            <mat-panel-title style="color:black"> Property, Jewellery & Others </mat-panel-title>
+                            <mat-panel-description style="color:black">Total  Property, Jewellery & Others Value&nbsp;&nbsp; {{totalProperty}} </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <!--write selector here-->
+                        <jhi-property></jhi-property>
+                    </mat-expansion-panel>
+                    <!-- Chit -->
+                    <mat-expansion-panel id="asset1" >
+                        <mat-expansion-panel-header id="asset1" class="gray">
+                            <mat-panel-title style="color:black"> Chit Funds </mat-panel-title>
+                            <mat-panel-description style="color:black">Total Chit Funds Value&nbsp;&nbsp; {{totalChitFund}} </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <!--write selector here-->
+                        <jhi-chitfund></jhi-chitfund>
+                    </mat-expansion-panel>
+                    <!-- Future and Options -->
+                    <mat-expansion-panel id="asset">
+                        <mat-expansion-panel-header id="asset" class="gray1">
+                            <mat-panel-title style="color:black"> Future and Options </mat-panel-title>
+                            <mat-panel-description style="color:black">Total Future and Options Value&nbsp;&nbsp; {{totalFutureOption}} </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <!--write selector here-->
+                        <jhi-futureoption></jhi-futureoption>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+    </div>
+    <div *ngSwitchCase="false" class="form-group row justify-content-center">
+        <mat-card class="example-card">     
+            <mat-card-content class="example-card" class="shadow">
+                    <img src="../../app/Assests/oops.jpg" style="height:300px;width:700px"><br>
+                    <span>Oops you are not Signed In </span>
+                    Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

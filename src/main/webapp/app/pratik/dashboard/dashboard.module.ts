@@ -3,27 +3,25 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { DashboardRoutingModule } from 'app/pratik/dashboard/dashboard.routes';
+// import { DashboardRoutingModule } from 'app/pratik/dashboard/rout';
 import { DashboardComponent } from 'app/pratik/dashboard/dashboard.component';
 import { DraggableModule } from '../draggable/draggable.module';
 import { CustomMaterialModule } from 'app/custom-material.module';
 import { ChartsModule } from 'ng2-charts';
-// import { myasstsRoute } from 'app/my-assets/my-assets.route';
-// import { liRoute } from 'app/my-assets/liabilities/liabilities.route';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { RouterModule } from '@angular/router';
+import { DashRoute } from './dashboard.routes';
 
 @NgModule({
   imports: [
     FormsModule,
     CommonModule,
-    DashboardRoutingModule,
+    // DashboardRoutingModule,
     DraggableModule,
     CustomMaterialModule,
     ChartsModule,
-    // RouterModule.forRoot([myasstsRoute], { useHash: true }),
-    // RouterModule.forRoot([liRoute], { useHash: true }),
     NgbDropdownModule.forRoot(),
+    RouterModule.forRoot([DashRoute], { useHash: true }),
     NgCircleProgressModule.forRoot({
       // set defaults here
       radius: 60,

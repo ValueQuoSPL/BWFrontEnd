@@ -1,0 +1,687 @@
+<!--start of buttons -->
+<div class="pull-right">
+    <button type="button" class="btn btn-link" (click)="openCash(cashModal)" >
+        <span>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            <span>Add</span>
+        </span>
+    </button>
+    <button type="button" class="btn btn-link">
+        <span>
+            <i class="fa fa-info" aria-hidden="true"></i>
+            <span>Help</span>
+        </span>
+    </button>
+</div>
+<!-- modal start -->
+<ng-template #cashModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="cashModal">Cash Investment</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="editForm" role="form" novalidate  #editForm="ngForm">
+            <mat-form-field style="width: 100%;">
+                <mat-select 
+                    placeholder="Cash Source" 
+                    id="field_cash_source" 
+                    name="cashsource" 
+                    [(ngModel)]="cashsource"
+                    [ngModelOptions]="{standalone: true}" 
+                    required
+                >
+                    <mat-option value="Bank">In Bank</mat-option>
+                    <mat-option value="Personal Possession">Personal Possession</mat-option>
+                    <mat-option value="Hand Loan">Hand loan</mat-option>
+                    <mat-option value="Other Source">Other Sources</mat-option>
+                </mat-select>
+            </mat-form-field>
+                <div [ngSwitch]="cashsource">
+                    <div *ngSwitchCase="'Bank'">
+                            <div class="form-group">
+                                <mat-form-field>
+                                        <mat-select placeholder="Account Type" id="accoounttype" name="accoounttype" [(ngModel)]="cash.accoounttype"
+                                            [ngModelOptions]="{standalone: true}" required>
+                                            <mat-option value="saving">Saving</mat-option>
+                                            <mat-option value="current">Current</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>&nbsp;&nbsp;
+                                <mat-form-field>
+                                    <input 
+                                        matInput 
+                                        class="full-width" 
+                                        placeholder="Name Of Bank" 
+                                        type="text" 
+                                        name="bankname" 
+                                        id="bankname" 
+                                        [(ngModel)]="cash.bankname" 
+                                        [ngModelOptions]="{standalone: true}"
+                                        required
+                                    >
+                                </mat-form-field>&nbsp;&nbsp;
+                                <mat-form-field>
+                                        <input 
+                                            matInput
+                                            placeholder="Account Name" 
+                                            type="text" 
+                                            name="accountname" 
+                                            id="accountname" 
+                                            [(ngModel)]="cash.accountname" 
+                                            [ngModelOptions]="{standalone: true}"
+                                            required
+                                        >
+                                    </mat-form-field>&nbsp;&nbsp;
+                                    <mat-form-field>
+                                            <input 
+                                                matInput
+                                                placeholder="Amount" 
+                                                type="text" 
+                                                name="amount" 
+                                                id="amount" 
+                                                [(ngModel)]="cash.amount" 
+                                                [ngModelOptions]="{standalone: true}"
+                                                required
+                                            >
+                                        </mat-form-field>&nbsp;&nbsp;
+                                        <mat-form-field style="width: 100%;">
+                                                <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes" [ngModelOptions]="{standalone: true}"></textarea>
+                                        </mat-form-field>
+                                        <div class="modal-footer">
+                                                <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                                (click)="c('Save click')">
+                                                    <span class="fa fa-save"></span>&nbsp;
+                                                    <span>Save</span>
+                                                </button>
+                                                <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                                                    <span class="fa fa-ban"></span>&nbsp;
+                                                    <span>Cancel</span>
+                                                 </button>
+                                            </div>
+                    </div>
+                </div>
+                    <div *ngSwitchCase="'Personal Possession'">
+                            <div class="form-group">
+                                <mat-form-field>
+                                        <input 
+                                            matInput
+                                            placeholder="Amount" 
+                                            type="text" 
+                                            name="amount" 
+                                            id="amount" 
+                                            [(ngModel)]="cash.amount" 
+                                            [ngModelOptions]="{standalone: true}"
+                                            required
+                                        >
+                                    </mat-form-field>&nbsp;&nbsp;
+                                    <mat-form-field style="width: 100%;">
+                                            <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes" [ngModelOptions]="{standalone: true}"></textarea>
+                                    </mat-form-field>
+                                    <div class="modal-footer">
+                                        <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                        (click)="c('Save click')">
+                                            <span class="fa fa-save"></span>&nbsp;
+                                            <span>Save</span>
+                                        </button>
+                                        <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                                            <span class="fa fa-ban"></span>&nbsp;
+                                            <span>Cancel</span>
+                                        </button>
+                                    </div>
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="'Hand Loan'">
+                            <div class="form-group">
+                                    <mat-form-field>
+                                        <input 
+                                            matInput 
+                                            class="full-width" 
+                                            placeholder="Intrest Rate" 
+                                            type="text" 
+                                            name="intrestrate" 
+                                            id="intrestrate" 
+                                            [(ngModel)]="cash.intrestrate" 
+                                            [ngModelOptions]="{standalone: true}"
+                                            required
+                                        >
+                                    </mat-form-field>&nbsp;&nbsp;
+                                    <mat-form-field>
+                                            <input 
+                                                matInput
+                                                placeholder="Name" 
+                                                type="text" 
+                                                name="handloanname" 
+                                                id="handloanname" 
+                                                [(ngModel)]="cash.handloanname" 
+                                                [ngModelOptions]="{standalone: true}"
+                                                required
+                                            >
+                                        </mat-form-field>&nbsp;&nbsp;
+                                        <mat-form-field>
+                                                <input 
+                                                    matInput
+                                                    placeholder="Amount" 
+                                                    type="text" 
+                                                    name="amount" 
+                                                    id="amount" 
+                                                    [(ngModel)]="cash.amount" 
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    required
+                                                >
+                                            </mat-form-field>&nbsp;&nbsp;
+                                            <mat-form-field style="width: 100%;">
+                                                    <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes" [ngModelOptions]="{standalone: true}"></textarea>
+                                            </mat-form-field>
+                                            <div class="modal-footer">
+                                                    <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                                    (click)="c('Save click')">
+                                                        <span class="fa fa-save"></span>&nbsp;
+                                                        <span>Save</span>
+                                                    </button>
+                                                    <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                                                        <span class="fa fa-ban"></span>&nbsp;
+                                                        <span>Cancel</span>
+                                                     </button>
+                                                </div>
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="'Other Source'">
+                            <div class="form-group">
+                                    <mat-form-field>
+                                            <input 
+                                                matInput
+                                                placeholder="Amount" 
+                                                type="text" 
+                                                name="amount" 
+                                                id="amount" 
+                                                [(ngModel)]="cash.amount" 
+                                                [ngModelOptions]="{standalone: true}"
+                                                required
+                                            >
+                                        </mat-form-field>&nbsp;&nbsp;
+                                        <mat-form-field style="width: 100%;">
+                                                <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes" [ngModelOptions]="{standalone: true}"></textarea>
+                                        </mat-form-field>
+                                        <div class="modal-footer">
+                                            <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                            (click)="c('Save click')">
+                                                <span class="fa fa-save"></span>&nbsp;
+                                                <span>Save</span>
+                                            </button>
+                                            <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                                                <span class="fa fa-ban"></span>&nbsp;
+                                                <span>Cancel</span>
+                                            </button>
+                                        </div>
+                            </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </ng-template>       
+            <!-- <div class="form-group">
+                <mat-form-field style="width: 100%;">
+                    <mat-select placeholder="Cash Source" id="field_cash_source" name="cash_source" [(ngModel)]="cash_source"
+                    [ngModelOptions]="{standalone: true}" required>
+                      <mat-option value="inbank">In Bank</mat-option>
+                      <mat-option value="personalpossion">Personal Possession</mat-option>
+                      <mat-option value="handloan">Hand loan</mat-option>
+                      <mat-option value="othersource">Other Sources</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div> -->
+            <!-- <div [ngSwitch]="cash_source">
+                <div *ngSwitchCase="inbank">
+                        <div class="form-group">
+                                <mat-form-field>
+                                        <input 
+                                            matInput 
+                                            class="full-width" 
+                                            placeholder="Name Of Bank" 
+                                            type="text" 
+                                            name="bankname" 
+                                            id="bankname" 
+                                            [(ngModel)]="cash.bankname" 
+                                            [ngModelOptions]="{standalone: true}"
+                                            required
+                                        >
+                                    </mat-form-field>
+                                    <mat-form-field style="width: 100%;">
+                                            <input 
+                                                matInput 
+                                                class="full-width" 
+                                                placeholder="Account Name" 
+                                                type="text" 
+                                                name="accountname" 
+                                                id="accountname" 
+                                                [(ngModel)]="cash.accountname" 
+                                                [ngModelOptions]="{standalone: true}"
+                                                required
+                                            >
+                                        </mat-form-field>
+                                <mat-form-field style="width: 100%;">
+                                    <input 
+                                        matInput 
+                                        class="full-width" 
+                                        placeholder="Amount" 
+                                        type="number"
+                                        jhiNumberOnly 
+                                        name="amount" 
+                                        id="amount" 
+                                        [(ngModel)]="cash.amount" 
+                                        [ngModelOptions]="{standalone: true}"
+                                        required
+                                    >
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%;">
+                                        <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes" [ngModelOptions]="{standalone: true}"></textarea>
+                                </mat-form-field>
+            
+                                <div class="modal-footer">
+                                        <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                        (click)="c('Save click')">
+                                            <span class="fa fa-save"></span>&nbsp;
+                                            <span>Save</span>
+                                        </button>
+                                        <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                                            <span class="fa fa-ban"></span>&nbsp;
+                                            <span>Cancel</span>
+                                        </button>    
+                                    </div> <!-- footer -->
+                        <!-- </div>
+                </div>
+                <div *ngSwitchCase="personalpossion">
+                        <div class="form-group"> -->
+                                <!-- <mat-form-field>
+                                        <input 
+                                            matInput 
+                                            class="full-width" 
+                                            placeholder="Name Of Bank" 
+                                            type="text" 
+                                            name="bankname" 
+                                            id="bankname" 
+                                            [(ngModel)]="cash.bankname" 
+                                            [ngModelOptions]="{standalone: true}"
+                                            required
+                                        >
+                                    </mat-form-field> -->
+                                    <!-- <mat-form-field style="width: 100%;">
+                                            <input 
+                                                matInput 
+                                                class="full-width" 
+                                                placeholder="Account Name" 
+                                                type="text" 
+                                                name="accountname" 
+                                                id="accountname" 
+                                                [(ngModel)]="cash.accountname" 
+                                                [ngModelOptions]="{standalone: true}"
+                                                required
+                                            >
+                                        </mat-form-field>
+                                <mat-form-field style="width: 100%;">
+                                    <input 
+                                        matInput 
+                                        class="full-width" 
+                                        placeholder="Amount" 
+                                        type="number"
+                                        jhiNumberOnly 
+                                        name="amount" 
+                                        id="amount" 
+                                        [(ngModel)]="cash.amount" 
+                                        [ngModelOptions]="{standalone: true}"
+                                        required
+                                    >
+                                </mat-form-field>
+                                <mat-form-field style="width: 100%;">
+                                        <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes" [ngModelOptions]="{standalone: true}"></textarea>
+                                </mat-form-field>
+            
+                                <div class="modal-footer">
+                                        <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                        (click)="c('Save click')">
+                                            <span class="fa fa-save"></span>&nbsp;
+                                            <span>Save</span>
+                                        </button>
+                                        <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                                            <span class="fa fa-ban"></span>&nbsp;
+                                            <span>Cancel</span> -->
+                                        <!-- </button>     -->
+                                    <!-- </div> footer -->
+                        <!-- </div>
+                </div>
+
+            </div>  -->
+            
+            <!-- <div class="form-group"> -->
+                <!-- <label class="form-control-label" for="field_notes">Notes</label>
+                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="cash.notes" [ngModelOptions]="{standalone: true}"
+                /> -->
+                <!-- <mat-form-field style="width: 100%;">
+                    <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes" [ngModelOptions]="{standalone: true}"></textarea>
+                </mat-form-field>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                (click)="c('Save click')">
+                    <span class="fa fa-save"></span>&nbsp;
+                    <span>Save</span>
+                </button> -->
+                <!-- <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                    <span class="fa fa-ban"></span>&nbsp;
+                    <span>Cancel</span>
+                </button>     -->
+            <!-- </div> footer -->
+        <!-- </form>
+    </div>  body -->
+<!-- </ng-template> -->
+<!-- <ng-template #editCashModal let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" id="editCashModal">Cash Investment</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form name="editForm" role="form" novalidate  #editForm="ngForm">        
+                <div class="form-group">
+                    <label for="field_cash_source">Cash Source</label>
+                    <select class="form-control" id="field_cash_source" name="cash_source" [(ngModel)]="cash.cash_source"
+                    [ngModelOptions]="{standalone: true}" required>
+                        <option>--select source--</option>
+                        <option>In Bank</option>
+                        <option>Personal Possession</option>
+                        <option>Hand loan</option>
+                        <option>Other Sources</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_amount">Amount</label>
+                    <input type="number" class="form-control" name="amount" id="amount" [(ngModel)]="cash.amount" [ngModelOptions]="{standalone: true}"
+                        required/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_notes">Notes</label>
+                    <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="cash.notes" [ngModelOptions]="{standalone: true}"
+                    />
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                    (click)="c('Save click')">
+                        <span class="fa fa-save"></span>&nbsp;
+                        <span>Save</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="d('Cross click')">
+                        <span class="fa fa-ban"></span>&nbsp;
+                        <span>Cancel</span>
+                    </button>    
+                </div>  footer -->
+            <!-- </form> -->
+        <!-- </div> body -->
+<!-- </ng-template>  -->
+<ng-template #editCashModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="editCashModal">Cash Investment</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="editForm" role="form" novalidate  #editForm="ngForm">
+            <mat-form-field style="width: 100%;">
+                <mat-select 
+                    placeholder="Cash Source"
+                    id="field_cash_source" 
+                    name="cashsource" 
+                    [(ngModel)]="cashsource"
+                    [ngModelOptions]="{standalone: true}" 
+                    required
+                >
+                    <mat-option value="Bank">In Bank</mat-option>
+                    <mat-option value="Personal Possession">Personal Possession</mat-option>
+                    <mat-option value="Hand Loan">Hand loan</mat-option>
+                    <mat-option value="Other Source">Other Sources</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div [ngSwitch]="editcash">
+                <div *ngSwitchCase="'Bank'">
+                    <div class="form-group">
+                        <mat-form-field>
+                                <mat-select 
+                                    placeholder="Account Type" 
+                                    id="field_cash_source" name="accoounttype" 
+                                    [(ngModel)]="cash.accoounttype"
+                                    [ngModelOptions]="{standalone: true}" 
+                                    required
+                                >
+                                    <mat-option value="saving">Saving</mat-option>
+                                    <mat-option value="current">Current</mat-option>
+                                </mat-select>
+                            </mat-form-field>&nbsp;&nbsp;
+                        <mat-form-field>
+                            <input 
+                                matInput 
+                                class="full-width" 
+                                placeholder="Name Of Bank" 
+                                type="text" 
+                                name="bankname" 
+                                id="bankname" 
+                                [(ngModel)]="cash.bankname" 
+                                [ngModelOptions]="{standalone: true}"
+                                required
+                            >
+                        </mat-form-field>&nbsp;&nbsp;
+                        <mat-form-field>
+                            <input 
+                                matInput
+                                placeholder="Account Name" 
+                                type="text" 
+                                name="accountname" 
+                                id="accountname" 
+                                [(ngModel)]="cash.accountname" 
+                                [ngModelOptions]="{standalone: true}"
+                                required
+                            >
+                            </mat-form-field>&nbsp;&nbsp;
+                            <mat-form-field>
+                                <input 
+                                    matInput
+                                    placeholder="Amount" 
+                                    type="text" 
+                                    name="amount" 
+                                    id="amount" 
+                                    [(ngModel)]="cash.amount" 
+                                    [ngModelOptions]="{standalone: true}"
+                                    required
+                                >
+                                </mat-form-field>&nbsp;&nbsp;
+                                <mat-form-field style="width: 100%;">
+                                        <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes" [ngModelOptions]="{standalone: true}"></textarea>
+                                </mat-form-field>
+                                <div class="modal-footer">
+                                    <button
+                                        type="submit"
+                                        mat-button
+                                        class=" btn btn-outline-primary"
+                                        [disabled]="editForm.form.invalid || isSaving"
+                                        class="btn btn-primary"
+                                        (click)="c('Save click')"
+                                    >
+                                        <span class="fa fa-save"></span>&nbsp;
+                                        <span>Save</span>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        mat-button
+                                        class=" btn btn-outline-accent"
+                                        data-dismiss="modal" (click)="d('Cross click')"
+                                    >
+                                        <span class="fa fa-ban"></span>&nbsp;
+                                        <span>Cancel</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngSwitchCase="'Personal Possession'">
+                        <div class="form-group">
+                                <mat-form-field>
+                                        <input 
+                                            matInput
+                                            placeholder="Amount" 
+                                            type="text" 
+                                            name="amount" 
+                                            id="amount" 
+                                            [(ngModel)]="cash.amount" 
+                                            [ngModelOptions]="{standalone: true}"
+                                            required
+                                        >
+                                    </mat-form-field>&nbsp;&nbsp;
+                                    <mat-form-field style="width: 100%;">
+                                            <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes" [ngModelOptions]="{standalone: true}"></textarea>
+                                    </mat-form-field>
+                                    <div class="modal-footer">
+                                        <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                        (click)="c('Save click')">
+                                            <span class="fa fa-save"></span>&nbsp;
+                                            <span>Save</span>
+                                        </button>
+                                        <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                                            <span class="fa fa-ban"></span>&nbsp;
+                                            <span>Cancel</span>
+                                        </button>
+                                    </div>
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="'Hand Loan'">
+                            <div class="form-group">
+                                    <mat-form-field>
+                                        <input 
+                                            matInput 
+                                            class="full-width" 
+                                            placeholder="Intrest Rate" 
+                                            type="text" 
+                                            name="intrestrate" 
+                                            id="intrestrate" 
+                                            [(ngModel)]="cash.intrestrate" 
+                                            [ngModelOptions]="{standalone: true}"
+                                            required
+                                        >
+                                    </mat-form-field>&nbsp;&nbsp;
+                                    <mat-form-field>
+                                            <input 
+                                                matInput
+                                                placeholder="Name" 
+                                                type="text" 
+                                                name="handloanname" 
+                                                id="handloanname" 
+                                                [(ngModel)]="cash.handloanname" 
+                                                [ngModelOptions]="{standalone: true}"
+                                                required
+                                            >
+                                        </mat-form-field>&nbsp;&nbsp;
+                                        <mat-form-field>
+                                                <input 
+                                                    matInput
+                                                    placeholder="Amount" 
+                                                    type="text" 
+                                                    name="amount" 
+                                                    id="amount" 
+                                                    [(ngModel)]="cash.amount" 
+                                                    [ngModelOptions]="{standalone: true}"
+                                                    required
+                                                >
+                                            </mat-form-field>&nbsp;&nbsp;
+                                            <mat-form-field style="width: 100%;">
+                                                    <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes" [ngModelOptions]="{standalone: true}"></textarea>
+                                            </mat-form-field>
+                                            <div class="modal-footer">
+                                                    <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                                    (click)="c('Save click')">
+                                                        <span class="fa fa-save"></span>&nbsp;
+                                                        <span>Save</span>
+                                                    </button>
+                                                    <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                                                        <span class="fa fa-ban"></span>&nbsp;
+                                                        <span>Cancel</span>
+                                                        </button>
+                                                </div>
+                        </div>
+                    </div>
+                    <div *ngSwitchCase="'Other Source'">
+                            <div class="form-group">
+                                    <mat-form-field>
+                                            <input 
+                                                matInput
+                                                placeholder="Amount" 
+                                                type="text" 
+                                                name="amount" 
+                                                id="amount" 
+                                                [(ngModel)]="cash.amount" 
+                                                [ngModelOptions]="{standalone: true}"
+                                                required
+                                            >
+                                        </mat-form-field>&nbsp;&nbsp;
+                                        <mat-form-field style="width: 100%;">
+                                                <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes" [ngModelOptions]="{standalone: true}"></textarea>
+                                        </mat-form-field>
+                                        <div class="modal-footer">
+                                            <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                            (click)="c('Save click')">
+                                                <span class="fa fa-save"></span>&nbsp;
+                                                <span>Save</span>
+                                            </button>
+                                            <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                                                <span class="fa fa-ban"></span>&nbsp;
+                                                <span>Cancel</span>
+                                            </button>
+                                        </div>
+                            </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </ng-template> 
+<!-- table  -->
+<table  class="table-responsive-md table table-hover table-striped  table-sm">
+    <thead>
+        <tr>
+            <th scope="col">Cash Source</th>
+            <th scope="col">Bank Name</th>
+            <th scope="col">Account Name</th>
+            <th scope="col">Account Type</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Intrest Rate</th>
+            <th scope="col">Hand Loan</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let cash of CashDetails; let i = index">
+            <td> {{cash.cashsource}}</td>
+            <td>{{cash.bankname}}</td>
+            <td>{{cash.accountname}}</td>
+            <td>{{cash.accoounttype}}</td>
+            <td>{{cash.amount}} </td>
+            <td>{{cash.intrestrate}}</td>
+            <td>{{cash.handloanname}}</td>
+            <td>
+                <button 
+                class="btn btn-outline-info" 
+                type="button" 
+                (click)="openEditCash(editCashModal,cash.id)">
+                <span> <i class="fa fa-edit" aria-hidden="true"></i></span>
+                </button>             
+            </td>
+            <td>
+                <button 
+                    class="btn btn-outline-danger" 
+                    type="button"
+                    (click)="opendeleteCash(cash.id)"
+                    >
+                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

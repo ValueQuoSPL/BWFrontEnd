@@ -1,0 +1,34 @@
+<div [ngSwitch]="isAuthenticated()">
+    <div *ngSwitchCase="true">
+        <div class="container">
+            <div class="row justify-content-md-center colored">
+                <label><h5>Risk Management</h5></label>
+            </div>
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="step === 0">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title> Risk Management</mat-panel-title>
+                        <mat-panel-description>Maintain Your Risks Here</mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <jhi-life-insurance></jhi-life-insurance>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title> Medical Insurance</mat-panel-title>
+                        <mat-panel-description>Check Your Medical Insurance Risk</mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <jhi-medical-insurance></jhi-medical-insurance>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+    <div *ngSwitchCase="false" class="form-group row justify-content-center">
+        <mat-card class="example-card"> 
+            <mat-card-content class="example-card" class="shadow">
+                <img src="../../app/Assests/oops.jpg" style="height:300px;width:700px"><br>
+                <span>Oops you are not Signed In </span>
+                Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

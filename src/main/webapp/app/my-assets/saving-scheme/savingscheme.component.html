@@ -1,0 +1,364 @@
+<div class="pull-right"><!--buttons div start -->
+    <button 
+        type="button" 
+        class="btn btn-link" 
+        (click)="openSaving(savingModal)" >
+        <span><i class="fa fa-plus" aria-hidden="true"></i>
+            <span>Add</span>
+        </span>
+    </button>
+    <button type="button" class="btn btn-link">
+        <span>
+            <i class="fa fa-info" aria-hidden="true"></i>
+            <span>Help</span>
+        </span>
+    </button>
+</div><!--buttons div end-->
+<!-- modal start -->
+<ng-template #savingModal let-c="close" let-d="dismiss"><!--savingModal template start -->
+    <div class="modal-header"><!--modal-header start -->
+        <h4 class="modal-title" id="savingModal">Saving Schemes</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div><!--modal-header end -->
+    <div class="modal-body"><!--modal-body start -->
+        <form name="editForm" role="form" novalidate  #editForm="ngForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="ID"  id="id" name="id" [(ngModel)]="savingScheme.num" [ngModelOptions]="{standalone: true}"/>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select 
+                            placeholder="Choose Saving Scheme" 
+                            [(ngModel)]="savingScheme.type" 
+                            name="scheme_type"
+                            >
+                            <mat-option *ngFor="let scheme of schemesArray" 
+                            [value]="scheme.viewValue">
+                            {{scheme.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input 
+                            matInput
+                            type="text" 
+                            placeholder="Investor Name"
+                            name="investor_name" 
+                            id="field_investor_name" 
+                            [(ngModel)]="savingScheme.investor_name"
+                            [ngModelOptions]="{standalone: true}" 
+                            required
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            jhiNumberOnly 
+                            type="number" 
+                            placeholder="Rate of Interest"
+                            name="rate_of_interest" 
+                            id="field_rate_of_interest" 
+                            [(ngModel)]="savingScheme.rate_of_interest"
+                            [ngModelOptions]="{standalone: true}"
+                            required
+                        />    
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker" placeholder="Start Date" name="start_date"  [(ngModel)]="savingScheme.start_date" >
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                    <mat-form-field>
+                            <input 
+                                matInput
+                                type="number"
+                                placeholder="Fund Value"
+                                name="fund_value"
+                                id="field_fund_value"
+                                [(ngModel)]="savingScheme.fund_value"
+                                [ngModelOptions]="{standalone: true}"
+                                required
+                            />
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <input 
+                            matInput
+                            type="text"
+                            placeholder="Organisation Name"
+                            name="organisation_name"
+                            id="field_organisation_name"
+                            [(ngModel)]="savingScheme.organisation_name" 
+                            required
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select 
+                            placeholder="Choose Divident Type"
+                            [(ngModel)]="savingScheme.dividend_type"
+                            name="dividend_type">
+                            <mat-option 
+                                *ngFor="let type of dividendArray" 
+                                [value]="type.name">
+                                {{type.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput 
+                            type="number"
+                            placeholder="Amount Invested"
+                            name="amount_invested"
+                            id="field_amount_invested"
+                            [(ngModel)]="savingScheme.amount_invested"
+                            [ngModelOptions]="{standalone: true}"
+                            required/>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            type="number" 
+                            placeholder="Tenure in Years" 
+                            name="tenure" id="field_tenure" 
+                            [(ngModel)]="savingScheme.tenure" 
+                            [ngModelOptions]="{standalone: true}"
+                            required
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker1" placeholder="End Date" name="end_date"   [(ngModel)]="savingScheme.end_date" >
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                      </mat-form-field>
+                    <mat-form-field>
+                        <input matInput [matDatepicker]="picker2" placeholder="As of Date" name="as_of_date" [(ngModel)]="savingScheme.as_of_date" >
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                      </mat-form-field>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button 
+                    type="submit" 
+                    class="btn btn-primary" 
+                    [disabled]="editForm.form.invalid || isSaving" 
+                    class="btn btn-primary"
+                    (click)="c('Save click')">
+                        <span class="fa fa-save"></span>&nbsp;
+                        <span>Save</span>
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="d('Cross click')">
+                    <span class="fa fa-ban"></span>&nbsp;
+                    <span>Cancel</span>
+                </button>                                   
+            </div><!-- footer end-->
+        </form><!-- form end-->
+    </div><!--modal-body end -->
+</ng-template><!-- savingModaltemplate end -->
+<ng-template #editsavingModal let-c="close" let-d="dismiss"><!-- editsavingModal template start -->
+    <div class="modal-header"><!--modal-header start -->
+        <h4 class="modal-title" id="editsavingModal">Saving Schemes</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div><!--modal-header end -->
+    <div class="modal-body"><!--modal-body start -->
+        <form name="editForm" role="form" novalidate  #editForm="ngForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="ID"  id="id" name="id" [(ngModel)]="savingScheme.num" [ngModelOptions]="{standalone: true}"/>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select 
+                            placeholder="Choose Saving Scheme" 
+                            [(ngModel)]="savingScheme.type" 
+                            name="scheme_type"
+                            >
+                            <mat-option *ngFor="let scheme of schemesArray" 
+                            [value]="scheme.viewValue">
+                            {{scheme.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input 
+                            matInput
+                            type="text" 
+                            placeholder="Investor Name"
+                            name="investor_name" 
+                            id="field_investor_name" 
+                            [(ngModel)]="savingScheme.investor_name"
+                            [ngModelOptions]="{standalone: true}" 
+                            required
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            jhiNumberOnly 
+                            type="number" 
+                            placeholder="Rate of Interest"
+                            name="rate_of_interest" 
+                            id="field_rate_of_interest" 
+                            [(ngModel)]="savingScheme.rate_of_interest"
+                            [ngModelOptions]="{standalone: true}"
+                            required
+                        />    
+                    </mat-form-field>
+                    <mat-form-field>
+                            <input 
+                                matInput 
+                                type="text"
+                                placeholder="Start Date"
+                                [(ngModel)]="savingScheme.start_date" 
+                                [ngModelOptions]="{standalone: true}"
+                                bsDatepicker
+                            />
+                    </mat-form-field>
+                    <mat-form-field>
+                            <input 
+                                matInput
+                                type="number"
+                                placeholder="Fund Value"
+                                name="fund_value"
+                                id="field_fund_value"
+                                [(ngModel)]="savingScheme.fund_value"
+                                [ngModelOptions]="{standalone: true}"
+                                required
+                            />
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <input 
+                            matInput
+                            type="text"
+                            placeholder="Organisation Name"
+                            name="organisation_name"
+                            id="field_organisation_name"
+                            [(ngModel)]="savingScheme.organisation_name" 
+                            required
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select 
+                            placeholder="Choose Divident Type"
+                            [(ngModel)]="savingScheme.dividend_type"
+                            name="dividend_type">
+                            <mat-option 
+                                *ngFor="let type of dividendArray" 
+                                [value]="type.name">
+                                {{type.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput 
+                            type="number"
+                            placeholder="Amount Invested"
+                            name="amount_invested"
+                            id="field_amount_invested"
+                            [(ngModel)]="savingScheme.amount_invested"
+                            [ngModelOptions]="{standalone: true}"
+                            required/>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            type="number" 
+                            placeholder="Tenure in Years" 
+                            name="tenure" id="field_tenure" 
+                            [(ngModel)]="savingScheme.tenure" 
+                            [ngModelOptions]="{standalone: true}"
+                            required
+                        />
+                    </mat-form-field>
+                    <mat-form-field>
+                            <input 
+                                matInput type="text" 
+                                placeholder="End Date"
+                                [(ngModel)]="savingScheme.end_date" 
+                                [ngModelOptions]="{standalone: true}"
+                                bsDatepicker
+                            >
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input 
+                            matInput 
+                            type="text" 
+                            placeholder="As of Date"
+                            [(ngModel)]="savingScheme.as_of_date" 
+                            [ngModelOptions]="{standalone: true}"
+                            bsDatepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button 
+                    type="submit" 
+                    class="btn btn-primary" 
+                    [disabled]="editForm.form.invalid || isSaving" 
+                    class="btn btn-primary"
+                    (click)="c('Save click')">
+                        <span class="fa fa-save"></span>&nbsp;
+                        <span>Save</span>
+                </button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="d('Cross click')">
+                    <span class="fa fa-ban"></span>&nbsp;
+                    <span>Cancel</span>
+                </button>                                   
+            </div><!-- footer end-->
+        </form><!-- form end-->
+    </div><!--modal-body end -->
+</ng-template><!--editsavingModal template end -->
+<table class="table-responsive-md table table-hover table-striped  table-sm"><!-- table start -->
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Organisation Name</th>
+            <th scope="col">Investor Name</th>
+            <th scope="col">Amount Invested</th>
+            <th scope="col">ROI(%)</th>
+            <th scope="col">Current Fund Value</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let saving of SavingDetails; let i = index">
+            <td>{{saving.num}}</td>
+            <td>{{saving.organisation_name}}</td>
+            <td>{{saving.investor_name}}</td>
+            <td>{{saving.amount_invested}}</td>
+            <td>{{saving.rate_of_interest}}</td>
+            <td>{{saving.fund_value}}</td>
+            <td>
+                <button 
+                class="btn btn-outline-info" 
+                type="button" 
+                (click)="openEditSaving(editsavingModal,saving.id)">
+                <span> <i class="fa fa-edit" aria-hidden="true"></i></span>
+                </button>             
+            </td>
+            <td>
+                <button 
+                    class="btn btn-outline-danger" 
+                    type="button"
+                    (click)="opendeleteSaving(saving.id)"
+                    >
+                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                </button>
+            </td>
+        </tr> 
+    </tbody>
+</table><!-- table end-->
+
+
+
+           
+</td>

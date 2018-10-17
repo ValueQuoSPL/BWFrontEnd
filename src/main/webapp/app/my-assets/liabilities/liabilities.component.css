@@ -1,0 +1,9 @@
+::ng-deep .cdk-overlay-container {
+  z-index: 1200 !important;
+}
+.gray {
+  background-color: #a9a9a9;
+}
+.gray1 {
+  background-color: #dcdcdc;
+}
