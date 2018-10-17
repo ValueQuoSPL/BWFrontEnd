@@ -1,5 +1,5 @@
 import { Directive, ContentChildren, QueryList, AfterContentInit, OnInit, forwardRef, HostBinding } from '@angular/core';
-import { DraggableDirective } from 'app/shared/draggable/draggable.directive';
+import { DraggableDirective } from './draggable.directive';
 
 @Directive({
   selector: '[jhiSortable]',

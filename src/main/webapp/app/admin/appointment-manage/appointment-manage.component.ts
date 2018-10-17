@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService, Principal } from 'app/core';
+import { AccountService } from 'app/core';
 import { AppointmentManageService } from 'app/admin/appointment-manage/appointment-manage.service';
 
 @Component({
@@ -21,11 +21,11 @@ export class AppointmentManageComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
-    // this.userData();
+
   }
 
   getUserid() {
-    console.log('inside get uid');
+
     return this.accountService
       .get()
       .toPromise()
@@ -33,18 +33,17 @@ export class AppointmentManageComponent implements OnInit {
         const account = response.body;
         if (account) {
           this.uid = account.id;
-          console.log('from income userid is : ', this.uid);
+
         } else {
-          console.log('cannot get user details check login ');
+
         }
       })
       .catch(err => {});
   }
 
-  // get service call
   getData() {
     this.appointmentManageService.getAppointmentData().subscribe(data => {
-      console.log(data);
+
       this.tempAppointmentManage = data;
       for (let index = 0; index < this.tempAppointmentManage.length; index++) {
         const time = this.tempAppointmentManage[index].time;
@@ -55,7 +54,7 @@ export class AppointmentManageComponent implements OnInit {
         this.appointmentManageService
           .getUserdata(this.tempUserId)
           .subscribe(res => {
-            // console.log(res);
+
             this.userInfo = res;
             for (let i = 0; i < this.userInfo.length; i++) {
               const name = this.userInfo[i].firstName;
@@ -72,7 +71,7 @@ export class AppointmentManageComponent implements OnInit {
       }
     });
   }
-  // Delete Data
+
   RemoveAppointment(index, id) {
     this.appointmentManageService.deleteData(id).subscribe();
     this.appointmentManage.splice(index, 1);

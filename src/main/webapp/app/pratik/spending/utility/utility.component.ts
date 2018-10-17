@@ -41,7 +41,6 @@ export class UtilityComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // console.log('inside utility Init()');
     this.getUserid();
 
     this.totalUtility = 0;
@@ -64,10 +63,8 @@ export class UtilityComponent implements OnInit {
         const account = response.body;
         if (account) {
           this.uid = account.id;
-          // // console.log('from utility userid is : ', this.uid);
           this.GetUtility();
         } else {
-          // console.log('cannot get user details check login ');
         }
       })
       .catch(err => {});
@@ -107,10 +104,8 @@ export class UtilityComponent implements OnInit {
     this.totalUtility = 0;
     for (let i = 0; i < this.dynamicUtilityArray.length; i++) {
       const value1 = +this.dynamicUtilityArray[i].value;
-      // // console.log(this.totalUtility);
       this.totalUtility = +this.totalUtility + value1;
     }
-    // // console.log(this.totalUtility);
   }
 
   AddUtility() {
@@ -125,16 +120,13 @@ export class UtilityComponent implements OnInit {
       name: this.resource,
       value: this.expense
     });
-    // console.log(this.uid);
     this.newUtility.userid = this.uid;
-    // console.log(this.newUtility);
     this.utilityService.PostUtility(this.newUtility).subscribe();
     this.clear();
   }
 
   RemoveUtility(index, id) {
     this.utilityService.DeleteUtility(id).subscribe(responce => {
-      // console.log(responce);
     });
     this.dynamicUtilityArray.splice(index, 1);
     this.calcUtilityTotal();
@@ -151,10 +143,8 @@ export class UtilityComponent implements OnInit {
   }
 
   GetUtility(): void {
-    // // console.log('inside GetUtility()');
     this.utilityService.GetUtility(this.uid).subscribe((response: any[]) => {
       this.UtilityArray = response;
-      // // console.log(this.UtilityArray);
       if (this.UtilityArray.length === 0) {
         this.isUtilityData = false;
       } else {
@@ -165,36 +155,25 @@ export class UtilityComponent implements OnInit {
   }
 
   FillUtilityData() {
-    // // console.log('inside fill utility data');
     for (let i = 0; i < this.UtilityArray.length; i++) {
-      // // console.log('from UtilityArray : ', this.UtilityArray[i]);
       if (this.UtilityArray[i].name === 'electricity') {
         this.utility.electricity = +this.UtilityArray[i].amount;
-        // // console.log(this.utility.utilitySalary);
       } else if (this.UtilityArray[i].name === 'gas') {
         this.utility.gas = +this.UtilityArray[i].amount;
-        // // console.log(this.utility.utilityAward);
       } else if (this.UtilityArray[i].name === 'water') {
         this.utility.water = +this.UtilityArray[i].amount;
-        // // console.log(this.utility.utilityBonus);
       } else if (this.UtilityArray[i].name === 'telephone') {
         this.utility.telephone = +this.UtilityArray[i].amount;
-        // // console.log(this.utility.utilityPension);
       } else if (this.UtilityArray[i].name === 'mobile') {
         this.utility.mobile = +this.UtilityArray[i].amount;
-        // // console.log(this.utility.utilitySaving);
       } else if (this.UtilityArray[i].name === 'internet') {
         this.utility.internet = +this.UtilityArray[i].amount;
-        // // console.log(this.utility.utilityDeposit);
       } else if (this.UtilityArray[i].name === 'tv') {
         this.utility.tv = +this.UtilityArray[i].amount;
-        // // console.log(this.utility.utilityRental);
       } else if (this.UtilityArray[i].name === 'vcd') {
         this.utility.vcd = +this.UtilityArray[i].amount;
-        // // console.log(this.utility.utilityRental);
       } else if (this.UtilityArray[i].name === 'news') {
         this.utility.news = +this.UtilityArray[i].amount;
-        // // console.log(this.utility.utilityRental);
       } else if (this.UtilityArray[i].name !== 'userid') {
         this.dynamicUtilityArray.push({
           id: this.UtilityArray[i].id,
@@ -204,7 +183,6 @@ export class UtilityComponent implements OnInit {
       }
     }
     this.loadUtility = true;
-    // // console.log(this.UtilityArray);
     this.calcUtilityTotal();
   }
 
@@ -213,7 +191,6 @@ export class UtilityComponent implements OnInit {
   }
 
   onEditStaticField(nameField, modal) {
-    // console.log('inside edit utility');
     if (nameField === 'electricity') {
       this.nameField = 'Electricity';
       this.editField = this.utility.electricity;
@@ -249,7 +226,6 @@ export class UtilityComponent implements OnInit {
           result => {
             this.closeResult = `Closed with: ${result}`;
             this.FillEditUtility(nameField);
-            // // console.log('add utility success');
           },
           reason => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -260,7 +236,6 @@ export class UtilityComponent implements OnInit {
   }
 
   FillEditUtility(nameField) {
-    // console.log('inside fill edit utility');
     if (nameField === 'electricity') {
       this.utility.electricity = this.editField;
       this.editField = '';
@@ -292,7 +267,6 @@ export class UtilityComponent implements OnInit {
   }
 
   onEditDynamicField(index, modal) {
-    // console.log(index);
     this.nameField = this.dynamicUtilityArray[index].name;
     this.editField = this.dynamicUtilityArray[index].value;
 
@@ -313,7 +287,6 @@ export class UtilityComponent implements OnInit {
   }
 
   UpdateUtility() {
-    // console.log('inside update utility');
     this.utility.userid = this.uid;
     this.utility.dynamicUtility = this.dynamicUtilityArray;
     this.utilityService.PutUtility(this.utility, this.uid).subscribe(data => {
@@ -322,11 +295,8 @@ export class UtilityComponent implements OnInit {
     });
   }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    // console.log('inside can deactivate');
     this.dataChanged = this.isFieldChanged();
     if (!this.dataChanged && !this.changesSaved) {
-      // console.log(this.dataChanged, 'dataChanged');
-      // console.log(this.changesSaved, 'changesSaved');
       return confirm('Do you want to leave this page Before changes saved ?');
     } else {
       return true;

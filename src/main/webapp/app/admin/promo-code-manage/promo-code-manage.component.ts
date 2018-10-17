@@ -59,14 +59,12 @@ export class PromoCodeManageComponent implements OnInit {
 
   openModal(content) {
     this.clear();
-    // console.log('income modal open');
     this.modalService
       .open(content, { ariaLabelledBy: 'PromoModal' })
       .result.then(
         result => {
           this.closeResult = `Closed with: ${result}`;
           this.AddPromo();
-          // // console.log('add income success');
         },
         reason => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -83,8 +81,7 @@ export class PromoCodeManageComponent implements OnInit {
 
   private onSuccess(data) {
     this.dynamicPromo = data;
-    // this.event.emit('promocodeAdded');
-    console.log('get all response', this.dynamicPromo);
+      this.event.emit('promocodeAdded');
   }
 
   private onError(error) {
@@ -108,7 +105,6 @@ export class PromoCodeManageComponent implements OnInit {
         result => {
           this.closeResult = `Closed with: ${result}`;
           this.UpdatePromo();
-          // // console.log('add income success');
         },
         reason => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -120,17 +116,12 @@ export class PromoCodeManageComponent implements OnInit {
     for (let index = 0; index < this.dynamicPromo.length; index++) {
       const element = this.dynamicPromo[index];
       if (element.id === id) {
-        console.log('match found');
 
         this.promo.id = element.id;
         this.promo.discount = element.discount;
         this.promo.expiryDate = element.expiryDate;
         this.promo.plan = element.plan;
         this.promo.promocode = element.promocode;
-
-        console.log('from array', element);
-        console.log('fiiled model', this.promo);
-
         break;
       }
     }
@@ -158,7 +149,6 @@ export class PromoCodeManageComponent implements OnInit {
   }
 
   deleteFieldValue(id) {
-    console.log('code for delete promocode');
 
     const ret = confirm('Are you sure to delete this PromoCode ?');
     if (ret) {

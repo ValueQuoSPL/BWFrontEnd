@@ -54,7 +54,6 @@ export class LifeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // console.log('inside life Init()');
     this.getUserid();
   }
 
@@ -70,10 +69,8 @@ export class LifeComponent implements OnInit {
         const account = response.body;
         if (account) {
           this.uid = account.id;
-          // console.log('from life userid is : ', this.uid);
           this.onGetLife();
         } else {
-          console.log('cannot get user details check login ');
         }
       })
       .catch(err => {});
@@ -113,7 +110,6 @@ export class LifeComponent implements OnInit {
       .result.then(
         result => {
           this.closeResult = `Closed with: ${result}`;
-          console.log(this.life.type);
           this.AddLifeInsurance();
         },
         reason => {
@@ -164,7 +160,6 @@ export class LifeComponent implements OnInit {
   onGetLife(): void {
     this.lifeService.GetLife(this.uid).subscribe((response: any[]) => {
       this.dynamicLifeArray = response;
-      // console.log(this.dynamicLifeArray);
       if (this.dynamicLifeArray.length === 0) {
         this.isLifeData = false;
       } else {
@@ -174,19 +169,15 @@ export class LifeComponent implements OnInit {
   }
   RemoveLifeInsurance(index, id) {
     const res = confirm('Are you Sure?');
-    // console.log(res);
 
     if (res) {
       this.lifeService.DeleteLife(id).subscribe(responce => {
-        // // console.log(responce);
       });
       this.dynamicLifeArray.splice(index, 1);
     }
   }
   onEditLife(id, lifeModal) {
-    // console.log('edit');
     this.fillModal(id);
-    // console.log('modal', lifeModal);
     this.modalService
       .open(lifeModal, { ariaLabelledBy: 'lifeModal' })
       .result.then(
@@ -200,7 +191,6 @@ export class LifeComponent implements OnInit {
       );
   }
   fillModal(id) {
-    // console.log('fill');
     this.tempLifeArray = this.dynamicLifeArray;
     for (let i = 0; i < this.tempLifeArray.length; i++) {
       if (this.tempLifeArray[i].id === id) {

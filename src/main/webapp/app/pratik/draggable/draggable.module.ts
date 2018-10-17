@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DraggableDirective } from 'app/shared/draggable/draggable.directive';
-import { DraggableRxDirective } from 'app/shared/draggable/draggable-rx.directive';
-import { MovableDirective } from 'app/shared/draggable/movable.directive';
-import { MovableAreaDirective } from 'app/shared/draggable/movable-area.directive';
-import { DraggableHelperDirective } from 'app/shared/draggable/draggable-helper.directive';
-import { SortableDirective } from 'app/shared/draggable/sortable.directive';
-import { SortableListDirective } from 'app/shared/draggable/sortable-list.directive';
+import { DraggableDirective } from './draggable.directive';
+import { DraggableRxDirective } from './draggable-rx.directive';
+import { MovableDirective } from './movable.directive';
+import { MovableAreaDirective } from './movable-area.directive';
+import { DraggableHelperDirective } from './draggable-helper.directive';
+import { SortableDirective } from './sortable.directive';
+import { SortableListDirective } from './sortable-list.directive';
 
 @NgModule({
   imports: [

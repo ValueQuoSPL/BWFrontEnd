@@ -52,7 +52,6 @@ export class HealthComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // console.log('inside health Init()');
     this.getUserid();
   }
 
@@ -68,10 +67,8 @@ export class HealthComponent implements OnInit {
         const account = response.body;
         if (account) {
           this.uid = account.id;
-          // console.log('from health userid is : ', this.uid);
           this.onGetHealth();
         } else {
-          // console.log('cannot get user details check login ');
         }
       })
       .catch(err => {});
@@ -131,7 +128,6 @@ export class HealthComponent implements OnInit {
       pMode: this.health.premium_mode,
       userid: this.uid
     });
-    // console.log(this.healthDate.value);
     this.health.healthModelArray.pop();
     this.health.healthModelArray.push({
       iName: this.health.ins_name,
@@ -150,20 +146,16 @@ export class HealthComponent implements OnInit {
     this.clear();
   }
   RemoveHealth(index, id) {
-    console.log(id);
     const res = confirm('Are you sure?');
     if (res) {
       this.healthService.DeleteHealth(id).subscribe(responce => {
-        // // // console.log(responce);
       });
       this.dynamicHealth.splice(index, 1);
     }
   }
   onHealthSave(): void {
     this.health.userid = this.uid;
-    // // console.log(this.health.userid);
     // this.health.healthModelArray = this.dynamicHealth;
-    // // console.log(this.health.healthModelArray);
     this.healthService
       .PostHealth(this.health.healthModelArray)
       .subscribe(data => {
@@ -174,15 +166,11 @@ export class HealthComponent implements OnInit {
   onGetHealth(): void {
     this.healthService.GetHealth(this.uid).subscribe((response: any[]) => {
       this.dynamicHealth = response;
-      // console.log(this.dynamicHealth);
     });
-    // // console.log('getHealth() success');
   }
 
   onEditHealth(id, healthModal) {
-    // console.log('edit');
     this.fillModal(id);
-    // console.log('modal', healthModal);
     this.modalService
       .open(healthModal, { ariaLabelledBy: 'healthModal' })
       .result.then(
@@ -196,7 +184,6 @@ export class HealthComponent implements OnInit {
       );
   }
   fillModal(id) {
-    // console.log('fill');
     this.tempHealthArray = this.dynamicHealth;
     for (let i = 0; i < this.tempHealthArray.length; i++) {
       if (this.tempHealthArray[i].id === id) {

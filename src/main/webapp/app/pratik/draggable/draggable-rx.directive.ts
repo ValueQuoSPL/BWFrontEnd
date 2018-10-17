@@ -5,16 +5,16 @@ import {
   EventEmitter,
   HostListener,
   OnInit
-} from "@angular/core";
-import { Subject } from "rxjs";
-import { switchMap, takeUntil, repeat, take } from "rxjs/operators";
+} from '@angular/core';
+import { Subject } from 'rxjs';
+import { switchMap, takeUntil, repeat, take } from 'rxjs/operators';
 
 @Directive({
-  selector: "[jhiDraggableRx]"
+  selector: '[jhiDraggableRx]'
 })
 export class DraggableRxDirective implements OnInit {
-  @HostBinding("class.draggable") draggable = true;
-  @HostBinding("class.dragging") dragging = false;
+  @HostBinding('class.draggable') draggable = true;
+  @HostBinding('class.dragging') dragging = false;
 
   @Output() dragStart = new EventEmitter();
   @Output() dragMove = new EventEmitter();
@@ -24,17 +24,17 @@ export class DraggableRxDirective implements OnInit {
   private pointerMove = new Subject<PointerEvent>();
   private pointerUp = new Subject<PointerEvent>();
 
-  @HostListener("mousedown", ["$event"])
+  @HostListener('mousedown', ['$event'])
   onPointerDown(event) {
     this.pointerDown.next(event);
   }
 
-  @HostListener("document:mousemove", ["$event"])
+  @HostListener('document:mousemove', ['$event'])
   onPointerMove(event) {
     this.pointerMove.next(event);
   }
 
-  @HostListener("document:mouseup", ["$event"])
+  @HostListener('document:mouseup', ['$event'])
   onPointerUp(event) {
     this.pointerUp.next(event);
   }

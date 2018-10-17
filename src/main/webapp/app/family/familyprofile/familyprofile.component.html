@@ -1,0 +1,216 @@
+<div class="container" *ngIf="!isValid"  ><!--start of container div -->
+    <div><!--start of navbar3 div -->
+        <h5>Enter Relationship Details<span class="glyphicons glyphicons-remove-circle"></span></h5>  
+    </div><!--end of navbar3 div -->
+    <form  name="form" role="form" #familyproForm="ngForm"><!--start of form-->
+        <mat-form-field>
+            <mat-select placeholder="Choose Relation" name="relationship" [(ngModel)]="familyProfile.relationship">
+                <mat-option  value="Mother">Mother</mat-option>
+                <mat-option value="Father">Father</mat-option>
+                <mat-option  value="Spouce">Spouce</mat-option>
+                <mat-option value="Son">Son</mat-option>
+                <mat-option  value="Daughter">Daughter</mat-option>
+            </mat-select>
+        </mat-form-field><br>
+        <div class="row"><!--start of row1-->
+            <div class="col-md-4"><!--start of row1.col1-->
+                <mat-form-field>
+                    <input matInput
+                        placeholder="First Name"
+                        type="text" 
+                        id="firstname"
+                        [(ngModel)]="familyProfile.firstname"
+                        name="firstname" 
+                        #firstname="ngModel"
+                        minlength="2" 
+                        maxlength="10" 
+                        pattern="^[_'.@A-Za-z0-9-]*$"
+                        required>
+                </mat-form-field>
+                <div *ngIf=" firstname?.touched && !firstname?.valid">
+                    <div *ngIf="firstname.errors.required" style="color: red" >
+                        firstName is required
+                    </div>
+                    <div *ngIf="firstname.errors.minlength" style="color: red">
+                        name should be min {{firstname.errors.minlength.requiredLength}} char
+                    </div>
+                    <div *ngIf="firstname.errors.pattern" style="color: red"> 
+                        pattern not match
+                    </div>
+                </div>
+            </div><!--end of row1.col1-->
+            <div class="col-md-4"><!--start of col2-->
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        placeholder="Middle Name" 
+                        id="middlename"  
+                        [(ngModel)]="familyProfile.middlename"
+                        name="middlename" 
+                        #middlename="ngModel"
+                        minlength="2" 
+                        maxlength="10" 
+                        pattern="^[_'.@A-Za-z0-9-]*$"
+                        required
+                    >
+              </mat-form-field>
+              <div *ngIf="middlename?.touched && !middlename?.valid">
+                    <div *ngIf="middlename.errors.required" style="color: red">
+                        Middlename is required
+                    </div>
+                    <div *ngIf="middlename.errors.minlength" style="color: red">
+                        name should be min {{middlename.errors.minlength.requiredLength}} char
+                    </div>
+                    <div *ngIf="middlename.errors.pattern" style="color: red"> 
+                        pattern not match
+                    </div>
+                </div>
+            </div><!--end of  row1.col2-->
+            <div class="col-md-4"><!--start of row1.col3-->
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        placeholder="Last Name"
+                        id="lastname"
+                        [(ngModel)]="familyProfile.lastname"
+                        name="lastname" 
+                        #lastname="ngModel"
+                        minlength="2" 
+                        maxlength="10"
+                        pattern="^[_'.@A-Za-z0-9-]*$"
+                        required>
+                </mat-form-field>
+                <div *ngIf="lastname?.touched && !lastname?.valid" >
+                    <div *ngIf="lastname.errors.required" style="color: red">
+                        Lastname is required
+                    </div>
+                    <div *ngIf="lastname.errors.minlength" style="color: red">
+                        name should be min {{lastname.errors.minlength.requiredLength}} char
+                    </div>
+                    <div *ngIf="lastname.errors.pattern" style="color: red"> 
+                        pattern not match
+                    </div>
+                </div>
+            </div><!--end of row1.col3-->
+        </div><!--end of row1-->
+        <div class="row"><!--start of row2-->
+            <div class="col-md-6"><!--start of row2.col1-->
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="dateOfBirth" [(ngModel)]="familyProfile.dateOfBirth">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div><!--end of row2.col1-->
+            <div class="col-md-2"><!--start of row2.col2-->
+                <mat-checkbox [(ngModel)]="earncheck" (change)="newFunction()" name="earncheck" checked="unchecked" >Is Earning?</mat-checkbox>
+            </div><!--end of row2.col2-->
+            <div class="col-md-4"><!--start of row2.col3-->
+            </div><!--end of row2.col3-->
+        </div><!--end of row2-->
+        <div class="row"><!--start of row3-->
+            <div class="col-md-4"><!--start of row3.col1-->
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        placeholder="Email"
+                        id="email" 
+                        [(ngModel)]="familyProfile.email"
+                        name="email" 
+                        #email="ngModel"
+                        minlength="5" 
+                        maxlength="30" 
+                        pattern="^[_'.@A-Za-z0-9-]*$"
+                        required
+                    >
+                </mat-form-field>
+                <div *ngIf=" email?.touched && !email?.valid">
+                    <div *ngIf="email.errors.required" style="color: red">
+                        Email is required
+                    </div>
+                    <div *ngIf="email.errors.minlength" style="color: red">
+                        Email should be min {{email.errors.minlength.requiredLength}} char
+                    </div>
+                    <div *ngIf="email.errors.pattern" style="color: red"> 
+                        pattern not match
+                    </div>
+                </div>
+            </div><!--end of row3.col1-->
+            <div class="col-md-4"><!--start of row3.col2-->
+                <mat-form-field>
+                    <input 
+                        matInput 
+                        jhiNumberOnly 
+                        placeholder="Mobile Number"
+                        id="phonenumber"   
+                        [(ngModel)]="familyProfile.phonenumber"
+                        name="phonenumber" 
+                        #phonenumber="ngModel"
+                        minlength="5" 
+                        maxlength="10" 
+                        pattern="^[_'.@A-Za-z0-9-]*$"
+                        required
+                    >
+                </mat-form-field>
+                <div *ngIf="phonenumber?.touched && !phonenumber?.valid">
+                    <div *ngIf="phonenumber.errors.required" style="color: red">
+                        Email is required
+                    </div>
+                    <div *ngIf="phonenumber.errors.minlength" style="color: red">
+                        Email should be min {{phonenumber.errors.minlength.requiredLength}} char
+                    </div>
+                    <div *ngIf="phonenumber.errors.pattern" style="color: red"> 
+                        pattern not match
+                    </div>
+                </div>
+            </div><!--end of row3.col2-->
+            <div class="pull-right"><!--start of btn div-->
+                <div *ngIf="show" >
+                    <button mat-raised-button color="primary" [disabled]="familyproForm.form.invalid"  (click)="saveFamilyProfile()">Save</button>&nbsp;
+                    <button mat-raised-button color="accent" (click)="formpage()">Cancel</button>
+                </div>
+                <div *ngIf="!show">
+                    <button mat-raised-button color="primary" [disabled]="familyproForm.form.invalid" (click)=" update()">update</button>&nbsp;
+                    <button mat-raised-button color="accent" (click)="viewpage()">Cancel</button>
+                </div>
+            </div><!--end of btn div-->
+         </div><!--end of row3-->
+    </form><!--end of form-->
+</div><!--end of container div -->
+
+<!--start of view page-->
+<div class="container" *ngIf="isValid"><!--start of container div-->
+    <table 
+        class="table-responsive-md
+         table table-hover
+         table-striped
+         table-sm setfont"
+        *ngFor="let profile of output"><!--start of table-->
+        <tr></tr>
+        <tr>
+            <td><strong>Relationship Details</strong></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button 
+                    class="btn btn-outline-info  btn-sm"
+                    type="button" 
+                    (click)="editDetail()">
+                    <span><i class="fa fa-edit" aria-hidden="true"></i>
+                    </span>
+                </button>
+            </td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td>FirstName:&nbsp;{{profile.firstname}}</td>
+            <td>MiddleName:&nbsp;{{profile.middlename}}</td>
+            <td>LastName:&nbsp;{{profile.lastname}}</td>
+        </tr>
+        <tr>
+            <td>Date Of Birth:&nbsp;{{profile.dateOfBirth | date: 'd/M/y'}}</td>
+            <td>MobileNumber:&nbsp;{{profile.phonenumber}}</td>
+            <td>EmailId:&nbsp;{{profile.email}}</td>
+        </tr>
+    </table><!--end of table-->
+</div><!--end of container view div-->
+<!--end of view page-->

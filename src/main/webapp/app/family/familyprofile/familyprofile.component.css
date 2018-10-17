@@ -1,0 +1,35 @@
+.navb {
+  height: 20px;
+}
+.color {
+  color: red;
+}
+.col {
+  background-color: #4abdac;
+}
+.d {
+  margin-left: 800px;
+}
+.setfont {
+  font-family: "ArtifaktElementRegular", Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  /* line-height: 1.71428571; */
+  /* color: #666 */
+}
+table {
+  border-collapse: collapse;
+}
+
+td {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+.orange {
+  background-color: #f1592a;
+}
+.blue {
+  background-color: #2e3192;
+}
+.gray {
+  background-color: #a9a9a9;
+}

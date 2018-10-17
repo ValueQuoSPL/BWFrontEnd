@@ -55,7 +55,6 @@ export class LoanComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // // console.log('inside loan Init()');
     this.getUserid();
     // loan
     this.loan.check = false;
@@ -103,10 +102,8 @@ export class LoanComponent implements OnInit {
         const account = response.body;
         if (account) {
           this.uid = account.id;
-          // // console.log('from loan userid is : ', this.uid);
           this.getLoanandDebt();
         } else {
-          // console.log('cannot get user details check login ');
         }
       })
       .catch(err => {});
@@ -115,7 +112,6 @@ export class LoanComponent implements OnInit {
   getLoanandDebt() {
     this.loanService.GetLoan(this.uid).subscribe((response: any[]) => {
       this.dynamicLoan = response;
-      // console.log(this.dynamicLoan);
 
       this.dynamicLoanArray.splice(0, this.dynamicLoanArray.length);
       this.dynamicLoan.forEach(element => {
@@ -151,7 +147,6 @@ export class LoanComponent implements OnInit {
       this.calculateEMI(P, N, ROI);
     } else {
       this.out = Math.round(P);
-      // console.log('outstanding amount from final calculation', this.out);
     }
   }
 
@@ -161,7 +156,6 @@ export class LoanComponent implements OnInit {
       .result.then(
         result => {
           this.closeResult = `Closed with: ${result}`;
-          // // console.log(this.closeResult);
           this.AddLoan();
         },
         reason => {
@@ -195,7 +189,6 @@ export class LoanComponent implements OnInit {
 
   onLoanSave(): void {
     this.isLoanData = true;
-    console.log(this.loan.loanModelArray);
 
     this.loanService.PostLoan(this.loan.loanModelArray).subscribe(data => {
       alert('Loan Added successfully');
@@ -242,10 +235,8 @@ export class LoanComponent implements OnInit {
         this.dynamicLoanArray[i].id = this.loan.id;
         this.dynamicLoanArray[i].ltype = this.loan.loan_type;
         this.dynamicLoanArray[i].lenderName = this.loan.lender;
-        // // console.log(this.dynamicLoanArray[i].lenderName);
         this.dynamicLoanArray[i].appName = this.loan.applicant;
         this.dynamicLoanArray[i].amount = this.loan.amnt;
-        // // console.log(this.dynamicLoanArray[i].amount);
         this.dynamicLoanArray[i].ldate = this.loan.ldate;
         this.dynamicLoanArray[i].checkType = this.loan.check;
         this.dynamicLoanArray[i].tenure = this.loan.tenure;
@@ -268,7 +259,6 @@ export class LoanComponent implements OnInit {
 
   RemoveLoan(index, id) {
     this.loanService.DeleteLoan(id).subscribe(responce => {
-      // // console.log(responce);
     });
     this.dynamicLoanArray.splice(index, 1);
   }

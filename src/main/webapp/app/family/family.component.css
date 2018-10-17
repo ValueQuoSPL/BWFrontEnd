@@ -1,0 +1,24 @@
+ul.li:hover {
+  background-color: blue;
+}
+.b {
+  background-color: white;
+}
+.margin {
+  margin-top: 900px;
+}
+.accordion {
+  background: rgb(255, 255, 255);
+}
+.col {
+  background-color: #2e3192;
+}
+.colm {
+  background-color: #f1592a;
+}
+.gray {
+  background-color: #a9a9a9;
+}
+.gray1 {
+  background-color: #dcdcdc;
+}

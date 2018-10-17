@@ -42,7 +42,6 @@ export class CreditComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // // console.log('inside credit Init()');
     this.getUserid();
   }
 
@@ -54,27 +53,20 @@ export class CreditComponent implements OnInit {
         const account = response.body;
         if (account) {
           this.uid = account.id;
-          // // console.log('from credit userid is : ', this.uid);
           this.onGetCredit();
         } else {
-          // // console.log('cannot get user details check login ');
         }
       })
       .catch(err => {});
   }
 
   onGetCredit(): void {
-    // console.log('inside getCredit()');
     this.creditService.GetCredit(this.uid).subscribe((response: any[]) => {
-      // // console.log(response);
       this.dynamicCredit = response;
-      // console.log('credit detais', this.dynamicCredit);
       if (this.dynamicCredit.length === 0) {
         this.isCreditData = false;
-        // console.log(this.isCreditData);
       } else {
         this.isCreditData = true;
-        // console.log(this.isCreditData);
       }
     });
   }
@@ -112,14 +104,12 @@ export class CreditComponent implements OnInit {
 
   // credit card
   openCredit(id, creditModal) {
-    // console.log(id);
     this.editCredit(id);
     this.modalService
       .open(creditModal, { ariaLabelledBy: 'creditModal' })
       .result.then(
         result => {
           this.closeResult = `Closed with: ${result}`;
-          console.log(this.closeResult);
           this.fillCredit(id);
         },
         reason => {
@@ -129,7 +119,6 @@ export class CreditComponent implements OnInit {
   }
 
   editCredit(id) {
-    // // console.log('creditId:', id);
     this._credit = this.dynamicCredit;
     for (let i = 0; i < this._credit.length; i++) {
       if (this._credit[i].id === id) {
@@ -164,7 +153,6 @@ export class CreditComponent implements OnInit {
   updateCredit(id) {
     this.dynamicCredit.userid = this.uid;
     this.dynamicCredit.id = id;
-    // // console.log('dynamicdata:', this.dynamicCredit);
     this.creditService.update(this.dynamicCredit, this.uid).subscribe(data => {
       this.clear();
       alert('data saved');
@@ -179,7 +167,6 @@ export class CreditComponent implements OnInit {
       .result.then(
         result => {
           this.closeResult = `Closed with: ${result}`;
-          console.log(this.closeResult);
           this.AddCredit();
         },
         reason => {
@@ -205,7 +192,6 @@ export class CreditComponent implements OnInit {
 
   RemoveCredit(index, id) {
     this.creditService.DeleteCredit(id).subscribe(responce => {
-      // // console.log(responce);
     });
     this.dynamicCredit.splice(index, 1);
   }
@@ -220,6 +206,5 @@ export class CreditComponent implements OnInit {
         alert('success');
         this.onGetCredit();
       });
-    // // console.log('in credit save');
   }
 }

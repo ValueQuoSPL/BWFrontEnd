@@ -1,0 +1,36 @@
+.margin {
+  margin-left: 800px;
+}
+.color {
+  background-color: #3b3a36;
+}
+.navb {
+  height: 15px;
+  margin-bottom: 15px;
+}
+.background {
+  background-color: #e9ece5;
+}
+.setfont {
+  font-family: "ArtifaktElementRegular", Tahoma, Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  /* line-height: 1.71428571; */
+  /* color: #666 */
+}
+.d {
+  margin-left: 800px;
+}
+table {
+  border-collapse: collapse;
+}
+
+td {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+.col {
+  background-color: #2e3192;
+}
+.colm {
+  background-color: #f1592a;
+}

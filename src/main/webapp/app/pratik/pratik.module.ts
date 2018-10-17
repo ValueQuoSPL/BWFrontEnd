@@ -29,7 +29,7 @@ import {
 } from 'app/pratik';
 
 import { CustomMaterialModule } from 'app/custom-material.module';
-import { CustomDirectiveModule } from 'app/shared/directive/directive.module';
+import { CustomDirectiveModule } from './directive/directive.module';
 import { IncomeComponent } from 'app/pratik/income/income.component';
 import { UtilityComponent } from './spending/utility/utility.component';
 import { HouseholdComponent } from './spending/household/household.component';
@@ -44,6 +44,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
+import { DashBoardModule } from './dashboard/dashboard.module';
 library.add(fas, far);
 @NgModule({
   imports: [
@@ -52,13 +53,14 @@ library.add(fas, far);
     CommonModule,
     RouterModule.forChild(pratikState),
     ReactiveFormsModule,
-    CustomDirectiveModule,
+    NgbModule,
+    FontAwesomeModule,
     // BsDatepickerModule.forRoot(),
     // BuckswiseFrontEndDemoModule,
     // material
+    CustomDirectiveModule,
     CustomMaterialModule,
-    NgbModule,
-    FontAwesomeModule,
+    DashBoardModule
   ],
   declarations: [
     // HowItWorkComponent,

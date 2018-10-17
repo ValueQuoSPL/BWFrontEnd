@@ -1,0 +1,509 @@
+<div class="container" *ngIf="!isValid"><!--start of container-->
+  <form><!--end of form-->
+    <div class="row">
+        <h5>Personal Information</h5>&nbsp;&nbsp;
+         <span style="margin-left: 270px"><button mat-raised-button class="colm" *ngIf="show" (click)="saveDetail()">Save</button></span>&nbsp;
+         <span style="margin-left: 270px"><button mat-raised-button color="accent" *ngIf="!show" class="colm" (click)="update()">Update</button></span>&nbsp;
+         <span><button mat-raised-button color="warn" (click)="cencel()">Cancel</button></span>&nbsp;
+         <span><button mat-raised-button color="primary" href="#">Help</button></span> 
+    </div>     
+    <div class="row"><!-- start of row1-->
+      <div class="col-md-3"><!-- start of row1.col1-->
+        <mat-form-field>
+          <input 
+            matInput 
+            placeholder="First Name" 
+            type="text"
+            id="firstName"  
+            [(ngModel)]="myProfile.firstName"
+            name="firstName" 
+            #firstName="ngModel"
+            minlength="2" 
+            maxlength="10" 
+            pattern="^[_'.@A-Za-z0-9-]*$"
+            required
+          >
+        </mat-form-field>
+        <div *ngIf=" firstName.touched && !firstName.valid">
+          <div *ngIf="firstName.errors.required">
+              firstName is required
+          </div>
+          <div *ngIf="firstName.errors.minlength">
+              name should be min {{firstName.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="firstName.errors.pattern"> 
+              pattern not match
+          </div>
+        </div>
+      </div><!-- end of row1.col1-->
+      <div class="col-md-3"><!-- start of row1.col2-->
+        <mat-form-field>
+          <input 
+            matInput 
+            placeholder="Middle Name"
+            type="text" 
+            id="middleName"     
+            [(ngModel)]="myProfile.middleName"
+            name="middleName" 
+            #middleName="ngModel"
+            minlength="2" 
+            maxlength="10" 
+            pattern="^[_'.@A-Za-z0-9-]*$"
+            required
+          >
+        </mat-form-field>
+        <div *ngIf=" middleName.touched && !middleName.valid">
+          <div *ngIf="middleName.errors.required">
+            middleName is required
+          </div>
+          <div *ngIf="middleName.errors.minlength">
+            middleName name should be min {{middleName.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="middleName.errors.pattern"> 
+              pattern not match
+          </div>
+        </div>
+      </div><!-- end of row1.col2-->
+      <div class="col-md-3"><!--start of row1.col3-->
+        <mat-form-field>
+          <input 
+            matInput
+            placeholder="Last Name"
+            type="text" 
+            id="lastName"  
+            [(ngModel)]="myProfile.lastName"
+            name="lastName" 
+            #lastName="ngModel"
+            minlength="2" 
+            maxlength="10" 
+            pattern="^[_'.@A-Za-z0-9-]*$"
+            required
+            >
+        </mat-form-field>
+        <div *ngIf=" lastName.touched && !lastName.valid">
+          <div *ngIf="lastName.errors.required">
+            lastName is required
+          </div>
+          <div *ngIf="lastName.errors.minlength">
+            lastName name should be min {{lastName.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="lastName.errors.pattern"> 
+              pattern not match
+          </div>
+        </div>
+      </div><!-- end of row1.col3-->
+      <div class="col-md-3"><!-- start of row1.col3-->
+      </div><!-- end of row1.col3-->
+    </div><!--end of row1-->
+    <div class="row"><!-- start of row2-->
+      <div class="col-md-3"><!-- start of row2.col1-->
+        <mat-form-field>
+          <input 
+            matInput 
+            [matDatepicker]="picker" 
+            placeholder="Choose a date" 
+            name="dob" 
+            [(ngModel)]="myProfile.dob"
+          >
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div><!-- end of row2.col1-->
+      <div class="col-md-3"><!-- start of row2.col2-->
+        <mat-form-field>
+          <mat-select placeholder="Choose Gender" name="gender" [(ngModel)]="myProfile.gender">
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+          </mat-select>
+        </mat-form-field> 
+      </div><!--end of row2.col2-->
+      <div class="col-md-3"><!--start of row2.col3-->
+        <mat-form-field>
+          <mat-select placeholder="Choose Marrital Status" name="maritalStatus" [(ngModel)]="myProfile.maritalStatus">
+            <mat-option value="single">Single</mat-option>
+            <mat-option value="married">Married</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div><!-- end of row2.col3-->
+      <div class="col-md-3"><!--start of row2.col4-->
+        <mat-form-field>
+          <input 
+            matInput 
+            jhiNumberOnly 
+            placeholder="Mobile Number"
+            id="mobileNumber"
+            [(ngModel)]="myProfile.mobileNumber"
+            name="mobileNumber" 
+            #mobileNumber="ngModel"
+            minlength="10" 
+            maxlength="10" 
+            pattern="^[_'.@A-Za-z0-9-]*$"
+            required
+            >
+        </mat-form-field>
+        <div *ngIf="mobileNumber.touched && !mobileNumber.valid">
+          <div *ngIf="mobileNumber.errors.required">
+            mobileNumber is required
+          </div>
+          <div *ngIf="mobileNumber.errors.minlength">
+            mobileNumber name should be min {{mobileNumber.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="mobileNumber.errors.pattern"> 
+              pattern not match
+          </div>
+        </div>
+      </div><!--end of row1.col4-->
+    </div><!--end of row2-->
+    <div class="row"><!-- start of row3-->
+      <div class="col-md-3"><!-- start of row3.col1-->
+        <mat-form-field>
+          <input 
+            matInput 
+            jhiNumberOnly 
+            placeholder="Alternamte Number"
+            id="alternateNumber"
+            [(ngModel)]="myProfile.alternateNumber"
+            name="alternateNumber" 
+            #alternateNumber="ngModel"
+            minlength="6" 
+            maxlength="10" 
+            pattern="^[_'.@A-Za-z0-9-]*$"
+            required
+          >
+        </mat-form-field>
+        <div *ngIf="alternateNumber.touched && !alternateNumber.valid">
+          <div *ngIf="alternateNumber.errors.required">
+            alternateNumber is required
+          </div>
+          <div *ngIf="alternateNumber.errors.minlength">
+            alternateNumber should be min {{alternateNumber.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="alternateNumber.errors.pattern"> 
+              pattern not match
+          </div>
+        </div>
+      </div><!-- end of row3.col1-->
+      <div class="col-md-3"><!-- start of row3.col2-->
+        <mat-form-field>
+          <input 
+            matInput 
+            placeholder="Occupation" 
+            type="text" 
+            id="occupation"   
+            [(ngModel)]="myProfile.occupation"
+            name="occupation" 
+            #occupation="ngModel"
+            minlength="5" 
+            maxlength="10" 
+            pattern="^[_'.@A-Za-z0-9-]*$"
+            required
+          >
+        </mat-form-field>
+        <div *ngIf="occupation.touched && !occupation.valid">
+          <div *ngIf="occupation.errors.required">
+            occupation is required
+          </div>
+          <div *ngIf="occupation.errors.minlength">
+            occupation should be min {{alternateNumber.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="occupation.errors.pattern"> 
+              pattern not match
+          </div>
+        </div>
+      </div><!--end of row3.col2-->
+      <div class="col-md-3"><!--start of row3.col3-->
+        <mat-form-field>
+          <input 
+            matInput
+            placeholder="Company"
+            type="text"
+            id="company"
+            [(ngModel)]="myProfile.company"
+            name="company"
+            #company="ngModel"
+            minlength="5"
+            maxlength="10"
+            pattern="^[_'.@A-Za-z0-9-]*$"
+            required
+          >
+        </mat-form-field>
+        <div *ngIf="company.touched && !company.valid">
+          <div *ngIf="company.errors.required">
+            company name is required
+          </div>
+          <div *ngIf="company.errors.minlength">
+            company should be min {{company.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="company.errors.pattern"> 
+              pattern not match
+          </div>
+        </div>
+      </div><!-- end of row3.col3-->
+      <div class="col-md-3"><!--start of row3.col4-->
+        <mat-form-field>
+          <mat-select placeholder="How Did You Know About Us?" name="howDidYouKnow" [(ngModel)]="myProfile.howDidYouKnow">
+            <mat-option  value="advertiesment">Advertiesment</mat-option>
+            <mat-option value="byfriend">ByFriend</mat-option>
+          </mat-select>
+        </mat-form-field> 
+      </div><!--end of row3.col4-->
+    </div><!--end of row3-->
+    <div class="navbar navbar-expand-lg navbar-light"><!--start of navbar-->
+      <h5><strong>Cammunication Information</strong></h5>
+    </div><!--end of navbar-->
+    <div class="row"><!-- start of row4-->
+      <div class="col-md-3"><!-- start of row4.col1-->
+        <mat-form-field class="example-full-width">
+          <textarea 
+            matInput 
+            placeholder="Address" 
+            [(ngModel)]="myProfile.address" 
+            [ngModelOptions]="{standalone: true}">
+          </textarea>
+        </mat-form-field>
+      </div><!-- end of row4.col1-->
+      <div class="col-md-3"><!-- start of row4.col2-->
+        <mat-form-field>
+          <input 
+            matInput 
+            placeholder="Email"
+            type="text" 
+            id="emailId"    
+            [(ngModel)]="myProfile.emailId"
+            name="emailId" 
+            #emailId="ngModel"
+            minlength="5" 
+            maxlength="50"
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            required 
+            email
+          >
+        </mat-form-field>
+        <div *ngIf="emailId.touched && !emailId.valid">
+          <div *ngIf="emailId.errors.required">
+            emailId is required
+          </div>
+          <div *ngIf="emailId.errors.minlength">
+            emailId should be min {{emailId.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="emailId.errors.minlength">
+            emailId should be min {{emailId.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="emailId.errors.pattern"> 
+            email pattern not match
+          </div>
+        </div> 
+      </div><!-- end of row4.col2-->
+      <div class="col-md-3"><!-- start of row4.col3-->
+        <mat-form-field>
+          <input 
+            matInput 
+            placeholder="PAN Number" 
+            type="text" 
+            id="pan"
+            [(ngModel)]="myProfile.pan"
+            name="pan" 
+            #pan="ngModel"
+            minlength="5" 
+            maxlength="10" 
+            pattern="^[_'.@A-Za-z0-9-]*$"
+            required
+          >
+        </mat-form-field>
+        <div *ngIf="pan.touched && !pan.valid">
+          <div *ngIf="pan.errors.required">
+            pan is required
+          </div>
+          <div *ngIf="pan.errors.minlength">
+            pan should be min {{pan.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="pan.errors.pattern"> 
+            pan pattern not match
+          </div>
+        </div>
+      </div><!-- end of row4.col3-->
+      <div class="col-md-3"><!-- start of row4.col4-->
+      </div><!-- end of row4.col4-->
+    </div><!--end of row4-->
+    <div class="row"><!-- start of row5-->
+      <div class="col-md-3"><!-- start of row5.col1-->
+        <mat-form-field>
+          <input 
+            matInput 
+            placeholder="Country" 
+            type="text" 
+            id="country"
+            [(ngModel)]="myProfile.country"
+            name="country" 
+            #country="ngModel"
+            minlength="5" 
+            maxlength="10" 
+            pattern="^[_'.@A-Za-z0-9-]*$"
+            required
+          >
+        </mat-form-field>
+        <div *ngIf="country.touched && !country.valid">
+          <div *ngIf="country.errors.required">
+            country is required
+          </div>
+          <div *ngIf="country.errors.minlength">
+            country should be min {{country.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="country.errors.pattern"> 
+            pan pattern not match
+          </div>
+        </div>
+      </div><!-- end of row5.col1-->
+      <div class="col-md-3"><!-- start of row5.col2-->
+        <mat-form-field>
+          <input 
+            matInput 
+            placeholder="state" 
+            type="text" 
+            id="state"
+            [(ngModel)]="myProfile.state"
+            name="state" 
+            #state="ngModel"
+            minlength="5" 
+            maxlength="20" 
+            pattern="^[_'.@A-Za-z0-9-]*$"
+            required
+          >
+        </mat-form-field>
+        <div *ngIf="state.touched && !state.valid">
+          <div *ngIf="state.errors.required">
+            state is required
+          </div>
+          <div *ngIf="state.errors.minlength">
+            state should be min {{state.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="state.errors.pattern"> 
+            state pattern not match
+          </div>
+        </div> 
+      </div><!--end of row5.col2-->
+      <div class="col-md-3"><!--start of row5.col3-->
+        <mat-form-field>
+          <input 
+            matInput 
+            placeholder="City" 
+            type="text" 
+            id="city"
+            [(ngModel)]="myProfile.city"
+            name="city" 
+            #city="ngModel"
+            minlength="4" 
+            maxlength="25" 
+            pattern="^[_'.@A-Za-z0-9-]*$"
+            required>
+        </mat-form-field>
+        <div *ngIf="city.touched && !city.valid">
+          <div *ngIf="city.errors.required">
+            city is required
+          </div>
+          <div *ngIf="city.errors.minlength">
+            city should be min {{city.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="city.errors.pattern"> 
+            city pattern not match
+          </div>
+      </div>
+    </div><!-- end of row5.col3-->
+      <div class="col-md-3"><!--start of row5.col4-->
+        <mat-form-field>
+          <input 
+            matInput 
+            placeholder="PIN" 
+            type="text" 
+            id="pin"
+            [(ngModel)]="myProfile.pin"
+            name="pin" 
+            #pin="ngModel"
+            minlength="5" 
+            maxlength="10" 
+            pattern="^[_'.@A-Za-z0-9-]*$"
+            required>
+        </mat-form-field>
+        <div *ngIf="pin.touched && !pin.valid">
+          <div *ngIf="pin.errors.required">
+            pin is required
+          </div>
+          <div *ngIf="pin.errors.minlength">
+            pin should be min {{pin.errors.minlength.requiredLength}} char
+          </div>
+          <div *ngIf="pin.errors.pattern"> 
+            pin pattern not match
+          </div>
+        </div>
+      </div><!--end of row5.col4-->
+    </div><!--end of row5-->
+  </form><!--end of form-->
+</div><!--end of container-->
+<!--start of view page-->
+<div *ngIf="isValid"><!--start of view div-->
+  <table 
+    class="table-responsive-md 
+    table table-hover 
+    table-striped  
+    table-sm 
+    setfont" 
+    *ngFor="let profile of output"
+  ><!--start of table-->
+    <tr></tr>
+    <tr>
+      <td><strong>Personal Information</strong></td>
+      <td></td>
+      <td></td>
+      <td>
+        <button 
+          class="btn btn-outline-info  btn-sm"
+          type="button" 
+          (click)="editDetail()"
+        >
+          <span><fa-icon [icon]="'edit'"></fa-icon></i></span>
+        </button></td>
+    </tr>
+    <tr></tr>
+    <tr>
+      <td>FirstName:&nbsp;{{profile.firstName}}</td>
+      <td>MiddleName:&nbsp;{{profile.middleName}}</td>
+      <td>LastName:&nbsp;{{profile.lastName}}</td>
+    </tr>
+    <tr>
+        <td>Gender:&nbsp;{{profile.gender}}</td>
+        <td>Marital Status:&nbsp;{{profile.maritalStatus}}</td>
+        <td>Date Of Birth:&nbsp;{{profile.dob | date: 'd/M/y'}}</td>
+    </tr>
+    <tr>
+        <td>Occupation:&nbsp;{{profile.occupation}}</td>
+        <td>MobileNumber:&nbsp;{{profile.mobileNumber}}</td>
+        <td>AlternateNumber:&nbsp;{{profile.alternateNumber}}</td>
+    </tr>
+    <tr>
+        <td>Company:&nbsp;{{profile.company}}</td>
+        <td>HowDidYouKnow:&nbsp;{{profile.howDidYouKnow}}</td>
+        <td>Address:&nbsp;{{profile.address}}</td>
+    </tr>
+    <tr></tr>
+    <tr></tr>
+    <!-- <tr>
+      <strong>Cammunication Information</strong>
+    </tr> -->
+    <tr>
+        <td><strong>Cammunication Information</strong></td>
+        <td></td>
+        <td></td>
+      </tr>
+    <tr></tr>
+    <tr>
+        <td>EmailId:&nbsp;{{profile.emailId}}</td>
+        <td>Pan:&nbsp;{{profile.pan}}</td>
+        <td>City:&nbsp;{{profile.city}}</td>
+    </tr>
+    <tr>
+        <td>State:&nbsp;{{profile.state}}</td>
+        <td>Country:&nbsp;{{profile.country}}</td>
+        <td>Pin:&nbsp;{{profile.pin}}</td>
+    </tr>
+  </table><!--start of table-->
+</div><!--end of view div-->

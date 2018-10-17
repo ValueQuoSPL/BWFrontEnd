@@ -41,7 +41,6 @@ export class HouseholdComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // console.log('inside income Init()');
     this.getUserid();
 
     this.totalHousehold = 0;
@@ -75,27 +74,21 @@ export class HouseholdComponent implements OnInit {
         const account = response.body;
         if (account) {
           this.uid = account.id;
-          // // console.log('from household userid is : ', this.uid);
           this.GetHousehold();
         } else {
-          // console.log('cannot get user details check login ');
         }
       })
       .catch(err => {});
   }
 
   GetHousehold(): void {
-    // console.log('inside getHousehold()');
     this.houseService.GetHouse(this.uid).subscribe((response: any[]) => {
       this.HouseholdArray = response;
-      // // console.log(this.HouseholdArray);
       if (this.HouseholdArray.length === 0) {
-        // console.log('empty');
 
         this.isHouseData = false;
       } else {
         this.isHouseData = true;
-        // console.log('full');
 
         this.FillHouseholdData();
       }
@@ -141,7 +134,6 @@ export class HouseholdComponent implements OnInit {
       }
     }
     this.loadhouse = true;
-    // // console.log(this.HouseholdArray);
     this.calcHouseholdTotal();
   }
 
@@ -181,10 +173,8 @@ export class HouseholdComponent implements OnInit {
     this.totalHousehold = 0;
     for (let i = 0; i < this.dynamicHousehold.length; i++) {
       const value1 = +this.dynamicHousehold[i].value;
-      // // console.log(this.totalhouse);
       this.totalHousehold = +this.totalHousehold + value1;
     }
-    // // console.log(this.totalHousehold);
   }
 
   AddHousehold() {
@@ -198,7 +188,6 @@ export class HouseholdComponent implements OnInit {
       name: this.resource,
       value: this.expense
     });
-    // console.log(this.uid);
     this.newHouse.userid = this.uid;
 
     this.houseService.PostHouse(this.newHouse).subscribe();
@@ -207,7 +196,6 @@ export class HouseholdComponent implements OnInit {
 
   RemoveHousehold(index, id) {
     this.houseService.DeleteHouse(id).subscribe(responce => {
-      // // console.log(responce);
     });
     this.dynamicHousehold.splice(index, 1);
     this.calcHouseholdTotal();
@@ -224,7 +212,6 @@ export class HouseholdComponent implements OnInit {
   }
 
   UpdateHousehold() {
-    // console.log('inside update income');
     this.house.userid = this.uid;
     this.house.dynamicHousehold = this.dynamicHousehold;
     this.houseService.PutHouse(this.house, this.uid).subscribe(data => {
@@ -238,7 +225,6 @@ export class HouseholdComponent implements OnInit {
   }
 
   onEditStaticField(nameField, modal) {
-    // // console.log('inside edit household');
     if (nameField === 'milk') {
       this.nameField = 'Milk ';
       this.editField = this.house.milk;
@@ -289,7 +275,6 @@ export class HouseholdComponent implements OnInit {
           result => {
             this.closeResult = `Closed with: ${result}`;
             this.FillEdithouse(nameField);
-            // // console.log('add house success');
           },
           reason => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -300,7 +285,6 @@ export class HouseholdComponent implements OnInit {
   }
 
   FillEdithouse(nameField) {
-    // // console.log('inside fill edit house');
     if (nameField === 'milk') {
       this.house.milk = this.editField;
       this.editField = '';
@@ -347,7 +331,6 @@ export class HouseholdComponent implements OnInit {
   }
 
   editDynamicField(index, modal) {
-    // // console.log(index);
     this.nameField = this.dynamicHousehold[index].name;
     this.editField = this.dynamicHousehold[index].value;
 

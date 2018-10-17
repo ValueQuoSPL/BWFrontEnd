@@ -1,34 +1,39 @@
-import './vendor.ts';
-
-import { NgModule, Injector } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
-import { Ng2Webstorage, LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { JhiEventManager } from 'ng-jhipster';
+import { CommonModule } from '@angular/common';
+import { NgModule, Injector } from '@angular/core';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Ng2Webstorage, LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 
+import './vendor.ts';
+import * as moment from 'moment';
+import { BuckswiseFrontEndCoreModule } from 'app/core';
+import { BuckswiseFrontEndSharedModule } from 'app/shared';
+import { BuckswiseFrontEndHomeModule } from './home/home.module';
 import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
+import { BuckswiseFrontEndEntityModule } from './entities/entity.module';
+import { BuckswiseFrontEndAppRoutingModule } from './app-routing.module';
+import { BuckswiseFrontEndAccountModule } from './account/account.module';
 import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
-import { BuckswiseFrontEndSharedModule } from 'app/shared';
-import { BuckswiseFrontEndCoreModule } from 'app/core';
-import { BuckswiseFrontEndAppRoutingModule } from './app-routing.module';
-import { BuckswiseFrontEndHomeModule } from './home/home.module';
-import { BuckswiseFrontEndAccountModule } from './account/account.module';
-import { BuckswiseFrontEndEntityModule } from './entities/entity.module';
-import * as moment from 'moment';
-// jhipster-needle-angular-add-module-import JHipster will add new module here
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
+
+// jhipster-needle-angular-add-module-import JHipster will add new module here
+// Downloaded Package Module
+import { DeviceDetectorModule } from 'ngx-device-detector';
+
+// Production module
+import { FamilyModule } from './family/family.module';
+import { PromoCodeModule } from './home/subscriber/promo-code';
 import { CustomMaterialModule } from './custom-material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
 import { WINDOW_PROVIDERS } from './layouts/navbar/window.service';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
-import { DeviceDetectorModule } from 'ngx-device-detector';
 import { SubscriberModule } from './home/subscriber/subscriber.module';
-import { PromoCodeModule } from './home/subscriber/promo-code';
 import { BuckswiseFrontEndPratikModule } from './pratik/pratik.module';
+// import { BuckswiseFrontEndMyAssetsModule } from './my-assets';
 
 @NgModule({
     imports: [
@@ -46,7 +51,9 @@ import { BuckswiseFrontEndPratikModule } from './pratik/pratik.module';
         CustomMaterialModule,
         SubscriberModule,
         PromoCodeModule,
-        BuckswiseFrontEndPratikModule
+        BuckswiseFrontEndPratikModule,
+        // BuckswiseFrontEndMyAssetsModule,
+        FamilyModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent,

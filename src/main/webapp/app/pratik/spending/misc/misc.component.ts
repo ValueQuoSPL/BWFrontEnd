@@ -38,7 +38,6 @@ export class MiscComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // console.log('inside misc Init()');
     this.getUserid();
     this.totalMisc = 0;
 
@@ -63,10 +62,8 @@ export class MiscComponent implements OnInit {
         const account = response.body;
         if (account) {
           this.uid = account.id;
-          // console.log('from misc userid is : ', this.uid);
           this.GetMisc();
         } else {
-          // console.log('cannot get user details check login ');
         }
       })
       .catch(err => {});
@@ -78,17 +75,13 @@ export class MiscComponent implements OnInit {
   }
 
   GetMisc(): void {
-    // console.log('inside get misc()');
     this.miscService.GetMisc(this.uid).subscribe((response: any[]) => {
       this.MiscArray = response;
-      // console.log(this.MiscArray);
       if (this.MiscArray.length === 0) {
-        // console.log('empty');
 
         this.isMiscData = false;
       } else {
         this.isMiscData = true;
-        // console.log('full');
 
         this.FillMiscData();
       }
@@ -119,7 +112,6 @@ export class MiscComponent implements OnInit {
       }
     }
     this.loadMisc = true;
-    // // console.log(this.MiscArray);
     this.calcMiscTotal();
   }
 
@@ -151,10 +143,8 @@ export class MiscComponent implements OnInit {
     this.totalMisc = 0;
     for (let i = 0; i < this.dynamicMisc.length; i++) {
       const value1 = +this.dynamicMisc[i].value;
-      // // console.log(this.totalIncome);
       this.totalMisc = +this.totalMisc + value1;
     }
-    // console.log(this.totalMisc);
   }
 
   AddMisc() {
@@ -168,7 +158,6 @@ export class MiscComponent implements OnInit {
       name: this.resource,
       value: this.expense
     });
-    // console.log(this.uid);
     this.newMisc.userid = this.uid;
 
     this.miscService.PostMisc(this.newMisc).subscribe();
@@ -176,7 +165,6 @@ export class MiscComponent implements OnInit {
   }
 
   RemoveMisc(index, id) {
-    console.log(id);
 
     this.miscService.DeleteMisc(id).subscribe(responce => {});
     this.dynamicMisc.splice(index, 1);
@@ -193,7 +181,6 @@ export class MiscComponent implements OnInit {
   }
 
   UpdateMisc() {
-    // console.log('inside update income');
     this.misc.userid = this.uid;
     this.misc.dynamicMisc = this.dynamicMisc;
     this.miscService.PutMisc(this.misc, this.uid).subscribe(data => {
@@ -207,7 +194,6 @@ export class MiscComponent implements OnInit {
   }
 
   onEditStaticField(nameField, modal) {
-    // console.log('inside edit misc');
     if (nameField === 'shoes') {
       this.nameField = 'Shoes ';
       this.editField = this.misc.shoes;
@@ -237,7 +223,6 @@ export class MiscComponent implements OnInit {
           result => {
             this.closeResult = `Closed with: ${result}`;
             this.FillEditMisc(nameField);
-            // // console.log('add misc success');
           },
           reason => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -248,7 +233,6 @@ export class MiscComponent implements OnInit {
   }
 
   FillEditMisc(nameField) {
-    // console.log('inside fill edit misc');
     if (nameField === 'shoes') {
       this.misc.shoes = this.editField;
       this.editField = '';
@@ -274,7 +258,6 @@ export class MiscComponent implements OnInit {
   }
 
   editDynamicField(index, modal) {
-    // console.log(index);
     this.nameField = this.dynamicMisc[index].name;
     this.editField = this.dynamicMisc[index].value;
 

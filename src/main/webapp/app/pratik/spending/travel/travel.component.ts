@@ -40,7 +40,6 @@ export class TravelComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // console.log('inside travel Init()');
     this.getUserid();
     this.totalTravel = 0;
 
@@ -64,27 +63,21 @@ export class TravelComponent implements OnInit {
         const account = response.body;
         if (account) {
           this.uid = account.id;
-          // console.log('from travel userid is : ', this.uid);
           this.GetTravel();
         } else {
-          // console.log('cannot get user details check login ');
         }
       })
       .catch(err => {});
   }
 
   GetTravel(): void {
-    // console.log('inside get travel()');
     this.travelService.GetTravel(this.uid).subscribe((response: any[]) => {
       this.TravelArray = response;
-      // console.log(this.TravelArray);
       if (this.TravelArray.length === 0) {
-        // console.log('empty');
 
         this.isTravelData = false;
       } else {
         this.isTravelData = true;
-        // console.log('full');
 
         this.FillTravelData();
       }
@@ -111,7 +104,6 @@ export class TravelComponent implements OnInit {
       }
     }
     this.loadTravel = true;
-    // // console.log(this.TravelArray);
     this.calcTravelTotal();
   }
 
@@ -148,10 +140,8 @@ export class TravelComponent implements OnInit {
     this.totalTravel = 0;
     for (let i = 0; i < this.dynamicTravel.length; i++) {
       const value1 = +this.dynamicTravel[i].value;
-      // // console.log(this.totalUtility);
       this.totalTravel = +this.totalTravel + value1;
     }
-    // // console.log(this.totalTravel);
   }
   AddTravel() {
     this.dynamicTravel.push({
@@ -164,7 +154,6 @@ export class TravelComponent implements OnInit {
       name: this.resource,
       value: this.expense
     });
-    // console.log(this.uid);
     this.newTravel.userid = this.uid;
 
     this.travelService.PostTravel(this.newTravel).subscribe();
@@ -172,7 +161,6 @@ export class TravelComponent implements OnInit {
   }
   RemoveTravel(index, id) {
     this.travelService.DeleteTravel(id).subscribe(responce => {
-      // console.log(responce);
     });
     this.dynamicTravel.splice(index, 1);
     this.calcTravelTotal();
@@ -204,7 +192,6 @@ export class TravelComponent implements OnInit {
   }
 
   onEditStaticField(nameField, modal) {
-    // console.log('inside edit travel');
     if (nameField === 'food') {
       this.nameField = 'Food ';
       this.editField = this.travel.food;
@@ -228,7 +215,6 @@ export class TravelComponent implements OnInit {
           result => {
             this.closeResult = `Closed with: ${result}`;
             this.FillEditTravel(nameField);
-            // // console.log('add travel success');
           },
           reason => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -238,7 +224,6 @@ export class TravelComponent implements OnInit {
     this.changesSaved = false;
   }
   FillEditTravel(nameField) {
-    // console.log('inside fill edit travel');
     if (nameField === 'food') {
       this.travel.food = this.editField;
       this.editField = '';
@@ -257,7 +242,6 @@ export class TravelComponent implements OnInit {
     }
   }
   editDynamicField(index, modal) {
-    // console.log(index);
     this.nameField = this.dynamicTravel[index].name;
     this.editField = this.dynamicTravel[index].value;
 
@@ -277,7 +261,6 @@ export class TravelComponent implements OnInit {
     }
   }
   UpdateTravel() {
-    // console.log('inside update income');
     this.travel.userid = this.uid;
     this.travel.dynamicTravel = this.dynamicTravel;
     this.travelService.PutTravel(this.travel, this.uid).subscribe(data => {

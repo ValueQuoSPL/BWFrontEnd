@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NumberOnlyDirective } from 'app/shared/directive/number-only.directive';
+import { NumberOnlyDirective } from './number-only.directive';
 
 @NgModule({
   imports: [

@@ -11,7 +11,7 @@ import {
   ContentChildren,
   ElementRef
 } from '@angular/core';
-import { DraggableHelperDirective } from 'app/shared/draggable/draggable-helper.directive';
+import { DraggableHelperDirective } from './draggable-helper.directive';
 
 @Directive({
   selector: '[jhiDraggable]'

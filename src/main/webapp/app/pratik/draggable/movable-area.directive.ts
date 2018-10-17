@@ -1,5 +1,5 @@
 import { Directive, ContentChildren, QueryList, OnInit, AfterContentInit, ElementRef } from '@angular/core';
-import { MovableDirective } from 'app/shared/draggable/movable.directive';
+import { MovableDirective } from './movable.directive';
 import { Subscription } from 'rxjs';
 
 export interface Boundaries {

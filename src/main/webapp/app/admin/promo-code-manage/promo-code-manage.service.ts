@@ -17,11 +17,9 @@ export class PromoCodeManageService {
     return this.http.get(this.url, { observe: 'response' });
   }
   update(data) {
-    console.log('update');
     return this.http.put(this.url, data, { observe: 'response' });
   }
   delete(id) {
-    console.log('delete', id);
     return this.http.delete(this.url + '/' + id, { observe: 'response' });
   }
 }

@@ -58,7 +58,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
   ) {}
 
   ngOnInit() {
-    // console.log('income start');
     this.getUserid();
     this.totalIncome = 0;
     this.dynamicTotal = 0;
@@ -86,7 +85,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
   }
 
   getUserid() {
-    // console.log('inside get uid');
     // retrieve the userIdentity data from the server, update the identity object, and then resolve.
     return this.accountService
       .get()
@@ -95,23 +93,19 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         const account = response.body;
         if (account) {
           this.uid = account.id;
-          // console.log('from income userid is : ', this.uid);
           this.onIncomeGet();
         } else {
-          // console.log('cannot get user details check login ');
         }
       })
       .catch(err => {});
   }
 
   onIncomeGet() {
-    console.log('inside onIncomeGet');
     this.incomeService.GetIncome(this.uid).subscribe((response: any[]) => {
       this.tempIncomeArray = response;
       if (this.tempIncomeArray.length === 0) {
         this.isIncomeData = false;
       } else {
-        console.log('data received filling model');
         this.fillIncomeData();
         this.isIncomeData = true;
       }
@@ -137,31 +131,22 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
 
   fillIncomeData() {
     this.IncomeArray = this.tempIncomeArray;
-    console.log('inside fill income data');
     this.dynamicIncome.splice(0, this.dynamicIncome.length);
     for (let i = 0; i < this.IncomeArray.length; i++) {
-      // console.log('from IncomeArray : ', this.IncomeArray[i]);
       if (this.IncomeArray[i].name === 'incomeSalary') {
         this.income.incomeSalary = +this.IncomeArray[i].amount;
-        // // console.log(this.income.incomeSalary);
       } else if (this.IncomeArray[i].name === 'incomeAward') {
         this.income.incomeAward = +this.IncomeArray[i].amount;
-        // // console.log(this.income.incomeAward);
       } else if (this.IncomeArray[i].name === 'incomeBonus') {
         this.income.incomeBonus = +this.IncomeArray[i].amount;
-        // // console.log(this.income.incomeBonus);
       } else if (this.IncomeArray[i].name === 'incomePension') {
         this.income.incomePension = +this.IncomeArray[i].amount;
-        // // console.log(this.income.incomePension);
       } else if (this.IncomeArray[i].name === 'incomeSaving') {
         this.income.incomeSaving = +this.IncomeArray[i].amount;
-        // // console.log(this.income.incomeSaving);
       } else if (this.IncomeArray[i].name === 'incomeDeposit') {
         this.income.incomeDeposit = +this.IncomeArray[i].amount;
-        // // console.log(this.income.incomeDeposit);
       } else if (this.IncomeArray[i].name === 'incomeRental') {
         this.income.incomeRental = +this.IncomeArray[i].amount;
-        // // console.log(this.income.incomeRental);
       } else if (this.IncomeArray[i].name !== 'userid') {
         this.dynamicIncome.push({
           id: this.IncomeArray[i].id,
@@ -174,7 +159,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
       }
     }
     this.loadIncome = true;
-    console.log('after fill', this.dynamicIncome);
   }
 
   getDismissReason(reason: any): string {
@@ -188,7 +172,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
   }
 
   openIncome(incomeContent) {
-    // console.log('income modal open');
 
     this.modalService
       .open(incomeContent, { ariaLabelledBy: 'incomeModal' })
@@ -196,7 +179,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         result => {
           this.closeResult = `Closed with: ${result}`;
           this.AddIncome();
-          // // console.log('add income success');
         },
         reason => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -208,7 +190,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     this.totalIncome = 0;
     for (let j = 0; j < this.IncomeArray.length; j++) {
       if (this.IncomeArray[j].name !== 'userid') {
-        // // console.log(this.IncomeArray[j].name, this.IncomeArray[j].amount);
         this.totalIncome = +this.totalIncome + +this.IncomeArray[j].amount;
       }
     }
@@ -235,8 +216,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     });
     this.newIncome.userid = this.uid;
     this.incomeService.PostIncome(this.newIncome).subscribe(data => {
-      console.log(data);
-      console.log('field added to db calling getIncome');
       this.onIncomeGet();
     });
     this.clear();
@@ -244,7 +223,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
 
   deleteFieldValue(index, id) {
     if (id) {
-      console.log(id);
       this.removeIncome.name = this.dynamicIncome[index].name;
       this.incomeService.DeleteIncome(id).subscribe(responce => {});
     }
@@ -254,7 +232,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
   }
 
   saveIncome(): void {
-    // console.log('inside save Income');
     this.income.userid = this.uid;
     // this.income.dynamicIncome = this.dynamicIncome;
     this.incomeService.PostIncome(this.income).subscribe(data => {
@@ -265,7 +242,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
   }
 
   updateIncome() {
-    // console.log('inside update income');
     this.income.userid = this.uid;
     this.income.dynamicIncome = this.dynamicIncome;
     this.incomeService.PutIncome(this.income, this.uid).subscribe(data => {
@@ -275,7 +251,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
   }
 
   onEditStaticField(nameField, modal) {
-    // console.log('inside edit income');
     if (nameField === 'salary') {
       this.nameField = 'Post Tax Take Home Salary';
       this.editField = this.income.incomeSalary;
@@ -305,7 +280,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
           result => {
             this.closeResult = `Closed with: ${result}`;
             this.FillEditIncome(nameField);
-            // // console.log('add income success');
           },
           reason => {
             this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -316,7 +290,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
   }
 
   onEditDynamicField(index, modal) {
-    // console.log(index);
     this.nameField = this.dynamicIncome[index].name;
     this.editField = this.dynamicIncome[index].value;
 
@@ -337,7 +310,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
   }
 
   FillEditIncome(nameField) {
-    // console.log('inside fill edit income');
     if (nameField === 'salary') {
       this.income.incomeSalary = this.editField;
       this.editField = '';
@@ -363,67 +335,52 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
   }
 
   isFieldChanged(): boolean {
-    // console.log('inside isFieldChanged');
 
     for (let i = 0; i < this.IncomeArray.length; i++) {
       if (this.IncomeArray[i].name === 'incomeSalary') {
-        // // console.log(this.IncomeArray[i].name);
         if (+this.income.incomeSalary !== +this.IncomeArray[i].amount) {
           return false;
         }
       } else if (this.IncomeArray[i].name === 'incomeAward') {
-        // // console.log(this.IncomeArray[i].name);
         if (+this.income.incomeAward !== +this.IncomeArray[i].amount) {
           return false;
         }
       } else if (this.IncomeArray[i].name === 'incomeBonus') {
-        // // console.log(this.IncomeArray[i].name);
         if (+this.income.incomeBonus !== +this.IncomeArray[i].amount) {
           return false;
         }
       } else if (this.IncomeArray[i].name === 'incomePension') {
-        // // console.log(this.IncomeArray[i].name);
         if (+this.income.incomePension !== +this.IncomeArray[i].amount) {
           return false;
         }
       } else if (this.IncomeArray[i].name === 'incomeSaving') {
-        // // console.log(this.IncomeArray[i].name);
         if (+this.income.incomeSaving !== +this.IncomeArray[i].amount) {
           return false;
         }
       } else if (this.IncomeArray[i].name === 'incomeDeposit') {
-        // // console.log(this.IncomeArray[i].name);
         if (+this.income.incomeDeposit !== +this.IncomeArray[i].amount) {
           return false;
         }
       } else if (this.IncomeArray[i].name === 'incomeRental') {
-        // // console.log(this.IncomeArray[i].name);
         if (+this.income.incomeRental !== +this.IncomeArray[i].amount) {
           return false;
         }
       } else if (this.IncomeArray[i].name !== 'userid') {
         for (let j = 0; j < this.dynamicIncome.length; j++) {
-          //  // console.log('dynamic', j, this.dynamicIncome[j].name);
           if (this.dynamicIncome[j].name === this.IncomeArray[i].name) {
             if (+this.dynamicIncome[j].value !== +this.IncomeArray[i].amount) {
-              //  // console.log('change found in dynamic');
               return false;
             }
           }
         }
-        //  // console.log('change not found in dynamic');
       }
     }
-    //  // console.log('change not found in any income');
     return true;
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    // console.log('inside can deactivate');
     this.dataChanged = this.isFieldChanged();
     if (!this.dataChanged && !this.changesSaved) {
-      // console.log(this.dataChanged, 'dataChanged');
-      // console.log(this.changesSaved, 'changesSaved');
       return confirm('Do you want to leave this page Before changes saved ?');
     } else {
       return true;

@@ -70,27 +70,16 @@ export class NavbarComponent implements OnInit, DoCheck {
       this.swaggerEnabled = profileInfo.swaggerEnabled;
     });
 
-    // this.register.isRegisterPage.subscribe(state => {
-    //   console.log('is register page', state);
-    //   if (state === true) {
-    //     this.transparent = 'solid';
-    //   } else {
-    //     this.transparent = 'transparent';
-    //   }
-    // });
-
   }
 
   ngDoCheck() {
     this.param = this.router.url;
 
     if (this.param === '/') {
-      console.log('home');
       this.isHomePage = true;
       this.solid = 'solid';
       this.transparent = 'transparent';
     } else {
-      console.log('not home');
       this.isHomePage = false;
       this.solid = 'solid';
       this.transparent = 'solid';

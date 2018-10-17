@@ -1,0 +1,103 @@
+
+<div class="navbar navbar-expand-lg navbar-light bg-light"><!--start of navbar-->
+    <h4>Assumption</h4>
+    <ul class="navbar-nav"><!--start ul-->
+      <li class="nav-item">
+        <button class="btn btn-link"><a class="nav-link">Save</a></button>  
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-link"><a class="nav-link"  href="#">Cancle</a></button>  
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-link"><a class="nav-link" href="#">Help</a></button>  
+      </li>
+      <li class="nav-item">
+        <button class="btn btn-link"><a class="nav-link" href="#">Help</a></button>  
+      </li>
+    </ul><!--end ul-->
+  </div><!--end of navbar-->
+  <p>Common Assumption</p>
+  <div class="row"><!--start of row1-->
+    <div class="col-md-3"><!--start of row1.col1-->
+      <h5>Before Retirement</h5>
+    </div><!--end of row1.col1-->
+    <div class="col-md-3"><!--start of row1.col2-->
+      <tr>
+        <td>Rate of Return</td>
+        <td><input type="text" size="3" name="BRrateOfReturn" [(ngModel)]="assumption.BRrateOfReturn"></td>
+      </tr>
+    </div><!--end of row1.col2-->
+<div class="col-md-3"><!--start of row1.col3-->
+  <tr>
+      <td>Inflation</td>
+      <td><input type="text" size="3" name="BRinflation" [(ngModel)]="assumption.BRinflation"></td>
+    </tr>
+</div><!--end of row1.col3-->
+<div class="col-md-3"><!--start of row1.col4-->
+  <tr>
+    <td>Real Rate of Return</td>
+    <td><input type="text" size="3" name="BRrealRateOfReturn" [(ngModel)]="assumption.BRrealRateOfReturn"></td>
+  </tr>
+</div><!--end of row1.col4-->
+</div><!--end of row1-->
+<div class="row"><!--start of row1-->
+  <div class="col-md-3"><!--start of row1.col1-->
+    <h5>After Retirement</h5>
+  </div><!--end of row1.col1-->
+  <div class="col-md-3"><!--start of row1.col2-->
+    <tr>
+      <td>Rate of Return</td>
+      <td><input type="text" size="3" name="ARrateOfReturn" [(ngModel)]="assumption.ARrateOfReturn"></td>
+    </tr>
+  </div><!--end of row1.col2-->
+  <div class="col-md-3"><!--start of row1.col3-->
+    <tr>
+        <td>Inflation</td>
+        <td><input type="text" size="3" name="ARinflation" [(ngModel)]="assumption.ARinflation"></td>
+      </tr>
+  </div><!--end of row1.col3-->
+  <div class="col-md-3"><!--start of row1.col4-->
+    <tr>
+        <td> Real Rate of Return</td>
+        <td><input type="text" size="3" name="ARrealRateOfReturn" [(ngModel)]="assumption.ARrealRateOfReturn"></td>
+      </tr>
+  </div><!--end of row1.col4-->
+</div><!--end of row1-->
+<div class="row"><!--start of row1-->
+<div class="col-md-3"><!--start of row1.col1-->
+<h5>Surplus</h5>
+</div><!--end of row1.col1-->
+<div class="col-md-5"><!--start of row1.col2-->
+<tr>
+  <td>percentage of surplus to invest</td>
+  <td><input type="text" size="35" name="SurplusPercentInvest" [(ngModel)]="assumption.SurplusPercentInvest"></td>
+</tr>
+</div><!--end of row1.col2-->
+<div class="col-md-4"><!--start of row1.col3-->
+<tr>
+    <td>percentage of surplus to insurance</td>
+    <td><input type="text" size="10" name="SurplusPercentInsurance" [(ngModel)]="assumption.SurplusPercentInsurance"></td>
+  </tr>
+</div><!--end of row1.col3-->
+</div><!--end of row1-->
+<p style="height: 30px; width:auto; background-color:cornflowerblue;">Assumption for User Name</p>
+<div class="row"><!--start of row1-->
+<div class="col-md-3"><!--start of row1.col1-->
+</div><!--end of row1.col1-->
+<div class="col-md-3"><!--start of row1.col2-->
+<tr>
+  <td>Age of Retirement</td>
+  <td><input type="text" size="3" name="AgeOfRetirement" [(ngModel)]="assumption.AgeOfRetirement"></td>
+</tr>
+</div><!--end of row1.col2-->
+<div class="col-md-1"><!--start of row1.col3-->
+</div><!--end of row1.col3-->
+<div class="col-md-2"><!--start of row1.col4-->
+<tr>
+  <td>life Expentancy</td>
+  <td><input type="text" size="3" name="LifeExpentancy" [(ngModel)]="assumption.LifeExpentancy"></td>
+</tr>
+</div><!--end of row1.col4-->
+<div class="col-md-3"><!--start of row1.col5-->
+</div><!--start of row1.col5-->
+</div><!--start of row1-->

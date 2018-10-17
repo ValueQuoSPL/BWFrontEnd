@@ -1,0 +1,58 @@
+<div class="container">
+    <div>
+        <div [ngSwitch]="isAuthenticated()">
+            <div *ngSwitchCase="true">
+                <div class="container">
+                    <mat-accordion  class="container" >
+                        <div class="form-group row justify-content-center"><label><h5>Profile</h5></label>
+                        </div>
+                            <mat-accordion>
+                                <mat-expansion-panel class="accordion" [expanded]="step === 0">
+                                    <mat-expansion-panel-header class="gray">
+                                        <mat-panel-title  >
+                                            <h5>My Profile</h5>
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                        Fill your Profile here
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+                                    <jhi-myprofile></jhi-myprofile>
+                                </mat-expansion-panel>
+                            
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header class="gray1">
+                                        <mat-panel-title >
+                                        <h5>Family Profile</h5>
+                                        </mat-panel-title>
+                                        <mat-panel-description>
+                                            Fill your  Family Profile here
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+                                    <jhi-familyprofile></jhi-familyprofile>
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </div>
+            </div>
+            <!-- <div class="alert alert-warning" *ngSwitchCase="false">
+                <img src="../Assests/oops.jpg" style="height:500px;width:500px"><br>
+                <span>Oops you are not Signed In </span>
+                Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
+            </div> -->
+            <div *ngSwitchCase="false" class="form-group row justify-content-center">
+
+                    <mat-card class="example-card">
+                            
+                            <mat-card-content class="example-card" class="shadow">
+                                    <img src="../Assests/oops.jpg" style="height:300px;width:700px"><br>
+                                    <span>Oops you are not Signed In </span>
+                                    Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
+                            </mat-card-content>
+                    </mat-card>
+        
+                </div>
+            <br>
+        </div>
+    </div>
+</div>
