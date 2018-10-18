@@ -23,7 +23,7 @@ nav.main-menu.expanded {
 } */
 
 #main-menu.expanded {
-  width: 250px;
+  width: 200px;
   /* overflow: visible; */
 }
 
@@ -54,7 +54,7 @@ nav.main-menu.expanded {
 #main-menu li {
   position: relative;
   display: block;
-  width: 250px;
+  width: 200px;
 }
 
 #main-menu li > a {

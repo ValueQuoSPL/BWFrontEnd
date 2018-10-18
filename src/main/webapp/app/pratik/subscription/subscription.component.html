@@ -1,66 +1,65 @@
-<div class="small-header bg-img4">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <h3> Subscription</h3>
-      </div>
-      <div class="col-md-6 text-right">
-        <h6 class="breadcrumb"><a href="index.html">Home</a> / <a href="/">Components</a> / Pricing Tables
-        </h6>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Pricing Tables Dark-->
-<section class="bg-light">
-  <div class="container pricing text-center"><i class="ion-bag icon-big"></i>
-    <h3>Subscription Table</h3>
-    <div class="row my">
-      <div class="col-md-4 col-sm-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4>Wise</h4>
+<div style="top: -30px; ">
+    <div class="small-header bg-img2" >
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h3> Subscription</h3>
           </div>
-          <div class="panel-body">Some default panel content here. Nula vitae elit libero, a phaetra augue. Aenean lacinia.</div>
-          <ul class="list-group">
-            <li class="list-group-item">1 Financial planning</li>
-            <li class="list-group-item">Mobile-Optimized</li>
-            <li class="list-group-item">&nbsp;</li>
-            <li class="list-group-item"><span class="number text-muted">Free</span>
-              <br><br><a  class="btn btn-block btn-info">Get Started</a></li>              </ul>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="panel active panel-default">
-          <div class="panel-heading">
-            <h4>Wiser</h4>
-          </div>
-          <div class="panel-body">Some default panel content here. Nula vitae elit libero, a phaetra augue. Aenean lacinia.</div>
-          <ul class="list-group">
-            <li class="list-group-item">2 Financial planning</li>
-            <li class="list-group-item">Mobile-Optimized <span class="label label-danger">new</span>
-            </li>
-            <li class="list-group-item">Access from anywhere</li>
-            <li class="list-group-item"><span class="number"><sup>$</sup>8</span><sub>MONTH</sub>
-              <br><br><a  class="btn btn-block btn-success">Get Started</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-4 col-sm-6">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4>WISEST</h4>
-          </div>
-          <div class="panel-body">Some default panel content here. Nula vitae elit libero, a phaetra augue. Aenean lacinia.</div>
-          <ul class="list-group">
-            <li class="list-group-item">3 Financial planning</li>
-            <li class="list-group-item">Mobile-Optimized</li>
-            <li class="list-group-item">Access from anywhere</li>
-            <li class="list-group-item"><span class="number"><sup>$</sup>28</span><sub>MONTH</sub>
-              <br><br><a  class="btn btn-block btn-primary">Get Started</a></li>
-          </ul>
         </div>
       </div>
     </div>
-  </div>
-</section>
+    </div>
+    <!-- Pricing Tables Dark-->
+    <section class="bg-light">
+      <div class="container pricing text-center"><i class="ion-bag icon-big"></i>
+        <h3>Subscription Table</h3>
+        <div class="row my">
+          <div class="col-md-4 col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4>Wise</h4>
+              </div>
+              <div class="panel-body">Some default panel content here. Nula vitae elit libero, a phaetra augue. Aenean lacinia.</div>
+              <ul class="list-group">
+                <li class="list-group-item">1 Financial planning</li>
+                <li class="list-group-item">Mobile-Optimized</li>
+                <li class="list-group-item">&nbsp;</li>
+                <li class="list-group-item"><span class="number text-muted">Free</span>
+                  <br><br><a  class="btn btn-block btn-info" [routerLink]="['/subscriber','FREE']" routerLinkActive="router-link-active" >Get Started</a></li>              </ul>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="panel active panel-default">
+              <div class="panel-heading">
+                <h4>Wiser</h4>
+              </div>
+              <div class="panel-body">Some default panel content here. Nula vitae elit libero, a phaetra augue. Aenean lacinia.</div>
+              <ul class="list-group">
+                <li class="list-group-item">2 Financial planning</li>
+                <li class="list-group-item">Mobile-Optimized <span class="label label-danger">new</span>
+                </li>
+                <li class="list-group-item">Access from anywhere</li>
+                <li class="list-group-item"><span class="number"><sup>₹</sup>1000</span><sub>MONTH</sub>
+                  <br><br><a  class="btn btn-block btn-success" [routerLink]="['/subscriber','WISER']" routerLinkActive="router-link-active" >Get Started</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4>WISEST</h4>
+              </div>
+              <div class="panel-body">Some default panel content here. Nula vitae elit libero, a phaetra augue. Aenean lacinia.</div>
+              <ul class="list-group">
+                <li class="list-group-item">3 Financial planning</li>
+                <li class="list-group-item">Mobile-Optimized</li>
+                <li class="list-group-item">Access from anywhere</li>
+                <li class="list-group-item"><span class="number"><sup>₹</sup>2000</span><sub>MONTH</sub>
+                  <br><br><a class="btn btn-block btn-primary" [routerLink]="['/subscriber', 'WISEST']" routerLinkActive="router-link-active" >Get Started</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    

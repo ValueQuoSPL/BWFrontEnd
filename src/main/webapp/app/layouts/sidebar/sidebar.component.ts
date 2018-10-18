@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     private loginModalService: LoginModalService,
     private deviceService: DeviceDetectorService) {
       this.epicFunction();
-    }
+  }
 
     epicFunction() {
       this.isMobile = this.deviceService.isMobile();
@@ -49,7 +49,9 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   RouteChanged() {
+    if (this.isMobile) {
     const x =  document.getElementById('main-menu').classList.toggle('expanded');
+    }
   }
 
   showSidebar() {

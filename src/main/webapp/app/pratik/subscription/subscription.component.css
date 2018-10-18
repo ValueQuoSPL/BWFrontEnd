@@ -1,7 +1,20 @@
-
-.pricing .panel-heading h4 {
-  margin-bottom: 20px;
-}
+.pricing .panel-heading {
+  border: 0;
+  background-color: #eee; }
+  .pricing .panel-heading h4 {
+    margin-bottom: 0; }
+.bg-dark .panel, .bg-dark .panel-body, .bg-dark .list-group-item {
+  background-color: rgba(0, 0, 0, 0.1); }
+.bg-dark .pricing .panel-heading {
+  border: 0;
+  background-color: #000;
+  color: #ccc; }
+.pricing .panel-heading {
+  border: 0; }
+.pricing .btn {
+  display: block; }
+.pricing .list-group-item, .pricing .panel-heading {
+  padding: 17px 10px; }
 h4, h5, h6 {
   font-weight: 700;
 }
@@ -31,7 +44,6 @@ h1, h2, h3, h4, h5, h6 {
 .panel-body {
 padding: 40px;
 }
-
 
 .panel-body {
   padding: 18px;
@@ -87,4 +99,3 @@ font-size: 80px;
 margin-left: 10px;
 margin-right: 50px;
 }
-

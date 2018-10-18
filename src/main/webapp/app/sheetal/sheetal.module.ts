@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { MeetService } from 'app/sheetal/requestmeeting/meet.service';
 import { AdviceComponent } from './advice/advice.component';
 import { BuckswiseTaxModule } from './tax/tax.module';
+import { BuckswiseContactModule } from './contactus/contact.module';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { BuckswiseTaxModule } from './tax/tax.module';
     BuckswiseFrontEndSharedModule,
     CustomMaterialModule,
     MatInputModule,
-    BuckswiseTaxModule
+    BuckswiseTaxModule,
+    BuckswiseContactModule
   ],
   declarations: [
     MainComponent,

@@ -80,7 +80,7 @@ export class JhiMainComponent implements OnInit {
         const element = document.getElementById('toggle');
         if (!this.isMobile) {
             if (flag) {
-                element.setAttribute('style', 'margin-left: 250px;');
+                element.setAttribute('style', 'margin-left: 200px;');
             } else {
                 element.setAttribute('style', 'margin-left: 0px;');
             }

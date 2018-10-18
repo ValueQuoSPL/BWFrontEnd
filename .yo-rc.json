@@ -15,7 +15,13 @@
       "protractor"
     ],
     "jhiPrefix": "jhi",
-    "enableTranslation": false,
+    "enableTranslation": true,
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "hi",
+      "mr"
+    ],
     "skipServer": true
   }
 }

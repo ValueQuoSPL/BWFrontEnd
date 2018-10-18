@@ -13,6 +13,7 @@ import { VERSION } from 'app/app.constants';
 import { JhiMainComponent } from '../main/main.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { Register } from 'app/account';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'jhi-navbar',
@@ -32,6 +33,7 @@ export class NavbarComponent implements OnInit, DoCheck {
   isHomePage = false;
   transparent;
   solid;
+  isMobile: any;
 
   constructor(
     private loginService: LoginService,
@@ -42,11 +44,13 @@ export class NavbarComponent implements OnInit, DoCheck {
     private main: JhiMainComponent,
     private sidebar: SidebarComponent,
     private register: Register,
+    private deviceService: DeviceDetectorService,
     @Inject(DOCUMENT) private document: Document,
     @Inject(WINDOW) private window: Window
   ) {
     this.version = VERSION ? 'v' + VERSION : '';
     this.isNavbarCollapsed = true;
+    this.isMobile = this.deviceService.isMobile();
   }
 
   @HostListener('window:scroll', [])
@@ -69,9 +73,14 @@ export class NavbarComponent implements OnInit, DoCheck {
       this.inProduction = profileInfo.inProduction;
       this.swaggerEnabled = profileInfo.swaggerEnabled;
     });
-
+    if (this.isMobile) {
+      this.transparent = 'solid';
+    }
   }
 
+  contact() {
+    this.router.navigate(['/contact']);
+  }
   ngDoCheck() {
     this.param = this.router.url;
 
@@ -79,6 +88,9 @@ export class NavbarComponent implements OnInit, DoCheck {
       this.isHomePage = true;
       this.solid = 'solid';
       this.transparent = 'transparent';
+      if (this.isMobile) {
+        this.transparent = 'solid';
+      }
     } else {
       this.isHomePage = false;
       this.solid = 'solid';
@@ -116,7 +128,6 @@ export class NavbarComponent implements OnInit, DoCheck {
   toggle() {
     // let flag = false;
     this.flag = !this.flag;
-    // console.log('inside navbar', this.flag);
     this.main.toggleSide(this.flag);
     this.sidebar.showSidebar();
   }
