@@ -14,7 +14,6 @@ export class FutureOptionService {
     return this.http.post<FAO[]>(SERVER_API_URL + 'api/future-options', fao);
   }
   public getFAOByUid(uid) {
-    console.log('in getFAOByUid service uid', uid);
     this.ServiceAPIParam = 'api/futureOptionbyuid' + '/' + uid;
     return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
   }

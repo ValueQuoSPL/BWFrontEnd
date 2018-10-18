@@ -1,0 +1,141 @@
+<div class="container-fluid small-header bg-img4" >
+		<h1 style="text-align:center;color:silver">Contact Us</h1>
+</div>
+<div class="row">
+	<div class="col-md-7"><br>
+		<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15129.13585020647!2d73.9446626!3d18.5612324!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1fda670135c12f39!2sValueQuo+Solutions+Pvt.+Ltd.!5e0!3m2!1sen!2sin!4v1524818980474" width="100%" height="315" frameborder="0" style="border:0" allowfullscreen></iframe>
+	</div>
+	<div class="col-md-5">
+		<h4><strong>Get in Touch</strong></h4>
+		<form class="Contact" #submitform="ngForm">
+			<div class="form">
+				<mat-form-field>
+					<input matInput id="name" type="text" name="name" value="" #name="ngModel" placeholder="Name"[(ngModel)]="user.name"pattern="[a-zA-Z][a-zA-Z ]+"required>
+				</mat-form-field>
+				<div [hidden]="name.valid || name.pristine">
+					<div class="c" [hidden]="!name.hasError('required')"><small>Name is required</small></div>
+			<!--<div class="c" [hidden]="!name.hasError('pattern')">Only alphabetsallowed</div>-->
+				</div>
+			</div>
+			<div class="form">
+				<mat-form-field>
+					<input matInput id="email" type="text" name="email" value="" #email="ngModel"placeholder="E-mail"[(ngModel)]="user.email"pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+				</mat-form-field>
+				<div class="c" [hidden]="email.valid || email.pristine">
+					<div class="c" [hidden]="!email.hasError('required')">Email is required</div>
+					<div class="c"[hidden]="!email.hasError('pattern')">Email format should be <small><b>joe@abc.com</b></small>
+					</div>
+				</div>
+			</div>
+			<div class="form">
+				<mat-form-field>
+					<input matInput jhiNumberOnly required placeholder="phone" id="phone"type="text" maxlength="10" name="phone"#phone="ngModel" value="" 
+						[(ngModel)]="user.phone"minlength="10" maxlength="10" 
+						pattern="^[_'.@A-Za-z0-9-]*$"required>
+				</mat-form-field>
+				<div *ngIf="phone.touched && !phone.valid">
+					<div class="c" *ngIf="phone.errors.required">
+						mobileNumber is required
+					</div>
+					<div class="c" *ngIf="phone.errors.minlength">
+						mobileNumber name should be min {{phone.errors.minlength.requiredLength}} char
+					</div>
+					<div class="c" *ngIf="phone.errors.pattern"> 
+						pattern not match
+						<div class="c" [hidden]="!mobile.hasError('pattern')">Mobile numberr should be only numbers</div>
+					</div>
+				</div>
+			</div><!-- end div mobilenumber-->
+	
+		<div class="form">
+			<mat-form-field>
+				<textarea matInput type="text"row="3" maxlength="100"name="message"#message="ngModel"value="" placeholder="Message"[(ngModel)]="user.msg"required></textarea>
+			</mat-form-field></div>
+			<button (click)="submitUser()" (click)="resetContact()" data-toggle="modal"data-target="#universal" class="btn btn-default" type="submit" name="button"[disabled]="submitform.form.invalid">
+				<i class="fa fa-paper-plane-o" aria-hidden="true"></i> Submit
+			</button></div></div></form></div>
+			<div id="universal" class="modal fade" role="dialog">
+					<div class="modal-dialog modal-dialog-centered">
+					
+							<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+						</div>
+						<div class="modal-body">
+							<h3>Your Contact details submit successfully!
+							</h3>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+						</div>
+			</div>
+			</form>
+		</div>
+		</div>
+	</div></div>
+	</section>
+<br><br>
+<div class="container second-portion">
+	<div class="row">
+		<!-- Boxes de Acoes -->
+		<div class="col-xs-12 col-sm-6 col-lg-4">
+			<div class="Boxes">							
+				<div class="icon">
+					<div class="image"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+					<div class="info">
+						<br>
+						<h3 class="title">MAIL & WEBSITE</h3>
+						<p>
+							<i class="fa fa-envelope" aria-hidden="true"></i> Contact@valuequo.com
+							<br>
+							<br>
+							<i class="fa fa-globe" aria-hidden="true"></i> www.buckswise.com
+						</p>
+					
+					</div>
+				</div>
+				<div class="space"></div>
+			</div> 
+		</div>
+			
+		<div class="col-xs-12 col-sm-6 col-lg-4">
+			<div class="Boxes">							
+				<div class="icon">
+					<div class="image"><i class="fa fa-mobile" aria-hidden="true"></i></div>
+					<div class="info">
+						<br>
+						<h3 class="title">CONTACT</h3>
+						<p>
+							<i class="fa fa-mobile" aria-hidden="true"></i> +91 90 2222 0075
+							<br>
+							<br>
+						<!--	<i class="fa fa-mobile" aria-hidden="true"></i>  -->
+						</p>
+					</div>
+				</div>
+				<div class="space"></div>
+			</div> 
+		</div>
+			
+		<div class="col-xs-12 col-sm-6 col-lg-4">
+			<div class="Boxes">							
+				<div class="icon">
+					<div class="image"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+					<div class="info">
+						<br>
+						<h3 class="title">ADDRESS</h3>
+						<p>
+								<i class="fa fa-map-marker" aria-hidden="true"></i> 
+								OFFICE # 9, 7TH FLOOR, A WING, CITY VISTA, FOUNTAIN ROAD, ASHOKA NAGAR, KHARADI, PUNE, MAHARASHTRA 411014
+						</p>
+					</div>
+				</div>
+				<div class="space"></div>
+</div> 
+</div>		
+</div>
+</div>

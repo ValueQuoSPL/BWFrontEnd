@@ -48,6 +48,10 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
 
   changesSaved: boolean;
   dataChanged: boolean;
+  globalflag: boolean;
+
+  prevValue;
+  isFieldChange = false;
 
   constructor(
     private accountService: AccountService,
@@ -251,6 +255,7 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
   }
 
   onEditStaticField(nameField, modal) {
+
     if (nameField === 'salary') {
       this.nameField = 'Post Tax Take Home Salary';
       this.editField = this.income.incomeSalary;
@@ -274,6 +279,7 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
       this.editField = this.income.incomeRental;
     }
     {
+      this.prevValue = this.editField;
       this.modalService
         .open(modal, { ariaLabelledBy: 'incomeEditContent' })
         .result.then(
@@ -286,7 +292,22 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
           }
         );
     }
+
     this.changesSaved = false;
+  }
+
+  DetectChange(event) {
+    console.log('input data', event);
+    console.log('prev value ', this.prevValue);
+    if (this.prevValue === event || this.prevValue === null) {
+      this.globalflag = false;
+      this.isFieldChange = false;
+      console.log('same');
+    } else {
+      this.globalflag = true;
+      this.isFieldChange = true;
+      console.log('differ');
+    }
   }
 
   onEditDynamicField(index, modal) {
@@ -381,7 +402,7 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     this.dataChanged = this.isFieldChanged();
     if (!this.dataChanged && !this.changesSaved) {
-      return confirm('Do you want to leave this page Before changes saved ?');
+      return confirm('Do you want to leave this page Before changes saved ? ' + '<Cancel> to cancel leaving <OK> to leave page');
     } else {
       return true;
     }

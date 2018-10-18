@@ -1,0 +1,74 @@
+<div [ngSwitch]="isAuthenticated()">
+    <div *ngSwitchCase="true">
+        <div class="container">
+            <div class="form-group row justify-content-center"><h5>Tax Details</h5></div>
+            <mat-accordion>
+                <mat-expansion-panel class="accordion" [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                                <h5>Gross Income</h5>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Gross Details
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <jhi-gross></jhi-gross>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h5>EightyC Deduction</h5>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            EightyC Details
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <jhi-eightyc></jhi-eightyc>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h5> EightyD Deduction</h5>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            EightyD Details
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <jhi-eightyd></jhi-eightyd>                 
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h5>Home Deduction</h5>
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            Home Details
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <jhi-home></jhi-home>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h5>Other Deduction</h5>  
+                        </mat-panel-title>
+                        <mat-panel-description>
+                        Other Details
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <jhi-other></jhi-other>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+    <div *ngSwitchCase="false" class="form-group row justify-content-center">
+        <mat-card class="example-card">     
+            <mat-card-content class="example-card" class="shadow">
+                <img src="../../Assests//oops.jpg" style="height:300px;width:700px"><br>
+                <span>Oops you are not Signed In </span>
+                Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+                

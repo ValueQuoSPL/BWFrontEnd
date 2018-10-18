@@ -1,0 +1,367 @@
+<div *ngIf="!valid">
+    <h3>other deduction</h3>
+    <div  class="row pull-right" style="margin-top: -80px;">
+        
+      <button type="button" class="btn btn-link" (click)="onOtherSave()" data-toggle="modal" data-target="#otherModelCenter">
+        <span>
+          <i class="fa fa-save" aria-hidden="true"></i>
+          <span> Save</span>
+        </span>
+      </button>
+      <div class="modal fade" id="otherModelCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="otherModalLongTitle">Other Deduction</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h3>Your Other Deduction Details Saved successfully</h3>
+            </div>
+            <div class="modal-footer">
+              <button type="button" (click)="onOtherGet()" (click)="resetOther()"class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" (click)="resetOther()" class="btn btn-link">
+        <span>
+          <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+          <span> Reset</span>
+        </span>
+      </button>
+      <button type="button" class="btn btn-link">
+        <span>
+          <i class="fa fa-info" aria-hidden="true"></i>
+          <span> Help</span>
+        </span>
+      </button>
+    </div>
+    <div  class="card">
+      <div class="card-header">
+        Other Deduction
+      </div>
+      <div class="card-body">
+        <table class="table table-hover table-sm">
+          <thead class="thead-light">
+            <tr>
+              <!--Head of table start-->
+              <th scope="col">Deduction Under Section 80DD</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+
+          </thead>
+          <!--Head of table end-->
+          <tbody>
+            <!--Body of table start-->
+            <tr>
+              <td scope="row">Medical Treatment/Insurance of Handicapped Dependencies</td>
+              <td></td>
+              <td></td>
+              <td>
+                <input type="number" value="0" name="handicapped" [(ngModel)]="other.handicapped">
+              </td>
+            </tr>
+          </tbody>
+          <!--Body of table end-->
+          <thead class="thead-light">
+            <tr>
+              <!--Head of table start-->
+              <th scope="col">Deduction Under Section 80DDB</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <!--Head of table end-->
+          <tbody>
+            <!--Body of table start-->
+            <tr>
+              <td scope="row">Medical Treatment ( Specified Disease only )</td>
+              <td></td>
+              <td></td>
+              <td>
+                <input type="number" value="0" name="medicaltreat" [(ngModel)]="other.medicaltreat">
+                </td>
+            </tr>
+          </tbody>
+          <!--Body of table end-->
+          <thead class="thead-light">
+            <tr>
+              <!--Head of table start-->
+              <th scope="col">Deduction Under Section 80E</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <!--Head of table end-->
+          <tbody>
+            <!--Body of table start-->
+            <tr>
+              <td scope="row">Repayment of Loan of higher Self education</td>
+              <td></td>
+              <td></td>
+              <td>
+                <input type="number" value="0" name="selfedu" [(ngModel)]="other.selfedu">
+              </td>
+            </tr>
+          </tbody>
+          <!--Body of table end-->
+          <thead class="thead-light">
+            <tr>
+              <!--Head of table start-->
+              <th scope="col">Deduction Under section 80CCD</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <!--Head of table end-->
+          <tbody>
+            <!--Body of table start-->
+            <tr>
+              <td scope="row">NPS </td>
+              <td></td>
+              <td></td>
+              <td>
+                <input type="number" value="0" name="nps" [(ngModel)]="other.nps">
+              </td>
+            </tr>
+          </tbody>
+          <!--Body of table end-->
+          <thead class="thead-light">
+            <tr>
+              <!--Head of table start-->
+              <th scope="col">Deduction Under section 80 CCG</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <!--Head of table end-->
+          <tbody>
+            <!--Body of table start-->
+            <tr>
+              <td scope="row">Investment in RGESS</td>
+              <td></td>
+              <td></td>
+              <td>
+                <input type="number" value="0" name="rgess" [(ngModel)]="other.rgess">
+              </td>
+            </tr>
+          </tbody>
+          <!--Body of table end-->
+          <thead class="thead-light">
+            <tr>
+              <!--Head of table start-->
+              <th scope="col">Deduction Under section 80G</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <!--Head of table end-->
+          <tbody>
+            <!--Body of table start-->
+            <tr>
+              <td scope="row">Eligible Donations </td>
+              <td></td>
+              <td></td>
+              <td>
+                  <input type="number" value="0" name="donation" [(ngModel)]="other.donation">
+                    </td>
+            </tr>
+          </tbody>
+          <!--Body of table end-->
+        </table>            
+  </div>
+</div>
+</div>
+ <!-- modal, edit dialog -->
+<ng-template #otherEditContent let-c="close" let-d="dismiss">
+<div class="modal-header">
+<h4 class="modal-title" id="otherEditContent">Eightyd Add</h4>
+<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<form class="example-container" #otherAdd="ngForm">
+<div>
+        <mat-label>{{ nameField }}</mat-label>
+    </div>
+
+    <div>
+    <mat-form-field class="example-full-width">
+        <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name" >
+        <mat-hint>Please enter amount</mat-hint>
+    </mat-form-field>
+    </div>
+    <br> <br>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="otherAdd.form.invalid">Add</button>
+</div>
+</form>
+</div>
+</ng-template>
+<div *ngIf="valid" class="card-body">
+    <table class="table table-hover table-sm">
+      <thead class="thead-light">
+          <button type="button" class="btn btn-link" (click)="updateOther()">
+              <i class="fa fa-save" aria-hidden="true"> </i> 
+              <span>Update</span>
+          </button> 
+        <tr>
+          <!--Head of table start-->
+          <th scope="col">Deduction Under Section 80DD</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+
+      </thead>
+      <!--Head of table end-->
+      <tbody>
+        <!--Body of table start-->
+        <tr>
+          <td scope="row">Medical Treatment/Insurance of Handicapped Dependencies</td>
+          <td></td>
+          <td></td>
+          <td>
+              {{otherout[0].handicapped}}
+             
+          </td>
+          <button class="btn btn-outline-info"  type="button" (click)="onEditOtherField('Medical Handicapped', otherEditContent)" >
+              <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+          
+        </tr>
+      </tbody>
+      <!--Body of table end-->
+      <thead class="thead-light">
+        <tr>
+          <!--Head of table start-->
+          <th scope="col">Deduction Under Section 80DDB</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <!--Head of table end-->
+      <tbody>
+        <!--Body of table start-->
+        <tr>
+          <td scope="row">Medical Treatment ( Specified Disease only )</td>
+          <td></td>
+          <td></td>
+          <td>
+              {{otherout[0].medicaltreat}}
+              
+            </td>
+            <button class="btn btn-outline-info"  type="button" (click)="onEditOtherField('Medical Treatment', otherEditContent)" >
+                <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+        </tr>
+      </tbody>
+      <!--Body of table end-->
+      <thead class="thead-light">
+        <tr>
+          <!--Head of table start-->
+          <th scope="col">Deduction Under Section 80E</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <!--Head of table end-->
+      <tbody>
+        <!--Body of table start-->
+        <tr>
+          <td scope="row">Repayment of Loan of higher Self education</td>
+          <td></td>
+          <td></td>
+          <td>
+              {{otherout[0].selfedu}}
+          </td>
+          <button class="btn btn-outline-info"  type="button" (click)="onEditOtherField('Repayment', otherEditContent)" >
+              <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+        </tr>
+      </tbody>
+      <!--Body of table end-->
+      <thead class="thead-light">
+        <tr>
+          <!--Head of table start-->
+          <th scope="col">Deduction Under section 80CCD</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <!--Head of table end-->
+      <tbody>
+        <!--Body of table start-->
+        <tr>
+          <td scope="row">NPS </td>
+          <td></td>
+          <td></td>
+          <td>
+              {{otherout[0].nps}}
+          </td>
+          <button class="btn btn-outline-info"  type="button" (click)="onEditOtherField('nps', otherEditContent)" >
+              <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+        </tr>
+      </tbody>
+      <!--Body of table end-->
+      <thead class="thead-light">
+        <tr>
+          <!--Head of table start-->
+          <th scope="col">Deduction Under section 80 CCG</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <!--Head of table end-->
+      <tbody>
+        <!--Body of table start-->
+        <tr>
+          <td scope="row">Investment in RGESS</td>
+          <td></td>
+          <td></td>
+          <td>
+              {{otherout[0].rgess}}
+          </td>
+          <button class="btn btn-outline-info"  type="button" (click)="onEditOtherField('rgess', otherEditContent)" >
+              <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+        </tr>
+      </tbody>
+      <!--Body of table end-->
+      <thead class="thead-light">
+        <tr>
+          <!--Head of table start-->
+          <th scope="col">Deduction Under section 80G</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <!--Head of table end-->
+      <tbody>
+        <!--Body of table start-->
+        <tr>
+          <td scope="row">Eligible Donations </td>
+          <td></td>
+          <td></td>
+          <td>
+              {{otherout[0].donation}}
+                </td>
+                <button class="btn btn-outline-info"  type="button" (click)="onEditOtherField('donation', otherEditContent)" >
+                    <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+        </tr>
+      </tbody>
+      <!--Body of table end-->
+    </table>            
+</div>

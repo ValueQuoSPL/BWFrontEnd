@@ -9,7 +9,7 @@
                         </span>&nbsp;
                         <span class="text-center">Subscription Detail</span>
                     </div>
-                </div><br>
+                </div>
                 <div class="card bg-light text-dark">
                     <div class="card-body">
                         <form #form action="https://sandboxsecure.payu.in/_payment" method="POST">
@@ -22,8 +22,7 @@
                             <div class="form-group">
                                 <div class="row justify-content-center">
                                     <mat-form-field style="width: 80%;">
-                                        <input matInput [(ngModel)]="user.amount" placeholder="Amount Payable" #amount="ngModel" name="amount" id="amount" 
-                                            required>
+                                        <input matInput [(ngModel)]="user.amount" placeholder="Amount Payable" #amount="ngModel" name="amount" id="amount" required>
                                     </mat-form-field>
                                     <mat-form-field style="width: 80%;">
                                         <input matInput [(ngModel)]="user.firstName" placeholder="firstName" #amount="ngModel" name="firstName" id="firstName" required>
@@ -41,164 +40,24 @@
                                     <input type="hidden" name="service_provider" value="payu_paisa" />
                                     <input type="hidden" name="surl" [(ngModel)]="sUrl" />
 
-                                    <button class="btn btn-success btn-lg btn-block" style="width: 80%;" (click)="form.submit()" >pay</button>
-                                    <button type="submit" class="btn btn-success" (click)="submitUser()">Submit</button>
+                                    <button *ngIf="!disablePaymentButton" class="btn btn-success btn-lg btn-block" style="width: 60%;" (click)="form.submit()">pay</button>
+                                    <button *ngIf="disablePaymentButton" type="submit" class="btn btn-success btn-lg btn-block" style="width: 60%;" (click)="submitUser()">Submit</button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                </div><br>
+                </div>
                 <div class="card bg-light text-dark">
-                    <div class="card-footer">   
+                    <div class="card-footer">
                         <span>
-                            <i class="fa fa-cc-visa" style="font-size:38px;color:blue"></i>
+                            <i class="fa fa-cc-visa" style="font-size:28px;color:blue"></i>
                         </span>&nbsp;
                         <span>
-                            <i class="fa fa-cc-mastercard" style="font-size:38px;color:red"></i>                        </span>    
+                            <i class="fa fa-cc-mastercard" style="font-size:28px;color:red"></i>
+                        </span>
                     </div>
-                </div>    
+                </div>
             </div>
         </div>
     </div>
 </div>
-<jhi-success [parentData]="element"></jhi-success>
-<!-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="row justify-content-md-center">
-                <h5>Payment Detail</h5>
-                <form #form action="https://sandboxsecure.payu.in/_payment" method="POST">
-                    <div *ngFor="let payment of paymentDetail">
-                        <input type="hidden" name="key" value="{{payment.key}}" />
-                        <input type="hidden" name="hash_string" value="{{payment.hashString}}" />
-                        <input type="hidden" name="hash" value="{{payment.hash}}" />
-                        <input type="hidden" name="txnid" value="{{payment.txnid}}" />
-                    </div>
-
-                    <div class="row justify-content-center">
-                        <div class="form-group">
-                            <mat-form-field style="width: 100%;">
-                                <input matInput [(ngModel)]="user.amount" placeholder="Amount Payable" #amount="ngModel" name="amount" id="amount" readonly
-                                    required>
-                            </mat-form-field>
-                            <mat-form-field style="width: 100%;">
-                                <input matInput [(ngModel)]="user.firstName" placeholder="firstName" #amount="ngModel" name="firstName" id="firstName" required>
-                            </mat-form-field>
-                            <mat-form-field style="width: 100%;">
-                                <input matInput [(ngModel)]="user.phone" placeholder="phone" #amount="ngModel" name="phone" id="phone" required>
-                            </mat-form-field>
-                            <mat-form-field style="width: 100%;">
-                                <input matInput type="email" [(ngModel)]="user.eMail" placeholder="EMail" #amount="ngModel" name="eMail" id="eMail" required>
-                            </mat-form-field>
-                            <mat-form-field style="width: 100%;">
-                                <input matInput [(ngModel)]="user.productInfo" placeholder="Your Plan" #amount="ngModel" name="productInfo" id="productInfo"
-                                    readonly>
-                            </mat-form-field>
-                            <input type="hidden" name="service_provider" value="payu_paisa" />
-                            <input type="hidden" name="surl" [(ngModel)]="sUrl" />
-                        </div>
-                    </div>
-                    <button class="btn btn-success btn-lg btn-block" (click)="submitUser()">pay</button>
-                    <button type="submit" class="btn btn-success" (click)="form.submit()">Submit</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- <div class="container">
-        <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                        <h5>PayUMoney Payment Request Form</h5>
-                    <form #form action="https://sandboxsecure.payu.in/_payment" method="POST">
-                        <div *ngFor="let payment of paymentDetail">
-                            <input type="hidden" name="key" value="{{payment.key}}" />    
-                            <input type="hidden" name="hash_string" value="{{payment.hashString}}"  />
-                            <input type="hidden" name="hash" value="{{payment.hash}}" />
-                            <input type="hidden" name="txnid" value="{{payment.txnid}}" /> 
-                        </div>    
-                            <table>
-                                <p>Mandatory Parameters</p>
-                                <tr>
-                                    <td>Amount:</td>
-                                    <td><input name="amount" [(ngModel)]="user.amount"/></td>
-                                    <td>First Name: </td>
-                                    <td><input name="firstname" id="firstname"  [(ngModel)]="user.firstName"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Email: </td>
-                                    <td><input name="email" id="email" [(ngModel)]="user.eMail"/></td>
-                                    <td>Phone: </td>
-                                    <td><input name="phone" [(ngModel)]="user.phone"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Product Info: </td>
-                                    <td colspan="3"><textarea name="productInfo" [(ngModel)]="user.productInfo"></textarea></td>
-                                </tr>
-                                <tr>
-                                    <td>Success URI: </td>
-                                    <td colspan="3"><input name="surl" size="64" [(ngModel)]="user.sUrl" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Failure URI: </td>
-                                    <td colspan="3"><input name="furl" size="64" [(ngModel)]="user.fUrl" /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3"><input type="hidden" name="service_provider" value="payu_paisa" /></td>
-                                </tr>
-                                <tr>
-                                    <td><b>Optional Parameters</b></td>
-                                </tr>
-                                <tr>
-                                    <td>Last Name: </td>
-                                    <td><input name="lastname" id="lastname"  /></td>
-                                    <td>Cancel URI: </td>
-                                    <td><input name="curl" value="" /></td>
-                                </tr>
-                                <tr>
-                                    <td>Address1: </td>
-                                    <td><input name="address1" /></td>
-                                    <td>Address2: </td>
-                                    <td><input name="address2"  /></td>
-                                </tr>
-                                <tr>
-                                    <td>City: </td>
-                                    <td><input name="city"  /></td>
-                                    <td>State: </td>
-                                    <td><input name="state"  /></td>
-                                </tr>
-                                <tr>
-                                    <td>Country: </td>
-                                    <td><input name="country"  /></td>
-                                    <td>Zipcode: </td>
-                                    <td><input name="zipcode"  /></td>
-                                </tr>
-                                <tr>
-                                    <td>UDF1: </td>
-                                    <td><input name="udf1"  /></td>
-                                    <td>UDF2: </td>
-                                    <td><input name="udf2"  /></td>
-                                </tr>
-                                <tr>
-                                    <td>UDF3: </td>
-                                    <td><input name="udf3"   /></td>
-                                    <td>UDF4: </td>
-                                    <td><input name="udf4"  /></td>
-                                </tr>
-                                <tr>
-                                    <td>UDF5: </td>
-                                    <td><input name="udf5"  /></td>
-                                    <td>PG: </td>
-                                    <td><input name="pg"  /></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4"></td>
-                                </tr>
-                            </table>
-                            <button  class="btn btn-success" (click)="submitUser()" >pay</button>
-                            <button type="submit" class="btn btn-success" (click)="form.submit()">Submit</button>
-                        </form>
-                </div>
-            </div>
-            
-</div> -->

@@ -1,0 +1,83 @@
+/* .box {
+  background-color: lightgrey;
+  width: 300px;
+  height: 500px;
+  border: 25px solid #808080;
+  margin-top: 50px;
+}
+
+
+.example-header-image1 {
+  background-image: url("../img/pratik/asset.jpg");
+  background-size: cover;
+}
+.example-header-image2 {
+  background-image: url("../img/pratik/liability.jpg");
+  background-size: cover;
+}
+
+.shadow {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.mat-card-header {
+  width: 500px;
+} */
+h3 {
+  margin: 0 0 10px;
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+example-card {
+  max-width: 400px;
+  height: 415px;
+}
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  height: 36px;
+}
+.mat-button,
+.mat-flat-button,
+.mat-icon-button,
+.mat-stroked-button {
+  box-sizing: border-box;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  outline: 0;
+  border: none;
+  -webkit-tap-highlight-color: #fafafa;
+  display: inline-block;
+  white-space: nowrap;
+  text-decoration: none;
+  vertical-align: baseline;
+  text-align: center;
+  margin: 11px;
+  min-width: 88px;
+  line-height: 36px;
+  padding: 0 16px;
+  border-radius: 2px;
+  overflow: visible;
+}
+.mat-toolbar {
+  background: #fafafa;
+  color: rgba(0, 0, 0, 0.87);
+}
+.labels {
+  height: 36px;
+  background: #f1592a;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 5px;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}

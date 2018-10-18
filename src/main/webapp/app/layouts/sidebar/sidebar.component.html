@@ -11,7 +11,7 @@
 
         <div [ngSwitch]="isAuthenticated()">
             <div *ngSwitchCase="true">
-                <ul>
+                <ul (click)="RouteChanged()">
                     <br>
                     <br>
                     <li>

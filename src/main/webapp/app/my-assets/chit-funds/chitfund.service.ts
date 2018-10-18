@@ -16,7 +16,6 @@ export class ChitFundService {
     );
   }
   public getChitByuid(uid) {
-    console.log('in getChitByuid service uid', uid);
     this.ServiceAPIParam = 'api/getchit' + '/' + uid;
     return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
   }

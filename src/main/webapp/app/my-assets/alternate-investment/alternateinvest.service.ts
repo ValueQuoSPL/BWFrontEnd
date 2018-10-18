@@ -16,7 +16,6 @@ export class AlternateService {
     );
   }
   public getAltInvestmentByuid(uid) {
-    console.log('in getAltInvestmentByuid service uid', uid);
     this.ServiceAPIParam = 'api/atlernate' + '/' + uid;
     return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
   }

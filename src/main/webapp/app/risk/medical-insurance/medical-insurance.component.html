@@ -111,7 +111,7 @@
                 <td>{{medical.family_members}} </td>
                 <td>
                     <button class="btn btn-outline-info" type="button" (click)="opnMedical(medical.id,lifeModal)">
-                        <span> <i class="fa fa-edit" aria-hidden="true"></i></span>
+                        <span> <fa-icon [icon]="'edit'"></fa-icon></span>
                     </button>
                     <button class="btn btn-outline-danger" type="button" (click)="deleteField(i, medical.id)">
                         <span>

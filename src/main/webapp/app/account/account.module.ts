@@ -16,6 +16,7 @@ import {
 import { Register } from './register/register.service';
 import { CustomMaterialModule } from 'app/custom-material.module';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { MobileOtpComponent } from './mobile-otp/mobile-otp.component';
 
 @NgModule({
     imports: [BuckswiseFrontEndSharedModule, RouterModule.forChild(accountState),
@@ -29,6 +30,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
         PasswordResetInitComponent,
         PasswordResetFinishComponent,
         SettingsComponent,
+        MobileOtpComponent
     ],
     providers: [Register],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

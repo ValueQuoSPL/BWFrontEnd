@@ -37,9 +37,7 @@ export class ChitFundComponent implements OnInit {
       .toPromise()
       .then(response => {
         this.user = response.body;
-        console.log('user info of chitfund', this.user);
         this.chitfund.userid = this.user.id;
-        console.log('in fetchid method', this.chitfund.userid);
         this.uid = this.chitfund.userid;
         this.getChitByuid(this.uid);
       });
@@ -55,7 +53,6 @@ export class ChitFundComponent implements OnInit {
   }
   openChit(content) {
     this.resetFieldValue();
-    console.log('chitModal modal open');
     this.modalService
       .open(content, { ariaLabelledBy: 'chitModal' })
       .result.then(
@@ -85,7 +82,6 @@ export class ChitFundComponent implements OnInit {
   }
   getChitById(commonid) {
     this.chitfundService.getChitById(this.commonid).subscribe(res => {
-      console.log('this is responce of getStockId ', res);
       this.getdata = res;
       this.chitfund.chit_name = this.getdata.chit_name;
       this.chitfund.chit_holder_name = this.getdata.chit_holder_name;
@@ -111,13 +107,10 @@ export class ChitFundComponent implements OnInit {
   }
   getChitByuid(uid) {
     this.chitfundService.getChitByuid(this.uid).subscribe(res => {
-      console.log('this is responce of getChitByuid', res);
       this.chitfundDetails = res;
-      console.log('responce of getChitByuid service', this.chitfundDetails);
     });
   }
   update(commonid) {
-    console.log('inside update id is ', this.commonid);
     this.chitfund.id = this.commonid;
     this.chitfundService.UpdateChit(this.chitfund).subscribe(data => {
       alert('Added new chit details');
@@ -127,9 +120,7 @@ export class ChitFundComponent implements OnInit {
   delete(commonid) {
     this.conformkey = confirm('really Want to delete?');
     if (this.conformkey === true) {
-      console.log('inside delete id is ', this.commonid);
       this.chitfund.id = this.commonid;
-      console.log('inside delete', this.chitfund);
       this.chitfundService.DeleteChit(this.chitfund.id).subscribe(data => {
         confirm('delete chit details');
         this.getChitByuid(this.uid);

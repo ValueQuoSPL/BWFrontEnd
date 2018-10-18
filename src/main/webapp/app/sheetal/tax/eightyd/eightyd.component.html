@@ -1,0 +1,177 @@
+<div *ngIf="!valid">
+<div class="row pull-right" style="margin-top: -50px;">
+  <button type="button" class="btn btn-link" (click)="onEightydSave()" data-toggle="modal" data-target="#eightydModelCenter">
+    <span>
+      <i class="fa fa-save" aria-hidden="true"></i>
+      <span> Save</span>
+    </span>
+  </button>
+  <button type="button" (click)="resetEightyd()" class="btn btn-link">
+    <span>
+      <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+      <span> Reset</span>
+    </span>
+  </button>
+  <button type="button" class="btn btn-link">
+    <span>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      <span> Help</span>
+    </span>
+  </button>
+</div>
+<div class="modal fade" id="eightydModelCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="eightydModalLongTitle">80D Deduction</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">  
+        <h3>Your 80D Deduction Details Saved successfully</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+  </div>
+</div>
+</div>
+<div class="card">
+<div class="card-header">80D Deduction
+</div>
+  <div class="card-body">
+    <table class="table table-hover table-sm">
+      <thead class="thead-light">
+        <tr>
+          <!--Head of table start-->
+          <th scope="col">Name</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col">Amount</th>
+        </tr>
+      </thead>
+      <!--Head of table end-->
+      <tbody>
+        <!--Body of table start-->
+        <tr>
+          <td scope="row">Medical Insurance for Self</td>
+          <td> </td>
+          <td></td>
+          <td>
+            <input type="number" value="0" name="medself" [(ngModel)]="eightyd.medself">
+          </td>
+        </tr>
+        <tr>
+          <td scope="row">Medical Insurance for Parents</td>
+          <td></td>
+          <td></td>
+          <td>
+            <input type="number" value="0" name="medparents" [(ngModel)]="eightyd.medparents">
+          </td>
+        </tr>
+        <tr>
+          <td scope="row">Preventive Health Checkup</td>
+          <td></td>
+          <td></td>
+          <td>
+            <input type="number" value="0" name="healthcheck" [(ngModel)]="eightyd.healthcheck">
+          </td>
+        </tr>
+      </tbody>
+      <!--Body of table end-->
+    </table>          
+  </div>
+</div> <!--form end-->   
+</div><!--container end-->
+<ng-template #eightydEditContent let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title" id="eightydEditContent">Eightyd Add</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+    <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="example-container" #eightydAdd="ngForm">
+      <div>
+        <mat-label>{{ nameField }}</mat-label>
+      </div>
+      <div>
+      <mat-form-field class="example-full-width">
+        <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name" >
+        <mat-hint>Please enter amount</mat-hint>
+      </mat-form-field>
+      </div>
+      <br> <br>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="eightydAdd.form.invalid">Add</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+<div *ngIf="valid">
+  
+      <!--Head of table end-->
+      
+        <!--Body of table start-->
+       <div  class="card">
+          <div class="card-header">
+             80D Deduction
+          </div>   
+          <button type="button" class="btn btn-link" (click)="updateEightyd()">
+            <i class="fa fa-save" aria-hidden="true"> </i> 
+            <span>Update</span>
+          </button>
+          <div class="card-body">
+            <table class="table table-hover table-sm">
+              <thead class="thead-light">
+                <tr>
+                  <!--Head of table start-->
+                  <th scope="col">Name</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                  <th scope="col">Amount</th>
+                </tr>
+              </thead>
+              <!--Head of table end-->
+              <tbody>
+                <!--Body of table start-->
+                <tr>
+                  <td scope="row">Medical Insurance for Self</td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    {{eightydout[0].medself}}
+                  </td>
+                  <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('Medical Insurance for Self', eightydEditContent )" >
+                    <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                    </td>
+                </tr>
+                <tr>
+                  <td scope="row">Medical Insurance for Parents</td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    {{eightydout[0].medparents}}
+                  </td>
+                  <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('Medical Insurance for Parents', eightydEditContent)" >
+                    <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                    </td>
+                </tr>
+                <tr>
+                  <td scope="row">Preventive Health Checkup</td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    {{eightydout[0].healthcheck}}
+                  </td>
+                  <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('Preventive Health Checkup', eightydEditContent)" >
+                    <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                    </td>
+                </tr>
+              </tbody>
+              <!--Body of table end-->
+            </table>
+          </div>
+        </div>        
+        

@@ -11,12 +11,10 @@ export class CashService {
   constructor(private http: HttpClient) {}
 
   public CashDetails(cash) {
-    console.log('cashDetail service');
     return this.http.post<Cash[]>(SERVER_API_URL + 'api/postcash', cash);
   }
 
   public getCashDetailsByuid(uid) {
-    console.log('in getCashDetailsByuid service uid', uid);
     this.ServiceAPIParam = 'api/cashuid' + '/' + uid;
     return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
   }

@@ -1,0 +1,336 @@
+<div *ngIf="!valid">
+        <div class="row pull-right" style="margin-top: -50px;">
+                
+                <button type="button" class="btn btn-link" (click)="onEightycSave()" data-toggle="modal" data-target="#eightycModelCenter">
+                    <span>
+                    <i class="fa fa-save" aria-hidden="true"></i>
+                    <span> Save</span>
+                    </span>
+                </button>
+                <div class="modal fade" id="eightycModelCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="eightycModalLongTitle">80C Deduction</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <h3>Your 80C Deduction Details Saved successfully</h3>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" (click)="resetEightyc()" class="btn btn-link">
+                    <span>
+                      <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                      <span> Reset</span>
+                    </span>
+                </button>
+                <button type="button" class="btn btn-link">
+                    <span>
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                        <span> Help</span>
+                    </span>
+                </button>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                Investment Other than Home
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover table-sm">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">5 Years of Fixed Deposit in Schedule Bank (Enter amount of Tax-Saver Fixed Deposits only)</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="number"  name="fixed" [(ngModel)]="eightyc.fixed">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Tution Fees</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="number" value="0" name="tution" [(ngModel)]="eightyc.tution">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Deposite in NSC</td>
+                                <td>
+                                    <!-- <input type="checkbox"> -->
+                                </td>
+                                <td></td>
+                                <td>
+                                    <input type="number" value="0" name="nsc" [(ngModel)]="eightyc.nsc">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Deposite in NSS</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="number" value="0" name="nss" [(ngModel)]="eightyc.nss">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Deposite in Post Office saving Scheme</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="number" value="0" name="post" [(ngModel)]="eightyc.post">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Interest on NSC Reinvested(Upto 5th Completed year only)</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="number" value="0" name="reinvest" [(ngModel)]="eightyc.reinvest">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Life Insurance Premium</td>
+                                <td>
+                                    <!-- <input type="checkbox"> -->
+                                </td>
+                                <td></td>
+                                <td>
+                                    <input type="number" value="0" name="licpremium" [(ngModel)]="eightyc.licpremium">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Equity linked Savings Scheme (ELSS)</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="number" value="0" name="equity" [(ngModel)]="eightyc.equity">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Provident Fund</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="number" value="0" name="pf" [(ngModel)]="eightyc.pf">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Public Provident Fund</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="number" value="0" name="ppf" [(ngModel)]="eightyc.ppf">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Others</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="number" value="0" name="other" [(ngModel)]="eightyc.other">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">Tution Fees</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="number" value="0" name="tutionfee" [(ngModel)]="eightyc.tutionfee">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td scope="row">ULIP of UTI/LIC</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <input type="number" value="0" name="ulip" [(ngModel)]="eightyc.ulip">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>           
+                </div>
+            </div>
+</div>
+<div *ngIf="valid">
+        <ng-template #eightycEditContent let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="eightycEditContent">Eightyc Add</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="example-container" #eightycAdd="ngForm">
+                        <div>
+                            <mat-label>{{ nameField }}</mat-label>
+                        </div>
+                        <div>
+                            <mat-form-field class="example-full-width">
+                                <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name" >
+                                <mat-hint>Please enter amount</mat-hint>
+                            </mat-form-field>
+                        </div><br><br>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-eightycResponseline-success" (click)="c('Save click')" [disabled]="eightycAdd.form.invalid">Add</button>
+                        </div>
+                    </form>
+            </div>
+        </ng-template>
+        <div class="card">
+                <div class="card-header">
+                    Investment Other than Home
+                </div>
+                <button type="button" class="btn btn-link" (click)="updateEightyc()">
+                    <i class="fa fa-save" aria-hidden="true"> </i> 
+                    <span>Update</span>
+                </button>  
+                <div class="card-body">
+                    <table class="table table-hover table-sm">
+                        <thead class="thead-light">
+                            <tr>
+                                <!--Head of table start-->
+                                <th scope="col">Name</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>5 Years of Fixed Deposit in Schedule Bank (Enter amount of Tax-Saver Fixed Deposits only)</td>
+                                <td></td>
+                                <td></td>
+                                <td>{{eightycResponse[0].fixed}}</td> 
+                                 <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Fixed Deposit in Schedule Bank', eightycEditContent)" >
+                                <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                             </tr>
+                              <tr>
+                                <td scope="row">Tution Fees</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                {{eightycResponse[0].tution}}
+                                </td>
+                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Tution Fees', eightycEditContent)" >
+                                <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                            </tr> 
+                             <tr>
+                                <td scope="row">Deposite in NSC</td>
+                                <td>
+                                <!-- <input type="checkbox"> -->
+                                </td>
+                                <td></td>
+                                <td>
+                                {{eightycResponse[0].nsc}}
+                                </td>
+                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Deposite in NSC', eightycEditContent)" >
+                                <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                            </tr>
+                            <tr>
+                                <td scope="row">Deposite in NSS</td> 
+                                <td></td>
+                                <td></td>
+                                <td>
+                                {{eightycResponse[0].nss}}
+                                </td>
+                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Deposite in NSS', eightycEditContent)" >
+                                <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                            </tr>
+                            <tr>
+                                <td scope="row">Deposite in Post Office saving Scheme</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                {{eightycResponse[0].post}}
+                                </td>
+                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Post Office saving Scheme', eightycEditContent)" >
+                                <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                            </tr>
+                            <tr>
+                                <td scope="row">Interest on NSC Reinvested(Upto 5th Completed year only)</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                {{eightycResponse[0].reinvest}}
+                                </td>
+                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Interest on NSC Reinvested', eightycEditContent)" >
+                                <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                            </tr>
+                            <tr>
+                                <td scope="row">Life Insurance Premium</td>
+                                <td>
+                                <!-- <input type="checkbox"> -->
+                                </td>
+                                <td></td>
+                                <td>
+                                {{eightycResponse[0].licpremium}}
+                                </td>
+                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Life Insurance Premium', eightycEditContent)" >
+                                <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                            </tr>
+                            <tr>
+                                <td scope="row">Equity linked Savings Scheme (ELSS)</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                {{eightycResponse[0].equity}}
+                                </td>
+                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Equity linked Savings Scheme', eightycEditContent)" >
+                                <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                            </tr>
+                            <tr>
+                                <td scope="row">Provident Fund</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                {{eightycResponse[0].pf}}
+                                </td>
+                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Provident Fund', eightycEditContent)" >
+                                <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                            </tr>
+                            <tr>
+                                <td scope="row">Public Provident Fund</td>
+                                <td></td>
+                                <td></td>
+                                <td>{{eightycResponse[0].ppf}}</td>
+                                    <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Public Provident Fund', eightycEditContent)" >
+                                    <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                            </tr>
+                            <tr>
+                                <td scope="row">Others</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                {{eightycResponse[0].other}}
+                                </td>
+                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Others', eightycEditContent)" >
+                                <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+                            </tr>
+                            <tr>
+                                <td scope="row">ULIP of UTI/LIC</td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                {{eightycResponse[0].ulip}}
+                                </td>
+                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('ULIP of UTI/LIC', eightycEditContent)" >
+                                <span> <fa-icon [icon]="'edit'"></fa-icon></span></button> 
+                             </tr>
+                        </tbody>
+                    </table>
+                </div>

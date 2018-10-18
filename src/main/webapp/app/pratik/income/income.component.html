@@ -35,7 +35,7 @@
                         </button>
                         <span [ngSwitch]="isIncomeData" style="margin-top: 14px;">
                             <p *ngSwitchCase="true">
-                                <button type="button" class="btn btn-sm  btn-link" (click)="updateIncome()">
+                                <button type="button" class="btn btn-sm  btn-link" (click)="updateIncome()" [disabled]="!globalflag" >
                                     <fa-icon [icon]="'save'"></fa-icon>
                                     <span>Update</span>
                                 </button>
@@ -71,7 +71,7 @@
                             <div>
                                 <mat-form-field class="example-full-width">
                                     <input matInput jhiNumberOnly required placeholder="Amount" type="number" value=""
-                                        [(ngModel)]="amount" name="amount-name">
+                                        [(ngModel)]="amount" name="amount-name" >
                                     <mat-hint>Please enter amount</mat-hint>
                                 </mat-form-field>
                             </div>
@@ -101,14 +101,14 @@
                             <div>
                                 <mat-form-field class="example-full-width">
                                     <input matInput jhiNumberOnly required placeholder="Amount" type="number" value=""
-                                        [(ngModel)]="editField" name="amount-name">
+                                        [(ngModel)]="editField" name="amount-name" (ngModelChange)="DetectChange($event)">
                                     <mat-hint>Please enter amount</mat-hint>
                                 </mat-form-field>
                             </div>
                             <br> <br>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-sm btn btn-sm-outline-success" (click)="c('Save click')"
-                                    [disabled]="incomeAdd.form.invalid">Add</button>
+                                    [disabled]="!isFieldChange" >Update</button>
                             </div>
                         </form>
                     </div>

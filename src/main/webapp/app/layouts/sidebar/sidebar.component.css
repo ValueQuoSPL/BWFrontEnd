@@ -16,11 +16,11 @@
   color: white;
 }
 
-#main-menu:hover,
+/* #main-menu:hover,
 nav.main-menu.expanded {
   width: 250px;
-  /* overflow: visible; */
-}
+  overflow: visible; 
+} */
 
 #main-menu.expanded {
   width: 250px;

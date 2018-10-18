@@ -1,0 +1,116 @@
+<div [ngSwitch]="isAuthenticated()">
+    <div *ngSwitchCase="true">
+            <mat-card class="container-fluid example-card1">
+                    <mat-card-content class="container-fluid">
+                            <div>
+                                    <form>
+                                    <label class="row justify-content-md-center colored  text-center labels"><h5>Appointment Booking</h5></label>
+                                        <div class="row text-center">
+                                            <div class="col-md-3 text-center">
+                                                    <button mat-raised-button color="accent" (click)="today()" (click)="getCalendar()">
+                                                        Today
+                                                    </button>
+                                            </div>
+                                            <mat-toolbar class="col-md-5 text-center">
+                                                <h5>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h5>
+                                            </mat-toolbar>
+                                            <div class="col-md-3 text-center">
+                                                    <button  mat-raised-button color="primary" (click)="increment()" (click)="getCalendar()">
+                                                            Next
+                                                        </button>
+                                            </div>
+                                                   
+                                        <br>
+                                        <!-- <div [ngSwitch]="view">
+                                            <div class="row" >
+                                                    <div class="col-md-2"></div>
+                                                    <div class="col-md-7">
+                                                            <button [disabled]="isAppointmentData" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" data-toggle="modal"
+                                                            (click)="value()" (click)="openAppointment(dateOfAppointment, '9 AM')">
+                                                            9:00 A.M
+                                                        </button>
+                                                        <button [disabled]="isAppointmentData11" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" (click)="value1()"
+                                                            (click)="openAppointment(dateOfAppointment, '11:00A.M')">11:00 A.M</button>
+                                                        <button [disabled]="isAppointmentData1" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" (click)="value2()"
+                                                            (click)="openAppointment(dateOfAppointment, '1:00P.M')">1:00 P.M</button>
+                                                    </div>
+                                                    <div class="col-md-3"></div>
+                                            </div>
+                                            <div class="row" >
+                                                    <div class="col-md-2"></div>
+                                                    <div class="col-md-7">
+                                                            <button [disabled]="isAppointmentData3" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" (click)="value3()"
+                                                            (click)="openAppointment(dateOfAppointment, '3:00P.M')">3:00 P.M</button>
+                                                        <button [disabled]="isAppointmentData5" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" (click)="value4()"
+                                                            (click)="openAppointment(dateOfAppointment, '5:00P.M')">5:00 P.M </button>
+                                                        <button [disabled]="isAppointmentData7" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" (click)="value5()"
+                                                            (click)="openAppointment(dateOfAppointment, '7:00P.M')">7:00 P.M </button>
+                                                    </div>
+                                                    <div class="col-md-3"></div>
+                                            </div>
+                                            <div class="row" >
+                                                    <div class="col-md-2"></div>
+                                                    <div class="col-md-7">
+                                                            <button [disabled]="isAppointmentData9" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" (click)="value6()"
+                                                            (click)="openAppointment(dateOfAppointment, '9:00P.M')">9:00 P.M </button>
+                                                    </div>
+                                                    <div class="col-md-3"></div>
+                                            </div>
+
+                                        </div> -->
+                                         <div [ngSwitch]="view">
+                                            <button [disabled]="isAppointmentData" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" data-toggle="modal"
+                                                (click)="value()" (click)="openAppointment(dateOfAppointment, '9 AM')">
+                                                9:00 A.M
+                                            </button>
+                                            <button [disabled]="isAppointmentData11" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" (click)="value1()"
+                                                (click)="openAppointment(dateOfAppointment, '11:00A.M')">11:00 A.M</button>
+                                            <button [disabled]="isAppointmentData1" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" (click)="value2()"
+                                                (click)="openAppointment(dateOfAppointment, '1:00P.M')">1:00 P.M</button>
+                                            <button [disabled]="isAppointmentData3" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" (click)="value3()"
+                                                (click)="openAppointment(dateOfAppointment, '3:00P.M')">3:00 P.M</button>
+                                            <button [disabled]="isAppointmentData5" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" (click)="value4()"
+                                                (click)="openAppointment(dateOfAppointment, '5:00P.M')">5:00 P.M </button>
+                                            <button [disabled]="isAppointmentData7" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" (click)="value5()"
+                                                (click)="openAppointment(dateOfAppointment, '7:00P.M')">7:00 P.M </button>
+                                            <button [disabled]="isAppointmentData9" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot" (click)="value6()"
+                                                (click)="openAppointment(dateOfAppointment, '9:00P.M')">9:00 P.M </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <ng-template #dateOfAppointment let-c="close" let-d="dismiss">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="dateOfAppointment">Confirm Appointment</h5>
+                                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="example-container" #appointmentAdd="ngForm">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p>{{val}}</p>
+                                                    <h5>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h5>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Add</button>
+                                    </div>
+                                </ng-template>
+                    </mat-card-content>
+                  
+                  </mat-card>
+    </div>
+    <div *ngSwitchCase="false" class="form-group row justify-content-center">
+            <mat-card class="example-card"> 
+                <mat-card-content class="example-card" class="shadow">
+                    <img src="../../app/Assests/oops.jpg" style="height:300px;width:700px"><br>
+                    <span>Oops you are not Signed In </span>
+                    Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+</div>

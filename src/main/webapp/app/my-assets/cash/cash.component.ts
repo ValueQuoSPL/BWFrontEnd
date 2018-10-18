@@ -40,10 +40,8 @@ export class CashComponent implements OnInit {
       .toPromise()
       .then(response => {
         this.user = response.body;
-        console.log('user info of cash', this.user);
         this.cash.userid = this.user.id;
         this.uid = this.user.id;
-        console.log('in fetchid method', this.cash.userid);
         // this.getMyProfilebyid(this.uid);
         // this. getAltInvestment(this.uid)
         this.getCashDetailsByuid(this.uid);
@@ -60,14 +58,12 @@ export class CashComponent implements OnInit {
   }
   openCash(content) {
     this.resetFieldValue();
-    console.log('cashModal modal open');
     this.modalService
       .open(content, { ariaLabelledBy: 'cashModal' })
       .result.then(
         result => {
           this.closeResult = `Closed with: ${result}`;
           this.saveCashDetails();
-          // console.log('add income success');
         },
         reason => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -77,8 +73,6 @@ export class CashComponent implements OnInit {
   openEditCash(editCashModal, id) {
     this.resetFieldValue();
     this.commonid = id;
-    console.log('editCashModal common id is', this.commonid);
-    console.log('editCashModal modal open', id);
     this.getCashId(this.commonid);
     this.modalService
       .open(editCashModal, { ariaLabelledBy: 'editCashModal' })
@@ -94,36 +88,27 @@ export class CashComponent implements OnInit {
   }
   opendeleteCash(id) {
     this.commonid = id;
-    console.log('opendeleteStocks common id is', this.commonid);
-    console.log('opendeleteStocks modal open', id);
     this.delete(this.commonid);
   }
   saveCashDetails() {
     this.cash.userid = this.uid;
-    console.log('in savecash()');
     this.cash.cashsource = this.cashsource;
-    console.log(this.cash);
 
     // this.cash.userid = this.uid;
     this.cashservice.CashDetails(this.cash).subscribe(data => {
-      console.log('cash data');
       alert('Added new Future and objective details');
       this.getCashDetailsByuid(this.uid);
     });
   }
   getCashDetailsByuid(uid) {
     this.cashservice.getCashDetailsByuid(this.uid).subscribe(res => {
-      console.log('this is responce of getCashDetailsByuid', res);
       this.CashDetails = res;
-      console.log('responce of getCashDetailsByuid service', this.CashDetails);
     });
     // this.getsavePropertyByuid(this.uid5);
   }
   getCashId(commonid) {
-    console.log(' in getCashId', this.commonid);
     this.cashservice.getCashById(this.commonid).subscribe(res => {
       this.getdata = res;
-      console.log(' in getCashId', this.getdata);
       this.editcash = this.getdata.cashsource;
       this.cashsource = this.getdata.cashsource;
       if (this.editcash === 'Bank') {
@@ -158,18 +143,12 @@ export class CashComponent implements OnInit {
         this.cash.userid = this.getdata.userid;
       }
 
-      // // console.log('this is responce of getCashId ', res);
       //
-      // console.log('outside loop ', this.getdata);
-      // console.log('length ', this.getdata.length);
       // for (let index = 0; index <= this.getdata.length; index++) {
-      //   console.log('in loop  ', this.getdata.cashsource);
       //   if (this.getdata.cashsource === 'Bank') {
       //     this.editcash = 'Bank';
-      //     // console.log('value of editcash', this.editcash);
       //     // this.cashsource = this.getdata.cashsource;
       //     this.cash.amount = this.getdata.amount;
-      //     // console.log('this is responce of  ', this.cash.amount);
       //     this.cash.notes = this.getdata.notes;
       //     this.cash.userid = this.getdata.userid;
       //     this.cash.bankname = this.getdata.bankname;
@@ -179,7 +158,6 @@ export class CashComponent implements OnInit {
       //     this.cash.handloanname = this.getdata.handloanname;
       //   } else if (this.getdata.cashsource === 'Hand Loan') {
       //     this.editcash = 'Hand Loan';
-      //     console.log('value of editcash', this.editcash);
       //     // this.cash.cashsource = this.getdata.cashsource;
       //     // this.cash.amount = this.getdata.amount;
       //     // this.cash.notes = this.getdata.notes;
@@ -203,12 +181,10 @@ export class CashComponent implements OnInit {
     });
   }
   update(commonid) {
-    console.log('inside update id is ', this.commonid);
     // this.getStockId(this.id)
     this.cash.id = this.commonid;
     // this.newid= this.stocks.id;
     // this.getStockId(this.newid);
-    console.log('inside update', this.cash);
     this.cashservice.UpdateCash(this.cash).subscribe(data => {
       alert('Added new stocks details');
       this.getCashDetailsByuid(this.uid);
@@ -219,10 +195,8 @@ export class CashComponent implements OnInit {
     this.conformkey = confirm('really Want to delete?');
     if (this.conformkey === true) {
       // this.conformkey = 'You pressed OK!';
-      console.log('inside delete id is ', this.commonid);
       // this.getStockId(this.id)
       this.cash.id = this.commonid;
-      console.log('inside delete', this.cash);
       this.cashservice.DeleteStock(this.cash.id).subscribe(data => {
         confirm('delete stocks details');
         this.getCashDetailsByuid(this.uid);

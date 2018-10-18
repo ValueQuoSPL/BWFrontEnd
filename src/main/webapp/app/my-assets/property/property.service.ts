@@ -11,7 +11,6 @@ export class PropertyService {
   constructor(private http: HttpClient) {}
 
   public PropertyDetails(property) {
-    console.log('inside property', property);
     return this.http.post<Property[]>(
       SERVER_API_URL + 'api/properties',
       property
@@ -19,7 +18,6 @@ export class PropertyService {
   }
 
   public getsavePropertyByuid(uid) {
-    console.log('in getsavePropertyByuid service uid', uid);
     this.ServiceAPIParam = 'api/property' + '/' + uid;
     return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
   }

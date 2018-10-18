@@ -48,6 +48,10 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     return this.principal.isAuthenticated();
   }
 
+  RouteChanged() {
+    const x =  document.getElementById('main-menu').classList.toggle('expanded');
+  }
+
   showSidebar() {
     const x =  document.getElementById('main-menu').classList.toggle('expanded');
     // const x = document.getElementById('main-menu');

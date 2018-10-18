@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SERVER_API_URL } from 'app/app.constants';
-import { Stocks } from 'app/my-assets/assets/stocks.model';
+import { Stocks } from 'app/my-assets/stocks/stocks.modal';
 
 @Injectable()
 export class StockService {

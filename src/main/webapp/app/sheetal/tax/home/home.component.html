@@ -1,0 +1,337 @@
+<div *ngIf="!valid">
+  <h3>Home Deduction</h3>
+  <div class="row pull-right" style="margin-top: -80px;">
+      <button type="button" (click)="onHomeGet()" class="btn btn-link">
+          <span>
+            <i class="far fa-arrow-alt-circle-down" routerLink="/tax" aria-hidden="true"></i>
+            <span>Get</span>
+          </span>
+        </button>
+    <button type="button" class="btn btn-link" (click)="onHomeSave()" data-toggle="modal" data-target="#homeModelCenter">
+      <span>
+        <i class="fa fa-save" aria-hidden="true"></i>
+        <span> Save</span>
+      </span>
+
+    </button>
+    <div class="modal fade" id="homeModelCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="homeModalLongTitle">Home Deduction</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h3>Your Home Deduction Details Saved successfully</h3>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="button" (click)="resetHome()" class="btn btn-link">
+      <span>
+        <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+        <span> Reset</span>
+      </span>
+    </button>
+    <button type="button" class="btn btn-link">
+      <span>
+        <i class="fa fa-info" aria-hidden="true"></i>
+        <span> Help</span>
+      </span>
+    </button>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      Home Deduction
+    </div>
+    <div class="card-body">
+        <table class="table table-hover table-sm">
+          <thead class="thead-light">
+            <tr>
+              <!--Head of table start-->
+              <th scope="col">Deduction Under Section 24B</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <!--Head of table end-->
+          <tbody>
+            <!--Body of table start-->
+            <tr>
+              <td scope="row">Interest in Housing Loan</td>
+              <td>
+                <!-- <input type="checkbox"> -->
+              </td>
+              <td></td>
+              <td>
+                <input type="number" value="0" name="hoamloan" [(ngModel)]="home.hoamloan">
+              </td>
+            </tr>
+          </tbody>
+          <!--Body of table end-->
+          <thead class="thead">
+            <tr>
+              <!--Head of table start-->
+              <th scope="col">Deduction Under Section 80C</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <!--Head of table end-->
+          <tbody>
+            <!--Body of table start-->
+            <tr>
+              <td scope="row">Pricipal Loan Repayment(Housing Loan)</td>
+              <td></td>
+              <td></td>
+              <td>
+                <input type="number" value="0" name="prncpalloan" [(ngModel)]="home.prncpalloan">
+              </td>
+            </tr>
+          </tbody>
+          <!--Body of table end-->
+          <thead class="thead-light">
+            <tr>
+              <!--Head of table start-->
+              <th scope="col">Rent for HRA</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <!--Head of table end-->
+          <tbody>
+            <!--Body of table start-->
+            <tr>
+              <td scope="row">Mention the Rent Claimed for HRA</td>
+              <td></td>
+              <td></td>
+              <td>
+                <input type="number" value="0" name="rentclm" [(ngModel)]="home.rentclm">
+              </td>
+            </tr>
+          </tbody>
+          <!--Body of table end-->
+          <thead class="thead-light">
+            <tr>
+              <!--Head of table start-->
+              <th scope="col">Deduction Under section 80EE</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <!--Head of table end-->
+          <tbody>
+            <!--Body of table start-->
+            <tr>
+              <td scope="row">Remaining Interest on Housing Loan </td>
+              <td></td>
+              <td></td>
+              <td>
+                <input type="number" value="0" name="remintrst" [(ngModel)]="home.remintrst">
+              </td>
+            </tr>
+          </tbody>
+          <!--Body of table end-->
+          <thead class="thead-light">
+            <tr>
+              <!--Head of table start-->
+              <th scope="col">Rent Claimed Under Section 80GG</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <!--Head of table end-->
+          <tbody>
+            <!--Body of table start-->
+            <tr>
+              <td scope="row">Mentioned the Rent claimed for section under 80GG</td>
+              <td></td>
+              <td></td>
+              <td>
+                <input type="number" value="0" name="rentclmgg" [(ngModel)]="home.rentclmgg">
+              </td>
+            </tr>
+          </tbody>
+          <!--Body of table end-->
+        </table>          
+                    </div>
+
+</div></div>
+
+   <!-- modal, edit dialog -->
+   <div *ngIf="valid">
+<ng-template #homeEditContent let-c="close" let-d="dismiss">
+<div class="modal-header">
+<h4 class="modal-title" id="homeEditContent">Eightyd Add</h4>
+<button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<form class="example-container" #homeAdd="ngForm">
+<div>
+      <mat-label>{{ nameField }}</mat-label>
+  </div>
+
+  <div>
+  <mat-form-field class="example-full-width">
+      <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name" >
+      <mat-hint>Please enter amount</mat-hint>
+  </mat-form-field>
+  </div>
+  <br> <br>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="homeAdd.form.invalid">Add</button>
+</div>
+</form>
+</div>
+</ng-template>
+
+  <div class="card">
+  <div class="card-header">
+   Home Deduction
+  </div>  
+  <button type="button" class="btn btn-link" (click)="updateHome()">
+    <i class="fa fa-save" aria-hidden="true"> </i> 
+    <span>Update</span>
+</button>      
+<div class="card-body">
+<table class="table table-hover table-sm">
+<thead class="thead-light">
+<tr>
+<!--Head of table start-->
+<th scope="col">Deduction Under Section 24B</th>
+<th scope="col"></th>
+<th scope="col"></th>
+<th scope="col"></th>
+</tr>
+</thead>
+<!--Head of table end-->
+<tbody>
+<!--Body of table start-->
+<tr>
+<td scope="row">Interest in Housing Loan</td>
+<td>
+<!-- <input type="checkbox"> -->
+</td>
+<td></td>
+<td>
+{{homeout[0].hoamloan}}
+</td>
+<button class="btn btn-outline-info"  type="button" (click)="onEditHomeField('Housing Loan', homeEditContent)" >
+<span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+
+</tr>
+</tbody>
+<!--Body of table end-->
+<thead class="thead-light">
+<tr>
+<!--Head of table start-->
+<th scope="col">Deduction Under Section 80C</th>
+<th scope="col"></th>
+<th scope="col"></th>
+<th scope="col"></th>
+</tr>
+</thead>
+<!--Head of table end-->
+<tbody>
+<!--Body of table start-->
+<tr>
+<td scope="row">Pricipal Loan Repayment(Housing Loan)</td>
+<td></td>
+<td></td>
+<td>
+{{homeout[0].prncpalloan}}
+</td>
+<button class="btn btn-outline-info"  type="button" (click)="onEditHomeField('Pricipal Loan', homeEditContent)" >
+<span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+
+</tr>
+</tbody>
+<!--Body of table end-->
+<thead class="thead-light">
+<tr>
+<!--Head of table start-->
+<th scope="col">Rent for HRA</th>
+<th scope="col"></th>
+<th scope="col"></th>
+<th scope="col"></th>
+</tr>
+</thead>
+<!--Head of table end-->
+<tbody>
+<!--Body of table start-->
+<tr>
+<td scope="row">Mention the Rent Claimed for HRA</td>
+<td></td>
+<td></td>
+<td>
+{{homeout[0].rentclm}}
+</td>
+<button class="btn btn-outline-info"  type="button" (click)="onEditHomeField('Rent Claimed', homeEditContent)" >
+<span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+</tr>
+</tbody>
+<!--Body of table end-->
+<thead class="thead-light">
+<tr>
+<!--Head of table start-->
+<th scope="col">Deduction Under section 80EE</th>
+<th scope="col"></th>
+<th scope="col"></th>
+<th scope="col"></th>
+</tr>
+</thead>
+<!--Head of table end-->
+<tbody>
+<!--Body of table start-->
+<tr>
+<td scope="row">Remaining Interest on Housing Loan </td>
+<td></td>
+<td></td>
+<td>
+{{homeout[0].remintrst}}
+</td>
+<button class="btn btn-outline-info"  type="button" (click)="onEditHomeField('Remaining Interest', homeEditContent)" >
+<span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+</tr>
+</tbody>
+<!--Body of table end-->
+<thead class="thead-light">
+<tr>
+<!--Head of table start-->
+<th scope="col">Rent Claimed Under Section 80GG</th>
+<th scope="col"></th>
+<th scope="col"></th>
+<th scope="col"></th>
+</tr>
+</thead>
+<!--Head of table end-->
+<tbody>
+<!--Body of table start-->
+<tr>
+<td scope="row">Mentioned the Rent claimed for section under 80GG</td>
+<td></td>
+<td></td>
+<td>
+{{homeout[0].rentclmgg}}
+</td>
+<button class="btn btn-outline-info"  type="button" (click)="onEditHomeField('Mentioned the Rent claimed', homeEditContent)" >
+<span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
+</tr>
+</tbody>
+<!--Body of table end-->
+</table>          
+</div>
+</div></div>
+ </div>

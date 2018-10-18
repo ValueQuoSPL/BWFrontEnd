@@ -52,6 +52,7 @@ export class JhiMainComponent implements OnInit {
             this.account = account;
         });
         this.registerAuthenticationSuccess();
+
     }
 
     registerAuthenticationSuccess() {
@@ -63,7 +64,11 @@ export class JhiMainComponent implements OnInit {
     }
 
     isAuthenticated() {
-        return this.principal.isAuthenticated();
+        const flag = this.principal.isAuthenticated();
+        // if (flag === true) {
+        //     this.toggleSide(true);
+        // }
+        return flag;
     }
 
     login() {

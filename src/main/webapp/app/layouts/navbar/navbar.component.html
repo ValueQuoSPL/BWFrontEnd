@@ -162,8 +162,32 @@
                         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                             <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
                                 <span>
-                                    <i class="fa fa-home" aria-hidden="true"></i>
+                                    <fa-icon [icon]="'home'" [fixedWidth]="true"></fa-icon>
                                     <span>Home</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                            <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                                <span>
+                                    <fa-icon [icon]="'concierge-bell'" [fixedWidth]="true"></fa-icon>
+                                    <span>Services</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                            <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                                <span>
+                                    <fa-icon [icon]="'rupee-sign'" [fixedWidth]="true"></fa-icon>
+                                    <span>Pricing</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                            <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
+                                <span>
+                                    <fa-icon [icon]="'handshake'" [fixedWidth]="true"></fa-icon>
+                                    <span>Contact Us</span>
                                 </span>
                             </a>
                         </li>
@@ -172,7 +196,7 @@
                         <li ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                             <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                                 <span *ngIf="!getImageUrl()">
-                                <i class="fa fa-user" aria-hidden="true"></i>
+                                <fa-icon [icon]="'user'" [fixedWidth]="true"></fa-icon>
                                 <span>
                                     Account
                                 </span>
