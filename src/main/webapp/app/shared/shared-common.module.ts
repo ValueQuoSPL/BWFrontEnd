@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 
-import { BuckswiseFrontEndSharedLibsModule, JhiAlertComponent, JhiAlertErrorComponent } from './';
+import { BuckswiseFrontEndSharedLibsModule, FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent } from './';
 
 @NgModule({
     imports: [BuckswiseFrontEndSharedLibsModule],
-    declarations: [JhiAlertComponent, JhiAlertErrorComponent],
-    exports: [BuckswiseFrontEndSharedLibsModule, JhiAlertComponent, JhiAlertErrorComponent]
+    declarations: [FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent],
+    exports: [BuckswiseFrontEndSharedLibsModule, FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent]
 })
 export class BuckswiseFrontEndSharedCommonModule {}

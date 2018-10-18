@@ -39,6 +39,7 @@ import { BuckswiseFrontEndMyAssetsModule } from './my-assets/my-assets.module';
 import { AppointmentModule } from './appointment/appointment.module';
 import { BuckswiseAppSheetalModule } from './sheetal/sheetal.module';
 import { SuccessComponent } from './success/success.component';
+import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
 
 @NgModule({
     imports: [
@@ -62,11 +63,19 @@ import { SuccessComponent } from './success/success.component';
         BuckswiseAppSheetalModule,
         BuckswiseFrontEndRiskModule,
         BuckswiseFrontEndPratikModule,
-        BuckswiseFrontEndMyAssetsModule,
+        BuckswiseFrontEndMyAssetsModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
-    declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, FooterComponent,
-    SidebarComponent, SuccessComponent],
+    declarations: [
+        JhiMainComponent,
+        NavbarComponent,
+        ErrorComponent,
+        PageRibbonComponent,
+        FooterComponent,
+        SidebarComponent,
+        SuccessComponent,
+        ActiveMenuDirective
+    ],
     providers: [
         WINDOW_PROVIDERS,
         SidebarComponent,

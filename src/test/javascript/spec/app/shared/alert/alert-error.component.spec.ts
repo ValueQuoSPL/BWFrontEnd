@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, async, inject, fakeAsync, tick } from '@angular/core/testing';
 import { HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { BuckswiseFrontEndTestModule } from '../../../test.module';
 import { JhiAlertErrorComponent } from 'app/shared/alert/alert-error.component';
@@ -12,21 +13,23 @@ describe('Component Tests', () => {
         let fixture: ComponentFixture<JhiAlertErrorComponent>;
         let eventManager: JhiEventManager;
 
-        beforeEach(async(() => {
-            TestBed.configureTestingModule({
-                imports: [BuckswiseFrontEndTestModule],
-                declarations: [JhiAlertErrorComponent],
-                providers: [
-                    JhiEventManager,
-                    {
-                        provide: JhiAlertService,
-                        useClass: MockAlertService
-                    }
-                ]
+        beforeEach(
+            async(() => {
+                TestBed.configureTestingModule({
+                    imports: [BuckswiseFrontEndTestModule, TranslateModule.forRoot()],
+                    declarations: [JhiAlertErrorComponent],
+                    providers: [
+                        JhiEventManager,
+                        {
+                            provide: JhiAlertService,
+                            useClass: MockAlertService
+                        }
+                    ]
+                })
+                    .overrideTemplate(JhiAlertErrorComponent, '')
+                    .compileComponents();
             })
-                .overrideTemplate(JhiAlertErrorComponent, '')
-                .compileComponents();
-        }));
+        );
 
         beforeEach(() => {
             fixture = TestBed.createComponent(JhiAlertErrorComponent);
@@ -40,14 +43,14 @@ describe('Component Tests', () => {
                 eventManager.broadcast({ name: 'buckswiseFrontEndApp.httpError', content: { status: 0 } });
                 // THEN
                 expect(comp.alerts.length).toBe(1);
-                expect(comp.alerts[0].msg).toBe('Server not reachable');
+                expect(comp.alerts[0].msg).toBe('error.server.not.reachable');
             });
             it('Should display an alert on status 404', () => {
                 // GIVEN
                 eventManager.broadcast({ name: 'buckswiseFrontEndApp.httpError', content: { status: 404 } });
                 // THEN
                 expect(comp.alerts.length).toBe(1);
-                expect(comp.alerts[0].msg).toBe('Not found');
+                expect(comp.alerts[0].msg).toBe('error.url.not.found');
             });
             it('Should display an alert on generic error', () => {
                 // GIVEN
@@ -110,7 +113,7 @@ describe('Component Tests', () => {
                 eventManager.broadcast({ name: 'buckswiseFrontEndApp.httpError', content: response });
                 // THEN
                 expect(comp.alerts.length).toBe(1);
-                expect(comp.alerts[0].msg).toBe('Error on field "MinField"');
+                expect(comp.alerts[0].msg).toBe('error.Size');
             });
             it('Should display an alert on status 400 for error headers', () => {
                 // GIVEN

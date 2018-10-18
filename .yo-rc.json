@@ -20,7 +20,10 @@
     "languages": [
       "en",
       "hi",
-      "mr"
+      "mr",
+      "bn",
+      "fr",
+      "ta"
     ],
     "skipServer": true
   }
