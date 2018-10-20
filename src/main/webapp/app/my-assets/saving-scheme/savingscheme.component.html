@@ -1,11 +1,10 @@
-<div class="pull-right"><!--buttons div start -->
+<div class=" row pull-right"><!--buttons div start -->
     <button 
         type="button" 
         class="btn btn-link" 
         (click)="openSaving(savingModal)" >
-        <span><i class="fa fa-plus" aria-hidden="true"></i>
+       <fa-icon [icon]="'plus'"></fa-icon>
             <span>Add</span>
-        </span>
     </button>
     <button type="button" class="btn btn-link">
         <span>
@@ -319,7 +318,7 @@
 <table class="table-responsive-md table table-hover table-striped  table-sm"><!-- table start -->
     <thead>
         <tr>
-            <th scope="col">ID</th>
+            <th scope="col">SchemeNo</th>
             <th scope="col">Organisation Name</th>
             <th scope="col">Investor Name</th>
             <th scope="col">Amount Invested</th>
@@ -351,7 +350,7 @@
                     type="button"
                     (click)="opendeleteSaving(saving.id)"
                     >
-                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                    <span> <fa-icon [icon]="'trash'"></fa-icon></i></span>
                 </button>
             </td>
         </tr> 

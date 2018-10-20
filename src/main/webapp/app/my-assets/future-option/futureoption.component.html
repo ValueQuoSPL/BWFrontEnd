@@ -1,10 +1,8 @@
    <!--start of buttons -->
-   <div class="pull-right">
+   <div class="row pull-right">
         <button type="button" class="btn btn-link" (click)="openFuture(futureModal)" >
-            <span>
-                <i class="fa fa-plus" aria-hidden="true"></i>
+                <fa-icon [icon]="'plus'"></fa-icon>
                 <span>Add</span>
-            </span>
         </button>
         <button type="button" class="btn btn-link">
             <span>
@@ -469,7 +467,7 @@
     <table class= "table-responsive-md table table-hover table-striped  table-sm">
         <thead>
             <tr>
-                <th scope="col">ID</th>
+                <th scope="col">FAO No</th>
                 <th scope="col">Investment Type</th>
                 <th scope="col">Asset Type</th>
                 <th scope="col">Investor Name</th>
@@ -511,7 +509,7 @@
                         type="button"
                         (click)="opendeleteFuture(fao.id)"
                         >
-                        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                        <span> <fa-icon [icon]="'trash'"></fa-icon></i></span>
                     </button>
                 </td>
             </tr>
