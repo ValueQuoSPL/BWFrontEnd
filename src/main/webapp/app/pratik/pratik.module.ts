@@ -47,6 +47,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { CommonSidebarService } from './common/sidebar.service';
+import { SpendingRouteGuardService } from './common/spending-route-guard.service';
 library.add(fas, far);
 
 @NgModule({
@@ -92,7 +93,8 @@ library.add(fas, far);
         GeneralService,
         CreditService,
         CanDeactivateGuard,
-        CommonSidebarService
+        CommonSidebarService,
+        SpendingRouteGuardService
     ],
     entryComponents: [SpendingComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

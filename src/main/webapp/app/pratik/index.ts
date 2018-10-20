@@ -13,4 +13,4 @@ export * from './income/income.component';
 export * from './income/income.route';
 
 export * from './pratik.route';
-export * from './can-deactivate-guard.service';
+export * from './common/can-deactivate-guard.service';

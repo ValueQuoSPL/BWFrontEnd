@@ -68,7 +68,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         const element = document.getElementById('toggle');
-        // element.setAttribute('style', 'margin-left: 200px;');
+        element.setAttribute('style', 'margin-left: 200px;');
     }
 
     registerAuthenticationSuccess() {
