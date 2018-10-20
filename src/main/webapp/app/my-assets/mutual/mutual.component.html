@@ -1,9 +1,7 @@
-<div class="pull-right">
+<div class="row pull-right">
     <button type="button" class="btn btn-link" (click)="openMutual(mutualModal)" >
-        <span>
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            <span>Add</span>
-        </span>
+        <fa-icon [icon]="'plus'"></fa-icon>
+        <span>Add</span>
     </button>
     <button type="button" class="btn btn-link">
         <span>
@@ -335,7 +333,7 @@
                     type="button"
                     (click)="opendeleteStocks(mf.id)"
                     >
-                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                    <span> <fa-icon [icon]="'trash'"></fa-icon></i></span>
                 </button>
             </td>
         </tr>
