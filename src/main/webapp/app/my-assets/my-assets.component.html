@@ -2,14 +2,14 @@
     <div *ngSwitchCase="true">
         <div class="container">
             <div>
-                <div class="form-group row justify-content-center"><label><h5>Assets</h5></label>
+                <div class="form-group row justify-content-center bwtitle"><label><h5>Assets</h5></label>
                 </div>
                 <mat-accordion>
                     <!-- stocks -->
                     <mat-expansion-panel id="asset1">
                         <mat-expansion-panel-header class="gray" id="asset1">
-                            <mat-panel-title style="color:black"> Stocks </mat-panel-title>
-                            <mat-panel-description style="color:black">Total Stock Value&nbsp;&nbsp;{{totalshareprice}}</mat-panel-description>
+                            <mat-panel-title style="color:black" class="bwaccordian"> Stocks </mat-panel-title>
+                            <mat-panel-description style="color:black" class="bwaccordian">Total Stock Value&nbsp;&nbsp;{{totalshareprice}}</mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here--> 
                         <jhi-stock></jhi-stock>           
@@ -17,8 +17,8 @@
                     <!-- Mutual funds -->
                     <mat-expansion-panel id="asset"  >
                         <mat-expansion-panel-header id="asset"  class="gray1">
-                            <mat-panel-title style="color:black" > Mutual Funds </mat-panel-title>
-                            <mat-panel-description style="color:black">Total Mutual Value&nbsp;&nbsp;{{totalmutual}} </mat-panel-description>
+                            <mat-panel-title style="color:black" class="bwaccordian"> Mutual Funds </mat-panel-title>
+                            <mat-panel-description style="color:black"  class="bwaccordian">Total Mutual Value&nbsp;&nbsp;{{totalmutual}} </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
                         <jhi-mutualfund></jhi-mutualfund>  
@@ -26,8 +26,8 @@
                     <!-- Saving Schemes -->
                     <mat-expansion-panel id="asset1">
                         <mat-expansion-panel-header   id="asset1" class="gray">
-                            <mat-panel-title style="color:black"> Saving Schemes </mat-panel-title>
-                            <mat-panel-description style="color:black">Total Saving Schemes Value&nbsp;&nbsp; {{totalSaving}} </mat-panel-description>
+                            <mat-panel-title style="color:black" class="bwaccordian"> Saving Schemes </mat-panel-title>
+                            <mat-panel-description style="color:black"  class="bwaccordian ">Total Saving Schemes Value&nbsp;&nbsp; {{totalSaving}} </mat-panel-description>
                         </mat-expansion-panel-header>
                             <!--write selector here-->
                             <jhi-savingscheme></jhi-savingscheme>
@@ -35,8 +35,8 @@
                     <!-- Alternative Investment -->
                     <mat-expansion-panel id="asset">
                         <mat-expansion-panel-header id="asset" class="gray1">
-                            <mat-panel-title style="color:black"> Alternative Investment </mat-panel-title>
-                            <mat-panel-description style="color:black">TotalAlternative Investment Value&nbsp;&nbsp; {{totalAltenateInvest}} </mat-panel-description>
+                            <mat-panel-title style="color:black" class="bwaccordian"> Alternative Investment </mat-panel-title>
+                            <mat-panel-description style="color:black"  class="bwaccordian">TotalAlternative Investment Value&nbsp;&nbsp; {{totalAltenateInvest}} </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
                         <jhi-alternative></jhi-alternative>
@@ -44,8 +44,8 @@
                     <!-- Cash -->
                     <mat-expansion-panel id="asset1">
                         <mat-expansion-panel-header  id="asset1" class="gray">
-                            <mat-panel-title style="color:black"> Cash </mat-panel-title>
-                            <mat-panel-description style="color:black">Total Cash Value&nbsp;&nbsp; {{totalCash}} </mat-panel-description>
+                            <mat-panel-title style="color:black"  class="bwaccordian"> Cash </mat-panel-title>
+                            <mat-panel-description style="color:black"  class="bwaccordian">Total Cash Value&nbsp;&nbsp; {{totalCash}} </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
                         <jhi-cash></jhi-cash>
@@ -53,8 +53,8 @@
                     <!-- Property -->
                     <mat-expansion-panel id="asset">
                         <mat-expansion-panel-header id="asset"  class="gray1">
-                            <mat-panel-title style="color:black"> Property, Jewellery & Others </mat-panel-title>
-                            <mat-panel-description style="color:black">Total  Property, Jewellery & Others Value&nbsp;&nbsp; {{totalProperty}} </mat-panel-description>
+                            <mat-panel-title style="color:black"  class="bwaccordian"> Property, Jewellery & Others </mat-panel-title>
+                            <mat-panel-description style="color:black"  class="bwaccordian">Total  Property, Jewellery & Others Value&nbsp;&nbsp; {{totalProperty}} </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
                         <jhi-property></jhi-property>
@@ -62,8 +62,8 @@
                     <!-- Chit -->
                     <mat-expansion-panel id="asset1" >
                         <mat-expansion-panel-header id="asset1" class="gray">
-                            <mat-panel-title style="color:black"> Chit Funds </mat-panel-title>
-                            <mat-panel-description style="color:black">Total Chit Funds Value&nbsp;&nbsp; {{totalChitFund}} </mat-panel-description>
+                            <mat-panel-title style="color:black"  class="bwaccordian"> Chit Funds </mat-panel-title>
+                            <mat-panel-description style="color:black"  class="bwaccordian">Total Chit Funds Value&nbsp;&nbsp; {{totalChitFund}} </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
                         <jhi-chitfund></jhi-chitfund>
@@ -71,8 +71,8 @@
                     <!-- Future and Options -->
                     <mat-expansion-panel id="asset">
                         <mat-expansion-panel-header id="asset" class="gray1">
-                            <mat-panel-title style="color:black"> Future and Options </mat-panel-title>
-                            <mat-panel-description style="color:black">Total Future and Options Value&nbsp;&nbsp; {{totalFutureOption}} </mat-panel-description>
+                            <mat-panel-title style="color:black"  class="bwaccordian"> Future and Options </mat-panel-title>
+                            <mat-panel-description style="color:black"  class="bwaccordian" >Total Future and Options Value&nbsp;&nbsp; {{totalFutureOption}} </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
                         <jhi-futureoption></jhi-futureoption>

@@ -41,10 +41,10 @@ export class NavbarComponent implements OnInit, DoCheck {
         @Inject(DOCUMENT) private document: Document,
         @Inject(WINDOW) private window: Window,
         private loginService: LoginService,
+        private router: Router,
         private loginModalService: LoginModalService,
         private principal: Principal,
         private profileService: ProfileService,
-        private router: Router,
         private main: JhiMainComponent,
         private sidebar: SidebarComponent,
         private deviceService: DeviceDetectorService,
@@ -141,5 +141,8 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.flag = !this.flag;
         this.main.toggleSide(this.flag);
         this.sidebar.showSidebar();
+    }
+    register1() {
+        this.router.navigate(['register']);
     }
 }

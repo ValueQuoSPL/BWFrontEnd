@@ -130,6 +130,15 @@
                 </mat-form-field>
                 <div class="modal-footer">
                     <button 
+                    type="submit" 
+                    [disabled]="editForm.form.invalid || isSaving" 
+                    class="btn btn-primary" data-dismiss="modal"
+                    (click)="c('Save click')" 
+                    (click)="update()">
+                        <span class="fa fa-save"></span>&nbsp;
+                        <span>Save</span>
+                    </button>
+                    <button 
                         type="submit" 
                         class="btn btn-secondary" 
                         data-dismiss="modal" 
@@ -137,15 +146,7 @@
                             <span class="fa fa-ban"></span>&nbsp;
                             <span>Cancel</span>
                     </button>
-                    <button 
-                        type="submit" 
-                        [disabled]="editForm.form.invalid || isSaving" 
-                        class="btn btn-primary" data-dismiss="modal"
-                        (click)="c('Save click')" 
-                        (click)="update()">
-                            <span class="fa fa-save"></span>&nbsp;
-                            <span>Save</span>
-                    </button>
+                   
                 </div>
             </form>
         </div>

@@ -12,13 +12,7 @@ import { FamilyprofileService } from './familyprofile/familyprofile.service';
 import { CustomMaterialModule } from '../custom-material.module';
 import { FamilyprofileComponent } from 'app/family/familyprofile/familyprofile.component';
 import { FamilyserviceService } from 'app/family/familyservice.service';
-import { CustomDirectiveModule } from 'app/pratik/directive/directive.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import { far } from '@fortawesome/free-regular-svg-icons';
-library.add(fas, far);
+import { CustomDirectiveModule } from '../pratik/directive/directive.module';
 
 @NgModule({
     imports: [
@@ -26,8 +20,7 @@ library.add(fas, far);
         FormsModule,
         CommonModule,
         CustomMaterialModule,
-        CustomDirectiveModule,
-        FontAwesomeModule
+        CustomDirectiveModule
         // BsDatepickerModule.forRoot()
     ],
     declarations: [FamilyComponent, MyprofileComponent, AssumptionComponent, FamilyprofileComponent],

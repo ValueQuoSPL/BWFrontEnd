@@ -1,6 +1,6 @@
 <div class="container" *ngIf="!isValid"  ><!--start of container div -->
     <div><!--start of navbar3 div -->
-        <h5>Enter Relationship Details<span class="glyphicons glyphicons-remove-circle"></span></h5>  
+        <h5  class="heading">Enter Relationship Details<span class="glyphicons glyphicons-remove-circle"></span></h5>  
     </div><!--end of navbar3 div -->
     <form  name="form" role="form" #familyproForm="ngForm"><!--start of form-->
         <mat-form-field>
@@ -166,11 +166,11 @@
             <div class="pull-right"><!--start of btn div-->
                 <div *ngIf="show" >
                     <button mat-raised-button color="primary" [disabled]="familyproForm.form.invalid"  (click)="saveFamilyProfile()">Save</button>&nbsp;
-                    <button mat-raised-button color="accent" (click)="formpage()">Cancel</button>
+                    <button mat-raised-button class="" (click)="formpage()">Cancel</button>
                 </div>
                 <div *ngIf="!show">
                     <button mat-raised-button color="primary" [disabled]="familyproForm.form.invalid" (click)=" update()">update</button>&nbsp;
-                    <button mat-raised-button color="accent" (click)="viewpage()">Cancel</button>
+                    <button mat-raised-button (click)="viewpage()">Cancel</button>
                 </div>
             </div><!--end of btn div-->
          </div><!--end of row3-->
@@ -187,7 +187,7 @@
         *ngFor="let profile of output"><!--start of table-->
         <tr></tr>
         <tr>
-            <td><strong>Relationship Details</strong></td>
+            <td  class="heading"><strong>Relationship Details</strong></td>
             <td></td>
             <td></td>
             <td>
@@ -195,7 +195,7 @@
                     class="btn btn-outline-info  btn-sm"
                     type="button" 
                     (click)="editDetail()">
-                    <span><fa-icon [icon]="'edit'"></fa-icon>
+                    <span><i class="fa fa-edit" aria-hidden="true"></i>
                     </span>
                 </button>
             </td>

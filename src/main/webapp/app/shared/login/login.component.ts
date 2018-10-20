@@ -92,6 +92,7 @@ export class JhiLoginModalComponent implements AfterViewInit {
     // }
 
     register() {
+        console.log('in register method');
         this.activeModal.dismiss('to state register');
         this.router.navigate(['/register']);
     }

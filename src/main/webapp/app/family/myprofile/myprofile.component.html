@@ -1,9 +1,18 @@
 <div class="container" *ngIf="!isValid"><!--start of container-->
-  <form><!--end of form-->
+  <form name="editForm" role="form" novalidate   #editForm="ngForm"><!--end of form-->
     <div class="row">
-        <h5>Personal Information</h5>&nbsp;&nbsp;
-         <span style="margin-left: 270px"><button mat-raised-button class="colm" *ngIf="show" (click)="saveDetail()">Save</button></span>&nbsp;
-         <span style="margin-left: 270px"><button mat-raised-button color="accent" *ngIf="!show" class="colm" (click)="update()">Update</button></span>&nbsp;
+        <h5  class="heading"><strong>Personal Information</strong></h5>&nbsp;&nbsp;
+         <span>
+          <button
+          mat-raised-button
+          class="colm"
+          *ngIf="show"
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="editForm.form.invalid || isSaving" 
+          class="btn btn-primary"
+          (click)="saveDetail()"  class="colm">Save</button></span>&nbsp;
+         <span><button mat-raised-button color="accent" *ngIf="!show" class="colm" (click)="update()">Update</button></span>&nbsp;
          <span><button mat-raised-button color="warn" (click)="cencel()">Cancel</button></span>&nbsp;
          <span><button mat-raised-button color="primary" href="#">Help</button></span> 
     </div>     
@@ -13,7 +22,7 @@
           <input 
             matInput 
             placeholder="First Name" 
-            type="text"
+            type="text" 
             id="firstName"  
             [(ngModel)]="myProfile.firstName"
             name="firstName" 
@@ -248,9 +257,7 @@
         </mat-form-field> 
       </div><!--end of row3.col4-->
     </div><!--end of row3-->
-    <div class="navbar navbar-expand-lg navbar-light"><!--start of navbar-->
-      <h5><strong>Cammunication Information</strong></h5>
-    </div><!--end of navbar-->
+      <h5  class="heading"><strong>Cammunication Information</strong></h5>
     <div class="row"><!-- start of row4-->
       <div class="col-md-3"><!-- start of row4.col1-->
         <mat-form-field class="example-full-width">
@@ -451,7 +458,7 @@
   ><!--start of table-->
     <tr></tr>
     <tr>
-      <td><strong>Personal Information</strong></td>
+      <td class="heading"><strong>Personal Information</strong></td>
       <td></td>
       <td></td>
       <td>
@@ -460,7 +467,7 @@
           type="button" 
           (click)="editDetail()"
         >
-          <span><fa-icon [icon]="'edit'"></fa-icon></i></span>
+          <span><i class="fa fa-edit" aria-hidden="true"></i></span>
         </button></td>
     </tr>
     <tr></tr>
@@ -486,11 +493,8 @@
     </tr>
     <tr></tr>
     <tr></tr>
-    <!-- <tr>
-      <strong>Cammunication Information</strong>
-    </tr> -->
     <tr>
-        <td><strong>Cammunication Information</strong></td>
+        <td  class="heading"><strong>Cammunication Information</strong></td>
         <td></td>
         <td></td>
       </tr>
