@@ -8,24 +8,24 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // import { BuckswiseFrontEndDemoModule } from 'app/pratik/demo/demo.module';
 
 import {
-  IncomeService,
-  UtilityService,
-  HouseService,
-  TravelService,
-  MiscService,
-  LoanService,
-  LifeService,
-  HealthService,
-  GeneralService,
-  CreditService
+    IncomeService,
+    UtilityService,
+    HouseService,
+    TravelService,
+    MiscService,
+    LoanService,
+    LifeService,
+    HealthService,
+    GeneralService,
+    CreditService
 } from 'app/pratik/spending/spending.service';
 
 import {
-  // HowItWorkComponent,
-  SpendingComponent,
-  SubscriptionComponent,
-  CanDeactivateGuard,
-  pratikState
+    // HowItWorkComponent,
+    SpendingComponent,
+    SubscriptionComponent,
+    CanDeactivateGuard,
+    pratikState
 } from 'app/pratik';
 
 import { CustomMaterialModule } from 'app/custom-material.module';
@@ -41,56 +41,60 @@ import { LifeComponent } from 'app/pratik/spending/life/life.component';
 import { GeneralComponent } from 'app/pratik/spending/general/general.component';
 import { HealthComponent } from 'app/pratik/spending/health/health.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { DashBoardModule } from './dashboard/dashboard.module';
+
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
-import { DashBoardModule } from './dashboard/dashboard.module';
+import { CommonSidebarService } from './common/sidebar.service';
 library.add(fas, far);
+
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    CommonModule,
-    RouterModule.forChild(pratikState),
-    ReactiveFormsModule,
-    NgbModule,
-    FontAwesomeModule,
-    // BsDatepickerModule.forRoot(),
-    // BuckswiseFrontEndDemoModule,
-    // material
-    CustomDirectiveModule,
-    CustomMaterialModule,
-    DashBoardModule
-  ],
-  declarations: [
-    // HowItWorkComponent,
-    SpendingComponent,
-    SubscriptionComponent,
-    IncomeComponent,
-    UtilityComponent,
-    HouseholdComponent,
-    LoanComponent,
-    CreditComponent,
-    TravelComponent,
-    MiscComponent,
-    LifeComponent,
-    HealthComponent,
-    GeneralComponent
-  ],
-  providers: [
-    IncomeService,
-    UtilityService,
-    HouseService,
-    TravelService,
-    MiscService,
-    LoanService,
-    LifeService,
-    HealthService,
-    GeneralService,
-    CreditService,
-    CanDeactivateGuard
-  ],
-  entryComponents: [SpendingComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    imports: [
+        BrowserModule,
+        FormsModule,
+        CommonModule,
+        RouterModule.forChild(pratikState),
+        ReactiveFormsModule,
+        NgbModule,
+        FontAwesomeModule,
+        // BsDatepickerModule.forRoot(),
+        // BuckswiseFrontEndDemoModule,
+        // material
+        CustomDirectiveModule,
+        CustomMaterialModule,
+        DashBoardModule
+    ],
+    declarations: [
+        // HowItWorkComponent,
+        SpendingComponent,
+        SubscriptionComponent,
+        IncomeComponent,
+        UtilityComponent,
+        HouseholdComponent,
+        LoanComponent,
+        CreditComponent,
+        TravelComponent,
+        MiscComponent,
+        LifeComponent,
+        HealthComponent,
+        GeneralComponent
+    ],
+    providers: [
+        IncomeService,
+        UtilityService,
+        HouseService,
+        TravelService,
+        MiscService,
+        LoanService,
+        LifeService,
+        HealthService,
+        GeneralService,
+        CreditService,
+        CanDeactivateGuard,
+        CommonSidebarService
+    ],
+    entryComponents: [SpendingComponent],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BuckswiseFrontEndPratikModule {}

@@ -5,7 +5,7 @@ import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { myasstsRoute } from './my-assets.route';
 import { CustomMaterialModule } from 'app/custom-material.module';
 import { LiabilitiesComponent } from './liabilities/liabilities.component';
-import { liRoute} from 'app/my-assets/liabilities/liabilities.route';
+import { liRoute } from 'app/my-assets/liabilities/liabilities.route';
 import { StockComponent } from 'app/my-assets/stocks/stocks.component';
 import { PropertyComponent } from 'app/my-assets/property/property.component';
 import { SavingSchemeComponent } from 'app/my-assets/saving-scheme/savingscheme.component';
@@ -23,46 +23,47 @@ import { PropertyService } from './property/property.service';
 import { FutureOptionService } from './future-option/futureoption.service';
 import { SavingSchemeService } from 'app/my-assets/saving-scheme/savingscheme.service';
 import { StockService } from 'app/my-assets/stocks/stocks.service';
-import {
-  FormsModule,
-  ReactiveFormsModule
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+library.add(fas, far);
 
 @NgModule({
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    BuckswiseFrontEndSharedModule,
-    RouterModule.forRoot([myasstsRoute], {useHash: true}),
-    RouterModule.forRoot([liRoute] , {useHash: true}),
-    CustomMaterialModule,
-    CommonModule,
-    NgbModule
-  ],
-  declarations: [
-    MutualComponent,
-    LiabilitiesComponent,
-    AlternativeComponent,
-    CashComponent,
-    ChitFundComponent,
-    FutureOptionComponent,
-    PropertyComponent,
-    SavingSchemeComponent,
-    StockComponent,
-    MyAssetsComponent
-  ],
-  providers: [
-    StockService,
-    FutureOptionService,
-    NgbActiveModal,
-    PropertyService,
-    MutualfundService,
-    SavingSchemeService,
-    AlternateService,
-    CashService,
-    ChitFundService
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        BuckswiseFrontEndSharedModule,
+        RouterModule.forRoot([myasstsRoute], { useHash: true }),
+        RouterModule.forRoot([liRoute], { useHash: true }),
+        CustomMaterialModule,
+        CommonModule,
+        NgbModule
+    ],
+    declarations: [
+        MutualComponent,
+        LiabilitiesComponent,
+        AlternativeComponent,
+        CashComponent,
+        ChitFundComponent,
+        FutureOptionComponent,
+        PropertyComponent,
+        SavingSchemeComponent,
+        StockComponent,
+        MyAssetsComponent
+    ],
+    providers: [
+        StockService,
+        FutureOptionService,
+        NgbActiveModal,
+        PropertyService,
+        MutualfundService,
+        SavingSchemeService,
+        AlternateService,
+        CashService,
+        ChitFundService
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BuckswiseFrontEndMyAssetsModule {}

@@ -1,107 +1,111 @@
 #contact .well {
-  border-radius: 0;
+    border-radius: 0;
+}
+
+.img4 {
+    background-position: 50% 10%;
 }
 
 #contact .form-control {
-  border-radius: 0;
-  border: 2px solid #1e1e1e;
+    border-radius: 0;
+    border: 2px solid #1e1e1e;
 }
 
 #contact button {
-  border-radius: 0;
-  border: 2px solid #1e1e1e;
+    border-radius: 0;
+    border: 2px solid #1e1e1e;
 }
 
 #contact .row {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 @media (max-width: 768px) {
-  #contact iframe {
-    margin-bottom: 15px;
-  }
+    #contact iframe {
+        margin-bottom: 15px;
+    }
 }
 
 .Boxes > .icon {
-  text-align: center;
-  position: relative;
+    text-align: center;
+    position: relative;
 }
 .Boxes > .icon > .image {
-  position: relative;
-  z-index: 2;
-  margin: auto;
-  width: 88px;
-  height: 88px;
-  border: 8px solid white;
-  line-height: 88px;
-  border-radius: 50%;
-  background: #808080;
-  vertical-align: middle;
+    position: relative;
+    z-index: 2;
+    margin: auto;
+    width: 88px;
+    height: 88px;
+    border: 8px solid white;
+    line-height: 88px;
+    border-radius: 50%;
+    background: #808080;
+    vertical-align: middle;
 }
 .Boxes > .icon:hover > .image {
-  background: #333;
+    background: #333;
 }
 .Boxes > .icon > .image > i {
-  font-size: 36px !important;
-  color: #fff !important;
+    font-size: 36px !important;
+    color: #fff !important;
 }
 .Boxes > .icon:hover > .image > i {
-  color: white !important;
+    color: white !important;
 }
 .Boxes > .icon > .info {
-  margin-top: -24px;
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid #e0e0e0;
-  padding: 15px 0 10px 0;
-  min-height: 163px;
+    margin-top: -24px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid #e0e0e0;
+    padding: 15px 0 10px 0;
+    min-height: 163px;
 }
 .Boxes > .icon:hover > .info {
-  background: rgba(0, 0, 0, 0.04);
-  border-color: #e0e0e0;
-  color: white;
+    background: rgba(0, 0, 0, 0.04);
+    border-color: #e0e0e0;
+    color: white;
 }
 .Boxes > .icon > .info > h3.title {
-  font-family: "Robot", sans-serif !important;
-  font-size: 16px;
-  color: #222;
-  font-weight: 700;
+    font-family: 'Robot', sans-serif !important;
+    font-size: 16px;
+    color: #222;
+    font-weight: 700;
 }
 .Boxes > .icon > .info > p {
-  font-family: "Robot", sans-serif !important;
-  font-size: 13px;
-  color: #666;
-  line-height: 1.5em;
-  margin: 20px;
+    font-family: 'Robot', sans-serif !important;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5em;
+    margin: 20px;
 }
 .Boxes > .icon:hover > .info > h3.title,
 .Boxes > .icon:hover > .info > p,
 .Boxes > .icon:hover > .info > .more > a {
-  color: #222;
+    color: #222;
 }
 .Boxes > .icon > .info > .more a {
-  font-family: "Robot", sans-serif !important;
-  font-size: 12px;
-  color: #222;
-  line-height: 12px;
-  text-transform: uppercase;
-  text-decoration: none;
+    font-family: 'Robot', sans-serif !important;
+    font-size: 12px;
+    color: #222;
+    line-height: 12px;
+    text-transform: uppercase;
+    text-decoration: none;
 }
 .Boxes > .icon:hover > .info > .more > a {
-  color: #fff;
-  padding: 6px 8px;
-  background-color: #63b76c;
+    color: #fff;
+    padding: 6px 8px;
+    background-color: #63b76c;
 }
 .Boxes .space {
-  height: 30px;
+    height: 30px;
 }
 
 .form {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 .ng-invalid:not(form) {
-  border-left: 0px solid white important;
+    border-left: 0px solid white important;
 }
 .c {
-  color: red;
+    color: red;
 }

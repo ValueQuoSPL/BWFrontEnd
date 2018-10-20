@@ -1,6 +1,6 @@
 {
-  "name": "BuckswiseFrontEnd",
-  "short_name": "BuckswiseFrontEnd",
+  "name": "Buckswise",
+  "short_name": "Buckswise",
   "icons": [
       {
           "src": "./content/images/hipster192.png",

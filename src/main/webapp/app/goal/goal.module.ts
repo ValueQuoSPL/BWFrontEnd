@@ -25,34 +25,42 @@ import { PropertyService } from 'app/my-assets/property/property.service';
 import { FutureOptionService } from 'app/my-assets/future-option/futureoption.service';
 import { SavingSchemeService } from 'app/my-assets/saving-scheme/savingscheme.service';
 
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+library.add(fas, far);
+
 @NgModule({
-  imports: [
-    // RouterModule.forRoot([goalRoot], { useHash: true }),
-    RouterModule.forRoot([ goalSelectRoute ], { useHash: true }),
-    // BsDatepickerModule.forRoot(),
-    FormsModule,
-    CommonModule,
-    CustomMaterialModule,
-    NgbModule,
-    MatDialogModule,
-    CustomDirectiveModule
-  ],
-  declarations: [
-    GoalComponent,
-    GoalAddButtonComponent,
-    GoalSelectComponent
-    // GoalSelectComponent,
-    // GoalAddComponent
-  ],
-  entryComponents: [GoalSelectComponent],
-  providers: [GoalselectService, StockService,
-    FutureOptionService,
-    NgbActiveModal,
-    PropertyService,
-    MutualfundService,
-    SavingSchemeService,
-    AlternateService,
-    CashService,
-    ChitFundService]
+    imports: [
+        // RouterModule.forRoot([goalRoot], { useHash: true }),
+        RouterModule.forRoot([goalSelectRoute], { useHash: true }),
+        // BsDatepickerModule.forRoot(),
+        FormsModule,
+        CommonModule,
+        CustomMaterialModule,
+        NgbModule,
+        MatDialogModule,
+        CustomDirectiveModule
+    ],
+    declarations: [
+        GoalComponent,
+        GoalAddButtonComponent,
+        GoalSelectComponent
+        // GoalSelectComponent,
+        // GoalAddComponent
+    ],
+    entryComponents: [GoalSelectComponent],
+    providers: [
+        GoalselectService,
+        StockService,
+        FutureOptionService,
+        NgbActiveModal,
+        PropertyService,
+        MutualfundService,
+        SavingSchemeService,
+        AlternateService,
+        CashService,
+        ChitFundService
+    ]
 })
 export class GoalModule {}

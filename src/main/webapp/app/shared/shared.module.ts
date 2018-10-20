@@ -11,8 +11,7 @@ import {
 import { CustomMaterialModule } from 'app/custom-material.module';
 
 @NgModule({
-    imports: [BuckswiseFrontEndSharedLibsModule, BuckswiseFrontEndSharedCommonModule,
-    CustomMaterialModule],
+    imports: [BuckswiseFrontEndSharedLibsModule, BuckswiseFrontEndSharedCommonModule, CustomMaterialModule],
     declarations: [JhiLoginModalComponent, HasAnyAuthorityDirective],
     providers: [{ provide: NgbDateAdapter, useClass: NgbDateMomentAdapter }],
     entryComponents: [JhiLoginModalComponent],
