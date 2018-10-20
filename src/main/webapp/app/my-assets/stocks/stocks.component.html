@@ -1,12 +1,10 @@
-<div class="pull-right"><!-- div start -->
+<div class=" row pull-right"><!-- div start -->
     <button 
         type="button" 
         class="btn btn-link"
         (click)="openStocks(stocksModal)" >
-            <span>
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                <span>Add</span>
-            </span>
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span>Add</span>
     </button>
     <button 
         type="button" 
@@ -181,7 +179,6 @@
     <table  class="table-responsive-md table table-hover table-striped  table-sm">
         <thead>
             <tr>
-                <th scope="col">id</th>
                 <th scope="col">Company Name</th>
                 <th scope="col">Investor Name</th>
                 <th scope="col">No of Shares</th>
@@ -193,7 +190,6 @@
         </thead>
         <tbody>
             <tr *ngFor="let stocks of out; let i = index">
-                <td>{{stocks.id}}</td>
                 <td>{{stocks.company_name}}</td>
                 <td>{{stocks.investor_name}}</td>
                 <td>{{stocks.no_of_shares}}</td>
@@ -212,7 +208,7 @@
                         class="btn btn-outline-danger" 
                         type="button"
                         (click)="opendeleteStocks(stocks.id)">
-                        <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                        <span> <fa-icon [icon]="'trash'"></fa-icon></i></span>
                     </button>             
                 </td>
             </tr>

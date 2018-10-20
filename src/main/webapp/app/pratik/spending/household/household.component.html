@@ -47,13 +47,13 @@
         
             <div>
             <mat-form-field class="example-full-width">
-                <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name" >
+                <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" (ngModelChange)="DetectChange($event)" name="amount-name" >
                 <mat-hint>Please enter amount</mat-hint>
             </mat-form-field>
             </div>
             <br> <br>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+            <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="!isFieldChange">Update</button>
         </div>
     </form>
     </div>
@@ -330,3 +330,14 @@
 
 
 
+<script type="text/javascript" language="javascript">
+  // show an error message if the app loading takes more than 5 sec
+  window.onload=function() {
+    console.log('household from html');
+      setTimeout(showError, 4000);
+  }
+  function showError() {
+    alert('Your network connection is slow');
+  }
+  
+</script>

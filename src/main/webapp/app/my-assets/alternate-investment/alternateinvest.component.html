@@ -1,9 +1,7 @@
-<div class="pull-right">
+<div class="row pull-right">
     <button type="button" class="btn btn-link" (click)="openAlt(altModal)" >
-        <span>
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            <span>Add</span>
-        </span>
+        <fa-icon [icon]="'plus'"></fa-icon>
+        <span>Add</span>
     </button>
     <button type="button" class="btn btn-link">
         <span>
@@ -281,7 +279,7 @@
                     type="button"
                     (click)="openDeleteAltInvest(altInvest.id)"
                     >
-                    <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                    <fa-icon [icon]="'trash'"></fa-icon></i></span>
                 </button>
             </td>
         </tr>
