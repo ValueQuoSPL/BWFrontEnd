@@ -1,9 +1,12 @@
 {
     "global": {
-        "title": "BuckswiseFrontEnd",
+        "title": "Buckswise",
         "browsehappy": "आपण <strong>कालबाह्य</strong> ब्राउझर वापरत आहात. आपला अनुभव सुधारण्यासाठी आपला <a href=\"http://browsehappy.com/?locale=mr\">ब्राउझर श्रेणीसुधारित करा</a>",
         "menu": {
             "home": "होम",
+            "pricing": "किंमत",
+            "contact": "संपर्क साधा",
+            "services": "सेवा",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "एंटिटीज़",
@@ -29,6 +32,8 @@
                 "audits": "ऑडिट",
                 "apidocs": "API",
                 "database": "डेटाबेस",
+                "promocode": "प्रोमोकोड व्यवस्थापन",
+                "appointment": "नियुक्ती व्यवस्थापन",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
             "language": "भाषा"

@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HostListener } from '@angular/core';
@@ -21,6 +21,7 @@ import { JhiLanguageService } from 'ng-jhipster';
     templateUrl: './navbar.component.html',
     styleUrls: ['navbar.scss']
 })
+@Injectable()
 export class NavbarComponent implements OnInit, DoCheck {
     inProduction: boolean;
     isNavbarCollapsed: boolean;
@@ -40,8 +41,8 @@ export class NavbarComponent implements OnInit, DoCheck {
         @Inject(DOCUMENT) private document: Document,
         @Inject(WINDOW) private window: Window,
         private loginService: LoginService,
-        private principal: Principal,
         private loginModalService: LoginModalService,
+        private principal: Principal,
         private profileService: ProfileService,
         private router: Router,
         private main: JhiMainComponent,
@@ -110,7 +111,11 @@ export class NavbarComponent implements OnInit, DoCheck {
     }
 
     isAuthenticated() {
-        return this.principal.isAuthenticated();
+        const flag = this.principal.isAuthenticated();
+        if (flag === true) {
+            this.transparent = 'solid';
+        }
+        return flag;
     }
 
     login() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
 
 import { Title } from '@angular/platform-browser';
@@ -6,22 +6,35 @@ import { Principal, LoginModalService } from 'app/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-main',
-    templateUrl: './main.component.html'
+    templateUrl: './main.component.html',
+    styleUrls: ['./main.css']
 })
-export class JhiMainComponent implements OnInit {
+export class JhiMainComponent implements OnInit, AfterViewInit {
     account: Account;
     modalRef: NgbModalRef;
     deviceInfo = null;
     isMobile;
     isTablet;
     isDesktop;
+    globalElement: HTMLElement;
+    toggleFlag: any;
+    push;
+    pull;
 
     // tslint:disable-next-line:max-line-length
-    constructor(private titleService: Title, private router: Router, private loginModalService: LoginModalService, private principal: Principal, private eventManager: JhiEventManager,
-        private deviceService: DeviceDetectorService) {
+    constructor(
+        private titleService: Title,
+        private router: Router,
+        private loginModalService: LoginModalService,
+        private principal: Principal,
+        private eventManager: JhiEventManager,
+        private deviceService: DeviceDetectorService,
+        private commonSidebarService: CommonSidebarService
+    ) {
         this.epicFunction();
     }
 
@@ -30,11 +43,10 @@ export class JhiMainComponent implements OnInit {
         this.isMobile = this.deviceService.isMobile();
         this.isTablet = this.deviceService.isTablet();
         this.isDesktop = this.deviceService.isDesktop();
-      }
+    }
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
-        let title: string =
-            routeSnapshot.data && routeSnapshot.data['pageTitle'] ? routeSnapshot.data['pageTitle'] : 'buckswiseFrontEndApp';
+        let title: string = routeSnapshot.data && routeSnapshot.data['pageTitle'] ? routeSnapshot.data['pageTitle'] : 'Buckswise';
         if (routeSnapshot.firstChild) {
             title = this.getPageTitle(routeSnapshot.firstChild) || title;
         }
@@ -52,7 +64,11 @@ export class JhiMainComponent implements OnInit {
             this.account = account;
         });
         this.registerAuthenticationSuccess();
+    }
 
+    ngAfterViewInit() {
+        const element = document.getElementById('toggle');
+        // element.setAttribute('style', 'margin-left: 200px;');
     }
 
     registerAuthenticationSuccess() {
@@ -76,13 +92,12 @@ export class JhiMainComponent implements OnInit {
     }
 
     toggleSide(flag) {
-
         const element = document.getElementById('toggle');
         if (!this.isMobile) {
             if (flag) {
-                element.setAttribute('style', 'margin-left: 200px;');
-            } else {
                 element.setAttribute('style', 'margin-left: 0px;');
+            } else {
+                element.setAttribute('style', 'margin-left: 200px;');
             }
         }
     }

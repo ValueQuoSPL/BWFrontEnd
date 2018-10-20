@@ -1,9 +1,12 @@
 {
     "global": {
-        "title": "BuckswiseFrontEnd",
+        "title": "Buckswise",
         "browsehappy": "நிங்கள் உபயோக்கிப்பது <strong>காலாவதியான</strong> உலாவி. தயவுசெய்து  <a href=\"http://browsehappy.com/?locale=en\">உங்கள் உலாவியை மேம்படுத்தவும்</a>.",
         "menu": {
             "home": "முகப்பு",
+            "pricing": "Pricing",
+            "contact": "Contact Us",
+            "services": "Services",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "பொருள்கள்",
@@ -29,6 +32,8 @@
                 "audits": "தணிக்கைகள்",
                 "apidocs": "எபிஐ ",
                 "database": "டேடாபேஸ்",
+                "promocode": "Promocode Management",
+                "appointment": "Appointment Management",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
             "language": "மொழி"

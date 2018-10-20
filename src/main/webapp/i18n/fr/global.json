@@ -1,9 +1,12 @@
 {
     "global": {
-        "title": "BuckswiseFrontEnd",
+        "title": "Buckswise",
         "browsehappy": "Vous utilisez un <strong>ancien</strong> navigateur. Veuillez <a href=\"http://browsehappy.com/?locale=fr\">mettre à jour votre navigateur</a> pour une meilleure expérience.",
         "menu": {
             "home": "Accueil",
+            "pricing": "Pricing",
+            "contact": "Contact Us",
+            "services": "Services",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entités",
@@ -29,6 +32,8 @@
                 "audits": "Audits",
                 "apidocs": "API",
                 "database": "Base de données",
+                "promocode": "Promocode Management",
+                "appointment": "Appointment Management",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
             "language": "Langue"

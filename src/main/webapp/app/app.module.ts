@@ -40,6 +40,10 @@ import { AppointmentModule } from './appointment/appointment.module';
 import { BuckswiseAppSheetalModule } from './sheetal/sheetal.module';
 import { SuccessComponent } from './success/success.component';
 import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+library.add(fas, far);
 
 @NgModule({
     imports: [
@@ -79,6 +83,7 @@ import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
     providers: [
         WINDOW_PROVIDERS,
         SidebarComponent,
+        NavbarComponent,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

@@ -2,7 +2,7 @@
   "generator-jhipster": {
     "jhipsterVersion": "5.4.2",
     "applicationType": "monolith",
-    "baseName": "BuckswiseFrontEnd",
+    "baseName": "Buckswise",
     "clientFramework": "angularX",
     "useSass": true,
     "clientPackageManager": "npm",

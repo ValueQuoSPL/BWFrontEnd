@@ -1,9 +1,12 @@
 {
     "global": {
-        "title": "BuckswiseFrontEnd",
+        "title": "Buckswise",
         "browsehappy": "<strong>古い</strong>ブラウザーが使われています。より良い体験を得るために<a href=\"http://browsehappy.com/?locale=en\">ブラウザをアップデート</a>してください。",
         "menu": {
             "home": "ホーム",
+            "pricing": "Pricing",
+            "contact": "Contact Us",
+            "services": "Services",
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "エンティティ",
@@ -29,6 +32,8 @@
                 "audits": "監査",
                 "apidocs": "API",
                 "database": "データベース",
+                "promocode": "Promocode Management",
+                "appointment": "Appointment Management",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
             "language": "言語"

@@ -5,6 +5,9 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { LoginService } from 'app/core/login/login.service';
 import { StateStorageService } from 'app/core/auth/state-storage.service';
+import { JhiMainComponent } from 'app/layouts';
+import { SidebarComponent } from 'app/layouts/sidebar/sidebar.component';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-login-modal',
@@ -16,15 +19,17 @@ export class JhiLoginModalComponent implements AfterViewInit {
     rememberMe: boolean;
     username: string;
     credentials: any;
+    flag = false;
 
     constructor(
+        private stateStorageService: StateStorageService,
+        private renderer: Renderer,
         private eventManager: JhiEventManager,
         private loginService: LoginService,
-        private stateStorageService: StateStorageService,
         private elementRef: ElementRef,
-        private renderer: Renderer,
         private router: Router,
-        public activeModal: NgbActiveModal
+        public activeModal: NgbActiveModal,
+        private commonSidebarService: CommonSidebarService
     ) {
         this.credentials = {};
     }
@@ -71,11 +76,20 @@ export class JhiLoginModalComponent implements AfterViewInit {
                     this.stateStorageService.storeUrl(null);
                     this.router.navigate([redirect]);
                 }
+                // this.toggle();
+                this.commonSidebarService.sidebarSource.next(true);
             })
             .catch(() => {
                 this.authenticationError = true;
             });
     }
+
+    // toggle() {
+    //     // let flag = false;
+    //     this.flag = !this.flag;
+    //     // this.main.toggleSide(this.flag);
+    //     // this.sidebar.showSidebar();
+    // }
 
     register() {
         this.activeModal.dismiss('to state register');

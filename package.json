@@ -1,7 +1,7 @@
 {
   "name": "buckswise-front-end",
   "version": "0.0.0",
-  "description": "Description for BuckswiseFrontEnd",
+  "description": "Description for Buckswise",
   "private": true,
   "license": "UNLICENSED",
   "cacheDirectories": [
@@ -27,6 +27,8 @@
     "angular-calendar": "^0.26.3",
     "bootstrap": "4.1.3",
     "core-js": "2.5.7",
+    "font-awesome": "^4.7.0",
+    "fontawesome": "^4.7.2",
     "grecaptcha": "^1.0.2",
     "jquery": "^3.3.1",
     "merge-jsons-webpack-plugin": "^1.0.18",

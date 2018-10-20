@@ -22,6 +22,10 @@ import {
 // import {  } from './promo-code-manage/promo-code-manage.component';
 import { CustomMaterialModule } from 'app/custom-material.module';
 import { AppointmentManageComponent } from './appointment-manage/appointment-manage.component';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+library.add(fas, far);
 
 @NgModule({
     imports: [

@@ -38,27 +38,27 @@ export class JhiLanguageHelper {
      * 2. $state.$current.data.pageTitle (current state page title)
      * 3. 'global.title'
      */
-    updateTitle(titleKey?: string) {
-        if (!titleKey) {
-            titleKey = this.getPageTitle(this.router.routerState.snapshot.root);
-        }
 
-        this.translateService.get(titleKey).subscribe(title => {
-            this.titleService.setTitle(title);
-        });
-    }
+    // updateTitle(titleKey?: string) {
+    //     if (!titleKey) {
+    //         titleKey = this.getPageTitle(this.router.routerState.snapshot.root);
+    //     }
+
+    //     this.translateService.get(titleKey).subscribe(title => {
+    //         this.titleService.setTitle(title);
+    //     });
+    // }
 
     private init() {
         this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
             this._language.next(this.translateService.currentLang);
             this.renderer.setAttribute(document.querySelector('html'), 'lang', this.translateService.currentLang);
-            this.updateTitle();
+            // this.updateTitle();
         });
     }
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
-        let title: string =
-            routeSnapshot.data && routeSnapshot.data['pageTitle'] ? routeSnapshot.data['pageTitle'] : 'buckswiseFrontEndApp';
+        let title: string = routeSnapshot.data && routeSnapshot.data['pageTitle'] ? routeSnapshot.data['pageTitle'] : 'Buckswise';
         if (routeSnapshot.firstChild) {
             title = this.getPageTitle(routeSnapshot.firstChild) || title;
         }
