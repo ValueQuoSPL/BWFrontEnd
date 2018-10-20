@@ -12,6 +12,7 @@
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.webapp" />
     <link rel="stylesheet" href="content/css/loading.css">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <!-- jhipster-needle-add-resources-to-root - JHipster will add new resources here -->
 </head>
 <body>
@@ -76,7 +77,10 @@
             setTimeout(showError, 4000);
         }
         function showError() {
-            document.getElementById("jhipster-error").style.display="block";
+            let x = document.getElementById("jhipster-error");
+           if (x) {
+            x.style.display="block";
+           }
         }
     </script>
     <!-- uncomment this for adding service worker
