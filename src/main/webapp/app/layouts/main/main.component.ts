@@ -64,11 +64,13 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
             this.account = account;
         });
         this.registerAuthenticationSuccess();
+        // this.toggleSide(true);
     }
 
     ngAfterViewInit() {
-        const element = document.getElementById('toggle');
-        element.setAttribute('style', 'margin-left: 200px;');
+        console.log('setting after view init');
+        document.getElementById('toggle').style.marginLeft = '200px';
+        // element.setAttribute('style', 'margin-left: 200px;');
     }
 
     registerAuthenticationSuccess() {
@@ -92,7 +94,9 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     }
 
     toggleSide(flag) {
+        console.log('toggle it');
         const element = document.getElementById('toggle');
+        console.log('toggle for', element);
         if (!this.isMobile) {
             if (flag) {
                 element.setAttribute('style', 'margin-left: 0px;');

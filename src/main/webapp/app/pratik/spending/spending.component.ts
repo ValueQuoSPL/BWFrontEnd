@@ -1,9 +1,10 @@
-import { AccountService, LoginModalService, Principal } from 'app/core';
+import { LoginModalService, Principal } from 'app/core';
 import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, FormBuilder } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { SpendingRouteGuardService } from '../common/spending-route-guard.service';
+import { RouterModule, Router } from '@angular/router';
 
 export interface DialogData {
     animal: string;
@@ -40,6 +41,7 @@ export class SpendingComponent implements OnInit {
     changesSaved: any;
 
     constructor(
+        private router: Router,
         private principal: Principal,
         private loginModalService: LoginModalService,
         private routeGuard: SpendingRouteGuardService
@@ -77,5 +79,24 @@ export class SpendingComponent implements OnInit {
         } else {
             return true;
         }
+    }
+
+    utility() {
+        this.router.navigate(['spend/utility']);
+    }
+    household() {
+        this.router.navigate(['spend/household']);
+    }
+    loan() {
+        this.router.navigate(['spend/loan']);
+    }
+    health() {
+        this.router.navigate(['spend/health']);
+    }
+    life() {
+        this.router.navigate(['spend/life']);
+    }
+    general() {
+        this.router.navigate(['spend/general']);
     }
 }

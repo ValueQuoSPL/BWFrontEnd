@@ -416,14 +416,19 @@
                 class="btn btn-sm btn-outline-info" 
                 type="button" 
                 (click)="openLinkAsset(editLinkModal,out.id)">
-                <span class="fa fa-link"></span>
+                <span>
+                  <fa-icon [icon]="'link'"></fa-icon>
+              </span>
+
               </button>
             </td>
             <td>
               <button 
                 class="btn btn-sm btn-outline-warning" 
                 (click)="viewByGoalId(out.id, viewLinkedAssetModal)">
-                  <span class="fa fa-eye"></span>
+                <span>
+                  <fa-icon [icon]="'eye'"></fa-icon>
+              </span>
               </button>
             </td>
           </tr>
