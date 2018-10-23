@@ -16,7 +16,7 @@
                                 <mat-card class="example-card" jhiMovable>
         
                                     <div class="text-center"> 
-                                        <div style="font-weight:500"> Income </div> <hr style="height: 1px; background-color: blue;">
+                                        <div> Income </div> <hr>
                                         <div> {{ incomeTotal | currency:"INR"}} </div>
                                     </div>
                                     
@@ -25,7 +25,7 @@
                             <div class="col-md-2">
                                 <mat-card class="example-card" jhiMovable>
                                         <div class="text-center"> 
-                                                <div style="font-weight:500"> Expenses </div> <hr style="height: 1px; background-color: blue;">
+                                                <div> Expenses </div> <hr>
                                                 <div> {{ expenseTotal | currency:"INR"}} </div>
                                             </div>
                                     
@@ -34,7 +34,7 @@
                             <div class="col-md-2">
                                 <mat-card class="example-card" jhiMovable>
                                         <div class="text-center"> 
-                                                <div style="font-weight:500"> Surplus </div> <hr style="height: 1px; background-color: blue;">
+                                                <div> Surplus </div> <hr>
                                                 <div> {{ surplus | currency:"INR"}} </div>
                                             </div>
                                     
@@ -43,7 +43,7 @@
                             <div class="col-md-2">
                                 <mat-card class="example-card" jhiMovable>
                                         <div class="text-center"> 
-                                                <div style="font-weight:500"> Assets </div> <hr style="height: 1px; background-color: blue;">
+                                                <div> Assets </div> <hr>
                                                 <div> {{ assetTotal | currency:"INR"}} </div>
                                             </div>
                                     
@@ -52,7 +52,7 @@
                             <div class="col-md-2">
                                 <mat-card class="example-card" jhiMovable>
                                         <div class="text-center"> 
-                                                <div style="font-weight:500"> Liability </div> <hr style="height: 1px; background-color: blue;">
+                                                <div> Liability </div> <hr>
                                                 <div>  {{ liabilityTotal | currency:"INR"}} </div>
                                             </div>
                             
@@ -61,7 +61,7 @@
                             <div class="col-md-2">
                                 <mat-card class="example-card" jhiMovable>
                                         <div class="text-center"> 
-                                                <div style="font-weight:500"> Networth </div> <hr style="height: 1px; background-color: blue;">
+                                                <div> Networth </div> <hr>
                                                 <div> {{ networth | currency:"INR"}} </div>
                                             </div>
                                 
@@ -93,7 +93,7 @@
                                                 <a routerLink="/assets" routerLinkActiveOptions="active"> Details </a>
                                         </div>
                                         <mat-card-header> 
-                                            <div class="pull-left bwtitle">
+                                            <div class="pull-left  bwsubtitle">
                                                 Assets
                                             </div>
                                         </mat-card-header>
@@ -144,12 +144,11 @@
                                     </div>
                                     <mat-card-header>
                                         <div>
-                                            <div class="pull-left bwtitle">
+                                            <div class="pull-left bwsubtitle">
                                                 Liabilities
                                             </div>
                                         </div>
                                     </mat-card-header>
-                                    
                                         <div style="display: grid" class="shadow">
                                             <canvas baseChart
                                                 [data]="pieChartDataa"
@@ -205,7 +204,7 @@
                     
                             <mat-card class="example-card"  >
                                 <div >
-                                    <div class="pull-left bwtitle">
+                                    <div class="pull-left bwsubtitle">
                                         Goals
                                     </div>
                                     <div class="pull-right">
@@ -265,7 +264,6 @@
         <div *ngSwitchCase="false" class="form-group row justify-content-center">
                 <mat-card class="example-card"> 
                     <mat-card-content class="example-card" class="shadow">
-                        <img src="../../Assests/oops.jpg" style="height:300px;width:700px"><br>
                         <span>Oops you are not Signed In </span>
                         Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
                     </mat-card-content>

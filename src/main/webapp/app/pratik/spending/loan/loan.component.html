@@ -119,9 +119,10 @@
                         <th scope="col">Loan Type </th>
                         <th scope="col">Lender Name </th>
                         <th scope="col">Amount </th>
-                        <th scope="col">Monthly Tenure </th>
+                        <th scope="col">Tenure (Month) </th>
                         <th scope="col">Outstanding Amount </th>
                         <th scope="col">ROI </th>
+                        <th scope="col">emi </th>
                         <th scope="col">Action </th>
                         <th></th>
                     </tr>
@@ -136,6 +137,7 @@
                         <td> {{ field.tenure }} </td>
                         <td> {{ field.outstandingpricipal }} </td>
                         <td> {{ field.roi }} </td>
+                        <td> {{ field.emi }} </td>
                         <td>
                                 <button class="btn btn-outline-info" type="button" (click)="onEditLoan(field.id, loanModal)">
                                         <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
@@ -146,6 +148,12 @@
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total Emi For this Month</th>
+                        <th >{{totalEmi}}</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
         <div *ngSwitchCase="false">

@@ -24,6 +24,7 @@ import { ChitFundService } from 'app/my-assets/chit-funds/chitfund.service';
 import { PropertyService } from 'app/my-assets/property/property.service';
 import { FutureOptionService } from 'app/my-assets/future-option/futureoption.service';
 import { SavingSchemeService } from 'app/my-assets/saving-scheme/savingscheme.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
@@ -40,7 +41,8 @@ library.add(fas, far);
         CustomMaterialModule,
         NgbModule,
         MatDialogModule,
-        CustomDirectiveModule
+        CustomDirectiveModule,
+        FontAwesomeModule
     ],
     declarations: [
         GoalComponent,

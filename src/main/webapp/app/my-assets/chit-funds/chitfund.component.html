@@ -23,7 +23,7 @@
             <form name="editForm" role="form" novalidate  #editForm="ngForm"> 
               <!-- <div class="form-group">
                     <label class="form-control-label" for="field_chit_name">Chit Fund Name</label>
-                    <input type="text" class="form-control" name="chit_name" id="chit_name" [(ngModel)]="chitfund.chit_name" [ngModelOptions]="{standalone: true}"
+                    <input type="text" class="form-control" name="chit_name" id="chit_name" [(ngModel)]="chitfund.chit_name"
                     />
                 </div> -->
                 <mat-form-field>
@@ -35,13 +35,13 @@
                         name="chit_name" 
                         id="chit_name" 
                         [(ngModel)]="chitfund.chit_name" 
-                        [ngModelOptions]="{standalone: true}"
+                       
                         required
                     >
                 </mat-form-field>&nbsp;&nbsp;
                 <!-- <div class="form-group">
                         <label class="form-control-label" for="field_chit_holder_name">Chit Holder Name</label>
-                        <input type="text" class="form-control" name="chit_holder_name" id="chit_holder_name" [(ngModel)]="chitfund.chit_holder_name" [ngModelOptions]="{standalone: true}"
+                        <input type="text" class="form-control" name="chit_holder_name" id="chit_holder_name" [(ngModel)]="chitfund.chit_holder_name"
                         />
                     </div> -->
                     <mat-form-field>
@@ -52,13 +52,13 @@
                             name="chit_holder_name" 
                             id="chit_holder_name" 
                             [(ngModel)]="chitfund.chit_holder_name" 
-                            [ngModelOptions]="{standalone: true}"
+                           
                             required
                         >
                     </mat-form-field>
                     <!-- <div class="form-group">
                             <label class="form-control-label" f7or="field_chit_start_date">Chit Start date</label>
-                            <input type="text" placeholder="" class="form-control" [(ngModel)]="chitfund.chit_start_date" [ngModelOptions]="{standalone: true}"
+                            <input type="text" placeholder="" class="form-control" [(ngModel)]="chitfund.chit_start_date"
                                 bsDatepicker>
                         </div> -->
                         <mat-form-field>
@@ -69,13 +69,13 @@
                                 name="chit_start_date"
                                 placeholder="Start Date"
                                 [(ngModel)]="chitfund.chit_start_date" 
-                                [ngModelOptions]="{standalone: true}">
+                               >
                             <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                             <mat-datepicker #picker1 ></mat-datepicker>
                         </mat-form-field>&nbsp;&nbsp;
                         <!-- <div class="form-group">
                                 <label class="form-control-label" for="field_chit_value">Chit Value</label>
-                                <input type="number" class="form-control" name="chit_value" id="chit_value" [(ngModel)]="chitfund.chit_value" [ngModelOptions]="{standalone: true}"
+                                <input type="number" class="form-control" name="chit_value" id="chit_value" [(ngModel)]="chitfund.chit_value"
                                 />
                             </div> -->
                             <mat-form-field>
@@ -88,12 +88,12 @@
                                     name="chit_value" 
                                     id="chit_value" 
                                     [(ngModel)]="chitfund.chit_value" 
-                                    [ngModelOptions]="{standalone: true}"
+                                   
                                 >
                             </mat-form-field>
                             <!-- <div class="form-group">
                                     <label class="form-control-label" for="field_tenure">Tenure (Months)</label>
-                                    <input type="number" class="form-control" name="tenure" id="tenure" [(ngModel)]="chitfund.tenure" [ngModelOptions]="{standalone: true}"
+                                    <input type="number" class="form-control" name="tenure" id="tenure" [(ngModel)]="chitfund.tenure"
                                     />
                                 </div> -->
                                 <mat-form-field>
@@ -107,12 +107,12 @@
                                         name="tenure" 
                                         id="tenure" 
                                         [(ngModel)]="chitfund.tenure" 
-                                        [ngModelOptions]="{standalone: true}"
+                                       
                                     >
                                 </mat-form-field>&nbsp;&nbsp;
                                 <!-- <div class="form-group">
                                         <label class="form-control-label" for="field_m_payment">Monthly Payment</label>
-                                        <input type="number" class="form-control" name="m_payment" id="m_payment" [(ngModel)]="chitfund.m_payment" [ngModelOptions]="{standalone: true}"
+                                        <input type="number" class="form-control" name="m_payment" id="m_payment" [(ngModel)]="chitfund.m_payment"
                                         />
                                     </div> -->
                                     <mat-form-field>
@@ -126,12 +126,12 @@
                                             name="m_payment" 
                                             id="m_payment" 
                                             [(ngModel)]="chitfund.m_payment" 
-                                            [ngModelOptions]="{standalone: true}"
+                                           
                                         >
                                     </mat-form-field>
                                     <!-- <div class="form-group">
                                             <label class="form-control-label" for="field_current_value">Current Value</label>
-                                            <input type="text" class="form-control" name="current_value" id="current_value" [(ngModel)]="chitfund.current_value" [ngModelOptions]="{standalone: true}" />
+                                            <input type="text" class="form-control" name="current_value" id="current_value" [(ngModel)]="chitfund.current_value" />
                                     </div> -->
                                             <mat-form-field>
                                                 <input 
@@ -144,19 +144,19 @@
                                                     name="current_value" 
                                                     id="current_value" 
                                                     [(ngModel)]="chitfund.current_value" 
-                                                    [ngModelOptions]="{standalone: true}"
+                                                   
                                                 >
                                             </mat-form-field>&nbsp;&nbsp;
                                         
                                         <!-- <div class="col-md-6">
                                             <div class="checkbox form-group">
-                                                <label class="form-control-label" for="field_isChashed"><input type="checkbox" value="" class="form-control" name="isCashed" id="isCashed" [(ngModel)]="chitfund.isCashed" [ngModelOptions]="{standalone: true}" >Is cashed?</label>
+                                                <label class="form-control-label" for="field_isChashed"><input type="checkbox" value="" class="form-control" name="isCashed" id="isCashed" [(ngModel)]="chitfund.isCashed" >Is cashed?</label>
                                               </div>
                                         </div> -->
                                     
                       <!-- <div class="form-group">
                                 <label class="form-control-label" for="field_notes">Notes</label>
-                                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="chitfund.notes" [ngModelOptions]="{standalone: true}"
+                                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="chitfund.notes"
                                 />
                             </div> -->
                             <mat-form-field>
@@ -167,8 +167,9 @@
                                     placeholder="Comment"
                                     name="notes" 
                                     id="notes" 
-                                    [(ngModel)]="chitfund.notes" 
-                                    [ngModelOptions]="{standalone: true}">
+                                    [(ngModel)]="chitfund.notes"
+                                    [ngModelOptions]="{standalone: true}"
+                                   >
                                 </textarea>
                             </mat-form-field>
                 <div class="modal-footer">
@@ -197,44 +198,44 @@
             <form name="editForm" role="form" novalidate  #editForm="ngForm"> 
               <div class="form-group">
                     <label class="form-control-label" for="field_chit_name">Chit Fund Name</label>
-                    <input type="text" class="form-control" name="chit_name" id="chit_name" [(ngModel)]="chitfund.chit_name" [ngModelOptions]="{standalone: true}"
+                    <input type="text" class="form-control" name="chit_name" id="chit_name" [(ngModel)]="chitfund.chit_name"
                     />
                 </div>
                 <div class="form-group">
                         <label class="form-control-label" for="field_chit_holder_name">Chit Holder Name</label>
-                        <input type="text" class="form-control" name="chit_holder_name" id="chit_holder_name" [(ngModel)]="chitfund.chit_holder_name" [ngModelOptions]="{standalone: true}"
+                        <input type="text" class="form-control" name="chit_holder_name" id="chit_holder_name" [(ngModel)]="chitfund.chit_holder_name"
                         />
                     </div>
                     <div class="form-group">
                             <label class="form-control-label" f7or="field_chit_start_date">Chit Start date</label>
-                            <input type="text" placeholder="" class="form-control" [(ngModel)]="chitfund.chit_start_date" [ngModelOptions]="{standalone: true}"
+                            <input type="text" placeholder="" class="form-control" [(ngModel)]="chitfund.chit_start_date"
                                 bsDatepicker>
                         </div>
                         <div class="form-group">
                                 <label class="form-control-label" for="field_chit_value">Chit Value</label>
-                                <input type="number" class="form-control" name="chit_value" id="chit_value" [(ngModel)]="chitfund.chit_value" [ngModelOptions]="{standalone: true}"
+                                <input type="number" class="form-control" name="chit_value" id="chit_value" [(ngModel)]="chitfund.chit_value"
                                 />
                             </div>
                             <div class="form-group">
                                     <label class="form-control-label" for="field_tenure">Tenure (Months)</label>
-                                    <input type="number" class="form-control" name="tenure" id="tenure" [(ngModel)]="chitfund.tenure" [ngModelOptions]="{standalone: true}"
+                                    <input type="number" class="form-control" name="tenure" id="tenure" [(ngModel)]="chitfund.tenure"
                                     />
                                 </div>
                                 <div class="form-group">
                                         <label class="form-control-label" for="field_m_payment">Monthly Payment</label>
-                                        <input type="number" class="form-control" name="m_payment" id="m_payment" [(ngModel)]="chitfund.m_payment" [ngModelOptions]="{standalone: true}"
+                                        <input type="number" class="form-control" name="m_payment" id="m_payment" [(ngModel)]="chitfund.m_payment"
                                         />
                                     </div>
                                     <div class="form-group">
                                             <label class="form-control-label" for="field_current_value">Current Value</label>
-                                            <input type="text" class="form-control" name="current_value" id="current_value" [(ngModel)]="chitfund.current_value" [ngModelOptions]="{standalone: true}" />
+                                            <input type="text" class="form-control" name="current_value" id="current_value" [(ngModel)]="chitfund.current_value" />
                                     </div>
                                     <div class="checkbox form-group">
-                                            <label class="form-control-label" for="field_isChashed"><input type="checkbox" value="" class="form-control" name="isCashed" id="isCashed" [(ngModel)]="chitfund.isCashed" [ngModelOptions]="{standalone: true}" >Is cashed?</label>
+                                            <label class="form-control-label" for="field_isChashed"><input type="checkbox" value="" class="form-control" name="isCashed" id="isCashed" [(ngModel)]="chitfund.isCashed" >Is cashed?</label>
                                           </div>
                       <div class="form-group">
                                 <label class="form-control-label" for="field_notes">Notes</label>
-                                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="chitfund.notes" [ngModelOptions]="{standalone: true}"
+                                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="chitfund.notes"
                                 />
                             </div>
                 <div class="modal-footer">
@@ -265,7 +266,7 @@
             <form name="editForm" role="form" novalidate  #editForm="ngForm"> 
               <!-- <div class="form-group">
                     <label class="form-control-label" for="field_chit_name">Chit Fund Name</label>
-                    <input type="text" class="form-control" name="chit_name" id="chit_name" [(ngModel)]="chitfund.chit_name" [ngModelOptions]="{standalone: true}"
+                    <input type="text" class="form-control" name="chit_name" id="chit_name" [(ngModel)]="chitfund.chit_name"
                     />
                 </div> -->
                 <mat-form-field>
@@ -277,13 +278,13 @@
                         name="chit_name" 
                         id="chit_name" 
                         [(ngModel)]="chitfund.chit_name" 
-                        [ngModelOptions]="{standalone: true}"
+                       
                         required
                     >
                 </mat-form-field>&nbsp;&nbsp;
                 <!-- <div class="form-group">
                         <label class="form-control-label" for="field_chit_holder_name">Chit Holder Name</label>
-                        <input type="text" class="form-control" name="chit_holder_name" id="chit_holder_name" [(ngModel)]="chitfund.chit_holder_name" [ngModelOptions]="{standalone: true}"
+                        <input type="text" class="form-control" name="chit_holder_name" id="chit_holder_name" [(ngModel)]="chitfund.chit_holder_name"
                         />
                     </div> -->
                     <mat-form-field>
@@ -294,13 +295,13 @@
                             name="chit_holder_name" 
                             id="chit_holder_name" 
                             [(ngModel)]="chitfund.chit_holder_name" 
-                            [ngModelOptions]="{standalone: true}"
+                           
                             required
                         >
                     </mat-form-field>
                     <!-- <div class="form-group">
                             <label class="form-control-label" f7or="field_chit_start_date">Chit Start date</label>
-                            <input type="text" placeholder="" class="form-control" [(ngModel)]="chitfund.chit_start_date" [ngModelOptions]="{standalone: true}"
+                            <input type="text" placeholder="" class="form-control" [(ngModel)]="chitfund.chit_start_date"
                                 bsDatepicker>
                         </div> -->
                         <mat-form-field>
@@ -311,13 +312,13 @@
                                 name="chit_start_date"
                                 placeholder="Start Date"
                                 [(ngModel)]="chitfund.chit_start_date" 
-                                [ngModelOptions]="{standalone: true}">
+                               >
                             <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                             <mat-datepicker #picker1 ></mat-datepicker>
                         </mat-form-field>&nbsp;&nbsp;
                         <!-- <div class="form-group">
                                 <label class="form-control-label" for="field_chit_value">Chit Value</label>
-                                <input type="number" class="form-control" name="chit_value" id="chit_value" [(ngModel)]="chitfund.chit_value" [ngModelOptions]="{standalone: true}"
+                                <input type="number" class="form-control" name="chit_value" id="chit_value" [(ngModel)]="chitfund.chit_value"
                                 />
                             </div> -->
                             <mat-form-field>
@@ -330,12 +331,12 @@
                                     name="chit_value" 
                                     id="chit_value" 
                                     [(ngModel)]="chitfund.chit_value" 
-                                    [ngModelOptions]="{standalone: true}"
+                                   
                                 >
                             </mat-form-field>
                             <!-- <div class="form-group">
                                     <label class="form-control-label" for="field_tenure">Tenure (Months)</label>
-                                    <input type="number" class="form-control" name="tenure" id="tenure" [(ngModel)]="chitfund.tenure" [ngModelOptions]="{standalone: true}"
+                                    <input type="number" class="form-control" name="tenure" id="tenure" [(ngModel)]="chitfund.tenure"
                                     />
                                 </div> -->
                                 <mat-form-field>
@@ -349,12 +350,12 @@
                                         name="tenure" 
                                         id="tenure" 
                                         [(ngModel)]="chitfund.tenure" 
-                                        [ngModelOptions]="{standalone: true}"
+                                       
                                     >
                                 </mat-form-field>&nbsp;&nbsp;
                                 <!-- <div class="form-group">
                                         <label class="form-control-label" for="field_m_payment">Monthly Payment</label>
-                                        <input type="number" class="form-control" name="m_payment" id="m_payment" [(ngModel)]="chitfund.m_payment" [ngModelOptions]="{standalone: true}"
+                                        <input type="number" class="form-control" name="m_payment" id="m_payment" [(ngModel)]="chitfund.m_payment"
                                         />
                                     </div> -->
                                     <mat-form-field>
@@ -368,12 +369,12 @@
                                             name="m_payment" 
                                             id="m_payment" 
                                             [(ngModel)]="chitfund.m_payment" 
-                                            [ngModelOptions]="{standalone: true}"
+                                           
                                         >
                                     </mat-form-field>
                                     <!-- <div class="form-group">
                                             <label class="form-control-label" for="field_current_value">Current Value</label>
-                                            <input type="text" class="form-control" name="current_value" id="current_value" [(ngModel)]="chitfund.current_value" [ngModelOptions]="{standalone: true}" />
+                                            <input type="text" class="form-control" name="current_value" id="current_value" [(ngModel)]="chitfund.current_value" />
                                     </div> -->
                                    
                                        
@@ -388,19 +389,19 @@
                                                     name="current_value" 
                                                     id="current_value" 
                                                     [(ngModel)]="chitfund.current_value" 
-                                                    [ngModelOptions]="{standalone: true}"
+                                                   
                                                 >
                                             </mat-form-field>&nbsp;&nbsp;
                                         
                                         <!-- <div class="col-md-6">
                                             <div class="checkbox form-group">
-                                                <label class="form-control-label" for="field_isChashed"><input type="checkbox" value="" class="form-control" name="isCashed" id="isCashed" [(ngModel)]="chitfund.isCashed" [ngModelOptions]="{standalone: true}" >Is cashed?</label>
+                                                <label class="form-control-label" for="field_isChashed"><input type="checkbox" value="" class="form-control" name="isCashed" id="isCashed" [(ngModel)]="chitfund.isCashed" >Is cashed?</label>
                                               </div>
                                         </div> -->
                                     <!-- </div> -->
                       <!-- <div class="form-group">
                                 <label class="form-control-label" for="field_notes">Notes</label>
-                                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="chitfund.notes" [ngModelOptions]="{standalone: true}"
+                                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="chitfund.notes"
                                 />
                             </div> -->
                             <mat-form-field>
@@ -412,7 +413,7 @@
                                     name="notes" 
                                     id="notes" 
                                     [(ngModel)]="chitfund.notes" 
-                                    [ngModelOptions]="{standalone: true}">
+                                   >
                                 </textarea>
                             </mat-form-field>
                 <div class="modal-footer">

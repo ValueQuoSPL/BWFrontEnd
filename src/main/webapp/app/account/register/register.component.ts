@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  Renderer,
-  ElementRef
-} from '@angular/core';
+import { Component, OnInit, AfterViewInit, Renderer, ElementRef } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
@@ -16,176 +10,127 @@ import { User, UserService, LoginModalService } from 'app/core';
 import { Router, Routes, ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'jhi-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['register.component.css']
+    selector: 'jhi-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['register.component.css']
 })
 export class RegisterComponent implements OnInit, AfterViewInit {
-  confirmPassword: string;
-  doNotMatch: string;
-  error: string;
-  errorEmailExists: string;
-  errorUserExists: string;
-  registerAccount: any;
-  success: boolean;
-  modalRef: NgbModalRef;
-  submitEvent = false;
-  userMailOtp;
-  systemMailOtp;
-  VerifyButtonClicked = false;
-  isVerify = false;
+    confirmPassword: string;
+    doNotMatch: string;
+    error: string;
+    errorEmailExists: string;
+    errorUserExists: string;
+    registerAccount: any;
+    success: boolean;
+    modalRef: NgbModalRef;
+    submitEvent = false;
+    userMailOtp;
+    systemMailOtp;
+    VerifyButtonClicked = false;
+    isVerify = false;
 
-  userMgmt: UserMgmtComponent;
-  users: User[];
-  param;
+    userMgmt: UserMgmtComponent;
+    users: User[];
+    param;
 
-  constructor(
-    private loginModalService: LoginModalService,
-    private registerService: Register,
-    private elementRef: ElementRef,
-    private renderer: Renderer,
-    private userService: UserService,
-    private router: Router,
-  ) {}
+    constructor(
+        private loginModalService: LoginModalService,
+        private registerService: Register,
+        private elementRef: ElementRef,
+        private renderer: Renderer,
+        private userService: UserService,
+        private router: Router
+    ) {}
 
-  ngOnInit() {
-    this.success = false;
-    this.registerAccount = {};
+    ngOnInit() {
+        this.success = false;
+        this.registerAccount = {};
 
-    this.param = this.router.url;
-    if (this.param === '/register') {
-      // console.log('register page');
-      this.registerService.isRegisterPage.next(true);
-    } else {
-      // console.log('not register page url');
-      this.registerService.isRegisterPage.next(false);
-    }
-  }
-
-  ngAfterViewInit() {
-    this.renderer.invokeElementMethod(
-      this.elementRef.nativeElement.querySelector('#login'),
-      'focus',
-      []
-    );
-  }
-  resolved(captchaResponse: string) {
-    console.log(captchaResponse);
-    this.registerAccount.gcaptcha = captchaResponse;
-    // this.registerService.validate(captchaResponse)
-    //   .subscribe( data => {
-    //     console.log('response of c:', data);
-    //   })
-  }
-
-  register() {
-    const resp = grecaptcha.getResponse();
-    const x = resp.length;
-    console.log('length', x);
-    if (x === 0) {
-      console.log('captcha err');
-
-      document.getElementById('g-recaptcha-error').innerHTML =
-        '<span style = "color:red;">Please Verify the Captcha</span>';
-    }
-    this.registerAccount.gcaptcha = resp;
-    this.submitEvent = true;
-    if (this.registerAccount.password !== this.confirmPassword) {
-      this.doNotMatch = 'ERROR';
-    } else {
-      this.doNotMatch = null;
-      this.error = null;
-      this.errorUserExists = null;
-      this.errorEmailExists = null;
-      this.registerAccount.langKey = 'en';
-      this.registerService.save(this.registerAccount).subscribe(
-        data => {
-          console.log('register', data);
-          this.systemMailOtp = data;
-          this.success = true;
-        },
-        response => {
-          this.processError(response);
+        this.param = this.router.url;
+        if (this.param === '/register') {
+            this.registerService.isRegisterPage.next(true);
+        } else {
+            this.registerService.isRegisterPage.next(false);
         }
-      );
     }
-    // console.log('calling findUser()');
-    // this.findUser();
-    // this.registerAccount.activated = true;
-    // this.registerService.activateUser(this.registerAccount);
-  }
 
-  verify() {
-    // this.VerifyButtonClicked = true;
-    // if (this.userMailOtp === this.systemMailOtp) {
-    //     console.log('success');
-    //     this.isVerify = true;
-    //     // this.registerService.activate(this.registerAccount.langKey);
-    //     // console.log('key for user', this.registerAccount.langKey);
-
-    // } else {
-    //     console.log('failed');
-    //     this.isVerify = false;
-    // }
-    this.router.navigate(['activate'], {
-      queryParams: { key: this.userMailOtp }
-    });
-  }
-  findUser() {
-    console.log('calling loadAll()');
-    this.loadAll();
-    console.log('users : ', this.users);
-    for (const user of this.users) {
-      console.log('inside for');
-      console.log(user.email);
-      if (user.email === this.registerAccount.email) {
-        console.log('user found ', user.email);
-        // this.userMgmt.setActive(user, true);
-      }
+    ngAfterViewInit() {
+        this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#login'), 'focus', []);
     }
-  }
-
-  loadAll() {
-    console.log('inside loadAll()');
-
-    // this.registerService.query().subscribe(
-    //         (res: HttpResponse<User[]>) => this.onSuccess(res.body, res.headers),
-    //         (res: HttpResponse<any>) => this.onError(res.body)
-    // );
-    this.registerService.getUsers().subscribe(data => (this.users = data));
-
-    console.log('calling loadAll() of user management');
-    this.userMgmt.loadAll();
-    console.log('complete loadAll() of user management');
-  }
-  onSuccess(data, headers) {
-    console.log('getting user data ', data);
-    console.log('getting user data ', headers);
-    this.users = data;
-  }
-  onError(error) {
-    console.log('ERROR: getting user data ', error);
-  }
-
-  openLogin() {
-    this.modalRef = this.loginModalService.open();
-  }
-
-  private processError(response: HttpErrorResponse) {
-    this.success = null;
-    if (
-      response.status === 400 &&
-      response.error.type === LOGIN_ALREADY_USED_TYPE
-    ) {
-      this.errorUserExists = 'ERROR';
-    } else if (
-      response.status === 400 &&
-      response.error.type === EMAIL_ALREADY_USED_TYPE
-    ) {
-      this.errorEmailExists = 'ERROR';
-    } else {
-      // this.error = 'ERROR';
-      this.success = true;
+    resolved(captchaResponse: string) {
+        this.registerAccount.gcaptcha = captchaResponse;
     }
-  }
+
+    register() {
+        const resp = grecaptcha.getResponse();
+        const x = resp.length;
+        if (x === 0) {
+            document.getElementById('g-recaptcha-error').innerHTML = '<span style = "color:red;">Please Verify the Captcha</span>';
+        } else {
+            this.registerAccount.gcaptcha = resp;
+            this.submitEvent = true;
+            if (this.registerAccount.password !== this.confirmPassword) {
+                this.doNotMatch = 'ERROR';
+            } else {
+                this.doNotMatch = null;
+                this.error = null;
+                this.errorUserExists = null;
+                this.errorEmailExists = null;
+                this.registerAccount.langKey = 'en';
+                this.registerService.save(this.registerAccount).subscribe(
+                    () => {
+                        this.success = true;
+                    },
+                    response => {
+                        // console.log('err occured 3', response.error.errorKey);
+                        this.processError(response);
+                    }
+                );
+            }
+        }
+    }
+
+    private processError(response: HttpErrorResponse) {
+        this.success = null;
+        // if ( response.status === 400 && response.error.type === LOGIN_ALREADY_USED_TYPE ) {
+        if (response.error.errorKey === 'userexists') {
+            this.errorUserExists = 'ERROR';
+            // } else if ( response.status === 400 && response.error.type === EMAIL_ALREADY_USED_TYPE ) {
+        } else if (response.error.errorKey === 'emailexists') {
+            this.errorEmailExists = 'ERROR';
+        } else {
+            this.error = 'ERROR';
+            // this.success = true;
+        }
+    }
+
+    verify() {
+        this.router.navigate(['activate'], {
+            queryParams: { key: this.userMailOtp }
+        });
+    }
+    findUser() {
+        this.loadAll();
+        for (const user of this.users) {
+            if (user.email === this.registerAccount.email) {
+                console.log('user found ', user.email);
+                // this.userMgmt.setActive(user, true);
+            }
+        }
+    }
+
+    loadAll() {
+        this.registerService.getUsers().subscribe(data => (this.users = data));
+        this.userMgmt.loadAll();
+    }
+    onSuccess(data, headers) {
+        this.users = data;
+    }
+    onError(error) {
+        console.log('ERROR: getting user data ', error);
+    }
+
+    openLogin() {
+        this.modalRef = this.loginModalService.open();
+    }
 }

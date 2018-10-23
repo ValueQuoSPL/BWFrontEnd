@@ -13,7 +13,7 @@
             <jhi-footer></jhi-footer>
     </div>
     <div *ngSwitchCase="true">
-        <div id="toggle">
+        <div id="toggle" class="toggleClass" [ngClass]="{'pull':flag}">
             <jhi-sidebar></jhi-sidebar>
             <router-outlet></router-outlet>
             <router-outlet name="popup"></router-outlet>

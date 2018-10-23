@@ -28,8 +28,7 @@
                     jhiNumberOnly 
                     placeholder="ID"
                     name="id"
-                    [(ngModel)]="altInvest.num" 
-                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="altInvest.num"
                 >
             </mat-form-field>&nbsp;&nbsp;
             <mat-form-field>
@@ -42,8 +41,7 @@
                     placeholder="Fund Name"
                     name="fund_name" 
                     id="field_fund_name" 
-                    [(ngModel)]="altInvest.fund_name" 
-                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="altInvest.fund_name"
                     required
                 >
             </mat-form-field>&nbsp;&nbsp;
@@ -52,13 +50,11 @@
                     matInput 
                     class="full-width" 
                     required
-                    type="number" 
-                    jhiNumberOnly 
+                    type="text"
                     placeholder="Investor Name"
                     name="investor_name" 
                     id="field_investor_name" 
                     [(ngModel)]="altInvest.investor_name"
-                    [ngModelOptions]="{standalone: true}"
                     required
                 >
             </mat-form-field>&nbsp;&nbsp;
@@ -68,8 +64,7 @@
                     matInput 
                     [matDatepicker]="picker1" 
                     placeholder="Purchase Date" 
-                    [(ngModel)]="altInvest.p_date" 
-                    [ngModelOptions]="{standalone: true}">
+                    [(ngModel)]="altInvest.p_date">
                 <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                 <mat-datepicker #picker1 ></mat-datepicker>
             </mat-form-field>&nbsp;&nbsp;
@@ -82,8 +77,7 @@
                     jhiNumberOnly 
                     name="amount_invested" 
                     id="field_amount_invested" 
-                    [(ngModel)]="altInvest.amount_invested" 
-                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="altInvest.amount_invested"
                     required
                 >
             </mat-form-field>&nbsp;&nbsp;
@@ -97,7 +91,6 @@
                     name="market_value" 
                     id="field_market_value" 
                     [(ngModel)]="altInvest.market_value"
-                    [ngModelOptions]="{standalone: true}" 
                     required
                 >
             </mat-form-field>&nbsp;&nbsp;
@@ -108,8 +101,7 @@
                     [matDatepicker]="picker2" 
                     placeholder="As Of Date"
                     name="as_of_date"
-                    [(ngModel)]="altInvest.as_of_date" 
-                    [ngModelOptions]="{standalone: true}">
+                    [(ngModel)]="altInvest.as_of_date">
                 <mat-datepicker-toggle matSuffix [for]="picker2" ></mat-datepicker-toggle>
                 <mat-datepicker #picker2 ></mat-datepicker>
             </mat-form-field>&nbsp;&nbsp;
@@ -147,8 +139,7 @@
                     jhiNumberOnly 
                     placeholder="ID"
                     name="id"
-                    [(ngModel)]="altInvest.num" 
-                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="altInvest.num"
                 >
             </mat-form-field>&nbsp;&nbsp;
             <mat-form-field>
@@ -161,8 +152,7 @@
                     placeholder="Fund Name"
                     name="fund_name" 
                     id="field_fund_name" 
-                    [(ngModel)]="altInvest.fund_name" 
-                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="altInvest.fund_name"
                     required
                 >
             </mat-form-field>&nbsp;&nbsp;
@@ -177,7 +167,6 @@
                     name="investor_name" 
                     id="field_investor_name" 
                     [(ngModel)]="altInvest.investor_name"
-                    [ngModelOptions]="{standalone: true}"
                     required
                 >
             </mat-form-field>&nbsp;&nbsp;
@@ -187,8 +176,7 @@
                     matInput 
                     [matDatepicker]="picker1" 
                     placeholder="Purchase Date" 
-                    [(ngModel)]="altInvest.p_date" 
-                    [ngModelOptions]="{standalone: true}">
+                    [(ngModel)]="altInvest.p_date">
                 <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                 <mat-datepicker #picker1 ></mat-datepicker>
             </mat-form-field>&nbsp;&nbsp;
@@ -201,8 +189,7 @@
                     jhiNumberOnly 
                     name="amount_invested" 
                     id="field_amount_invested" 
-                    [(ngModel)]="altInvest.amount_invested" 
-                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="altInvest.amount_invested"
                     required
                 >
             </mat-form-field>&nbsp;&nbsp;
@@ -215,8 +202,7 @@
                     jhiNumberOnly 
                     name="market_value" 
                     id="field_market_value" 
-                    [(ngModel)]="altInvest.market_value"
-                    [ngModelOptions]="{standalone: true}" 
+                    [(ngModel)]="altInvest.market_value" 
                     required
                 >
             </mat-form-field>&nbsp;&nbsp;
@@ -227,8 +213,7 @@
                     [matDatepicker]="picker2" 
                     placeholder="As Of Date"
                     name="as_of_date"
-                    [(ngModel)]="altInvest.as_of_date" 
-                    [ngModelOptions]="{standalone: true}">
+                    [(ngModel)]="altInvest.as_of_date">
                 <mat-datepicker-toggle matSuffix [for]="picker2" ></mat-datepicker-toggle>
                 <mat-datepicker #picker2 ></mat-datepicker>
             </mat-form-field>&nbsp;&nbsp;

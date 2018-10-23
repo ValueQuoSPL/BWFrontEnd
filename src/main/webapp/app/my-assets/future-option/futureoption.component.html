@@ -24,7 +24,7 @@
                 
                 <!-- <div class="form-group">
                     <label for="id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="fao.num" [ngModelOptions]="{standalone: true}" />
+                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="fao.num" />
                 </div> -->
                 <mat-form-field>
                     <input 
@@ -36,14 +36,14 @@
                         id="id" 
                         name="id" 
                         [(ngModel)]="fao.num" 
-                        [ngModelOptions]="{standalone: true}"
+                       
                         required
                     >
                 </mat-form-field>&nbsp;&nbsp;
                 <!-- <div class="form-group">
                     <label class="form-control-label" for="field_investment_type">Investment Type</label>
                     <input type="text" class="form-control" name="investment_type" id="field_investment_type" [(ngModel)]="fao.investment_type"
-                        [ngModelOptions]="{standalone: true}" required>
+                        required>
                 </div> -->
                 <mat-form-field>
                     <input 
@@ -59,7 +59,7 @@
                 </mat-form-field>
                 <!-- <div class="form-group">
                     <label class="form-control-label" for="field_asset_type">Asset Type</label>
-                    <input type="text" class="form-control" name="asset_type" id="field_asset_type" [(ngModel)]="fao.asset_type" [ngModelOptions]="{standalone: true}"
+                    <input type="text" class="form-control" name="asset_type" id="field_asset_type" [(ngModel)]="fao.asset_type"
                         required/>
                 </div> -->
                 <mat-form-field>
@@ -71,13 +71,13 @@
                         name="asset_type" 
                         id="field_asset_type" 
                         [(ngModel)]="fao.asset_type" 
-                        [ngModelOptions]="{standalone: true}"
+                       
                         required
                     >
                 </mat-form-field>&nbsp;&nbsp;
                 <!-- <div class="form-group">
                     <label class="form-control-label" for="field_investor_name">Investor Name</label>
-                    <input type="text" class="form-control" name="investor_name" id="field_investor_name" [(ngModel)]="fao.investor_name" [ngModelOptions]="{standalone: true}"
+                    <input type="text" class="form-control" name="investor_name" id="field_investor_name" [(ngModel)]="fao.investor_name"
                         required/>
                 </div> -->
                 <mat-form-field>
@@ -89,13 +89,13 @@
                         name="investor_name" 
                         id="field_investor_name" 
                         [(ngModel)]="fao.investor_name" 
-                        [ngModelOptions]="{standalone: true}"
+                       
                         required
                     >
                 </mat-form-field>
                 <!-- <div class="form-group">
                     <label class="form-control-label" for="field_asset_name">Asset Name</label>
-                    <input type="text" class="form-control" name="asset_name" id="field_asset_name" [(ngModel)]="fao.asset_name" [ngModelOptions]="{standalone: true}"
+                    <input type="text" class="form-control" name="asset_name" id="field_asset_name" [(ngModel)]="fao.asset_name"
                         required/>
                 </div> -->
                 <mat-form-field>
@@ -107,14 +107,14 @@
                         name="asset_name" 
                         id="field_asset_name" 
                         [(ngModel)]="fao.asset_name" 
-                        [ngModelOptions]="{standalone: true}"
+                       
                         required
                     >
                 </mat-form-field>&nbsp;&nbsp;
                 <!-- <div class="form-group">
                     <label class="form-control-label" for="field_no_of_contracts">No of Contracts</label>
                     <input type="number" class="form-control" name="no_of_contracts" id="field_no_of_contracts" [(ngModel)]="fao.no_of_contracts"
-                        [ngModelOptions]="{standalone: true}" required/>
+                        required/>
                 </div> -->
                 <mat-form-field>
                     <input 
@@ -131,7 +131,7 @@
                 </mat-form-field>
                 <!-- <div class="form-group">
                     <label class="form-control-label" f7or="field_p_date">Purchase Date</label>
-                    <input type="text" placeholder="" class="form-control" [(ngModel)]="fao.p_date" [ngModelOptions]="{standalone: true}" bsDatepicker>
+                    <input type="text" placeholder="" class="form-control" [(ngModel)]="fao.p_date" bsDatepicker>
                 </div> -->
                 <mat-form-field>
                     <input 
@@ -141,7 +141,7 @@
                         placeholder="Purchase Date"
                         name="p_date"
                         [(ngModel)]="fao.p_date" 
-                        [ngModelOptions]="{standalone: true}" >
+                        >
                     <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                     <mat-datepicker #picker1 ></mat-datepicker>
                 </mat-form-field>&nbsp;&nbsp;
@@ -149,7 +149,7 @@
                 <!-- <div class="form-group">
                     <label class="form-control-label" for="field_contract_p_value">contract Purchase Value</label>
                     <input type="number" class="form-control" name="contract_p_value" id="field_contract_p_value" [(ngModel)]="fao.contract_p_value"
-                        [ngModelOptions]="{standalone: true}" required />
+                        required />
                 </div> -->
                 <mat-form-field>
                     <input 
@@ -174,7 +174,7 @@
                         name="contract_m_value"
                         id="field_contract_m_value"
                         [(ngModel)]="fao.contract_m_value"
-                        [ngModelOptions]="{standalone: true}" 
+                        
                         required
                     >
                 </mat-form-field>&nbsp;&nbsp;
@@ -185,7 +185,7 @@
                         [matDatepicker]="picker2" 
                         placeholder="As Of Date"  
                         [(ngModel)]="fao.as_of_date" 
-                        [ngModelOptions]="{standalone: true}">
+                       >
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2 ></mat-datepicker>
                 </mat-form-field>
@@ -198,7 +198,7 @@
                             name="contract_m_value"
                             id="field_contract_m_value"
                             [(ngModel)]="fao.contract_m_value"
-                            [ngModelOptions]="{standalone: true}" 
+                            
                             required />
                         </div>
                     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -209,14 +209,14 @@
                                     placeholder="" 
                                     class="form-control"
                                      [(ngModel)]="fao.as_of_date"
-                                    [ngModelOptions]="{standalone: true}"
+                                   
                                     bsDatepicker>
                         </div>
                     </div>
                 </div> -->
                 <!-- <div class="form-group">
                     <label class="form-control-label" for="field_notes">Notes</label>
-                    <input type="text" class="form-control" name="notes" id="field_notes" [(ngModel)]="fao.notes" [ngModelOptions]="{standalone: true}"/>
+                    <input type="text" class="form-control" name="notes" id="field_notes" [(ngModel)]="fao.notes"/>
                 </div> -->
                 <mat-form-field>
                     <textarea 
@@ -226,8 +226,9 @@
                         placeholder="Comment"  
                         name="notes" 
                         id="field_notes" 
-                        [(ngModel)]="fao.notes" 
-                        [ngModelOptions]="{standalone: true}">
+                        [(ngModel)]="fao.notes"
+                        [ngModelOptions]="{standalone: true}"
+                       >
                     </textarea>
                 </mat-form-field>&nbsp;&nbsp;
                 <div class="modal-footer">
@@ -264,7 +265,7 @@
                         id="id" 
                         name="id" 
                         [(ngModel)]="fao.num" 
-                        [ngModelOptions]="{standalone: true}"
+                       
                         required
                     >
                 </mat-form-field>&nbsp;&nbsp;
@@ -289,13 +290,13 @@
                         name="asset_type" 
                         id="field_asset_type" 
                         [(ngModel)]="fao.asset_type" 
-                        [ngModelOptions]="{standalone: true}"
+                       
                         required
                     >
                 </mat-form-field>&nbsp;&nbsp;
                 <!-- <div class="form-group">
                     <label class="form-control-label" for="field_investor_name">Investor Name</label>
-                    <input type="text" class="form-control" name="investor_name" id="field_investor_name" [(ngModel)]="fao.investor_name" [ngModelOptions]="{standalone: true}"
+                    <input type="text" class="form-control" name="investor_name" id="field_investor_name" [(ngModel)]="fao.investor_name"
                         required/>
                 </div> -->
                 <mat-form-field>
@@ -307,13 +308,13 @@
                         name="investor_name" 
                         id="field_investor_name" 
                         [(ngModel)]="fao.investor_name" 
-                        [ngModelOptions]="{standalone: true}"
+                       
                         required
                     >
                 </mat-form-field>
                 <!-- <div class="form-group">
                     <label class="form-control-label" for="field_asset_name">Asset Name</label>
-                    <input type="text" class="form-control" name="asset_name" id="field_asset_name" [(ngModel)]="fao.asset_name" [ngModelOptions]="{standalone: true}"
+                    <input type="text" class="form-control" name="asset_name" id="field_asset_name" [(ngModel)]="fao.asset_name"
                         required/>
                 </div> -->
                 <mat-form-field>
@@ -325,14 +326,14 @@
                         name="asset_name" 
                         id="field_asset_name" 
                         [(ngModel)]="fao.asset_name" 
-                        [ngModelOptions]="{standalone: true}"
+                       
                         required
                     >
                 </mat-form-field>&nbsp;&nbsp;
                 <!-- <div class="form-group">
                     <label class="form-control-label" for="field_no_of_contracts">No of Contracts</label>
                     <input type="number" class="form-control" name="no_of_contracts" id="field_no_of_contracts" [(ngModel)]="fao.no_of_contracts"
-                        [ngModelOptions]="{standalone: true}" required/>
+                        required/>
                 </div> -->
                 <mat-form-field>
                     <input 
@@ -349,7 +350,7 @@
                 </mat-form-field>
                 <!-- <div class="form-group">
                     <label class="form-control-label" f7or="field_p_date">Purchase Date</label>
-                    <input type="text" placeholder="" class="form-control" [(ngModel)]="fao.p_date" [ngModelOptions]="{standalone: true}" bsDatepicker>
+                    <input type="text" placeholder="" class="form-control" [(ngModel)]="fao.p_date" bsDatepicker>
                 </div> -->
                 <mat-form-field>
                     <input 
@@ -359,7 +360,7 @@
                         placeholder="Purchase Date"
                         name="p_date"
                         [(ngModel)]="fao.p_date" 
-                        [ngModelOptions]="{standalone: true}" >
+                        >
                     <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                     <mat-datepicker #picker1 ></mat-datepicker>
                 </mat-form-field>&nbsp;&nbsp;
@@ -367,7 +368,7 @@
                 <!-- <div class="form-group">
                     <label class="form-control-label" for="field_contract_p_value">contract Purchase Value</label>
                     <input type="number" class="form-control" name="contract_p_value" id="field_contract_p_value" [(ngModel)]="fao.contract_p_value"
-                        [ngModelOptions]="{standalone: true}" required />
+                        required />
                 </div> -->
                 <mat-form-field>
                     <input 
@@ -392,7 +393,7 @@
                         name="contract_m_value"
                         id="field_contract_m_value"
                         [(ngModel)]="fao.contract_m_value"
-                        [ngModelOptions]="{standalone: true}" 
+                        
                         required
                     >
                 </mat-form-field>&nbsp;&nbsp;
@@ -403,7 +404,7 @@
                         [matDatepicker]="picker2" 
                         placeholder="As Of Date"  
                         [(ngModel)]="fao.as_of_date" 
-                        [ngModelOptions]="{standalone: true}">
+                       >
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                     <mat-datepicker #picker2 ></mat-datepicker>
                 </mat-form-field>
@@ -416,7 +417,7 @@
                             name="contract_m_value"
                             id="field_contract_m_value"
                             [(ngModel)]="fao.contract_m_value"
-                            [ngModelOptions]="{standalone: true}" 
+                            
                             required />
                         </div>
                     </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -427,14 +428,14 @@
                                     placeholder="" 
                                     class="form-control"
                                      [(ngModel)]="fao.as_of_date"
-                                    [ngModelOptions]="{standalone: true}"
+                                   
                                     bsDatepicker>
                         </div>
                     </div>
                 </div> -->
                 <!-- <div class="form-group">
                     <label class="form-control-label" for="field_notes">Notes</label>
-                    <input type="text" class="form-control" name="notes" id="field_notes" [(ngModel)]="fao.notes" [ngModelOptions]="{standalone: true}"/>
+                    <input type="text" class="form-control" name="notes" id="field_notes" [(ngModel)]="fao.notes"/>
                 </div> -->
                 <mat-form-field>
                     <textarea 
@@ -445,7 +446,7 @@
                         name="notes" 
                         id="field_notes" 
                         [(ngModel)]="fao.notes" 
-                        [ngModelOptions]="{standalone: true}">
+                       >
                     </textarea>
                 </mat-form-field>&nbsp;&nbsp;
                 <div class="modal-footer">
