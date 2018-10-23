@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
 
 import { Title } from '@angular/platform-browser';
@@ -24,7 +24,9 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     toggleFlag: any;
     push;
     pull;
+    flag = false;
 
+    @ViewChild('toggleClass') toggle: ElementRef;
     // tslint:disable-next-line:max-line-length
     constructor(
         private titleService: Title,
@@ -32,8 +34,10 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         private loginModalService: LoginModalService,
         private principal: Principal,
         private eventManager: JhiEventManager,
-        private deviceService: DeviceDetectorService,
-        private commonSidebarService: CommonSidebarService
+        private commonSidebarService: CommonSidebarService,
+        private renderer: Renderer,
+        private element: ElementRef,
+        private deviceService: DeviceDetectorService
     ) {
         this.epicFunction();
     }
@@ -64,13 +68,24 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
             this.account = account;
         });
         this.registerAuthenticationSuccess();
-        // this.toggleSide(true);
     }
 
     ngAfterViewInit() {
         console.log('setting after view init');
-        document.getElementById('toggle').style.marginLeft = '200px';
+        // document.getElementById('toggle').style.marginLeft = '200px';
         // element.setAttribute('style', 'margin-left: 200px;');
+        // this.toggle.nativeElement.style.marginLeft = '200px';
+        // const element = document.getElementById('toggle');
+        // console.log('get element by Id', element);
+        // console.log('element ref', this.element.nativeElement);
+        // console.log('view child', this.toggle);
+        // console.log('toggle', this.element.nativeElement.querySelector('toggleClass'));
+        // this.renderer.setElementStyle(
+        //     this.element.nativeElement.querySelector('#toggle'), 'margin-left: 200px;', []);
+
+        if (!this.isMobile) {
+            this.flag = true;
+        }
     }
 
     registerAuthenticationSuccess() {
@@ -94,9 +109,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     }
 
     toggleSide(flag) {
-        console.log('toggle it');
         const element = document.getElementById('toggle');
-        console.log('toggle for', element);
         if (!this.isMobile) {
             if (flag) {
                 element.setAttribute('style', 'margin-left: 0px;');

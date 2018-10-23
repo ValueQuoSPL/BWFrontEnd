@@ -212,8 +212,9 @@ export class DashboardComponent implements OnInit {
         this.getLoan();
     }
 
-    calcExpense(value) {
+    calcExpense(value, from) {
         this.expenseTotal = +this.expenseTotal + +value;
+
         this.surplus = +this.incomeTotal - +this.expenseTotal;
     }
 
@@ -224,7 +225,7 @@ export class DashboardComponent implements OnInit {
                 response.forEach(element => {
                     value = +value + +element.premium;
                 });
-                this.calcExpense(value);
+                this.calcExpense(value, 'general');
             } else {
             }
         });
@@ -237,7 +238,7 @@ export class DashboardComponent implements OnInit {
                 response.forEach(element => {
                     value = +value + +element.premium;
                 });
-                this.calcExpense(value);
+                this.calcExpense(value, 'health');
             } else {
             }
         });
@@ -250,7 +251,7 @@ export class DashboardComponent implements OnInit {
                 response.forEach(element => {
                     value = +value + +element.amount;
                 });
-                this.calcExpense(value);
+                this.calcExpense(value, 'house');
             } else {
             }
         });
@@ -263,7 +264,7 @@ export class DashboardComponent implements OnInit {
                 response.forEach(element => {
                     value = +value + +element.premium;
                 });
-                this.calcExpense(value);
+                this.calcExpense(value, 'life');
             } else {
             }
         });
@@ -278,7 +279,7 @@ export class DashboardComponent implements OnInit {
                     this.calculateEMI(element.amount, element.tenure, element.roi);
                     value = +value + +this.emi;
                 });
-                this.calcExpense(value);
+                this.calcExpense(value, 'loan');
             } else {
             }
         });
@@ -308,7 +309,7 @@ export class DashboardComponent implements OnInit {
                 response.forEach(element => {
                     value = +value + +element.amount;
                 });
-                this.calcExpense(value);
+                this.calcExpense(value, 'misc');
             } else {
             }
         });
@@ -321,7 +322,7 @@ export class DashboardComponent implements OnInit {
                 response.forEach(element => {
                     value = +value + +element.amount;
                 });
-                this.calcExpense(value);
+                this.calcExpense(value, 'travel');
             } else {
             }
         });
@@ -334,7 +335,7 @@ export class DashboardComponent implements OnInit {
                 response.forEach(element => {
                     value = +value + +element.amount;
                 });
-                this.calcExpense(value);
+                this.calcExpense(value, 'utility');
             } else {
             }
         });

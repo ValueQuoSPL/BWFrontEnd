@@ -32,7 +32,9 @@ export class SidebarComponent implements OnInit, AfterViewInit {
         this.principal.identity().then(account => {
             this.account = account;
             if (this.account) {
-                this.showSidebar();
+                if (!this.isMobile) {
+                    this.showSidebar();
+                }
             }
         });
     }
