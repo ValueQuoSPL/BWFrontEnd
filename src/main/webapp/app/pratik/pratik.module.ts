@@ -42,12 +42,12 @@ import { GeneralComponent } from 'app/pratik/spending/general/general.component'
 import { HealthComponent } from 'app/pratik/spending/health/health.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DashBoardModule } from './dashboard/dashboard.module';
+import { CommonSidebarService } from './common/sidebar.service';
+import { SpendingRouteGuardService } from './common/spending-route-guard.service';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
-import { CommonSidebarService } from './common/sidebar.service';
-import { SpendingRouteGuardService } from './common/spending-route-guard.service';
 library.add(fas, far);
 
 @NgModule({

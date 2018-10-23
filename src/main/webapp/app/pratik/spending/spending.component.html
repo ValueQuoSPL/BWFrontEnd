@@ -55,36 +55,39 @@
                     <!-- utilities -->
                     <mat-expansion-panel class="accordion" >
                         <!-- header -->
-                        <mat-expansion-panel-header>
+                        <mat-expansion-panel-header >
                             <mat-panel-title>Utilities </mat-panel-title>
                             <mat-panel-description>Add your Utilities</mat-panel-description>
                         </mat-expansion-panel-header>
                 
-                        <jhi-utility></jhi-utility>
+                        <!-- <jhi-utility></jhi-utility> -->
+                        <router-outlet name="utility"></router-outlet>
                     
                     </mat-expansion-panel>     
                     
                     <!-- household -->
-                    <mat-expansion-panel>
+                    <mat-expansion-panel >
                         <!-- header -->
                         <mat-expansion-panel-header>
                             <mat-panel-title>Household</mat-panel-title>
                             <mat-panel-description>Your household expense</mat-panel-description>
                         </mat-expansion-panel-header>
                     
-                        <jhi-household></jhi-household>
+                        <!-- <jhi-household></jhi-household> -->
+                        <router-outlet name="household"></router-outlet>
         
                     </mat-expansion-panel>    
                     
                     <!-- Loan -->
-                    <mat-expansion-panel>
+                    <mat-expansion-panel >
         
                         <mat-expansion-panel-header>
                             <mat-panel-title>Loans and Debts </mat-panel-title>
                             <mat-panel-description>Add Your Loan Details</mat-panel-description>
                         </mat-expansion-panel-header>
                     
-                        <jhi-loan></jhi-loan> 
+                        <!-- <jhi-loan></jhi-loan>  -->
+                        <router-outlet name="loan"></router-outlet>
         
                     </mat-expansion-panel>   
                     
@@ -104,7 +107,9 @@
                                             <mat-panel-description>Add your other Life insurance</mat-panel-description>
                                     </mat-expansion-panel-header>
         
-                                    <jhi-life></jhi-life>
+                                    <!-- <jhi-life></jhi-life> -->
+                        <router-outlet name="life"></router-outlet>
+
         
                                 </mat-expansion-panel>
         
@@ -115,7 +120,9 @@
                                             <mat-panel-description>Add your other Health insurance</mat-panel-description>
                                     </mat-expansion-panel-header>
         
-                                    <jhi-health></jhi-health>
+                                    <!-- <jhi-health></jhi-health> -->
+                        <router-outlet name="health"></router-outlet>
+
         
                                 </mat-expansion-panel>
         
@@ -126,7 +133,9 @@
                                             <mat-panel-description>Add your other general insurance</mat-panel-description>
                                     </mat-expansion-panel-header>
         
-                                    <jhi-general></jhi-general>
+                                    <!-- <jhi-general></jhi-general> -->
+                        <router-outlet name="general"></router-outlet>
+
         
                                 </mat-expansion-panel>
                             </mat-accordion>
@@ -141,7 +150,9 @@
                                 <mat-panel-description>Your Credit card details(we never disclose it)</mat-panel-description>
                             </mat-expansion-panel-header>
                     
-                            <jhi-credit></jhi-credit>
+                            <!-- <jhi-credit></jhi-credit> -->
+                        <router-outlet name="credit"></router-outlet>
+
         
                     </mat-expansion-panel>  
                     
@@ -157,7 +168,9 @@
                                 </mat-panel-description>
                             </mat-expansion-panel-header>
                     
-                            <jhi-travel></jhi-travel>
+                            <!-- <jhi-travel></jhi-travel> -->
+                        <router-outlet name="travel"></router-outlet>
+
                     
                     </mat-expansion-panel> 
                     
@@ -173,7 +186,9 @@
                                 </mat-panel-description>
                             </mat-expansion-panel-header>
         
-                            <jhi-misc></jhi-misc>
+                            <!-- <jhi-misc></jhi-misc> -->
+                        <router-outlet name="misc"></router-outlet>
+
                     
                     </mat-expansion-panel>    
                 </mat-accordion> 
