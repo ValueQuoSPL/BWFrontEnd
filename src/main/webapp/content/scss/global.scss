@@ -279,11 +279,11 @@ ui bootstrap tweaks
 /* new common css  */
 
 .bwtitle {
-    font-size: 50px;
+    font-size: 30px;
     color: white;
     font-weight: bolder;
     font-family: 'Titillium Web';
-    background-color: blue;
+    background-color: #f1592a;
 }
 .bwsubtitle {
     font-size: 30px;
@@ -292,6 +292,7 @@ ui bootstrap tweaks
 }
 .bwaccordtitle {
     font-size: 17px;
+    color: white;
     font-weight: bolder;
     font-family: 'Titillium Web';
 }
@@ -311,17 +312,17 @@ ui bootstrap tweaks
     margin-right: 448px;
 }
 .accordcol {
-    background-color: grey;
+    background-color: #2e3192;
 }
 .accordcolor {
-    background-color: #dcdcdc;
+    //background-color: #dcdcdc;
 }
 //   .mat-expansion-panel {
 //     background: red;
 //     color: rgba(0,0,0,.87);
 // }
 .mat-expansion-panel {
-    background: pink;
+    background: #f1592a;
 }
 
 .mat-expansion-panel-content {

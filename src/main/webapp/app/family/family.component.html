@@ -2,10 +2,10 @@
     <div>
         <div [ngSwitch]="isAuthenticated()">
             <div *ngSwitchCase="true">
-                <div class="container">
-                    <mat-accordion  class="container" >
-                        <div class="form-group row justify-content-center bwtitle"><h5>Profile</h5>
+                <div class="container">                   
+                        <div class="form-group row justify-content-center bwtitle">Profile
                         </div>
+                        <mat-accordion  class="container" >
                             <mat-accordion>
                                 <mat-expansion-panel class="accordcol" [expanded]="step === 0">
                                     <mat-expansion-panel-header class="accordcol">
@@ -18,7 +18,7 @@
                                     </mat-expansion-panel-header>
                                     <jhi-myprofile></jhi-myprofile>
                                 </mat-expansion-panel>
-                            
+                            &nbsp;
                                 <mat-expansion-panel>
                                     <mat-expansion-panel-header class="accordcolor">
                                         <mat-panel-title class="bwaccordtitle">

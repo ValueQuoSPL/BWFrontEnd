@@ -1,18 +1,12 @@
 <div class="container">
     <div [ngSwitch]="isAuthenticated()">
 
-        <div class="alert alert-warning" *ngSwitchCase="false">
-            <br>
-            <span>You are not signed in. <br> If you want to sign in</span>
-            <a class="alert-link" (click)="login()">Click here</a>
-        </div>
-
         <div *ngSwitchCase="true">
 
-            <div class="row justify-content-md-center bwtitle">
-                <h5>Income</h5>
+            <div class="form-group row justify-content-md-center bwtitle">
+                Income
             </div>
-
+            <div class="container">
             <mat-expansion-panel class="accordion" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
                 [expanded]="step === 0">
 
@@ -25,7 +19,7 @@
                         {{panelOpenState ? 'Fill your income details' : 'Click to expand' }}
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-
+            </div>
                 <!-- buttons -->
                 <div>
                     <div class="row pull-right">
@@ -320,7 +314,11 @@
                 </span>
             </mat-expansion-panel>
         </div>
-
+        <div class="alert alert-warning" *ngSwitchCase="false">
+            <br>
+            <span>You are not signed in. <br> If you want to sign in</span>
+            <a class="alert-link" (click)="login()">Click here</a>
+        </div>
         <div *ngSwitchDefault>
             hi
         </div>
