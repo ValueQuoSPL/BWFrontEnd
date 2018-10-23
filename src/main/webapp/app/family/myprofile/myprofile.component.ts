@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
 @Component({
     selector: 'jhi-myprofile',
     templateUrl: './myprofile.component.html',
-    styleUrls: ['./myprofile.component.css']
+    styleUrls: []
 })
 export class MyprofileComponent implements OnInit {
     myProfile: any;
@@ -28,7 +28,7 @@ export class MyprofileComponent implements OnInit {
     saveDetail() {
         this.myProfile.uid = this.uid;
         this.MyProfileSer.save(this.myProfile).subscribe(responce => console.log(responce), error => console.log(error));
-        this.getMyProfilebyid(this.uid);
+        this.getMyProfilebyid();
     }
     getMyProfile() {
         this.MyProfileSer.getMyProfile().subscribe(res => {
@@ -37,7 +37,7 @@ export class MyprofileComponent implements OnInit {
             console.log('responce of myprofile service', this.output);
         });
     }
-    getMyProfilebyid(uid) {
+    getMyProfilebyid() {
         this.MyProfileSer.getMyProfileByUid(this.uid).subscribe(res => {
             console.log(res);
             this.output = res;
@@ -57,7 +57,6 @@ export class MyprofileComponent implements OnInit {
             if (this.output.length === 0) {
                 this.isValid = false;
             } else {
-                // this.fillIncomeData();
                 this.isValid = true;
             }
         });
@@ -71,7 +70,7 @@ export class MyprofileComponent implements OnInit {
                 console.log('user info', this.user);
                 this.uid = this.user.id;
                 console.log('in fetchid method', this.uid);
-                this.getMyProfilebyid(this.uid);
+                this.getMyProfilebyid();
             });
     }
     editDetail() {
@@ -101,7 +100,7 @@ export class MyprofileComponent implements OnInit {
     update() {
         this.MyProfileSer.updateProfile(this.myProfile).subscribe(
             responce => {
-                console.log(responce), this.getMyProfilebyid(this.uid);
+                console.log(responce), this.getMyProfilebyid();
             },
             error => console.log(error)
         );

@@ -26,10 +26,10 @@
     <div class="modal-body"><!-- modal body start -->
         <form name="editForm" role="form" novalidate   #editForm="ngForm"> 
             <mat-form-field>
-                <input matInput class="full-width" required type="text" placeholder="Company Name" [(ngModel)]="stocks.company_name" [ngModelOptions]="{standalone: true}" >
+                <input matInput class="full-width" required type="text" placeholder="Company Name" [(ngModel)]="stocks.company_name"  >
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
-                <input matInput class="full-width" required type="text" placeholder="Investor Name" [(ngModel)]="stocks.investor_name" [ngModelOptions]="{standalone: true}" >
+                <input matInput class="full-width" required type="text" placeholder="Investor Name"  >
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
                 <input matInput style="width: 100%;" type="number" jhiNumberOnly placeholder="No of shares" name="no_of_shares" id="no_of_shares" [(ngModel)]="stocks.no_of_shares" required />
@@ -38,7 +38,7 @@
                 <input matInput style="width: 100%;" type="number" jhiNumberOnly placeholder="Share Price" name="share_price" id="share_price" [(ngModel)]="stocks.share_price"required/>
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
-                <input matInput style="width: 100%;" type="textarea" placeholder="Notes" name="notes" id="notes" [(ngModel)]="stocks.notes"  />
+                <input matInput style="width: 100%;" type="textarea" placeholder="Notes" name="notes" id="notes" [(ngModel)]="stocks.notes" [ngModelOptions]="{standalone: true}" />
             </mat-form-field>
             <div class="modal-footer">
                 <button 

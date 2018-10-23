@@ -1,14 +1,14 @@
 <div [ngSwitch]="isAuthenticated()">
     <div *ngSwitchCase="true">
         <div class="container">
-            <div class="form-group row justify-content-center"><label><h5>Liabilities</h5></label>
+            <div class="form-group row justify-content-center bwtitle"><h5>Liabilities</h5>
             </div>
                 <div>
                     <mat-accordion>
                         <mat-expansion-panel class="accordion" [expanded]="steps === 0">
-                            <mat-expansion-panel-header class="gray">
-                                <mat-panel-title> Short Term Liabilities </mat-panel-title>
-                                <mat-panel-description> 00 </mat-panel-description>
+                            <mat-expansion-panel-header class="accordcol">
+                                <mat-panel-title  class="bwaccordtitle"> Short Term Liabilities </mat-panel-title>
+                                <mat-panel-description  class="bwaccordtitle"> 00 </mat-panel-description>
                             </mat-expansion-panel-header>
                             <div>
                                 <table class="table table-hover table-sm">
@@ -19,7 +19,7 @@
                                             <th scope="col">Tenure</th>
                                             <th scope="col">ROI</th>
                                             <th scope="col">OutstandingAmount</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col">Update</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -29,7 +29,6 @@
                                             <td>{{l.tenure}}</td>
                                             <td>{{l.roi}}</td>
                                             <td>{{l.outstandingpricipal}}</td>
-                                            <td></td>
                                             <td>
                                             <button class="btn btn-outline-info" type="button" (click)="openShortTerm(l.id, loanModal)">
                                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span>
@@ -42,9 +41,9 @@
                         </mat-expansion-panel>
     
                         <mat-expansion-panel>
-                            <mat-expansion-panel-header class="gray1">
-                                <mat-panel-title> Long Term Liabilities </mat-panel-title>
-                                <mat-panel-description> 00 </mat-panel-description>
+                            <mat-expansion-panel-header class="accordcolor">
+                                <mat-panel-title  class="bwaccordtitle"> Long Term Liabilities </mat-panel-title>
+                                <mat-panel-description  class="bwaccordtitle"> 00 </mat-panel-description>
                             </mat-expansion-panel-header>
     
                             <div>
@@ -158,7 +157,6 @@
         <div *ngSwitchCase="false" class="form-group row justify-content-center">
             <mat-card class="example-card">     
                 <mat-card-content class="example-card" class="shadow">
-                    <img src="../../Assests//oops.jpg" style="height:300px;width:700px"><br>
                     <span>Oops you are not Signed In </span>
                     Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
                 </mat-card-content>

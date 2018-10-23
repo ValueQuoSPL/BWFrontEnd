@@ -25,9 +25,9 @@
         <form name="editForm" role="form" novalidate  #editForm="ngForm">
             <div class="row">
                 <div class="col-md-6">
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="ID"  id="id" name="id" [(ngModel)]="savingScheme.num" [ngModelOptions]="{standalone: true}"/>
-                    </mat-form-field>
+                    <!-- <mat-form-field>
+                        <input matInput type="text" placeholder="ID"  id="id" name="id" [(ngModel)]="savingScheme.num"/>
+                    </mat-form-field> -->
                     <mat-form-field>
                         <mat-select 
                             placeholder="Choose Saving Scheme" 
@@ -48,7 +48,7 @@
                             name="investor_name" 
                             id="field_investor_name" 
                             [(ngModel)]="savingScheme.investor_name"
-                            [ngModelOptions]="{standalone: true}" 
+                            
                             required
                         />
                     </mat-form-field>
@@ -61,7 +61,7 @@
                             name="rate_of_interest" 
                             id="field_rate_of_interest" 
                             [(ngModel)]="savingScheme.rate_of_interest"
-                            [ngModelOptions]="{standalone: true}"
+                           
                             required
                         />    
                     </mat-form-field>
@@ -78,7 +78,7 @@
                                 name="fund_value"
                                 id="field_fund_value"
                                 [(ngModel)]="savingScheme.fund_value"
-                                [ngModelOptions]="{standalone: true}"
+                               
                                 required
                             />
                     </mat-form-field>
@@ -114,7 +114,7 @@
                             name="amount_invested"
                             id="field_amount_invested"
                             [(ngModel)]="savingScheme.amount_invested"
-                            [ngModelOptions]="{standalone: true}"
+                           
                             required/>
                     </mat-form-field>
                     <mat-form-field>
@@ -124,7 +124,7 @@
                             placeholder="Tenure in Years" 
                             name="tenure" id="field_tenure" 
                             [(ngModel)]="savingScheme.tenure" 
-                            [ngModelOptions]="{standalone: true}"
+                           
                             required
                         />
                     </mat-form-field>
@@ -170,7 +170,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="ID"  id="id" name="id" [(ngModel)]="savingScheme.num" [ngModelOptions]="{standalone: true}"/>
+                        <input matInput type="text" placeholder="ID"  id="id" name="id" [(ngModel)]="savingScheme.num"/>
                     </mat-form-field>
                     <mat-form-field>
                         <mat-select 
@@ -192,7 +192,7 @@
                             name="investor_name" 
                             id="field_investor_name" 
                             [(ngModel)]="savingScheme.investor_name"
-                            [ngModelOptions]="{standalone: true}" 
+                            
                             required
                         />
                     </mat-form-field>
@@ -205,7 +205,7 @@
                             name="rate_of_interest" 
                             id="field_rate_of_interest" 
                             [(ngModel)]="savingScheme.rate_of_interest"
-                            [ngModelOptions]="{standalone: true}"
+                           
                             required
                         />    
                     </mat-form-field>
@@ -215,7 +215,7 @@
                                 type="text"
                                 placeholder="Start Date"
                                 [(ngModel)]="savingScheme.start_date" 
-                                [ngModelOptions]="{standalone: true}"
+                               
                                 bsDatepicker
                             />
                     </mat-form-field>
@@ -227,7 +227,7 @@
                                 name="fund_value"
                                 id="field_fund_value"
                                 [(ngModel)]="savingScheme.fund_value"
-                                [ngModelOptions]="{standalone: true}"
+                               
                                 required
                             />
                     </mat-form-field>
@@ -263,7 +263,7 @@
                             name="amount_invested"
                             id="field_amount_invested"
                             [(ngModel)]="savingScheme.amount_invested"
-                            [ngModelOptions]="{standalone: true}"
+                           
                             required/>
                     </mat-form-field>
                     <mat-form-field>
@@ -273,7 +273,7 @@
                             placeholder="Tenure in Years" 
                             name="tenure" id="field_tenure" 
                             [(ngModel)]="savingScheme.tenure" 
-                            [ngModelOptions]="{standalone: true}"
+                           
                             required
                         />
                     </mat-form-field>
@@ -282,7 +282,7 @@
                                 matInput type="text" 
                                 placeholder="End Date"
                                 [(ngModel)]="savingScheme.end_date" 
-                                [ngModelOptions]="{standalone: true}"
+                               
                                 bsDatepicker
                             >
                     </mat-form-field>
@@ -292,7 +292,7 @@
                             type="text" 
                             placeholder="As of Date"
                             [(ngModel)]="savingScheme.as_of_date" 
-                            [ngModelOptions]="{standalone: true}"
+                           
                             bsDatepicker>
                     </mat-form-field>
                 </div>
