@@ -4,6 +4,8 @@ import { AccountService, Principal } from 'app/core';
 import { FormControl } from '@angular/forms';
 import { Loan } from 'app/pratik/spending/spending.model';
 import { LoanService } from 'app/pratik/spending/spending.service';
+import { MyprofileService } from 'app/family/myprofile/myprofile.service';
+import { FamilyprofileService } from 'app/family/familyprofile/familyprofile.service';
 
 @Component({
     selector: 'jhi-loan',
@@ -30,6 +32,9 @@ export class LoanComponent implements OnInit {
     currentDate = new Date();
     dbDate;
     out: any;
+    myProfileArray;
+    familyProfileArray;
+    FamilyArray: any = [];
 
     LoanTypeArray = [
         { name: 'Home Loan' },
@@ -49,7 +54,9 @@ export class LoanComponent implements OnInit {
         private loanService: LoanService,
         private principal: Principal,
         private modalService: NgbModal,
-        private accountService: AccountService
+        private accountService: AccountService,
+        private myProfileService: MyprofileService,
+        private familyProfileService: FamilyprofileService
     ) {}
 
     ngOnInit() {
@@ -100,11 +107,31 @@ export class LoanComponent implements OnInit {
                 const account = response.body;
                 if (account) {
                     this.uid = account.id;
-                    this.getLoanandDebt();
+                    this.getata();
                 } else {
                 }
             })
             .catch(err => {});
+    }
+
+    getata() {
+        this.getLoanandDebt();
+        this.getFamilyName();
+    }
+
+    getFamilyName() {
+        this.myProfileService.getMyProfileByUid(this.uid).subscribe(res => {
+            this.myProfileArray = res;
+            this.myProfileArray.forEach(element => {
+                this.FamilyArray.push({ name: element.firstName });
+            });
+        });
+        this.familyProfileService.getFamilyProfileByUid(this.uid).subscribe(res => {
+            this.familyProfileArray = res;
+            this.familyProfileArray.forEach(element => {
+                this.FamilyArray.push({ name: element.firstname });
+            });
+        });
     }
 
     getLoanandDebt() {

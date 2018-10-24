@@ -11,13 +11,10 @@
            <!-- form start-->
            <div class="row">
                   <div class="col-md-6">
-                      <mat-form-field style="width: 100%;">
-                          <mat-select placeholder="Policy Type"  [(ngModel)]="life.type" name="type">
-                            <mat-option *ngFor="let type of PolicyTypeArray" [value]="type.name">
-                              {{type.name}}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field> 
+
+                        <mat-form-field  style="width: 100%;">
+                            <input required matInput jhiNumberOnly placeholder="Policy Number" name="polno" [(ngModel)]="life.policynumber" >
+                        </mat-form-field>
 
                         <mat-form-field style="width: 100%;">
                           <input required matInput placeholder="Policy issuer" name="issuer" [(ngModel)]="life.issuer" >
@@ -45,17 +42,26 @@
 
                   <!-- right start -->
                   <div class="col-md-6">
-                      <mat-form-field  style="width: 100%;">
-                          <mat-select placeholder="Premium Mode" name="type2" [(ngModel)]="life.premium_mode">
-                            <mat-option *ngFor="let type of PremiumTypeArray" [value]="type.name">
-                              {{type.name}}
-                            </mat-option>
-                          </mat-select>
-                        </mat-form-field>
 
-                        <mat-form-field class="example-full-width">
+                    <mat-form-field style="width: 100%;">
+                        <mat-select placeholder="Policy Type"  [(ngModel)]="life.type" name="type">
+                            <mat-option *ngFor="let type of PolicyTypeArray" [value]="type.name">
+                            {{type.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field  style="width: 100%;">
+                        <mat-select placeholder="Premium Mode" name="type2" [(ngModel)]="life.premium_mode">
+                            <mat-option *ngFor="let type of PremiumTypeArray" [value]="type.name">
+                                {{type.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
                           <input required matInput placeholder="Policy Name" name="namepolicy" [(ngModel)]="life.policy_name" >
-                      </mat-form-field>
+                    </mat-form-field>
 
                         <mat-form-field class="example-full-width">
                           <input required matInput jhiNumberOnly placeholder="Sum Assured" name="sum" [(ngModel)]="life.sum" >

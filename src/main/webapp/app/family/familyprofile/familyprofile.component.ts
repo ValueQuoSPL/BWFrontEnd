@@ -26,7 +26,6 @@ export class FamilyprofileComponent implements OnInit {
 
     ngOnInit() {
         this.familyProfile = {};
-        console.log('inside family profile');
         this.FetchId();
 
         // this.getFamilyProfile();
@@ -34,20 +33,14 @@ export class FamilyprofileComponent implements OnInit {
     clear() {}
 
     saveFamilyProfile() {
-        console.log('in family profile');
         this.familyProfile.uid = this.uid;
         this.familyProfile.earncheck = this.earncheck;
-        console.log('save ' + this.familyProfile.uid);
-        console.log('save ' + this.familyProfile.earncheck);
 
-        this.Familypro.save(this.familyProfile).subscribe(responce => console.log(responce), error => console.log(error));
         this.getFamilyProfilebyid(this.uid);
     }
     getFamilyProfile() {
         this.Familypro.getFamilyProfile().subscribe(res => {
-            console.log(res);
             this.output = res;
-            console.log('responce of familyprofile service', this.output);
         });
     }
     FetchId(): Promise<any> {
@@ -56,25 +49,17 @@ export class FamilyprofileComponent implements OnInit {
             .toPromise()
             .then(response => {
                 this.user = response.body;
-                console.log('user info of family', this.user);
                 this.uid = this.user.id;
-                console.log('in fetchid method', this.uid);
                 this.getFamilyProfilebyid(this.uid);
             });
     }
     getFamilyProfilebyid(uid) {
-        console.log('in getFamilyProfilebyid method', this.uid);
         this.Familypro.getFamilyProfileByUid(this.uid).subscribe(res => {
-            console.log('output of result', res);
             this.output = res;
-            console.log('output of output', this.output);
-            console.log('responce of familyprofile service', this.output[0].uid);
             if (this.output[0].uid != null) {
                 this.isValid = true;
-                console.log(this.isValid);
             } else {
                 this.isValid = false;
-                console.log(this.isValid);
             }
         });
     }
@@ -94,16 +79,12 @@ export class FamilyprofileComponent implements OnInit {
         this.show = false;
     }
     update() {
-        console.log('update call');
-        this.Familypro.updateProfile(this.familyProfile).subscribe(responce => console.log(responce), error => console.log(error));
         this.getFamilyProfilebyid(this.uid);
     }
     formpage() {
         this.isValid = false;
-        console.log('in formpage()', this.isValid);
     }
     viewpage() {
         this.isValid = true;
-        console.log('in viewpage()', this.isValid);
     }
 }

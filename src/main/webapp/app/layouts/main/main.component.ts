@@ -27,7 +27,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     flag = false;
 
     @ViewChild('toggleClass') toggle: ElementRef;
-    // tslint:disable-next-line:max-line-length
+
     constructor(
         private titleService: Title,
         private router: Router,
@@ -43,7 +43,6 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     }
 
     epicFunction() {
-        // this.deviceInfo = this.deviceService.getDeviceInfo();
         this.isMobile = this.deviceService.isMobile();
         this.isTablet = this.deviceService.isTablet();
         this.isDesktop = this.deviceService.isDesktop();
@@ -71,18 +70,6 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        console.log('setting after view init');
-        // document.getElementById('toggle').style.marginLeft = '200px';
-        // element.setAttribute('style', 'margin-left: 200px;');
-        // this.toggle.nativeElement.style.marginLeft = '200px';
-        // const element = document.getElementById('toggle');
-        // console.log('get element by Id', element);
-        // console.log('element ref', this.element.nativeElement);
-        // console.log('view child', this.toggle);
-        // console.log('toggle', this.element.nativeElement.querySelector('toggleClass'));
-        // this.renderer.setElementStyle(
-        //     this.element.nativeElement.querySelector('#toggle'), 'margin-left: 200px;', []);
-
         if (!this.isMobile) {
             this.flag = true;
         }
@@ -98,9 +85,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
 
     isAuthenticated() {
         const flag = this.principal.isAuthenticated();
-        // if (flag === true) {
-        //     this.toggleSide(true);
-        // }
+
         return flag;
     }
 
