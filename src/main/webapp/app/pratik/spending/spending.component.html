@@ -1,19 +1,11 @@
-
-
-
 <span [ngSwitch]="isAuthenticated()">
-    <div *ngSwitchCase="false">
-        <div class="alert alert-warning" *ngSwitchCase="false">
-            <span>You are not signed in. <br> If you want to sign in</span>
-            <a class="alert-link" (click)="login()">Click here</a>
-        </div>
-    </div>
+    
     <div *ngSwitchCase="true">
         <div class="container">
 
                 <!-- Start expense panel -->
-                <div class="row justify-content-md-center bwtitle">
-                    <h5>Expense</h5>
+                <div class="form-group row justify-content-md-center bwtitle">
+                    Expense
                 </div>
         
                 <div> <!-- start expense content -->
@@ -55,82 +47,82 @@
                     <!-- utilities -->
                     <mat-expansion-panel class="accordion" >
                         <!-- header -->
-                        <mat-expansion-panel-header >
-                            <mat-panel-title>Utilities </mat-panel-title>
-                            <mat-panel-description>Add your Utilities</mat-panel-description>
+                        <mat-expansion-panel-header class="accordcol">
+                            <mat-panel-title class="bwaccordtitle">Utilities </mat-panel-title>
+                            <mat-panel-description class="bwaccordtitle"> Add your Utilities</mat-panel-description>
                         </mat-expansion-panel-header>
                 
                         <!-- <jhi-utility></jhi-utility> -->
                         <router-outlet name="utility"></router-outlet>
                     
                     </mat-expansion-panel>     
-                    
+                    &nbsp;
                     <!-- household -->
                     <mat-expansion-panel >
                         <!-- header -->
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>Household</mat-panel-title>
-                            <mat-panel-description>Your household expense</mat-panel-description>
+                        <mat-expansion-panel-header  class="accordcolor">
+                            <mat-panel-title class="bwaccordtitle">Household</mat-panel-title>
+                            <mat-panel-description class="bwaccordtitle">Your household expense</mat-panel-description>
                         </mat-expansion-panel-header>
                     
                         <!-- <jhi-household></jhi-household> -->
                         <router-outlet name="household"></router-outlet>
         
                     </mat-expansion-panel>    
-                    
+                    &nbsp;
                     <!-- Loan -->
                     <mat-expansion-panel >
         
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>Loans and Debts </mat-panel-title>
-                            <mat-panel-description>Add Your Loan Details</mat-panel-description>
+                        <mat-expansion-panel-header  class="accordcol">
+                            <mat-panel-title class="bwaccordtitle">Loans and Debts </mat-panel-title>
+                            <mat-panel-description class="bwaccordtitle">Add Your Loan Details</mat-panel-description>
                         </mat-expansion-panel-header>
                     
                         <!-- <jhi-loan></jhi-loan>  -->
                         <router-outlet name="loan"></router-outlet>
         
                     </mat-expansion-panel>   
-                    
+                    &nbsp;
                     <!-- Insurance -->
-                    <mat-expansion-panel [expanded]="true">
+                    <mat-expansion-panel>
         
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>Insurance</mat-panel-title>
-                                <mat-panel-description>Add your Insurance Details</mat-panel-description>
+                            <mat-expansion-panel-header  class="accordcolor">
+                                <mat-panel-title class="bwaccordtitle">Insurance</mat-panel-title>
+                                <mat-panel-description class="bwaccordtitle">Add your Insurance Details</mat-panel-description>
                             </mat-expansion-panel-header>
-        
+                            &nbsp;
                             <mat-accordion>
                                 <!-- life -->
                                 <mat-expansion-panel >
-                                    <mat-expansion-panel-header>
-                                            <mat-panel-title>Life Insurance</mat-panel-title>
-                                            <mat-panel-description>Add your other Life insurance</mat-panel-description>
+                                    <mat-expansion-panel-header  class="accordcol">
+                                            <mat-panel-title class="bwaccordtitle">Life Insurance</mat-panel-title>
+                                            <mat-panel-description class="bwaccordtitle">Add your other Life insurance</mat-panel-description>
                                     </mat-expansion-panel-header>
-        
+                                    
                                     <!-- <jhi-life></jhi-life> -->
                         <router-outlet name="life"></router-outlet>
 
         
                                 </mat-expansion-panel>
-        
+                                &nbsp;
                                 <!-- health -->
                                 <mat-expansion-panel >
-                                    <mat-expansion-panel-header>
-                                            <mat-panel-title>Health Insurance</mat-panel-title>
-                                            <mat-panel-description>Add your other Health insurance</mat-panel-description>
+                                    <mat-expansion-panel-header  class="accordcolor">
+                                            <mat-panel-title class="bwaccordtitle">Health Insurance</mat-panel-title>
+                                            <mat-panel-description class="bwaccordtitle">Add your other Health insurance</mat-panel-description>
                                     </mat-expansion-panel-header>
-        
+                                    
                                     <!-- <jhi-health></jhi-health> -->
                         <router-outlet name="health"></router-outlet>
 
         
                                 </mat-expansion-panel>
-        
+                                &nbsp;
                                 <!-- General -->
                                 <mat-expansion-panel >
-                                    <mat-expansion-panel-header>
-                                            <mat-panel-title>General Insurance</mat-panel-title>
-                                            <mat-panel-description>Add your other general insurance</mat-panel-description>
+                                    <mat-expansion-panel-header  class="accordcol">
+                                            <mat-panel-title class="bwaccordtitle">General Insurance</mat-panel-title>
+                                            <mat-panel-description class="bwaccordtitle">Add your other general insurance</mat-panel-description>
                                     </mat-expansion-panel-header>
         
                                     <!-- <jhi-general></jhi-general> -->
@@ -141,13 +133,13 @@
                             </mat-accordion>
                     
                     </mat-expansion-panel> 
-                    
+                    &nbsp;
                     <!-- Credit Cards -->
                     <mat-expansion-panel>
         
-                            <mat-expansion-panel-header>
-                                <mat-panel-title> Credit Cards</mat-panel-title>
-                                <mat-panel-description>Your Credit card details(we never disclose it)</mat-panel-description>
+                            <mat-expansion-panel-header  class="accordcolor">
+                                <mat-panel-title class="bwaccordtitle"> Credit Cards</mat-panel-title>
+                                <mat-panel-description class="bwaccordtitle">Your Credit card details(we never disclose it)</mat-panel-description>
                             </mat-expansion-panel-header>
                     
                             <!-- <jhi-credit></jhi-credit> -->
@@ -155,15 +147,15 @@
 
         
                     </mat-expansion-panel>  
-                    
+                    &nbsp;
                     <!-- Entertainment & Travel -->
                     <mat-expansion-panel>
                             <!-- header -->
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>
+                            <mat-expansion-panel-header  class="accordcol">
+                                <mat-panel-title class="bwaccordtitle">
                                     Entertainment & Travel
                                 </mat-panel-title>
-                                <mat-panel-description>
+                                <mat-panel-description class="bwaccordtitle">
                                 Add your extra expense on Entertainment & Travel
                                 </mat-panel-description>
                             </mat-expansion-panel-header>
@@ -173,15 +165,15 @@
 
                     
                     </mat-expansion-panel> 
-                    
+                    &nbsp;
                     <!-- Misc -->
                     <mat-expansion-panel>
                             <!-- header -->
-                            <mat-expansion-panel-header>
-                                <mat-panel-title>
+                            <mat-expansion-panel-header  class="accordcolor">
+                                <mat-panel-title class="bwaccordtitle">
                                     Miscellaneous
                                 </mat-panel-title>
-                                <mat-panel-description>
+                                <mat-panel-description class="bwaccordtitle">
                                 Any another miscellaneous expense? Add here to keep track
                                 </mat-panel-description>
                             </mat-expansion-panel-header>
@@ -190,11 +182,18 @@
                         <router-outlet name="misc"></router-outlet>
 
                     
-                    </mat-expansion-panel>    
+                    </mat-expansion-panel>  
+                    &nbsp;  
                 </mat-accordion> 
                 </div>  <!-- end expense content -->
                 </mat-expansion-panel> <!-- end expense panel -->
 
+        </div>
+    </div>
+    <div *ngSwitchCase="false">
+        <div class="alert alert-warning" *ngSwitchCase="false">
+            <span>You are not signed in. <br> If you want to sign in</span>
+            <a class="alert-link" (click)="login()">Click here</a>
         </div>
     </div>
 </span>

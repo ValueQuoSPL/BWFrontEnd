@@ -1,13 +1,10 @@
 <div [ngSwitch]="isAuthenticated()">
   <div *ngSwitchCase="true">
-  <br><br>
     <div *ngIf="!isValid"><!-- start of isvalid div -->
-      <div class="row justify-content-md-center colored"><!--start of row1 div-->
-        <div class="col-md-2"><!--start of row1.col1 div-->
-          <label><h4><b>Select Goal</b></h4></label>
-        </div><!--end of row1.col1 div-->
-        <div class=""><!--start of row1.col2 div-->
-          <div><!--start of select div-->
+      <div class="row justify-content-md-center"><!--start of row1 div-->
+        <!-- <div>start of row1.col1 div -->
+          <h4 >Select Goal</h4>&nbsp;&nbsp;&nbsp;
+          <!-- <div>start of select div -->
             <mat-form-field>
               <mat-select placeholder="Choose Goal" name="goaltype" [(ngModel)]="goaltype">
                 <mat-option  value="home">Home</mat-option>
@@ -23,9 +20,28 @@
                 <mat-option value="newgoal">Newgoal</mat-option>
               </mat-select>
             </mat-form-field> 
-          </div><!--end of select div-->
+          <!-- </div>end of select div -->
+        <!-- </div>end of row1.col1 div -->
+        <!-- <div class="">start of row1.col2 div -->
+          <!-- <div>start of select div -->
+            <!-- <mat-form-field>
+              <mat-select placeholder="Choose Goal" name="goaltype" [(ngModel)]="goaltype">
+                <mat-option  value="home">Home</mat-option>
+                <mat-option value="education">Education</mat-option>
+                <mat-option value="vehicle">Vehicle</mat-option>
+                <mat-option value="childbirth">Childbirth</mat-option>
+                <mat-option value="merrage">Marriage</mat-option>
+                <mat-option value="business">Business</mat-option>
+                <mat-option value="familysupport">Familysupport</mat-option>
+                <mat-option value="vacation">Vacation</mat-option>
+                <mat-option value="emergencyfund">Emergencyfund</mat-option>
+                <mat-option value="retairementfund">Retairementfund</mat-option>
+                <mat-option value="newgoal">Newgoal</mat-option>
+              </mat-select>
+            </mat-form-field>  -->
+          <!-- </div>end of select div -->
           <!-- <button mat-raised-button color="primary" (click)="getgoalbyid()">Submit</button> -->
-        </div><!--start of row1.col2 div-->
+        <!-- </div>start of row1.col2 div -->
       </div><!--end of row1 div-->
         <div [ngSwitch]="goaltype"><!--start of ngSwitch div-->
           <div *ngSwitchCase="'home'"><!--start of ngSwitchCaseHome div-->
@@ -364,7 +380,7 @@
         </div><!-- end of ngSwitch div -->
       </div><!-- end of isvalid div -->
     <div *ngIf="isValid">
-      <div class="form-group row justify-content-center"><label><h5>Goal Details</h5></label>
+      <div class="form-group row justify-content-center bwtitle">Goal Details
       </div>
       <button 
         mat-button 
@@ -562,7 +578,6 @@
       <mat-card class="example-card">
               
               <mat-card-content class="example-card" class="shadow">
-                      <img src="../../Assests/oops.jpg" style="height:300px;width:700px"><br>
                       <span>Oops you are not Signed In </span>
                       Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
               </mat-card-content>

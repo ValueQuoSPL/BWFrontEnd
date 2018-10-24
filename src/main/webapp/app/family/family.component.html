@@ -2,29 +2,29 @@
     <div>
         <div [ngSwitch]="isAuthenticated()">
             <div *ngSwitchCase="true">
-                <div class="container">
-                    <mat-accordion  class="container" >
-                        <div class="form-group row justify-content-center bwtitle"><label><h5>Profile</h5></label>
+                <div class="container">                   
+                        <div class="form-group row justify-content-center bwtitle">Profile
                         </div>
+                        <mat-accordion  class="container" >
                             <mat-accordion>
-                                <mat-expansion-panel class="accordion" [expanded]="step === 0">
-                                    <mat-expansion-panel-header class="gray">
-                                        <mat-panel-title class="bwaccordian" >
+                                <mat-expansion-panel class="accordcol" [expanded]="step === 0">
+                                    <mat-expansion-panel-header class="accordcol">
+                                        <mat-panel-title class="bwaccordtitle" >
                                             <h5>My Profile</h5>
                                         </mat-panel-title>
-                                        <mat-panel-description class="bwaccordian">
+                                        <mat-panel-description class="bwaccordtitle">
                                         Fill your Profile here
                                         </mat-panel-description>
                                     </mat-expansion-panel-header>
                                     <jhi-myprofile></jhi-myprofile>
                                 </mat-expansion-panel>
-                            
+                            &nbsp;
                                 <mat-expansion-panel>
-                                    <mat-expansion-panel-header class="gray1">
-                                        <mat-panel-title class="bwaccordian" >
+                                    <mat-expansion-panel-header class="accordcolor">
+                                        <mat-panel-title class="bwaccordtitle">
                                         <h5>Family Profile</h5>
                                         </mat-panel-title>
-                                        <mat-panel-description class="bwaccordian"> 
+                                        <mat-panel-description cclass="bwaccordtitle"> 
                                             Fill your  Family Profile here
                                         </mat-panel-description>
                                     </mat-expansion-panel-header>
@@ -45,7 +45,7 @@
                     <mat-card class="example-card">
                             
                             <mat-card-content class="example-card" class="shadow">
-                                    <img src="../Assests/oops.jpg" style="height:300px;width:700px"><br>
+                                   
                                     <span>Oops you are not Signed In </span>
                                     Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
                             </mat-card-content>

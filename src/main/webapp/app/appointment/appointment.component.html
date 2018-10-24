@@ -4,10 +4,10 @@
                     <mat-card-content class="container-fluid">
                             <div>
                                     <form>
-                                    <label class="row justify-content-md-center colored  text-center labels"><h5>Appointment Booking</h5></label>
+                                    <div class="row justify-content-md-center colored  text-center  bwaccordtitle">Appointment Booking</div>
                                         <div class="row text-center">
                                             <div class="col-md-3 text-center">
-                                                    <button mat-raised-button color="accent" (click)="today()" (click)="getCalendar()">
+                                                    <button mat-raised-button  (click)="today()" (click)="getCalendar()">
                                                         Today
                                                     </button>
                                             </div>
@@ -15,7 +15,7 @@
                                                 <h5>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h5>
                                             </mat-toolbar>
                                             <div class="col-md-3 text-center">
-                                                    <button  mat-raised-button color="primary" (click)="increment()" (click)="getCalendar()">
+                                                    <button  mat-raised-button  (click)="increment()" (click)="getCalendar()">
                                                             Next
                                                         </button>
                                             </div>
@@ -106,7 +106,7 @@
     <div *ngSwitchCase="false" class="form-group row justify-content-center">
             <mat-card class="example-card"> 
                 <mat-card-content class="example-card" class="shadow">
-                    <img src="../../app/Assests/oops.jpg" style="height:300px;width:700px"><br>
+   
                     <span>Oops you are not Signed In </span>
                     Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
                 </mat-card-content>

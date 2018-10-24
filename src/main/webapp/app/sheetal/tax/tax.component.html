@@ -1,58 +1,58 @@
 <div [ngSwitch]="isAuthenticated()">
     <div *ngSwitchCase="true">
         <div class="container">
-            <div class="form-group row justify-content-center"><h5>Tax Details</h5></div>
+            <div class="form-group row justify-content-center bwtitle">Tax Details</div>
             <mat-accordion>
                 <mat-expansion-panel class="accordion" [expanded]="true">
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
+                    <mat-expansion-panel-header class="accordcol">
+                        <mat-panel-title class="bwaccordtitle">
                                 <h5>Gross Income</h5>
                         </mat-panel-title>
-                        <mat-panel-description>
+                        <mat-panel-description class="bwaccordtitle">
                             Gross Details
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <jhi-gross></jhi-gross>
                 </mat-expansion-panel>
                 <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
+                    <mat-expansion-panel-header class="accordcolor">
+                        <mat-panel-title class="bwaccordtitle">
                             <h5>EightyC Deduction</h5>
                         </mat-panel-title>
-                        <mat-panel-description>
+                        <mat-panel-description class="bwaccordtitle">
                             EightyC Details
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <jhi-eightyc></jhi-eightyc>
                 </mat-expansion-panel>
                 <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
+                    <mat-expansion-panel-header class="accordcol">
+                        <mat-panel-title class="bwaccordtitle">
                             <h5> EightyD Deduction</h5>
                         </mat-panel-title>
-                        <mat-panel-description>
+                        <mat-panel-description class="bwaccordtitle">
                             EightyD Details
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <jhi-eightyd></jhi-eightyd>                 
                 </mat-expansion-panel>
                 <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
+                    <mat-expansion-panel-header class="accordcolor">
+                        <mat-panel-title class="bwaccordtitle">
                             <h5>Home Deduction</h5>
                         </mat-panel-title>
-                        <mat-panel-description>
+                        <mat-panel-description class="bwaccordtitle">
                             Home Details
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <jhi-home></jhi-home>
                 </mat-expansion-panel>
                 <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
+                    <mat-expansion-panel-header class="accordcol">
+                        <mat-panel-title class="bwaccordtitle">
                             <h5>Other Deduction</h5>  
                         </mat-panel-title>
-                        <mat-panel-description>
+                        <mat-panel-description class="bwaccordtitle">
                         Other Details
                         </mat-panel-description>
                     </mat-expansion-panel-header>
@@ -64,7 +64,6 @@
     <div *ngSwitchCase="false" class="form-group row justify-content-center">
         <mat-card class="example-card">     
             <mat-card-content class="example-card" class="shadow">
-                <img src="../../Assests//oops.jpg" style="height:300px;width:700px"><br>
                 <span>Oops you are not Signed In </span>
                 Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
             </mat-card-content>

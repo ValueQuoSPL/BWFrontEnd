@@ -9,7 +9,7 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 @Component({
     selector: 'jhi-family',
     templateUrl: './family.component.html',
-    styleUrls: ['./family.component.css']
+    styleUrls: []
 })
 export class FamilyComponent implements OnInit {
     panelOpenState = false;

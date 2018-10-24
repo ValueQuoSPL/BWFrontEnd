@@ -22,7 +22,7 @@ import { MainComponent } from 'app/sheetal';
 @Component({
     selector: 'jhi-dashboard',
     templateUrl: './dashboard.component.html',
-    styleUrls: ['./dashboard.component.css']
+    styleUrls: []
 })
 export class DashboardComponent implements OnInit {
     subject = new BehaviorSubject(0);

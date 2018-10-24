@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
 @Component({
     selector: 'jhi-myprofile',
     templateUrl: './myprofile.component.html',
-    styleUrls: ['./myprofile.component.css']
+    styleUrls: []
 })
 export class MyprofileComponent implements OnInit {
     myProfile: any;
@@ -27,14 +27,15 @@ export class MyprofileComponent implements OnInit {
     }
     saveDetail() {
         this.myProfile.uid = this.uid;
-        this.getMyProfilebyid(this.uid);
+        this.MyProfileSer.save(this.myProfile).subscribe();
+        this.getMyProfilebyid();
     }
     getMyProfile() {
         this.MyProfileSer.getMyProfile().subscribe(res => {
             this.output = res;
         });
     }
-    getMyProfilebyid(uid) {
+    getMyProfilebyid() {
         this.MyProfileSer.getMyProfileByUid(this.uid).subscribe(res => {
             this.output = res;
             // for (let i = 0; i < this.output.length; i++) {
@@ -48,7 +49,6 @@ export class MyprofileComponent implements OnInit {
             if (this.output.length === 0) {
                 this.isValid = false;
             } else {
-                // this.fillIncomeData();
                 this.isValid = true;
             }
         });
@@ -60,7 +60,7 @@ export class MyprofileComponent implements OnInit {
             .then(response => {
                 this.user = response.body;
                 this.uid = this.user.id;
-                this.getMyProfilebyid(this.uid);
+                this.getMyProfilebyid();
             });
     }
     editDetail() {
@@ -88,7 +88,9 @@ export class MyprofileComponent implements OnInit {
         this.show = false;
     }
     update() {
-        this.MyProfileSer.updateProfile(this.myProfile).subscribe(responce => {});
+        this.MyProfileSer.updateProfile(this.myProfile).subscribe(responce => {
+            this.getMyProfilebyid();
+        });
         this.isValid = true;
     }
     cencel() {

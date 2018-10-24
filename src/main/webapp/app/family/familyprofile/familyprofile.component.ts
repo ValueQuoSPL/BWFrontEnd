@@ -10,7 +10,7 @@ import { FormControl } from '@angular/forms';
 @Component({
     selector: 'jhi-familyprofile',
     templateUrl: './familyprofile.component.html',
-    styleUrls: ['./familyprofile.component.css']
+    styleUrls: []
 })
 export class FamilyprofileComponent implements OnInit {
     familyProfile: any;
