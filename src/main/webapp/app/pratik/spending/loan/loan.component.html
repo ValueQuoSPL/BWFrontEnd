@@ -20,6 +20,14 @@
                   </mat-form-field>
 
                   <mat-form-field style="width: 100%;">
+                        <mat-select placeholder="Lender Name" name="type3vd" [(ngModel)]="loan.lender">
+                            <mat-option *ngFor="let type of FamilyArray" [value]="type.name">
+                            {{type.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                  <mat-form-field style="width: 100%;">
                       <input required matInput  placeholder="Lender Name" name="lender" [(ngModel)]="loan.lender">
                   </mat-form-field>
 
@@ -132,6 +140,7 @@
                     <tr *ngFor="let field of dynamicLoanArray; let i = index">
                         <td> {{ field.id }}</td>
                         <td> {{ field.ltype }}</td>
+
                         <td> {{ field.lenderName }} </td>
                         <td> {{ field.amount }} </td>
                         <td> {{ field.tenure }} </td>

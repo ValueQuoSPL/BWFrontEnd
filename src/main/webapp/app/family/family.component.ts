@@ -30,26 +30,12 @@ export class FamilyComponent implements OnInit {
         private loginModalService: LoginModalService
     ) {}
 
-    ngOnInit() {
-        //    this.principal.identity().then((account)  =>  {
-        //        this.account  =  account;
-        //    });
-    }
+    ngOnInit() {}
     isAuthenticated() {
         return this.principal.isAuthenticated();
     }
-    //    getClick()
-    //    {
-    //        this.router.navigate(['register']);
-    //      }
-    saveDetail(): void {
-        //      console.log('inside save details');
-        //      this.familyservice.saveDetails(this.myProfile)
-        //     .subscribe(data  =>  {
-        //        alert('Data saved successfully');
-        //        console.log('Data saved successfully');
 
-        //      });
+    saveDetail(): void {
         this.MyProfile.push({
             fname: this.myProfile.fname,
             mname: this.myProfile.mname,
@@ -70,9 +56,7 @@ export class FamilyComponent implements OnInit {
             city: this.myProfile.city,
             pin: this.myProfile.pin
         }),
-            this.familyservice.saveDetails(this.MyProfile).subscribe(responce => console.log(responce), error => console.log(error));
-        console.log(this.myProfile.fname);
-        console.log(this.myProfile.mname);
+            this.familyservice.saveDetails(this.MyProfile).subscribe();
     }
     saveFPdetail(): void {
         this.FamilyProfile.push({
@@ -86,10 +70,8 @@ export class FamilyComponent implements OnInit {
             occup: this.familyProfile.occup,
             check: this.familyProfile.check
         });
-        console.log('inside familyprofile details');
         this.familyservice.saveFPdetail(this.FamilyProfile).subscribe(data => {
             alert('Data saved successfully');
-            console.log('Data saved successfully');
         });
     }
     saveAssumption(): void {
@@ -105,10 +87,8 @@ export class FamilyComponent implements OnInit {
             AgeOfRetirement: this.assumption.AgeOfRetirement,
             LifeExpentancy: this.assumption.LifeExpentancy
         });
-        console.log('inside Assumption details');
         this.familyservice.saveAssumption(this.Assumption).subscribe(data => {
             alert('Data saved successfully');
-            console.log('Data saved successfully');
         });
     }
     login() {

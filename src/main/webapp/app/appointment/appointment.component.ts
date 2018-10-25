@@ -151,8 +151,12 @@ export class AppointmentComponent implements OnInit {
 
     // Post Data
     postCalendar(time) {
+        const hour = time.split(':', 1);
+        this.viewDate.setHours(hour);
+        this.viewDate.setMinutes(0, 0);
+        const dateTime = this.viewDate.toISOString();
         this.appointment.uid = this.uid;
-        this.appointment.date = this.viewDate;
+        this.appointment.date = dateTime;
         this.appointment.time = time;
         this.appointmentService.postCalendar(this.appointment).subscribe(data => {});
     }
@@ -170,9 +174,10 @@ export class AppointmentComponent implements OnInit {
             this.isAppointmentData9 = false;
             for (let index = 0; index < this.tempAppointmentData.length; index++) {
                 this._day = this.tempAppointmentData[index].date;
+                const onlyDate = this.datepipe.transform(this._day, 'yyyy-MM-dd');
                 this._time = this.tempAppointmentData[index].time;
-                if (this.formatDate === this._day) {
-                    if (this._time === '9 AM') {
+                if (this.formatDate === onlyDate) {
+                    if (this._time === '9:00 A.M') {
                         this.isAppointmentData = true;
                     } else if (this._time === '11:00A.M') {
                         this.isAppointmentData11 = true;

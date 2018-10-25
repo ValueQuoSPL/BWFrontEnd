@@ -1,19 +1,11 @@
-
-
-
 <span [ngSwitch]="isAuthenticated()">
-    <div *ngSwitchCase="false">
-        <div class="alert alert-warning" *ngSwitchCase="false">
-            <span>You are not signed in. <br> If you want to sign in</span>
-            <a class="alert-link" (click)="login()">Click here</a>
-        </div>
-    </div>
+    
     <div *ngSwitchCase="true">
         <div class="container">
 
                 <!-- Start expense panel -->
-                <div class="row justify-content-md-center bwtitle">
-                    <h5>Expense</h5>
+                <div class="form-group row justify-content-md-center bwtitle">
+                    Expense
                 </div>
         
                 <div> <!-- start expense content -->
@@ -64,7 +56,7 @@
                         <router-outlet name="utility"></router-outlet>
                     
                     </mat-expansion-panel>     
-                    
+                    &nbsp;
                     <!-- household -->
                     <mat-expansion-panel >
                         <!-- header -->
@@ -77,7 +69,7 @@
                         <router-outlet name="household"></router-outlet>
         
                     </mat-expansion-panel>    
-                    
+                    &nbsp;
                     <!-- Loan -->
                     <mat-expansion-panel >
         
@@ -90,7 +82,7 @@
                         <router-outlet name="loan"></router-outlet>
         
                     </mat-expansion-panel>   
-                    
+                    &nbsp;
                     <!-- Insurance -->
                     <mat-expansion-panel>
         
@@ -98,7 +90,7 @@
                                 <mat-panel-title class="bwaccordtitle">Insurance</mat-panel-title>
                                 <mat-panel-description class="bwaccordtitle">Add your Insurance Details</mat-panel-description>
                             </mat-expansion-panel-header>
-        
+                            &nbsp;
                             <mat-accordion>
                                 <!-- life -->
                                 <mat-expansion-panel >
@@ -106,26 +98,26 @@
                                             <mat-panel-title class="bwaccordtitle">Life Insurance</mat-panel-title>
                                             <mat-panel-description class="bwaccordtitle">Add your other Life insurance</mat-panel-description>
                                     </mat-expansion-panel-header>
-        
+                                    
                                     <!-- <jhi-life></jhi-life> -->
                         <router-outlet name="life"></router-outlet>
 
         
                                 </mat-expansion-panel>
-        
+                                &nbsp;
                                 <!-- health -->
                                 <mat-expansion-panel >
                                     <mat-expansion-panel-header  class="accordcolor">
                                             <mat-panel-title class="bwaccordtitle">Health Insurance</mat-panel-title>
                                             <mat-panel-description class="bwaccordtitle">Add your other Health insurance</mat-panel-description>
                                     </mat-expansion-panel-header>
-        
+                                    
                                     <!-- <jhi-health></jhi-health> -->
                         <router-outlet name="health"></router-outlet>
 
         
                                 </mat-expansion-panel>
-        
+                                &nbsp;
                                 <!-- General -->
                                 <mat-expansion-panel >
                                     <mat-expansion-panel-header  class="accordcol">
@@ -141,7 +133,7 @@
                             </mat-accordion>
                     
                     </mat-expansion-panel> 
-                    
+                    &nbsp;
                     <!-- Credit Cards -->
                     <mat-expansion-panel>
         
@@ -155,7 +147,7 @@
 
         
                     </mat-expansion-panel>  
-                    
+                    &nbsp;
                     <!-- Entertainment & Travel -->
                     <mat-expansion-panel>
                             <!-- header -->
@@ -173,7 +165,7 @@
 
                     
                     </mat-expansion-panel> 
-                    
+                    &nbsp;
                     <!-- Misc -->
                     <mat-expansion-panel>
                             <!-- header -->
@@ -190,11 +182,18 @@
                         <router-outlet name="misc"></router-outlet>
 
                     
-                    </mat-expansion-panel>    
+                    </mat-expansion-panel>  
+                    &nbsp;  
                 </mat-accordion> 
                 </div>  <!-- end expense content -->
                 </mat-expansion-panel> <!-- end expense panel -->
 
+        </div>
+    </div>
+    <div *ngSwitchCase="false">
+        <div class="alert alert-warning" *ngSwitchCase="false">
+            <span>You are not signed in. <br> If you want to sign in</span>
+            <a class="alert-link" (click)="login()">Click here</a>
         </div>
     </div>
 </span>
