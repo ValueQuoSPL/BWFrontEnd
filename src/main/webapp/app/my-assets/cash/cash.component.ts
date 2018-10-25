@@ -42,8 +42,6 @@ export class CashComponent implements OnInit {
                 this.user = response.body;
                 this.cash.userid = this.user.id;
                 this.uid = this.user.id;
-                // this.getMyProfilebyid(this.uid);
-                // this. getAltInvestment(this.uid)
                 this.getCashDetailsByuid(this.uid);
             });
     }
@@ -89,10 +87,7 @@ export class CashComponent implements OnInit {
     saveCashDetails() {
         this.cash.userid = this.uid;
         this.cash.cashsource = this.cashsource;
-
-        // this.cash.userid = this.uid;
         this.cashservice.CashDetails(this.cash).subscribe(data => {
-            alert('Added new Cash details');
             this.getCashDetailsByuid(this.uid);
         });
     }
@@ -100,7 +95,6 @@ export class CashComponent implements OnInit {
         this.cashservice.getCashDetailsByuid(this.uid).subscribe(res => {
             this.CashDetails = res;
         });
-        // this.getsavePropertyByuid(this.uid5);
     }
     getCashId(commonid) {
         this.cashservice.getCashById(this.commonid).subscribe(res => {
@@ -138,60 +132,17 @@ export class CashComponent implements OnInit {
                 this.cash.notes = this.getdata.notes;
                 this.cash.userid = this.getdata.userid;
             }
-
-            //
-            // for (let index = 0; index <= this.getdata.length; index++) {
-            //   if (this.getdata.cashsource === 'Bank') {
-            //     this.editcash = 'Bank';
-            //     // this.cashsource = this.getdata.cashsource;
-            //     this.cash.amount = this.getdata.amount;
-            //     this.cash.notes = this.getdata.notes;
-            //     this.cash.userid = this.getdata.userid;
-            //     this.cash.bankname = this.getdata.bankname;
-            //     this.cash.intrestrate = this.getdata.intrestrate;
-            //     this.cash.accoounttype = this.getdata.accoounttype;
-            //     this.cash.accountname = this.getdata.accountname;
-            //     this.cash.handloanname = this.getdata.handloanname;
-            //   } else if (this.getdata.cashsource === 'Hand Loan') {
-            //     this.editcash = 'Hand Loan';
-            //     // this.cash.cashsource = this.getdata.cashsource;
-            //     // this.cash.amount = this.getdata.amount;
-            //     // this.cash.notes = this.getdata.notes;
-            //     // this.cash.userid = this.getdata.userid;
-            //     // this.cash.bankname = this.getdata.bankname;
-            //     // this.cash.intrestrate = this.getdata.intrestrate;
-            //     // this.cash.accoounttype = this.getdata.accoounttype;
-            //     // this.cash.accountname = this.getdata.accountname;
-            //     // this.cash.handloanname = this.getdata.handloanname;
-            //   }
-            // }
-            // // this.cash.cashsource = this.getdata.cashsource;
-            // // this.cash.amount = this.getdata.amount;
-            // // this.cash.notes = this.getdata.notes;
-            // // this.cash.userid = this.getdata.userid;
-            // // this.cash.bankname = this.getdata.bankname;
-            // // this.cash.intrestrate = this.getdata.intrestrate;
-            // // this.cash.accoounttype = this.getdata.accoounttype;
-            // // this.cash.accountname = this.getdata.accountname;
-            // // this.cash.handloanname = this.getdata.handloanname;
         });
     }
     update(commonid) {
-        // this.getStockId(this.id)
         this.cash.id = this.commonid;
-        // this.newid= this.stocks.id;
-        // this.getStockId(this.newid);
         this.cashservice.UpdateCash(this.cash).subscribe(data => {
-            alert('Successfully Updated Cash details');
             this.getCashDetailsByuid(this.uid);
         });
-        // this.resetFieldValue();
     }
     delete(commonid) {
         this.conformkey = confirm('Are you sure you Want to permanently delete this item?');
         if (this.conformkey === true) {
-            // this.conformkey = 'You pressed OK!';
-            // this.getStockId(this.id)
             this.cash.id = this.commonid;
             this.cashservice.DeleteStock(this.cash.id).subscribe(data => {
                 this.getCashDetailsByuid(this.uid);
@@ -201,6 +152,7 @@ export class CashComponent implements OnInit {
         }
     }
     resetFieldValue() {
+        this.cashsource = '';
         this.cash.cashsource = '';
         this.cash.id = null;
         this.cash.amount = null;

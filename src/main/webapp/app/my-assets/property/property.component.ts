@@ -88,7 +88,6 @@ export class PropertyComponent implements OnInit {
     saveProperty() {
         this.property.prop_type = this.prop_type;
         this.propertyservice.PropertyDetails(this.property).subscribe(data => {
-            alert('Added new Future and objective details');
             this.getsavePropertyByuid(this.uid);
         });
     }
@@ -114,7 +113,6 @@ export class PropertyComponent implements OnInit {
         // this.newid= this.stocks.id;
         // this.getStockId(this.newid);
         this.propertyservice.UpdateProperty(this.property).subscribe(data => {
-            alert('Added new chit details');
             this.getsavePropertyByuid(this.uid);
         });
     }

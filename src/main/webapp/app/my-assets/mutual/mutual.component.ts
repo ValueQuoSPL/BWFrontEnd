@@ -111,7 +111,6 @@ export class MutualComponent implements OnInit {
     update() {
         this.mutualfund.id = this.commonid;
         this.mutualFundService.UpdateMutualFund(this.mutualfund).subscribe(data => {
-            alert('Added new mutualfund details');
             this.getMutualFundByUid(this.uid);
         });
     }

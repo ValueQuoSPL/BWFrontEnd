@@ -20,12 +20,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <form name="editForm" role="form" novalidate  #editForm="ngForm"> 
-              <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_chit_name">Chit Fund Name</label>
-                    <input type="text" class="form-control" name="chit_name" id="chit_name" [(ngModel)]="chitfund.chit_name"
-                    />
-                </div> -->
+            <form name="editForm" role="form" novalidate  #editForm="ngForm">
                 <mat-form-field>
                     <input 
                         matInput 
@@ -39,11 +34,6 @@
                         required
                     >
                 </mat-form-field>&nbsp;&nbsp;
-                <!-- <div class="form-group">
-                        <label class="form-control-label" for="field_chit_holder_name">Chit Holder Name</label>
-                        <input type="text" class="form-control" name="chit_holder_name" id="chit_holder_name" [(ngModel)]="chitfund.chit_holder_name"
-                        />
-                    </div> -->
                     <mat-form-field>
                         <input 
                             matInput 
@@ -56,11 +46,6 @@
                             required
                         >
                     </mat-form-field>
-                    <!-- <div class="form-group">
-                            <label class="form-control-label" f7or="field_chit_start_date">Chit Start date</label>
-                            <input type="text" placeholder="" class="form-control" [(ngModel)]="chitfund.chit_start_date"
-                                bsDatepicker>
-                        </div> -->
                         <mat-form-field>
                             <input 
                                 required 
@@ -73,11 +58,6 @@
                             <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                             <mat-datepicker #picker1 ></mat-datepicker>
                         </mat-form-field>&nbsp;&nbsp;
-                        <!-- <div class="form-group">
-                                <label class="form-control-label" for="field_chit_value">Chit Value</label>
-                                <input type="number" class="form-control" name="chit_value" id="chit_value" [(ngModel)]="chitfund.chit_value"
-                                />
-                            </div> -->
                             <mat-form-field>
                                 <input 
                                     matInput 
@@ -91,11 +71,6 @@
                                    
                                 >
                             </mat-form-field>
-                            <!-- <div class="form-group">
-                                    <label class="form-control-label" for="field_tenure">Tenure (Months)</label>
-                                    <input type="number" class="form-control" name="tenure" id="tenure" [(ngModel)]="chitfund.tenure"
-                                    />
-                                </div> -->
                                 <mat-form-field>
                                     <input 
                                         matInput 
@@ -110,11 +85,6 @@
                                        
                                     >
                                 </mat-form-field>&nbsp;&nbsp;
-                                <!-- <div class="form-group">
-                                        <label class="form-control-label" for="field_m_payment">Monthly Payment</label>
-                                        <input type="number" class="form-control" name="m_payment" id="m_payment" [(ngModel)]="chitfund.m_payment"
-                                        />
-                                    </div> -->
                                     <mat-form-field>
                                         <input 
                                             matInput 
@@ -129,10 +99,6 @@
                                            
                                         >
                                     </mat-form-field>
-                                    <!-- <div class="form-group">
-                                            <label class="form-control-label" for="field_current_value">Current Value</label>
-                                            <input type="text" class="form-control" name="current_value" id="current_value" [(ngModel)]="chitfund.current_value" />
-                                    </div> -->
                                             <mat-form-field>
                                                 <input 
                                                     matInput 
@@ -147,18 +113,6 @@
                                                    
                                                 >
                                             </mat-form-field>&nbsp;&nbsp;
-                                        
-                                        <!-- <div class="col-md-6">
-                                            <div class="checkbox form-group">
-                                                <label class="form-control-label" for="field_isChashed"><input type="checkbox" value="" class="form-control" name="isCashed" id="isCashed" [(ngModel)]="chitfund.isCashed" >Is cashed?</label>
-                                              </div>
-                                        </div> -->
-                                    
-                      <!-- <div class="form-group">
-                                <label class="form-control-label" for="field_notes">Notes</label>
-                                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="chitfund.notes"
-                                />
-                            </div> -->
                             <mat-form-field>
                                 <textarea 
                                     matInput 
@@ -172,7 +126,7 @@
                                    >
                                 </textarea>
                             </mat-form-field>
-                <div class="modal-footer">
+                <!-- <div class="modal-footer">
 
                     <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving"
                     (click)="c('Save click')">
@@ -183,11 +137,36 @@
                         <span class="fa fa-ban"></span>&nbsp;
                         <span>Cancel</span>
                     </button>
-                </div> <!-- footer -->
+                </div> -->
+                <div class="modal-footer">
+                    <button
+                        mat-raised-button
+                        type="submit"
+                        [disabled]="editForm.form.invalid || isSaving"
+                        class="btn btn-primary"
+                        (click)="c('Save click')">
+                        <span class="fa fa-save"></span>&nbsp;
+                        <span>Save</span>
+                    </button>
+                    <button 
+                        mat-raised-button  
+                        data-dismiss="modal" 
+                        (click)="d('Cross click')">
+                        <span class="fa fa-ban"></span>&nbsp;
+                        <span>Cancel</span></button>&nbsp;
+                    <button 
+                        mat-raised-button 
+                        type="button" 
+                        class="btn btn-warning" 
+                        (click)=" resetFieldValue()">
+                        <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                        <span>Reset</span></span>
+                    </button>
+                </div>
             </form>
         </div> <!-- body -->
     </ng-template>
-    <!-- <ng-template #editChitModal let-c="close" let-d="dismiss">
+    <ng-template #editChitModal let-c="close" let-d="dismiss">
         <div class="modal-header">
             <h4 class="modal-title" id="editChitModal">Chit Funds</h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -195,80 +174,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <form name="editForm" role="form" novalidate  #editForm="ngForm"> 
-              <div class="form-group">
-                    <label class="form-control-label" for="field_chit_name">Chit Fund Name</label>
-                    <input type="text" class="form-control" name="chit_name" id="chit_name" [(ngModel)]="chitfund.chit_name"
-                    />
-                </div>
-                <div class="form-group">
-                        <label class="form-control-label" for="field_chit_holder_name">Chit Holder Name</label>
-                        <input type="text" class="form-control" name="chit_holder_name" id="chit_holder_name" [(ngModel)]="chitfund.chit_holder_name"
-                        />
-                    </div>
-                    <div class="form-group">
-                            <label class="form-control-label" f7or="field_chit_start_date">Chit Start date</label>
-                            <input type="text" placeholder="" class="form-control" [(ngModel)]="chitfund.chit_start_date"
-                                bsDatepicker>
-                        </div>
-                        <div class="form-group">
-                                <label class="form-control-label" for="field_chit_value">Chit Value</label>
-                                <input type="number" class="form-control" name="chit_value" id="chit_value" [(ngModel)]="chitfund.chit_value"
-                                />
-                            </div>
-                            <div class="form-group">
-                                    <label class="form-control-label" for="field_tenure">Tenure (Months)</label>
-                                    <input type="number" class="form-control" name="tenure" id="tenure" [(ngModel)]="chitfund.tenure"
-                                    />
-                                </div>
-                                <div class="form-group">
-                                        <label class="form-control-label" for="field_m_payment">Monthly Payment</label>
-                                        <input type="number" class="form-control" name="m_payment" id="m_payment" [(ngModel)]="chitfund.m_payment"
-                                        />
-                                    </div>
-                                    <div class="form-group">
-                                            <label class="form-control-label" for="field_current_value">Current Value</label>
-                                            <input type="text" class="form-control" name="current_value" id="current_value" [(ngModel)]="chitfund.current_value" />
-                                    </div>
-                                    <div class="checkbox form-group">
-                                            <label class="form-control-label" for="field_isChashed"><input type="checkbox" value="" class="form-control" name="isCashed" id="isCashed" [(ngModel)]="chitfund.isCashed" >Is cashed?</label>
-                                          </div>
-                      <div class="form-group">
-                                <label class="form-control-label" for="field_notes">Notes</label>
-                                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="chitfund.notes"
-                                />
-                            </div>
-                <div class="modal-footer">
-
-                    <button type="submit" class="btn btn-primary" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
-                    (click)="c('Save click')">
-                        <span class="fa fa-save"></span>&nbsp;
-                        <span>Save</span>
-                    </button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="d('Cross click')">
-                        <span class="fa fa-ban"></span>&nbsp;
-                        <span>Cancel</span>
-                    </button>
-                   
-                </div> <!-- footer -->
-            <!-- </form> -->
-        <!-- </div> body -->
-    <!-- </ng-template>   -->
-
-    <ng-template #editChitModal  let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title" id="chitModal">Chit Funds</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form name="editForm" role="form" novalidate  #editForm="ngForm"> 
-              <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_chit_name">Chit Fund Name</label>
-                    <input type="text" class="form-control" name="chit_name" id="chit_name" [(ngModel)]="chitfund.chit_name"
-                    />
-                </div> -->
+            <form name="editForm" role="form" novalidate  #editForm="ngForm">
                 <mat-form-field>
                     <input 
                         matInput 
@@ -282,11 +188,6 @@
                         required
                     >
                 </mat-form-field>&nbsp;&nbsp;
-                <!-- <div class="form-group">
-                        <label class="form-control-label" for="field_chit_holder_name">Chit Holder Name</label>
-                        <input type="text" class="form-control" name="chit_holder_name" id="chit_holder_name" [(ngModel)]="chitfund.chit_holder_name"
-                        />
-                    </div> -->
                     <mat-form-field>
                         <input 
                             matInput 
@@ -299,11 +200,6 @@
                             required
                         >
                     </mat-form-field>
-                    <!-- <div class="form-group">
-                            <label class="form-control-label" f7or="field_chit_start_date">Chit Start date</label>
-                            <input type="text" placeholder="" class="form-control" [(ngModel)]="chitfund.chit_start_date"
-                                bsDatepicker>
-                        </div> -->
                         <mat-form-field>
                             <input 
                                 required 
@@ -316,11 +212,6 @@
                             <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                             <mat-datepicker #picker1 ></mat-datepicker>
                         </mat-form-field>&nbsp;&nbsp;
-                        <!-- <div class="form-group">
-                                <label class="form-control-label" for="field_chit_value">Chit Value</label>
-                                <input type="number" class="form-control" name="chit_value" id="chit_value" [(ngModel)]="chitfund.chit_value"
-                                />
-                            </div> -->
                             <mat-form-field>
                                 <input 
                                     matInput 
@@ -334,11 +225,6 @@
                                    
                                 >
                             </mat-form-field>
-                            <!-- <div class="form-group">
-                                    <label class="form-control-label" for="field_tenure">Tenure (Months)</label>
-                                    <input type="number" class="form-control" name="tenure" id="tenure" [(ngModel)]="chitfund.tenure"
-                                    />
-                                </div> -->
                                 <mat-form-field>
                                     <input 
                                         matInput 
@@ -353,11 +239,6 @@
                                        
                                     >
                                 </mat-form-field>&nbsp;&nbsp;
-                                <!-- <div class="form-group">
-                                        <label class="form-control-label" for="field_m_payment">Monthly Payment</label>
-                                        <input type="number" class="form-control" name="m_payment" id="m_payment" [(ngModel)]="chitfund.m_payment"
-                                        />
-                                    </div> -->
                                     <mat-form-field>
                                         <input 
                                             matInput 
@@ -372,12 +253,6 @@
                                            
                                         >
                                     </mat-form-field>
-                                    <!-- <div class="form-group">
-                                            <label class="form-control-label" for="field_current_value">Current Value</label>
-                                            <input type="text" class="form-control" name="current_value" id="current_value" [(ngModel)]="chitfund.current_value" />
-                                    </div> -->
-                                   
-                                       
                                             <mat-form-field>
                                                 <input 
                                                     matInput 
@@ -392,18 +267,6 @@
                                                    
                                                 >
                                             </mat-form-field>&nbsp;&nbsp;
-                                        
-                                        <!-- <div class="col-md-6">
-                                            <div class="checkbox form-group">
-                                                <label class="form-control-label" for="field_isChashed"><input type="checkbox" value="" class="form-control" name="isCashed" id="isCashed" [(ngModel)]="chitfund.isCashed" >Is cashed?</label>
-                                              </div>
-                                        </div> -->
-                                    <!-- </div> -->
-                      <!-- <div class="form-group">
-                                <label class="form-control-label" for="field_notes">Notes</label>
-                                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="chitfund.notes"
-                                />
-                            </div> -->
                             <mat-form-field>
                                 <textarea 
                                     matInput 
@@ -412,11 +275,12 @@
                                     placeholder="Comment"
                                     name="notes" 
                                     id="notes" 
-                                    [(ngModel)]="chitfund.notes" 
+                                    [(ngModel)]="chitfund.notes"
+                                    [ngModelOptions]="{standalone: true}"
                                    >
                                 </textarea>
                             </mat-form-field>
-                <div class="modal-footer">
+                <!-- <div class="modal-footer">
 
                     <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving"
                     (click)="c('Save click')">
@@ -427,7 +291,32 @@
                         <span class="fa fa-ban"></span>&nbsp;
                         <span>Cancel</span>
                     </button>
-                </div> <!-- footer -->
+                </div> -->
+                <div class="modal-footer">
+                    <button
+                        mat-raised-button
+                        type="submit"
+                        [disabled]="editForm.form.invalid || isSaving"
+                        class="btn btn-primary"
+                        (click)="c('Save click')">
+                        <span class="fa fa-save"></span>&nbsp;
+                        <span>Update</span>
+                    </button>
+                    <button 
+                        mat-raised-button  
+                        data-dismiss="modal" 
+                        (click)="d('Cross click')">
+                        <span class="fa fa-ban"></span>&nbsp;
+                        <span>Cancel</span></button>&nbsp;
+                    <button 
+                        mat-raised-button 
+                        type="button" 
+                        class="btn btn-warning" 
+                        (click)=" resetFieldValue()">
+                        <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                        <span>Reset</span></span>
+                    </button>
+                </div>
             </form>
         </div> <!-- body -->
     </ng-template>

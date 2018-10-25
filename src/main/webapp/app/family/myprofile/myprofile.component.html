@@ -1,20 +1,7 @@
 <div class="container" *ngIf="!isValid"><!--start of container-->
   <form name="editForm" role="form" novalidate   #editForm="ngForm"><!--end of form-->
     <div class="row">
-        <h5  class="heading"><strong>Personal Information</strong></h5>&nbsp;&nbsp;
-         <span>
-          <button
-          mat-raised-button
-          class="colm"
-          *ngIf="show"
-          type="submit" 
-          class="btn btn-primary"
-          [disabled]="editForm.form.invalid || isSaving" 
-          class="btn btn-primary"
-          (click)="saveDetail()"  class="setmargine">Save</button></span>&nbsp;
-         <span><button mat-raised-button color="primary" *ngIf="!show" (click)="update()" class="setmargine">Update</button></span>&nbsp;
-         <span><button mat-raised-button  color="accent" (click)="cencel()">Cancel</button></span>&nbsp;
-         <span><button mat-raised-button href="#">Help</button></span> 
+        <h5 class="heading"><strong>Personal Information</strong></h5>&nbsp;&nbsp;
     </div>     
     <div class="row"><!-- start of row1-->
       <div class="col-md-3"><!-- start of row1.col1-->
@@ -444,7 +431,23 @@
         </div>
       </div><!--end of row5.col4-->
     </div><!--end of row5-->
+    <hr>
+    <div class="pull-right">
+        <button
+        mat-raised-button
+        class="colm"
+        *ngIf="show"
+        type="submit" 
+        class="btn btn-primary"
+        [disabled]="editForm.form.invalid || isSaving" 
+        class="btn btn-primary"
+        (click)="saveDetail()" >Save</button>&nbsp;
+       <span><button mat-raised-button color="primary" *ngIf="!show" (click)="update()" >Update</button></span>&nbsp;
+       <span><button mat-raised-button  color="accent" (click)="cencel()">Cancel</button></span>&nbsp;
+       <span><button mat-raised-button href="#">Help</button></span> 
+    </div>
   </form><!--end of form-->
+  <hr><hr>
 </div><!--end of container-->
 <!--start of view page-->
 <div *ngIf="isValid"><!--start of view div-->

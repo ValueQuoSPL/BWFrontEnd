@@ -19,386 +19,8 @@
         </button>
     </div>
     <div class="modal-body">
-        <form name="editForm" role="form" novalidate  #editForm="ngForm"> 
-        <!-- <div class="form-group"> -->
-                <!-- <label class="form-control-label" for="field_prop_name">Property Name</label>
-                <input type="text" class="form-control" name="prop_name" id="prop_name" [(ngModel)]="property.prop_name"
-                /> -->
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        style="width: 100%;" 
-                        type="text"
-                        placeholder="Property Name" 
-                        name="prop_name"
-                        id="prop_name" 
-                        [(ngModel)]="property.prop_name" 
-                       
-                        required
-                    />
-                </mat-form-field>&nbsp;&nbsp;
-            <!-- </div>
-        <div class="form-group"> -->
-                <!-- <label for="field_prop_type">Property Type</label>
-                <select class="form-control" id="field_prop_type" name="prop_type" [(ngModel)]= "property.prop_type"
-                required>
-                <option>--select type--</option>
-                <option>Residential</option>
-                <option>Commercial</option>
-                <option>Agriculture</option>
-                <option>Vehicle</option>
-                <option>Jewellery</option>
-                <option>Others</option>
-                </select> -->
-                <mat-form-field >
-                    <mat-select placeholder="Property Type"  id="field_prop_type" name="prop_type" [(ngModel)]= "prop_type"
-                    required>
-                      <mat-option value="Residential">Residential</mat-option>
-                      <mat-option value="Commercial">Commercial</mat-option>
-                      <mat-option value="Agriculture">Agriculture</mat-option>
-                      <mat-option value="Vehicle">Vehicle</mat-option>
-                      <mat-option value="Jewellery">Jewellery</mat-option>
-                    </mat-select>
-                  </mat-form-field>&nbsp;&nbsp;
-            <!-- </div>
-            <div class="form-group"> -->
-                    <!-- <label for="field_prop_details">Property Details</label>
-                    <select class="form-control" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                    required>
-                    <option>--select type--</option>
-                    <option>Commercial Office/Retail</option>
-                    <option>Apartments</option>
-                    <option>Individual villa/house</option>
-                    <option>Land</option>
-                    </select> -->
-                    <div [ngSwitch]="prop_type"><!--start of ngSwitch div-->
-                        <div *ngSwitchCase="'Residential'">
-                            <mat-form-field  style="width: 80%;">
-                                <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                                    required>
-                                    <mat-option value="apartments">Apartment</mat-option>
-                                    <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
-                                    <mat-option value="land">Land</mat-option>
-                                </mat-select>
-                            </mat-form-field>&nbsp;&nbsp;
-                        </div>
-                        <div *ngSwitchCase="'Commercial'">
-                                <mat-form-field style="width: 80%;">
-                                    <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                                        required>
-                                        <mat-option value="commercialoffice">Commercial Office</mat-option>
-                                        <mat-option value="apartments">Apartments</mat-option>
-                                        <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
-                                        <mat-option value="land">Land</mat-option>
-                                    </mat-select>
-                                </mat-form-field>&nbsp;&nbsp;
-                            </div>
-                            <div *ngSwitchCase="'Agriculture'">
-                                    <mat-form-field style="width: 80%;">
-                                        <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                                            required>
-                                            <mat-option value="formhouse">Form House</mat-option>
-                                            <mat-option value="land">Land</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>&nbsp;&nbsp;
-                                </div>
-                                <div *ngSwitchCase="'Vehicle'">
-                                        <mat-form-field style="width: 80%;">
-                                            <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                                                required>
-                                                <mat-option value="fourwheller">Four Wheeler</mat-option>
-                                                <mat-option value="twowheller">Two Wheeler</mat-option>
-                                            </mat-select>
-                                        </mat-form-field>&nbsp;&nbsp;
-                                    </div>
-                                    <div *ngSwitchCase="'Jewellery'">
-                                            <mat-form-field style="width: 80%;">
-                                                <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                                                    required>
-                                                    <mat-option value="gold">Gold</mat-option>
-                                                    <mat-option value="silver">Silver</mat-option>
-                                                    <mat-option value="other">Other</mat-option>
-                                                </mat-select>
-                                            </mat-form-field>&nbsp;&nbsp;
-                                        </div>
-                    </div>
-                    <!-- <mat-form-field>
-                        <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                        required>
-                          <mat-option value="commercialoffice">Commercial Office</mat-option>
-                          <mat-option value="apartments">Apartments</mat-option>
-                          <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
-                          <mat-option value="land">Land</mat-option>
-                        </mat-select>
-                      </mat-form-field>&nbsp;&nbsp; -->
-                <!-- </div> -->
-                <!-- <div class="row">
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                <label class="form-control-label" for="field_current_m_value">Current Market Value</label>
-                                <input type="number" class="form-control" name="current_m_value" id="field_current_m_value" [(ngModel)]="property.current_m_value"
-                                    required />
-                            </div>
-                        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                <label class="form-control-label" f7or="field_as_of_date">As of Date</label>
-                                <input type="text" placeholder="" class="form-control" [(ngModel)]="property.as_of_date"
-                                    bsDatepicker>
-                            </div>
-                        </div>
-
-                    </div>  -->
-                    <mat-form-field>
-                        <input 
-                            matInput 
-                            type="number" 
-                            jhiNumberOnly 
-                            placeholder="Current Market Value" 
-                            name="current_m_value" 
-                            id="field_current_m_value" 
-                            [(ngModel)]="property.current_m_value"
-                            required
-                        />
-                    </mat-form-field>&nbsp;&nbsp;
-                    <mat-form-field>
-                        <input matInput [matDatepicker]="picker" placeholder="As Of Date" name="as_of_date" [(ngModel)]="property.as_of_date" >
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                      </mat-form-field>&nbsp;&nbsp;
-
-                      <mat-form-field>
-                        <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="property.notes" [ngModelOptions]="{standalone: true}"></textarea>
-                    </mat-form-field>&nbsp;&nbsp;
-                <!-- <div class="form-group">
-                            <label class="form-control-label" for="field_notes">Notes</label>
-                            <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="property.notes"
-                            />
-                        </div> -->
-            <div class="modal-footer">
-                <button type="submit" mat-button class="btn btn-outline-primary" [disabled]="editForm.form.invalid || isSaving"
-                (click)="c('Save click')">
-                    <span class="fa fa-save"></span>&nbsp;
-                    <span>Save</span>
-                </button>
-                <button type="button" mat-button class="btn btn-outline-accent" data-dismiss="modal" (click)="d('Cross click')">
-                    <span class="fa fa-ban"></span>&nbsp;
-                    <span>Cancel</span>
-                </button>
-                
-            </div> <!-- footer -->
-        </form>
-    </div> <!-- body -->
-</ng-template>
-<ng-template #editpropertyModal let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title" id="propertyModal">Property, Jewellery etc.</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form name="editForm" role="form" novalidate  #editForm="ngForm"> 
-            <!-- <div class="form-group"> -->
-                    <!-- <label class="form-control-label" for="field_prop_name">Property Name</label>
-                    <input type="text" class="form-control" name="prop_name" id="prop_name" [(ngModel)]="property.prop_name"
-                    /> -->
-                    <mat-form-field>
-                        <input 
-                            matInput 
-                            style="width: 100%;" 
-                            type="text"
-                            placeholder="Property Name" 
-                            name="prop_name"
-                            id="prop_name" 
-                            [(ngModel)]="property.prop_name" 
-                           
-                            required
-                        />
-                    </mat-form-field>&nbsp;&nbsp;
-                <!-- </div>
-            <div class="form-group"> -->
-                    <!-- <label for="field_prop_type">Property Type</label>
-                    <select class="form-control" id="field_prop_type" name="prop_type" [(ngModel)]= "property.prop_type"
-                    required>
-                    <option>--select type--</option>
-                    <option>Residential</option>
-                    <option>Commercial</option>
-                    <option>Agriculture</option>
-                    <option>Vehicle</option>
-                    <option>Jewellery</option>
-                    <option>Others</option>
-                    </select> -->
-                    <mat-form-field >
-                        <mat-select placeholder="Property Type"  id="field_prop_type" name="prop_type" [(ngModel)]= "prop_type"
-                        required>
-                          <mat-option value="Residential">Residential</mat-option>
-                          <mat-option value="Commercial">Commercial</mat-option>
-                          <mat-option value="Agriculture">Agriculture</mat-option>
-                          <mat-option value="Vehicle">Vehicle</mat-option>
-                          <mat-option value="Jewellery">Jewellery</mat-option>
-                        </mat-select>
-                      </mat-form-field>&nbsp;&nbsp;
-                <!-- </div>
-                <div class="form-group"> -->
-                        <!-- <label for="field_prop_details">Property Details</label>
-                        <select class="form-control" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                        required>
-                        <option>--select type--</option>
-                        <option>Commercial Office/Retail</option>
-                        <option>Apartments</option>
-                        <option>Individual villa/house</option>
-                        <option>Land</option>
-                        </select> -->
-                        <div [ngSwitch]="prop_type"><!--start of ngSwitch div-->
-                            <div *ngSwitchCase="'Residential'">
-                                <mat-form-field  style="width: 80%;">
-                                    <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                                        required>
-                                        <mat-option value="apartments">Apartment</mat-option>
-                                        <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
-                                        <mat-option value="land">Land</mat-option>
-                                    </mat-select>
-                                </mat-form-field>&nbsp;&nbsp;
-                            </div>
-                            <div *ngSwitchCase="'Commercial'">
-                                    <mat-form-field style="width: 80%;">
-                                        <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                                            required>
-                                            <mat-option value="commercialoffice">Commercial Office</mat-option>
-                                            <mat-option value="apartments">Apartments</mat-option>
-                                            <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
-                                            <mat-option value="land">Land</mat-option>
-                                        </mat-select>
-                                    </mat-form-field>&nbsp;&nbsp;
-                                </div>
-                                <div *ngSwitchCase="'Agriculture'">
-                                        <mat-form-field style="width: 80%;">
-                                            <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                                                required>
-                                                <mat-option value="formhouse">Form House</mat-option>
-                                                <mat-option value="land">Land</mat-option>
-                                            </mat-select>
-                                        </mat-form-field>&nbsp;&nbsp;
-                                    </div>
-                                    <div *ngSwitchCase="'Vehicle'">
-                                            <mat-form-field style="width: 80%;">
-                                                <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                                                    required>
-                                                    <mat-option value="fourwheller">Four Wheeler</mat-option>
-                                                    <mat-option value="twowheller">Two Wheeler</mat-option>
-                                                </mat-select>
-                                            </mat-form-field>&nbsp;&nbsp;
-                                        </div>
-                                        <div *ngSwitchCase="'Jewellery'">
-                                                <mat-form-field style="width: 80%;">
-                                                    <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                                                        required>
-                                                        <mat-option value="gold">Gold</mat-option>
-                                                        <mat-option value="silver">Silver</mat-option>
-                                                        <mat-option value="other">Other</mat-option>
-                                                    </mat-select>
-                                                </mat-form-field>&nbsp;&nbsp;
-                                            </div>
-                        </div>
-                        <!-- <mat-form-field>
-                            <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                            required>
-                              <mat-option value="commercialoffice">Commercial Office</mat-option>
-                              <mat-option value="apartments">Apartments</mat-option>
-                              <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
-                              <mat-option value="land">Land</mat-option>
-                            </mat-select>
-                          </mat-form-field>&nbsp;&nbsp; -->
-                    <!-- </div> -->
-                    <!-- <div class="row">
-                            <div class="col-xs-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="field_current_m_value">Current Market Value</label>
-                                    <input type="number" class="form-control" name="current_m_value" id="field_current_m_value" [(ngModel)]="property.current_m_value"
-                                        required />
-                                </div>
-                            </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <div class="col-xs-6">
-                                <div class="form-group">
-                                    <label class="form-control-label" f7or="field_as_of_date">As of Date</label>
-                                    <input type="text" placeholder="" class="form-control" [(ngModel)]="property.as_of_date"
-                                        bsDatepicker>
-                                </div>
-                            </div>
-    
-                        </div>  -->
-                        <mat-form-field>
-                            <input 
-                                matInput 
-                                type="number" 
-                                jhiNumberOnly 
-                                placeholder="Current Market Value" 
-                                name="current_m_value" 
-                                id="field_current_m_value" 
-                                [(ngModel)]="property.current_m_value"
-                                required
-                            />
-                        </mat-form-field>&nbsp;&nbsp;
-                        <mat-form-field>
-                            <input matInput [matDatepicker]="picker" placeholder="As Of Date" name="as_of_date" [(ngModel)]="property.as_of_date" >
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                          </mat-form-field>&nbsp;&nbsp;
-    
-                          <mat-form-field>
-                            <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="property.notes"></textarea>
-                        </mat-form-field>&nbsp;&nbsp;
-                    <!-- <div class="form-group">
-                                <label class="form-control-label" for="field_notes">Notes</label>
-                                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="property.notes"
-                                />
-                            </div> -->
-                <div class="modal-footer">
-                    <button type="submit" mat-button class="btn btn-outline-primary" [disabled]="editForm.form.invalid || isSaving"
-                    (click)="c('Save click')">
-                        <span class="fa fa-save"></span>&nbsp;
-                        <span>Save</span>
-                    </button>
-                    <button type="button" mat-button class="btn btn-outline-accent" data-dismiss="modal" (click)="d('Cross click')">
-                        <span class="fa fa-ban"></span>&nbsp;
-                        <span>Cancel</span>
-                    </button>
-                    
-                </div> <!-- footer -->
-            </form>
-        </div> <!-- body -->
-    </ng-template>
-<!-- modal start -->
-<!-- <ng-template #editpropertyModal let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title" id="editpropertyModal">Property, Jewellery etc.</h4>
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
         <form name="editForm" role="form" novalidate  #editForm="ngForm">
-<!--             
-        <div class="form-group">
-                <label class="form-control-label" for="field_prop_name">Property Name</label>
-                <input type="text" class="form-control" name="prop_name" id="prop_name" [(ngModel)]="property.prop_name"
-                />
-            </div> -->
-        <!-- <div class="form-group">
-                <label for="field_prop_type">Property Type</label>
-                <select class="form-control" id="field_prop_type" name="prop_type" [(ngModel)]= "property.prop_type"
-                required>
-                <option>--select type--</option>
-                <option>Residential</option>
-                <option>Commercial</option>
-                <option>Agriculture</option>
-                <option>Vehicle</option>
-                <option>Jewellery</option>
-                <option>Others</option>
-                </select>
-            </div> -->
-            <!-- <mat-form-field>
+            <mat-form-field>
                 <input 
                     matInput 
                     style="width: 100%;" 
@@ -406,32 +28,76 @@
                     placeholder="Property Name" 
                     name="prop_name"
                     id="prop_name" 
-                    [(ngModel)]="property.prop_name" 
-                   
+                    [(ngModel)]="property.prop_name"
                     required
                 />
             </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field >
+                <mat-select 
+                    placeholder="Property Type"  
+                    id="field_prop_type" 
+                    name="prop_type" 
+                    [(ngModel)]= "prop_type"
+                    required>
+                    <mat-option value="Residential">Residential</mat-option>
+                    <mat-option value="Commercial">Commercial</mat-option>
+                    <mat-option value="Agriculture">Agriculture</mat-option>
+                    <mat-option value="Vehicle">Vehicle</mat-option>
+                    <mat-option value="Jewellery">Jewellery</mat-option>
+                </mat-select>
+            </mat-form-field>&nbsp;&nbsp;
+            <div [ngSwitch]="prop_type"><!--start of ngSwitch div-->
+                <div *ngSwitchCase="'Residential'">
+                    <mat-form-field  style="width: 80%;">
+                        <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
+                            required>
+                            <mat-option value="apartments">Apartment</mat-option>
+                            <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
+                            <mat-option value="land">Land</mat-option>
+                        </mat-select>
+                    </mat-form-field>&nbsp;&nbsp;
+                </div>
+                <div *ngSwitchCase="'Commercial'">
+                    <mat-form-field style="width: 80%;">
+                        <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
+                            required>
+                            <mat-option value="commercialoffice">Commercial Office</mat-option>
+                            <mat-option value="apartments">Apartments</mat-option>
+                            <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
+                            <mat-option value="land">Land</mat-option>
+                        </mat-select>
+                    </mat-form-field>&nbsp;&nbsp;
+                </div>
+                <div *ngSwitchCase="'Agriculture'">
+                    <mat-form-field style="width: 80%;">
+                        <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
+                            required>
+                            <mat-option value="formhouse">Form House</mat-option>
+                            <mat-option value="land">Land</mat-option>
+                        </mat-select>
+                    </mat-form-field>&nbsp;&nbsp;
+                </div>
+                <div *ngSwitchCase="'Vehicle'">
+                    <mat-form-field style="width: 80%;">
+                        <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
+                            required>
+                            <mat-option value="fourwheller">Four Wheeler</mat-option>
+                            <mat-option value="twowheller">Two Wheeler</mat-option>
+                        </mat-select>
+                    </mat-form-field>&nbsp;&nbsp;
+                </div>
+                <div *ngSwitchCase="'Jewellery'">
+                    <mat-form-field style="width: 80%;">
+                        <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
+                            required>
+                            <mat-option value="gold">Gold</mat-option>
+                            <mat-option value="silver">Silver</mat-option>
+                            <mat-option value="other">Other</mat-option>
+                        </mat-select>
+                    </mat-form-field>&nbsp;&nbsp;
+                </div>
+            </div>
             <mat-form-field>
-                <mat-select placeholder="Property Type"  id="field_prop_type" name="prop_type" [(ngModel)]= "property.prop_type"
-                required>
-                  <mat-option value="Residential">Residential</mat-option>
-                  <mat-option value="Commercial">Commercial</mat-option>
-                  <mat-option value="Agriculture">Agriculture</mat-option>
-                  <mat-option value="Vehicle">Vehicle</mat-option>
-                  <mat-option value="Jewellery">Jewellery</mat-option>
-                  <mat-option value="Others">Others</mat-option>
-                </mat-select>
-              </mat-form-field>&nbsp;&nbsp;
-              <mat-form-field>
-                <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                required>
-                  <mat-option value="commercialoffice">Commercial Office</mat-option>
-                  <mat-option value="apartments">Apartments</mat-option>
-                  <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
-                  <mat-option value="land">Land</mat-option>
-                </mat-select>
-              </mat-form-field>&nbsp;&nbsp;
-              <mat-form-field>
                 <input 
                     matInput 
                     type="number" 
@@ -447,59 +113,162 @@
                 <input matInput [matDatepicker]="picker" placeholder="As Of Date" name="as_of_date" [(ngModel)]="property.as_of_date" >
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>&nbsp;&nbsp;
-
-              <mat-form-field>
-                <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="property.notes"></textarea>
-            </mat-form-field>&nbsp;&nbsp; -->
-            <!-- <div class="form-group">
-                    <label for="field_prop_details">Property Details</label>
-                    <select class="form-control" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
-                    required>
-                    <option>--select type--</option>
-                    <option>Commercial Office/Retail</option>
-                    <option>Apartments</option>
-                    <option>Individual villa/house</option>
-                    <option>Land</option>
-                    </select>
-                </div>
-                <div class="row">
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                <label class="form-control-label" for="field_current_m_value">Current Market Value</label>
-                                <input type="number" class="form-control" name="current_m_value" id="field_current_m_value" [(ngModel)]="property.current_m_value"
-                                    required />
-                            </div>
-                        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <div class="col-xs-6">
-                            <div class="form-group">
-                                <label class="form-control-label" f7or="field_as_of_date">As of Date</label>
-                                <input type="text" placeholder="" class="form-control" [(ngModel)]="property.as_of_date"
-                                    bsDatepicker>
-                            </div>
-                        </div>
-
-                    </div> 
-                <div class="form-group">
-                            <label class="form-control-label" for="field_notes">Notes</label>
-                            <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="property.notes"
-                            />
-                        </div> -->
-            <!-- <div class="modal-footer">
-                <button type="submit"  mat-button class="btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
-                (click)="c('Save click')">
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="property.notes" [ngModelOptions]="{standalone: true}"></textarea>
+            </mat-form-field>&nbsp;&nbsp;
+            <div class="modal-footer">
+                <button 
+                    type="submit" 
+                    mat-button 
+                    class="btn btn-outline-primary" 
+                    [disabled]="editForm.form.invalid || isSaving"
+                    (click)="c('Save click')">
                     <span class="fa fa-save"></span>&nbsp;
                     <span>Save</span>
                 </button>
-                <button type="button"  mat-button class="btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                <button 
+                    type="button" 
+                    mat-button 
+                    class="btn btn-outline-accent" 
+                    data-dismiss="modal" 
+                    (click)="d('Cross click')">
                     <span class="fa fa-ban"></span>&nbsp;
                     <span>Cancel</span>
-                </button> -->
-                
-            <!-- </div>footer -->
-        <!-- </form> -->
-    <!-- </div> body -->
-<!-- </ng-template> -->
+                </button>
+            </div> <!-- footer -->
+        </form>
+    </div> <!-- body -->
+</ng-template>
+<ng-template #editpropertyModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="editpropertyModal">Property, Jewellery etc.</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="editForm" role="form" novalidate  #editForm="ngForm">
+            <mat-form-field>
+                <input 
+                    matInput 
+                    style="width: 100%;" 
+                    type="text"
+                    placeholder="Property Name" 
+                    name="prop_name"
+                    id="prop_name" 
+                    [(ngModel)]="property.prop_name"
+                    required
+                />
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field >
+                <mat-select 
+                    placeholder="Property Type"  
+                    id="field_prop_type" 
+                    name="prop_type" 
+                    [(ngModel)]= "prop_type"
+                    required>
+                    <mat-option value="Residential">Residential</mat-option>
+                    <mat-option value="Commercial">Commercial</mat-option>
+                    <mat-option value="Agriculture">Agriculture</mat-option>
+                    <mat-option value="Vehicle">Vehicle</mat-option>
+                    <mat-option value="Jewellery">Jewellery</mat-option>
+                </mat-select>
+            </mat-form-field>&nbsp;&nbsp;
+            <div [ngSwitch]="prop_type"><!--start of ngSwitch div-->
+                <div *ngSwitchCase="'Residential'">
+                    <mat-form-field  style="width: 80%;">
+                        <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
+                            required>
+                            <mat-option value="apartments">Apartment</mat-option>
+                            <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
+                            <mat-option value="land">Land</mat-option>
+                        </mat-select>
+                    </mat-form-field>&nbsp;&nbsp;
+                </div>
+                <div *ngSwitchCase="'Commercial'">
+                    <mat-form-field style="width: 80%;">
+                        <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
+                            required>
+                            <mat-option value="commercialoffice">Commercial Office</mat-option>
+                            <mat-option value="apartments">Apartments</mat-option>
+                            <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
+                            <mat-option value="land">Land</mat-option>
+                        </mat-select>
+                    </mat-form-field>&nbsp;&nbsp;
+                </div>
+                <div *ngSwitchCase="'Agriculture'">
+                    <mat-form-field style="width: 80%;">
+                        <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
+                            required>
+                            <mat-option value="formhouse">Form House</mat-option>
+                            <mat-option value="land">Land</mat-option>
+                        </mat-select>
+                    </mat-form-field>&nbsp;&nbsp;
+                </div>
+                <div *ngSwitchCase="'Vehicle'">
+                    <mat-form-field style="width: 80%;">
+                        <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
+                            required>
+                            <mat-option value="fourwheller">Four Wheeler</mat-option>
+                            <mat-option value="twowheller">Two Wheeler</mat-option>
+                        </mat-select>
+                    </mat-form-field>&nbsp;&nbsp;
+                </div>
+                <div *ngSwitchCase="'Jewellery'">
+                    <mat-form-field style="width: 80%;">
+                        <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
+                            required>
+                            <mat-option value="gold">Gold</mat-option>
+                            <mat-option value="silver">Silver</mat-option>
+                            <mat-option value="other">Other</mat-option>
+                        </mat-select>
+                    </mat-form-field>&nbsp;&nbsp;
+                </div>
+            </div>
+            <mat-form-field>
+                <input 
+                    matInput 
+                    type="number" 
+                    jhiNumberOnly 
+                    placeholder="Current Market Value" 
+                    name="current_m_value" 
+                    id="field_current_m_value" 
+                    [(ngModel)]="property.current_m_value"
+                    required
+                />
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input matInput [matDatepicker]="picker" placeholder="As Of Date" name="as_of_date" [(ngModel)]="property.as_of_date" >
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="property.notes" [ngModelOptions]="{standalone: true}"></textarea>
+            </mat-form-field>&nbsp;&nbsp;
+            <div class="modal-footer">
+                <button 
+                    type="submit" 
+                    mat-button 
+                    class="btn btn-outline-primary" 
+                    [disabled]="editForm.form.invalid || isSaving"
+                    (click)="c('Save click')">
+                    <span class="fa fa-save"></span>&nbsp;
+                    <span>Update</span>
+                </button>
+                <button 
+                    type="button" 
+                    mat-button 
+                    class="btn btn-outline-accent" 
+                    data-dismiss="modal" 
+                    (click)="d('Cross click')">
+                    <span class="fa fa-ban"></span>&nbsp;
+                    <span>Cancel</span>
+                </button>
+            </div> <!-- footer -->
+        </form>
+    </div> <!-- body -->
+</ng-template>
 <!-- table starts here -->
 <table class="table-responsive-md table table-hover table-striped  table-sm">
     <thead>
@@ -530,10 +299,9 @@
                     type="button"
                     (click)="opendeleteProperty(prop.id)"
                     >
-                    <span> <fa-icon [icon]="'trash'"></fa-icon></i></span>
+                    <span> <fa-icon [icon]="'trash'"></fa-icon></span>
                 </button>
             </td>
         </tr> 
     </tbody>
-
 </table>

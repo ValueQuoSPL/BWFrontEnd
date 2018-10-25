@@ -168,7 +168,7 @@
                         <mat-form-field style="width: 100%;">
                             <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes"></textarea>
                         </mat-form-field>
-                        <div class="modal-footer">
+                        <!-- <div class="modal-footer">
                             <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
                                 click)="c('Save click')">
                                 <span class="fa fa-save"></span>&nbsp;
@@ -177,6 +177,31 @@
                             <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
                                 <span class="fa fa-ban"></span>&nbsp;
                                 <span>Cancel</span>
+                            </button>
+                        </div> -->
+                        <div class="modal-footer">
+                            <button
+                                mat-raised-button
+                                type="submit"
+                                [disabled]="editForm.form.invalid || isSaving"
+                                class="btn btn-primary"
+                                (click)="c('Save click')">
+                                <span class="fa fa-save"></span>&nbsp;
+                                <span>Save</span>
+                            </button>
+                            <button 
+                                mat-raised-button  
+                                data-dismiss="modal" 
+                                (click)="d('Cross click')">
+                                <span class="fa fa-ban"></span>&nbsp;
+                                <span>Cancel</span></button>&nbsp;
+                            <button 
+                                mat-raised-button 
+                                type="button" 
+                                class="btn btn-warning" 
+                                (click)=" resetFieldValue()">
+                                <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                                <span>Reset</span></span>
                             </button>
                         </div>
                     </div>
@@ -214,205 +239,7 @@
             </div>
         </form>
     </div>
-</ng-template>       
-            <!-- <div class="form-group">
-                <mat-form-field style="width: 100%;">
-                    <mat-select placeholder="Cash Source" id="field_cash_source" name="cash_source" [(ngModel)]="cash_source"
-                    required>
-                      <mat-option value="inbank">In Bank</mat-option>
-                      <mat-option value="personalpossion">Personal Possession</mat-option>
-                      <mat-option value="handloan">Hand loan</mat-option>
-                      <mat-option value="othersource">Other Sources</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-            </div> -->
-            <!-- <div [ngSwitch]="cash_source">
-                <div *ngSwitchCase="inbank">
-                        <div class="form-group">
-                                <mat-form-field>
-                                        <input 
-                                            matInput 
-                                            class="full-width" 
-                                            placeholder="Name Of Bank" 
-                                            type="text" 
-                                            name="bankname" 
-                                            id="bankname" 
-                                            [(ngModel)]="cash.bankname" 
-                                           
-                                            required
-                                        >
-                                    </mat-form-field>
-                                    <mat-form-field style="width: 100%;">
-                                            <input 
-                                                matInput 
-                                                class="full-width" 
-                                                placeholder="Account Name" 
-                                                type="text" 
-                                                name="accountname" 
-                                                id="accountname" 
-                                                [(ngModel)]="cash.accountname" 
-                                               
-                                                required
-                                            >
-                                        </mat-form-field>
-                                <mat-form-field style="width: 100%;">
-                                    <input 
-                                        matInput 
-                                        class="full-width" 
-                                        placeholder="Amount" 
-                                        type="number"
-                                        jhiNumberOnly 
-                                        name="amount" 
-                                        id="amount" 
-                                        [(ngModel)]="cash.amount" 
-                                       
-                                        required
-                                    >
-                                </mat-form-field>
-                                <mat-form-field style="width: 100%;">
-                                        <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes"></textarea>
-                                </mat-form-field>
-            
-                                <div class="modal-footer">
-                                        <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
-                                        (click)="c('Save click')">
-                                            <span class="fa fa-save"></span>&nbsp;
-                                            <span>Save</span>
-                                        </button>
-                                        <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
-                                            <span class="fa fa-ban"></span>&nbsp;
-                                            <span>Cancel</span>
-                                        </button>    
-                                    </div> <!-- footer -->
-                        <!-- </div>
-                </div>
-                <div *ngSwitchCase="personalpossion">
-                        <div class="form-group"> -->
-                                <!-- <mat-form-field>
-                                        <input 
-                                            matInput 
-                                            class="full-width" 
-                                            placeholder="Name Of Bank" 
-                                            type="text" 
-                                            name="bankname" 
-                                            id="bankname" 
-                                            [(ngModel)]="cash.bankname" 
-                                           
-                                            required
-                                        >
-                                    </mat-form-field> -->
-                                    <!-- <mat-form-field style="width: 100%;">
-                                            <input 
-                                                matInput 
-                                                class="full-width" 
-                                                placeholder="Account Name" 
-                                                type="text" 
-                                                name="accountname" 
-                                                id="accountname" 
-                                                [(ngModel)]="cash.accountname" 
-                                               
-                                                required
-                                            >
-                                        </mat-form-field>
-                                <mat-form-field style="width: 100%;">
-                                    <input 
-                                        matInput 
-                                        class="full-width" 
-                                        placeholder="Amount" 
-                                        type="number"
-                                        jhiNumberOnly 
-                                        name="amount" 
-                                        id="amount" 
-                                        [(ngModel)]="cash.amount" 
-                                       
-                                        required
-                                    >
-                                </mat-form-field>
-                                <mat-form-field style="width: 100%;">
-                                        <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes"></textarea>
-                                </mat-form-field>
-            
-                                <div class="modal-footer">
-                                        <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
-                                        (click)="c('Save click')">
-                                            <span class="fa fa-save"></span>&nbsp;
-                                            <span>Save</span>
-                                        </button>
-                                        <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
-                                            <span class="fa fa-ban"></span>&nbsp;
-                                            <span>Cancel</span> -->
-                                        <!-- </button>     -->
-                                    <!-- </div> footer -->
-                        <!-- </div>
-                </div>
-
-            </div>  -->
-            
-            <!-- <div class="form-group"> -->
-                <!-- <label class="form-control-label" for="field_notes">Notes</label>
-                <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="cash.notes"
-                /> -->
-                <!-- <mat-form-field style="width: 100%;">
-                    <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes"></textarea>
-                </mat-form-field>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
-                (click)="c('Save click')">
-                    <span class="fa fa-save"></span>&nbsp;
-                    <span>Save</span>
-                </button> -->
-                <!-- <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
-                    <span class="fa fa-ban"></span>&nbsp;
-                    <span>Cancel</span>
-                </button>     -->
-            <!-- </div> footer -->
-        <!-- </form>
-    </div>  body -->
-<!-- </ng-template> -->
-<!-- <ng-template #editCashModal let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title" id="editCashModal">Cash Investment</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form name="editForm" role="form" novalidate  #editForm="ngForm">        
-                <div class="form-group">
-                    <label for="field_cash_source">Cash Source</label>
-                    <select class="form-control" id="field_cash_source" name="cash_source" [(ngModel)]="cash.cash_source"
-                    required>
-                        <option>--select source--</option>
-                        <option>In Bank</option>
-                        <option>Personal Possession</option>
-                        <option>Hand loan</option>
-                        <option>Other Sources</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="field_amount">Amount</label>
-                    <input type="number" class="form-control" name="amount" id="amount" [(ngModel)]="cash.amount"
-                        required/>
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label" for="field_notes">Notes</label>
-                    <input type="text" class="form-control" name="notes" id="notes" [(ngModel)]="cash.notes"
-                    />
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
-                    (click)="c('Save click')">
-                        <span class="fa fa-save"></span>&nbsp;
-                        <span>Save</span>
-                    </button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="d('Cross click')">
-                        <span class="fa fa-ban"></span>&nbsp;
-                        <span>Cancel</span>
-                    </button>    
-                </div>  footer -->
-            <!-- </form> -->
-        <!-- </div> body -->
+</ng-template>
 <!-- </ng-template>  -->
 <ng-template #editCashModal let-c="close" let-d="dismiss">
     <div class="modal-header">
@@ -503,7 +330,7 @@
                                         (click)="c('Save click')"
                                     >
                                         <span class="fa fa-save"></span>&nbsp;
-                                        <span>Save</span>
+                                        <span>Update</span>
                                     </button>
                                     <button
                                         type="button"
@@ -623,7 +450,7 @@
                                             <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
                                             (click)="c('Save click')">
                                                 <span class="fa fa-save"></span>&nbsp;
-                                                <span>Save</span>
+                                                <span>Update</span>
                                             </button>
                                             <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
                                                 <span class="fa fa-ban"></span>&nbsp;

@@ -1,3 +1,4 @@
+import { SortableListDirective } from './../../pratik/draggable/sortable-list.directive';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -21,6 +22,8 @@ export class SavingSchemeComponent implements OnInit {
     getdata: any;
     savingScheme: SavingScheme = new SavingScheme();
     isSaving;
+    getTempDate = new Date();
+    setTempDate = new Date();
 
     schemesArray = [
         { viewValue: 'FIXED DEPOSIT' },
@@ -67,8 +70,9 @@ export class SavingSchemeComponent implements OnInit {
             .toPromise()
             .then(response => {
                 this.user = response.body;
-                this.savingScheme.userId = this.user.id;
-                this.uid = this.savingScheme.userId;
+                // this.savingScheme.userId = this.user.id;
+                //   this.uid = this.savingScheme.userId;
+                this.uid = this.user.id;
                 this.getSavingSchemeUid(this.uid);
             });
     }
@@ -106,46 +110,56 @@ export class SavingSchemeComponent implements OnInit {
             }
         );
     }
+    // SavingScheme() {
+    //     this.savingScheme.userId = this.uid;
+    //     console.log('saving data', this.savingScheme);
+    //     this.savingSchemeService.SavingSchemeDetails(this.savingScheme).subscribe(data => {
+    //     });
+    //     this.getSavingSchemeUid(this.uid);
+    // }
     SavingScheme() {
-        this.savingSchemeService.SavingSchemeDetails(this.savingScheme).subscribe(data => {
-            alert('Added new Future and objective details');
-        });
-        this.getSavingSchemeUid(this.uid);
+        this.getTempDate = this.savingScheme.start_date;
+        const year = this.getTempDate.getFullYear();
+        this.setTempDate.setFullYear(year + this.savingScheme.tenure);
+        this.savingScheme.end_date = this.setTempDate;
+        this.savingScheme.userId = this.uid;
+        this.savingSchemeService.SavingSchemeDetails(this.savingScheme).subscribe(
+            responce => {
+                console.log(responce), this.getSavingSchemeUid(this.uid);
+            },
+            error => console.log(error)
+        );
     }
     getSavingSchemeUid(uid) {
         this.savingSchemeService.getSavingScheme(this.uid).subscribe(res => {
             this.SavingDetails = res;
+            console.log('response of saving', this.SavingDetails);
         });
-        // this.getAltInvestment(this.uid3);
     }
     getSavingSchemeByid(commonid) {
         console.log('common id', this.commonid);
         this.savingSchemeService.getSavingSchemeById(this.commonid).subscribe(res => {
             this.getdata = res;
             console.log('getdata in getsavingById', this.getdata);
-            this.savingScheme.type = this.getdata.type;
-            this.savingScheme.num = this.getdata.num;
-            this.savingScheme.organisation_name = this.getdata.organisation_name;
-            this.savingScheme.investor_name = this.getdata.investor_name;
-            this.savingScheme.dividend_type = this.getdata.dividend_type;
-            this.savingScheme.amount_invested = this.getdata.amount_invested;
-            this.savingScheme.rate_of_interest = this.getdata.rate_of_interest;
-            this.savingScheme.tenure = this.getdata.tenure;
-            this.savingScheme.start_date = this.getdata.start_date;
-            this.savingScheme.end_date = this.getdata.end_date;
-            this.savingScheme.fund_value = this.getdata.fund_value;
-            this.savingScheme.as_of_date = this.getdata.as_of_date;
-            this.savingScheme.userId = this.getdata.userid;
-            this.savingScheme.id = this.getdata.id;
+            this.savingScheme.type = this.getdata[0].type;
+            this.savingScheme.num = this.getdata[0].num;
+            this.savingScheme.organisation_name = this.getdata[0].organisation_name;
+            this.savingScheme.investor_name = this.getdata[0].investor_name;
+            this.savingScheme.dividend_type = this.getdata[0].dividend_type;
+            this.savingScheme.amount_invested = this.getdata[0].amount_invested;
+            this.savingScheme.rate_of_interest = this.getdata[0].rate_of_interest;
+            this.savingScheme.tenure = this.getdata[0].tenure;
+            this.savingScheme.start_date = this.getdata[0].start_date;
+            this.savingScheme.end_date = this.getdata[0].end_date;
+            this.savingScheme.fund_value = this.getdata[0].fund_value;
+            this.savingScheme.as_of_date = this.getdata[0].as_of_date;
+            this.savingScheme.userId = this.getdata[0].userid;
+            this.savingScheme.id = this.getdata[0].id;
         });
     }
     update(commonid) {
-        // this.getStockId(this.id)
         this.savingScheme.id = this.commonid;
-        // this.newid= this.stocks.id;
-        // this.getStockId(this.newid);
         this.savingSchemeService.UpdateSaving(this.savingScheme).subscribe(data => {
-            alert('Added new savingScheme details');
             this.getSavingSchemeUid(this.uid);
         });
     }

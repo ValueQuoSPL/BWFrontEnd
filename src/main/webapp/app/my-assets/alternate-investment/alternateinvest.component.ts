@@ -82,7 +82,6 @@ export class AlternativeComponent implements OnInit {
     }
     AltInvestment() {
         this.alternateservice.AltInvestDetails(this.altInvest).subscribe(data => {
-            alert('Added new Alternative Investment details');
             this.getAltInvestment(this.uid);
         });
     }
@@ -108,7 +107,6 @@ export class AlternativeComponent implements OnInit {
     update(commonid) {
         this.altInvest.id = this.commonid;
         this.alternateservice.UpdateAltInvest(this.altInvest).subscribe(data => {
-            alert('Successfully Updated Alternative Investment details');
             this.getAltInvestment(this.uid);
         });
     }

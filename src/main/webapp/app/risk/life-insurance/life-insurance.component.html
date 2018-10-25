@@ -1,8 +1,6 @@
 <br>
 <br>
 <div class="container">
-    <h3>
-        <p class="font-weight-bold">Life Insurance</h3>
     <!--start of buttons -->
     <div>
         <div class="pull-right">
@@ -119,16 +117,21 @@
                         {{lifeInsurance.total }}
                     </div>
                     <div class="modal-footer">
-
-                        <button type="submit" class="btn btn-primary" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary" data-dismiss="modal"
-                            (click)="c('Save click')">
-                            <span class="fa fa-save"></span>&nbsp;
-                            <span>Save</span>
-                        </button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="d('Cross click')">
-                            <span class="fa fa-ban"></span>&nbsp;
-                            <span>Cancel</span>
-                        </button>
+                        <button
+                        mat-raised-button
+                        type="submit"
+                        [disabled]="editForm.form.invalid || isSaving"
+                        class="btn btn-primary"
+                        (click)="c('Save click')">
+                        <span class="fa fa-save"></span>&nbsp;
+                        <span>Save</span>
+                </button>
+                <button 
+                    mat-raised-button  
+                    data-dismiss="modal" 
+                    (click)="d('Cross click')">
+                    <span class="fa fa-ban"></span>&nbsp;
+                    <span>Cancel</span></button>&nbsp;
                     </div>
                 </form>
             </div>

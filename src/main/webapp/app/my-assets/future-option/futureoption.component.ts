@@ -98,7 +98,6 @@ export class FutureOptionComponent implements OnInit {
     }
     SaveFAO() {
         this.futureOptionService.SaveFAO(this.fao).subscribe(data => {
-            alert('Added new Future and objective details');
             this.getFAOByUid(this.uid);
         });
     }
@@ -110,7 +109,6 @@ export class FutureOptionComponent implements OnInit {
     update(commonid) {
         this.fao.id = this.commonid;
         this.futureOptionService.UpdateFuture(this.fao).subscribe(data => {
-            alert('Added new chit details');
             this.getFAOByUid(this.uid);
         });
     }

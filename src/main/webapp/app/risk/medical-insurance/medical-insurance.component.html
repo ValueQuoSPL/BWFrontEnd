@@ -1,7 +1,5 @@
 <br><br>
 <div class="container">
-    <h3>
-    <p class="font-weight-bold">Medical Insurance</h3>
 <!--start of buttons -->
 <div>
     <div class="pull-right">
@@ -53,24 +51,31 @@
                     <span matPrefix></span>
                 </mat-form-field>
            
-            <div class="modal-footer">
-
-                <button type="submit" class="btn btn-primary" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary" data-dismiss="modal"
-                (click)="c('Save click')">
-                    <span class="fa fa-save"></span>&nbsp;
-                    <span>Save</span>
-                </button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="c('Save click')">
-                    <span class="fa fa-ban"></span>&nbsp;
-                    <span>Cancel</span>
-                </button>
-                <button type="button" class="btn btn-warning" (click)="resetFieldValue()">
-                    <span>
-                        <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
-                        <span>Reset</span>
-                    </span>
-                </button>
-            </div>
+                <div class="modal-footer">
+                    <button
+                        mat-raised-button
+                        type="submit"
+                        [disabled]="editForm.form.invalid || isSaving"
+                        class="btn btn-primary"
+                        (click)="c('Save click')">
+                        <span class="fa fa-save"></span>&nbsp;
+                        <span>Save</span>
+                    </button>
+                    <button 
+                        mat-raised-button  
+                        data-dismiss="modal" 
+                        (click)="d('Cross click')">
+                        <span class="fa fa-ban"></span>&nbsp;
+                        <span>Cancel</span></button>&nbsp;
+                    <button 
+                        mat-raised-button 
+                        type="button" 
+                        class="btn btn-warning" 
+                        (click)="resetFieldValue()">
+                        <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                        <span>Reset</span></span>
+                    </button>
+                </div>
         </form>
     </ng-template>
     <div class="modal fade" id="medicalModal" tabindex="-1" role="dialog" aria-labelledby="medicalModalLabel" aria-hidden="true">

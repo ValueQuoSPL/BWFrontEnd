@@ -97,7 +97,6 @@ export class ChitFundComponent implements OnInit {
     }
     saveChit() {
         this.chitfundService.ChitFundDetails(this.chitfund).subscribe(data => {
-            alert('Added new Chit Fund details');
             this.getChitByuid(this.uid);
         });
     }
@@ -109,7 +108,6 @@ export class ChitFundComponent implements OnInit {
     update(commonid) {
         this.chitfund.id = this.commonid;
         this.chitfundService.UpdateChit(this.chitfund).subscribe(data => {
-            alert('Successfully Updated Chit Fund details');
             this.getChitByuid(this.uid);
         });
     }

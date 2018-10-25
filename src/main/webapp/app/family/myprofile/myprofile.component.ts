@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Myprofile } from '../family.model';
 import { MyprofileService } from './myprofile.service';
-import { AccountService, LoginModalService, Principal } from 'app/core';
-import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';
+import { AccountService, Principal } from 'app/core';
 import { FormControl } from '@angular/forms';
 @Component({
     selector: 'jhi-myprofile',
@@ -27,31 +25,23 @@ export class MyprofileComponent implements OnInit {
     }
     saveDetail() {
         this.myProfile.uid = this.uid;
-        this.MyProfileSer.save(this.myProfile).subscribe(responce => console.log(responce), error => console.log(error));
+        this.MyProfileSer.save(this.myProfile).subscribe();
         this.getMyProfilebyid();
     }
     getMyProfile() {
         this.MyProfileSer.getMyProfile().subscribe(res => {
-            console.log(res);
             this.output = res;
-            console.log('responce of myprofile service', this.output);
         });
     }
     getMyProfilebyid() {
         this.MyProfileSer.getMyProfileByUid(this.uid).subscribe(res => {
-            console.log(res);
             this.output = res;
-            console.log('responce of myprofile service', this.output);
             // for (let i = 0; i < this.output.length; i++) {
             //   const element = this.output[i];
             //   if (element.uid === 0) {
-            //     console.log(element.uid);
             //     this.isValid = false;
-            //     console.log(this.isValid);
             //   } else {
-            //     console.log(element.uid);
             //     this.isValid = true;
-            //     console.log(this.isValid);
             //   }
             // }
             if (this.output.length === 0) {
@@ -67,9 +57,7 @@ export class MyprofileComponent implements OnInit {
             .toPromise()
             .then(response => {
                 this.user = response.body;
-                console.log('user info', this.user);
                 this.uid = this.user.id;
-                console.log('in fetchid method', this.uid);
                 this.getMyProfilebyid();
             });
     }
@@ -98,12 +86,9 @@ export class MyprofileComponent implements OnInit {
         this.show = false;
     }
     update() {
-        this.MyProfileSer.updateProfile(this.myProfile).subscribe(
-            responce => {
-                console.log(responce), this.getMyProfilebyid();
-            },
-            error => console.log(error)
-        );
+        this.MyProfileSer.updateProfile(this.myProfile).subscribe(responce => {
+            this.getMyProfilebyid();
+        });
         this.isValid = true;
     }
     cencel() {

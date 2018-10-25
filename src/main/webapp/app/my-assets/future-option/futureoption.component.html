@@ -1,518 +1,485 @@
-   <!--start of buttons -->
-   <div class="row pull-right">
-        <button type="button" class="btn btn-link" (click)="openFuture(futureModal)" >
-                <fa-icon [icon]="'plus'"></fa-icon>
-                <span>Add</span>
-        </button>
-        <button type="button" class="btn btn-link">
-            <span>
-                <i class="fa fa-info" aria-hidden="true"></i>
-                <span>Help</span>
-            </span>
+<!--start of buttons -->
+<div class="row pull-right">
+    <button type="button" class="btn btn-link" (click)="openFuture(futureModal)" >
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span>Add</span>
+    </button>
+    <button type="button" class="btn btn-link">
+        <span>
+            <i class="fa fa-info" aria-hidden="true"></i>
+            <span>Help</span>
+        </span>
+    </button>
+</div>
+<!-- futureModal start -->
+<ng-template #futureModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="futureModal">Future and Options</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <!-- modal start -->
-    <ng-template #futureModal let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title" id="futureModal">Future and Options</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form name="editForm" role="form" novalidate  #editForm="ngForm">
-                
-                <!-- <div class="form-group">
-                    <label for="id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id" [(ngModel)]="fao.num" />
-                </div> -->
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        placeholder="ID"
-                        type="number"
-                        jhiNumberOnly 
-                        id="id" 
-                        name="id" 
-                        [(ngModel)]="fao.num" 
-                       
-                        required
+    <div class="modal-body">
+        <form name="editForm" role="form" novalidate  #editForm="ngForm">
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    placeholder="ID"
+                    type="number"
+                    jhiNumberOnly 
+                    id="id" 
+                    name="id" 
+                    [(ngModel)]="fao.num" 
+                    name="num"
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    placeholder="Investment Type"
+                    type="number" 
+                    name="investment_type" 
+                    id="field_investment_type" 
+                    [(ngModel)]="fao.investment_type"
+                    required
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    type="text"
+                    placeholder="Assset Type"
+                    name="asset_type" 
+                    id="field_asset_type" 
+                    [(ngModel)]="fao.asset_type"
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    type="text"
+                    placeholder="Investor Name"
+                    name="investor_name" 
+                    id="field_investor_name" 
+                    [(ngModel)]="fao.investor_name"
+                    required
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    type="text"
+                    placeholder="Asset Name"
+                    name="asset_name" 
+                    id="field_asset_name" 
+                    [(ngModel)]="fao.asset_name"
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    placeholder="Number Of Contracts"
+                    type="number"
+                    jhiNumberOnly 
+                    name="no_of_contracts" 
+                    id="field_no_of_contracts" 
+                    [(ngModel)]="fao.no_of_contracts"
+                    required
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <input 
+                    required 
+                    matInput
+                    [matDatepicker]="picker1" 
+                    placeholder="Purchase Date"
+                    name="p_date"
+                    [(ngModel)]="fao.p_date" 
                     >
-                </mat-form-field>&nbsp;&nbsp;
-                <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_investment_type">Investment Type</label>
-                    <input type="text" class="form-control" name="investment_type" id="field_investment_type" [(ngModel)]="fao.investment_type"
-                        required>
-                </div> -->
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        placeholder="Investment Type"
-                        type="number" 
-                        name="investment_type" 
-                        id="field_investment_type" 
-                        [(ngModel)]="fao.investment_type"
-                        required
+                <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+                <mat-datepicker #picker1 ></mat-datepicker>
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    placeholder="Number Of Contracts"
+                    type="number"
+                    jhiNumberOnly 
+                    name="contract_p_value" 
+                    id="field_contract_p_value" 
+                    [(ngModel)]="fao.contract_p_value"
+                    required
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    placeholder="Contract Market Value"
+                    type="number"
+                    jhiNumberOnly 
+                    name="contract_m_value"
+                    id="field_contract_m_value"
+                    [(ngModel)]="fao.contract_m_value"
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    required 
+                    matInput
+                    [matDatepicker]="picker2" 
+                    placeholder="As Of Date"  
+                    [(ngModel)]="fao.as_of_date" 
+                    name="as_of_date"
                     >
-                </mat-form-field>
-                <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_asset_type">Asset Type</label>
-                    <input type="text" class="form-control" name="asset_type" id="field_asset_type" [(ngModel)]="fao.asset_type"
-                        required/>
-                </div> -->
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        type="text"
-                        placeholder="Assset Type"
-                        name="asset_type" 
-                        id="field_asset_type" 
-                        [(ngModel)]="fao.asset_type" 
-                       
-                        required
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 ></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <textarea 
+                    matInput 
+                    rows="3" 
+                    cols="50" 
+                    placeholder="Comment"  
+                    name="notes" 
+                    id="field_notes" 
+                    [(ngModel)]="fao.notes"
+                    [ngModelOptions]="{standalone: true}"
                     >
-                </mat-form-field>&nbsp;&nbsp;
-                <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_investor_name">Investor Name</label>
-                    <input type="text" class="form-control" name="investor_name" id="field_investor_name" [(ngModel)]="fao.investor_name"
-                        required/>
-                </div> -->
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        type="text"
-                        placeholder="Investor Name"
-                        name="investor_name" 
-                        id="field_investor_name" 
-                        [(ngModel)]="fao.investor_name" 
-                       
-                        required
-                    >
-                </mat-form-field>
-                <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_asset_name">Asset Name</label>
-                    <input type="text" class="form-control" name="asset_name" id="field_asset_name" [(ngModel)]="fao.asset_name"
-                        required/>
-                </div> -->
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        type="text"
-                        placeholder="Asset Name"
-                        name="asset_name" 
-                        id="field_asset_name" 
-                        [(ngModel)]="fao.asset_name" 
-                       
-                        required
-                    >
-                </mat-form-field>&nbsp;&nbsp;
-                <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_no_of_contracts">No of Contracts</label>
-                    <input type="number" class="form-control" name="no_of_contracts" id="field_no_of_contracts" [(ngModel)]="fao.no_of_contracts"
-                        required/>
-                </div> -->
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        placeholder="Number Of Contracts"
-                        type="number"
-                        jhiNumberOnly 
-                        name="no_of_contracts" 
-                        id="field_no_of_contracts" 
-                        [(ngModel)]="fao.no_of_contracts"
-                        required
-                    >
-                </mat-form-field>
-                <!-- <div class="form-group">
-                    <label class="form-control-label" f7or="field_p_date">Purchase Date</label>
-                    <input type="text" placeholder="" class="form-control" [(ngModel)]="fao.p_date" bsDatepicker>
-                </div> -->
-                <mat-form-field>
-                    <input 
-                        required 
-                        matInput
-                        [matDatepicker]="picker1" 
-                        placeholder="Purchase Date"
-                        name="p_date"
-                        [(ngModel)]="fao.p_date" 
-                        >
-                    <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
-                    <mat-datepicker #picker1 ></mat-datepicker>
-                </mat-form-field>&nbsp;&nbsp;
-
-                <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_contract_p_value">contract Purchase Value</label>
-                    <input type="number" class="form-control" name="contract_p_value" id="field_contract_p_value" [(ngModel)]="fao.contract_p_value"
-                        required />
-                </div> -->
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        placeholder="Number Of Contracts"
-                        type="number"
-                        jhiNumberOnly 
-                        name="contract_p_value" 
-                        id="field_contract_p_value" 
-                        [(ngModel)]="fao.contract_p_value"
-                        required
-                    >
-                </mat-form-field>
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        placeholder="Contract Market Value"
-                        type="number"
-                        jhiNumberOnly 
-                        name="contract_m_value"
-                        id="field_contract_m_value"
-                        [(ngModel)]="fao.contract_m_value"
-                        
-                        required
-                    >
-                </mat-form-field>&nbsp;&nbsp;
-                <mat-form-field>
-                    <input 
-                        required 
-                        matInput 
-                        [matDatepicker]="picker2" 
-                        placeholder="As Of Date"  
-                        [(ngModel)]="fao.as_of_date" 
-                       >
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2 ></mat-datepicker>
-                </mat-form-field>
-                <!-- <div class="row">
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label class="form-control-label" for="field_contract_m_value">contract Market Value</label>
-                            <input type="number" 
-                            class="form-control"
-                            name="contract_m_value"
-                            id="field_contract_m_value"
-                            [(ngModel)]="fao.contract_m_value"
-                            
-                            required />
-                        </div>
-                    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label class="form-control-label" f7or="field_as_of_date">As of Date</label>
-                            <input type="text" 
-                                    placeholder="" 
-                                    class="form-control"
-                                     [(ngModel)]="fao.as_of_date"
-                                   
-                                    bsDatepicker>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_notes">Notes</label>
-                    <input type="text" class="form-control" name="notes" id="field_notes" [(ngModel)]="fao.notes"/>
-                </div> -->
-                <mat-form-field>
-                    <textarea 
-                        matInput 
-                        rows="3" 
-                        cols="50" 
-                        placeholder="Comment"  
-                        name="notes" 
-                        id="field_notes" 
-                        [(ngModel)]="fao.notes"
-                        [ngModelOptions]="{standalone: true}"
-                       >
-                    </textarea>
-                </mat-form-field>&nbsp;&nbsp;
-                <div class="modal-footer">
-                    <button type="submit" mat-button class=" btn btn-outline-primary"
+                </textarea>
+            </mat-form-field>&nbsp;&nbsp;
+            <div class="modal-footer">
+                <button
+                    mat-raised-button
+                    type="submit"
                     [disabled]="editForm.form.invalid || isSaving"
+                    class="btn btn-primary"
                     (click)="c('Save click')">
-                        <span class="fa fa-save"></span>&nbsp;
-                        <span>Save</span>
-                    </button>
-                    <button type="button"  mat-button class=" btn btn-outline-accent" data-dismiss="modal" (click)="d('Cross click')">
-                        <span class="fa fa-ban"></span>&nbsp;
-                        <span>Cancel</span>
-                    </button>  
-                </div> <!-- footer -->
-            </form>
-        </div> <!-- body -->
-    </ng-template>
-    <ng-template #editfutureModal let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title" id="futureModal">Future and Options</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form name="editForm" role="form" novalidate  #editForm="ngForm">
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        placeholder="ID"
-                        type="number"
-                        jhiNumberOnly 
-                        id="id" 
-                        name="id" 
-                        [(ngModel)]="fao.num" 
-                       
-                        required
-                    >
-                </mat-form-field>&nbsp;&nbsp;
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        placeholder="Investment Type"
-                        type="number" 
-                        name="investment_type" 
-                        id="field_investment_type" 
-                        [(ngModel)]="fao.investment_type"
-                        required
-                    >
-                </mat-form-field>
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        type="text"
-                        placeholder="Assset Type"
-                        name="asset_type" 
-                        id="field_asset_type" 
-                        [(ngModel)]="fao.asset_type" 
-                       
-                        required
-                    >
-                </mat-form-field>&nbsp;&nbsp;
-                <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_investor_name">Investor Name</label>
-                    <input type="text" class="form-control" name="investor_name" id="field_investor_name" [(ngModel)]="fao.investor_name"
-                        required/>
-                </div> -->
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        type="text"
-                        placeholder="Investor Name"
-                        name="investor_name" 
-                        id="field_investor_name" 
-                        [(ngModel)]="fao.investor_name" 
-                       
-                        required
-                    >
-                </mat-form-field>
-                <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_asset_name">Asset Name</label>
-                    <input type="text" class="form-control" name="asset_name" id="field_asset_name" [(ngModel)]="fao.asset_name"
-                        required/>
-                </div> -->
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        type="text"
-                        placeholder="Asset Name"
-                        name="asset_name" 
-                        id="field_asset_name" 
-                        [(ngModel)]="fao.asset_name" 
-                       
-                        required
-                    >
-                </mat-form-field>&nbsp;&nbsp;
-                <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_no_of_contracts">No of Contracts</label>
-                    <input type="number" class="form-control" name="no_of_contracts" id="field_no_of_contracts" [(ngModel)]="fao.no_of_contracts"
-                        required/>
-                </div> -->
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        placeholder="Number Of Contracts"
-                        type="number"
-                        jhiNumberOnly 
-                        name="no_of_contracts" 
-                        id="field_no_of_contracts" 
-                        [(ngModel)]="fao.no_of_contracts"
-                        required
-                    >
-                </mat-form-field>
-                <!-- <div class="form-group">
-                    <label class="form-control-label" f7or="field_p_date">Purchase Date</label>
-                    <input type="text" placeholder="" class="form-control" [(ngModel)]="fao.p_date" bsDatepicker>
-                </div> -->
-                <mat-form-field>
-                    <input 
-                        required 
-                        matInput
-                        [matDatepicker]="picker1" 
-                        placeholder="Purchase Date"
-                        name="p_date"
-                        [(ngModel)]="fao.p_date" 
-                        >
-                    <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
-                    <mat-datepicker #picker1 ></mat-datepicker>
-                </mat-form-field>&nbsp;&nbsp;
-
-                <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_contract_p_value">contract Purchase Value</label>
-                    <input type="number" class="form-control" name="contract_p_value" id="field_contract_p_value" [(ngModel)]="fao.contract_p_value"
-                        required />
-                </div> -->
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        placeholder="Number Of Contracts"
-                        type="number"
-                        jhiNumberOnly 
-                        name="contract_p_value" 
-                        id="field_contract_p_value" 
-                        [(ngModel)]="fao.contract_p_value"
-                        required
-                    >
-                </mat-form-field>
-                <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width"
-                        placeholder="Contract Market Value"
-                        type="number"
-                        jhiNumberOnly 
-                        name="contract_m_value"
-                        id="field_contract_m_value"
-                        [(ngModel)]="fao.contract_m_value"
-                        
-                        required
-                    >
-                </mat-form-field>&nbsp;&nbsp;
-                <mat-form-field>
-                    <input 
-                        required 
-                        matInput 
-                        [matDatepicker]="picker2" 
-                        placeholder="As Of Date"  
-                        [(ngModel)]="fao.as_of_date" 
-                       >
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2 ></mat-datepicker>
-                </mat-form-field>
-                <!-- <div class="row">
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label class="form-control-label" for="field_contract_m_value">contract Market Value</label>
-                            <input type="number" 
-                            class="form-control"
-                            name="contract_m_value"
-                            id="field_contract_m_value"
-                            [(ngModel)]="fao.contract_m_value"
-                            
-                            required />
-                        </div>
-                    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div class="col-xs-6">
-                        <div class="form-group">
-                            <label class="form-control-label" f7or="field_as_of_date">As of Date</label>
-                            <input type="text" 
-                                    placeholder="" 
-                                    class="form-control"
-                                     [(ngModel)]="fao.as_of_date"
-                                   
-                                    bsDatepicker>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="form-group">
-                    <label class="form-control-label" for="field_notes">Notes</label>
-                    <input type="text" class="form-control" name="notes" id="field_notes" [(ngModel)]="fao.notes"/>
-                </div> -->
-                <mat-form-field>
-                    <textarea 
-                        matInput 
-                        rows="3" 
-                        cols="50" 
-                        placeholder="Comment"  
-                        name="notes" 
-                        id="field_notes" 
-                        [(ngModel)]="fao.notes" 
-                       >
-                    </textarea>
-                </mat-form-field>&nbsp;&nbsp;
-                <div class="modal-footer">
-                    <button type="submit" mat-button class=" btn btn-outline-primary"
-                    [disabled]="editForm.form.invalid || isSaving"
-                    (click)="c('Save click')">
-                        <span class="fa fa-save"></span>&nbsp;
-                        <span>Save</span>
-                    </button>
-                    <button type="button"  mat-button class=" btn btn-outline-accent" data-dismiss="modal" (click)="d('Cross click')">
-                        <span class="fa fa-ban"></span>&nbsp;
-                        <span>Cancel</span>
-                    </button>  
-                </div> <!-- footer -->
-            </form>
-        </div> <!-- body -->
-    </ng-template>
-    <!-- table -->
-    <table class= "table-responsive-md table table-hover table-striped  table-sm">
-        <thead>
-            <tr>
-                <th scope="col">FAO No</th>
-                <th scope="col">Investment Type</th>
-                <th scope="col">Asset Type</th>
-                <th scope="col">Investor Name</th>
-                <th scope="col">Asset Name</th>
-                <th scope="col">No. Of Contracts</th>
-                <th scope="col">Purchase Date</th>
-                <th scope="col">Contract Purchase Value</th>
-                <th scope="col">Contract Market Value</th>
-                <th scope="col">as of date</th>
-                <th scope="col">Notes</th>
-                <th scope="col">Update</th>
-                <th scope="col">Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let fao of FutureOptionDetails; let i = index">
-                <td> {{fao.num}} </td>
-                <td> {{fao.investment_type}} </td>
-                <td>{{fao.asset_type}} </td>num
-                <td>{{fao.investor_name}} </td>
-                <td>{{fao.asset_name}} </td>
-                <td>{{fao.no_of_contracts}} </td>
-                <td>{{fao.p_date}} </td>
-                <td>{{fao.contract_p_value}} </td>
-                <td>{{fao.contract_m_value}} </td>
-                <td>{{fao.as_of_date}} </td>
-                <td>{{fao.notes}} </td>
-                <td>
-                    <button 
-                    class="btn btn-outline-info" 
+                    <span class="fa fa-save"></span>&nbsp;
+                    <span>Save</span>
+                </button>
+                <button 
+                    mat-raised-button  
+                    data-dismiss="modal" 
+                    (click)="d('Cross click')">
+                    <span class="fa fa-ban"></span>&nbsp;
+                    <span>Cancel</span></button>&nbsp;
+                <button 
+                    mat-raised-button 
                     type="button" 
-                    (click)="openEditFuture(editfutureModal,fao.id)">
-                    <span> <fa-icon [icon]="'edit'"></fa-icon></span>
-                    </button>             
-                </td>
-                <td>
-                    <button 
-                        class="btn btn-outline-danger" 
-                        type="button"
-                        (click)="opendeleteFuture(fao.id)"
-                        >
-                        <span> <fa-icon [icon]="'trash'"></fa-icon></i></span>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                    class="btn btn-warning" 
+                    (click)=" resetFieldValue()">
+                    <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                    <span>Reset</span></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-template><!-- futureModal end -->
+<!-- editfutureModal start -->
+<ng-template #editfutureModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="futureModal">Future and Options</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="editForm" role="form" novalidate  #editForm="ngForm">
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    placeholder="ID"
+                    type="number"
+                    jhiNumberOnly 
+                    id="id" 
+                    name="id" 
+                    [(ngModel)]="fao.num" 
+                    
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    placeholder="Investment Type"
+                    type="number" 
+                    name="investment_type" 
+                    id="field_investment_type" 
+                    [(ngModel)]="fao.investment_type"
+                    required
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    type="text"
+                    placeholder="Assset Type"
+                    name="asset_type" 
+                    id="field_asset_type" 
+                    [(ngModel)]="fao.asset_type" 
+                    
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <!-- <div class="form-group">
+                <label class="form-control-label" for="field_investor_name">Investor Name</label>
+                <input type="text" class="form-control" name="investor_name" id="field_investor_name" [(ngModel)]="fao.investor_name"
+                    required/>
+            </div> -->
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    type="text"
+                    placeholder="Investor Name"
+                    name="investor_name" 
+                    id="field_investor_name" 
+                    [(ngModel)]="fao.investor_name" 
+                    
+                    required
+                >
+            </mat-form-field>
+            <!-- <div class="form-group">
+                <label class="form-control-label" for="field_asset_name">Asset Name</label>
+                <input type="text" class="form-control" name="asset_name" id="field_asset_name" [(ngModel)]="fao.asset_name"
+                    required/>
+            </div> -->
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    type="text"
+                    placeholder="Asset Name"
+                    name="asset_name" 
+                    id="field_asset_name" 
+                    [(ngModel)]="fao.asset_name" 
+                    
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <!-- <div class="form-group">
+                <label class="form-control-label" for="field_no_of_contracts">No of Contracts</label>
+                <input type="number" class="form-control" name="no_of_contracts" id="field_no_of_contracts" [(ngModel)]="fao.no_of_contracts"
+                    required/>
+            </div> -->
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    placeholder="Number Of Contracts"
+                    type="number"
+                    jhiNumberOnly 
+                    name="no_of_contracts" 
+                    id="field_no_of_contracts" 
+                    [(ngModel)]="fao.no_of_contracts"
+                    required
+                >
+            </mat-form-field>
+            <!-- <div class="form-group">
+                <label class="form-control-label" f7or="field_p_date">Purchase Date</label>
+                <input type="text" placeholder="" class="form-control" [(ngModel)]="fao.p_date" bsDatepicker>
+            </div> -->
+            <mat-form-field>
+                <input 
+                    required 
+                    matInput
+                    [matDatepicker]="picker1" 
+                    placeholder="Purchase Date"
+                    name="p_date"
+                    [(ngModel)]="fao.p_date" 
+                    >
+                <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+                <mat-datepicker #picker1 ></mat-datepicker>
+            </mat-form-field>&nbsp;&nbsp;
+
+            <!-- <div class="form-group">
+                <label class="form-control-label" for="field_contract_p_value">contract Purchase Value</label>
+                <input type="number" class="form-control" name="contract_p_value" id="field_contract_p_value" [(ngModel)]="fao.contract_p_value"
+                    required />
+            </div> -->
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    placeholder="Number Of Contracts"
+                    type="number"
+                    jhiNumberOnly 
+                    name="contract_p_value" 
+                    id="field_contract_p_value" 
+                    [(ngModel)]="fao.contract_p_value"
+                    required
+                >
+            </mat-form-field>
+            <mat-form-field>
+                <input 
+                    matInput 
+                    class="full-width"
+                    placeholder="Contract Market Value"
+                    type="number"
+                    jhiNumberOnly 
+                    name="contract_m_value"
+                    id="field_contract_m_value"
+                    [(ngModel)]="fao.contract_m_value"
+                    
+                    required
+                >
+            </mat-form-field>&nbsp;&nbsp;
+            <mat-form-field>
+                <input 
+                    required 
+                    matInput 
+                    [matDatepicker]="picker2" 
+                    placeholder="As Of Date"  
+                    [(ngModel)]="fao.as_of_date" 
+                    >
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 ></mat-datepicker>
+            </mat-form-field>
+            <!-- <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="form-control-label" for="field_contract_m_value">contract Market Value</label>
+                        <input type="number" 
+                        class="form-control"
+                        name="contract_m_value"
+                        id="field_contract_m_value"
+                        [(ngModel)]="fao.contract_m_value"
+                        
+                        required />
+                    </div>
+                </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label class="form-control-label" f7or="field_as_of_date">As of Date</label>
+                        <input type="text" 
+                                placeholder="" 
+                                class="form-control"
+                                    [(ngModel)]="fao.as_of_date"
+                                
+                                bsDatepicker>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="form-group">
+                <label class="form-control-label" for="field_notes">Notes</label>
+                <input type="text" class="form-control" name="notes" id="field_notes" [(ngModel)]="fao.notes"/>
+            </div> -->
+            <mat-form-field>
+                <textarea 
+                    matInput 
+                    rows="3" 
+                    cols="50" 
+                    placeholder="Comment"  
+                    name="notes" 
+                    id="field_notes" 
+                    [(ngModel)]="fao.notes" 
+                    >
+                </textarea>
+            </mat-form-field>&nbsp;&nbsp;
+            <!-- <div class="modal-footer">
+                <button type="submit" mat-button class=" btn btn-outline-primary"
+                [disabled]="editForm.form.invalid || isSaving"
+                (click)="c('Save click')">
+                    <span class="fa fa-save"></span>&nbsp;
+                    <span>Save</span>
+                </button>
+                <button type="button"  mat-button class=" btn btn-outline-accent" data-dismiss="modal" (click)="d('Cross click')">
+                    <span class="fa fa-ban"></span>&nbsp;
+                    <span>Cancel</span>
+                </button>  
+            </div> -->
+            <div class="modal-footer">
+                <button
+                    mat-raised-button
+                    type="submit"
+                    [disabled]="editForm.form.invalid || isSaving"
+                    class="btn btn-primary"
+                    (click)="c('Save click')">
+                    <span class="fa fa-save"></span>&nbsp;
+                    <span>Update</span>
+                </button>
+                <button 
+                    mat-raised-button  
+                    data-dismiss="modal" 
+                    (click)="d('Cross click')">
+                    <span class="fa fa-ban"></span>&nbsp;
+                    <span>Cancel</span></button>&nbsp;
+                <button 
+                    mat-raised-button 
+                    type="button" 
+                    class="btn btn-warning" 
+                    (click)=" resetFieldValue()">
+                    <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                    <span>Reset</span></span>
+                </button>
+            </div>
+        </form>
+    </div> <!-- body -->
+</ng-template><!-- editfutureModal end -->
+<!-- table start-->
+<table class= "table-responsive-md table table-hover table-striped  table-sm">
+    <thead>
+        <tr>
+            <th scope="col">FAO No</th>
+            <th scope="col">Investment Type</th>
+            <th scope="col">Asset Type</th>
+            <th scope="col">Investor Name</th>
+            <th scope="col">Asset Name</th>
+            <th scope="col">No. Of Contracts</th>
+            <th scope="col">Purchase Date</th>
+            <th scope="col">Contract Purchase Value</th>
+            <th scope="col">Contract Market Value</th>
+            <th scope="col">as of date</th>
+            <th scope="col">Notes</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let fao of FutureOptionDetails; let i = index">
+            <td> {{fao.num}} </td>
+            <td> {{fao.investment_type}} </td>
+            <td>{{fao.asset_type}} </td>num
+            <td>{{fao.investor_name}} </td>
+            <td>{{fao.asset_name}} </td>
+            <td>{{fao.no_of_contracts}} </td>
+            <td>{{fao.p_date}} </td>
+            <td>{{fao.contract_p_value}} </td>
+            <td>{{fao.contract_m_value}} </td>
+            <td>{{fao.as_of_date}} </td>
+            <td>{{fao.notes}} </td>
+            <td>
+                <button 
+                class="btn btn-outline-info" 
+                type="button" 
+                (click)="openEditFuture(editfutureModal,fao.id)">
+                <span> <fa-icon [icon]="'edit'"></fa-icon></span>
+                </button>             
+            </td>
+            <td>
+                <button 
+                    class="btn btn-outline-danger" 
+                    type="button"
+                    (click)="opendeleteFuture(fao.id)"
+                    >
+                    <span> <fa-icon [icon]="'trash'"></fa-icon></i></span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table><!-- table  end-->

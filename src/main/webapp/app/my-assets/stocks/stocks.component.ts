@@ -4,6 +4,8 @@ import { StockService } from 'app/my-assets/stocks/stocks.service';
 import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { CanComponentDeactivate } from '../../pratik/common/can-deactivate-guard.service';
+import { Observable } from 'rxjs';
 // import {MutualFundService} from './mutual.service';
 
 @Component({
@@ -98,7 +100,6 @@ export class StockComponent implements OnInit {
     }
     saveStocks() {
         this.stockService.SaveStocks(this.stocks).subscribe(data => {
-            alert('Added new stocks details');
             this.getStockById(this.uid);
         });
     }
@@ -116,7 +117,6 @@ export class StockComponent implements OnInit {
     update(commonid) {
         this.stocks.id = this.commonid;
         this.stockService.UpdateStock(this.stocks).subscribe(data => {
-            alert('Added new stocks details');
             this.getStockById(this.uid);
         });
     }
