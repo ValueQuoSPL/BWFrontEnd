@@ -7,7 +7,6 @@ export * from './spending/spending.service';
 export * from './spending/spend.route';
 
 export * from './subscription/subscription.component';
-export * from './subscription/sub.route';
 
 export * from './income/income.component';
 export * from './income/income.route';

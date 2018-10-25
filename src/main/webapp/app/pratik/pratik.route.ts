@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 
-import { SpendRoute, subRoute, IncomeRoute } from 'app/pratik';
+import { SpendRoute, IncomeRoute } from 'app/pratik';
 // howRoute
-const PRATIK_ROUTES = [SpendRoute, subRoute, IncomeRoute];
+const PRATIK_ROUTES = [SpendRoute, IncomeRoute];
 
 export const pratikState: Routes = [
-  {
-    path: '',
-    children: PRATIK_ROUTES
-  }
+    {
+        path: '',
+        children: PRATIK_ROUTES
+    }
 ];

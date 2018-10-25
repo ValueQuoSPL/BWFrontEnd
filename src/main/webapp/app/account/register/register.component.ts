@@ -3,11 +3,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { Register } from 'app/account/register/register.service';
-import { EMAIL_ALREADY_USED_TYPE, LOGIN_ALREADY_USED_TYPE } from 'app/shared';
 
 import { UserMgmtComponent } from 'app/admin';
 import { User, UserService, LoginModalService } from 'app/core';
-import { Router, Routes, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'jhi-register',
@@ -54,9 +53,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         }
     }
 
-    ngAfterViewInit() {
-        this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#login'), 'focus', []);
-    }
+    ngAfterViewInit() {}
     resolved(captchaResponse: string) {
         this.registerAccount.gcaptcha = captchaResponse;
     }
@@ -82,7 +79,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
                         this.success = true;
                     },
                     response => {
-                        // console.log('err occured 3', response.error.errorKey);
                         this.processError(response);
                     }
                 );
@@ -113,7 +109,6 @@ export class RegisterComponent implements OnInit, AfterViewInit {
         this.loadAll();
         for (const user of this.users) {
             if (user.email === this.registerAccount.email) {
-                console.log('user found ', user.email);
                 // this.userMgmt.setActive(user, true);
             }
         }
@@ -126,9 +121,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     onSuccess(data, headers) {
         this.users = data;
     }
-    onError(error) {
-        console.log('ERROR: getting user data ', error);
-    }
+    onError(error) {}
 
     openLogin() {
         this.modalRef = this.loginModalService.open();

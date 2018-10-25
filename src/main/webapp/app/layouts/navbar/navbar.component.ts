@@ -90,20 +90,22 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.router.navigate(['/contact']);
     }
     ngDoCheck() {
-        this.param = this.router.url;
+        setTimeout(() => {
+            this.param = this.router.url;
 
-        if (this.param === '/') {
-            this.isHomePage = true;
-            this.solid = 'solid';
-            this.transparent = 'transparent';
-            if (this.isMobile) {
+            if (this.param === '/') {
+                this.isHomePage = true;
+                this.solid = 'solid';
+                this.transparent = 'transparent';
+                if (this.isMobile) {
+                    this.transparent = 'solid';
+                }
+            } else {
+                this.isHomePage = false;
+                this.solid = 'solid';
                 this.transparent = 'solid';
             }
-        } else {
-            this.isHomePage = false;
-            this.solid = 'solid';
-            this.transparent = 'solid';
-        }
+        });
     }
 
     collapseNavbar() {

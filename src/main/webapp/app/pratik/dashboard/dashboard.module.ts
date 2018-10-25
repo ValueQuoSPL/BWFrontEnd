@@ -1,49 +1,20 @@
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-
 // import { DashboardRoutingModule } from 'app/pratik/dashboard/rout';
-import { DashboardComponent } from 'app/pratik/dashboard/dashboard.component';
-import { DraggableModule } from '../draggable/draggable.module';
-import { CustomMaterialModule } from 'app/custom-material.module';
-import { ChartsModule } from 'ng2-charts';
-import { NgCircleProgressModule } from 'ng-circle-progress';
-import { RouterModule } from '@angular/router';
-import { DashRoute } from './dashboard.routes';
 
-@NgModule({
-  imports: [
-    FormsModule,
-    CommonModule,
-    // DashboardRoutingModule,
-    DraggableModule,
-    CustomMaterialModule,
-    ChartsModule,
-    NgbDropdownModule.forRoot(),
-    RouterModule.forRoot([DashRoute], { useHash: true }),
-    NgCircleProgressModule.forRoot({
-      // set defaults here
-      radius: 60,
-      space: -10,
-      outerStrokeWidth: 10,
-      outerStrokeColor: '#4882c2',
-      innerStrokeColor: '#e7e8ea',
-      innerStrokeWidth: 10,
-      toFixed: 0,
-      animateTitle: true,
-      animationDuration: 1000,
-      showUnits: false,
-      showBackground: false,
-      clockwise: true,
-      startFromZero: true
-    })
-  ],
-  exports: [],
-  providers: [],
-  declarations: [DashboardComponent]
-})
-export class DashBoardModule {}
+// import { RouterModule } from '@angular/router';
+// import { DashRoute } from './dashboard.routes';
+
+// @NgModule({
+//   imports: [
+//     FormsModule,
+//     CommonModule,
+//     // DashboardRoutingModule,
+
+//   ],
+//   exports: [],
+//   providers: [],
+//   declarations: [DashboardComponent]
+// })
+// export class DashBoardModule {}
 
 // 'radius';: 60,
 // 'space'; : -10,

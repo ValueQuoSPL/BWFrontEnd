@@ -5,9 +5,10 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { LoginService } from 'app/core/login/login.service';
 import { StateStorageService } from 'app/core/auth/state-storage.service';
-import { JhiMainComponent } from 'app/layouts';
-import { SidebarComponent } from 'app/layouts/sidebar/sidebar.component';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { SuccessService } from 'app/success/success.service';
+import { AccountService } from 'app/core';
+import { PlanService } from 'app/pratik/common/plan.service';
 
 @Component({
     selector: 'jhi-login-modal',
@@ -20,6 +21,11 @@ export class JhiLoginModalComponent implements AfterViewInit {
     username: string;
     credentials: any;
     flag = false;
+    uid;
+    isPlan;
+    isPayment;
+
+    PaymentArray: any = [];
 
     constructor(
         private stateStorageService: StateStorageService,
@@ -29,7 +35,10 @@ export class JhiLoginModalComponent implements AfterViewInit {
         private elementRef: ElementRef,
         private router: Router,
         public activeModal: NgbActiveModal,
-        private commonSidebarService: CommonSidebarService
+        private commonSidebarService: CommonSidebarService,
+        private paymentCheck: SuccessService,
+        private accountService: AccountService,
+        private planService: PlanService
     ) {
         this.credentials = {};
     }
@@ -48,6 +57,76 @@ export class JhiLoginModalComponent implements AfterViewInit {
         this.activeModal.dismiss('cancel');
     }
 
+    getUserid() {
+        this.accountService
+            .get()
+            .toPromise()
+            .then(response => {
+                const account = response.body;
+                if (account) {
+                    this.uid = account.id;
+                    this.CheckPlanSelected();
+                } else {
+                }
+            })
+            .catch(err => {
+                confirm('Sorry for inconvenience. We are facing some technical issues.');
+            });
+    }
+
+    CheckPlanSelected() {
+        this.paymentCheck.getTransactionData(this.uid).subscribe(paymentData => {
+            if (paymentData) {
+                this.isPlan = true;
+                this.PaymentArray = paymentData;
+                this.CheckPayment();
+            } else {
+                this.isPlan = false;
+                this.isPayment = false;
+            }
+        });
+    }
+
+    CheckPayment() {
+        let status;
+        this.PaymentArray.forEach(element => {
+            status = element.status;
+        });
+        if (status === 'success') {
+            this.isPayment = true;
+            this.planService.plan.next(true);
+            this.routing();
+        } else {
+            this.isPayment = false;
+            this.planService.plan.next(false);
+            this.routing();
+        }
+    }
+
+    routing() {
+        if (this.isPayment) {
+            this.router.navigate(['/dashboard']);
+        } else {
+            this.router.navigate(['/subscription']);
+        }
+
+        const url = this.router.url;
+
+        if (url === '/subscriber/WISE') {
+            this.router.navigate(['/payment/WISE']);
+        }
+        if (url === '/subscriber/WISER') {
+            this.router.navigate(['/paymentWISER']);
+        }
+        if (url === '/subscriber/WISEST') {
+            this.router.navigate(['/payment/WISEST']);
+        }
+
+        if (this.router.url === '/register' || /^\/activate\//.test(this.router.url) || /^\/reset\//.test(this.router.url)) {
+            this.router.navigate(['/subscription']);
+        }
+    }
+
     login() {
         this.loginService
             .login({
@@ -58,11 +137,8 @@ export class JhiLoginModalComponent implements AfterViewInit {
             .then(() => {
                 this.authenticationError = false;
                 this.activeModal.dismiss('login success');
-                this.router.navigate(['/dashboard']);
 
-                if (this.router.url === '/register' || /^\/activate\//.test(this.router.url) || /^\/reset\//.test(this.router.url)) {
-                    this.router.navigate(['/dashboard']);
-                }
+                this.getUserid();
 
                 this.eventManager.broadcast({
                     name: 'authenticationSuccess',
@@ -92,7 +168,6 @@ export class JhiLoginModalComponent implements AfterViewInit {
     // }
 
     register() {
-        console.log('in register method');
         this.activeModal.dismiss('to state register');
         this.router.navigate(['/register']);
     }
