@@ -256,7 +256,6 @@
                     id="field_cash_source" 
                     name="cashsource" 
                     [(ngModel)]="cashsource"
-                    
                     required
                 >
                     <mat-option value="Bank">In Bank</mat-option>
@@ -271,9 +270,9 @@
                         <mat-form-field>
                                 <mat-select 
                                     placeholder="Account Type" 
-                                    id="field_cash_source" name="accoounttype" 
+                                    id="field_cash_source" 
+                                    name="accoounttype" 
                                     [(ngModel)]="cash.accoounttype"
-                                    
                                     required
                                 >
                                     <mat-option value="saving">Saving</mat-option>
@@ -288,8 +287,7 @@
                                 type="text" 
                                 name="bankname" 
                                 id="bankname" 
-                                [(ngModel)]="cash.bankname" 
-                               
+                                [(ngModel)]="cash.bankname"
                                 required
                             >
                         </mat-form-field>&nbsp;&nbsp;
@@ -300,8 +298,7 @@
                                 type="number" 
                                 name="accountname" 
                                 id="accountname" 
-                                [(ngModel)]="cash.accountname" 
-                               
+                                [(ngModel)]="cash.accountname"
                                 required
                             >
                             </mat-form-field>&nbsp;&nbsp;
@@ -312,8 +309,7 @@
                                     type="text" 
                                     name="amount" 
                                     id="amount" 
-                                    [(ngModel)]="cash.amount" 
-                                   
+                                    [(ngModel)]="cash.amount"
                                     required
                                 >
                                 </mat-form-field>&nbsp;&nbsp;
@@ -351,10 +347,9 @@
                                             matInput
                                             placeholder="Amount" 
                                             type="text" 
-                                            name="amount" 
+                                            name="amount"
                                             id="amount" 
-                                            [(ngModel)]="cash.amount" 
-                                           
+                                            [(ngModel)]="cash.amount"
                                             required
                                         >
                                     </mat-form-field>&nbsp;&nbsp;

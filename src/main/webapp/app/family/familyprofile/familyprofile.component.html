@@ -23,8 +23,7 @@
                         name="firstname" 
                         #firstname="ngModel"
                         minlength="2" 
-                        maxlength="10" 
-                        pattern="^[_'.@A-Za-z0-9-]*$"
+                        maxlength="30"
                         required>
                 </mat-form-field>
                 <div *ngIf=" firstname?.touched && !firstname?.valid">
@@ -33,9 +32,6 @@
                     </div>
                     <div *ngIf="firstname.errors.minlength" style="color: red">
                         name should be min {{firstname.errors.minlength.requiredLength}} char
-                    </div>
-                    <div *ngIf="firstname.errors.pattern" style="color: red"> 
-                        pattern not match
                     </div>
                 </div>
             </div><!--end of row1.col1-->
@@ -49,8 +45,7 @@
                         name="middlename" 
                         #middlename="ngModel"
                         minlength="2" 
-                        maxlength="10" 
-                        pattern="^[_'.@A-Za-z0-9-]*$"
+                        maxlength="30"
                         required
                     >
               </mat-form-field>
@@ -60,9 +55,6 @@
                     </div>
                     <div *ngIf="middlename.errors.minlength" style="color: red">
                         name should be min {{middlename.errors.minlength.requiredLength}} char
-                    </div>
-                    <div *ngIf="middlename.errors.pattern" style="color: red"> 
-                        pattern not match
                     </div>
                 </div>
             </div><!--end of  row1.col2-->
@@ -76,8 +68,7 @@
                         name="lastname" 
                         #lastname="ngModel"
                         minlength="2" 
-                        maxlength="10"
-                        pattern="^[_'.@A-Za-z0-9-]*$"
+                        maxlength="30"
                         required>
                 </mat-form-field>
                 <div *ngIf="lastname?.touched && !lastname?.valid" >
@@ -86,9 +77,6 @@
                     </div>
                     <div *ngIf="lastname.errors.minlength" style="color: red">
                         name should be min {{lastname.errors.minlength.requiredLength}} char
-                    </div>
-                    <div *ngIf="lastname.errors.pattern" style="color: red"> 
-                        pattern not match
                     </div>
                 </div>
             </div><!--end of row1.col3-->

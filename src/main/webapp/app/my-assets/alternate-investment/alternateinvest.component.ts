@@ -93,6 +93,7 @@ export class AlternativeComponent implements OnInit {
     getAltInvestById(commonid) {
         this.alternateservice.getAltInvestById(this.commonid).subscribe(res => {
             this.getdata = res;
+            console.log('res of altinvest', this.getdata.investor_name);
             this.altInvest.num = this.getdata.num;
             this.altInvest.amount_invested = this.getdata.amount_invested;
             this.altInvest.fund_name = this.getdata.fund_name;
@@ -101,6 +102,7 @@ export class AlternativeComponent implements OnInit {
             this.altInvest.as_of_date = this.getdata.as_of_date;
             this.altInvest.notes = this.getdata.notes;
             this.altInvest.investor_name = this.getdata.investor_name;
+            console.log('res of altinvest', this.altInvest.investor_name);
             this.altInvest.investment_type = this.getdata.investment_type;
         });
     }

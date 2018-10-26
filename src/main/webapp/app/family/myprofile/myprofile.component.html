@@ -359,8 +359,7 @@
             name="state" 
             #state="ngModel"
             minlength="5" 
-            maxlength="20" 
-            pattern="^[_'.@A-Za-z0-9-]*$"
+            maxlength="20"
             required
           >
         </mat-form-field>
@@ -443,8 +442,7 @@
         class="btn btn-primary"
         (click)="saveDetail()" >Save</button>&nbsp;
        <span><button mat-raised-button color="primary" *ngIf="!show" (click)="update()" >Update</button></span>&nbsp;
-       <span><button mat-raised-button  color="accent" (click)="cencel()">Cancel</button></span>&nbsp;
-       <span><button mat-raised-button href="#">Help</button></span> 
+       <span><button mat-raised-button  color="accent" (click)="cencel()">Cancel</button></span> 
     </div>
   </form><!--end of form-->
   <hr><hr>

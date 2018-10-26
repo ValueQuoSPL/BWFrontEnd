@@ -6,6 +6,7 @@ import { FamilyprofileService } from './familyprofile.service';
 import { AccountService, LoginModalService, Principal } from 'app/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
+import { FamilyProfile } from 'app/family/familyprofile/familyprofile.model';
 
 @Component({
     selector: 'jhi-familyprofile',
@@ -13,10 +14,10 @@ import { FormControl } from '@angular/forms';
     styleUrls: []
 })
 export class FamilyprofileComponent implements OnInit {
-    familyProfile: any;
+    familyProfile: FamilyProfile = new FamilyProfile();
     output: any = [];
     user: any;
-    uid: number;
+    uid: string;
     isValid: boolean;
     show = true;
     earncheck = 'notearning';
@@ -25,24 +26,9 @@ export class FamilyprofileComponent implements OnInit {
     constructor(private Familypro: FamilyprofileService, private account: AccountService) {}
 
     ngOnInit() {
-        this.familyProfile = {};
         this.FetchId();
-
-        // this.getFamilyProfile();
     }
-    clear() {}
-
-    saveFamilyProfile() {
-        this.familyProfile.uid = this.uid;
-        this.familyProfile.earncheck = this.earncheck;
-
-        this.getFamilyProfilebyid(this.uid);
-    }
-    getFamilyProfile() {
-        this.Familypro.getFamilyProfile().subscribe(res => {
-            this.output = res;
-        });
-    }
+    // FetchIdMethod to to get Info Of Current Logged User
     FetchId(): Promise<any> {
         return this.account
             .get()
@@ -53,19 +39,43 @@ export class FamilyprofileComponent implements OnInit {
                 this.getFamilyProfilebyid(this.uid);
             });
     }
+    // saveMethod to saveFamilyprofile
+    saveFamilyProfile() {
+        console.log('uid is', this.uid);
+        this.familyProfile.uid = this.uid;
+        console.log('uid is', this.familyProfile.uid);
+        this.familyProfile.earncheck = this.earncheck;
+        this.Familypro.save(this.familyProfile).subscribe(data => {
+            this.getFamilyProfilebyid(this.uid);
+        });
+    }
+    getFamilyProfile() {
+        this.Familypro.getFamilyProfile().subscribe(res => {
+            this.output = res;
+        });
+    }
+    // getFamilyProfilebyid Method to fetch Familyprofile info by UserId
     getFamilyProfilebyid(uid) {
+        console.log('in familyget', this.uid);
         this.Familypro.getFamilyProfileByUid(this.uid).subscribe(res => {
             this.output = res;
-            if (this.output[0].uid != null) {
-                this.isValid = true;
-            } else {
+            console.log('in familyget res', this.output);
+            // if (this.output[0].uid != null) {
+            //     this.isValid = true;
+            // } else {
+            //     this.isValid = false;
+            // }
+            if (this.output.length === 0) {
                 this.isValid = false;
+            } else {
+                this.isValid = true;
             }
         });
     }
     newFunction() {
         this.earncheck = 'Earning';
     }
+    // editDetail Method to Edit Info of Familyprofile
     editDetail() {
         this.isValid = false;
         this.familyProfile.relationship = this.output[0].relationship;
@@ -78,6 +88,7 @@ export class FamilyprofileComponent implements OnInit {
         this.familyProfile.uid = this.uid;
         this.show = false;
     }
+    // update Method to Update Info of Familyprofile
     update() {
         this.getFamilyProfilebyid(this.uid);
     }

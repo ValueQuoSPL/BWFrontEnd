@@ -99,6 +99,8 @@ export class CashComponent implements OnInit {
     getCashId(commonid) {
         this.cashservice.getCashById(this.commonid).subscribe(res => {
             this.getdata = res;
+            console.log('res of Personal possession', this.getdata.amount);
+            console.log('res of cash', this.getdata);
             this.editcash = this.getdata.cashsource;
             this.cashsource = this.getdata.cashsource;
             if (this.editcash === 'Bank') {
@@ -106,6 +108,7 @@ export class CashComponent implements OnInit {
                 this.cash.cashsource = this.getdata.cashsource;
                 this.cash.notes = this.getdata.notes;
                 this.cash.amount = this.getdata.amount;
+                console.log('Bank of Personal possession', this.cash.amount);
                 this.cash.userid = this.getdata.userid;
                 this.cash.bankname = this.getdata.bankname;
                 this.cash.accoounttype = this.getdata.accoounttype;
@@ -114,21 +117,24 @@ export class CashComponent implements OnInit {
                 this.cashsource = this.getdata.cashsource;
                 this.cash.cashsource = this.getdata.cashsource;
                 this.cash.amount = this.getdata.amount;
+                console.log('handloan of Personal possession', this.cash.amount);
                 this.cash.notes = this.getdata.notes;
                 this.cash.userid = this.getdata.userid;
                 this.cash.intrestrate = this.getdata.intrestrate;
                 this.cash.handloanname = this.getdata.handloanname;
-            } else if (this.editcash === 'Personal possession') {
+            } else if (this.editcash === 'Personal Possession') {
                 this.cashsource = this.getdata.cashsource;
                 this.cash.userid = this.getdata.userid;
                 this.cash.cashsource = this.getdata.cashsource;
                 this.cash.amount = this.getdata.amount;
+                console.log('amount of Personal possession', this.cash.amount);
                 this.cash.notes = this.getdata.notes;
             } else if (this.editcash === 'Other Source') {
                 this.cashsource = this.getdata.cashsource;
                 this.cash.cashsource = this.getdata.cashsource;
                 this.cash.cashsource = this.getdata.cashsource;
                 this.cash.amount = this.getdata.amount;
+                console.log('amount of Other Source', this.cash.amount);
                 this.cash.notes = this.getdata.notes;
                 this.cash.userid = this.getdata.userid;
             }

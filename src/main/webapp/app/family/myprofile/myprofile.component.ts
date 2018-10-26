@@ -23,16 +23,19 @@ export class MyprofileComponent implements OnInit {
         this.myProfile = {};
         this.FetchId();
     }
+    // saveMethod to saveMyprofile
     saveDetail() {
         this.myProfile.uid = this.uid;
-        this.MyProfileSer.save(this.myProfile).subscribe();
-        this.getMyProfilebyid();
+        this.MyProfileSer.save(this.myProfile).subscribe(data => {
+            this.getMyProfilebyid();
+        });
     }
     getMyProfile() {
         this.MyProfileSer.getMyProfile().subscribe(res => {
             this.output = res;
         });
     }
+    // GetMethod to Fetch Myprofile by UserId
     getMyProfilebyid() {
         this.MyProfileSer.getMyProfileByUid(this.uid).subscribe(res => {
             this.output = res;
@@ -51,6 +54,7 @@ export class MyprofileComponent implements OnInit {
             }
         });
     }
+    // FetchIdMethod to Fetch information of  by Loged User
     FetchId(): Promise<any> {
         return this.account
             .get()
@@ -61,6 +65,7 @@ export class MyprofileComponent implements OnInit {
                 this.getMyProfilebyid();
             });
     }
+    // editDetail Method to edit Myprofile
     editDetail() {
         this.myProfile.uid = this.uid;
         this.isValid = false;
@@ -85,12 +90,14 @@ export class MyprofileComponent implements OnInit {
         this.myProfile.uid = this.uid;
         this.show = false;
     }
+    // update Method to Update Myprofile
     update() {
         this.MyProfileSer.updateProfile(this.myProfile).subscribe(responce => {
             this.getMyProfilebyid();
         });
         this.isValid = true;
     }
+    // cencel Method to cencel Myprofile
     cencel() {
         this.isValid = true;
     }
