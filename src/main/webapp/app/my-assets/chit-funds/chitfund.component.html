@@ -92,9 +92,9 @@
                                             type="number" 
                                             jhiNumberOnly 
                                             placeholder="Monthly Payment" 
-                                            name="m_payment" 
-                                            id="m_payment" 
-                                            [(ngModel)]="chitfund.m_payment" 
+                                            name=" monthly_investment" 
+                                            id=" monthly_investment" 
+                                            [(ngModel)]="chitfund.monthly_investment" 
                                            
                                         >
                                     </mat-form-field>
@@ -246,12 +246,13 @@
                                             type="number" 
                                             jhiNumberOnly 
                                             placeholder="Monthly Payment" 
-                                            name="m_payment" 
-                                            id="m_payment" 
-                                            [(ngModel)]="chitfund.m_payment" 
+                                            name="monthly_investment" 
+                                            id="monthly_investment" 
+                                            [(ngModel)]="chitfund.monthly_investment" 
                                            
                                         >
                                     </mat-form-field>
+                                    {{chitfund.monthly_investment}}
                                             <mat-form-field>
                                                 <input 
                                                     matInput 
