@@ -147,7 +147,6 @@ export class LifeComponent implements OnInit {
     }
     onLifeSave(): void {
         this.life.userid = this.uid;
-        console.log('send life', this.life.lifeModelArray);
 
         this.lifeService.PostLife(this.life.lifeModelArray).subscribe(data => {
             this.onGetLife();
@@ -156,7 +155,6 @@ export class LifeComponent implements OnInit {
     onGetLife(): void {
         this.lifeService.GetLife(this.uid).subscribe((response: any[]) => {
             this.dynamicLifeArray = response;
-            console.log('receive life', this.dynamicLifeArray);
 
             if (this.dynamicLifeArray.length === 0) {
                 this.isLifeData = false;
@@ -227,7 +225,6 @@ export class LifeComponent implements OnInit {
     Updatelife(id) {
         this.life.id = id;
         this.life.userid = this.uid;
-        console.log('put life', this.life);
 
         this.lifeService.PutLife(this.life, this.uid).subscribe(res => {
             this.clear();

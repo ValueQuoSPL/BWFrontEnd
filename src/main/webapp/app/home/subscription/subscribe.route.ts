@@ -3,7 +3,7 @@ import { UserRouteAccessService } from 'app/core';
 import { SubscriptionComponent } from 'app/home/subscription/subscription.component';
 
 export const subscribeRoute: Route = {
-    path: 'subscribe',
+    path: 'subscription',
     component: SubscriptionComponent,
     data: {
         authorities: [],

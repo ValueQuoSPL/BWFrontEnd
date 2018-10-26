@@ -65,7 +65,7 @@
                             </span>
                         </a>
                     </li>
-                    <li>
+                    <li *ngIf="fullAccess">
                         <a routerLink="goalselect" routerLinkActive="active">
                             <i class="fa fa-bullseye fa-2x"></i>
                             <span class="nav-text">
@@ -73,7 +73,7 @@
                             </span>
                         </a>
                     </li>
-                    <li>
+                    <li *ngIf="fullAccess">
                         <a routerLink="tax" routerLinkActive="active">
                             <i class="fa fa-chart-line fa-2x"></i>
                             <span class="nav-text">
@@ -81,7 +81,7 @@
                             </span>
                         </a>
                     </li>
-                    <li>
+                    <li *ngIf="fullAccess">
                         <a routerLink="risk" routerLinkActive="active">
                             <i class="fa fa-user-md fa-2x"></i>
                             <span class="nav-text">
@@ -89,7 +89,7 @@
                             </span>
                         </a>
                     </li>
-                    <li>
+                    <li *ngIf="fullAccess">
                             <a routerLink="appointment" routerLinkActive="active">
                                 <i class="fa fa-chart-line fa-2x"></i>
                                 <span class="nav-text">
@@ -98,7 +98,7 @@
                             </a>
                         </li>
                         <li>
-                    <li>
+                    <li *ngIf="fullAccess">
                         <a routerLink="advice" routerLinkActive="active">
                             <i class="fa fa-info fa-2x"></i>
                             <span class="nav-text">

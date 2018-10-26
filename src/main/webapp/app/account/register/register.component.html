@@ -13,15 +13,15 @@
                     <h1>Registration</h1> <br>
         
                     <div class="alert alert-success" *ngIf="success">
-                        <strong>Registration saved!</strong> Please check your email for confirmation.
+                        <strong>Registration saved!</strong> <br> To activate your account Please check your email .
                     </div>
     
                     <div class="alert alert-danger" *ngIf="errorUserExists">
-                        <strong>Login name already registered!</strong> Please choose another one.
+                        <strong>Login name already registered!</strong> <br> Please choose another one.
                     </div>
         
                     <div class="alert alert-danger" *ngIf="errorEmailExists">
-                        <strong>Email is already in use!</strong> Please choose another one.
+                        <strong>Email is already in use!</strong> <br> Please choose another one.
                     </div>
         
                     <div class="alert alert-danger" *ngIf="doNotMatch">
@@ -131,7 +131,9 @@
                             </div>
                         </div>                       
                        <div class="form-group row justify-content-md-center">
-                            <div class="g-recaptcha" data-sitekey="6Lca-nUUAAAAAJyHWjKfB8YhUUFa98MhgY1qs1WR" aria-required="true"></div>
+
+                            <re-captcha></re-captcha>
+                            <!-- <div class="g-recaptcha" data-sitekey="6Lca-nUUAAAAAJyHWjKfB8YhUUFa98MhgY1qs1WR" aria-required="true"></div> -->
                         </div>
                         <div class="form-group row justify-content-center" id="g-recaptcha-error"></div>
                         <!-- <re-captcha id="captcha" (resolved)="resolved($event)" siteKey="6LdjNGoUAAAAAF19XxCrlQfq7XshPNBJ6HaFjNKU" required></re-captcha> -->

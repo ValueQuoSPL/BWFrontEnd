@@ -7,6 +7,7 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { PlanService } from 'app/pratik/common/plan.service';
 
 @Component({
     selector: 'jhi-main',
@@ -25,6 +26,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     push;
     pull;
     flag = false;
+    isPaid = false;
 
     @ViewChild('toggleClass') toggle: ElementRef;
 
@@ -34,10 +36,8 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         private loginModalService: LoginModalService,
         private principal: Principal,
         private eventManager: JhiEventManager,
-        private commonSidebarService: CommonSidebarService,
-        private renderer: Renderer,
-        private element: ElementRef,
-        private deviceService: DeviceDetectorService
+        private deviceService: DeviceDetectorService,
+        private planService: PlanService
     ) {
         this.epicFunction();
     }
@@ -66,13 +66,23 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         this.principal.identity().then(account => {
             this.account = account;
         });
+
+        this.planService.plan.subscribe(flag => {
+            if (flag) {
+                this.isPaid = true;
+            } else {
+                this.isPaid = false;
+            }
+        });
         this.registerAuthenticationSuccess();
     }
 
     ngAfterViewInit() {
-        if (!this.isMobile) {
-            this.flag = true;
-        }
+        setTimeout(() => {
+            if (!this.isMobile) {
+                this.flag = true;
+            }
+        });
     }
 
     registerAuthenticationSuccess() {

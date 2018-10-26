@@ -29,25 +29,12 @@ export class ActivateComponent implements OnInit {
         private route: ActivatedRoute,
         private myloginService: MyloginService,
         private router: Router
-    ) {
-    }
+    ) {}
 
     ngOnInit() {
         this.route.queryParams.subscribe(params => {
             this.key = params['key'];
         });
-    }
-
-    AfterOtpValidation() {
-        this.activateService.get(this.key).subscribe(() => {
-            this.error = null;
-            this.success = 'OK';
-        }, () => {
-            this.success = null;
-            this.error = 'ERROR';
-        });
-        this.final = true;
-
     }
 
     login() {
@@ -57,18 +44,38 @@ export class ActivateComponent implements OnInit {
 
     submit(): void {
         this.validnumber = 'true';
-        this.myloginService.submit(this.mylogin)
-        .subscribe(
-          data => { alert('OTP sent to your Mobile Successfully'); }
-        );
-      }
+        this.myloginService.submit(this.mylogin).subscribe(data => {
+            alert('OTP sent to your Mobile Successfully');
+        });
+    }
 
-        verify() {
-          this.VerifyButtonClicked = 'true';
-          if ( this.mylogin.otp === this.mylogin.verifyotp ) {
+    verify() {
+        this.VerifyButtonClicked = 'true';
+        if (this.mylogin.otp === this.mylogin.verifyotp) {
             this.isVerify = 'true';
-          } else {
+        } else {
             this.isVerify = 'false';
-          }
-      }
+        }
+    }
+
+    AfterOtpValidation() {
+        this.activateService.get(this.key).subscribe(
+            () => {
+                this.error = null;
+                this.success = 'OK';
+                this.AddUserMobile();
+            },
+            () => {
+                this.success = null;
+                this.error = 'ERROR';
+            }
+        );
+        this.final = true;
+    }
+
+    AddUserMobile() {
+        if (this.success) {
+            // update user with mobile no.
+        }
+    }
 }
