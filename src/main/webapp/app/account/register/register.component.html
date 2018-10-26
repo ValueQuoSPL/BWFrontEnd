@@ -100,14 +100,27 @@
                         <div class="form-group">
                             <mat-form-field style="width: 100%;">
                                 <input matInput type="password" id="password" name="password" #password="ngModel" placeholder="New password" [(ngModel)]="registerAccount.password"
-                                    minlength=4 maxlength=50 required>
+                                    minlength=6 maxlength=50 required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" (ngModelChange)="Validate($event)">
                             </mat-form-field>
+                                <small class="form-text text-danger" *ngIf="letter">
+                                    A <b>lowercase</b> letter required
+                                </small>
+                                <small class="form-text text-danger" *ngIf="capital">
+                                    A <b>capital (uppercase)</b> letter required
+                                </small>
+                                <small class="form-text text-danger" *ngIf="number">
+                                    A <b>number</b> required
+                                </small>
+                                <small class="form-text text-danger" *ngIf="chars">
+                                    A <b>Special Character</b> required
+                                </small>
+
                             <div *ngIf="password.dirty && password.invalid">
                                 <small class="form-text text-danger" *ngIf="password.errors.required">
                                     Your password is required.
                                 </small>
                                 <small class="form-text text-danger" *ngIf="password.errors.minlength">
-                                    Your password is required to be at least 4 characters.
+                                    Your password is required to be at least 6 characters.
                                 </small>
                                 <small class="form-text text-danger" *ngIf="password.errors.maxlength">
                                     Your password cannot be longer than 50 characters.

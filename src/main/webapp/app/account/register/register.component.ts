@@ -31,6 +31,12 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     userMgmt: UserMgmtComponent;
     users: User[];
     param;
+    message;
+    letter;
+    capital;
+    number;
+    length;
+    chars;
 
     constructor(
         private loginModalService: LoginModalService,
@@ -83,6 +89,40 @@ export class RegisterComponent implements OnInit, AfterViewInit {
                     }
                 );
             }
+        }
+    }
+
+    Validate(data) {
+        // Validate lowercase letters
+        const lowerCaseLetters = /[a-z]/g;
+        if (data.match(lowerCaseLetters)) {
+            this.letter = false;
+        } else {
+            this.letter = true;
+        }
+
+        // Validate capital letters
+        const upperCaseLetters = /[A-Z]/g;
+        if (data.match(upperCaseLetters)) {
+            this.capital = false;
+        } else {
+            this.capital = true;
+        }
+
+        // Validate numbers
+        const numbers = /[0-9]/g;
+        if (data.match(numbers)) {
+            this.number = false;
+        } else {
+            this.number = true;
+        }
+
+        // Validate special chars
+        const chars = /[!@#$%^&*]/g;
+        if (data.match(numbers)) {
+            this.chars = false;
+        } else {
+            this.chars = true;
         }
     }
 
