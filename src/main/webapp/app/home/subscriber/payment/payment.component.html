@@ -22,7 +22,7 @@
                             <div class="form-group">
                                 <div class="row justify-content-center">
                                     <mat-form-field style="width: 80%;">
-                                        <input matInput [(ngModel)]="user.amount" placeholder="Amount Payable" #amount="ngModel" name="amount" id="amount" required>
+                                        <input matInput [(ngModel)]="user.amount" placeholder="Amount Payable" #amount="ngModel" name="amount" id="amount" readonly>
                                     </mat-form-field>
                                     <mat-form-field style="width: 80%;">
                                         <input matInput [(ngModel)]="user.firstName" placeholder="firstName" #amount="ngModel" name="firstName" id="firstName" required>
@@ -40,8 +40,8 @@
                                     <input type="hidden" name="service_provider" value="payu_paisa" />
                                     <input type="hidden" name="surl" [(ngModel)]="sUrl" />
 
-                                    <button *ngIf="!disablePaymentButton" class="btn btn-success btn-lg btn-block" style="width: 60%;" (click)="form.submit()">pay</button>
-                                    <button *ngIf="disablePaymentButton" type="submit" class="btn btn-success btn-lg btn-block" style="width: 60%;" (click)="submitUser()">Submit</button>
+                                    <button *ngIf="!disablePaymentButton" class="btn btn-success btn-lg btn-block" style="width: 60%;" (click)="form.submit()">VALIDATE</button>
+                                    <button *ngIf="disablePaymentButton" type="submit" class="btn btn-success btn-lg btn-block" style="width: 60%;" (click)="submitUser()">Proceed to Payment</button>
                                 </div>
                             </div>
                         </form>

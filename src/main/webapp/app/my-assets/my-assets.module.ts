@@ -62,7 +62,8 @@ library.add(fas, far);
         SavingSchemeService,
         AlternateService,
         CashService,
-        ChitFundService
+        ChitFundService,
+        StockComponent
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

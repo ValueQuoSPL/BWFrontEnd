@@ -301,7 +301,9 @@ ui bootstrap tweaks
     font-weight: bolder;
     font-family: 'Titillium Web';
 }
-
+.bwshadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 // #asset:hover {
 //     background-color: #a9a9a9;
 // }
@@ -337,7 +339,7 @@ ui bootstrap tweaks
     background-color: #f1592a;
     margin-left: 457px;
 }
-setmargine {
+.setmargine {
     margin-left: 550px;
 }
 // .mat-expansion-panel-header.mat-expanded:focus.mat-expansion-panel-header.mat-expanded:hover {

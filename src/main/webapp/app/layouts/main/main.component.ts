@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
 
 import { Title } from '@angular/platform-browser';
@@ -7,6 +7,8 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { PlanService } from 'app/pratik/common/plan.service';
+import { SuccessService } from 'app/success/success.service';
 
 @Component({
     selector: 'jhi-main',
@@ -25,8 +27,12 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     push;
     pull;
     flag = false;
+    isPaid = false;
 
     @ViewChild('toggleClass') toggle: ElementRef;
+    result: any = [];
+    last: any;
+    uid: any;
 
     constructor(
         private titleService: Title,
@@ -34,10 +40,11 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         private loginModalService: LoginModalService,
         private principal: Principal,
         private eventManager: JhiEventManager,
-        private commonSidebarService: CommonSidebarService,
-        private renderer: Renderer,
-        private element: ElementRef,
-        private deviceService: DeviceDetectorService
+        private deviceService: DeviceDetectorService,
+        private planService: PlanService,
+        private successService: SuccessService,
+        private cd: ChangeDetectorRef,
+        private sc: CommonSidebarService
     ) {
         this.epicFunction();
     }
@@ -63,16 +70,53 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
             }
         });
 
-        this.principal.identity().then(account => {
-            this.account = account;
+        this.sc.newlogin.subscribe(data => {
+            this.principal.identity().then(account => {
+                this.account = account;
+                this.uid = account.id;
+                this.checkSuccess(this.uid);
+            });
+        });
+
+        this.planService.plan.subscribe(flag => {
+            if (flag) {
+                this.isPaid = true;
+            } else {
+                this.isPaid = false;
+            }
         });
         this.registerAuthenticationSuccess();
     }
 
     ngAfterViewInit() {
-        if (!this.isMobile) {
-            this.flag = true;
-        }
+        this.principal.identity().then(account => {
+            this.account = account;
+            this.uid = account.id;
+            this.checkSuccess(this.uid);
+        });
+
+        this.cd.detectChanges();
+    }
+
+    checkSuccess(uid) {
+        this.successService.getTransactionData(uid).subscribe(data => {
+            this.result = data;
+            this.last = this.result.pop();
+            if (this.last) {
+                if (this.last.status === 'success') {
+                    this.isPaid = true;
+                    if (!this.isMobile) {
+                        this.flag = true;
+                    }
+                    this.planService.isSubscribed.next(true);
+                } else {
+                    this.isPaid = false;
+                }
+            } else {
+                this.isPaid = false;
+                this.flag = false;
+            }
+        });
     }
 
     registerAuthenticationSuccess() {
@@ -85,7 +129,6 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
 
     isAuthenticated() {
         const flag = this.principal.isAuthenticated();
-
         return flag;
     }
 
@@ -94,13 +137,16 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     }
 
     toggleSide(flag) {
-        const element = document.getElementById('toggle');
-        if (!this.isMobile) {
-            if (flag) {
-                element.setAttribute('style', 'margin-left: 0px;');
-            } else {
-                element.setAttribute('style', 'margin-left: 200px;');
+        if (this.isPaid) {
+            const element = document.getElementById('toggle');
+            if (!this.isMobile) {
+                if (flag) {
+                    element.setAttribute('style', 'margin-left: 0px;');
+                } else {
+                    element.setAttribute('style', 'margin-left: 200px;');
+                }
             }
+        } else {
         }
     }
 }

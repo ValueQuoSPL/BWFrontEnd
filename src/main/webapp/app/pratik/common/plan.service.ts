@@ -4,8 +4,9 @@ import { ReplaySubject } from 'rxjs';
 @Injectable({
     providedIn: 'root'
 })
-export class CommonSidebarService {
-    sidebarSource = new ReplaySubject(0);
-    newlogin = new ReplaySubject(0);
+export class PlanService {
+    plan = new ReplaySubject(0);
+    planInfo = new ReplaySubject(0);
+    isSubscribed = new ReplaySubject(0);
     constructor() {}
 }

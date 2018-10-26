@@ -79,6 +79,8 @@ export class ChitFundComponent implements OnInit {
     getChitById(commonid) {
         this.chitfundService.getChitById(this.commonid).subscribe(res => {
             this.getdata = res;
+            console.log('res chit', this.getdata);
+            console.log('res chit', this.getdata.m_payment);
             this.chitfund.chit_name = this.getdata.chit_name;
             this.chitfund.chit_holder_name = this.getdata.chit_holder_name;
             this.chitfund.chit_start_date = this.getdata.chit_start_date;
@@ -86,6 +88,7 @@ export class ChitFundComponent implements OnInit {
             this.chitfund.chit_value = this.getdata.chit_value;
             this.chitfund.tenure = this.getdata.tenure;
             this.chitfund.m_payment = this.getdata.m_payment;
+            console.log('res chit', this.chitfund.m_payment);
             this.chitfund.current_value = this.getdata.current_value;
             this.chitfund.isCashed = this.getdata.isCashed;
             this.chitfund.notes = this.getdata.notes;

@@ -230,7 +230,7 @@ export class UtilityComponent implements OnInit {
             this.nameField = 'Video / CD Rentals';
             this.editField = this.utility.vcd;
         } else if (nameField === 'news') {
-            this.nameField = 'Rental utility';
+            this.nameField = 'News Paper';
             this.editField = this.utility.news;
         }
         this.prevValue = this.editField;

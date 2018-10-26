@@ -118,28 +118,28 @@
         <td> Entertainment (movies, plays, etc.) </td>
         <td> {{travel.entertainment }} </td>
         <td> {{travel.entertainment * 12}} </td>
-        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('food', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('entertainment', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>
         <td></td>
       </tr>
       <tr>
         <td> Dining out </td>
         <td> {{travel.dineout }} </td>
         <td> {{travel.dineout * 12}} </td>
-        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('food', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('dineout', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>
         <td></td>
       </tr>
       <tr>
         <td> Travel / Vacation </td>
         <td> {{travel.vacation }} </td>
         <td> {{travel.vacation * 12}} </td>
-        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('food', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('vacation', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>
         <td></td>
       </tr>
       <tr>
         <td> Hobbies </td>
         <td> {{travel.hobby }} </td>
         <td> {{travel.hobby * 12}} </td>
-        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('food', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('hobby', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
         <td></td>
       </tr>
       <tr *ngFor="let field of dynamicTravel; let i = index">

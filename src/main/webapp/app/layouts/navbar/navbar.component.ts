@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, Injectable } from '@angular/core';
+import { Component, OnInit, DoCheck, Injectable, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HostListener } from '@angular/core';
@@ -50,7 +50,8 @@ export class NavbarComponent implements OnInit, DoCheck {
         private deviceService: DeviceDetectorService,
         private register: Register,
         private languageService: JhiLanguageService,
-        private languageHelper: JhiLanguageHelper
+        private languageHelper: JhiLanguageHelper,
+        private cd: ChangeDetectorRef
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
@@ -90,20 +91,24 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.router.navigate(['/contact']);
     }
     ngDoCheck() {
-        this.param = this.router.url;
+        setTimeout(() => {
+            this.param = this.router.url;
 
-        if (this.param === '/') {
-            this.isHomePage = true;
-            this.solid = 'solid';
-            this.transparent = 'transparent';
-            if (this.isMobile) {
+            if (this.param === '/') {
+                this.isHomePage = true;
+                this.solid = 'solid';
+                this.transparent = 'transparent';
+                if (this.isMobile) {
+                    this.transparent = 'solid';
+                }
+            } else {
+                this.isHomePage = false;
+                this.solid = 'solid';
                 this.transparent = 'solid';
             }
-        } else {
-            this.isHomePage = false;
-            this.solid = 'solid';
-            this.transparent = 'solid';
-        }
+        });
+
+        this.cd.detectChanges();
     }
 
     collapseNavbar() {

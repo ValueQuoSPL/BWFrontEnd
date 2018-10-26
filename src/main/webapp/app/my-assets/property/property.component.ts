@@ -100,7 +100,8 @@ export class PropertyComponent implements OnInit {
         this.propertyservice.getPropertyById(this.commonid).subscribe(res => {
             this.getdata = res;
             this.property.prop_name = this.getdata.prop_name;
-            this.property.prop_type = this.getdata.prop_type;
+            this.prop_type = this.getdata.prop_type;
+            this.property.prop_type = this.prop_type;
             this.property.prop_details = this.getdata.prop_details;
             this.property.current_m_value = this.getdata.current_m_value;
             this.property.as_of_date = this.getdata.as_of_date;
