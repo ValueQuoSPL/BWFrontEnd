@@ -205,7 +205,7 @@ export class TravelComponent implements OnInit {
 
     onEditStaticField(nameField, modal) {
         if (nameField === 'food') {
-            this.nameField = 'Food ';
+            this.nameField = 'Work Expenses(lunch, coffee) ';
             this.editField = this.travel.food;
         } else if (nameField === 'entertainment') {
             this.nameField = 'Entertainment';

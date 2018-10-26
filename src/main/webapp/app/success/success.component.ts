@@ -5,6 +5,7 @@ import { JhiEventManager } from 'ng-jhipster';
 import { Router } from '@angular/router';
 import { UserPlanService } from 'app/home/subscriber/userplan.service';
 import { PromoCodeService } from 'app/home/subscriber/promo-code';
+import { PlanService } from 'app/pratik/common/plan.service';
 
 class UserPlan {
     uid;
@@ -42,7 +43,8 @@ export class SuccessComponent implements OnInit, AfterViewInit {
         private eventManager: JhiEventManager,
         private router: Router,
         private userPlanService: UserPlanService,
-        private promoCodeService: PromoCodeService
+        private promoCodeService: PromoCodeService,
+        private planService: PlanService
     ) {}
 
     ngOnInit() {
@@ -75,8 +77,11 @@ export class SuccessComponent implements OnInit, AfterViewInit {
                     this.successService.getTransactionData(this.uid).subscribe(data => {
                         this.result = data;
                         this.last = this.result.pop();
+                        if (this.last.status === 'success') {
+                            this.planService.isSubscribed.next(true);
+                        }
                     });
-                    this.get();
+                    // this.get();
                 } else {
                 }
             })
@@ -84,34 +89,17 @@ export class SuccessComponent implements OnInit, AfterViewInit {
     }
 
     GoDashBoard() {
-        this.router.navigate(['familyroute']);
+        this.router.navigate(['profile']);
     }
 
-    get() {
-        this.userPlanService.GetUserPlan(this.uid).subscribe(response => {
-            this.userPlan = response;
-            if (this.userPlan.length !== 0) {
-                this.isSubscribed = true;
-
-                this.saveUserPlan();
-            } else {
-                this.isSubscribed = false;
-            }
-        });
-    }
-
-    saveUserPlan() {
-        this.fillUserPlanData();
-
-        if (!this.isSubscribed) {
-            this.userPlanService.SaveUserPlan(this.user).subscribe();
-        } else {
-            this.userPlanService.UpdateUserPlan(this.user).subscribe();
-        }
-    }
-
-    fillUserPlanData() {
-        this.user.uid = this.uid;
-        this.user.applyDate = new Date();
-    }
+    // get() {
+    //     this.userPlanService.GetUserPlan(this.uid).subscribe(response => {
+    //         this.userPlan = response;
+    //         if (this.userPlan.length !== 0) {
+    //             this.isSubscribed = true;
+    //         } else {
+    //             this.isSubscribed = false;
+    //         }
+    //     });
+    // }
 }

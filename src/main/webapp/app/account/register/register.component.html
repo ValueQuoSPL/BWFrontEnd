@@ -1,4 +1,3 @@
-<script src='https://www.google.com/recaptcha/api.js'></script>
 <div class="image" >
     <br>
     <mat-card class=" container example-card">
@@ -13,7 +12,10 @@
                     <h1>Registration</h1> <br>
         
                     <div class="alert alert-success" *ngIf="success">
-                        <strong>Registration saved!</strong> <br> To activate your account Please check your email .
+                        <strong>You are successfully registered!</strong> <br>
+                        We have sent you an activation email on your registered email id
+                         <br>
+                         Click on link in the email to activate your account .
                     </div>
     
                     <div class="alert alert-danger" *ngIf="errorUserExists">
