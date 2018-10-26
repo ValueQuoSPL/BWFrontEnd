@@ -1,4 +1,3 @@
-import { SortableListDirective } from './../../pratik/draggable/sortable-list.directive';
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -70,8 +69,6 @@ export class SavingSchemeComponent implements OnInit {
             .toPromise()
             .then(response => {
                 this.user = response.body;
-                // this.savingScheme.userId = this.user.id;
-                //   this.uid = this.savingScheme.userId;
                 this.uid = this.user.id;
                 this.getSavingSchemeUid(this.uid);
             });
@@ -87,6 +84,7 @@ export class SavingSchemeComponent implements OnInit {
         }
     }
     openSaving(content) {
+        this.resetFieldValue();
         this.modalService.open(content, { ariaLabelledBy: 'savingModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
@@ -123,12 +121,9 @@ export class SavingSchemeComponent implements OnInit {
         this.setTempDate.setFullYear(year + this.savingScheme.tenure);
         this.savingScheme.end_date = this.setTempDate;
         this.savingScheme.userId = this.uid;
-        this.savingSchemeService.SavingSchemeDetails(this.savingScheme).subscribe(
-            responce => {
-                console.log(responce), this.getSavingSchemeUid(this.uid);
-            },
-            error => console.log(error)
-        );
+        this.savingSchemeService.SavingSchemeDetails(this.savingScheme).subscribe(responce => {
+            console.log(responce), this.getSavingSchemeUid(this.uid);
+        }, error => error);
     }
     getSavingSchemeUid(uid) {
         this.savingSchemeService.getSavingScheme(this.uid).subscribe(res => {
@@ -166,8 +161,6 @@ export class SavingSchemeComponent implements OnInit {
     delete(commonid) {
         this.conformkey = confirm('Are you sure you Want to permanently delete this item?');
         if (this.conformkey === true) {
-            // this.conformkey = 'You pressed OK!';
-            // this.getStockId(this.id)
             this.savingScheme.id = this.commonid;
             this.savingSchemeService.DeleteSaving(this.savingScheme.id).subscribe(data => {
                 this.getSavingSchemeUid(this.uid);
@@ -179,5 +172,21 @@ export class SavingSchemeComponent implements OnInit {
     opendeleteSaving(id) {
         this.commonid = id;
         this.delete(this.commonid);
+    }
+    resetFieldValue() {
+        this.savingScheme.type = '';
+        this.savingScheme.num = null;
+        this.savingScheme.organisation_name = '';
+        this.savingScheme.investor_name = '';
+        this.savingScheme.dividend_type = '';
+        this.savingScheme.amount_invested = null;
+        this.savingScheme.rate_of_interest = null;
+        this.savingScheme.tenure = null;
+        this.savingScheme.start_date = null;
+        this.savingScheme.end_date = null;
+        this.savingScheme.fund_value = null;
+        this.savingScheme.as_of_date = '';
+        this.savingScheme.userId = null;
+        this.savingScheme.id = null;
     }
 }

@@ -4,8 +4,8 @@ import { StockService } from 'app/my-assets/stocks/stocks.service';
 import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { CanComponentDeactivate } from '../../pratik/common/can-deactivate-guard.service';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
 // import {MutualFundService} from './mutual.service';
 
 @Component({
@@ -24,6 +24,7 @@ export class StockComponent implements OnInit {
     stocks: Stocks = new Stocks();
     isSaving;
     totalshareprice: any;
+    data = new ReplaySubject(0);
 
     constructor(
         private stockService: StockService,
@@ -96,6 +97,10 @@ export class StockComponent implements OnInit {
     getStockById(uid) {
         this.stockService.getStockById(this.uid).subscribe(res => {
             this.out = res;
+            this.totalshareprice = 0;
+            for (let j = 0; j < this.out.length; j++) {
+                this.totalshareprice = +this.totalshareprice + +this.out[j].share_price;
+            }
         });
     }
     saveStocks() {

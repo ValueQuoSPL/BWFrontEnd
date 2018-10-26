@@ -128,11 +128,11 @@
                             required
                         />
                     </mat-form-field>
-                    <mat-form-field>
+                    <!-- <mat-form-field>
                         <input matInput [matDatepicker]="picker1" placeholder="End Date" name="end_date"   [(ngModel)]="savingScheme.end_date" >
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
-                      </mat-form-field>
+                      </mat-form-field> -->
                     <mat-form-field>
                         <input matInput [matDatepicker]="picker2" placeholder="As of Date" name="as_of_date" [(ngModel)]="savingScheme.as_of_date" >
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -194,9 +194,9 @@
         <form name="editForm" role="form" novalidate  #editForm="ngForm">
             <div class="row">
                 <div class="col-md-6">
-                    <mat-form-field>
+                    <!-- <mat-form-field>
                         <input matInput type="text" placeholder="ID"  id="id" name="id" [(ngModel)]="savingScheme.num"/>
-                    </mat-form-field>
+                    </mat-form-field> -->
                     <mat-form-field>
                         <mat-select 
                             placeholder="Choose Saving Scheme" 
