@@ -3,10 +3,7 @@ import { Route } from '@angular/router';
 import { MyprofileComponent } from 'app/family/myprofile/myprofile.component';
 import { AssumptionComponent } from 'app/family/assumption/assumption.component';
 export const familyRoute: Route = {
-  path: 'familyroute',
-  component: FamilyComponent,
-  children: [
-    { path: 'familyroute/myprofile', component: MyprofileComponent },
-    { path: 'familyroute/assumption', component: AssumptionComponent }
-  ]
+    path: 'profile',
+    component: FamilyComponent,
+    children: [{ path: 'profile/myprofile', component: MyprofileComponent }, { path: 'profile/assumption', component: AssumptionComponent }]
 };

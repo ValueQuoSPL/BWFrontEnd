@@ -1,4 +1,3 @@
-<script src='https://www.google.com/recaptcha/api.js'></script>
 <div class="image" >
     <br>
     <mat-card class=" container example-card">
@@ -13,7 +12,10 @@
                     <h1>Registration</h1> <br>
         
                     <div class="alert alert-success" *ngIf="success">
-                        <strong>Registration saved!</strong> <br> To activate your account Please check your email .
+                        <strong>You are successfully registered!</strong> <br>
+                        We have sent you an activation email on your registered email id
+                         <br>
+                         Click on link in the email to activate your account .
                     </div>
     
                     <div class="alert alert-danger" *ngIf="errorUserExists">
@@ -98,14 +100,27 @@
                         <div class="form-group">
                             <mat-form-field style="width: 100%;">
                                 <input matInput type="password" id="password" name="password" #password="ngModel" placeholder="New password" [(ngModel)]="registerAccount.password"
-                                    minlength=4 maxlength=50 required>
+                                    minlength=6 maxlength=50 required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" (ngModelChange)="Validate($event)">
                             </mat-form-field>
+                                <small class="form-text text-danger" *ngIf="letter">
+                                    A <b>lowercase</b> letter required
+                                </small>
+                                <small class="form-text text-danger" *ngIf="capital">
+                                    A <b>capital (uppercase)</b> letter required
+                                </small>
+                                <small class="form-text text-danger" *ngIf="number">
+                                    A <b>number</b> required
+                                </small>
+                                <small class="form-text text-danger" *ngIf="chars">
+                                    A <b>Special Character</b> required
+                                </small>
+
                             <div *ngIf="password.dirty && password.invalid">
                                 <small class="form-text text-danger" *ngIf="password.errors.required">
                                     Your password is required.
                                 </small>
                                 <small class="form-text text-danger" *ngIf="password.errors.minlength">
-                                    Your password is required to be at least 4 characters.
+                                    Your password is required to be at least 6 characters.
                                 </small>
                                 <small class="form-text text-danger" *ngIf="password.errors.maxlength">
                                     Your password cannot be longer than 50 characters.

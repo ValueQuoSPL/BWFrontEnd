@@ -19,11 +19,14 @@ import { CalendarEvent, CalendarEventAction, CalendarView, CalendarEventTimesCha
 import { AppointmentService } from './appointment.service';
 import { NgbModal, ModalDismissReasons } from '../../../../../node_modules/@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '../../../../../node_modules/@angular/common';
+import { Router } from '../../../../../node_modules/@angular/router';
 
-class Appointment {
+export class Appointment {
+    id;
     uid;
     date;
     time;
+    status;
 }
 
 const colors: any = {
@@ -68,10 +71,15 @@ export class AppointmentComponent implements OnInit {
     isAppointmentData9;
     _day: any;
     _time: any;
+    _status: any;
     formatDate: any;
     activeDayIsOpen = true;
     modalRef: NgbModalRef;
     account: Account;
+    appointmentResult: any = [];
+    isBooked: Boolean = false;
+    status: any;
+    elementId: any;
 
     constructor(
         private appointmentService: AppointmentService,
@@ -79,7 +87,8 @@ export class AppointmentComponent implements OnInit {
         private accountService: AccountService,
         private datepipe: DatePipe,
         private principal: Principal,
-        private loginModalService: LoginModalService
+        private loginModalService: LoginModalService,
+        private route: Router
     ) {}
 
     getUserid() {
@@ -148,9 +157,41 @@ export class AppointmentComponent implements OnInit {
     login() {
         this.modalRef = this.loginModalService.open();
     }
+    // route to appointment page
+    gotoAppointment() {
+        this.status = 'Reschedule';
+        this.appointment.status = this.status;
+        for (let index = 0; index < this.appointmentResult.length; index++) {
+            this.elementId = this.appointmentResult[index].id;
+        }
+        this.appointment.id = this.elementId;
+        this.appointmentService.updateCalendar(this.appointment).subscribe(data => {
+            console.log(data);
+        });
+        this.clear();
+        this.isBooked = false;
+    }
+
+    // updateStatus click on cnacel button
+    updateStatus() {
+        const response = confirm('Are you sure want to cancel appointment');
+        if (response) {
+            this.status = 'cancel';
+            this.appointment.status = this.status;
+            for (let index = 0; index < this.appointmentResult.length; index++) {
+                this.elementId = this.appointmentResult[index].id;
+            }
+            this.appointment.id = this.elementId;
+            this.appointmentService.updateCalendar(this.appointment).subscribe(data => {
+                console.log(data);
+            });
+        } else {
+            this.route.navigate(['dashboard']);
+        }
+    }
 
     // Post Data
-    postCalendar(time) {
+    postCalendar(time, appointmentStatus) {
         const hour = time.split(':', 1);
         this.viewDate.setHours(hour);
         this.viewDate.setMinutes(0, 0);
@@ -158,7 +199,19 @@ export class AppointmentComponent implements OnInit {
         this.appointment.uid = this.uid;
         this.appointment.date = dateTime;
         this.appointment.time = time;
-        this.appointmentService.postCalendar(this.appointment).subscribe(data => {});
+        this.appointment.status = appointmentStatus;
+        this.appointmentService.postCalendar(this.appointment).subscribe(response => {
+            this.getCalendarByUid();
+            this.isBooked = true;
+        });
+    }
+
+    // get by uid appointment
+    getCalendarByUid() {
+        this.appointmentService.getCalendarByUid(this.uid).subscribe(data => {
+            this.appointmentResult = data;
+            // console.log(this.appointmentResult);
+        });
     }
 
     // Get Data
@@ -175,21 +228,22 @@ export class AppointmentComponent implements OnInit {
             for (let index = 0; index < this.tempAppointmentData.length; index++) {
                 this._day = this.tempAppointmentData[index].date;
                 const onlyDate = this.datepipe.transform(this._day, 'yyyy-MM-dd');
+                this._status = this.tempAppointmentData[index].status;
                 this._time = this.tempAppointmentData[index].time;
                 if (this.formatDate === onlyDate) {
-                    if (this._time === '9:00 A.M') {
+                    if (this._status === 'confirm' && this._time === '9:00 A.M') {
                         this.isAppointmentData = true;
-                    } else if (this._time === '11:00A.M') {
+                    } else if (this._status === 'confirm' && this._time === '11:00A.M') {
                         this.isAppointmentData11 = true;
-                    } else if (this._time === '1:00P.M') {
+                    } else if (this._status === 'confirm' && this._time === '1:00P.M') {
                         this.isAppointmentData1 = true;
-                    } else if (this._time === '3:00P.M') {
+                    } else if (this._status === 'confirm' && this._time === '3:00P.M') {
                         this.isAppointmentData3 = true;
-                    } else if (this._time === '5:00P.M') {
+                    } else if (this._status === 'confirm' && this._time === '5:00P.M') {
                         this.isAppointmentData5 = true;
-                    } else if (this._time === '7:00P.M') {
+                    } else if (this._status === 'confirm' && this._time === '7:00P.M') {
                         this.isAppointmentData7 = true;
-                    } else if (this._time === '9:00P.M') {
+                    } else if (this._status === 'confirm' && this._time === '9:00A.M') {
                         this.isAppointmentData9 = true;
                     }
                 }
@@ -197,11 +251,11 @@ export class AppointmentComponent implements OnInit {
         });
     }
 
-    openAppointment(appointmentModal, time) {
+    openAppointment(appointmentModal, time, appointmentStatus) {
         this.modalService.open(appointmentModal, { ariaLabelledBy: 'appointmentModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
-                this.postCalendar(time);
+                this.postCalendar(time, appointmentStatus);
                 this.getCalendar();
             },
             reason => {
@@ -221,7 +275,12 @@ export class AppointmentComponent implements OnInit {
         }
     }
 
-    clear() {}
+    clear() {
+        this.appointment.id = null;
+        this.appointment.date = null;
+        this.appointment.time = null;
+        this.appointment.status = null;
+    }
 
     value() {
         this.val = '9AM';
