@@ -12,7 +12,7 @@
                 </div>
                 <div class="card bg-light text-dark">
                     <div class="card-body">
-                        <form #form action="https://sandboxsecure.payu.in/_payment" method="POST">
+                        <form #form action="https://secure.payu.in/_payment" method="POST">
                             <div *ngFor="let payment of paymentDetail">
                                 <input type="hidden" name="key" value="{{payment.key}}" />
                                 <input type="hidden" name="hash_string" value="{{payment.hashString}}" />
