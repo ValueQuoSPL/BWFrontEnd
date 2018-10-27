@@ -89,8 +89,11 @@ export class FamilyprofileComponent implements OnInit {
         this.show = false;
     }
     // update Method to Update Info of Familyprofile
+
     update() {
-        this.getFamilyProfilebyid(this.uid);
+        this.Familypro.updateProfile(this.familyProfile).subscribe(responce => {
+            this.getFamilyProfilebyid(this.uid);
+        });
     }
     formpage() {
         this.isValid = false;

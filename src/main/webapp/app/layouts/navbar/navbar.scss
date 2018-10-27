@@ -2,17 +2,17 @@
 Navbar
 ========================================================================== */
 .transparent {
-    background-color: transparent;
+    background-color: white;
 
     a.nav-link {
-        color: white;
+        color: #2e3192;
     }
 }
 
 .solid {
     background-color: white;
     a.nav-link {
-        color: black;
+        color: #2e3192;
     }
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -84,11 +84,11 @@ Logo styles
     &.logo {
         padding: 5px 15px;
         .logo-img {
-            height: 45px;
-            width: 70px;
+            height: 50px;
+            width: 240px;
             display: inline-block;
             vertical-align: middle;
-            background: url('../../../content/images/bwlogoname.png') no-repeat center center;
+            background: url('../../../content/images/bwlogo.png') no-repeat center center;
             background-size: contain;
         }
     }
