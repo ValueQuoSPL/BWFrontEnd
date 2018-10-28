@@ -7,7 +7,7 @@
                 <div *ngSwitchCase="true">
                         
                     <div *ngIf="!payment">
-                        <div class="row justify-content-md-center">
+                        <div class="row justify-content-md-center container">
                             <mat-card class="example-card" >
                                 <mat-card-header>
                                     <div mat-card-avatar class="example-header-image"></div>
@@ -61,7 +61,7 @@
                                 <jhi-payment [offer]="offer"></jhi-payment>
                             </div>
                 </div>
-                <div class="alert alert-warning" *ngSwitchCase="false">
+                <div class="alert alert-warning justify-content-md-center" *ngSwitchCase="false">
                     <span>Oops you are not Signed In </span>
                     Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
      <br>

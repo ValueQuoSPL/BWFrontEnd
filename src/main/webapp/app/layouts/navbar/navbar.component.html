@@ -3,7 +3,7 @@
 <nav class="navbar navbar-dark navbar-expand-md jh-navbar fixed-top" [ngClass]="navIsFixed ? solid : transparent" [ngSwitch]="isAuthenticated()">
     <div class="jh-logo-container float-left">
 
-        <a *ngSwitchCase="true" class="float-left" (click)="toggle()">
+        <a *ngIf="isPaid" class="float-left" (click)="toggle()">
             <fa-icon [icon]="'bars'" style=" color: black;"></fa-icon>
         </a>
         <!-- <img src="" alt="BucksWise"> -->

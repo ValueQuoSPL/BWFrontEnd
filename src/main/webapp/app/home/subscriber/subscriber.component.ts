@@ -14,6 +14,7 @@ class Offer {
 }
 
 class UserPlan {
+    id;
     uid;
     plan;
     paid;
@@ -106,6 +107,7 @@ export class SubscriberComponent implements OnInit {
             this.userPlan = response;
             if (this.userPlan.length !== 0) {
                 this.isSubscribed = true;
+                this.user.id = this.userPlan[0].id;
             } else {
                 this.isSubscribed = false;
             }
@@ -138,9 +140,8 @@ export class SubscriberComponent implements OnInit {
     }
 
     goToPayment() {
-        this.payment = true;
-
         this.saveUserPlan();
+        this.payment = true;
     }
 
     apply() {
@@ -179,7 +180,9 @@ export class SubscriberComponent implements OnInit {
     fillUserPlanData() {
         this.user.uid = this.uid;
         this.user.applyDate = new Date();
-        this.user.expiryDate = null;
+        this.user.expiryDate = this.user.applyDate;
+        const year = this.user.expiryDate.getFullYear() + 1;
+        this.user.expiryDate.setFullYear(year);
         this.user.plan = this.plan;
         this.user.discount = this.discount;
         this.user.paid = this.payable;

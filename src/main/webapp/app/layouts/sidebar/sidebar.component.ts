@@ -50,9 +50,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             this.account = account;
             if (this.account) {
                 this.uid = account.id;
-                if (!this.isMobile) {
-                    this.get(this.uid);
-                }
+                this.get(this.uid);
             }
         });
 
@@ -72,6 +70,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             if (this.userPlan.length !== 0) {
                 this.isSubscribed = true;
                 const plan = this.userPlan[0].plan;
+                console.log('plan is', plan);
+
                 if (plan === 'WISE') {
                     this.fullAccess = false;
                 } else {
@@ -121,9 +121,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     }
 
     showSidebar() {
-        if (this.isSubscribed) {
-            const x = document.getElementById('main-menu').classList.toggle('expanded');
-        }
+        const x = document.getElementById('main-menu').classList.toggle('expanded');
     }
 
     collapseNavbar() {

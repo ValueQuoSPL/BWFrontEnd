@@ -12,7 +12,7 @@
                 </div>
                 <div class="card bg-light text-dark">
                     <div class="card-body">
-                        <form #form action="https://secure.payu.in/_payment" method="POST">
+                        <form  action="https://secure.payu.in/_payment" method="POST" #payform="ngForm">
                             <div *ngFor="let payment of paymentDetail">
                                 <input type="hidden" name="key" value="{{payment.key}}" />
                                 <input type="hidden" name="hash_string" value="{{payment.hashString}}" />
@@ -21,27 +21,57 @@
                             </div>
                             <div class="form-group">
                                 <div class="row justify-content-center">
-                                    <mat-form-field style="width: 80%;">
-                                        <input matInput [(ngModel)]="user.amount" placeholder="Amount Payable" #amount="ngModel" name="amount" id="amount" readonly>
-                                    </mat-form-field>
-                                    <mat-form-field style="width: 80%;">
-                                        <input matInput [(ngModel)]="user.firstName" placeholder="firstName" #amount="ngModel" name="firstName" id="firstName" required>
-                                    </mat-form-field>
-                                    <mat-form-field style="width: 80%;">
-                                        <input matInput [(ngModel)]="user.phone" placeholder="phone" #amount="ngModel" name="phone" id="phone" required>
-                                    </mat-form-field>
-                                    <mat-form-field style="width: 80%;">
-                                        <input matInput type="email" [(ngModel)]="user.eMail" placeholder="EMail" #amount="ngModel" name="eMail" id="eMail" required>
-                                    </mat-form-field>
-                                    <mat-form-field style="width: 80%;">
-                                        <input matInput [(ngModel)]="user.productInfo" placeholder="Your Plan" #amount="ngModel" name="productInfo" id="productInfo"
-                                            readonly>
-                                    </mat-form-field>
-                                    <input type="hidden" name="service_provider" value="payu_paisa" />
-                                    <input type="hidden" name="surl" [(ngModel)]="sUrl" />
 
-                                    <button *ngIf="!disablePaymentButton" class="btn btn-success btn-lg btn-block" style="width: 60%;" (click)="form.submit()">VALIDATE</button>
-                                    <button *ngIf="disablePaymentButton" type="submit" class="btn btn-success btn-lg btn-block" style="width: 60%;" (click)="submitUser()">Proceed to Payment</button>
+                                    <div *ngIf="disablePaymentButton" class="row justify-content-center">
+                                        <mat-form-field style="width: 80%;">
+                                            <input matInput [(ngModel)]="user.amount" placeholder="Amount Payable" #amount="ngModel" name="amount" id="amount" readonly>
+                                        </mat-form-field>
+                                        <mat-form-field style="width: 80%;">
+                                            <input matInput [(ngModel)]="user.firstName" placeholder="firstName" #amount="ngModel" name="firstName" id="firstName" required>
+                                        </mat-form-field>
+                                        <mat-form-field style="width: 80%;">
+                                            <input matInput [(ngModel)]="user.phone" placeholder="phone" #amount="ngModel" name="phone" id="phone" required>
+                                        </mat-form-field>
+                                        <mat-form-field style="width: 80%;">
+                                            <input matInput type="email" [(ngModel)]="user.eMail" placeholder="EMail" #amount="ngModel" name="eMail" id="eMail" required>
+                                        </mat-form-field>
+                                        <mat-form-field style="width: 80%;">
+                                            <input matInput [(ngModel)]="user.productInfo" placeholder="Your Plan" #amount="ngModel" name="productInfo" id="productInfo" readonly>
+                                        </mat-form-field>
+
+                                        <input type="hidden" name="service_provider" value="payu_paisa" />
+                                        <input type="hidden" name="surl" [(ngModel)]="sUrl" />
+
+                                        <button  type="submit" class="btn btn-outline-success btn-lg btn-block" style="width: 60%;" [disabled]="payform.form.invalid" (click)="submitUser()">VALIDATE</button>
+                                    </div>
+
+                                    <div  *ngIf="!disablePaymentButton" class="row justify-content-md-center container">
+                                           <table class="table table-striped">
+                                               <tr>
+                                                   <th>Amount</th>
+                                                   <td>{{user.amount}}</td>
+                                               </tr>
+                                               <tr>
+                                                   <th>Plan</th>
+                                                   <td>{{user.productInfo}}</td>
+                                               </tr>
+                                               <tr>
+                                                   <th>Name</th>
+                                                   <td>{{user.firstName}}</td>
+                                               </tr>
+                                               <tr>
+                                                   <th>Phone</th>
+                                                   <td>{{user.phone}}</td>
+                                               </tr>
+                                               <tr>
+                                                   <th>Email</th>
+                                                   <td>{{user.eMail}}</td>
+                                               </tr>
+                                           </table>
+
+                                        <button class="btn btn-outline-warning btn-lg btn-block" style="width: 60%;" (click)="backForEdit()">Go back and Edit </button>
+                                        <button type="submit" class="btn btn-outline-success btn-lg btn-block" style="width: 60%;" (click)="form.submit()">Confirm and Proceed to Payment </button>
+                                    </div>
                                 </div>
                             </div>
                         </form>

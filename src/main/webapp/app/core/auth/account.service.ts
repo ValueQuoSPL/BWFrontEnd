@@ -9,6 +9,8 @@ export class AccountService {
     constructor(private http: HttpClient) {}
 
     get(): Observable<HttpResponse<Account>> {
+        console.log('calling api/account');
+
         return this.http.get<Account>(SERVER_API_URL + 'api/account', { observe: 'response' });
     }
 

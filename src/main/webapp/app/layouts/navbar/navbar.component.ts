@@ -15,6 +15,8 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { Register } from 'app/account';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { JhiLanguageService } from 'ng-jhipster';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { PlanService } from 'app/pratik/common/plan.service';
 
 @Component({
     selector: 'jhi-navbar',
@@ -36,6 +38,8 @@ export class NavbarComponent implements OnInit, DoCheck {
     transparent;
     solid;
     isMobile: any;
+    looggedIn = false;
+    isPaid = false;
 
     constructor(
         @Inject(DOCUMENT) private document: Document,
@@ -51,7 +55,9 @@ export class NavbarComponent implements OnInit, DoCheck {
         private register: Register,
         private languageService: JhiLanguageService,
         private languageHelper: JhiLanguageHelper,
-        private cd: ChangeDetectorRef
+        private cd: ChangeDetectorRef,
+        private sidebarService: CommonSidebarService,
+        private planService: PlanService
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
@@ -78,12 +84,35 @@ export class NavbarComponent implements OnInit, DoCheck {
             this.inProduction = profileInfo.inProduction;
             this.swaggerEnabled = profileInfo.swaggerEnabled;
         });
+
         if (this.isMobile) {
             this.transparent = 'solid';
         }
+        this.sidebarService.newlogin.subscribe(flag => {
+            console.log('user state changed');
+
+            if (flag === true) {
+                console.log('logged in');
+                this.looggedIn = true;
+            } else {
+                console.log('logged out');
+                this.looggedIn = false;
+            }
+        });
+        this.planService.isSubscribed.subscribe(flag => {
+            if (flag === true) {
+                this.isPaid = true;
+                console.log('paid', this.isPaid);
+            } else {
+                this.isPaid = false;
+                console.log('paid', this.isPaid);
+            }
+        });
     }
 
     changeLanguage(languageKey: string) {
+        this.collapseNavbar();
+
         this.languageService.changeLanguage(languageKey);
     }
 
@@ -124,10 +153,13 @@ export class NavbarComponent implements OnInit, DoCheck {
     }
 
     login() {
+        this.collapseNavbar();
         this.modalRef = this.loginModalService.open();
     }
 
     logout() {
+        this.isPaid = false;
+        this.sidebarService.newlogin.next(false);
         this.collapseNavbar();
         this.loginService.logout();
         this.router.navigate(['']);

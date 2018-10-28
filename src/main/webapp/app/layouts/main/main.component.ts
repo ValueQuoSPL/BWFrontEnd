@@ -51,8 +51,6 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
 
     epicFunction() {
         this.isMobile = this.deviceService.isMobile();
-        this.isTablet = this.deviceService.isTablet();
-        this.isDesktop = this.deviceService.isDesktop();
     }
 
     private getPageTitle(routeSnapshot: ActivatedRouteSnapshot) {
@@ -72,9 +70,10 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
 
         this.sc.newlogin.subscribe(data => {
             this.principal.identity().then(account => {
-                this.account = account;
-                this.uid = account.id;
-                this.checkSuccess(this.uid);
+                if (account) {
+                    this.uid = account.id;
+                    this.checkSuccess(this.uid);
+                }
             });
         });
 
@@ -90,33 +89,40 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         this.principal.identity().then(account => {
-            this.account = account;
-            this.uid = account.id;
-            this.checkSuccess(this.uid);
+            if (account) {
+                this.account = account;
+                this.uid = account.id;
+                this.checkSuccess(this.uid);
+            }
         });
 
         this.cd.detectChanges();
     }
 
     checkSuccess(uid) {
-        this.successService.getTransactionData(uid).subscribe(data => {
-            this.result = data;
-            this.last = this.result.pop();
-            if (this.last) {
-                if (this.last.status === 'success') {
-                    this.isPaid = true;
-                    if (!this.isMobile) {
-                        this.flag = true;
+        this.successService.getTransactionData(uid).subscribe(
+            data => {
+                this.result = data;
+                this.last = this.result.pop();
+                if (this.last) {
+                    if (this.last.status === 'success') {
+                        this.isPaid = true;
+                        if (!this.isMobile) {
+                            this.flag = true;
+                            console.log('flag', this.flag);
+                        }
+                        this.planService.isSubscribed.next(true);
+                    } else {
+                        this.isPaid = false;
                     }
-                    this.planService.isSubscribed.next(true);
                 } else {
                     this.isPaid = false;
+                    this.flag = false;
+                    console.log('flag', this.flag);
                 }
-            } else {
-                this.isPaid = false;
-                this.flag = false;
-            }
-        });
+            },
+            error => {}
+        );
     }
 
     registerAuthenticationSuccess() {
@@ -137,16 +143,16 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     }
 
     toggleSide(flag) {
-        if (this.isPaid) {
-            const element = document.getElementById('toggle');
-            if (!this.isMobile) {
-                if (flag) {
-                    element.setAttribute('style', 'margin-left: 0px;');
-                } else {
-                    element.setAttribute('style', 'margin-left: 200px;');
-                }
+        this.isMobile = this.deviceService.isMobile();
+        console.log('flag', this.flag);
+
+        const element = document.getElementById('toggle');
+        if (!this.isMobile) {
+            if (flag) {
+                element.setAttribute('style', 'margin-left: 0px;');
+            } else {
+                element.setAttribute('style', 'margin-left: 200px;');
             }
-        } else {
         }
     }
 }

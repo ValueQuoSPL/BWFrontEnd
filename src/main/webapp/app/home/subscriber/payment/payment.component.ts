@@ -12,8 +12,8 @@ export class PaymentComponent implements OnInit {
     user: User = new User();
     amount: any;
     disablePaymentButton = true;
-    sUrl = 'http://localhost:8080/api/success';
-    fUrl = 'http://localhost:8080/api/success';
+    sUrl = 'http://buckswise.com/api/success';
+    fUrl = 'http://buckswise.com/api/success';
     public paymentDetail: any = [];
 
     @Input() offer;
@@ -30,6 +30,10 @@ export class PaymentComponent implements OnInit {
             this.paymentDetail.push(data);
             this.disablePaymentButton = false;
         });
+    }
+
+    backForEdit() {
+        this.disablePaymentButton = true;
     }
 
     ngOnInit() {

@@ -129,6 +129,11 @@ export class DashboardComponent implements OnInit {
         this.modalRef = this.loginModalService.open();
     }
 
+    calcNetworth() {
+        this.networth = +this.assetTotal - +this.totalLiabilities;
+        console.log('networth', this.networth);
+    }
+
     getUserid() {
         return this.accountService
             .get()
@@ -149,6 +154,7 @@ export class DashboardComponent implements OnInit {
                     this.getGoal();
                     this.getIncome();
                     this.getExpense();
+                    // this.calcNetworth();
                 }
             });
         // .catch(err => {});
@@ -399,6 +405,7 @@ export class DashboardComponent implements OnInit {
                     this.total = this.total + +this.result[i].currentvalue;
                 }
                 this.assetTotal = +this.assetTotal + +this.total;
+                this.networth = +this.assetTotal - +this.totalLiabilities;
             } else {
             }
         });
@@ -414,6 +421,7 @@ export class DashboardComponent implements OnInit {
                     this.totalStock = this.totalStock + +this.resultStock[i].no_of_shares;
                 }
                 this.assetTotal = +this.assetTotal + +this.totalStock;
+                this.networth = +this.assetTotal - +this.totalLiabilities;
             }
         });
     }
@@ -428,6 +436,7 @@ export class DashboardComponent implements OnInit {
                     this.totalSaving = this.totalSaving + +this.resultSaving[i].amount_invested;
                 }
                 this.assetTotal = +this.assetTotal + +this.totalSaving;
+                this.networth = +this.assetTotal - +this.totalLiabilities;
             }
         });
     }
@@ -441,6 +450,7 @@ export class DashboardComponent implements OnInit {
                     this.totalChit = this.totalChit + +this.resultChit[i].current_value;
                 }
                 this.assetTotal = +this.assetTotal + +this.totalChit;
+                this.networth = +this.assetTotal - +this.totalLiabilities;
             }
         });
     }
@@ -454,6 +464,7 @@ export class DashboardComponent implements OnInit {
                     this.totalCash = this.totalCash + +this.resultCash[i].amount;
                 }
                 this.assetTotal = +this.assetTotal + +this.totalCash;
+                this.networth = +this.assetTotal - +this.totalLiabilities;
             }
         });
     }
@@ -467,6 +478,7 @@ export class DashboardComponent implements OnInit {
                     this.totalAlterInvestment = this.totalAlterInvestment + +this.resultAlterInvestment[i].amount_invested;
                 }
                 this.assetTotal = +this.assetTotal + +this.totalAlterInvestment;
+                this.networth = +this.assetTotal - +this.totalLiabilities;
             }
         });
     }
@@ -480,6 +492,7 @@ export class DashboardComponent implements OnInit {
                     this.totalPCJ = this.totalPCJ + +this.resultPCJ[i].current_m_value;
                 }
                 this.assetTotal = +this.assetTotal + +this.totalPCJ;
+                this.networth = +this.assetTotal - +this.totalLiabilities;
             }
         });
     }
@@ -494,6 +507,7 @@ export class DashboardComponent implements OnInit {
                     this.totalFAO = this.totalFAO + +this.resultFAO[i].contract_m_value;
                 }
                 this.assetTotal = +this.assetTotal + +this.totalFAO;
+                this.networth = +this.assetTotal - +this.totalLiabilities;
             }
 
             this.piechart(
@@ -532,6 +546,7 @@ export class DashboardComponent implements OnInit {
     }
 
     liabilitiesChart(totalLiabilities) {
+        this.networth = +this.assetTotal - +this.totalLiabilities;
         this.pieChartableLabel.push('totalLiabilities');
         this.pieChartDataa.push(totalLiabilities);
         this.color = [{ backgroundColor: ['#808080'] }];
