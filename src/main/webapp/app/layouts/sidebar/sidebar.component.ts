@@ -5,6 +5,8 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { PlanService } from 'app/pratik/common/plan.service';
 import { UserPlanService } from 'app/home/subscriber/userplan.service';
 import { SuccessService } from 'app/success/success.service';
+import { JhiEventManager } from 'ng-jhipster';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-sidebar',
@@ -20,7 +22,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     modalRef: NgbModalRef;
     version: string;
     isLogin = false;
-    account: Account;
+    account: any;
     isMobile;
     isPaid: boolean;
     isSubscribed: boolean;
@@ -35,7 +37,9 @@ export class SidebarComponent implements OnInit, AfterViewInit {
         private loginModalService: LoginModalService,
         private deviceService: DeviceDetectorService,
         private planService: PlanService,
+        private eventManager: JhiEventManager,
         private userPlanService: UserPlanService,
+        private sc: CommonSidebarService,
         private successService: SuccessService
     ) {
         this.epicFunction();
@@ -46,20 +50,31 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.principal.identity().then(account => {
-            this.account = account;
-            if (this.account) {
-                this.uid = account.id;
-                this.get(this.uid);
-            }
-        });
-
         this.planService.plan.subscribe(flag => {
             if (flag) {
                 this.isPaid = true;
             } else {
                 this.isPaid = false;
             }
+        });
+        this.sc.account.subscribe(account => {
+            if (account) {
+                this.account = account;
+                this.uid = this.account.id;
+                this.get(this.uid);
+            }
+        });
+        this.registerAuthenticationSuccess();
+    }
+
+    registerAuthenticationSuccess() {
+        this.eventManager.subscribe('authenticationSuccess', message => {
+            // alert('success');
+            // this.principal.identity().then(account => {
+            //     this.account = account;
+            //     this.uid = account.id;
+            //     this.get(this.uid);
+            // });
         });
     }
 
@@ -70,7 +85,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             if (this.userPlan.length !== 0) {
                 this.isSubscribed = true;
                 const plan = this.userPlan[0].plan;
-                console.log('plan is', plan);
 
                 if (plan === 'WISE') {
                     this.fullAccess = false;

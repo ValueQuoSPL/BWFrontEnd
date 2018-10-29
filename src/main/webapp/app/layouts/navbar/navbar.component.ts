@@ -80,32 +80,26 @@ export class NavbarComponent implements OnInit, DoCheck {
             this.languages = languages;
         });
 
-        this.profileService.getProfileInfo().then(profileInfo => {
-            this.inProduction = profileInfo.inProduction;
-            this.swaggerEnabled = profileInfo.swaggerEnabled;
-        });
+        // this.profileService.getProfileInfo().then(profileInfo => {
+        //     this.inProduction = profileInfo.inProduction;
+        //     this.swaggerEnabled = profileInfo.swaggerEnabled;
+        // });
 
         if (this.isMobile) {
             this.transparent = 'solid';
         }
         this.sidebarService.newlogin.subscribe(flag => {
-            console.log('user state changed');
-
             if (flag === true) {
-                console.log('logged in');
                 this.looggedIn = true;
             } else {
-                console.log('logged out');
                 this.looggedIn = false;
             }
         });
         this.planService.isSubscribed.subscribe(flag => {
             if (flag === true) {
                 this.isPaid = true;
-                console.log('paid', this.isPaid);
             } else {
                 this.isPaid = false;
-                console.log('paid', this.isPaid);
             }
         });
     }
