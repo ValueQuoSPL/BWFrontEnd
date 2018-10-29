@@ -1,14 +1,31 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SERVER_API_URL } from 'app/app.constants';
-import { BehaviorSubject, Observable } from '../../../../../node_modules/rxjs';
+import { AccountService } from 'app/core';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AppointmentService {
     // data = new BehaviorSubject(0);
-    constructor(private _http: HttpClient) {}
+    userid: any;
+    constructor(private _http: HttpClient, private accountService: AccountService) {
+        this.getUserid();
+    }
+
+    getUserid() {
+        return this.accountService
+            .get()
+            .toPromise()
+            .then(response => {
+                const account = response.body;
+                if (account) {
+                    this.userid = account.id;
+                } else {
+                }
+            })
+            .catch(err => {});
+    }
 
     // Post Appointment Data
     postCalendar(calendarData) {
@@ -23,7 +40,8 @@ export class AppointmentService {
     }
 
     // get Appointment data by uid
-    getCalendarByUid(uid) {
+    getCalendarByUid() {
+        const uid = this.userid;
         console.log('inside under getuid');
         const url = SERVER_API_URL + 'api/appointmentByUid/' + uid;
         return this._http.get(url);

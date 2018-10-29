@@ -19,7 +19,7 @@ import { CalendarEvent, CalendarEventAction, CalendarView, CalendarEventTimesCha
 import { AppointmentService } from './appointment.service';
 import { NgbModal, ModalDismissReasons } from '../../../../../node_modules/@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '../../../../../node_modules/@angular/common';
-import { Router } from '../../../../../node_modules/@angular/router';
+import { Router, ActivatedRoute } from '../../../../../node_modules/@angular/router';
 
 export class Appointment {
     id;
@@ -77,9 +77,11 @@ export class AppointmentComponent implements OnInit {
     modalRef: NgbModalRef;
     account: Account;
     appointmentResult: any = [];
-    isBooked: Boolean = false;
     status: any;
     elementId: any;
+    isStatus: any;
+    resolveData: any;
+    isBooked = false;
 
     constructor(
         private appointmentService: AppointmentService,
@@ -88,8 +90,20 @@ export class AppointmentComponent implements OnInit {
         private datepipe: DatePipe,
         private principal: Principal,
         private loginModalService: LoginModalService,
-        private route: Router
-    ) {}
+        private route: Router,
+        private _route: ActivatedRoute
+    ) {
+        this.appointmentResult = this._route.snapshot.data['appointment'];
+        // console.log(this.resolveData);
+        for (let index = 0; index < this.appointmentResult.length; index++) {
+            this.isStatus = this.appointmentResult[index].status;
+        }
+        if (this.isStatus === 'confirm') {
+            this.isBooked = true;
+        } else {
+            this.isBooked = false;
+        }
+    }
 
     getUserid() {
         return this.accountService
@@ -99,7 +113,8 @@ export class AppointmentComponent implements OnInit {
                 const account = response.body;
                 if (account) {
                     this.uid = account.id;
-                    // this.getCalendar();
+                    this.getCalendar();
+                    // this.getCalendarByUid();
                 } else {
                 }
             })
@@ -166,7 +181,7 @@ export class AppointmentComponent implements OnInit {
         }
         this.appointment.id = this.elementId;
         this.appointmentService.updateCalendar(this.appointment).subscribe(data => {
-            console.log(data);
+            this.getCalendar();
         });
         this.clear();
         this.isBooked = false;
@@ -185,8 +200,9 @@ export class AppointmentComponent implements OnInit {
             this.appointmentService.updateCalendar(this.appointment).subscribe(data => {
                 console.log(data);
             });
-        } else {
             this.route.navigate(['dashboard']);
+        } else {
+            this.isBooked = false;
         }
     }
 
@@ -202,15 +218,21 @@ export class AppointmentComponent implements OnInit {
         this.appointment.status = appointmentStatus;
         this.appointmentService.postCalendar(this.appointment).subscribe(response => {
             this.getCalendarByUid();
-            this.isBooked = true;
         });
     }
 
     // get by uid appointment
     getCalendarByUid() {
-        this.appointmentService.getCalendarByUid(this.uid).subscribe(data => {
+        this.appointmentService.getCalendarByUid().subscribe(data => {
             this.appointmentResult = data;
-            // console.log(this.appointmentResult);
+            for (let index = 0; index < this.appointmentResult.length; index++) {
+                this.isStatus = this.appointmentResult[index].status;
+            }
+            if (this.isStatus === 'confirm') {
+                this.isBooked = true;
+            } else {
+                this.isBooked = false;
+            }
         });
     }
 
