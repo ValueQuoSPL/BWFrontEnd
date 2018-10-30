@@ -153,8 +153,8 @@ export class JhiLoginModalComponent implements AfterViewInit {
                     this.router.navigate([redirect]);
                 }
                 // this.toggle();
-                this.commonSidebarService.sidebarSource.next(true);
-                this.commonSidebarService.newlogin.next(true);
+                // this.commonSidebarService.sidebarSource.next(true);
+                // this.commonSidebarService.newlogin.next(true);
             })
             .catch(() => {
                 this.authenticationError = true;

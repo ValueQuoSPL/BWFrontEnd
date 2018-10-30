@@ -100,6 +100,8 @@ export class LifeComponent implements OnInit {
     }
     // life insurance
     openLife(lifeModal) {
+        this.clear();
+
         this.modalService.open(lifeModal, { ariaLabelledBy: 'lifeModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;

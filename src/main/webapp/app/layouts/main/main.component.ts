@@ -72,23 +72,34 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                 this.titleService.setTitle(this.getPageTitle(this.router.routerState.snapshot.root));
             }
         });
-        // this.loginComponent.CheckPlanSelected();
-        this.CheckPlanSelected();
     }
 
+    // after every load/reload
     ngAfterViewInit() {
-        // alert('calling get');
         this.principal.identity().then(account => {
             if (account) {
                 this.account = account;
                 this.uid = account.id;
-                this.checkSuccess(this.uid);
                 this.sc.account.next(this.account);
-                this.CheckPlanSelected();
+                this.checkSuccess(this.uid);
             }
         });
+        this.registerAuthenticationSuccess();
 
         this.cd.detectChanges();
+    }
+
+    // after login
+    registerAuthenticationSuccess() {
+        this.eventManager.subscribe('authenticationSuccess', message => {
+            console.log('main-> login found');
+            this.principal.identity().then(account => {
+                this.account = account;
+                this.uid = account.id;
+                this.sc.account.next(this.account);
+                this.checkSuccess(this.uid);
+            });
+        });
     }
 
     checkSuccess(uid) {
@@ -102,7 +113,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                         if (!this.isMobile) {
                             this.flag = true;
                         }
-                        this.planService.isSubscribed.next(true);
+                        this.planService.isPaid.next(true);
                     } else {
                         this.isPaid = false;
                     }
@@ -115,32 +126,6 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         );
     }
 
-    CheckPlanSelected() {
-        this.paymentCheck.getTransactionData(this.uid).subscribe(paymentData => {
-            if (paymentData) {
-                this.isPlan = true;
-                this.PaymentArray = paymentData;
-                this.CheckPayment();
-            } else {
-                this.isPlan = false;
-                this.isPayment = false;
-            }
-        });
-    }
-
-    CheckPayment() {
-        let status;
-        this.PaymentArray.forEach(element => {
-            status = element.status;
-        });
-        if (status === 'success') {
-            this.isPayment = true;
-            this.planService.plan.next(true);
-        } else {
-            this.isPayment = false;
-            this.planService.plan.next(false);
-        }
-    }
     isAuthenticated() {
         const flag = this.principal.isAuthenticated();
         return flag;

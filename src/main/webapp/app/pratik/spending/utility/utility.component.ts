@@ -148,7 +148,6 @@ export class UtilityComponent implements OnInit {
         this.utility.userid = this.uid;
         // this.utility.dynamicUtility = this.dynamicUtilityArray;
         this.utilityService.PostUtility(this.utility).subscribe(data => {
-            alert('Your utility data saved');
             this.routeGuard.GuardSource.next(false);
 
             this.isUtilityData = true;
@@ -233,9 +232,9 @@ export class UtilityComponent implements OnInit {
             this.nameField = 'News Paper';
             this.editField = this.utility.news;
         }
-        this.prevValue = this.editField;
 
         {
+            this.prevValue = this.editField;
             this.modalService.open(modal, { ariaLabelledBy: 'utilityEditContent' }).result.then(
                 result => {
                     this.closeResult = `Closed with: ${result}`;
@@ -305,7 +304,6 @@ export class UtilityComponent implements OnInit {
         this.utility.userid = this.uid;
         this.utility.dynamicUtility = this.dynamicUtilityArray;
         this.utilityService.PutUtility(this.utility, this.uid).subscribe(data => {
-            alert('Your data saved');
             this.routeGuard.GuardSource.next(false);
 
             this.changesSaved = true;
