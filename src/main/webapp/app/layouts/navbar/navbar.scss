@@ -9,9 +9,9 @@ Navbar
     }
 }
 
-.a {
-    margin-top: 18px;
-}
+// .a {
+//     margin-top: 18px;
+// }
 
 .solid {
     background-color: white;
@@ -55,11 +55,11 @@ Navbar
         font-size: initial;
     }
     .jh-navbar-toggler {
-        color: #ccc;
+        color: blue;
         font-size: 1.5em;
         padding: 10px;
         &:hover {
-            color: #fff;
+            color: orange;
         }
     }
 }
@@ -95,5 +95,14 @@ Logo styles
             background: url('../../../content/images/bwlogo.png') no-repeat center center;
             background-size: contain;
         }
+    }
+}
+
+.sidebar-toggler {
+    color: orange;
+    font-size: 1.5em;
+    padding: 10px;
+    &:hover {
+        color: blue;
     }
 }
