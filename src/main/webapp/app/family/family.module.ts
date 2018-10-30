@@ -13,6 +13,7 @@ import { CustomMaterialModule } from '../custom-material.module';
 import { FamilyprofileComponent } from 'app/family/familyprofile/familyprofile.component';
 import { FamilyserviceService } from 'app/family/familyservice.service';
 import { CustomDirectiveModule } from '../pratik/directive/directive.module';
+// import { MyprofileRouteService } from 'app/family/myprofile/myprofileRoute.service';
 
 @NgModule({
     imports: [
