@@ -43,7 +43,7 @@
 <!-- health modal -->
 <ng-template #healthModal let-c="close" let-d="dismiss">
   <div class="modal-header">
-      <h4 class="modal-title" id="healthModal">Add Your Health Insurance Details</h4>
+      <h4 class="modal-title" id="healthModal">Your Health Insurance Details</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
       </button>
@@ -88,7 +88,7 @@
                       <input required matInput placeholder="Insured Name" name="insname" [(ngModel)]="health.ins_name" >
                   </mat-form-field>
                   <mat-form-field style="width: 100%;">
-                      <input required matInput jhiNumberOnly placeholder="Sum Assured" name="insname" [(ngModel)]="health.sum" >
+                      <input required matInput jhiNumberOnly placeholder="Sum Assured" name="sum" [(ngModel)]="health.sum" >
                   </mat-form-field>
                   <mat-form-field style="width: 100%;">
                       <input required matInput jhiNumberOnly placeholder="Premium" name="hprem" [(ngModel)]="health.premium" >
@@ -98,6 +98,6 @@
       </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Save</button>
   </div>
 </ng-template>

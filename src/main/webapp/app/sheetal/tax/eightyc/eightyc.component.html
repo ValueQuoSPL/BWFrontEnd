@@ -1,47 +1,28 @@
 <div *ngIf="!valid">
-        <div class="row pull-right" style="margin-top: -50px;">
-                
-                <button type="button" class="btn btn-link" (click)="onEightycSave()" data-toggle="modal" data-target="#eightycModelCenter">
-                    <span>
-                    <i class="fa fa-save" aria-hidden="true"></i>
-                    <span> Save</span>
-                    </span>
-                </button>
-                <div class="modal fade" id="eightycModelCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="eightycModalLongTitle">80C Deduction</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <h3>Your 80C Deduction Details Saved successfully</h3>
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" (click)="resetEightyc()" class="btn btn-link">
-                    <span>
-                      <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
-                      <span> Reset</span>
-                    </span>
-                </button>
-                <button type="button" class="btn btn-link">
-                    <span>
-                        <i class="fa fa-info" aria-hidden="true"></i>
-                        <span> Help</span>
-                    </span>
-                </button>
+    <div class="card">
+            <div>
+                    <button type="button" class="btn btn-link" (click)="onEightycSave()" [disabled]="!universalflag">
+                        <span>
+                        <fa-icon [icon]="'save'"></fa-icon>
+                        <span> Save</span>
+                        </span>
+                    </button>
+                    <button type="button" (click)="resetEightyc()" class="btn btn-link">
+                        <span>
+                          <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                          <span> Reset</span>
+                        </span>
+                    </button>
+                    <button type="button" class="btn btn-link">
+                        <span>
+                            <i class="fa fa-info" aria-hidden="true"></i>
+                            <span> Help</span>
+                        </span>
+                    </button>
             </div>
-            <div class="card">
                 <div class="card-header">
                 Investment Other than Home
-                </div>
+            </div>
                 <div class="card-body">
                     <table class="table table-hover table-sm">
                         <thead class="thead-light">
@@ -58,7 +39,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number"  name="fixed" [(ngModel)]="eightyc.fixed">
+                                    <input type="number"  name="fixed" [(ngModel)]="eightyc.fixed" (ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -66,17 +47,15 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="tution" [(ngModel)]="eightyc.tution">
+                                    <input type="number" value="0" name="tution" [(ngModel)]="eightyc.tution" (ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
                                 <td scope="row">Deposite in NSC</td>
-                                <td>
-                                    <!-- <input type="checkbox"> -->
-                                </td>
+                                <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="nsc" [(ngModel)]="eightyc.nsc">
+                                    <input type="number" value="0" name="nsc" [(ngModel)]="eightyc.nsc"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -84,7 +63,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="nss" [(ngModel)]="eightyc.nss">
+                                    <input type="number" value="0" name="nss" [(ngModel)]="eightyc.nss"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -92,7 +71,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="post" [(ngModel)]="eightyc.post">
+                                    <input type="number" value="0" name="post" [(ngModel)]="eightyc.post"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -100,17 +79,15 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="reinvest" [(ngModel)]="eightyc.reinvest">
+                                    <input type="number" value="0" name="reinvest" [(ngModel)]="eightyc.reinvest"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
                                 <td scope="row">Life Insurance Premium</td>
-                                <td>
-                                    <!-- <input type="checkbox"> -->
-                                </td>
+                                <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="licpremium" [(ngModel)]="eightyc.licpremium">
+                                    <input type="number" value="0" name="licpremium" [(ngModel)]="eightyc.licpremium"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -118,15 +95,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="equity" [(ngModel)]="eightyc.equity">
-                                </td>
-                            </tr>
-                            <tr>
-                                <td scope="row">Provident Fund</td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <input type="number" value="0" name="pf" [(ngModel)]="eightyc.pf">
+                                    <input type="number" value="0" name="pf" [(ngModel)]="eightyc.pf"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -134,7 +103,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="ppf" [(ngModel)]="eightyc.ppf">
+                                    <input type="number" value="0" name="ppf" [(ngModel)]="eightyc.ppf"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -142,7 +111,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="other" [(ngModel)]="eightyc.other">
+                                    <input type="number" value="0" name="other" [(ngModel)]="eightyc.other"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -150,7 +119,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="tutionfee" [(ngModel)]="eightyc.tutionfee">
+                                    <input type="number" value="0" name="tutionfee" [(ngModel)]="eightyc.tutionfee"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -158,7 +127,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="ulip" [(ngModel)]="eightyc.ulip">
+                                    <input type="number" value="0" name="ulip" [(ngModel)]="eightyc.ulip"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                         </tbody>
@@ -181,12 +150,12 @@
                         </div>
                         <div>
                             <mat-form-field class="example-full-width">
-                                <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name" >
+                                <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name"(ngModelChange)="DetectChange($event)" >
                                 <mat-hint>Please enter amount</mat-hint>
                             </mat-form-field>
                         </div><br><br>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-eightycResponseline-success" (click)="c('Save click')" [disabled]="eightycAdd.form.invalid">Add</button>
+                            <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="!isFieldChange">Update</button>
                         </div>
                     </form>
             </div>
@@ -195,12 +164,14 @@
                 <div class="card-header">
                     Investment Other than Home
                 </div>
-                <button type="button" class="btn btn-link" (click)="updateEightyc()">
-                    <i class="fa fa-save" aria-hidden="true"> </i> 
+                <div class="float-right" style="margin-left: 0px;">
+                <button type="button" class="btn btn-link" (click)="updateEightyc()"[disabled]="!globalflag">
+                        <fa-icon [icon]="'save'"></fa-icon> 
                     <span>Update</span>
                 </button>  
+                </div>
                 <div class="card-body">
-                    <table class="table table-hover table-sm">
+                    <table class="table table-hover table-sm" *ngFor="let eightycResponse of eightycResponse">
                         <thead class="thead-light">
                             <tr>
                                 <!--Head of table start-->
@@ -215,7 +186,7 @@
                                 <td>5 Years of Fixed Deposit in Schedule Bank (Enter amount of Tax-Saver Fixed Deposits only)</td>
                                 <td></td>
                                 <td></td>
-                                <td>{{eightycResponse[0].fixed}}</td> 
+                                 <td>{{eightycResponse.fixed}}</td>
                                  <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Fixed Deposit in Schedule Bank', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                              </tr>
@@ -224,7 +195,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                {{eightycResponse[0].tution}}
+                                {{eightycResponse.tution}}
                                 </td>
                                 <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Tution Fees', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -236,7 +207,7 @@
                                 </td>
                                 <td></td>
                                 <td>
-                                {{eightycResponse[0].nsc}}
+                                {{eightycResponse.nsc}}
                                 </td>
                                 <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Deposite in NSC', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -246,7 +217,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                {{eightycResponse[0].nss}}
+                                {{eightycResponse.nss}}
                                 </td>
                                 <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Deposite in NSS', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -256,7 +227,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                {{eightycResponse[0].post}}
+                                {{eightycResponse.post}}
                                 </td>
                                 <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Post Office saving Scheme', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -266,7 +237,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                {{eightycResponse[0].reinvest}}
+                                {{eightycResponse.reinvest}}
                                 </td>
                                 <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Interest on NSC Reinvested', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -278,7 +249,7 @@
                                 </td>
                                 <td></td>
                                 <td>
-                                {{eightycResponse[0].licpremium}}
+                                {{eightycResponse.licpremium}}
                                 </td>
                                 <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Life Insurance Premium', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -288,7 +259,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                {{eightycResponse[0].equity}}
+                                {{eightycResponse.equity}}
                                 </td>
                                 <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Equity linked Savings Scheme', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -298,7 +269,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                {{eightycResponse[0].pf}}
+                                {{eightycResponse.pf}}
                                 </td>
                                 <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Provident Fund', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -307,7 +278,7 @@
                                 <td scope="row">Public Provident Fund</td>
                                 <td></td>
                                 <td></td>
-                                <td>{{eightycResponse[0].ppf}}</td>
+                                <td>{{eightycResponse.ppf}}</td>
                                     <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Public Provident Fund', eightycEditContent)" >
                                     <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                             </tr>
@@ -316,7 +287,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                {{eightycResponse[0].other}}
+                                {{eightycResponse.other}}
                                 </td>
                                 <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Others', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -326,11 +297,13 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                {{eightycResponse[0].ulip}}
+                                {{eightycResponse.ulip}}
                                 </td>
                                 <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('ULIP of UTI/LIC', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button> 
                              </tr>
                         </tbody>
                     </table>
+                </div>
+                </div>
                 </div>

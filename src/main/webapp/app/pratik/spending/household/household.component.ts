@@ -218,7 +218,6 @@ export class HouseholdComponent implements OnInit {
         this.house.userid = this.uid;
         // this.house.dynamicHousehold = this.dynamicHousehold;
         this.houseService.PostHouse(this.house).subscribe(data => {
-            alert('Your household data saved');
             this.isHouseData = true;
             this.changesSaved = true;
             this.routeGuard.GuardSource.next(false);
@@ -229,7 +228,6 @@ export class HouseholdComponent implements OnInit {
         this.house.userid = this.uid;
         this.house.dynamicHousehold = this.dynamicHousehold;
         this.houseService.PutHouse(this.house, this.uid).subscribe(data => {
-            alert('Your data saved');
             this.changesSaved = true;
             this.routeGuard.GuardSource.next(false);
         });
@@ -284,8 +282,8 @@ export class HouseholdComponent implements OnInit {
             this.editField = this.house.property;
         }
 
-        this.prevValue = this.editField;
         {
+            this.prevValue = this.editField;
             this.modalService.open(modal, { ariaLabelledBy: 'houseEditContent' }).result.then(
                 result => {
                     this.closeResult = `Closed with: ${result}`;

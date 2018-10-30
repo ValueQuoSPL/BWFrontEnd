@@ -9,6 +9,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { PlanService } from 'app/pratik/common/plan.service';
 import { SuccessService } from 'app/success/success.service';
+import { JhiLoginModalComponent } from 'app/shared';
 
 @Component({
     selector: 'jhi-main',
@@ -33,6 +34,9 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     result: any = [];
     last: any;
     uid: any;
+    isPlan: boolean;
+    PaymentArray: any = [];
+    isPayment: boolean;
 
     constructor(
         private titleService: Title,
@@ -44,7 +48,8 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         private planService: PlanService,
         private successService: SuccessService,
         private cd: ChangeDetectorRef,
-        private sc: CommonSidebarService
+        private sc: CommonSidebarService,
+        private paymentCheck: SuccessService
     ) {
         this.epicFunction();
     }
@@ -67,36 +72,34 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                 this.titleService.setTitle(this.getPageTitle(this.router.routerState.snapshot.root));
             }
         });
-
-        this.sc.newlogin.subscribe(data => {
-            this.principal.identity().then(account => {
-                if (account) {
-                    this.uid = account.id;
-                    this.checkSuccess(this.uid);
-                }
-            });
-        });
-
-        this.planService.plan.subscribe(flag => {
-            if (flag) {
-                this.isPaid = true;
-            } else {
-                this.isPaid = false;
-            }
-        });
-        this.registerAuthenticationSuccess();
     }
 
+    // after every load/reload
     ngAfterViewInit() {
         this.principal.identity().then(account => {
             if (account) {
                 this.account = account;
                 this.uid = account.id;
+                this.sc.account.next(this.account);
                 this.checkSuccess(this.uid);
             }
         });
+        this.registerAuthenticationSuccess();
 
         this.cd.detectChanges();
+    }
+
+    // after login
+    registerAuthenticationSuccess() {
+        this.eventManager.subscribe('authenticationSuccess', message => {
+            console.log('main-> login found');
+            this.principal.identity().then(account => {
+                this.account = account;
+                this.uid = account.id;
+                this.sc.account.next(this.account);
+                this.checkSuccess(this.uid);
+            });
+        });
     }
 
     checkSuccess(uid) {
@@ -109,28 +112,18 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                         this.isPaid = true;
                         if (!this.isMobile) {
                             this.flag = true;
-                            console.log('flag', this.flag);
                         }
-                        this.planService.isSubscribed.next(true);
+                        this.planService.isPaid.next(true);
                     } else {
                         this.isPaid = false;
                     }
                 } else {
                     this.isPaid = false;
                     this.flag = false;
-                    console.log('flag', this.flag);
                 }
             },
             error => {}
         );
-    }
-
-    registerAuthenticationSuccess() {
-        this.eventManager.subscribe('authenticationSuccess', message => {
-            this.principal.identity().then(account => {
-                this.account = account;
-            });
-        });
     }
 
     isAuthenticated() {
@@ -144,7 +137,6 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
 
     toggleSide(flag) {
         this.isMobile = this.deviceService.isMobile();
-        console.log('flag', this.flag);
 
         const element = document.getElementById('toggle');
         if (!this.isMobile) {

@@ -5,7 +5,9 @@ import { ReplaySubject } from 'rxjs';
     providedIn: 'root'
 })
 export class CommonSidebarService {
-    sidebarSource = new ReplaySubject(0);
-    newlogin = new ReplaySubject(0);
+    a: any;
+    // sidebarSource = new ReplaySubject(0);
+    // newlogin = new ReplaySubject(0);
+    account = new ReplaySubject(this.a);
     constructor() {}
 }

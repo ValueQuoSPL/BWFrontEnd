@@ -29,6 +29,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
+import { GoalResolveService } from 'app/goal/goal-select/goal-selectResolve.service';
 library.add(fas, far);
 
 @NgModule({
@@ -62,7 +63,8 @@ library.add(fas, far);
         SavingSchemeService,
         AlternateService,
         CashService,
-        ChitFundService
+        ChitFundService,
+        GoalResolveService
     ]
 })
 export class GoalModule {}

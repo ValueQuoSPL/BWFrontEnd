@@ -19,13 +19,13 @@
                       </mat-select>
                   </mat-form-field>
 
-                  <mat-form-field style="width: 100%;">
+                  <!-- <mat-form-field style="width: 100%;">
                         <mat-select placeholder="Lender Name" name="type3vd" [(ngModel)]="loan.lender">
                             <mat-option *ngFor="let type of FamilyArray" [value]="type.name">
                             {{type.name}}
                             </mat-option>
                         </mat-select>
-                    </mat-form-field>
+                    </mat-form-field> -->
 
                   <mat-form-field style="width: 100%;">
                       <input required matInput  placeholder="Lender Name" name="lender" [(ngModel)]="loan.lender">
@@ -75,7 +75,7 @@
               </div>  <!-- right end-->
           </div>  <!-- row end -->
           <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+                  <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Save</button>
           </div>
       </form>
   </div>
@@ -123,10 +123,10 @@
             <table class="table table-responsive-md table-hover table-sm">
                 <thead>
                     <tr>
-                        <th scope="col"># </th>
                         <th scope="col">Loan Type </th>
                         <th scope="col">Lender Name </th>
                         <th scope="col">Amount </th>
+                        <th scope="col">Loan Date </th>
                         <th scope="col">Tenure (Month) </th>
                         <th scope="col">Outstanding Amount </th>
                         <th scope="col">ROI </th>
@@ -140,7 +140,7 @@
                     <tr *ngFor="let field of dynamicLoanArray; let i = index">
                         <td> {{ field.id }}</td>
                         <td> {{ field.ltype }}</td>
-
+                        <td> {{ field.ldate | date:'shortDate' }}</td>
                         <td> {{ field.lenderName }} </td>
                         <td> {{ field.amount }} </td>
                         <td> {{ field.tenure }} </td>

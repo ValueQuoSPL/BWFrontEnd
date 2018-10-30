@@ -69,7 +69,7 @@
                                    <input required matInput placeholder="Policy Name" name="polname" [(ngModel)]="general.policy_name" >
                                </mat-form-field>
                                <mat-form-field style="width: 100%;">
-                                   <input required matInput placeholder="Proposer Name" name="propname" [(ngModel)]="general.proposer_name" >
+                                   <input required matInput placeholder="Proposer Name" name="propname" [(ngModel)]="general.proposer" >
                                </mat-form-field>
                                <mat-form-field style="width: 100%;">
                                    <input required matInput jhiNumberOnly placeholder="Policy Term(yrs)" name="polterm" [(ngModel)]="general.policy_term" >
@@ -78,7 +78,7 @@
                            <!-- right start -->
                            <div class="col-md-6">
                                <mat-form-field style="width: 100%;">
-                                   <input required matInput [matDatepicker]="picker5" placeholder="Policy Start Date" 
+                                   <input required matInput [matDatepicker]="picker5" placeholder="Policy Start Date"
                                    [formControl]="generalDate">
                                    <mat-datepicker-toggle matSuffix [for]="picker5" ></mat-datepicker-toggle>
                                    <mat-datepicker #picker5 ></mat-datepicker>
@@ -94,7 +94,7 @@
                                    <input required matInput placeholder="Insured Object Name" name="insname" [(ngModel)]="general.ins_obj" >
                                </mat-form-field>
                                <mat-form-field style="width: 100%;">
-                                   <input required matInput jhiNumberOnly placeholder="Sum Assured" name="insname" [(ngModel)]="general.sum" >
+                                   <input required matInput jhiNumberOnly placeholder="Sum Assured" name="sum" [(ngModel)]="general.sum" >
                                </mat-form-field>
                                <mat-form-field style="width: 100%;">
                                    <input required matInput jhiNumberOnly placeholder="Premium" name="hprem" [(ngModel)]="general.premium" >
@@ -104,6 +104,6 @@
                    </form>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+          <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Save</button>
       </div>
   </ng-template>

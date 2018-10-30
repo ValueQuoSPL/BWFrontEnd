@@ -54,6 +54,7 @@ export class Life {
 }
 export class General {
     id;
+    proposer;
     userid;
     ins_obj;
     policy_name;
@@ -63,7 +64,6 @@ export class General {
     start_date;
     sum;
     policy_no;
-    proposer_name;
     premium_mode: any;
     generalModelArray: any = [];
 }

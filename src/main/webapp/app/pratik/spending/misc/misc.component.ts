@@ -188,7 +188,6 @@ export class MiscComponent implements OnInit {
         this.isMiscData = true;
         // this.misc.dynamicMisc = this.dynamicMisc;
         this.miscService.PostMisc(this.misc).subscribe(data => {
-            alert('Your Misc data saved');
             this.routeGuard.GuardSource.next(false);
         });
     }
@@ -197,7 +196,6 @@ export class MiscComponent implements OnInit {
         this.misc.userid = this.uid;
         this.misc.dynamicMisc = this.dynamicMisc;
         this.miscService.PutMisc(this.misc, this.uid).subscribe(data => {
-            alert('Your data saved');
             this.changesSaved = true;
             this.routeGuard.GuardSource.next(false);
         });
@@ -224,15 +222,15 @@ export class MiscComponent implements OnInit {
             this.nameField = 'Charity';
             this.editField = this.misc.charity;
         } else if (nameField === 'cloth') {
-            this.nameField = 'cloth';
+            this.nameField = 'Cloths';
             this.editField = this.misc.cloth;
-        } else if (nameField === 'autgifto') {
-            this.nameField = 'gift';
+        } else if (nameField === 'gift') {
+            this.nameField = 'Gift';
             this.editField = this.misc.gift;
         }
-        this.prevValue = this.editField;
 
         {
+            this.prevValue = this.editField;
             this.modalService.open(modal, { ariaLabelledBy: 'miscModal' }).result.then(
                 result => {
                     this.closeResult = `Closed with: ${result}`;

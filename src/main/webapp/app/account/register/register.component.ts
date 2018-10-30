@@ -20,6 +20,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     errorEmailExists: string;
     errorUserExists: string;
     registerAccount: any;
+    userid;
     success: boolean;
     modalRef: NgbModalRef;
     submitEvent = false;
@@ -65,6 +66,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     }
 
     register() {
+        this.userid = this.registerAccount.email;
+        this.registerAccount.login = this.userid;
         const resp = grecaptcha.getResponse();
         const x = resp.length;
         if (x === 0) {
