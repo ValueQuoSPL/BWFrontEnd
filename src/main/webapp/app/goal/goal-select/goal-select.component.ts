@@ -1,7 +1,8 @@
+import { GoalResolveService } from './goal-selectResolve.service';
 import { StockService } from 'app/my-assets/stocks/stocks.service';
 import { Component, OnInit } from '@angular/core';
 import { Principal, LoginModalService } from 'app/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { GoalselectService } from './goalselect.service';
 import { MatDialog } from '@angular/material';
@@ -138,8 +139,20 @@ export class GoalSelectComponent implements OnInit {
         public chitService: ChitFundService,
         public propService: PropertyService,
         public faoService: FutureOptionService,
-        public savingService: SavingSchemeService
-    ) {}
+        public savingService: SavingSchemeService,
+        private _route: ActivatedRoute
+    ) {
+        this.GoalArray = this._route.snapshot.data['goalselect'];
+        this.output = this.GoalArray;
+        for (let i = 0; i < this.output.length; i++) {
+            const element = this.output[i];
+            if (element.uid === 0) {
+                this.isValid = false;
+            } else {
+                this.isValid = true;
+            }
+        }
+    }
 
     ngOnInit() {
         this.singleAssetTotal = 0;
@@ -271,7 +284,7 @@ export class GoalSelectComponent implements OnInit {
             });
     }
     getgoalbyid(uid) {
-        this.goalSelectService.getgoalbyid(this.uid).subscribe(res => {
+        this.goalSelectService.getgoalbyid().subscribe(res => {
             this.GoalArray = res;
             this.viewUpdate();
             this.output = this.GoalArray;

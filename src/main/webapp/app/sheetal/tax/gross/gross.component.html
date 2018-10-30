@@ -1,30 +1,12 @@
 <div *ngIf="!valid">
+    <div class="card">
         <div>
-        <div class="row pull-right" style="margin-top: -50px;">
-            <button type="button" class="btn btn-link" (click)="onGrossSave()" data-toggle="modal" data-target="#exampleModalCenter">
+            <button type="button" class="btn btn-link" (click)="onGrossSave()" [disabled]="!universalflag">
                 <span>
-                <i class="fa fa-save" aria-hidden="true"></i>
+                        <fa-icon [icon]="'save'"></fa-icon>
                 <span> Save</span>
                 </span>
             </button>
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Gross Amount</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <h3>Your Gross Amount saved successfully</h3>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <button type="button" (click)="resetGross()" class="btn btn-link">
                 <span>
                 <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
@@ -38,102 +20,96 @@
                 </span>
             </button>
         </div>
-        <div class="card">
-            <div class="card-header">
-                Income from salaries (Per Annum)
-            </div>
-            <div class="card-body">
-                <table class="table table-hover table-sm">
-                    <thead class="thead-light">
-                        <tr>
-                             <!--Head of table start-->
-                            <th scope="col">Name</th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col">Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td scope="row">Basic Salary</td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <input type="number" name="bsalary" [(ngModel)]="gross.bsalary">
-                                
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">DA</td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <input type="number"  name="da" [(ngModel)]="gross.da">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">HRA</td>
-                            <!-- <td>
-                                <input type="checkbox">
-                            </td> --><td></td>
-                            <td></td>
-                            <td>
-                                <input type="number" value="0" name="hra" [(ngModel)]="gross.hra">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">Conveyance</td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <input type="number" value="0" name="conveyance" [(ngModel)]="gross.conveyance">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">Children Education</td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <input type="number" value="0" name="childedu" [(ngModel)]="gross.childedu">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">Medical</td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <input type="number" value="0" name="medical" [(ngModel)]="gross.medical">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">LTA</td>
-                            <td>
-                                <!-- <input type="checkbox"> -->
-                            </td>
-                            <td></td>
-                            <td>
-                                <input type="number" value="0" name="lta" [(ngModel)]="gross.lta">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">Other Allownces</td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <input type="number" value="0" name="otherallown" [(ngModel)]="gross.otherallown">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">Bonus</td>
-                            <td></td>
-                            <td></td>
-                            <td>
-                                <input type="number" value="0" name="bonus" [(ngModel)]="gross.bonus">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="card-header">
+            Income from salaries (Per Annum)
+        </div>
+        <div class="card-body">
+            <table class="table table-hover table-sm">
+                <thead class="thead-light">
+                    <tr>
+                            <!--Head of table start-->
+                        <th scope="col">Name</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">Basic Salary</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input jhiNumberOnly type="number" name="bsalary" [(ngModel)]="gross.bsalary"(ngModelChange)="FindValue($event)">
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">DA</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input type="number"  name="da" [(ngModel)]="gross.da"(ngModelChange)="FindValue($event)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">HRA</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input type="number" value="0" name="hra" [(ngModel)]="gross.hra"(ngModelChange)="FindValue($event)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Conveyance</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input type="number" value="0" name="conveyance" [(ngModel)]="gross.conveyance"(ngModelChange)="FindValue($event)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Children Education</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input type="number" value="0" name="childedu" [(ngModel)]="gross.childedu"(ngModelChange)="FindValue($event)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Medical</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input type="number" value="0" name="medical" [(ngModel)]="gross.medical"(ngModelChange)="FindValue($event)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">LTA</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input type="number" value="0" name="lta" [(ngModel)]="gross.lta"(ngModelChange)="FindValue($event)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Other Allownces</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input type="number" value="0" name="otherallown" [(ngModel)]="gross.otherallown"(ngModelChange)="FindValue($event)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">Bonus</td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <input type="number" value="0" name="bonus" [(ngModel)]="gross.bonus"(ngModelChange)="FindValue($event)">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div><br>
     <div class="card">
@@ -158,13 +134,13 @@
                         <td></td>
                         
                         <td>
-                        <input type="number" value="0" name="rentincome" [(ngModel)]="gross.rentincome">
+                        <input type="number" value="0" name="rentincome" [(ngModel)]="gross.rentincome"(ngModelChange)="FindValue($event)">
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div><br>
+    </div>
     <div class="card">
         <div class="card-header">Income from other Sources
         </div>
@@ -181,39 +157,37 @@
                 <tbody>
                 <!--Body of table start-->
                 <tr>
-                  <td scope="row">interest From Saving(FD,RD etc)</td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <input type="number" value="0" name="saving" [(ngModel)]="gross.saving">
-                  </td>
+                    <td scope="row">interest From Saving(FD,RD etc)</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="number" value="0" name="saving" [(ngModel)]="gross.saving"(ngModelChange)="FindValue($event)">
+                    </td>
                 </tr>
                 <tr>
-                  <td scope="row">Interest From Bonds</td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <input type="number" value="0" name="bonds" [(ngModel)]="gross.bonds">
-                  </td>
+                    <td scope="row">Interest From Bonds</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="number" value="0" name="bonds" [(ngModel)]="gross.bonds"(ngModelChange)="FindValue($event)">
+                    </td>
                 </tr>
                 <tr>
-                  <td scope="row">Conveyance</td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <input type="number" value="0" name="conveyanceother" [(ngModel)]="gross.conveyanceother">
-                  </td>
+                    <td scope="row">Conveyance</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="number" value="0" name="conveyanceother" [(ngModel)]="gross.conveyanceother"(ngModelChange)="FindValue($event)">
+                    </td>
                 </tr>
-              </tbody>
-              <!--Body of table end-->
-            </table>           
+            </tbody><!--Body of table end-->
+        </table>           
       </div>
-      </div>
-      
     </div>
-    </div>
-     <!-- modal, edit dialog -->
-     <ng-template #grossEditContent let-c="close" let-d="dismiss">
+</div>
+<!-- modal, edit dialog -->
+<div *ngIf="valid">
+    <ng-template #grossEditContent let-c="close" let-d="dismiss">
         <div class="modal-header">
             <h4 class="modal-title" id="grossEditContent">Gross Add</h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
@@ -221,34 +195,32 @@
             </button>
         </div>
         <div class="modal-body">
-        <form class="example-container" #grossAdd="ngForm">
-            <div>
+            <form class="example-container" #grossAdd="ngForm">
+                <div>
                     <mat-label>{{ nameField }}</mat-label>
                 </div>
-            
                 <div>
-                <mat-form-field class="example-full-width">
-                    <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name" >
-                    <mat-hint>Please enter amount</mat-hint>
-                </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name" (ngModelChange)="DetectChange($event)" >
+                        <mat-hint>Please enter amount</mat-hint>
+                    </mat-form-field>
+                </div><br> <br>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="!isFieldChange">Update</button>
                 </div>
-                <br> <br>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="grossAdd.form.invalid">Add</button>
-            </div>
-        </form>
+            </form>
         </div>
-        </ng-template>
-        <div *ngIf="valid">
-            <div class="card">
-                    <button type="button" (click)="updateGross()" class="btn btn-link pull-right">
-                            <span>
-                            <i class="fas fa-sync fa-spin" aria-hidden="true"></i>
-                            <span> Update</span>
-                            </span>
-                   </button>
+    </ng-template>
+    <div *ngFor="let output of output">
+        <div class="card">
             <div class="card-header">
               Income from salaries (Per Annum)
+            </div>
+            <div class="float-right" style="margin-left: 0px;">
+                <button type="button" (click)="updateGross()" [disabled]="!globalflag"class="btn btn-link pull-right">
+                    <fa-icon [icon]="'save'"></fa-icon> 
+                    <span>Update</span>
+                </button>
             </div>
             <div class="card-body">
                 <table class="table table-hover table-sm" >
@@ -267,7 +239,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output[0].bsalary}}
+                            {{output.bsalary}}
                             </td>
                         <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('bsalary', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -278,7 +250,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output[0].da}}
+                            {{output.da}}
                             </td>
                             <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('da', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -289,7 +261,7 @@
                             <!-- <input type="checkbox"> -->
                             </td>
                             <td></td>
-                            <td>{{output[0].hra}}</td>
+                            <td>{{output.hra}}</td>
                             <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('hra', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
@@ -297,7 +269,7 @@
                             <td scope="row">Conveyance</td>
                             <td></td>
                             <td></td>
-                            <td>{{output[0].conveyance}}</td>
+                            <td>{{output.conveyance}}</td>
                             <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('convey', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
@@ -306,7 +278,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output[0].childedu}}                           
+                            {{output.childedu}}                           
                             </td>
                             <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('ce', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -316,18 +288,16 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output[0].medical}}
+                            {{output.medical}}
                             </td>
                             <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('med', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
                         <tr>
                             <td scope="row">LTA</td>
-                            <td>
-                            <!-- <input type="checkbox"> -->
-                            </td>
                             <td></td>
-                            <td>{{output[0].lta}}</td>
+                            <td></td>
+                            <td>{{output.lta}}</td>
                             <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('lta', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
@@ -336,7 +306,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output[0].otherallown}}
+                            {{output.otherallown}}
                             </td>
                             <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('oa', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -346,7 +316,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output[0].bonus}}
+                            {{output.bonus}}
                             </td>
                             <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('bonus', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -355,27 +325,27 @@
                 </table>
             </div>
         </div><br>
-            <div class="card">
-                <div class="card-header">Income from House Properties
-                </div>
-                <div class="card-body">
-                    <table class="table table-hover table-sm">
-                        <thead class="thead-light">
-                            <tr>
-                                <!--Head of table start-->
-                                <th scope="col">Name</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                                <th scope="col">Amount</th>
-                            </tr>
-                        </thead>
+        <div class="card">
+            <div class="card-header">Income from House Properties
+            </div>
+            <div class="card-body">
+                <table class="table table-hover table-sm">
+                    <thead class="thead-light">
+                        <tr>
+                            <!--Head of table start-->
+                            <th scope="col">Name</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col">Amount</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         <tr>
                             <td scope="row">Rental Income</td>
                             <td></td>
                             <td></td>
                             <td>
-                            {{output[0].rentincome}}
+                            {{output.rentincome}}
                             </td>
                             <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('rent', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -389,7 +359,7 @@
               Income from other Sources
             </div>
             <div class="card-body">
-                <table class="table table-hover table-sm">
+                <table class="table table-hover table-sm" >
                     <thead class="thead-light">
                         <tr>
                             <!--Head of table start-->
@@ -405,7 +375,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output[0].saving}}
+                            {{output.saving}}
                             </td>
                             <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('saving', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -415,7 +385,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output[0].bonds}}
+                            {{output.bonds}}
                             </td>
                             <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('bonds', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -425,7 +395,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output[0].conveyanceother}}
+                            {{output.conveyanceother}}
                             </td>
                             <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('conveyance', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -433,5 +403,7 @@
                     </tbody>
                 </table>
             </div>
-            </div>
+        </div>
+    </div>
+</div>
             
