@@ -19,7 +19,8 @@
               <th scope="col">Bank</th>
               <th scope="col">ROI</th>
               <th scope="col">Outstanding Balance </th>
-              <th scope="col">Action </th>
+              <th scope="col">Update </th>
+              <th scope="col">Delete </th>
           </tr>
       </thead>
       <tbody>
@@ -45,7 +46,7 @@
 <!-- credit modal -->
 <ng-template #creditModal let-c="close" let-d="dismiss">
   <div class="modal-header">
-      <h4 class="modal-title" id="creditModal">Add Credit card </h4>
+      <h4 class="modal-title" id="creditModal"> Credit card Details</h4>
       <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
       <span aria-hidden="true">&times;</span>
       </button>
@@ -92,6 +93,6 @@
       </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Save</button>
   </div>
 </ng-template>

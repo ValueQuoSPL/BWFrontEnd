@@ -100,6 +100,7 @@ export class CreditService {
     constructor(private http: HttpClient) {}
 
     public PutCredit(credit) {
+        console.log(credit);
         return this.http.post(SERVER_API_URL + 'api/creditcard/credit', credit);
     }
     public GetCredit(uid) {
