@@ -142,6 +142,7 @@ export class LoanComponent implements OnInit {
             this.dynamicLoan.forEach(element => {
                 this.emi = 0;
                 this.dbDate = new Date(element.ldate);
+
                 this.calculateEMI(element.amount, element.tenure, element.roi);
                 element.outstandingpricipal = this.out;
                 element.emi = Math.round(this.emi);
@@ -159,6 +160,7 @@ export class LoanComponent implements OnInit {
 
     calculateEMI(P, N, R) {
         this.out = null;
+
         if (this.dbDate < this.currentDate) {
             const ROI = R;
             R = R / 12 / 100;
@@ -213,7 +215,6 @@ export class LoanComponent implements OnInit {
         this.isLoanData = true;
 
         this.loanService.PostLoan(this.loan.loanModelArray).subscribe(data => {
-            alert('Loan Added successfully');
             this.getLoanandDebt();
         });
     }
@@ -273,7 +274,6 @@ export class LoanComponent implements OnInit {
         this.loan.userid = this.uid;
         this.loanService.PutLoan(this.loan, this.uid).subscribe(res => {
             this.clear();
-            alert('Your data saved');
         });
     }
 

@@ -50,9 +50,10 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.planService.plan.subscribe(flag => {
-            if (flag) {
+        this.planService.isPaid.subscribe(flag => {
+            if (flag === true) {
                 this.isPaid = true;
+                this.showSidebarAfterLogin();
             } else {
                 this.isPaid = false;
             }
@@ -63,18 +64,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
                 this.uid = this.account.id;
                 this.get(this.uid);
             }
-        });
-        this.registerAuthenticationSuccess();
-    }
-
-    registerAuthenticationSuccess() {
-        this.eventManager.subscribe('authenticationSuccess', message => {
-            // alert('success');
-            // this.principal.identity().then(account => {
-            //     this.account = account;
-            //     this.uid = account.id;
-            //     this.get(this.uid);
-            // });
         });
     }
 
@@ -94,26 +83,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             } else {
                 this.fullAccess = false;
                 this.isSubscribed = false;
-            }
-
-            this.checkSuccess(uid);
-        });
-    }
-
-    checkSuccess(uid) {
-        this.successService.getTransactionData(uid).subscribe(data => {
-            this.result = data;
-            this.last = this.result.pop();
-            if (this.last) {
-                if (this.last.status === 'success') {
-                    this.isPaid = true;
-                    this.isSubscribed = true;
-                    this.showSidebar();
-                } else {
-                    this.isPaid = false;
-                }
-            } else {
-                this.isPaid = false;
             }
         });
     }
@@ -136,6 +105,10 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
     showSidebar() {
         const x = document.getElementById('main-menu').classList.toggle('expanded');
+    }
+
+    showSidebarAfterLogin() {
+        const x = document.getElementById('main-menu').classList.add('expanded');
     }
 
     collapseNavbar() {

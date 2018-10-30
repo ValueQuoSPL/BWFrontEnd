@@ -53,7 +53,7 @@
             </div>
             <br> <br>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+            <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="!isFieldChange">Update</button>
         </div>
     </form>
     </div>
@@ -61,17 +61,17 @@
 
 <!--start of buttons -->
 <div>
-    <div class="float-right">
-    <button type="button" class="btn btn-link" data-toggle="modal" (click)="openTravel(content)">
+    <div class="row pull-right">
+    <button type="button" class="btn btn-link" data-toggle="modal" (click)="openTravel(content)"  >
             <span>
                 <i class="fa fa-plus" aria-hidden="true"></i>
                 <span>Add</span>
             </span>
     </button>
 
-    <span [ngSwitch]="isTravelData">
+    <span [ngSwitch]="isTravelData" class="btn-right">
       <p *ngSwitchCase="true">
-        <button type="button" class="btn btn-link" (click)="UpdateTravel()">
+        <button type="button" class="btn btn-link" (click)="UpdateTravel()"  [disabled]="!globalflag">
           <span>
               <i class="fa fa-save" aria-hidden="true"></i>
               <span>Update</span>
@@ -139,7 +139,7 @@
         <td> Hobbies </td>
         <td> {{travel.hobby }} </td>
         <td> {{travel.hobby * 12}} </td>
-        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('hobby', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>            
+        <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('hobby', editTravel)" >  <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>  </button>     </td>
         <td></td>
       </tr>
       <tr *ngFor="let field of dynamicTravel; let i = index">
