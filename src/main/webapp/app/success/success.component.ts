@@ -78,7 +78,7 @@ export class SuccessComponent implements OnInit, AfterViewInit {
                         this.result = data;
                         this.last = this.result.pop();
                         if (this.last.status === 'success') {
-                            this.planService.isSubscribed.next(true);
+                            this.planService.isPaid.next(true);
                         }
                     });
                     // this.get();
