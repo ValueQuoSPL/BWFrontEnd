@@ -28,10 +28,10 @@
                 </mat-form-field>
                 <div *ngIf=" firstname?.touched && !firstname?.valid">
                     <div *ngIf="firstname.errors.required" style="color: red" >
-                        firstName is required
+                        First Name is required
                     </div>
                     <div *ngIf="firstname.errors.minlength" style="color: red">
-                        name should be min {{firstname.errors.minlength.requiredLength}} char
+                            First Name should be min {{firstname.errors.minlength.requiredLength}} char
                     </div>
                 </div>
             </div><!--end of row1.col1-->
@@ -51,10 +51,10 @@
               </mat-form-field>
               <div *ngIf="middlename?.touched && !middlename?.valid">
                     <div *ngIf="middlename.errors.required" style="color: red">
-                        Middlename is required
+                        Middle name is required
                     </div>
                     <div *ngIf="middlename.errors.minlength" style="color: red">
-                        name should be min {{middlename.errors.minlength.requiredLength}} char
+                       Middle name should be min {{middlename.errors.minlength.requiredLength}} char
                     </div>
                 </div>
             </div><!--end of  row1.col2-->
@@ -73,10 +73,10 @@
                 </mat-form-field>
                 <div *ngIf="lastname?.touched && !lastname?.valid" >
                     <div *ngIf="lastname.errors.required" style="color: red">
-                        Lastname is required
+                        Last name is required
                     </div>
                     <div *ngIf="lastname.errors.minlength" style="color: red">
-                        name should be min {{lastname.errors.minlength.requiredLength}} char
+                        Last name should be min {{lastname.errors.minlength.requiredLength}} char
                     </div>
                 </div>
             </div><!--end of row1.col3-->
@@ -84,7 +84,7 @@
         <div class="row"><!--start of row2-->
             <div class="col-md-6"><!--start of row2.col1-->
                 <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" name="dateOfBirth" [(ngModel)]="familyProfile.dateOfBirth">
+                    <input matInput [matDatepicker]="picker" placeholder="Date Of Birth" name="dateOfBirth" [(ngModel)]="familyProfile.dateOfBirth">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -100,7 +100,7 @@
                 <mat-form-field>
                     <input 
                         matInput 
-                        placeholder="Email"
+                        placeholder="Email-Id"
                         id="email" 
                         [(ngModel)]="familyProfile.email"
                         name="email" 
@@ -133,7 +133,7 @@
                         [(ngModel)]="familyProfile.phonenumber"
                         name="phonenumber" 
                         #phonenumber="ngModel"
-                        minlength="5" 
+                        minlength="10" 
                         maxlength="10" 
                         pattern="^[_'.@A-Za-z0-9-]*$"
                         required
@@ -151,17 +151,21 @@
                     </div>
                 </div>
             </div><!--end of row3.col2-->
-            <div class="pull-right"><!--start of btn div-->
-                <div *ngIf="show" >
-                    <button mat-raised-button color="primary" [disabled]="familyproForm.form.invalid"  (click)="saveFamilyProfile()">Save</button>&nbsp;
-                    <button mat-raised-button class="" (click)="formpage()">Cancel</button>
-                </div>
-                <div *ngIf="!show">
-                    <button mat-raised-button color="primary" [disabled]="familyproForm.form.invalid" (click)=" update()">update</button>&nbsp;
-                    <button mat-raised-button (click)="viewpage()">Cancel</button>
-                </div>
-            </div><!--end of btn div-->
          </div><!--end of row3-->
+         <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                        <div *ngIf="show" >
+                            <button mat-raised-button color="primary" [disabled]="familyproForm.form.invalid"  (click)="saveFamilyProfile()">Save</button>&nbsp;
+                            <button mat-raised-button class="" (click)="formpage()">Cancel</button>
+                        </div>
+                        <div *ngIf="!show">
+                            <button mat-raised-button color="primary" [disabled]="familyproForm.form.invalid" (click)=" update()">update</button>&nbsp;
+                            <button mat-raised-button (click)="viewpage()">Cancel</button>
+                        </div>
+                  
+            </div>
+         </div>
     </form><!--end of form-->
 </div><!--end of container div -->
 
@@ -190,13 +194,13 @@
         </tr>
         <tr></tr>
         <tr>
-            <td>FirstName:&nbsp;{{profile.firstname}}</td>
-            <td>MiddleName:&nbsp;{{profile.middlename}}</td>
-            <td>LastName:&nbsp;{{profile.lastname}}</td>
+            <td>First Name:&nbsp;{{profile.firstname}}</td>
+            <td>Middle Name:&nbsp;{{profile.middlename}}</td>
+            <td>Last Name:&nbsp;{{profile.lastname}}</td>
         </tr>
         <tr>
             <td>Date Of Birth:&nbsp;{{profile.dateOfBirth | date: 'd/M/y'}}</td>
-            <td>MobileNumber:&nbsp;{{profile.phonenumber}}</td>
+            <td>Mobile Number:&nbsp;{{profile.phonenumber}}</td>
             <td>EmailId:&nbsp;{{profile.email}}</td>
         </tr>
     </table><!--end of table-->
