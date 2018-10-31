@@ -12,7 +12,8 @@ import { FamilyprofileService } from 'app/family/familyprofile/familyprofile.ser
 import { CustomMaterialModule } from 'app/custom-material.module';
 import { FamilyprofileComponent } from 'app/family/familyprofile/familyprofile.component';
 import { FamilyserviceService } from 'app/family/familyservice.service';
-import { CustomDirectiveModule } from 'app/pratik/directive/directive.module';
+import { CustomDirectiveModule } from '../pratik/directive/directive.module';
+// import { MyprofileRouteService } from 'app/family/myprofile/myprofileRoute.service';
 
 @NgModule({
     imports: [

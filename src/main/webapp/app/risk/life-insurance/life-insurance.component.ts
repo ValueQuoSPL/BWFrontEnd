@@ -82,7 +82,7 @@ export class LifeInsuranceComponent implements OnInit {
                 const account = response.body;
                 if (account) {
                     this.uid = account.id;
-                    this.getGoal(this.uid);
+                    this.getGoal();
                     this.getCredit(this.uid);
                     this.getLoan(this.uid);
                     this.onGetLife();
@@ -93,8 +93,8 @@ export class LifeInsuranceComponent implements OnInit {
             .catch(err => {});
     }
 
-    getGoal(uid) {
-        this.goalService.getgoalbyid(uid).subscribe((response: any[]) => {
+    getGoal() {
+        this.goalService.getgoalbyid().subscribe((response: any[]) => {
             this.dynamicGoalArray = response;
             for (let i = 0; i < this.dynamicGoalArray.length; i++) {
                 this.futurecost = this.dynamicGoalArray[i].futurecost;
@@ -167,7 +167,7 @@ export class LifeInsuranceComponent implements OnInit {
     }
 
     opnLife(id, lifeContent) {
-        this.getGoal(this.uid);
+        this.getGoal();
         this.commanId = id;
         this.modalService.open(lifeContent, { ariaLabelledBy: 'lifeModal' }).result.then(
             result => {

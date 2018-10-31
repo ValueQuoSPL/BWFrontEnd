@@ -10,7 +10,17 @@ export class MyprofileService {
     ServiceAPIParam: any;
     user: any;
     uid: any;
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) {} // private account: AccountService
+
+    // FetchId(): Promise<any> {
+    //     return this.account
+    //         .get()
+    //         .toPromise()
+    //         .then(response => {
+    //             this.user = response.body;
+    //             this.uid = this.user.id;
+    //         });
+    // }
 
     // FetchId(): Promise<any> {
     //     return this.account
