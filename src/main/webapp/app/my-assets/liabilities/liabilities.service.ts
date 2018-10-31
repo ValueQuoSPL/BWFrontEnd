@@ -3,18 +3,24 @@ import { HttpClient } from '@angular/common/http';
 import { SERVER_API_URL } from 'app/app.constants';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class LiabilitiesService {
-  constructor(private _http: HttpClient) {}
-  getloan(uid) {
-    const url = SERVER_API_URL + 'api/loananddebt/getloandebt/' + uid;
-    return this._http.get(url, { observe: 'body' });
-  }
+    constructor(private _http: HttpClient) {}
+    getloan(uid) {
+        const url = SERVER_API_URL + 'api/loananddebt/getloandebt/' + uid;
+        return this._http.get(url, { observe: 'body' });
+    }
 
-  // update the loan information
-  updateloan(loan, uid) {
-    const url = SERVER_API_URL + 'api/loananddebt/putloandebt/' + uid;
-    return this._http.put(url, loan);
-  }
+    // update the loan information
+    updateloan(loan, uid) {
+        console.log(loan);
+        const url = SERVER_API_URL + 'api/loananddebt/putloandebt/' + uid;
+        return this._http.put(url, loan);
+    }
+
+    // getById(id) {
+    //   const url = SERVER_API_URL + 'api/loananddebt/getlaondebtId/' + id;
+    //   return this._http.get(url, { observe: 'body' });
+    // }
 }
