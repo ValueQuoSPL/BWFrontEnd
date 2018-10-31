@@ -94,7 +94,7 @@ export class LifeInsuranceComponent implements OnInit {
     }
 
     getGoal(uid) {
-        this.goalService.getgoalbyid(uid).subscribe((response: any[]) => {
+        this.goalService.getgoalbyid().subscribe((response: any[]) => {
             this.dynamicGoalArray = response;
             for (let i = 0; i < this.dynamicGoalArray.length; i++) {
                 this.futurecost = this.dynamicGoalArray[i].futurecost;
