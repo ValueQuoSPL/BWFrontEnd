@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FAO } from './futureoption.modal';
+import { FAO } from 'app/my-assets/future-option/futureoption.modal';
 import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FutureOptionService } from './futureoption.service';
+import { FutureOptionService } from 'app/my-assets/future-option/futureoption.service';
 
 @Component({
     selector: 'jhi-futureoption',

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AccountService } from 'app/core';
 import { Observable } from 'rxjs';
-import { Utility } from '../spending.model';
-import { UtilityService } from '../spending.service';
+import { Utility } from 'app/pratik/spending/spending.model';
+import { UtilityService } from 'app/pratik/spending/spending.service';
 import { SpendingRouteGuardService } from 'app/pratik/common/spending-route-guard.service';
 
 class NewUtility {

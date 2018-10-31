@@ -18,9 +18,9 @@ import {
     PasswordResetFinishComponent,
     SettingsComponent,
     accountState
-} from './';
+} from 'app/account';
 import { CustomMaterialModule } from 'app/custom-material.module';
-import { MobileOtpComponent } from './mobile-otp/mobile-otp.component';
+import { MobileOtpComponent } from 'app/account/mobile-otp/mobile-otp.component';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';

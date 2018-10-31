@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Property } from './property.modal';
+import { Property } from 'app/my-assets/property/property.modal';
 import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { PropertyService } from './property.service';
+import { PropertyService } from 'app/my-assets/property/property.service';
 
 @Component({
     selector: 'jhi-property',

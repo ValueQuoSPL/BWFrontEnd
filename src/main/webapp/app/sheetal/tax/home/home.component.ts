@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Home } from './home.model';
-import { HomeService } from './home.service';
+import { Home } from 'app/sheetal/tax/home/home.model';
+import { HomeService } from 'app/sheetal/tax/home/home.service';
 import { AccountService } from 'app/core';
 import { NgbModalRef, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 

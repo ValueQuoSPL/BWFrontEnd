@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { LiabilitiesService } from 'app/my-assets/liabilities/liabilities.service';
 import { AccountService, Principal, LoginModalService } from 'app/core';
-import { FormControl } from '../../../../../../node_modules/@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Loan } from 'app/pratik/spending/spending.model';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'jhi-liabilities',
     templateUrl: './liabilities.component.html',
-    styleUrls: []
+    styleUrls: ['liabilities.component.css']
 })
 export class LiabilitiesComponent implements OnInit {
     steps = 0;
@@ -25,6 +25,7 @@ export class LiabilitiesComponent implements OnInit {
     tempArray: any = [];
     tempLongArray: any = [];
     loann: Loan = new Loan();
+    result: any = [];
     modalRef: NgbModalRef;
 
     LoanTypeArray = [
@@ -148,6 +149,7 @@ export class LiabilitiesComponent implements OnInit {
             }
         );
     }
+
     fillModal(id) {
         this.tempArray = this.shortLiability;
         for (let i = 0; i < this.tempArray.length; i++) {
@@ -168,7 +170,7 @@ export class LiabilitiesComponent implements OnInit {
     setLoan(id) {
         for (let i = 0; i < this.shortLiability.length; i++) {
             if (this.shortLiability[i].id === id) {
-                this.shortLiability[i].id = this.loann.id;
+                this.shortLiability[i].id = id;
                 this.shortLiability[i].ltype = this.loann.loan_type;
                 this.shortLiability[i].lenderName = this.loann.lender;
                 this.shortLiability[i].appName = this.loann.applicant;
@@ -204,7 +206,7 @@ export class LiabilitiesComponent implements OnInit {
     setLoann(id) {
         for (let i = 0; i < this.longLiability.length; i++) {
             if (this.longLiability[i].id === id) {
-                this.longLiability[i].id = this.loann.id;
+                this.longLiability[i].id = id;
                 this.longLiability[i].ltype = this.loann.loan_type;
                 this.longLiability[i].lenderName = this.loann.lender;
                 this.longLiability[i].appName = this.loann.applicant;

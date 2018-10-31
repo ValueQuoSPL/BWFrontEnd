@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Eightyd } from './eightyd.model';
-import { EightydService } from './eightyd.service';
+import { Eightyd } from 'app/sheetal/tax/eightyd/eightyd.model';
+import { EightydService } from 'app/sheetal/tax/eightyd/eightyd.service';
 import { AccountService } from 'app/core';
 import { NgbModalRef, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 

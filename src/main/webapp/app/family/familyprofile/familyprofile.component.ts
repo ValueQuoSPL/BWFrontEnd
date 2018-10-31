@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';
 import { log } from 'util';
 import { Component, OnInit } from '@angular/core';
-import { FamilyprofileService } from './familyprofile.service';
+import { FamilyprofileService } from 'app/family/familyprofile/familyprofile.service';
 import { AccountService, LoginModalService, Principal } from 'app/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
@@ -77,20 +77,34 @@ export class FamilyprofileComponent implements OnInit {
     }
     // editDetail Method to Edit Info of Familyprofile
     editDetail() {
-        this.isValid = false;
-        this.familyProfile.relationship = this.output[0].relationship;
-        this.familyProfile.firstname = this.output[0].firstname;
-        this.familyProfile.middlename = this.output[0].middlename;
-        this.familyProfile.lastname = this.output[0].lastname;
-        this.familyProfile.dateOfBirth = this.output[0].dateOfBirth;
-        this.familyProfile.email = this.output[0].email;
-        this.familyProfile.phonenumber = this.output[0].phonenumber;
-        this.familyProfile.uid = this.uid;
-        this.show = false;
+        console.log(this.output);
+        for (let index = 0; index < this.output.length; index++) {
+            this.isValid = false;
+            this.familyProfile.relationship = this.output[index].relationship;
+            this.familyProfile.firstname = this.output[index].firstname;
+            this.familyProfile.middlename = this.output[index].middlename;
+            this.familyProfile.lastname = this.output[index].lastname;
+            this.familyProfile.dateOfBirth = this.output[index].dateOfBirth;
+            this.familyProfile.email = this.output[index].email;
+            this.familyProfile.phonenumber = this.output[index].phonenumber;
+            this.familyProfile.uid = this.uid;
+            this.show = false;
+        }
+        // this.isValid = false;
+        // this.familyProfile.relationship = this.output[0].relationship;
+        // this.familyProfile.firstname = this.output[0].firstname;
+        // this.familyProfile.middlename = this.output[0].middlename;
+        // this.familyProfile.lastname = this.output[0].lastname;
+        // this.familyProfile.dateOfBirth = this.output[0].dateOfBirth;
+        // this.familyProfile.email = this.output[0].email;
+        // this.familyProfile.phonenumber = this.output[0].phonenumber;
+        // this.familyProfile.uid = this.uid;
+        // this.show = false;
     }
     // update Method to Update Info of Familyprofile
 
     update() {
+        console.log('in update', this.familyProfile);
         this.Familypro.updateProfile(this.familyProfile).subscribe(responce => {
             this.getFamilyProfilebyid(this.uid);
         });

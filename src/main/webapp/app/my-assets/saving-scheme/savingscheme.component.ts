@@ -3,7 +3,7 @@ import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SavingScheme } from 'app/my-assets/saving-scheme/savingscheme.modal';
-import { SavingSchemeService } from './savingscheme.service';
+import { SavingSchemeService } from 'app/my-assets/saving-scheme/savingscheme.service';
 
 @Component({
     selector: 'jhi-savingscheme',

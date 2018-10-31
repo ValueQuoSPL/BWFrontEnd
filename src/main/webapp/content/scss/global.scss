@@ -268,6 +268,9 @@ ui bootstrap tweaks
 .movable:not(.dragging) {
     transition: transform 500ms ease-in-out;
 }
+.spinner-margin {
+    margin: 0 10px;
+}
 
 .area {
     background: lightcyan;
@@ -291,7 +294,6 @@ ui bootstrap tweaks
 }
 .bwaccordtitle {
     font-size: 17px;
-    color: white;
     font-weight: bolder;
     font-family: 'Titillium Web';
 }
@@ -319,7 +321,7 @@ ui bootstrap tweaks
     background-color: #2e3192;
 }
 .accordcolor {
-    //background-color: #dcdcdc;
+    background-color: #f1592a;
 }
 //   .mat-expansion-panel {
 //     background: red;

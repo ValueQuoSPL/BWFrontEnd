@@ -1,20 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NumberOnlyDirective } from './number-only.directive';
+import { NumberOnlyDirective } from 'app/pratik/directive/number-only.directive';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BrowserModule
-  ],
-  declarations: [
-    NumberOnlyDirective
-  ],
-  exports: [
-    NumberOnlyDirective
-  ],
-  providers: [
-  ]
+    imports: [CommonModule, BrowserModule],
+    declarations: [NumberOnlyDirective],
+    exports: [NumberOnlyDirective],
+    providers: []
 })
-export class CustomDirectiveModule { }
+export class CustomDirectiveModule {}

@@ -45,6 +45,7 @@ export class LifeInsuranceComponent implements OnInit {
     tick: any;
     ischecked;
     unchecked;
+    name: any;
 
     constructor(
         private principal: Principal,
@@ -82,18 +83,18 @@ export class LifeInsuranceComponent implements OnInit {
                 const account = response.body;
                 if (account) {
                     this.uid = account.id;
-                    this.getGoal(this.uid);
+                    this.getGoal();
                     this.getCredit(this.uid);
                     this.getLoan(this.uid);
                     this.onGetLife();
-                    this.getName(this.uid);
+                    this.getName();
                 } else {
                 }
             })
             .catch(err => {});
     }
 
-    getGoal(uid) {
+    getGoal() {
         this.goalService.getgoalbyid().subscribe((response: any[]) => {
             this.dynamicGoalArray = response;
             for (let i = 0; i < this.dynamicGoalArray.length; i++) {
@@ -136,6 +137,7 @@ export class LifeInsuranceComponent implements OnInit {
 
     // life
     openLife(lifeContent) {
+        this.resetValue();
         this.sum();
         this.modalService.open(lifeContent, { ariaLabelledBy: 'lifeModal' }).result.then(
             result => {
@@ -153,12 +155,14 @@ export class LifeInsuranceComponent implements OnInit {
     }
 
     saveLifeInsurance() {
+        console.log(this.name);
         this.lifeInsurance.userid = this.uid;
         this.lifeArray.push({
             risk_coverage: this.lifeInsurance.risk_coverage,
             expense_cover: this.lifeInsurance.expense_cover,
             total_yearly_expenses: this.lifeInsurance.total,
-            userid: this.lifeInsurance.userid
+            userid: this.lifeInsurance.userid,
+            name: this.lifeInsurance.name
         });
         this.riskService.SaveLifeInsurance(this.lifeInsurance).subscribe(data => {
             alert('Added new stocks details');
@@ -167,26 +171,26 @@ export class LifeInsuranceComponent implements OnInit {
     }
 
     opnLife(id, lifeContent) {
-        this.getGoal(this.uid);
+        this.getGoal();
         this.commanId = id;
         this.modalService.open(lifeContent, { ariaLabelledBy: 'lifeModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
-                this.update(this.commanId);
+                this.update();
             },
             reason => {
                 this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             }
         );
     }
-    // deleteField(index, id) {}
+
     onGetLife() {
         this.riskService.getLifeInsurance(this.uid).subscribe(data => {
             this.goalLife = data;
         });
     }
     // update service for lifeInsurance
-    update(commanId) {
+    update() {
         this.lifeInsurance.id = this.commanId;
         this.lifeInsurance.userid = this.uid;
         console.log(this.lifeInsurance);
@@ -194,7 +198,7 @@ export class LifeInsuranceComponent implements OnInit {
             this.onGetLife();
         });
     }
-
+    // deleteField(index, id) {}
     deleteField(index, id) {
         this.riskService.delete(id).subscribe(data => {});
         this.goalLife.splice(index, 1);
@@ -212,7 +216,7 @@ export class LifeInsuranceComponent implements OnInit {
     }
 
     // get family profile name
-    getName(uid) {
+    getName() {
         this.riskService.getFamilyName(this.uid).subscribe(data => {
             this.familyName = data;
         });
@@ -233,5 +237,14 @@ export class LifeInsuranceComponent implements OnInit {
                 }
             }
         }
+    }
+
+    resetValue() {
+        this.lifeInsurance.id = null;
+        this.lifeInsurance.userid = null;
+        this.lifeInsurance.expense_cover = null;
+        this.lifeInsurance.risk_coverage = null;
+        this.lifeInsurance.name = null;
+        this.lifeInsurance.total_yearly_expenses = null;
     }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Gross } from './gross.model';
-import { GrossService } from './gross.service';
+import { Gross } from 'app/sheetal/tax/gross/gross.model';
+import { GrossService } from 'app/sheetal/tax/gross/gross.service';
 import { AccountService } from 'app/core';
 import { NgbModalRef, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 

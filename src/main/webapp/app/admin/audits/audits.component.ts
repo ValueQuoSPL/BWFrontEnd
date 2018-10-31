@@ -5,8 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { ITEMS_PER_PAGE } from 'app/shared';
-import { Audit } from './audit.model';
-import { AuditsService } from './audits.service';
+import { Audit } from 'app/admin/audits/audit.model';
+import { AuditsService } from 'app/admin/audits/audits.service';
 
 @Component({
     selector: 'jhi-audit',

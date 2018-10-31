@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Cash } from './cash.modal';
+import { Cash } from 'app/my-assets/cash/cash.modal';
 import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { CashService } from './cash.service';
+import { CashService } from 'app/my-assets/cash/cash.service';
 
 @Component({
     selector: 'jhi-cash',

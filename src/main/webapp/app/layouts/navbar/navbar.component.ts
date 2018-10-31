@@ -4,14 +4,14 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { HostListener } from '@angular/core';
 import { Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
-import { WINDOW } from './window.service';
+import { WINDOW } from 'app/layouts/navbar/window.service';
 
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { Principal, LoginModalService, LoginService, JhiLanguageHelper } from 'app/core';
 
 import { VERSION } from 'app/app.constants';
-import { JhiMainComponent } from '../main/main.component';
-import { SidebarComponent } from '../sidebar/sidebar.component';
+import { JhiMainComponent } from 'app/layouts/main/main.component';
+import { SidebarComponent } from 'app/layouts/sidebar/sidebar.component';
 import { Register } from 'app/account';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { JhiLanguageService } from 'ng-jhipster';
