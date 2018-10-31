@@ -20,8 +20,10 @@
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <jhi-main>
-            <div class="bwtextlogo">
+            <!-- <div class="bwtextlogo">
                     <img src="content/images/bwtext.gif" alt="Buckswise.com">
+            </div> -->
+            <div class="lds-hourglass">
             </div>
     </jhi-main>
     <noscript>
@@ -39,18 +41,18 @@
            }
         }
     </script>
-    <!-- uncomment this for adding service worker
+    <!-- uncomment this for adding service worker-->
         <script>
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
-                    navigator.serviceWorker.register('/service-worker.js')
+                    navigator.serviceWorker.register('/sw.js')
                         .then(function () {
                             console.log('Service Worker Registered');
                         });
                 });
             }
         </script>
-    -->
+    
     <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
     <script>
         (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
