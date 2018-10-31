@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Renderer, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, Renderer, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
@@ -14,7 +14,7 @@ class PromoCodeModel {
     id;
     plan;
     promocode;
-    expiryDate;
+    expiryDate: Date;
     discount: number;
 }
 
@@ -35,13 +35,17 @@ export class PromoCodeComponent implements AfterViewInit {
     amount: number;
     promoModel: PromoCodeModel = new PromoCodeModel();
 
+    dbDate: any;
+    nowDate: any;
+
     constructor(
         private promoCodeService: PromoCodeService,
         private elementRef: ElementRef,
         private renderer: Renderer,
         public activeModal: NgbActiveModal,
         private managePromoService: PromoCodeManageService,
-        private alertService: JhiAlertService
+        private alertService: JhiAlertService,
+        private cd: ChangeDetectorRef
     ) {
         this.credentials = {};
     }
@@ -49,6 +53,7 @@ export class PromoCodeComponent implements AfterViewInit {
     ngAfterViewInit() {
         this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#promocode'), 'focus', []);
         this.loadAll();
+        this.cd.detectChanges();
     }
 
     cancel() {
@@ -79,29 +84,35 @@ export class PromoCodeComponent implements AfterViewInit {
 
             if (element.promocode === this.promocode) {
                 this.valid = true;
-
                 this.promoModel.id = element.id;
                 this.promoModel.plan = element.plan;
                 this.promoModel.discount = +element.discount;
                 this.promoModel.expiryDate = element.expiryDate;
                 this.promoModel.promocode = element.promocode;
 
-                if (element.expiryDate < this.currentDate.toJSON()) {
-                    // console.log('expired');
-                    this.valid = true;
-                    this.expired = true;
-                } else {
-                    // console.log('not expired');
+                const db = new Date(element.expiryDate);
+                const d = db.getDate();
+                const m = db.getMonth();
+                const y = db.getFullYear();
+                this.dbDate = new Date(y, m, d);
+
+                const dd = this.currentDate.getDate();
+                const mm = this.currentDate.getMonth();
+                const yy = this.currentDate.getFullYear();
+                this.nowDate = new Date(yy, mm, dd);
+
+                if (this.dbDate >= this.nowDate) {
                     this.discount = element.discount;
                     this.expired = false;
                     found = 1;
+                } else {
+                    this.valid = true;
+                    this.expired = true;
                 }
                 break;
             } else {
                 this.valid = false;
                 this.expired = false;
-                // console.log('not found');
-                // console.log('valid', this.valid);
                 found = 0;
             }
         }

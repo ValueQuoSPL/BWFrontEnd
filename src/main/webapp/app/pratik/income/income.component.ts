@@ -36,22 +36,21 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     uid: any;
     modalRef: NgbModalRef;
     account: any;
-    isIncomeData;
-    loadIncome = false;
     dynamicTotal: number;
     nameField;
     editField;
     panelOpenState;
 
-    changesSaved: boolean;
-    dataChanged: boolean;
     globalflag: boolean;
+    loadIncome: boolean;
+    dataChanged: boolean;
+    isIncomeData: boolean;
+    changesSaved: boolean;
+    isFieldChange: boolean;
 
     prevValue;
-    isFieldChange = false;
 
     constructor(
-        private accountService: AccountService,
         private modalService: NgbModal,
         private incomeService: IncomeService,
         private loginModalService: LoginModalService,
@@ -70,27 +69,24 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         this.income.incomePension = 0;
         this.income.incomeRental = 0;
         this.income.incomeSaving = 0;
-        this.changesSaved = false;
+        this.globalflag = false;
+        this.loadIncome = false;
         this.dataChanged = true;
-    }
-
-    isAuthenticated() {
-        return this.principal.isAuthenticated();
-    }
-
-    login() {
-        this.modalRef = this.loginModalService.open();
+        this.isIncomeData = false;
+        this.changesSaved = false;
+        this.isFieldChange = false;
     }
 
     getUserid() {
         this.commonService.account.subscribe(account => {
             this.account = account;
             this.uid = this.account.id;
+            this.onIncomeGet(this.uid);
         });
     }
 
-    onIncomeGet() {
-        this.incomeService.GetIncome(this.uid).subscribe((response: any[]) => {
+    onIncomeGet(uid) {
+        this.incomeService.GetIncome(uid).subscribe((response: any[]) => {
             this.tempIncomeArray = response;
             if (this.tempIncomeArray.length === 0) {
                 this.isIncomeData = false;
@@ -202,7 +198,7 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         });
         this.newIncome.userid = this.uid;
         this.incomeService.PostIncome(this.newIncome).subscribe(data => {
-            this.onIncomeGet();
+            this.onIncomeGet(this.uid);
         });
         this.clear();
     }
@@ -221,7 +217,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         this.income.userid = this.uid;
         // this.income.dynamicIncome = this.dynamicIncome;
         this.incomeService.PostIncome(this.income).subscribe(data => {
-            alert('Your data saved');
             this.isIncomeData = true;
             this.changesSaved = true;
         });
@@ -231,7 +226,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         this.income.userid = this.uid;
         this.income.dynamicIncome = this.dynamicIncome;
         this.incomeService.PutIncome(this.income, this.uid).subscribe(data => {
-            alert('Your data saved');
             this.changesSaved = true;
         });
     }
