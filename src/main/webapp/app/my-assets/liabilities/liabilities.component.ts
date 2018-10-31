@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { LiabilitiesService } from 'app/my-assets/liabilities/liabilities.service';
 import { AccountService, Principal, LoginModalService } from 'app/core';
-import { FormControl } from '../../../../../../node_modules/@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Loan } from 'app/pratik/spending/spending.model';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 

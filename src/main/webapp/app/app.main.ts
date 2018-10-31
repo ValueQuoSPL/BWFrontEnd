@@ -1,6 +1,6 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { ProdConfig } from './blocks/config/prod.config';
-import { BuckswiseFrontEndAppModule } from './app.module';
+import { ProdConfig } from 'app/blocks/config/prod.config';
+import { BuckswiseFrontEndAppModule } from 'app/app.module';
 
 ProdConfig();
 

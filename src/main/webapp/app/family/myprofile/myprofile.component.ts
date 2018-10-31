@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Myprofile } from '../family.model';
-import { MyprofileService } from './myprofile.service';
+import { Myprofile } from 'app/family/family.model';
+import { MyprofileService } from 'app/family/myprofile/myprofile.service';
 import { AccountService, Principal } from 'app/core';
 import { FormControl } from '@angular/forms';
 @Component({

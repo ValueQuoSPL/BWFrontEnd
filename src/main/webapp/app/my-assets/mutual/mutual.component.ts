@@ -3,7 +3,7 @@ import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MutualFund } from 'app/my-assets/mutual/mutual.modal';
-import { MutualfundService } from './mutual.service';
+import { MutualfundService } from 'app/my-assets/mutual/mutual.service';
 
 @Component({
     selector: 'jhi-mutualfund',

@@ -15,16 +15,16 @@
 // // }];
 import { Route } from '@angular/router';
 
-import { GoalComponent } from './';
+import { GoalComponent } from 'app/goal';
 // import { GoalSelectComponent } from './Goal-select/goalselect.component';
 
 export const goalRoot: Route = {
-  path: 'goal',
-  component: GoalComponent,
-  data: {
-    authorities: [],
-    pageTitle: 'goal.title'
-  }
+    path: 'goal',
+    component: GoalComponent,
+    data: {
+        authorities: [],
+        pageTitle: 'goal.title'
+    }
 };
 // import { Routes } from '@angular/router';
 

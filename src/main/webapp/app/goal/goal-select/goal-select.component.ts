@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Principal, LoginModalService } from 'app/core';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { GoalselectService } from './goalselect.service';
+import { GoalselectService } from 'app/goal/goal-select/goalselect.service';
 import { MatDialog } from '@angular/material';
 import { MutualfundService } from 'app/my-assets/mutual/mutual.service';
-import { GoalAddButtonComponent } from '../../goal/goal-add-button/goal-add-button.component';
+import { GoalAddButtonComponent } from 'app/goal/goal-add-button/goal-add-button.component';
 import { AlternateService } from 'app/my-assets/alternate-investment/alternateinvest.service';
 import { CashService } from 'app/my-assets/cash/cash.service';
 import { ChitFundService } from 'app/my-assets/chit-funds/chitfund.service';
@@ -27,7 +27,7 @@ import {
     EmergencyFundSelect,
     RetirementFundSelect,
     NewGoalSelect
-} from './goalselect.model';
+} from 'app/goal/goal-select/goalselect.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AccountService } from 'app/core';
 

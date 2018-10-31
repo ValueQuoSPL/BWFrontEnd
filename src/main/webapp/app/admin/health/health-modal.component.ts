@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { JhiHealthService } from './health.service';
+import { JhiHealthService } from 'app/admin/health/health.service';
 
 @Component({
     selector: 'jhi-health-modal',

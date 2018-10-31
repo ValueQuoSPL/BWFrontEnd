@@ -1,2 +1,2 @@
-export * from './appointment.component';
-export * from './appointment.route';
+export * from 'app/appointment/appointment.component';
+export * from 'app/appointment/appointment.route';
