@@ -4,6 +4,7 @@ import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FutureOptionService } from 'app/my-assets/future-option/futureoption.service';
+import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-futureoption',
@@ -21,27 +22,35 @@ export class FutureOptionComponent implements OnInit {
     FutureOptionDetails: any;
     fao: FAO = new FAO();
     isSaving;
-
+    account: any;
     constructor(
-        private account: AccountService,
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
-        public futureOptionService: FutureOptionService
+        public futureOptionService: FutureOptionService,
+        public commonService: CommonSidebarService
     ) {}
 
     ngOnInit() {
         this.FetchId();
     }
-    FetchId(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.fao.userid = this.user.id;
-                this.uid = this.fao.userid;
-                this.getFAOByUid(this.uid);
-            });
+    // FetchId(): Promise<any> {
+    //     return this.account
+    //         .get()
+    //         .toPromise()
+    //         .then(response => {
+    //             this.user = response.body;
+    //             this.fao.userid = this.user.id;
+    //             this.uid = this.fao.userid;
+    //             this.getFAOByUid(this.uid);
+    //         });
+    // }
+    FetchId() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.fao.userid = this.account.id;
+            this.getFAOByUid(this.uid);
+        });
     }
     private getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
