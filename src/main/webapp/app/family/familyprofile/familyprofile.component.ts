@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';
 import { log } from 'util';
 import { Component, OnInit } from '@angular/core';
-import { FamilyprofileService } from './familyprofile.service';
+import { FamilyprofileService } from 'app/family/familyprofile/familyprofile.service';
 import { AccountService, LoginModalService, Principal } from 'app/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
