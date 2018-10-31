@@ -23,68 +23,45 @@ export class HomeComponent implements OnInit {
     closeResult: string;
     changesSaved: boolean;
     dataChanged: boolean;
+    globalflag: boolean;
+    prevValue;
+    isFieldChange = false;
+    universalflag: boolean;
 
     constructor(private modalService: NgbModal, private homeService: HomeService, private account: AccountService) {}
 
     ngOnInit() {
         // for Home
-        this.home.hoamloan = 0;
-        this.home.prncpalloan = 0;
-        this.home.rentclm = 0;
-        this.home.remintrst = 0;
-        this.home.rentclmgg = 0;
         this.FetchID();
         this.changesSaved = true;
     }
     // Home reset
     resetHome() {
-        this.home.hoamloan = 0;
-        this.home.prncpalloan = 0;
-        this.home.rentclm = 0;
-        this.home.remintrst = 0;
-        this.home.rentclmgg = 0;
+        this.home.hoamloan = '';
+        this.home.prncpalloan = '';
+        this.home.rentclm = '';
+        this.home.remintrst = '';
+        this.home.rentclmgg = '';
     }
     onHomeSave() {
-        this.homeService.save(this.home).subscribe(
-            responce => {
-                console.log(responce), this.onHomeGet();
-                // alert("data update successfully");
-            },
-            error => console.log(error)
-        );
+        this.homeService.save(this.home).subscribe(responce => {
+            this.onHomeGet();
+        });
         this.valid = true;
     }
     updateHome() {
-        console.log(' in update method other', this.home);
         this.homeService.PutHome(this.home).subscribe(data => {
-            alert('Your data update');
             this.changesSaved = true;
         });
     }
 
     onHomeGet() {
-        console.log('in homeget ts uid', this.uid);
         this.homeService.gethome(this.uid).subscribe(res => {
-            console.log(res);
             this.homeout = res;
-            console.log('eightyc data in homeResponse', this.homeout);
-            for (let i = 0; i < this.homeout.length; i++) {
-                const element = this.homeout[i];
-                this.home.hoamloan = element.hoamloan;
-                this.home.prncpalloan = element.prncpalloan;
-                this.home.rentclm = element.rentclm;
-                this.home.remintrst = element.remintrst;
-                this.home.rentclmgg = element.rentclmgg;
-                this.home.uid = element.uid;
-                this.home.id = element.id;
-                console.log('eightycResponse id', this.home.id);
-            }
             if (this.homeout.length === 0) {
                 this.valid = false;
-                console.log('in if valid value', this.valid);
             } else {
                 this.valid = true;
-                console.log('in else valid value', this.valid);
             }
         });
     }
@@ -117,15 +94,27 @@ export class HomeComponent implements OnInit {
             this.nameField = 'Amount';
             this.editField = this.homeout[0].rentclmgg;
         }
-        this.modalService.open(homeEditContent, { ariaLabelledBy: 'homeEditContent' }).result.then(
-            result => {
-                this.closeResult = `Closed with: ${result}`;
-                this.FillEditHome(nameField);
-            },
-            reason => {
-                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-            }
-        );
+        {
+            this.prevValue = this.editField;
+            this.modalService.open(homeEditContent, { ariaLabelledBy: 'homeEditContent' }).result.then(
+                result => {
+                    this.closeResult = `Closed with: ${result}`;
+                    this.FillEditHome(nameField);
+                },
+                reason => {
+                    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+                }
+            );
+        }
+    }
+    DetectChange(event) {
+        if (this.prevValue === event || this.prevValue === null) {
+            this.globalflag = false;
+            this.isFieldChange = false;
+        } else {
+            this.globalflag = true;
+            this.isFieldChange = true;
+        }
     }
     getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
@@ -152,6 +141,15 @@ export class HomeComponent implements OnInit {
         } else if (nameField === 'Mentioned the Rent claimed') {
             this.home.rentclmgg = this.editField;
             this.homeout[0].rentclmgg = this.home.rentclmgg;
+        }
+    }
+    FindValue(event) {
+        if (this.prevValue === event || this.prevValue === null) {
+            this.universalflag = false;
+            this.isFieldChange = false;
+        } else {
+            this.universalflag = true;
+            this.isFieldChange = true;
         }
     }
 }

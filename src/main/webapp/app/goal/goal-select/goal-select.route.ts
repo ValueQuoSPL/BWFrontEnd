@@ -1,3 +1,4 @@
+import { GoalResolveService } from 'app/goal/goal-select/goal-selectResolve.service';
 import { Route } from '@angular/router';
 
 import { GoalSelectComponent } from 'app/goal/goal-select/goal-select.component';
@@ -8,5 +9,6 @@ export const goalSelectRoute: Route = {
     data: {
         authorities: [],
         pageTitle: 'goal.title'
-    }
+    },
+    resolve: { goalselect: GoalResolveService }
 };

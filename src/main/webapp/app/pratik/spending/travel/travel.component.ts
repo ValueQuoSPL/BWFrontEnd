@@ -180,7 +180,6 @@ export class TravelComponent implements OnInit {
         if (this.isSaveFieldChanged()) {
             this.travel.userid = this.uid;
             this.travelService.PostTravel(this.travel).subscribe(data => {
-                alert('Your travel data saved');
                 this.isTravelData = true;
                 this.routeGuard.GuardSource.next(false);
             });
@@ -220,9 +219,9 @@ export class TravelComponent implements OnInit {
             this.nameField = 'Hobby';
             this.editField = this.travel.hobby;
         }
-        this.prevValue = this.editField;
 
         {
+            this.prevValue = this.editField;
             this.modalService.open(modal, { ariaLabelledBy: 'travelModal' }).result.then(
                 result => {
                     this.closeResult = `Closed with: ${result}`;
@@ -242,7 +241,7 @@ export class TravelComponent implements OnInit {
         } else if (nameField === 'entertainment') {
             this.travel.entertainment = this.editField;
             this.editField = '';
-        } else if (nameField === 'vaction') {
+        } else if (nameField === 'vacation') {
             this.travel.vacation = this.editField;
             this.editField = '';
         } else if (nameField === 'dineout') {
@@ -277,7 +276,6 @@ export class TravelComponent implements OnInit {
         this.travel.userid = this.uid;
         this.travel.dynamicTravel = this.dynamicTravel;
         this.travelService.PutTravel(this.travel, this.uid).subscribe(data => {
-            alert('Your data saved');
             this.changesSaved = true;
             this.routeGuard.GuardSource.next(false);
         });

@@ -15,7 +15,7 @@ export class GrossComponent implements OnInit {
     output: any = [];
     gross: Gross = new Gross();
     grossout: any;
-    valid = true;
+    valid = false;
     modalRef: NgbModalRef;
     nameField: any;
     editField;
@@ -24,6 +24,10 @@ export class GrossComponent implements OnInit {
     dataChanged: boolean;
     dynamicgross: any;
     updateout: any = [];
+    universalflag: boolean;
+    globalflag: boolean;
+    prevValue;
+    isFieldChange = false;
 
     constructor(private modalService: NgbModal, private grossService: GrossService, private account: AccountService) {}
 
@@ -47,48 +51,48 @@ export class GrossComponent implements OnInit {
     }
     // Gross Reset
     resetGross() {
-        this.gross.bsalary = 0;
-        this.gross.da = 0;
-        this.gross.hra = 0;
-        this.gross.conveyance = 0;
-        this.gross.childedu = 0;
-        this.gross.medical = 0;
-        this.gross.lta = 0;
-        this.gross.otherallown = 0;
-        this.gross.bonus = 0;
-        this.gross.rentincome = 0;
-        this.gross.saving = 0;
-        this.gross.bonds = 0;
-        this.gross.conveyanceother = 0;
+        this.gross.bsalary = '';
+        this.gross.da = '';
+        this.gross.hra = '';
+        this.gross.conveyance = '';
+        this.gross.childedu = '';
+        this.gross.medical = '';
+        this.gross.lta = '';
+        this.gross.otherallown = '';
+        this.gross.bonus = '';
+        this.gross.rentincome = '';
+        this.gross.saving = '';
+        this.gross.bonds = '';
+        this.gross.conveyanceother = '';
     }
     onGrossGet(uid) {
         console.log('in grossget ts uid', this.uid);
         this.grossService.getgross(this.uid).subscribe(res => {
             this.output = res;
-            console.log('gross data in output', this.output);
-            for (let index = 0; index < this.output.length; index++) {
-                const element = this.output[index];
-                this.gross.bsalary = element.bsalary;
-                this.gross.da = element.da;
-                this.gross.hra = element.hra;
-                this.gross.conveyance = element.conveyance;
-                this.gross.childedu = element.childedu;
-                this.gross.medical = element.medical;
-                this.gross.lta = element.lta;
-                this.gross.otherallown = element.otherallown;
-                this.gross.bonus = element.bonus;
-                this.gross.rentincome = element.rentincome;
-                this.gross.saving = element.saving;
-                this.gross.bonds = element.bonds;
-                this.gross.conveyanceother = element.conveyanceother;
-                this.gross.uid = element.uid;
-                this.gross.id = element.id;
-            }
             if (this.output.length === 0) {
                 this.valid = false;
             } else {
                 this.valid = true;
             }
+            console.log('gross data in output', this.output);
+            // for (let index = 0; index < this.output.length; index++) {
+            //     const element = this.output[index];
+            //     this.gross.bsalary = element.bsalary;
+            //     this.gross.da = element.da;
+            //     this.gross.hra = element.hra;
+            //     this.gross.conveyance = element.conveyance;
+            //     this.gross.childedu = element.childedu;
+            //     this.gross.medical = element.medical;
+            //     this.gross.lta = element.lta;
+            //     this.gross.otherallown = element.otherallown;
+            //     this.gross.bonus = element.bonus;
+            //     this.gross.rentincome = element.rentincome;
+            //     this.gross.saving = element.saving;
+            //     this.gross.bonds = element.bonds;
+            //     this.gross.conveyanceother = element.conveyanceother;
+            //     this.gross.uid = element.uid;
+            //     this.gross.id = element.id;
+            // }
         });
     }
     onGrossSave() {
@@ -152,15 +156,31 @@ export class GrossComponent implements OnInit {
             this.nameField = 'Amount';
             this.editField = this.output[0].conveyanceother;
         }
-        this.modalService.open(grossEditContent, { ariaLabelledBy: 'grossEditContent' }).result.then(
-            result => {
-                this.closeResult = `Closed with: ${result}`;
-                this.FillEditGross(nameField);
-            },
-            reason => {
-                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-            }
-        );
+        this.prevValue = this.editField;
+        {
+            this.modalService.open(grossEditContent, { ariaLabelledBy: 'grossEditContent' }).result.then(
+                result => {
+                    this.closeResult = `Closed with: ${result}`;
+                    this.FillEditGross(nameField);
+                },
+                reason => {
+                    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+                }
+            );
+        }
+    }
+    DetectChange(event) {
+        console.log('input data', event);
+        console.log('prev value ', this.prevValue);
+        if (this.prevValue === event || this.prevValue === null) {
+            this.globalflag = false;
+            this.isFieldChange = false;
+            console.log('same');
+        } else {
+            this.globalflag = true;
+            this.isFieldChange = true;
+            console.log('differ');
+        }
     }
     getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
@@ -213,6 +233,19 @@ export class GrossComponent implements OnInit {
         } else if (nameField === 'conveyance') {
             this.gross.conveyanceother = this.editField;
             this.output[0].conveyanceother = this.gross.conveyanceother;
+        }
+    }
+    FindValue(event) {
+        console.log('input data', event);
+        console.log('prev value ', this.prevValue);
+        if (this.prevValue === event || this.prevValue === null) {
+            this.universalflag = false;
+            this.isFieldChange = false;
+            console.log('same');
+        } else {
+            this.universalflag = true;
+            this.isFieldChange = true;
+            console.log('differ');
         }
     }
 }

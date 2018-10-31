@@ -31,21 +31,21 @@
             </div>
 </ng-template>
 
-<!-- modal, edit dialog -->
-<ng-template #utilityEditContent let-c="close" let-d="dismiss">
+        <!-- modal, edit dialog -->
+    <ng-template #utilityEditContent let-c="close" let-d="dismiss">
         <div class="modal-header">
             <h4 class="modal-title" id="utilityEditContent">Utility Edit</h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-            <span aria-hidden="true">&times;</span>
+                <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
         <form class="example-container" #incomeAdd="ngForm">
             <div>
-                    <mat-label>{{ nameField }}</mat-label>
-                </div>
+                <mat-label>{{ nameField }}</mat-label>
+            </div>
             
-                <div>
+            <div>
                 <mat-form-field class="example-full-width">
                     <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" (ngModelChange)="DetectChange($event)"  name="amount-name" >
                     <mat-hint>Please enter amount</mat-hint>
@@ -53,7 +53,7 @@
                 </div>
                 <br> <br>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Add</button>
+                <button type="button" class="btn btn-outline-success" (click)="c('Save click')" [disabled]="!isFieldChange">Update</button>
             </div>
         </form>
         </div>
@@ -61,7 +61,7 @@
 
 <!--start of buttons -->
 <div>
-    <div class="float-right">
+    <div class="row pull-right">
         <button type="button" class="btn btn-link" data-toggle="modal" (click)="openUtility(content)">
             <span>
                 <i class="fa fa-plus" aria-hidden="true"></i>
@@ -69,9 +69,9 @@
             </span>
         </button>
 
-        <span [ngSwitch]="isUtilityData">
+        <span [ngSwitch]="isUtilityData" class="btn-right">
             <p *ngSwitchCase="true">
-                <button type="button" class="btn btn-link" (click)="UpdateUtility()">
+                <button type="button" class="btn btn-link" (click)="UpdateUtility()" [disabled]="!globalflag">
                     <span>
                         <i class="fa fa-save" aria-hidden="true"></i>
                         <span>Update</span>

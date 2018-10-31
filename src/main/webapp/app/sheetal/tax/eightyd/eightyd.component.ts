@@ -21,13 +21,14 @@ export class EightydComponent implements OnInit {
     closeResult: string;
     changesSaved: boolean;
     dataChanged: boolean;
+    globalflag: boolean;
+    prevValue;
+    isFieldChange = false;
+    universalflag: boolean;
 
     constructor(private modalService: NgbModal, private eightydService: EightydService, private account: AccountService) {}
 
     ngOnInit() {
-        this.eightyd.medself = 0;
-        this.eightyd.medparents = 0;
-        this.eightyd.healthcheck = 0;
         this.FetchID();
         this.changesSaved = true;
     }
@@ -49,9 +50,9 @@ export class EightydComponent implements OnInit {
         });
     }
     resetEightyd() {
-        this.eightyd.medself = 0;
-        this.eightyd.medparents = 0;
-        this.eightyd.healthcheck = 0;
+        this.eightyd.medself = '';
+        this.eightyd.medparents = '';
+        this.eightyd.healthcheck = '';
     }
 
     onEightydGet(uid) {
@@ -59,13 +60,6 @@ export class EightydComponent implements OnInit {
         this.eightydService.geteightyd(this.uid).subscribe(res => {
             console.log('eightyd res', res);
             this.eightydout = res;
-            for (let index = 0; index < this.eightydout.length; index++) {
-                const element = this.eightydout[index];
-                this.eightyd.medself = element.medself;
-                this.eightyd.medparents = element.medparents;
-                this.eightyd.healthcheck = element.healthcheck;
-                this.eightyd.id = element.id;
-            }
             if (this.eightydout.length === 0) {
                 this.valid = false;
             } else {
@@ -80,9 +74,7 @@ export class EightydComponent implements OnInit {
             .toPromise()
             .then(response => {
                 this.user = response.body;
-                console.log('user info', this.user);
                 this.eightyd.uid = this.user.id;
-                console.log('uid is', this.eightyd.uid);
                 this.uid = this.eightyd.uid;
                 this.onEightydGet(this.uid);
             });
@@ -102,15 +94,27 @@ export class EightydComponent implements OnInit {
             this.nameField = 'Amount of Preventive health checkup';
             this.editField = this.eightydout[0].healthcheck;
         }
-        this.modalService.open(eightydEditContent, { ariaLabelledBy: 'eightydEditContent' }).result.then(
-            result => {
-                this.closeResult = `Closed with: ${result}`;
-                this.FillEditEightyd(nameField);
-            },
-            reason => {
-                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-            }
-        );
+        {
+            this.prevValue = this.editField;
+            this.modalService.open(eightydEditContent, { ariaLabelledBy: 'eightydEditContent' }).result.then(
+                result => {
+                    this.closeResult = `Closed with: ${result}`;
+                    this.FillEditEightyd(nameField);
+                },
+                reason => {
+                    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+                }
+            );
+        }
+    }
+    DetectChange(event) {
+        if (this.prevValue === event || this.prevValue === null) {
+            this.globalflag = false;
+            this.isFieldChange = false;
+        } else {
+            this.globalflag = true;
+            this.isFieldChange = true;
+        }
     }
     getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
@@ -123,7 +127,6 @@ export class EightydComponent implements OnInit {
     }
 
     FillEditEightyd(nameField) {
-        console.log('inside fill edit eightyd');
         if (nameField === 'Medical Insurance for Self') {
             this.eightyd.medself = this.editField;
             this.eightydout[0].medself = this.eightyd.medself;
@@ -133,6 +136,16 @@ export class EightydComponent implements OnInit {
         } else if (nameField === 'Preventive Health Checkup') {
             this.eightyd.healthcheck = this.editField;
             this.eightydout[0].healthcheck = this.eightyd.healthcheck;
+        }
+    }
+
+    FindValue(event) {
+        if (this.prevValue === event || this.prevValue === null) {
+            this.universalflag = false;
+            this.isFieldChange = false;
+        } else {
+            this.universalflag = true;
+            this.isFieldChange = true;
         }
     }
 }

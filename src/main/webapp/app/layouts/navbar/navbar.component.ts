@@ -80,22 +80,11 @@ export class NavbarComponent implements OnInit, DoCheck {
             this.languages = languages;
         });
 
-        // this.profileService.getProfileInfo().then(profileInfo => {
-        //     this.inProduction = profileInfo.inProduction;
-        //     this.swaggerEnabled = profileInfo.swaggerEnabled;
-        // });
-
         if (this.isMobile) {
             this.transparent = 'solid';
         }
-        this.sidebarService.newlogin.subscribe(flag => {
-            if (flag === true) {
-                this.looggedIn = true;
-            } else {
-                this.looggedIn = false;
-            }
-        });
-        this.planService.isSubscribed.subscribe(flag => {
+
+        this.planService.isPaid.subscribe(flag => {
             if (flag === true) {
                 this.isPaid = true;
             } else {
@@ -153,7 +142,7 @@ export class NavbarComponent implements OnInit, DoCheck {
 
     logout() {
         this.isPaid = false;
-        this.sidebarService.newlogin.next(false);
+        this.sidebarService.account.next(false);
         this.collapseNavbar();
         this.loginService.logout();
         this.router.navigate(['']);

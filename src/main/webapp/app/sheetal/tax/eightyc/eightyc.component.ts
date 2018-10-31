@@ -22,12 +22,17 @@ export class EightycComponent implements OnInit {
     changesSaved: boolean;
     dataChanged: boolean;
     eightycResponseput: any = [];
+    universalflag: boolean;
+    globalflag: boolean;
+    prevValue;
+    isFieldChange = false;
 
     constructor(private modalService: NgbModal, private eightycService: EightycService, private Accountservice: AccountService) {}
 
     ngOnInit() {
         this.FetchID();
         this.changesSaved = true;
+        this.eightyc.fixed = 0;
     }
 
     FetchID(): Promise<any> {
@@ -37,15 +42,18 @@ export class EightycComponent implements OnInit {
                 this.user = response.body;
                 this.eightyc.uid = this.user.id;
                 this.uid = this.eightyc.uid;
-                this.onEightycGet(this.uid);
+                this.onEightycGet();
             });
     }
 
     // eightyc call function for post data
     onEightycSave() {
-        this.eightycService.save(this.eightyc).subscribe(responce => {
-            // alert("data update successfully");
-        });
+        this.eightycService.save(this.eightyc).subscribe(
+            responce => {
+                console.log(responce), this.onEightycGet();
+            },
+            error => console.log(error)
+        );
         this.valid = true;
     }
     // eightyc call function for update data
@@ -56,41 +64,24 @@ export class EightycComponent implements OnInit {
     }
     // // EightyC Reset
     resetEightyc() {
-        this.eightyc.fixed = 0;
-        this.eightyc.tution = 0;
-        this.eightyc.nsc = 0;
-        this.eightyc.nss = 0;
-        this.eightyc.post = 0;
-        this.eightyc.reinvest = 0;
-        this.eightyc.licpremium = 0;
-        this.eightyc.equity = 0;
-        this.eightyc.pf = 0;
-        this.eightyc.ppf = 0;
-        this.eightyc.other = 0;
-        this.eightyc.tutionfee = 0;
-        this.eightyc.ulip = 0;
+        this.eightyc.fixed = '';
+        this.eightyc.tution = '';
+        this.eightyc.nsc = '';
+        this.eightyc.nss = '';
+        this.eightyc.post = '';
+        this.eightyc.reinvest = '';
+        this.eightyc.licpremium = '';
+        this.eightyc.equity = '';
+        this.eightyc.pf = '';
+        this.eightyc.ppf = '';
+        this.eightyc.other = '';
+        this.eightyc.tutionfee = '';
+        this.eightyc.ulip = '';
     }
     // eightyc call function for retreive data
-    onEightycGet(uid) {
+    onEightycGet() {
         this.eightycService.geteightyc(this.uid).subscribe(res => {
             this.eightycResponse = res;
-            for (let index = 0; index < this.eightycResponse.length; index++) {
-                const element = this.eightycResponse[index];
-                this.eightyc.fixed = element.fixed;
-                this.eightyc.tution = element.tution;
-                this.eightyc.nsc = element.nsc;
-                this.eightyc.nss = element.nss;
-                this.eightyc.post = element.post;
-                this.eightyc.reinvest = element.reinvest;
-                this.eightyc.licpremium = element.licpremium;
-                this.eightyc.equity = element.equity;
-                this.eightyc.pf = element.pf;
-                this.eightyc.ppf = element.ppf;
-                this.eightyc.other = element.other;
-                this.eightyc.ulip = element.ulip;
-                this.eightyc.uid = element.uid;
-                this.eightyc.id = element.id;
-            }
             if (this.eightycResponse.length === 0) {
                 this.valid = false;
             } else {
@@ -137,15 +128,27 @@ export class EightycComponent implements OnInit {
             this.nameField = 'Amount';
             this.editField = this.eightycResponse[0].ulip;
         }
-        this.modalService.open(eightycEditContent, { ariaLabelledBy: 'eightycEditContent' }).result.then(
-            result => {
-                this.closeResult = `Closed with: ${result}`;
-                this.FillEditEightyc(nameField);
-            },
-            reason => {
-                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-            }
-        );
+        {
+            this.prevValue = this.editField;
+            this.modalService.open(eightycEditContent, { ariaLabelledBy: 'eightycEditContent' }).result.then(
+                result => {
+                    this.closeResult = `Closed with: ${result}`;
+                    this.FillEditEightyc(nameField);
+                },
+                reason => {
+                    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+                }
+            );
+        }
+    }
+    DetectChange(event) {
+        if (this.prevValue === event || this.prevValue === null) {
+            this.globalflag = false;
+            this.isFieldChange = false;
+        } else {
+            this.globalflag = true;
+            this.isFieldChange = true;
+        }
     }
     getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
@@ -193,6 +196,14 @@ export class EightycComponent implements OnInit {
         } else if (nameField === 'ULIP of UTI/LIC') {
             this.eightyc.ulip = this.editField;
             this.eightycResponse[0].ulip = this.eightyc.ulip;
+        }
+    }
+    FindValue(event) {
+        if (this.prevValue === event || this.prevValue === null) {
+            this.universalflag = false;
+            this.isFieldChange = false;
+            this.universalflag = true;
+            this.isFieldChange = true;
         }
     }
 }

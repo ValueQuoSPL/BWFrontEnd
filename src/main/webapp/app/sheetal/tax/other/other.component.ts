@@ -23,17 +23,15 @@ export class OtherComponent implements OnInit {
     closeResult: string;
     changesSaved: boolean;
     dataChanged: boolean;
+    globalflag: boolean;
+    prevValue;
+    isFieldChange = false;
+    universalflag: boolean;
 
     constructor(private modalService: NgbModal, private otherService: OtherService, private account: AccountService) {}
 
     ngOnInit() {
         // for other
-        this.other.handicapped = 0;
-        this.other.medicaltreat = 0;
-        this.other.selfedu = 0;
-        this.other.nps = 0;
-        this.other.rgess = 0;
-        this.other.donation = 0;
         this.FetchID();
         this.changesSaved = true;
     }
@@ -57,32 +55,17 @@ export class OtherComponent implements OnInit {
     }
     // Other Reset
     resetOther() {
-        this.other.handicapped = 0;
-        this.other.medicaltreat = 0;
-        this.other.selfedu = 0;
-        this.other.nps = 0;
-        this.other.rgess = 0;
-        this.other.donation = 0;
+        this.other.handicapped = '';
+        this.other.medicaltreat = '';
+        this.other.selfedu = '';
+        this.other.nps = '';
+        this.other.rgess = '';
+        this.other.donation = '';
     }
 
     onOtherGet() {
-        console.log('in eightycget ts uid', this.uid);
         this.otherService.getother(this.uid).subscribe(res => {
-            console.log(res);
             this.otherout = res;
-            console.log('eightyc data in eightycResponse', this.otherout);
-            for (let index = 0; index < this.otherout.length; index++) {
-                const element = this.otherout[index];
-                this.other.handicapped = element.handicapped;
-                this.other.medicaltreat = element.medicaltreat;
-                this.other.selfedu = element.selfedu;
-                this.other.nps = element.nps;
-                this.other.rgess = element.rgess;
-                this.other.donation = element.donation;
-                this.other.uid = element.uid;
-                this.other.id = element.id;
-                console.log('otherResponse id', this.other.id);
-            }
             if (this.otherout.length === 0) {
                 this.valid = false;
             } else {
@@ -122,15 +105,27 @@ export class OtherComponent implements OnInit {
             this.nameField = 'Amount';
             this.editField = this.otherout[0].donation;
         }
-        this.modalService.open(otherEditContent, { ariaLabelledBy: 'otherEditContent' }).result.then(
-            result => {
-                this.closeResult = `Closed with: ${result}`;
-                this.FillEditOther(nameField);
-            },
-            reason => {
-                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-            }
-        );
+        {
+            this.prevValue = this.editField;
+            this.modalService.open(otherEditContent, { ariaLabelledBy: 'otherEditContent' }).result.then(
+                result => {
+                    this.closeResult = `Closed with: ${result}`;
+                    this.FillEditOther(nameField);
+                },
+                reason => {
+                    this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+                }
+            );
+        }
+    }
+    DetectChange(event) {
+        if (this.prevValue === event || this.prevValue === null) {
+            this.globalflag = false;
+            this.isFieldChange = false;
+        } else {
+            this.globalflag = true;
+            this.isFieldChange = true;
+        }
     }
     getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
@@ -161,6 +156,15 @@ export class OtherComponent implements OnInit {
         } else if (nameField === 'donation') {
             this.other.donation = this.editField;
             this.otherout[0].donation = this.other.donation;
+        }
+    }
+    FindValue(event) {
+        if (this.prevValue === event || this.prevValue === null) {
+            this.universalflag = false;
+            this.isFieldChange = false;
+        } else {
+            this.universalflag = true;
+            this.isFieldChange = true;
         }
     }
 }

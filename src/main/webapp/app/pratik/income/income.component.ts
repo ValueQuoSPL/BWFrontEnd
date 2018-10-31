@@ -5,6 +5,7 @@ import { AccountService, LoginModalService, Principal } from 'app/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { CanComponentDeactivate } from 'app/pratik/common/can-deactivate-guard.service';
 import { Observable } from 'rxjs';
+import { CommonSidebarService } from '../common/sidebar.service';
 
 class NewIncome {
     dynamicIncome: any = [];
@@ -34,7 +35,7 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     step = 0;
     uid: any;
     modalRef: NgbModalRef;
-    account: Account;
+    account: any;
     isIncomeData;
     loadIncome = false;
     dynamicTotal: number;
@@ -54,7 +55,8 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         private modalService: NgbModal,
         private incomeService: IncomeService,
         private loginModalService: LoginModalService,
-        private principal: Principal
+        private principal: Principal,
+        private commonService: CommonSidebarService
     ) {}
 
     ngOnInit() {
@@ -70,10 +72,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         this.income.incomeSaving = 0;
         this.changesSaved = false;
         this.dataChanged = true;
-
-        this.principal.identity().then(account => {
-            this.account = account;
-        });
     }
 
     isAuthenticated() {
@@ -85,19 +83,10 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     }
 
     getUserid() {
-        // retrieve the userIdentity data from the server, update the identity object, and then resolve.
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    this.onIncomeGet();
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+        });
     }
 
     onIncomeGet() {

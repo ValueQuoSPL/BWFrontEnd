@@ -1,3 +1,4 @@
+import { AccountService } from 'app/core/auth/account.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -15,11 +16,16 @@ import {
     VacationSelect,
     FamilySupportSelect,
     BusinessSelect
-} from 'app/goal/goal-select/goalselect.model';
+} from './goalselect.model';
 @Injectable()
 export class GoalselectService {
+    user: any;
+    useruid: any;
     ServiceAPIParam: any;
-    constructor(private http: HttpClient) {}
+
+    constructor(private http: HttpClient, private account: AccountService) {
+        this.FetchId();
+    }
     saveHome(goalselect: any): Observable<any> {
         return this.http.post(SERVER_API_URL + 'api/goalset', goalselect);
     }
@@ -69,7 +75,8 @@ export class GoalselectService {
         return this.http.get(SERVER_API_URL + 'api/goalset').pipe(map(res => res));
         //   }
     }
-    public getgoalbyid(uid) {
+    public getgoalbyid() {
+        const uid = this.useruid;
         this.ServiceAPIParam = 'api/goalset' + '/' + uid;
         return this.http.get(SERVER_API_URL + this.ServiceAPIParam).pipe(map(res => res));
         // return this.http.get(SERVER_API_URL + 'api/goal/{uid}').map((res) => res);
@@ -102,5 +109,16 @@ export class GoalselectService {
     public getMutualFund(uid) {
         this.ServiceAPIParam = 'api/mlfnd' + '/' + uid;
         return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
+    }
+    FetchId(): Promise<any> {
+        return this.account
+            .get()
+            .toPromise()
+            .then(response => {
+                this.user = response.body;
+                this.useruid = this.user.id;
+                // this.mapping.uid = this.uid;
+                this.getgoalbyid();
+            });
     }
 }
