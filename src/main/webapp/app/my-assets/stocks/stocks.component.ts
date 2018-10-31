@@ -30,7 +30,6 @@ export class StockComponent implements OnInit {
 
     constructor(
         private stockService: StockService,
-        private account: AccountService,
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
         public commonService: CommonSidebarService
