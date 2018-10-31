@@ -127,7 +127,7 @@ export class SubscriberComponent implements OnInit {
         let pay = this.payable;
         let off = discount;
         off = off / 100;
-        pay = pay * off;
+        pay = Math.round(pay * off);
         this.pay = pay;
         this.payable = this.payable - pay;
         this.offer.payable = this.payable;
