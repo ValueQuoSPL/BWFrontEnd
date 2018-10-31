@@ -2,7 +2,7 @@ import { Component, AfterViewInit, Renderer, ElementRef, ChangeDetectorRef } fro
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 
-import { PromoCodeService } from './promo-code.service';
+import { PromoCodeService } from 'app/home/subscriber/promo-code/promo-code.service';
 import { BehaviorSubject } from 'rxjs';
 import { PromoCodeManageService } from 'app/admin';
 import { JhiAlertService } from 'ng-jhipster';
@@ -113,7 +113,6 @@ export class PromoCodeComponent implements AfterViewInit {
             } else {
                 this.valid = false;
                 this.expired = false;
-
                 found = 0;
             }
         }

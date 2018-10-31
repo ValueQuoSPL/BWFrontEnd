@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SERVER_API_URL } from 'app/app.constants';
 import { AccountService } from 'app/core';
+import { Observable } from '../../../../../node_modules/rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -28,8 +29,8 @@ export class AppointmentService {
     }
 
     // Post Appointment Data
-    postCalendar(calendarData) {
-        return this._http.post(SERVER_API_URL + 'api/appointments', calendarData);
+    postCalendar(calendarData): Observable<any> {
+        return this._http.post<any>(SERVER_API_URL + 'api/appointments', calendarData);
         // this.getCalendarByUid(calendarData.uid);
     }
 

@@ -3,12 +3,12 @@ import { log } from 'util';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { StockService } from 'app/my-assets/stocks/stocks.service';
 import { MutualfundService } from 'app/my-assets/mutual/mutual.service';
-import { AlternateService } from './alternate-investment/alternateinvest.service';
-import { CashService } from './cash/cash.service';
-import { ChitFundService } from './chit-funds/chitfund.service';
-import { PropertyService } from './property/property.service';
-import { FutureOptionService } from './future-option/futureoption.service';
-import { SavingSchemeService } from './saving-scheme/savingscheme.service';
+import { AlternateService } from 'app/my-assets/alternate-investment/alternateinvest.service';
+import { CashService } from 'app/my-assets/cash/cash.service';
+import { ChitFundService } from 'app/my-assets/chit-funds/chitfund.service';
+import { PropertyService } from 'app/my-assets/property/property.service';
+import { FutureOptionService } from 'app/my-assets/future-option/futureoption.service';
+import { SavingSchemeService } from 'app/my-assets/saving-scheme/savingscheme.service';
 import { AccountService, LoginModalService, Principal } from 'app/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 

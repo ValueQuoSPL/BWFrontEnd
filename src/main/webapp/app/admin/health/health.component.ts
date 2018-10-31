@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { JhiHealthService } from './health.service';
-import { JhiHealthModalComponent } from './health-modal.component';
+import { JhiHealthService } from 'app/admin/health/health.service';
+import { JhiHealthModalComponent } from 'app/admin/health/health-modal.component';
 
 @Component({
     selector: 'jhi-health',

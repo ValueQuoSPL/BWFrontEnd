@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ChitFund } from './chitfund.modal';
+import { ChitFund } from 'app/my-assets/chit-funds/chitfund.modal';
 import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { ChitFundService } from './chitfund.service';
+import { ChitFundService } from 'app/my-assets/chit-funds/chitfund.service';
 
 @Component({
     selector: 'jhi-chitfund',

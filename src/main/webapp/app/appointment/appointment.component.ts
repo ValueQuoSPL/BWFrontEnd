@@ -16,10 +16,10 @@ import {
     addHours
 } from 'date-fns';
 import { CalendarEvent, CalendarEventAction, CalendarView, CalendarEventTimesChangedEvent } from 'angular-calendar';
-import { AppointmentService } from './appointment.service';
-import { NgbModal, ModalDismissReasons } from '../../../../../node_modules/@ng-bootstrap/ng-bootstrap';
-import { DatePipe } from '../../../../../node_modules/@angular/common';
-import { Router, ActivatedRoute } from '../../../../../node_modules/@angular/router';
+import { AppointmentService } from 'app/appointment/appointment.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe } from '@angular/common';
+import { Router, ActivatedRoute } from '@angular/router';
 
 export class Appointment {
     id;

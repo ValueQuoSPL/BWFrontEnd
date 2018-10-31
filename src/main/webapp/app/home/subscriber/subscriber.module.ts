@@ -6,11 +6,11 @@ import { SubscriberComponent } from 'app/home/subscriber/subscriber.component';
 import { CommonModule } from '@angular/common';
 import { subscriberRoute } from 'app/home/subscriber/subscriber.route';
 import { PaymentComponent, PaymentService } from 'app/home/subscriber';
-import { CustomMaterialModule } from '../../custom-material.module';
-import { UserPlanService } from './userplan.service';
+import { CustomMaterialModule } from 'app/custom-material.module';
+import { UserPlanService } from 'app/home/subscriber/userplan.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { PromoCodeService, PromoCodeModalService, PromoCodeComponent } from './promo-code';
-import { payRoute } from './payment/payment.route';
+import { PromoCodeService, PromoCodeModalService, PromoCodeComponent } from 'app/home/subscriber/promo-code';
+import { payRoute } from 'app/home/subscriber/payment/payment.route';
 // import { FooterComponent } from '../layouts';
 @NgModule({
     imports: [

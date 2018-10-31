@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Eightyc } from './eightyc.model';
-import { EightycService } from './eightyc.service';
+import { Eightyc } from 'app/sheetal/tax/eightyc/eightyc.model';
+import { EightycService } from 'app/sheetal/tax/eightyc/eightyc.service';
 import { AccountService } from 'app/core';
 import { NgbModalRef, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 @Component({

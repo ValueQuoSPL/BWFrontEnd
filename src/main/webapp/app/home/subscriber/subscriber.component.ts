@@ -5,7 +5,7 @@ import { Account, LoginModalService, Principal } from 'app/core';
 import { PromoCodeModalService } from 'app/home/subscriber/promo-code/promo-code-modal.service';
 import { PromoCodeService } from 'app/home/subscriber/promo-code';
 import { NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserPlanService } from './userplan.service';
+import { UserPlanService } from 'app/home/subscriber/userplan.service';
 import { PromoCodeManageService } from 'app/admin';
 
 class Offer {

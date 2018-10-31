@@ -3,7 +3,7 @@ import { Income } from 'app/pratik/spending/spending.model';
 import { IncomeService } from 'app/pratik/spending/spending.service';
 import { AccountService, LoginModalService, Principal } from 'app/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { CanComponentDeactivate } from '../common/can-deactivate-guard.service';
+import { CanComponentDeactivate } from 'app/pratik/common/can-deactivate-guard.service';
 import { Observable } from 'rxjs';
 import { CommonSidebarService } from '../common/sidebar.service';
 

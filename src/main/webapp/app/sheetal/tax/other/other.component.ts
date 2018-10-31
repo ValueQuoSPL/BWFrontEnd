@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Other } from './other.model';
-import { OtherService } from './other.service';
+import { Other } from 'app/sheetal/tax/other/other.model';
+import { OtherService } from 'app/sheetal/tax/other/other.service';
 import { AccountService } from 'app/core';
 import { NgbModalRef, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 

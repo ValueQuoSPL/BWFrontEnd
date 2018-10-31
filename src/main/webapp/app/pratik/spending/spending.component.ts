@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { SpendingRouteGuardService } from '../common/spending-route-guard.service';
+import { SpendingRouteGuardService } from 'app/pratik/common/spending-route-guard.service';
 import { RouterModule, Router } from '@angular/router';
 
 export interface DialogData {

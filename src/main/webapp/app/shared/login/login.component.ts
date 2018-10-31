@@ -7,7 +7,7 @@ import { LoginService } from 'app/core/login/login.service';
 import { StateStorageService } from 'app/core/auth/state-storage.service';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { SuccessService } from 'app/success/success.service';
-import { AccountService } from 'app/core';
+import { AccountService, Principal } from 'app/core';
 import { PlanService } from 'app/pratik/common/plan.service';
 
 @Component({
@@ -26,6 +26,7 @@ export class JhiLoginModalComponent implements AfterViewInit {
     isPayment;
 
     PaymentArray: any = [];
+    route: any;
 
     constructor(
         private stateStorageService: StateStorageService,
@@ -38,13 +39,19 @@ export class JhiLoginModalComponent implements AfterViewInit {
         private commonSidebarService: CommonSidebarService,
         private paymentCheck: SuccessService,
         private accountService: AccountService,
-        private planService: PlanService
+        private planService: PlanService,
+        private principal: Principal
     ) {
         this.credentials = {};
     }
 
     ngAfterViewInit() {
         setTimeout(() => this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#username'), 'focus', []), 0);
+        this.principal.getAuthenticationState().subscribe(identity => {
+            console.log(identity.authorities[0]);
+            this.route = identity.authorities[0];
+            this.routing();
+        });
     }
 
     cancel() {
@@ -124,6 +131,10 @@ export class JhiLoginModalComponent implements AfterViewInit {
 
         if (this.router.url === '/register' || /^\/activate\//.test(this.router.url) || /^\/reset\//.test(this.router.url)) {
             this.router.navigate(['/subscription']);
+        }
+
+        if (this.route === 'ROLE_ADVISOR') {
+            this.router.navigate(['/advisor']);
         }
     }
 

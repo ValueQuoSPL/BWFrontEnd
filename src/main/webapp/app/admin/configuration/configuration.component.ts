@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { JhiConfigurationService } from './configuration.service';
+import { JhiConfigurationService } from 'app/admin/configuration/configuration.service';
 
 @Component({
     selector: 'jhi-configuration',

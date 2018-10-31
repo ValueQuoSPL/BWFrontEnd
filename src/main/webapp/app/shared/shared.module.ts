@@ -1,13 +1,13 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
 
-import { NgbDateMomentAdapter } from './util/datepicker-adapter';
+import { NgbDateMomentAdapter } from 'app/shared/util/datepicker-adapter';
 import {
     BuckswiseFrontEndSharedLibsModule,
     BuckswiseFrontEndSharedCommonModule,
     JhiLoginModalComponent,
     HasAnyAuthorityDirective
-} from './';
+} from 'app/shared';
 import { CustomMaterialModule } from 'app/custom-material.module';
 
 @NgModule({

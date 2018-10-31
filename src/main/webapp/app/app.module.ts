@@ -17,17 +17,17 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 // From Inbuilt jhipster created Modules
 import { BuckswiseFrontEndCoreModule } from 'app/core';
 import { BuckswiseFrontEndSharedModule } from 'app/shared';
-import { BuckswiseFrontEndHomeModule } from './home/home.module';
-import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
-import { BuckswiseFrontEndEntityModule } from './entities/entity.module';
-import { BuckswiseFrontEndAppRoutingModule } from './app-routing.module';
-import { BuckswiseFrontEndAccountModule } from './account/account.module';
-import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
-import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
-import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
+import { BuckswiseFrontEndHomeModule } from 'app/home/home.module';
+import { AuthInterceptor } from 'app/blocks/interceptor/auth.interceptor';
+import { BuckswiseFrontEndEntityModule } from 'app/entities/entity.module';
+import { BuckswiseFrontEndAppRoutingModule } from 'app/app-routing.module';
+import { BuckswiseFrontEndAccountModule } from 'app/account/account.module';
+import { AuthExpiredInterceptor } from 'app/blocks/interceptor/auth-expired.interceptor';
+import { ErrorHandlerInterceptor } from 'app/blocks/interceptor/errorhandler.interceptor';
+import { NotificationInterceptor } from 'app/blocks/interceptor/notification.interceptor';
 
 // From Inbuilt Component
-import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from './layouts';
+import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from 'app/layouts';
 
 // From Downloaded Package
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -40,38 +40,38 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 library.add(fas, far);
 
 // From Production module
-import { CustomMaterialModule } from './custom-material.module';
+import { CustomMaterialModule } from 'app/custom-material.module';
 import { CustomDirectiveModule } from 'app/pratik/directive/directive.module';
-import { DraggableModule } from './pratik/draggable/draggable.module';
+import { DraggableModule } from 'app/pratik/draggable/draggable.module';
 
-import { FamilyModule } from './family/family.module';
-import { PromoCodeModule } from './home/subscriber/promo-code';
-import { SidebarComponent } from './layouts/sidebar/sidebar.component';
-import { SubscriberModule } from './home/subscriber/subscriber.module';
-import { BuckswiseFrontEndRiskModule } from './risk/risk.module';
-import { GoalModule } from './goal/goal.module';
-import { BuckswiseFrontEndMyAssetsModule } from './my-assets/my-assets.module';
-import { AppointmentModule } from './appointment/appointment.module';
-import { BuckswiseAppSheetalModule } from './sheetal/sheetal.module';
+import { FamilyModule } from 'app/family/family.module';
+import { PromoCodeModule } from 'app/home/subscriber/promo-code';
+import { SidebarComponent } from 'app/layouts/sidebar/sidebar.component';
+import { SubscriberModule } from 'app/home/subscriber/subscriber.module';
+import { BuckswiseFrontEndRiskModule } from 'app/risk/risk.module';
+import { GoalModule } from 'app/goal/goal.module';
+import { BuckswiseFrontEndMyAssetsModule } from 'app/my-assets/my-assets.module';
+import { AppointmentModule } from 'app/appointment/appointment.module';
+import { BuckswiseAppSheetalModule } from 'app/sheetal/sheetal.module';
 
 // From Production Component
-import { SuccessComponent } from './success/success.component';
+import { SuccessComponent } from 'app/success/success.component';
 import { IncomeComponent } from 'app/pratik/income/income.component';
-import { UtilityComponent } from './pratik/spending/utility/utility.component';
-import { HouseholdComponent } from './pratik/spending/household/household.component';
-import { LoanComponent } from './pratik/spending/loan/loan.component';
-import { CreditComponent } from './pratik/spending/credit/credit.component';
-import { TravelComponent } from './pratik/spending/travel/travel.component';
-import { MiscComponent } from './pratik/spending/misc/misc.component';
+import { UtilityComponent } from 'app/pratik/spending/utility/utility.component';
+import { HouseholdComponent } from 'app/pratik/spending/household/household.component';
+import { LoanComponent } from 'app/pratik/spending/loan/loan.component';
+import { CreditComponent } from 'app/pratik/spending/credit/credit.component';
+import { TravelComponent } from 'app/pratik/spending/travel/travel.component';
+import { MiscComponent } from 'app/pratik/spending/misc/misc.component';
 import { LifeComponent } from 'app/pratik/spending/life/life.component';
 import { GeneralComponent } from 'app/pratik/spending/general/general.component';
 import { HealthComponent } from 'app/pratik/spending/health/health.component';
 import { DashboardComponent } from 'app/pratik/dashboard/dashboard.component';
 
 // From Production Services
-import { WINDOW_PROVIDERS } from './layouts/navbar/window.service';
-import { SpendingRouteGuardService } from './pratik/common/spending-route-guard.service';
-import { CommonSidebarService } from './pratik/common/sidebar.service';
+import { WINDOW_PROVIDERS } from 'app/layouts/navbar/window.service';
+import { SpendingRouteGuardService } from 'app/pratik/common/spending-route-guard.service';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import {
     IncomeService,
     UtilityService,
@@ -85,11 +85,14 @@ import {
     CreditService
 } from 'app/pratik/spending/spending.service';
 // From Production Directive
-import { ActiveMenuDirective } from './layouts/navbar/active-menu.directive';
+import { ActiveMenuDirective } from 'app/layouts/navbar/active-menu.directive';
 
 // From Production Routes
-import { pratikState, SpendingComponent, CanDeactivateGuard } from './pratik';
-import { DashRoute } from './pratik/dashboard/dashboard.routes';
+import { pratikState, SpendingComponent, CanDeactivateGuard } from 'app/pratik';
+import { DashRoute } from 'app/pratik/dashboard/dashboard.routes';
+import { advisorRoot } from 'app/advisor/advisor.route';
+import { AdvisorComponent } from 'app/advisor/advisor.component';
+import { AdvisorFilterPipe } from 'app/advisor/advisor-filter.pipe';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -108,6 +111,7 @@ import { DashRoute } from './pratik/dashboard/dashboard.routes';
         DeviceDetectorModule.forRoot(),
         RouterModule.forChild(pratikState),
         RouterModule.forRoot([DashRoute], { useHash: true }),
+        RouterModule.forRoot([advisorRoot], { useHash: true }),
         BuckswiseFrontEndSharedModule,
         BuckswiseFrontEndCoreModule,
         BuckswiseFrontEndHomeModule,
@@ -147,6 +151,7 @@ import { DashRoute } from './pratik/dashboard/dashboard.routes';
     ],
     declarations: [
         DashboardComponent,
+        AdvisorComponent,
         JhiMainComponent,
         NavbarComponent,
         ErrorComponent,
@@ -166,7 +171,8 @@ import { DashRoute } from './pratik/dashboard/dashboard.routes';
         MiscComponent,
         LifeComponent,
         HealthComponent,
-        GeneralComponent
+        GeneralComponent,
+        AdvisorFilterPipe
         // Production directive
     ],
     providers: [

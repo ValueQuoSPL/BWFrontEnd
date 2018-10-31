@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { createRequestOption } from 'app/shared';
 import { SERVER_API_URL } from 'app/app.constants';
-import { Audit } from './audit.model';
+import { Audit } from 'app/admin/audits/audit.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuditsService {
