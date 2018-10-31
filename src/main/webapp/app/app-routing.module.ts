@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { errorRoute, navbarRoute } from './layouts';
+import { errorRoute, navbarRoute } from 'app/layouts';
 import { DEBUG_INFO_ENABLED } from 'app/app.constants';
-import { SpendingComponent } from './pratik';
-import { UtilityComponent } from './pratik/spending/utility/utility.component';
-import { HouseholdComponent } from './pratik/spending/household/household.component';
-import { LoanComponent } from './pratik/spending/loan/loan.component';
-import { HealthComponent } from './pratik/spending/health/health.component';
-import { LifeComponent } from './pratik/spending/life/life.component';
-import { GeneralComponent } from './pratik/spending/general/general.component';
-import { CreditComponent } from './pratik/spending/credit/credit.component';
-import { TravelComponent } from './pratik/spending/travel/travel.component';
-import { MiscComponent } from './pratik/spending/misc/misc.component';
+import { SpendingComponent } from 'app/pratik';
+import { UtilityComponent } from 'app/pratik/spending/utility/utility.component';
+import { HouseholdComponent } from 'app/pratik/spending/household/household.component';
+import { LoanComponent } from 'app/pratik/spending/loan/loan.component';
+import { HealthComponent } from 'app/pratik/spending/health/health.component';
+import { LifeComponent } from 'app/pratik/spending/life/life.component';
+import { GeneralComponent } from 'app/pratik/spending/general/general.component';
+import { CreditComponent } from 'app/pratik/spending/credit/credit.component';
+import { TravelComponent } from 'app/pratik/spending/travel/travel.component';
+import { MiscComponent } from 'app/pratik/spending/misc/misc.component';
 
 const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
 

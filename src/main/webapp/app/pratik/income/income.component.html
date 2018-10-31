@@ -1,318 +1,312 @@
 <div class="container">
-    <div [ngSwitch]="isAuthenticated()">
 
-        <div *ngSwitchCase="true">
+    <div >
 
-            <div class="form-group row justify-content-md-center bwtitle">
-                Income
-            </div>
-            <div class="container">
-                <mat-expansion-panel class="accordion" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
-                    [expanded]="step === 0">
+        <div class="form-group row justify-content-md-center bwtitle">
+            Income
+        </div>
+        <div class="container">
+            <mat-expansion-panel class="accordion" (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                [expanded]="step === 0">
 
-
-                    <!-- buttons -->
-                    <div>
-                        <div class="row pull-right">
-                            <button type="button" class="btn btn-sm  btn-link" data-toggle="modal" (click)="openIncome(incomeContent)">
-                                <fa-icon [icon]="'plus'"></fa-icon>
-                                <span>Add</span>
-                            </button>
-                            <span [ngSwitch]="isIncomeData" class="btn-right">
-                                <p *ngSwitchCase="true">
-                                    <button type="button" class="btn btn-sm  btn-link" (click)="updateIncome()" [disabled]="!globalflag" >
-                                        <fa-icon [icon]="'save'"></fa-icon>
-                                        <span>Update</span>
-                                    </button>
-                                </p>
-                                <p *ngSwitchCase="false">
-                                    <button type="button" class="btn btn-sm  btn-link" (click)="saveIncome()">
-                                        <fa-icon [icon]="'save'"></fa-icon>
-                                        <span>Save</span>
-                                    </button>
-                                </p>
-                            </span>
-
-                        </div>
+                <!-- buttons -->
+                <div>
+                    <div class="row pull-right">
+                        <button type="button" class="btn btn-sm  btn-link" data-toggle="modal" (click)="openIncome(incomeContent)">
+                            <fa-icon [icon]="'plus'"></fa-icon>
+                            <span>Add</span>
+                        </button>
+                        <span [ngSwitch]="isIncomeData" class="btn-right">
+                            <p *ngSwitchCase="true">
+                                <button type="button" class="btn btn-sm  btn-link" (click)="updateIncome()" [disabled]="!globalflag" >
+                                    <fa-icon [icon]="'save'"></fa-icon>
+                                    <span>Update</span>
+                                </button>
+                            </p>
+                            <p *ngSwitchCase="false">
+                                <button type="button" class="btn btn-sm  btn-link" (click)="saveIncome()">
+                                    <fa-icon [icon]="'save'"></fa-icon>
+                                    <span>Save</span>
+                                </button>
+                            </p>
+                        </span>
                     </div>
+                            <div>
+                                please save changes
+                            </div>
 
-                    <!-- modal, dialog -->
-                    <ng-template #incomeContent let-c="close" let-d="dismiss">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="incomeModal">Income Add</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="example-container" #incomeAdd="ngForm">
-                                <div>
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput required placeholder="Name" value="" [(ngModel)]="resource" name="resource-name">
-                                        <mat-hint>Please enter your resource of income </mat-hint>
-                                    </mat-form-field>
-                                </div>
+                </div>
 
-                                <div>
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput jhiNumberOnly required placeholder="Amount" type="number" value=""
-                                            [(ngModel)]="amount" name="amount-name" >
-                                        <mat-hint>Please enter amount</mat-hint>
-                                    </mat-form-field>
-                                </div>
-                                <br> <br>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-sm btn-outline-dark" (click)="c('Save click')"
-                                        [disabled]="incomeAdd.form.invalid">Add</button>
-                                </div>
-                            </form>
-                        </div>
-                    </ng-template>
 
-                    <!-- modal, edit dialog -->
-                    <ng-template #incomeEditContent let-c="close" let-d="dismiss">
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="incomeEditContent">Income Update</h4>
-                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="example-container" #incomeAdd="ngForm">
-                                <div>
-                                    <mat-label>{{ nameField }}</mat-label>
-                                </div>
+                <!-- modal, dialog -->
+                <ng-template #incomeContent let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="incomeModal">Income Add</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="example-container" #incomeAdd="ngForm">
+                            <div>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput required placeholder="Name" value="" [(ngModel)]="resource" name="resource-name">
+                                    <mat-hint>Please enter your resource of income </mat-hint>
+                                </mat-form-field>
+                            </div>
 
-                                <div>
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput jhiNumberOnly required placeholder="Amount" type="number" value=""
-                                            [(ngModel)]="editField" name="amount-name" (ngModelChange)="DetectChange($event)">
-                                        <mat-hint>Please enter amount</mat-hint>
-                                    </mat-form-field>
-                                </div>
-                                <br> <br>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-sm btn btn-sm-outline-success" (click)="c('Save click')"
-                                        [disabled]="!isFieldChange" >Update</button>
-                                </div>
-                            </form>
-                        </div>
-                    </ng-template>
+                            <div>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput jhiNumberOnly required placeholder="Amount" type="number" value=""
+                                        [(ngModel)]="amount" name="amount-name" >
+                                    <mat-hint>Please enter amount</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <br> <br>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-outline-dark" (click)="c('Save click')"
+                                    [disabled]="incomeAdd.form.invalid">Add</button>
+                            </div>
+                        </form>
+                    </div>
+                </ng-template>
 
-                    <span [ngSwitch]="isIncomeData">
-                        <div *ngSwitchCase="true">
-                            <!--Filled Table -->
-                            <table class="table-responsive-md table table-hover table-sm">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Monthly Amount</th>
-                                        <th scope="col">Yearly Amount</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td> Post Tax Take Home Salary of # </td>
-                                        <td> {{income.incomeSalary }} </td>
-                                        <td> {{income.incomeSalary * 12}} </td>
-                                        <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('salary', incomeEditContent)">
-                                                <span>
-                                                    <fa-icon [icon]="'edit'"></fa-icon>
-                                                </span></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Performance award / bonus </td>
-                                        <td> {{income.incomeAward }} </td>
-                                        <td> {{income.incomeAward * 12}} </td>
-                                        <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('award', incomeEditContent)">
-                                                <span>
-                                                    <fa-icon [icon]="'edit'"></fa-icon>
-                                                </span></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Sign-up bonus </td>
-                                        <td> {{income.incomeBonus}} </td>
-                                        <td> {{income.incomeBonus * 12}} </td>
-                                        <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('bonus', incomeEditContent)">
-                                                <span>
-                                                    <fa-icon [icon]="'edit'"></fa-icon>
-                                                </span></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Pensions </td>
-                                        <td> {{income.incomePension }} </td>
-                                        <td> {{income.incomePension * 12}} </td>
-                                        <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('pension', incomeEditContent)">
-                                                <span>
-                                                    <fa-icon [icon]="'edit'"></fa-icon>
-                                                </span></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Interest earned on savings </td>
-                                        <td> {{income.incomeSaving }} </td>
-                                        <td> {{income.incomeSaving * 12}} </td>
-                                        <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('saving', incomeEditContent)">
-                                                <span>
-                                                    <fa-icon [icon]="'edit'"></fa-icon>
-                                                </span></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Income from investments(Deposites, Securities) </td>
-                                        <td> {{income.incomeDeposit }} </td>
-                                        <td> {{income.incomeDeposit * 12}} </td>
-                                        <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('deposit', incomeEditContent)">
-                                                <span>
-                                                    <fa-icon [icon]="'edit'"></fa-icon>
-                                                </span></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Rental Income </td>
-                                        <td> {{income.incomeRental }} </td>
-                                        <td> {{income.incomeRental * 12}} </td>
-                                        <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('rental', incomeEditContent)">
-                                                <!-- <span> <fa-icon [icon]="'edit'" ></fa-icon></span></button> -->
+                <!-- modal, edit dialog -->
+                <ng-template #incomeEditContent let-c="close" let-d="dismiss">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="incomeEditContent">Income Update</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="example-container" #incomeAdd="ngForm">
+                            <div>
+                                <mat-label>{{ nameField }}</mat-label>
+                            </div>
+
+                            <div>
+                                <mat-form-field class="example-full-width">
+                                    <input matInput jhiNumberOnly required placeholder="Amount" type="number" value=""
+                                        [(ngModel)]="editField" name="amount-name" (ngModelChange)="DetectChange($event)">
+                                    <mat-hint>Please enter amount</mat-hint>
+                                </mat-form-field>
+                            </div>
+                            <br> <br>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-outline-success" (click)="c('Save click')"
+                                    [disabled]="!isFieldChange" >Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </ng-template>
+
+                <span [ngSwitch]="isIncomeData">
+                    <div *ngSwitchCase="true">
+                        <!--Filled Table -->
+                        <table class="table-responsive-md table table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Monthly Amount</th>
+                                    <th scope="col">Yearly Amount</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> Post Tax Take Home Salary of # </td>
+                                    <td> {{income.incomeSalary }} </td>
+                                    <td> {{income.incomeSalary * 12}} </td>
+                                    <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('salary', incomeEditContent)">
+                                            <span>
                                                 <fa-icon [icon]="'edit'"></fa-icon>
+                                            </span></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Performance award / bonus </td>
+                                    <td> {{income.incomeAward }} </td>
+                                    <td> {{income.incomeAward * 12}} </td>
+                                    <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('award', incomeEditContent)">
+                                            <span>
+                                                <fa-icon [icon]="'edit'"></fa-icon>
+                                            </span></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Sign-up bonus </td>
+                                    <td> {{income.incomeBonus}} </td>
+                                    <td> {{income.incomeBonus * 12}} </td>
+                                    <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('bonus', incomeEditContent)">
+                                            <span>
+                                                <fa-icon [icon]="'edit'"></fa-icon>
+                                            </span></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Pensions </td>
+                                    <td> {{income.incomePension }} </td>
+                                    <td> {{income.incomePension * 12}} </td>
+                                    <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('pension', incomeEditContent)">
+                                            <span>
+                                                <fa-icon [icon]="'edit'"></fa-icon>
+                                            </span></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Interest earned on savings </td>
+                                    <td> {{income.incomeSaving }} </td>
+                                    <td> {{income.incomeSaving * 12}} </td>
+                                    <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('saving', incomeEditContent)">
+                                            <span>
+                                                <fa-icon [icon]="'edit'"></fa-icon>
+                                            </span></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Income from investments(Deposites, Securities) </td>
+                                    <td> {{income.incomeDeposit }} </td>
+                                    <td> {{income.incomeDeposit * 12}} </td>
+                                    <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('deposit', incomeEditContent)">
+                                            <span>
+                                                <fa-icon [icon]="'edit'"></fa-icon>
+                                            </span></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> Rental Income </td>
+                                    <td> {{income.incomeRental }} </td>
+                                    <td> {{income.incomeRental * 12}} </td>
+                                    <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditStaticField('rental', incomeEditContent)">
+                                            <!-- <span> <fa-icon [icon]="'edit'" ></fa-icon></span></button> -->
+                                            <fa-icon [icon]="'edit'"></fa-icon>
 
-                                        </td>
-                                    </tr>
-                                    <tr *ngFor="let field of dynamicIncome; let i = index">
-                                        <td> {{field.name}} </td>
-                                        <td>{{field.value }} </td>
-                                        <td>{{field.value * 12}} </td>
-                                        <td>
-                                            <button class="btn btn-sm btn-outline-info" type="button" (click)="onEditDynamicField(i, incomeEditContent)">
-                                                <span>
-                                                    <fa-icon [icon]="'edit'"></fa-icon>
-                                                </span>
-                                            </button>
-                                            <button class="btn btn-sm btn btn-outline-danger" type="button" (click)="deleteFieldValue(i, field.id)">
-                                                <span>
-                                                    <fa-icon [icon]="'trash'"></fa-icon></i>
-                                                </span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th scope="col">Total</th>
-                                        <!-- <th *ngIf="!loadIncome"> {{totalIncome}} </th>
-                                        <th *ngIf="loadIncome"> -->
-                                        <th>
-                                            {{ income.incomeSalary + income.incomeAward + income.incomeBonus +
-                                            income.incomePension + income.incomeSaving + income.incomeDeposit +
-                                            income.incomeRental + dynamicTotal }}
-                                        </th>
-                                        <th> {{( income.incomeSalary + +income.incomeAward + income.incomeBonus +
-                                            income.incomePension + +income.incomeSaving +income.incomeDeposit +
-                                            income.incomeRental + dynamicTotal ) * 12 }}
-                                        </th>
-                                        <th></th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                        <div *ngSwitchCase="false">
-                            <!--Empty Table -->
-                            <table class="table-responsive-md table table-hover table-sm">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Monthly Amount</th>
-                                        <th scope="col">Yearly Amount</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td> Post Tax Take Home Salary of # </td>
-                                        <td><input jhiNumberOnly type="number" [(ngModel)]="income.incomeSalary" name="income-salary">
-                                        </td>
-                                        <td> {{income.incomeSalary * 12}} </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Performance award / bonus </td>
-                                        <td> <input jhiNumberOnly type="number" id="21" [(ngModel)]="income.incomeAward"
-                                                name="income-award"> </td>
-                                        <td> {{income.incomeAward * 12}} </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Sign-up bonus </td>
-                                        <td> <input jhiNumberOnly type="number" id="31" [(ngModel)]="income.incomeBonus"
-                                                name="income-bonus"> </td>
-                                        <td> {{income.incomeBonus * 12}} </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Pensions </td>
-                                        <td> <input jhiNumberOnly type="number" id="41" [(ngModel)]="income.incomePension"
-                                                name="income-pension"> </td>
-                                        <td> {{income.incomePension * 12}} </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Interest earned on savings </td>
-                                        <td> <input jhiNumberOnly type="number" id="51" [(ngModel)]="income.incomeSaving"
-                                                name="income-saving"> </td>
-                                        <td> {{income.incomeSaving * 12}} </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Income from investments(Deposites, Securities) </td>
-                                        <td> <input jhiNumberOnly type="number" id="61" [(ngModel)]="income.incomeDeposit"
-                                                name="income-deposit"> </td>
-                                        <td> {{income.incomeDeposit * 12}} </td>
-                                    </tr>
-                                    <tr>
-                                        <td> Rental Income </td>
-                                        <td> <input jhiNumberOnly type="number" id="71" [(ngModel)]="income.incomeRental"
-                                                name="income-rental"> </td>
-                                        <td> {{income.incomeRental * 12}} </td>
-                                    </tr>
-                                    <tr *ngFor="let field of dynamicIncome; let i = index">
-                                        <td> {{field.name}} </td>
-                                        <td><input type="number" value="{{field.value}}" disabled> </td>
-                                        <td>{{field.value * 12}} </td>
-                                        <td><button class="btn btn-sm btn-outline-danger" type="button" (click)="deleteFieldValue(field.id, i)">
-                                                <span>
-                                                    <fa-icon [icon]="'trash'"></fa-icon></i>
-                                                </span></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th scope="col">Total</th>
-                                        <th *ngIf="loadIncome"> {{totalIncome}} </th>
-                                        <th *ngIf="!loadIncome">
-                                            {{ income.incomeSalary + income.incomeAward + income.incomeBonus +
-                                            income.incomePension + income.incomeSaving + income.incomeDeposit +
-                                            income.incomeRental + dynamicTotal }}
-                                        </th>
-                                        <th> {{( income.incomeSalary + +income.incomeAward + income.incomeBonus +
-                                            income.incomePension + +income.incomeSaving +income.incomeDeposit +
-                                            income.incomeRental + dynamicTotal ) * 12 }}
-                                        </th>
-                                        <th></th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </span>
-                </mat-expansion-panel>
-            </div>
-        </div>
-        <div class="alert alert-warning" *ngSwitchCase="false">
-            <br>
-            <span>You are not signed in. <br> If you want to sign in</span>
-            <a class="alert-link" (click)="login()">Click here</a>
-        </div>
-        <div *ngSwitchDefault>
-            hi
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let field of dynamicIncome; let i = index">
+                                    <td> {{field.name}} </td>
+                                    <td>{{field.value }} </td>
+                                    <td>{{field.value * 12}} </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-outline-info" type="button" (click)="onEditDynamicField(i, incomeEditContent)">
+                                            <span>
+                                                <fa-icon [icon]="'edit'"></fa-icon>
+                                            </span>
+                                        </button>
+                                        <button class="btn btn-sm btn btn-outline-danger" type="button" (click)="deleteFieldValue(i, field.id)">
+                                            <span>
+                                                <fa-icon [icon]="'trash'"></fa-icon></i>
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th scope="col">Total</th>
+                                    <!-- <th *ngIf="!loadIncome"> {{totalIncome}} </th>
+                                    <th *ngIf="loadIncome"> -->
+                                    <th>
+                                        {{ income.incomeSalary + income.incomeAward + income.incomeBonus +
+                                        income.incomePension + income.incomeSaving + income.incomeDeposit +
+                                        income.incomeRental + dynamicTotal }}
+                                    </th>
+                                    <th> {{( income.incomeSalary + +income.incomeAward + income.incomeBonus +
+                                        income.incomePension + +income.incomeSaving +income.incomeDeposit +
+                                        income.incomeRental + dynamicTotal ) * 12 }}
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div *ngSwitchCase="false">
+                        <!--Empty Table -->
+                        <table class="table-responsive-md table table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Monthly Amount</th>
+                                    <th scope="col">Yearly Amount</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td> Post Tax Take Home Salary of # </td>
+                                    <td><input jhiNumberOnly type="number" [(ngModel)]="income.incomeSalary" name="income-salary">
+                                    </td>
+                                    <td> {{income.incomeSalary * 12}} </td>
+                                </tr>
+                                <tr>
+                                    <td> Performance award / bonus </td>
+                                    <td> <input jhiNumberOnly type="number" id="21" [(ngModel)]="income.incomeAward"
+                                            name="income-award"> </td>
+                                    <td> {{income.incomeAward * 12}} </td>
+                                </tr>
+                                <tr>
+                                    <td> Sign-up bonus </td>
+                                    <td> <input jhiNumberOnly type="number" id="31" [(ngModel)]="income.incomeBonus"
+                                            name="income-bonus"> </td>
+                                    <td> {{income.incomeBonus * 12}} </td>
+                                </tr>
+                                <tr>
+                                    <td> Pensions </td>
+                                    <td> <input jhiNumberOnly type="number" id="41" [(ngModel)]="income.incomePension"
+                                            name="income-pension"> </td>
+                                    <td> {{income.incomePension * 12}} </td>
+                                </tr>
+                                <tr>
+                                    <td> Interest earned on savings </td>
+                                    <td> <input jhiNumberOnly type="number" id="51" [(ngModel)]="income.incomeSaving"
+                                            name="income-saving"> </td>
+                                    <td> {{income.incomeSaving * 12}} </td>
+                                </tr>
+                                <tr>
+                                    <td> Income from investments(Deposites, Securities) </td>
+                                    <td> <input jhiNumberOnly type="number" id="61" [(ngModel)]="income.incomeDeposit"
+                                            name="income-deposit"> </td>
+                                    <td> {{income.incomeDeposit * 12}} </td>
+                                </tr>
+                                <tr>
+                                    <td> Rental Income </td>
+                                    <td> <input jhiNumberOnly type="number" id="71" [(ngModel)]="income.incomeRental"
+                                            name="income-rental"> </td>
+                                    <td> {{income.incomeRental * 12}} </td>
+                                </tr>
+                                <tr *ngFor="let field of dynamicIncome; let i = index">
+                                    <td> {{field.name}} </td>
+                                    <td><input type="number" value="{{field.value}}" disabled> </td>
+                                    <td>{{field.value * 12}} </td>
+                                    <td><button class="btn btn-sm btn-outline-danger" type="button" (click)="deleteFieldValue(field.id, i)">
+                                            <span>
+                                                <fa-icon [icon]="'trash'"></fa-icon></i>
+                                            </span></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th scope="col">Total</th>
+                                    <th *ngIf="loadIncome"> {{totalIncome}} </th>
+                                    <th *ngIf="!loadIncome">
+                                        {{ income.incomeSalary + income.incomeAward + income.incomeBonus +
+                                        income.incomePension + income.incomeSaving + income.incomeDeposit +
+                                        income.incomeRental + dynamicTotal }}
+                                    </th>
+                                    <th> {{( income.incomeSalary + +income.incomeAward + income.incomeBonus +
+                                        income.incomePension + +income.incomeSaving +income.incomeDeposit +
+                                        income.incomeRental + dynamicTotal ) * 12 }}
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </span>
+            </mat-expansion-panel>
         </div>
     </div>
+
 </div>

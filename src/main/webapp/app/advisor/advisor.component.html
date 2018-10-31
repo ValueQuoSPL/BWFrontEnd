@@ -1,0 +1,9 @@
+<div class="form-group">
+    <input type="text" class="form-group" placeholder="search by Name" [(ngModel)]="searchName">
+
+</div>
+<div *ngFor = "let payment of paymentData | paymentFilter:searchName">
+    <h6>{{payment.status}}</h6>
+    <h6>{{payment.amount}}</h6>
+    <h6>{{payment.productinfo}}</h6>
+</div>

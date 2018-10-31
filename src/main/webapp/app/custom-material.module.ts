@@ -11,41 +11,38 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
-import {
-  MatToolbarModule,
-  MatSidenavModule,
-  MatIconModule,
-  MatListModule
-} from '@angular/material';
+import { MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  imports: [],
-  exports: [
-    MatButtonModule,
-    MatMenuModule,
-    MatTabsModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MatCardModule,
-    MatDialogModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatTableModule,
-    MatTooltipModule
-  ]
+    imports: [],
+    exports: [
+        MatButtonModule,
+        MatMenuModule,
+        MatTabsModule,
+        MatExpansionModule,
+        MatGridListModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MatCardModule,
+        MatDialogModule,
+        LayoutModule,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatListModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatTableModule,
+        MatTooltipModule,
+        MatProgressSpinnerModule
+    ]
 })
 export class CustomMaterialModule {}

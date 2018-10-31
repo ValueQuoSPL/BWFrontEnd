@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { PaymentComponent } from './payment.component';
+import { PaymentComponent } from 'app/home/subscriber/payment/payment.component';
 
 export const payRoute: Route = {
     path: 'payment',
