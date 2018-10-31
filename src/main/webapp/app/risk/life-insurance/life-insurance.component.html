@@ -27,15 +27,12 @@
             </div>
             <div class="modal-body">
                 <form name="editForm" role="form" novalidate #editForm="ngForm">
-
-                    <mat-form-field>
-                        <!-- <input matInput type="text" placeholder="Risk Coverage for" [(ngModel)]="lifeInsurance.risk_coverage" [ngModelOptions]="{standalone: true}"
-                            required> -->
-                        <mat-select aria-placeholder="select">
-                            <div *ngFor="let name of familyName">
-                                <mat-option value="family name">{{name.firstname}}</mat-option>
-                            </div>
-                        </mat-select>
+                    <mat-form-field style="width: 100%;">
+                            <mat-select placeholder="Select Name" [(ngModel)]="lifeInsurance.name" name="name">
+                                <mat-option *ngFor="let item of familyName" [value]="item.firstname">
+                                {{item.firstname}}
+                                </mat-option>
+                            </mat-select>
                     </mat-form-field>
                     <mat-form-field style="width: 100%;">
                         <mat-label>How much of Expense would you want to be replaced through insurance cover?</mat-label>
@@ -117,21 +114,14 @@
                         {{lifeInsurance.total }}
                     </div>
                     <div class="modal-footer">
-                        <button
-                        mat-raised-button
-                        type="submit"
-                        [disabled]="editForm.form.invalid || isSaving"
-                        class="btn btn-primary"
-                        (click)="c('Save click')">
-                        <span class="fa fa-save"></span>&nbsp;
-                        <span>Save</span>
-                </button>
-                <button 
-                    mat-raised-button  
-                    data-dismiss="modal" 
-                    (click)="d('Cross click')">
-                    <span class="fa fa-ban"></span>&nbsp;
-                    <span>Cancel</span></button>&nbsp;
+                        <button mat-raised-button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary" (click)="c('Save click')">
+                            <span class="fa fa-save"></span>&nbsp;
+                            <span>Save</span>
+                        </button>
+                        <button mat-raised-button data-dismiss="modal" (click)="d('Cross click')">
+                            <span class="fa fa-ban"></span>&nbsp;
+                            <span>Cancel</span>
+                        </button>&nbsp;
                     </div>
                 </form>
             </div>
@@ -154,7 +144,7 @@
                     <tr *ngFor="let lifeInsurance of goalLife; let i = index">
                         <!-- <td><a [routerLink]="['../stocks', stocks.id ]">{{stocks.id}}</a></td>
     <td> {{stocks.id}} </td> -->
-                        <td> {{lifeInsurance.risk_coverage}} </td>
+                        <td> {{lifeInsurance.name}} </td>
                         <td>{{lifeInsurance.expense_cover}} </td>
                         <td>{{lifeInsurance.total}} </td>
                         <td>

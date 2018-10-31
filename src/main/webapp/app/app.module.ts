@@ -88,7 +88,7 @@ import {
 import { ActiveMenuDirective } from 'app/layouts/navbar/active-menu.directive';
 
 // From Production Routes
-import { pratikState, SpendingComponent, CanDeactivateGuard } from 'app/pratik';
+import { pratikState, SpendingComponent, CanDeactivateGuard, SubscriptionComponent } from 'app/pratik';
 import { DashRoute } from 'app/pratik/dashboard/dashboard.routes';
 import { advisorRoot } from 'app/advisor/advisor.route';
 import { AdvisorComponent } from 'app/advisor/advisor.component';
@@ -172,7 +172,8 @@ import { AdvisorFilterPipe } from 'app/advisor/advisor-filter.pipe';
         LifeComponent,
         HealthComponent,
         GeneralComponent,
-        AdvisorFilterPipe
+        AdvisorFilterPipe,
+        SubscriptionComponent
         // Production directive
     ],
     providers: [

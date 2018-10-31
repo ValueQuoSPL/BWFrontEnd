@@ -438,7 +438,7 @@
         *ngIf="show"
         type="submit" 
         class="btn btn-primary"
-        [disabled]="editForm.form.invalid || isSaving" 
+        [disabled]="editForm.form.invalid" 
         class="btn btn-primary"
         (click)="saveDetail()" >Save</button>&nbsp;
        <span><button mat-raised-button color="primary" *ngIf="!show" (click)="update()" >Update</button></span>&nbsp;
