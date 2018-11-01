@@ -444,9 +444,9 @@
         class="btn btn-primary"
         [disabled]="editForm.form.invalid" 
         class="btn btn-primary"
-        (click)="saveDetail()">Save</button>&nbsp;
-       <span><button mat-raised-button color="primary" *ngIf="!show" (click)="update()" >Update</button></span>&nbsp;
-       <span><button mat-raised-button  color="accent" (click)="cencel()">Cancel</button></span> 
+        (click)="saveDetail()"  class="btnSave">Save</button>&nbsp;
+       <span><button mat-raised-button class="btnSave" *ngIf="!show" (click)="update()" >Update</button></span>&nbsp;
+       <span><button mat-raised-button  class="btnCancel" (click)="cancel()">Cancel</button></span> 
       </div><!--end of row5.col4-->
     </div><!--end of row5-->
     <div class="pull-right row">

@@ -3,6 +3,7 @@ import { Gross } from 'app/sheetal/tax/gross/gross.model';
 import { GrossService } from 'app/sheetal/tax/gross/gross.service';
 import { AccountService } from 'app/core';
 import { NgbModalRef, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { CommonSidebarService } from '../../../pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-gross',
@@ -28,26 +29,21 @@ export class GrossComponent implements OnInit {
     globalflag: boolean;
     prevValue;
     isFieldChange = false;
+    account: any;
 
-    constructor(private modalService: NgbModal, private grossService: GrossService, private account: AccountService) {}
+    constructor(private modalService: NgbModal, private grossService: GrossService, public commonService: CommonSidebarService) {}
 
     ngOnInit() {
         this.FetchID();
         this.changesSaved = true;
     }
-    FetchID(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                console.log('user info', this.user);
-                this.gross.uid = this.user.id;
-                console.log(' gross uid is', this.gross.uid);
-                this.uid = this.gross.uid;
-                this.onGrossGet(this.uid);
-                console.log(' gross uid is', this.uid);
-            });
+    FetchID() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.gross.uid = this.account.id;
+            this.onGrossGet(this.uid);
+        });
     }
     // Gross Reset
     resetGross() {

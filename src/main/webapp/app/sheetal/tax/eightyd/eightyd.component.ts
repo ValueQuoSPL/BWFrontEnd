@@ -3,6 +3,7 @@ import { Eightyd } from 'app/sheetal/tax/eightyd/eightyd.model';
 import { EightydService } from 'app/sheetal/tax/eightyd/eightyd.service';
 import { AccountService } from 'app/core';
 import { NgbModalRef, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { CommonSidebarService } from '../../../pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-eightyd',
@@ -23,14 +24,23 @@ export class EightydComponent implements OnInit {
     dataChanged: boolean;
     globalflag: boolean;
     prevValue;
+    account: any;
     isFieldChange = false;
     universalflag: boolean;
 
-    constructor(private modalService: NgbModal, private eightydService: EightydService, private account: AccountService) {}
+    constructor(private modalService: NgbModal, private eightydService: EightydService, public commonService: CommonSidebarService) {}
 
     ngOnInit() {
         this.FetchID();
         this.changesSaved = true;
+    }
+    FetchID() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.eightyd.uid = this.account.id;
+            this.onEightydGet(this.uid);
+        });
     }
     onEightydSave() {
         this.eightydService.save(this.eightyd).subscribe(
@@ -66,18 +76,6 @@ export class EightydComponent implements OnInit {
                 this.valid = true;
             }
         });
-    }
-
-    FetchID(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.eightyd.uid = this.user.id;
-                this.uid = this.eightyd.uid;
-                this.onEightydGet(this.uid);
-            });
     }
 
     onEditStaticField(nameField, eightydEditContent) {

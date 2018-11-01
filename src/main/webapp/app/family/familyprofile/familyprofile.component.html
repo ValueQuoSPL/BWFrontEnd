@@ -156,12 +156,12 @@
             <div class="col-md-8"></div>
             <div class="col-md-4">
                         <div *ngIf="show" >
-                            <button mat-raised-button color="primary" [disabled]="familyproForm.form.invalid"  (click)="saveFamilyProfile()">Save</button>&nbsp;
-                            <button mat-raised-button class="" (click)="formpage()">Cancel</button>
+                            <button mat-raised-button class="btnSave" [disabled]="familyproForm.form.invalid"  (click)="saveFamilyProfile()">Save</button>&nbsp;
+                            <button mat-raised-button class="btnCancel" (click)="formpage()">Cancel</button>
                         </div>
                         <div *ngIf="!show">
-                            <button mat-raised-button color="primary" [disabled]="familyproForm.form.invalid" (click)=" update()">update</button>&nbsp;
-                            <button mat-raised-button (click)="viewpage()">Cancel</button>
+                            <button mat-raised-buttonclass="btnSave" [disabled]="familyproForm.form.invalid" (click)=" update()">update</button>&nbsp;
+                            <button mat-raised-button class="btnCancel" (click)="viewpage()">Cancel</button>
                         </div>
                   
             </div>

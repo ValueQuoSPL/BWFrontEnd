@@ -3,6 +3,7 @@ import { Eightyc } from 'app/sheetal/tax/eightyc/eightyc.model';
 import { EightycService } from 'app/sheetal/tax/eightyc/eightyc.service';
 import { AccountService } from 'app/core';
 import { NgbModalRef, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { CommonSidebarService } from '../../../pratik/common/sidebar.service';
 @Component({
     selector: 'jhi-eightyc',
     templateUrl: './eightyc.component.html',
@@ -26,24 +27,34 @@ export class EightycComponent implements OnInit {
     globalflag: boolean;
     prevValue;
     isFieldChange = false;
+    account: any;
 
-    constructor(private modalService: NgbModal, private eightycService: EightycService, private Accountservice: AccountService) {}
+    constructor(private modalService: NgbModal, private eightycService: EightycService, public commonService: CommonSidebarService) {}
 
     ngOnInit() {
-        this.FetchID();
+        this.FetchId();
         this.changesSaved = true;
         this.eightyc.fixed = 0;
     }
 
-    FetchID(): Promise<any> {
-        return this.Accountservice.get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.eightyc.uid = this.user.id;
-                this.uid = this.eightyc.uid;
-                this.onEightycGet();
-            });
+    // FetchID(): Promise<any> {
+    //     return this.Accountservice.get()
+    //         .toPromise()
+    //         .then(response => {
+    //             this.user = response.body;
+    //             this.eightyc.uid = this.user.id;
+    //             this.uid = this.eightyc.uid;
+    //             this.onEightycGet();
+    //         });
+    // }
+    // FetchIdMethod to to get Info Of Current Logged User
+    FetchId() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.eightyc.uid = this.account.id;
+            this.onEightycGet();
+        });
     }
 
     // eightyc call function for post data

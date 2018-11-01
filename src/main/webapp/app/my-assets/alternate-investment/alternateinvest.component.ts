@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AltInvest } from 'app/my-assets/alternate-investment/alternateinvestment.modal';
-import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlternateService } from 'app/my-assets/alternate-investment/alternateinvest.service';
 import { CommonSidebarService } from '../../pratik/common/sidebar.service';
+
 @Component({
     selector: 'jhi-alternative',
     templateUrl: './alternateinvest.component.html',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Myprofile } from 'app/family/family.model';
 import { MyprofileService } from 'app/family/myprofile/myprofile.service';
-import { AccountService, Principal } from 'app/core';
 import { FormControl } from '@angular/forms';
+import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 @Component({
     selector: 'jhi-myprofile',
     templateUrl: './myprofile.component.html',
@@ -16,12 +16,21 @@ export class MyprofileComponent implements OnInit {
     isValid: boolean;
     date = new FormControl(new Date());
     show = true;
+    account: any;
 
-    constructor(private principal: Principal, private MyProfileSer: MyprofileService, private account: AccountService) {}
+    constructor(private MyProfileSer: MyprofileService, public commonService: CommonSidebarService) {}
 
     ngOnInit() {
         this.myProfile = {};
         this.FetchId();
+    }
+    // FetchIdMethod to Fetch information of  by Loged User
+    FetchId() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.getMyProfilebyid();
+        });
     }
     // saveMethod to saveMyprofile
     saveDetail() {
@@ -53,17 +62,6 @@ export class MyprofileComponent implements OnInit {
                 this.isValid = true;
             }
         });
-    }
-    // FetchIdMethod to Fetch information of  by Loged User
-    FetchId(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.uid = this.user.id;
-                this.getMyProfilebyid();
-            });
     }
     // editDetail Method to edit Myprofile
     editDetail() {
@@ -98,7 +96,7 @@ export class MyprofileComponent implements OnInit {
         this.isValid = true;
     }
     // cencel Method to cencel Myprofile
-    cencel() {
+    cancel() {
         this.isValid = true;
     }
 }
