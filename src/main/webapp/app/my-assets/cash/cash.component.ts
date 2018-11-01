@@ -4,6 +4,7 @@ import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CashService } from 'app/my-assets/cash/cash.service';
+import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-cash',
@@ -18,6 +19,7 @@ export class CashComponent implements OnInit {
     getdata: any;
     uid: any;
     out: any;
+    account: any;
     CashDetails: any;
     cash: Cash = new Cash();
     isSaving;
@@ -25,25 +27,33 @@ export class CashComponent implements OnInit {
     editcash: any;
 
     constructor(
-        private account: AccountService,
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
-        public cashservice: CashService
+        public cashservice: CashService,
+        public commonService: CommonSidebarService
     ) {}
 
     ngOnInit() {
         this.FetchId();
     }
-    FetchId(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.cash.userid = this.user.id;
-                this.uid = this.user.id;
-                this.getCashDetailsByuid(this.uid);
-            });
+    // FetchId(): Promise<any> {
+    //     return this.account
+    //         .get()
+    //         .toPromise()
+    //         .then(response => {
+    //             this.user = response.body;
+    //             this.cash.userid = this.user.id;
+    //             this.uid = this.user.id;
+    //             this.getCashDetailsByuid(this.uid);
+    //         });
+    // }
+    FetchId() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.cash.userid = this.account.id;
+            this.getCashDetailsByuid(this.uid);
+        });
     }
     private getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {

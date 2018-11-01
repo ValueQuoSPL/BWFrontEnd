@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MutualFund } from 'app/my-assets/mutual/mutual.modal';
 import { MutualfundService } from 'app/my-assets/mutual/mutual.service';
+import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-mutualfund',
@@ -20,27 +21,36 @@ export class MutualComponent implements OnInit {
     closeResult: any;
     mutualfund: MutualFund = new MutualFund();
     isSaving;
+    account: any;
 
     constructor(
-        private account: AccountService,
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
-        public mutualFundService: MutualfundService
+        public mutualFundService: MutualfundService,
+        public commonService: CommonSidebarService
     ) {}
 
     ngOnInit() {
         this.FetchId();
     }
-    FetchId(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.mutualfund.userid = this.user.id;
-                this.uid = this.mutualfund.userid;
-                this.getMutualFundByUid(this.uid);
-            });
+    // FetchId(): Promise<any> {
+    //     return this.account
+    //         .get()
+    //         .toPromise()
+    //         .then(response => {
+    //             this.user = response.body;
+    //             this.mutualfund.userid = this.user.id;
+    //             this.uid = this.mutualfund.userid;
+    //             this.getMutualFundByUid(this.uid);
+    //         });
+    // }
+    FetchId() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.mutualfund.userid = this.account.id;
+            this.getMutualFundByUid(this.uid);
+        });
     }
 
     openMutual(mutualModel) {

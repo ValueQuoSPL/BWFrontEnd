@@ -4,6 +4,7 @@ import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { PropertyService } from 'app/my-assets/property/property.service';
+import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-property',
@@ -22,30 +23,39 @@ export class PropertyComponent implements OnInit {
     property: Property = new Property();
     isSaving;
     prop_type: any;
+    account: any;
 
     constructor(
-        private account: AccountService,
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
-        public propertyservice: PropertyService
+        public propertyservice: PropertyService,
+        public commonService: CommonSidebarService
     ) {}
 
     ngOnInit() {
         this.FetchId();
     }
-    FetchId(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.property.userid = this.user.id;
-                this.uid = this.property.userid;
-                // this.getMyProfilebyid(this.uid);
-                // this. getAltInvestment(this.uid)
-                // this.getCashDetailsByuid(this.uid);
-                this.getsavePropertyByuid(this.uid);
-            });
+    // FetchId(): Promise<any> {
+    //     return this.account
+    //         .get()
+    //         .toPromise()
+    //         .then(response => {
+    //             this.user = response.body;
+    //             this.property.userid = this.user.id;
+    //             this.uid = this.property.userid;
+    //             // this.getMyProfilebyid(this.uid);
+    //             // this. getAltInvestment(this.uid)
+    //             // this.getCashDetailsByuid(this.uid);
+    //             this.getsavePropertyByuid(this.uid);
+    //         });
+    // }
+    FetchId() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.property.userid = this.account.id;
+            this.getsavePropertyByuid(this.uid);
+        });
     }
     private getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {

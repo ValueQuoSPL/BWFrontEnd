@@ -22,13 +22,13 @@
         </mat-form-field>
         <div *ngIf=" firstName.touched && !firstName.valid">
           <div *ngIf="firstName.errors.required">
-              firstName is required
+              First Name is required
           </div>
           <div *ngIf="firstName.errors.minlength">
-              name should be min {{firstName.errors.minlength.requiredLength}} char
+              First Name should be min {{firstName.errors.minlength.requiredLength}} char
           </div>
           <div *ngIf="firstName.errors.pattern"> 
-              pattern not match
+              First Name pattern not match
           </div>
         </div>
       </div><!-- end of row1.col1-->
@@ -45,18 +45,17 @@
             minlength="2" 
             maxlength="10" 
             pattern="^[_'.@A-Za-z0-9-]*$"
-            required
           >
         </mat-form-field>
         <div *ngIf=" middleName.touched && !middleName.valid">
           <div *ngIf="middleName.errors.required">
-            middleName is required
+            Middle Name is required
           </div>
           <div *ngIf="middleName.errors.minlength">
-            middleName name should be min {{middleName.errors.minlength.requiredLength}} char
+            Middle Name  should be min {{middleName.errors.minlength.requiredLength}} char
           </div>
           <div *ngIf="middleName.errors.pattern"> 
-              pattern not match
+              Middle Name pattern not match
           </div>
         </div>
       </div><!-- end of row1.col2-->
@@ -78,13 +77,13 @@
         </mat-form-field>
         <div *ngIf=" lastName.touched && !lastName.valid">
           <div *ngIf="lastName.errors.required">
-            lastName is required
+            Last Name is required
           </div>
           <div *ngIf="lastName.errors.minlength">
-            lastName name should be min {{lastName.errors.minlength.requiredLength}} char
+            Last Name name should be min {{lastName.errors.minlength.requiredLength}} char
           </div>
           <div *ngIf="lastName.errors.pattern"> 
-              pattern not match
+              Last Name pattern not match
           </div>
         </div>
       </div><!-- end of row1.col3-->
@@ -97,7 +96,7 @@
           <input 
             matInput 
             [matDatepicker]="picker" 
-            placeholder="Choose a date" 
+            placeholder="Date Of Birth"
             name="dob" 
             [(ngModel)]="myProfile.dob"
           >
@@ -139,10 +138,10 @@
         </mat-form-field>
         <div *ngIf="mobileNumber.touched && !mobileNumber.valid">
           <div *ngIf="mobileNumber.errors.required">
-            mobileNumber is required
+              Mobile Number is required
           </div>
           <div *ngIf="mobileNumber.errors.minlength">
-            mobileNumber name should be min {{mobileNumber.errors.minlength.requiredLength}} char
+            Mobile Number name should be min {{mobileNumber.errors.minlength.requiredLength}} char
           </div>
           <div *ngIf="mobileNumber.errors.pattern"> 
               pattern not match
@@ -161,18 +160,17 @@
             [(ngModel)]="myProfile.alternateNumber"
             name="alternateNumber" 
             #alternateNumber="ngModel"
-            minlength="6" 
+            minlength="10" 
             maxlength="10" 
             pattern="^[_'.@A-Za-z0-9-]*$"
-            required
           >
         </mat-form-field>
         <div *ngIf="alternateNumber.touched && !alternateNumber.valid">
           <div *ngIf="alternateNumber.errors.required">
-            alternateNumber is required
+              Alternate Number is required
           </div>
           <div *ngIf="alternateNumber.errors.minlength">
-            alternateNumber should be min {{alternateNumber.errors.minlength.requiredLength}} char
+              Alternate Number should be min {{alternateNumber.errors.minlength.requiredLength}} char
           </div>
           <div *ngIf="alternateNumber.errors.pattern"> 
               pattern not match
@@ -197,10 +195,10 @@
         </mat-form-field>
         <div *ngIf="occupation.touched && !occupation.valid">
           <div *ngIf="occupation.errors.required">
-            occupation is required
+            Occupation is required
           </div>
           <div *ngIf="occupation.errors.minlength">
-            occupation should be min {{alternateNumber.errors.minlength.requiredLength}} char
+              Occupation should be min {{alternateNumber.errors.minlength.requiredLength}} char
           </div>
           <div *ngIf="occupation.errors.pattern"> 
               pattern not match
@@ -218,17 +216,17 @@
             name="company"
             #company="ngModel"
             minlength="5"
-            maxlength="10"
+            maxlength="20"
             pattern="^[_'.@A-Za-z0-9-]*$"
             required
           >
         </mat-form-field>
         <div *ngIf="company.touched && !company.valid">
           <div *ngIf="company.errors.required">
-            company name is required
+            Company name is required
           </div>
           <div *ngIf="company.errors.minlength">
-            company should be min {{company.errors.minlength.requiredLength}} char
+            Company should be min {{company.errors.minlength.requiredLength}} char
           </div>
           <div *ngIf="company.errors.pattern"> 
               pattern not match
@@ -275,16 +273,16 @@
         </mat-form-field>
         <div *ngIf="emailId.touched && !emailId.valid">
           <div *ngIf="emailId.errors.required">
-            emailId is required
+            Email Id is required
           </div>
           <div *ngIf="emailId.errors.minlength">
-            emailId should be min {{emailId.errors.minlength.requiredLength}} char
+            Email Id should be min {{emailId.errors.minlength.requiredLength}} char
           </div>
           <div *ngIf="emailId.errors.minlength">
-            emailId should be min {{emailId.errors.minlength.requiredLength}} char
+            Email Id should be min {{emailId.errors.minlength.requiredLength}} char
           </div>
           <div *ngIf="emailId.errors.pattern"> 
-            email pattern not match
+            Email pattern not match
           </div>
         </div> 
       </div><!-- end of row4.col2-->
@@ -338,13 +336,13 @@
         </mat-form-field>
         <div *ngIf="country.touched && !country.valid">
           <div *ngIf="country.errors.required">
-            country is required
+              Country is required
           </div>
           <div *ngIf="country.errors.minlength">
-            country should be min {{country.errors.minlength.requiredLength}} char
+              Country should be min {{country.errors.minlength.requiredLength}} char
           </div>
           <div *ngIf="country.errors.pattern"> 
-            pan pattern not match
+            Country pattern not match
           </div>
         </div>
       </div><!-- end of row5.col1-->
@@ -352,7 +350,7 @@
         <mat-form-field>
           <input 
             matInput 
-            placeholder="state" 
+            placeholder="State" 
             type="text" 
             id="state"
             [(ngModel)]="myProfile.state"
@@ -430,8 +428,14 @@
         </div>
       </div><!--end of row5.col4-->
     </div><!--end of row5-->
-    <hr>
-    <div class="pull-right">
+    <div class="row"><!-- start of row5-->
+      <div class="col-md-3"><!-- start of row5.col1-->
+      </div><!-- end of row5.col1-->
+      <div class="col-md-3"><!-- start of row5.col2-->
+      </div><!--end of row5.col2-->
+      <div class="col-md-3"><!--start of row5.col3-->
+    </div><!-- end of row5.col3-->
+      <div class="col-md-3"><!--start of row5.col4-->
         <button
         mat-raised-button
         class="colm"
@@ -440,12 +444,14 @@
         class="btn btn-primary"
         [disabled]="editForm.form.invalid" 
         class="btn btn-primary"
-        (click)="saveDetail()" >Save</button>&nbsp;
+        (click)="saveDetail()">Save</button>&nbsp;
        <span><button mat-raised-button color="primary" *ngIf="!show" (click)="update()" >Update</button></span>&nbsp;
        <span><button mat-raised-button  color="accent" (click)="cencel()">Cancel</button></span> 
+      </div><!--end of row5.col4-->
+    </div><!--end of row5-->
+    <div class="pull-right row">
     </div>
   </form><!--end of form-->
-  <hr><hr>
 </div><!--end of container-->
 <!--start of view page-->
 <div *ngIf="isValid"><!--start of view div-->
@@ -473,9 +479,9 @@
     </tr>
     <tr></tr>
     <tr>
-      <td>FirstName:&nbsp;{{profile.firstName}}</td>
-      <td>MiddleName:&nbsp;{{profile.middleName}}</td>
-      <td>LastName:&nbsp;{{profile.lastName}}</td>
+      <td>First Name:&nbsp;{{profile.firstName}}</td>
+      <td>Middle Name:&nbsp;{{profile.middleName}}</td>
+      <td>Last Name:&nbsp;{{profile.lastName}}</td>
     </tr>
     <tr>
         <td>Gender:&nbsp;{{profile.gender}}</td>
@@ -484,8 +490,8 @@
     </tr>
     <tr>
         <td>Occupation:&nbsp;{{profile.occupation}}</td>
-        <td>MobileNumber:&nbsp;{{profile.mobileNumber}}</td>
-        <td>AlternateNumber:&nbsp;{{profile.alternateNumber}}</td>
+        <td>Mobile Number:&nbsp;{{profile.mobileNumber}}</td>
+        <td>Alternate Number:&nbsp;{{profile.alternateNumber}}</td>
     </tr>
     <tr>
         <td>Company:&nbsp;{{profile.company}}</td>

@@ -7,6 +7,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 // import {MutualFundService} from './mutual.service';
+import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-stock',
@@ -23,14 +24,15 @@ export class StockComponent implements OnInit {
     getid: any;
     stocks: Stocks = new Stocks();
     isSaving;
+    account: any;
     totalshareprice: any;
     data = new ReplaySubject(0);
 
     constructor(
         private stockService: StockService,
-        private account: AccountService,
         private modalService: NgbModal,
-        public activeModal: NgbActiveModal
+        public activeModal: NgbActiveModal,
+        public commonService: CommonSidebarService
     ) {}
 
     ngOnInit() {
@@ -44,16 +46,23 @@ export class StockComponent implements OnInit {
         this.stocks.notes = '';
         this.stocks.share_price = null;
     }
-    FetchId(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.stocks.userid = this.user.id;
-                this.uid = this.stocks.userid;
-                this.getStockById(this.uid);
-            });
+    // FetchId(): Promise<any> {
+    //     return this.account
+    //         .get()
+    //         .toPromise()
+    //         .then(response => {
+    //             this.user = response.body;
+    //             this.stocks.userid = this.user.id;
+    //             this.uid = this.stocks.userid;
+    //             this.getStockById(this.uid);
+    //         });
+    // }
+    FetchId() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.getStockById(this.uid);
+        });
     }
     private getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {

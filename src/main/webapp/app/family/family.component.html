@@ -1,13 +1,10 @@
 <div class="container">
-    <div>
         <div [ngSwitch]="isAuthenticated()">
-            <div *ngSwitchCase="true">
-                <div class="container">                   
+            <div *ngSwitchCase="true">                  
                         <div class="form-group row justify-content-center bwtitle">Profile
                         </div>
-                        <mat-accordion  class="container" >
-                            <mat-accordion>
-                                <mat-expansion-panel class="accordcol">
+                            <mat-accordion class="container" >
+                                <mat-expansion-panel class="accordcol"  >
                                     <mat-expansion-panel-header class="accordcol">
                                         <mat-panel-title class="bwaccordtitle" >
                                             <h5>My Profile</h5>
@@ -31,9 +28,6 @@
                                     <jhi-familyprofile></jhi-familyprofile>
                                 </mat-expansion-panel>
                             </mat-accordion>
-                        </mat-expansion-panel>
-                    </mat-accordion>
-                </div>
             </div>
             <!-- <div class="alert alert-warning" *ngSwitchCase="false">
                 <img src="../Assests/oops.jpg" style="height:500px;width:500px"><br>
@@ -54,5 +48,4 @@
                 </div>
             <br>
         </div>
-    </div>
 </div>

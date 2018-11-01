@@ -166,7 +166,7 @@
     width: 100px;
     height: 100px;
     top: 40%;
-    left: 30%;
+    left: 50%;
     /* margin-top: -50px;
     margin-left: -50px; */
 }
@@ -178,8 +178,8 @@
     height: 0;
     margin: 6px;
     box-sizing: border-box;
-    border: 26px solid #fcf;
-    border-color: #fcf transparent #fcf transparent;
+    border: 26px solid #f1592a;
+    border-color: #f1592a transparent #f1592a transparent;
     animation: lds-hourglass 1.2s infinite;
 }
 @keyframes lds-hourglass {

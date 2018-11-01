@@ -12,7 +12,8 @@
                             <mat-panel-description class="bwaccordtitle">Total Stock Value&nbsp;&nbsp;{{totalshareprice}}</mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here--> 
-                        <jhi-stock></jhi-stock>           
+                        <!-- <jhi-stock></jhi-stock>            -->
+                        <router-outlet name="stock"></router-outlet>
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Mutual funds -->
@@ -22,7 +23,8 @@
                             <mat-panel-description  class="bwaccordtitle">Total Mutual Value&nbsp;&nbsp;{{totalmutual}} </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
-                        <jhi-mutualfund></jhi-mutualfund>  
+                        <!-- <jhi-mutualfund></jhi-mutualfund>   -->
+                        <router-outlet name="mutual"></router-outlet>
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Saving Schemes -->
@@ -32,7 +34,8 @@
                             <mat-panel-description  class="bwaccordtitle ">Total Saving Schemes Value&nbsp;&nbsp; {{totalSaving}} </mat-panel-description>
                         </mat-expansion-panel-header>
                             <!--write selector here-->
-                            <jhi-savingscheme></jhi-savingscheme>
+                            <!-- <jhi-savingscheme></jhi-savingscheme> -->
+                            <router-outlet name="saving"></router-outlet>
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Alternative Investment -->
@@ -42,7 +45,8 @@
                             <mat-panel-description  class="bwaccordtitle">TotalAlternative Investment Value&nbsp;&nbsp; {{totalAltenateInvest}} </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
-                        <jhi-alternative></jhi-alternative>
+                        <!-- <jhi-alternative></jhi-alternative> -->
+                        <router-outlet name="altinvest"></router-outlet>
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Cash -->
@@ -52,7 +56,8 @@
                             <mat-panel-description  class="bwaccordtitle">Total Cash Value&nbsp;&nbsp; {{totalCash}} </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
-                        <jhi-cash></jhi-cash>
+                        <!-- <jhi-cash></jhi-cash> -->
+                        <router-outlet name="cash"></router-outlet>
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Property -->
@@ -62,7 +67,9 @@
                             <mat-panel-description  class="bwaccordtitle">Total  Property, Jewellery & Others Value&nbsp;&nbsp; {{totalProperty}} </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
-                        <jhi-property></jhi-property>
+                        <!-- <jhi-property></jhi-property> -->
+                        <router-outlet name="property"></router-outlet>
+
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Chit -->
@@ -72,7 +79,8 @@
                             <mat-panel-description  class="bwaccordtitle">Total Chit Funds Value&nbsp;&nbsp; {{totalChitFund}} </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
-                        <jhi-chitfund></jhi-chitfund>
+                        <!-- <jhi-chitfund></jhi-chitfund> -->
+                        <router-outlet name="chit"></router-outlet>
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Future and Options -->
@@ -82,7 +90,8 @@
                             <mat-panel-description  class="bwaccordtitle" >Total Future and Options Value&nbsp;&nbsp; {{totalFutureOption}} </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
-                        <jhi-futureoption></jhi-futureoption>
+                        <!-- <jhi-futureoption></jhi-futureoption> -->
+                        <router-outlet name="future"></router-outlet>
                     </mat-expansion-panel>
                     &nbsp;
                 </mat-accordion>
