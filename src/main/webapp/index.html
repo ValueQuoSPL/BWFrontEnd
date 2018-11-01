@@ -41,17 +41,24 @@
            }
         }
     </script>
-    <!-- uncomment this for adding service worker-->
+    <!-- uncomment this for adding service worker
         <script>
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function() {
-                    navigator.serviceWorker.register('/sw.js')
+                    navigator.serviceWorker.register('/service-worker.js')
                         .then(function () {
                             console.log('Service Worker Registered');
                         });
                 });
             }
-        </script>
+        </script>-->
+    <script>
+        if ('serviceWorker' in navigator) {
+                navigator.serviceWorker
+                .register('./service-worker.js')
+                .then(function() { console.log('Service Worker Registered'); });
+        }
+    </script>
     
     <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
     <script>
