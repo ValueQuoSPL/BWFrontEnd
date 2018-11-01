@@ -11,10 +11,10 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
     styleUrls: []
 })
 export class FamilyComponent implements OnInit {
-    panelOpenState = false;
+    panelMyprofileState = false;
+    panelFamilyprofileState = false;
     servers: any;
     modalRef: NgbModalRef;
-
     constructor(private principal: Principal, private loginModalService: LoginModalService) {}
 
     ngOnInit() {}

@@ -6,10 +6,15 @@
                 </div>
                 <mat-accordion>
                     <!-- stocks -->
-                    <mat-expansion-panel  class="eaxpand ">
-                        <mat-expansion-panel-header class="specific-class accordcol" id="asset1">
+                    <mat-expansion-panel  class="accordcol" 
+                    (opened)="panelStockState = true"
+                    (closed)="panelStockState = false" >
+                        <mat-expansion-panel-header class="specific-class accordcol">
                             <mat-panel-title class="bwaccordtitle"> Stocks </mat-panel-title>
-                            <mat-panel-description class="bwaccordtitle">Total Stock Value&nbsp;&nbsp;{{totalshareprice}}</mat-panel-description>
+                            <!-- <mat-panel-description class="bwaccordtitle">Total Stock Value&nbsp;&nbsp;{{totalshareprice}}</mat-panel-description> -->
+                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                                    {{panelStockState ? 'Collapse' : 'Expand'}}
+                            </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here--> 
                         <!-- <jhi-stock></jhi-stock>            -->
@@ -17,10 +22,15 @@
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Mutual funds -->
-                    <mat-expansion-panel id="asset"  >
-                        <mat-expansion-panel-header id="asset"   class="accordcolor">
-                            <mat-panel-title class="bwaccordtitle"> Mutual Funds </mat-panel-title>
-                            <mat-panel-description  class="bwaccordtitle">Total Mutual Value&nbsp;&nbsp;{{totalmutual}} </mat-panel-description>
+                    <mat-expansion-panel  class="accordcolor" 
+                    (opened)="panelMutualState = true"
+                    (closed)="panelMutualState = false">
+                        <mat-expansion-panel-header    class="accordcolor">
+                          <mat-panel-title class="bwaccordtitle"> Mutual Funds </mat-panel-title>
+                             <!--  <mat-panel-description  class="bwaccordtitle">Total Mutual Value&nbsp;&nbsp;{{totalmutual}} </mat-panel-description> -->
+                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                                    {{panelMutualState ? 'Collapse' : 'Expand'}}
+                            </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
                         <!-- <jhi-mutualfund></jhi-mutualfund>   -->
@@ -28,10 +38,15 @@
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Saving Schemes -->
-                    <mat-expansion-panel id="asset1">
-                        <mat-expansion-panel-header   id="asset1" class="accordcol">
+                    <mat-expansion-panel class="accordcol"
+                    (opened)="panelSavingState = true"
+                    (closed)="panelSavingState = false">
+                        <mat-expansion-panel-header   class="accordcol">
                             <mat-panel-title class="bwaccordtitle"> Saving Schemes </mat-panel-title>
-                            <mat-panel-description  class="bwaccordtitle ">Total Saving Schemes Value&nbsp;&nbsp; {{totalSaving}} </mat-panel-description>
+                             <!--<mat-panel-description  class="bwaccordtitle ">Total Saving Schemes Value&nbsp;&nbsp; {{totalSaving}} </mat-panel-description> -->
+                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                                    {{panelSavingState ? 'Collapse' : 'Expand'}}
+                            </mat-panel-description>
                         </mat-expansion-panel-header>
                             <!--write selector here-->
                             <!-- <jhi-savingscheme></jhi-savingscheme> -->
@@ -39,10 +54,15 @@
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Alternative Investment -->
-                    <mat-expansion-panel id="asset">
-                        <mat-expansion-panel-header id="asset" class="accordcolor">
-                            <mat-panel-title class="bwaccordtitle"> Alternative Investment </mat-panel-title>
-                            <mat-panel-description  class="bwaccordtitle">TotalAlternative Investment Value&nbsp;&nbsp; {{totalAltenateInvest}} </mat-panel-description>
+                    <mat-expansion-panel  class="accordcolor"
+                    (opened)="panelAlterState = true"
+                    (closed)="panelAlterState = false" >
+                        <mat-expansion-panel-header  class="accordcolor">
+                             <mat-panel-title class="bwaccordtitle"> Alternative Investment </mat-panel-title>
+                            <!--<mat-panel-description  class="bwaccordtitle">TotalAlternative Investment Value&nbsp;&nbsp; {{totalAltenateInvest}} </mat-panel-description> -->
+                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                                    {{panelAlterState ? 'Collapse' : 'Expand'}}
+                            </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
                         <!-- <jhi-alternative></jhi-alternative> -->
@@ -50,10 +70,15 @@
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Cash -->
-                    <mat-expansion-panel id="asset1">
-                        <mat-expansion-panel-header  id="asset1" class="accordcol">
+                    <mat-expansion-panel class="accordcol"
+                    (opened)="panelCashState = true"
+                    (closed)="panelCashState = false">
+                        <mat-expansion-panel-header  class="accordcol">
                             <mat-panel-title  class="bwaccordtitle"> Cash </mat-panel-title>
-                            <mat-panel-description  class="bwaccordtitle">Total Cash Value&nbsp;&nbsp; {{totalCash}} </mat-panel-description>
+                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                                    {{panelCashState ? 'Collapse' : 'Expand'}}
+                            </mat-panel-description>
+                             <!--<mat-panel-description  class="bwaccordtitle">Total Cash Value&nbsp;&nbsp; {{totalCash}} </mat-panel-description> -->
                         </mat-expansion-panel-header>
                         <!--write selector here-->
                         <!-- <jhi-cash></jhi-cash> -->
@@ -61,10 +86,15 @@
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Property -->
-                    <mat-expansion-panel id="asset">
-                        <mat-expansion-panel-header id="asset"  class="accordcolor">
-                            <mat-panel-title  class="bwaccordtitle"> Property, Jewellery & Others </mat-panel-title>
-                            <mat-panel-description  class="bwaccordtitle">Total  Property, Jewellery & Others Value&nbsp;&nbsp; {{totalProperty}} </mat-panel-description>
+                    <mat-expansion-panel  class="accordcolor"
+                    (opened)="panelPropertyState = true"
+                    (closed)="panelPropertyState = false">
+                        <mat-expansion-panel-header   class="accordcolor">
+                             <mat-panel-title  class="bwaccordtitle"> Property, Jewellery & Others </mat-panel-title>
+                            <!-- <mat-panel-description  class="bwaccordtitle">Total  Property, Jewellery & Others Value&nbsp;&nbsp; {{totalProperty}} </mat-panel-description> --> 
+                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                                    {{panelPropertyState ? 'Collapse' : 'Expand'}}
+                            </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
                         <!-- <jhi-property></jhi-property> -->
@@ -73,10 +103,15 @@
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Chit -->
-                    <mat-expansion-panel id="asset1" >
-                        <mat-expansion-panel-header id="asset1" class="accordcol">
-                            <mat-panel-title  class="bwaccordtitle"> Chit Funds </mat-panel-title>
-                            <mat-panel-description  class="bwaccordtitle">Total Chit Funds Value&nbsp;&nbsp; {{totalChitFund}} </mat-panel-description>
+                    <mat-expansion-panel class="accordcol"
+                    (opened)="panelChitState = true"
+                    (closed)="panelChitState = false">
+                        <mat-expansion-panel-header class="accordcol">
+                           <mat-panel-title  class="bwaccordtitle"> Chit Funds </mat-panel-title>
+                             <!-- <mat-panel-description  class="bwaccordtitle">Total Chit Funds Value&nbsp;&nbsp; {{totalChitFund}} </mat-panel-description> -->
+                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                                    {{panelChitState ? 'Collapse' : 'Expand'}}
+                            </mat-panel-description>
                         </mat-expansion-panel-header>
                         <!--write selector here-->
                         <!-- <jhi-chitfund></jhi-chitfund> -->
@@ -84,10 +119,17 @@
                     </mat-expansion-panel>
                     &nbsp;
                     <!-- Future and Options -->
-                    <mat-expansion-panel id="asset">
-                        <mat-expansion-panel-header id="asset" class="accordcolor">
-                            <mat-panel-title  class="bwaccordtitle"> Future and Options </mat-panel-title>
-                            <mat-panel-description  class="bwaccordtitle" >Total Future and Options Value&nbsp;&nbsp; {{totalFutureOption}} </mat-panel-description>
+                    <mat-expansion-panel  class="accordcolor"
+                        (opened)="panelFutureState = true"
+                        (closed)="panelFutureState = false">
+                        <mat-expansion-panel-header  class="accordcolor">
+                            <!-- <mat-panel-title  class="bwaccordtitle"> Future and Options </mat-panel-title>
+                            <mat-panel-description  class="bwaccordtitle" >Total Future and Options Value&nbsp;&nbsp; {{totalFutureOption}} </mat-panel-description> -->
+                             <mat-panel-title>Future and Options</mat-panel-title>
+                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                                    {{panelFutureState ? 'Collapse' : 'Expand'}}
+                            </mat-panel-description>
+                                
                         </mat-expansion-panel-header>
                         <!--write selector here-->
                         <!-- <jhi-futureoption></jhi-futureoption> -->

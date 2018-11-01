@@ -3,6 +3,7 @@ import { Home } from 'app/sheetal/tax/home/home.model';
 import { HomeService } from 'app/sheetal/tax/home/home.service';
 import { AccountService } from 'app/core';
 import { NgbModalRef, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { CommonSidebarService } from '../../../pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-home',
@@ -27,13 +28,22 @@ export class HomeComponent implements OnInit {
     prevValue;
     isFieldChange = false;
     universalflag: boolean;
+    account: any;
 
-    constructor(private modalService: NgbModal, private homeService: HomeService, private account: AccountService) {}
+    constructor(private modalService: NgbModal, private homeService: HomeService, public commonService: CommonSidebarService) {}
 
     ngOnInit() {
         // for Home
         this.FetchID();
         this.changesSaved = true;
+    }
+    FetchID() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.home.uid = this.account.id;
+            this.onHomeGet();
+        });
     }
     // Home reset
     resetHome() {
@@ -64,17 +74,6 @@ export class HomeComponent implements OnInit {
                 this.valid = true;
             }
         });
-    }
-    FetchID(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.home.uid = this.user.id;
-                this.uid = this.home.uid;
-                this.onHomeGet();
-            });
     }
     onEditHomeField(nameField, homeEditContent) {
         this.nameField = nameField;

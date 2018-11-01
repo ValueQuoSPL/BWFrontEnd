@@ -4,25 +4,29 @@
                         <div class="form-group row justify-content-center bwtitle">Profile
                         </div>
                             <mat-accordion class="container" >
-                                <mat-expansion-panel class="accordcol"  >
+                                <mat-expansion-panel class="accordcol"
+                                (opened)="panelMyprofileState = true"
+                                (closed)="panelMyprofileState = false"  >
                                     <mat-expansion-panel-header class="accordcol">
                                         <mat-panel-title class="bwaccordtitle" >
                                             <h5>My Profile</h5>
                                         </mat-panel-title>
-                                        <mat-panel-description class="bwaccordtitle">
-                                        Fill your Profile here
+                                        <mat-panel-description class="bwaccordtitle setmargin">
+                                                {{panelMyprofileState ? 'Collapse' : 'Expand'}}
                                         </mat-panel-description>
                                     </mat-expansion-panel-header>
                                     <jhi-myprofile></jhi-myprofile>
                                 </mat-expansion-panel>
                             &nbsp;
-                                <mat-expansion-panel>
+                                <mat-expansion-panel class="accordcolor"
+                                (opened)="panelFamilyprofileState = true"
+                                (closed)="panelFamilyprofileState = false">
                                     <mat-expansion-panel-header class="accordcolor">
                                         <mat-panel-title class="bwaccordtitle">
                                         <h5>Family Profile</h5>
                                         </mat-panel-title>
-                                        <mat-panel-description cclass="bwaccordtitle"> 
-                                            Fill your  Family Profile here
+                                        <mat-panel-description class="bwaccordtitle setmargin">
+                                            {{panelFamilyprofileState ? 'Collapse' : 'Expand'}}
                                         </mat-panel-description>
                                     </mat-expansion-panel-header>
                                     <jhi-familyprofile></jhi-familyprofile>
