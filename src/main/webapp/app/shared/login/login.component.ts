@@ -27,6 +27,7 @@ export class JhiLoginModalComponent implements AfterViewInit {
 
     PaymentArray: any = [];
     route: any;
+    admin: any;
 
     constructor(
         private stateStorageService: StateStorageService,
@@ -48,9 +49,13 @@ export class JhiLoginModalComponent implements AfterViewInit {
     ngAfterViewInit() {
         setTimeout(() => this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#username'), 'focus', []), 0);
         this.principal.getAuthenticationState().subscribe(identity => {
-            console.log(identity.authorities[0]);
-            this.route = identity.authorities[0];
-            this.routing();
+            if (identity) {
+                this.route = identity.authorities[0];
+                if (identity.authorities[1]) {
+                    this.admin = identity.authorities[1];
+                }
+                this.routing();
+            }
         });
     }
 
@@ -135,6 +140,9 @@ export class JhiLoginModalComponent implements AfterViewInit {
 
         if (this.route === 'ROLE_ADVISOR') {
             this.router.navigate(['/advisor']);
+        }
+        if (this.admin === 'ROLE_ADMIN') {
+            this.router.navigate(['/dashboard']);
         }
     }
 

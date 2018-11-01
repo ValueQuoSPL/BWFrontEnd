@@ -11,7 +11,7 @@ import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 @Component({
     selector: 'jhi-sidebar',
     templateUrl: './sidebar.component.html',
-    styleUrls: ['./sidebar.component.css', '../../css/fa/css/all.css']
+    styleUrls: ['./sidebar.component.css', '../../css/fa/css/all.css', '../../../content/css/w3.css']
 })
 @Injectable()
 export class SidebarComponent implements OnInit, AfterViewInit {
@@ -31,16 +31,15 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     fullAccess: boolean;
     result: any = [];
     last: any;
+    authority: any;
 
     constructor(
         private principal: Principal,
         private loginModalService: LoginModalService,
         private deviceService: DeviceDetectorService,
         private planService: PlanService,
-        private eventManager: JhiEventManager,
         private userPlanService: UserPlanService,
-        private sc: CommonSidebarService,
-        private successService: SuccessService
+        private commonService: CommonSidebarService
     ) {
         this.epicFunction();
     }
@@ -50,6 +49,14 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+        this.principal.getAuthenticationState().subscribe(authority => {
+            if (authority) {
+                if (authority.authorities[1]) {
+                    this.authority = authority.authorities[1];
+                    this.showSidebarAfterLogin();
+                }
+            }
+        });
         this.planService.isPaid.subscribe(flag => {
             if (flag === true) {
                 this.isPaid = true;
@@ -58,11 +65,19 @@ export class SidebarComponent implements OnInit, AfterViewInit {
                 this.isPaid = false;
             }
         });
-        this.sc.account.subscribe(account => {
+        this.commonService.account.subscribe(account => {
             if (account) {
                 this.account = account;
                 this.uid = this.account.id;
                 this.get(this.uid);
+                if (this.account.authorities[1]) {
+                    this.authority = this.account.authorities[1];
+                    if (this.authority === 'ROLE_ADMIN') {
+                        this.showSidebarAfterLogin();
+                        this.fullAccess = true;
+                    }
+                } else {
+                }
             }
         });
     }
@@ -83,6 +98,10 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             } else {
                 this.fullAccess = false;
                 this.isSubscribed = false;
+                if (this.authority === 'ROLE_ADMIN') {
+                    this.showSidebarAfterLogin();
+                    this.fullAccess = true;
+                }
             }
         });
     }

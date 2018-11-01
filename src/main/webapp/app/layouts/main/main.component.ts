@@ -17,7 +17,7 @@ import { JhiLoginModalComponent } from 'app/shared';
     styleUrls: ['./main.css']
 })
 export class JhiMainComponent implements OnInit, AfterViewInit {
-    account: Account;
+    account: any;
     modalRef: NgbModalRef;
     deviceInfo = null;
     isMobile;
@@ -37,6 +37,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     isPlan: boolean;
     PaymentArray: any = [];
     isPayment: boolean;
+    authority: any;
 
     constructor(
         private titleService: Title,
@@ -82,6 +83,9 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                 this.uid = account.id;
                 this.sc.account.next(this.account);
                 this.checkSuccess(this.uid);
+                if (this.account.authorities[1]) {
+                    this.authority = this.account.authorities[1];
+                }
             }
         });
         this.registerAuthenticationSuccess();
@@ -92,7 +96,6 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     // after login
     registerAuthenticationSuccess() {
         this.eventManager.subscribe('authenticationSuccess', message => {
-            console.log('main-> login found');
             this.principal.identity().then(account => {
                 this.account = account;
                 this.uid = account.id;
@@ -120,6 +123,10 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                 } else {
                     this.isPaid = false;
                     this.flag = false;
+                }
+                if (this.authority === 'ROLE_ADMIN') {
+                    this.isPaid = true;
+                    this.flag = true;
                 }
             },
             error => {}

@@ -8,7 +8,7 @@ import { AccountService } from 'app/core/auth/account.service';
 export class Principal {
     private userIdentity: any;
     private authenticated = false;
-    private authenticationState = new Subject<any>();
+    public authenticationState = new Subject<any>();
 
     constructor(
         private languageService: JhiLanguageService,
