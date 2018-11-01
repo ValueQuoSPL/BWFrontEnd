@@ -40,6 +40,8 @@ export class NavbarComponent implements OnInit, DoCheck {
     isMobile: any;
     looggedIn = false;
     isPaid = false;
+    account: any;
+    isAdmin = false;
 
     constructor(
         @Inject(DOCUMENT) private document: Document,
@@ -56,7 +58,7 @@ export class NavbarComponent implements OnInit, DoCheck {
         private languageService: JhiLanguageService,
         private languageHelper: JhiLanguageHelper,
         private cd: ChangeDetectorRef,
-        private sidebarService: CommonSidebarService,
+        private commonService: CommonSidebarService,
         private planService: PlanService
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
@@ -91,11 +93,20 @@ export class NavbarComponent implements OnInit, DoCheck {
                 this.isPaid = false;
             }
         });
+
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            if (this.account.authorities[1]) {
+                if (this.account.authorities[1] === 'ROLE_ADMIN') {
+                    this.isAdmin = true;
+                    this.isPaid = true;
+                }
+            }
+        });
     }
 
     changeLanguage(languageKey: string) {
         this.collapseNavbar();
-
         this.languageService.changeLanguage(languageKey);
     }
 
@@ -142,7 +153,7 @@ export class NavbarComponent implements OnInit, DoCheck {
 
     logout() {
         this.isPaid = false;
-        this.sidebarService.account.next(false);
+        this.commonService.account.next(false);
         this.collapseNavbar();
         this.loginService.logout();
         this.router.navigate(['']);
