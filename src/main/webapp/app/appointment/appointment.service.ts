@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SERVER_API_URL } from 'app/app.constants';
-import { AccountService } from 'app/core';
 import { Observable } from '../../../../../node_modules/rxjs';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 @Injectable({
     providedIn: 'root'
@@ -10,22 +10,17 @@ import { Observable } from '../../../../../node_modules/rxjs';
 export class AppointmentService {
     // data = new BehaviorSubject(0);
     userid: any;
-    constructor(private _http: HttpClient, private accountService: AccountService) {
+    account: any;
+    constructor(private _http: HttpClient, private commonSidebarService: CommonSidebarService) {
         this.getUserid();
     }
 
     getUserid() {
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.userid = account.id;
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.commonSidebarService.account.subscribe(account => {
+            this.account = account;
+            this.userid = this.account.id;
+            this.getCalendarByUid();
+        });
     }
 
     // Post Appointment Data
