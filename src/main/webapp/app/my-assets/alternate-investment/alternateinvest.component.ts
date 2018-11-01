@@ -4,6 +4,7 @@ import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlternateService } from 'app/my-assets/alternate-investment/alternateinvest.service';
+import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 @Component({
     selector: 'jhi-alternative',
     templateUrl: './alternateinvest.component.html',
@@ -14,6 +15,7 @@ export class AlternativeComponent implements OnInit {
     closeResult: string;
     commonid: number;
     conformkey: boolean;
+    account: any;
     uid: any;
     getdata: any;
     out: any;
@@ -22,25 +24,33 @@ export class AlternativeComponent implements OnInit {
     isSaving;
 
     constructor(
-        private account: AccountService,
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
-        public alternateservice: AlternateService
+        public alternateservice: AlternateService,
+        public commonService: CommonSidebarService
     ) {}
 
     ngOnInit() {
         this.FetchId();
     }
-    FetchId(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.altInvest.userId = this.user.id;
-                this.uid = this.altInvest.userId;
-                this.getAltInvestment(this.uid);
-            });
+    // FetchId(): Promise<any> {
+    //     return this.account
+    //         .get()
+    //         .toPromise()
+    //         .then(response => {
+    //             this.user = response.body;
+    //             this.altInvest.userId = this.user.id;
+    //             this.uid = this.altInvest.userId;
+    //             this.getAltInvestment(this.uid);
+    //         });
+    // }
+    FetchId() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.altInvest.userId = this.account.id;
+            this.getAltInvestment(this.uid);
+        });
     }
     openAlt(altModal) {
         this.resetFieldValue();

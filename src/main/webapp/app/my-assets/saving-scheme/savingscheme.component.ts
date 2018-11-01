@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SavingScheme } from 'app/my-assets/saving-scheme/savingscheme.modal';
 import { SavingSchemeService } from 'app/my-assets/saving-scheme/savingscheme.service';
+import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-savingscheme',
@@ -21,6 +22,7 @@ export class SavingSchemeComponent implements OnInit {
     getdata: any;
     savingScheme: SavingScheme = new SavingScheme();
     isSaving;
+    account: any;
     getTempDate = new Date();
     setTempDate = new Date();
 
@@ -54,24 +56,31 @@ export class SavingSchemeComponent implements OnInit {
     ];
 
     constructor(
-        private account: AccountService,
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
-        public savingSchemeService: SavingSchemeService
+        public savingSchemeService: SavingSchemeService,
+        public commonService: CommonSidebarService
     ) {}
 
     ngOnInit() {
         this.FetchId();
     }
-    FetchId(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.uid = this.user.id;
-                this.getSavingSchemeUid(this.uid);
-            });
+    // FetchId(): Promise<any> {
+    //     return this.account
+    //         .get()
+    //         .toPromise()
+    //         .then(response => {
+    //             this.user = response.body;
+    //             this.uid = this.user.id;
+    //             this.getSavingSchemeUid(this.uid);
+    //         });
+    // }
+    FetchId() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.getSavingSchemeUid(this.uid);
+        });
     }
 
     private getDismissReason(reason: any): string {
