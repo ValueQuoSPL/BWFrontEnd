@@ -7,6 +7,8 @@ import { UserPlanService } from 'app/home/subscriber/userplan.service';
 import { SuccessService } from 'app/success/success.service';
 import { JhiEventManager } from 'ng-jhipster';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { SpendingComponent } from 'app/pratik';
+import { SpendingRouteGuardService } from 'app/pratik/common/spending-route-guard.service';
 
 @Component({
     selector: 'jhi-sidebar',
@@ -39,7 +41,9 @@ export class SidebarComponent implements OnInit, AfterViewInit {
         private deviceService: DeviceDetectorService,
         private planService: PlanService,
         private userPlanService: UserPlanService,
-        private commonService: CommonSidebarService
+        private commonService: CommonSidebarService,
+        private spend: SpendingComponent,
+        private srs: SpendingRouteGuardService
     ) {
         this.epicFunction();
     }
@@ -136,5 +140,9 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
     Login() {
         this.modalRef = this.loginModalService.open();
+    }
+
+    expense(route) {
+        this.srs.accordion.next(route);
     }
 }

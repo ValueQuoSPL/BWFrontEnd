@@ -45,7 +45,7 @@
                     </ng-template>
         
                     <!-- utilities -->
-                    <mat-expansion-panel >
+                    <mat-expansion-panel [expanded]="utilityState">
                         <!-- header -->
                         <mat-expansion-panel-header class="accordcol">
                             <mat-panel-title class="bwaccordtitle">Utilities </mat-panel-title>
@@ -58,7 +58,7 @@
                     </mat-expansion-panel>     
                     &nbsp;
                     <!-- household -->
-                    <mat-expansion-panel >
+                    <mat-expansion-panel [expanded]="houseState">
                         <!-- header -->
                         <mat-expansion-panel-header  class="accordcolor">
                             <mat-panel-title class="bwaccordtitle">Household</mat-panel-title>
@@ -71,7 +71,7 @@
                     </mat-expansion-panel>    
                     &nbsp;
                     <!-- Loan -->
-                    <mat-expansion-panel >
+                    <mat-expansion-panel [expanded]="loanState">
         
                         <mat-expansion-panel-header  class="accordcol">
                             <mat-panel-title class="bwaccordtitle">Loans and Debts </mat-panel-title>
@@ -84,7 +84,7 @@
                     </mat-expansion-panel>   
                     &nbsp;
                     <!-- Insurance -->
-                    <mat-expansion-panel>
+                    <mat-expansion-panel [expanded]="insState">
         
                             <mat-expansion-panel-header  class="accordcolor">
                                 <mat-panel-title class="bwaccordtitle">Insurance</mat-panel-title>
@@ -135,7 +135,7 @@
                     </mat-expansion-panel> 
                     &nbsp;
                     <!-- Credit Cards -->
-                    <mat-expansion-panel>
+                    <mat-expansion-panel [expanded]="creditState">
         
                             <mat-expansion-panel-header  class="accordcol">
                                 <mat-panel-title class="bwaccordtitle"> Credit Cards</mat-panel-title>
@@ -149,7 +149,7 @@
                     </mat-expansion-panel>  
                     &nbsp;
                     <!-- Entertainment & Travel -->
-                    <mat-expansion-panel>
+                    <mat-expansion-panel [expanded]="travelState">
                             <!-- header -->
                             <mat-expansion-panel-header  class="accordcolor">
                                 <mat-panel-title class="bwaccordtitle">
@@ -167,7 +167,7 @@
                     </mat-expansion-panel> 
                     &nbsp;
                     <!-- Misc -->
-                    <mat-expansion-panel>
+                    <mat-expansion-panel [expanded]="miscState">
                             <!-- header -->
                             <mat-expansion-panel-header  class="accordcol">
                                 <mat-panel-title class="bwaccordtitle">

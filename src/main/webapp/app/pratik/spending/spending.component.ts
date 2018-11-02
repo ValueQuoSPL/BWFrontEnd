@@ -40,6 +40,15 @@ export class SpendingComponent implements OnInit {
     dataChanged: any;
     changesSaved: any;
 
+    commonState: any;
+    utilityState = false;
+    houseState = false;
+    loanState: boolean;
+    insState: boolean;
+    creditState: boolean;
+    travelState: boolean;
+    miscState: boolean;
+
     constructor(
         private router: Router,
         private principal: Principal,
@@ -54,6 +63,71 @@ export class SpendingComponent implements OnInit {
         this.routeGuard.GuardSource.subscribe(flag => {
             this.dataChanged = flag;
         });
+        this.routeGuard.accordion.subscribe(route => {
+            this.commonState = route;
+            this.panelState(this.commonState);
+        });
+    }
+
+    panelState(route) {
+        console.log(route);
+        if (route === 'utility') {
+            this.utilityState = true;
+            this.houseState = false;
+            this.loanState = false;
+            this.insState = false;
+            this.creditState = false;
+            this.travelState = false;
+            this.miscState = false;
+        } else if (route === 'house') {
+            this.utilityState = false;
+            this.houseState = true;
+            this.loanState = false;
+            this.insState = false;
+            this.creditState = false;
+            this.travelState = false;
+            this.miscState = false;
+        } else if (route === 'loan') {
+            this.utilityState = false;
+            this.houseState = false;
+            this.loanState = true;
+            this.insState = false;
+            this.creditState = false;
+            this.travelState = false;
+            this.miscState = false;
+        } else if (route === 'insurance') {
+            this.utilityState = false;
+            this.houseState = false;
+            this.loanState = false;
+            this.insState = true;
+            this.creditState = false;
+            this.travelState = false;
+            this.miscState = false;
+        } else if (route === 'credit') {
+            this.utilityState = false;
+            this.houseState = false;
+            this.loanState = false;
+            this.insState = false;
+            this.creditState = true;
+            this.travelState = false;
+            this.miscState = false;
+        } else if (route === 'travel') {
+            this.utilityState = false;
+            this.houseState = false;
+            this.loanState = false;
+            this.insState = false;
+            this.creditState = false;
+            this.travelState = true;
+            this.miscState = false;
+        } else if (route === 'misc') {
+            this.utilityState = false;
+            this.houseState = false;
+            this.loanState = false;
+            this.insState = false;
+            this.creditState = false;
+            this.travelState = false;
+            this.miscState = true;
+        }
     }
 
     isAuthenticated() {

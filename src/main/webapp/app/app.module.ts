@@ -194,6 +194,7 @@ import { AdvisorFilterPipe } from 'app/advisor/advisor-filter.pipe';
         SpendingRouteGuardService,
         WINDOW_PROVIDERS,
         SidebarComponent,
+        SpendingComponent,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

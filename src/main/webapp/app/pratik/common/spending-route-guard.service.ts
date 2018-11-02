@@ -6,6 +6,7 @@ import { ReplaySubject } from 'rxjs';
 })
 export class SpendingRouteGuardService {
     GuardSource = new ReplaySubject(0);
+    accordion = new ReplaySubject(0);
 
     constructor() {}
 }
