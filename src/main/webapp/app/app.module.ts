@@ -93,6 +93,7 @@ import { DashRoute } from 'app/pratik/dashboard/dashboard.routes';
 import { advisorRoot } from 'app/advisor/advisor.route';
 import { AdvisorComponent } from 'app/advisor/advisor.component';
 import { AdvisorFilterPipe } from 'app/advisor/advisor-filter.pipe';
+import { successRoute } from 'app/success/success.route';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -112,6 +113,7 @@ import { AdvisorFilterPipe } from 'app/advisor/advisor-filter.pipe';
         RouterModule.forChild(pratikState),
         RouterModule.forRoot([DashRoute], { useHash: true }),
         RouterModule.forRoot([advisorRoot], { useHash: true }),
+        RouterModule.forRoot([successRoute], { useHash: true }),
         BuckswiseFrontEndSharedModule,
         BuckswiseFrontEndCoreModule,
         BuckswiseFrontEndHomeModule,
