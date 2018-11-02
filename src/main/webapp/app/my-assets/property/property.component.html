@@ -121,7 +121,7 @@
                 <button 
                     type="submit" 
                     mat-button 
-                    class="btn btn-outline-primary" 
+                    class="btnSave"
                     [disabled]="editForm.form.invalid || isSaving"
                     (click)="c('Save click')">
                     <span class="fa fa-save"></span>&nbsp;
@@ -129,8 +129,8 @@
                 </button>
                 <button 
                     type="button" 
-                    mat-button 
-                    class="btn btn-outline-accent" 
+                    mat-button
+                    class="btnCancel"
                     data-dismiss="modal" 
                     (click)="d('Cross click')">
                     <span class="fa fa-ban"></span>&nbsp;
@@ -250,7 +250,7 @@
                 <button 
                     type="submit" 
                     mat-button 
-                    class="btn btn-outline-primary" 
+                    class="btnSave" 
                     [disabled]="editForm.form.invalid || isSaving"
                     (click)="c('Save click')">
                     <span class="fa fa-save"></span>&nbsp;
@@ -259,7 +259,7 @@
                 <button 
                     type="button" 
                     mat-button 
-                    class="btn btn-outline-accent" 
+                    class="btnCancel" 
                     data-dismiss="modal" 
                     (click)="d('Cross click')">
                     <span class="fa fa-ban"></span>&nbsp;

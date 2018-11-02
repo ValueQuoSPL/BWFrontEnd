@@ -3,23 +3,25 @@ import { Principal, LoginModalService } from 'app/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'jhi-tax',
-  templateUrl: './tax.component.html',
-  styleUrls: ['./tax.component.css']
+    selector: 'jhi-tax',
+    templateUrl: './tax.component.html',
+    styleUrls: ['./tax.component.css']
 })
 export class TaxComponent implements OnInit {
-  modalRef: NgbModalRef;
+    modalRef: NgbModalRef;
+    panelGrossState = false;
+    panelEightyCState = false;
+    panelEightyDState = false;
+    panelHomeState = false;
+    panelOtherState = false;
 
-  constructor(
-    private principal: Principal,
-    private loginModalService: LoginModalService
-  ) {}
+    constructor(private principal: Principal, private loginModalService: LoginModalService) {}
 
-  ngOnInit() {}
-  isAuthenticated() {
-    return this.principal.isAuthenticated();
-  }
-  login() {
-    this.modalRef = this.loginModalService.open();
-  }
+    ngOnInit() {}
+    isAuthenticated() {
+        return this.principal.isAuthenticated();
+    }
+    login() {
+        this.modalRef = this.loginModalService.open();
+    }
 }

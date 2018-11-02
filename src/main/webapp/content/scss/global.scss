@@ -294,6 +294,7 @@ ui bootstrap tweaks
 }
 .bwaccordtitle {
     font-size: 17px;
+    color: white;
     font-weight: bolder;
     font-family: 'Titillium Web';
 }
@@ -327,9 +328,9 @@ ui bootstrap tweaks
 //     background: red;
 //     color: rgba(0,0,0,.87);
 // }
-.mat-expansion-panel {
-    background: #f1592a;
-}
+// .mat-expansion-panel {
+//     background: #f1592a;
+// }
 
 .mat-expansion-panel-content {
     font: 400 14px/20px Roboto, 'Helvetica Neue', sans-serif;
@@ -346,9 +347,11 @@ ui bootstrap tweaks
 .setmargine {
     margin-left: 550px;
 }
+.setmargin {
+    margin-left: 680px;
+}
 // .mat-expansion-panel-header.mat-expanded:focus.mat-expansion-panel-header.mat-expanded:hover {
-//     background-color: grey;
-// }
+//     background-color: none;
 // .mat-expansion-panel-header.mat-expanded,
 // .mat-expansion-panel-header.mat-expanded:hover {
 //   background: green;
@@ -360,4 +363,27 @@ hr {
     border: none;
     background-color: whitesmoke;
     color: whitesmoke;
+}
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    border-top-left-radius: 0.125rem;
+    border-top-right-radius: 0.125rem;
+    background-color: #f1592a;
+    color: white;
+}
+.btnSave {
+    color: white;
+    background-color: #f1592a;
+}
+.btnCancel {
+    color: white;
+    background-color: red;
+}
+.btnReset {
+    color: white;
+    background-color: #2e3192;
 }

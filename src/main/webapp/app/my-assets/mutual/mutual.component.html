@@ -154,14 +154,15 @@
                         mat-raised-button
                         type="submit"
                         [disabled]="editForm.form.invalid || isSaving"
-                        class="btn btn-primary"
+                        class="btnSave"
                         (click)="c('Save click')"
                         (click)="update()">
                         <span class="fa fa-save"></span>&nbsp;
                         <span>Save</span>
                     </button>
                     <button 
-                        mat-raised-button  
+                        mat-raised-button
+                        class="btnCancel"
                         data-dismiss="modal" 
                         (click)="d('Cross click')">
                         <span class="fa fa-ban"></span>&nbsp;
@@ -169,7 +170,7 @@
                     <button 
                         mat-raised-button 
                         type="button" 
-                        class="btn btn-warning" 
+                        class="btnReset"
                         (click)=" resetFieldValue()">
                         <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
                         <span>Reset</span></span>
@@ -302,14 +303,15 @@
                             mat-raised-button
                             type="submit"
                             [disabled]="editForm.form.invalid || isSaving"
-                            class="btn btn-primary"
+                            class="btnSave"
                             (click)="c('Save click')"
                             (click)="update()">
                             <span class="fa fa-save"></span>&nbsp;
                             <span>Update</span>
                         </button>
                         <button 
-                            mat-raised-button  
+                            mat-raised-button
+                            class="btnCancel" 
                             data-dismiss="modal" 
                             (click)="d('Cross click')">
                             <span class="fa fa-ban"></span>&nbsp;
@@ -317,7 +319,7 @@
                         <button 
                             mat-raised-button 
                             type="button" 
-                            class="btn btn-warning" 
+                            class="btnReset"
                             (click)="resetFieldValue()">
                             <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
                             <span>Reset</span></span>

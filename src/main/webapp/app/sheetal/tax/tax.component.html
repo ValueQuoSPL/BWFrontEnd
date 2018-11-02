@@ -3,57 +3,67 @@
         <div class="container">
             <div class="form-group row justify-content-center bwtitle">Tax Details</div>
             <mat-accordion>
-                <mat-expansion-panel class="accordion" >
+                <mat-expansion-panel class="accordion accordcol"
+                (opened)="panelGrossState = true"
+                (closed)="panelGrossState = false">
                     <mat-expansion-panel-header class="accordcol">
                         <mat-panel-title class="bwaccordtitle">
                                 <h5>Gross Income</h5>
                         </mat-panel-title>
                         <mat-panel-description class="bwaccordtitle">
-                            Gross Details
+                           {panelGrossState ? 'Collapse' : 'Expand'}
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <jhi-gross></jhi-gross>
                 </mat-expansion-panel> &nbsp;
-                <mat-expansion-panel>
+                <mat-expansion-panel class="accordcolor"
+                (opened)="panelEightyCState = true"
+                (closed)="panelEightyCState = false">
                     <mat-expansion-panel-header class="accordcolor">
                         <mat-panel-title class="bwaccordtitle">
                             <h5>EightyC Deduction</h5>
                         </mat-panel-title>
                         <mat-panel-description class="bwaccordtitle">
-                            EightyC Details
+                                {panelEightyCState ? 'Collapse' : 'Expand'}
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <jhi-eightyc></jhi-eightyc>
                 </mat-expansion-panel> &nbsp;
-                <mat-expansion-panel>
+                <mat-expansion-panel  class="accordcol"
+                (opened)="panelEightyDState = true"
+                (closed)="panelEightyDState = false">
                     <mat-expansion-panel-header class="accordcol">
                         <mat-panel-title class="bwaccordtitle">
                             <h5> EightyD Deduction</h5>
                         </mat-panel-title>
                         <mat-panel-description class="bwaccordtitle">
-                            EightyD Details
+                                {panelEightyDState ? Collapse' : 'Expand'}
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <jhi-eightyd></jhi-eightyd>                 
                 </mat-expansion-panel> &nbsp;
-                <mat-expansion-panel>
+                <mat-expansion-panel class="accordcolor"
+                (opened)="panelHomeState = true"
+                (closed)="panelHomeState = false">
                     <mat-expansion-panel-header class="accordcolor">
                         <mat-panel-title class="bwaccordtitle">
                             <h5>Home Deduction</h5>
                         </mat-panel-title>
                         <mat-panel-description class="bwaccordtitle">
-                            Home Details
+                                {panelHomeState ? 'Collapse' : 'Expand'}
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <jhi-home></jhi-home>
                 </mat-expansion-panel> &nbsp;
-                <mat-expansion-panel>
+                <mat-expansion-panel class="accordcol" 
+                (opened)="panelOtherState = true"
+                (closed)="panelOthertate = false">
                     <mat-expansion-panel-header class="accordcol">
                         <mat-panel-title class="bwaccordtitle">
                             <h5>Other Deduction</h5>  
                         </mat-panel-title>
                         <mat-panel-description class="bwaccordtitle">
-                        Other Details
+                                {panelOthertate ? 'Collapse' : 'Expand'}
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <jhi-other></jhi-other>

@@ -3,6 +3,7 @@ import { Other } from 'app/sheetal/tax/other/other.model';
 import { OtherService } from 'app/sheetal/tax/other/other.service';
 import { AccountService } from 'app/core';
 import { NgbModalRef, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { CommonSidebarService } from '../../../pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-other',
@@ -27,13 +28,22 @@ export class OtherComponent implements OnInit {
     prevValue;
     isFieldChange = false;
     universalflag: boolean;
+    account: any;
 
-    constructor(private modalService: NgbModal, private otherService: OtherService, private account: AccountService) {}
+    constructor(private modalService: NgbModal, private otherService: OtherService, public commonService: CommonSidebarService) {}
 
     ngOnInit() {
         // for other
         this.FetchID();
         this.changesSaved = true;
+    }
+    FetchID() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.other.uid = this.account.id;
+            this.onOtherGet();
+        });
     }
     // Other call function
     onOtherSave() {
@@ -72,17 +82,6 @@ export class OtherComponent implements OnInit {
                 this.valid = true;
             }
         });
-    }
-    FetchID(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.other.uid = this.user.id;
-                this.uid = this.other.uid;
-                this.onOtherGet();
-            });
     }
     onEditOtherField(nameField, otherEditContent) {
         this.nameField = nameField;

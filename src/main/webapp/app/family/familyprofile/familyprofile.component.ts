@@ -1,12 +1,8 @@
-import { DatePipe } from '@angular/common';
-import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';
-import { log } from 'util';
 import { Component, OnInit } from '@angular/core';
 import { FamilyprofileService } from 'app/family/familyprofile/familyprofile.service';
-import { AccountService, LoginModalService, Principal } from 'app/core';
-import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
 import { FamilyProfile } from 'app/family/familyprofile/familyprofile.model';
+import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-familyprofile',
@@ -21,23 +17,21 @@ export class FamilyprofileComponent implements OnInit {
     isValid: boolean;
     show = true;
     earncheck = 'notearning';
+    account: any;
     date = new FormControl(new Date());
 
-    constructor(private Familypro: FamilyprofileService, private account: AccountService) {}
+    constructor(private Familypro: FamilyprofileService, public commonService: CommonSidebarService) {}
 
     ngOnInit() {
         this.FetchId();
     }
     // FetchIdMethod to to get Info Of Current Logged User
-    FetchId(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.uid = this.user.id;
-                this.getFamilyProfilebyid(this.uid);
-            });
+    FetchId() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.getFamilyProfilebyid();
+        });
     }
     // saveMethod to saveFamilyprofile
     saveFamilyProfile() {
@@ -46,7 +40,7 @@ export class FamilyprofileComponent implements OnInit {
         console.log('uid is', this.familyProfile.uid);
         this.familyProfile.earncheck = this.earncheck;
         this.Familypro.save(this.familyProfile).subscribe(data => {
-            this.getFamilyProfilebyid(this.uid);
+            this.getFamilyProfilebyid();
         });
     }
     getFamilyProfile() {
@@ -55,7 +49,7 @@ export class FamilyprofileComponent implements OnInit {
         });
     }
     // getFamilyProfilebyid Method to fetch Familyprofile info by UserId
-    getFamilyProfilebyid(uid) {
+    getFamilyProfilebyid() {
         console.log('in familyget', this.uid);
         this.Familypro.getFamilyProfileByUid(this.uid).subscribe(res => {
             this.output = res;
@@ -106,7 +100,7 @@ export class FamilyprofileComponent implements OnInit {
     update() {
         console.log('in update', this.familyProfile);
         this.Familypro.updateProfile(this.familyProfile).subscribe(responce => {
-            this.getFamilyProfilebyid(this.uid);
+            this.getFamilyProfilebyid();
         });
     }
     formpage() {
