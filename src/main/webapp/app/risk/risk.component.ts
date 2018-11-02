@@ -4,37 +4,35 @@ import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'jhi-risk',
-  templateUrl: './risk.component.html'
+    selector: 'jhi-risk',
+    templateUrl: './risk.component.html'
 })
 export class RiskComponent implements OnInit {
-  account: Account;
-  step = 0;
-  modalRef: NgbModalRef;
+    account: Account;
+    step = 0;
+    modalRef: NgbModalRef;
+    panelLifeState: false;
+    panelMedicleState: false;
 
-  constructor(
-    private principal: Principal,
-    private loginModalService: LoginModalService,
-    private router: Router
-  ) {}
+    constructor(private principal: Principal, private loginModalService: LoginModalService, private router: Router) {}
 
-  ngOnInit() {
-    this.principal.identity().then(account => {
-      this.account = account;
-    });
-  }
-  isAuthenticated() {
-    return this.principal.isAuthenticated();
-  }
+    ngOnInit() {
+        this.principal.identity().then(account => {
+            this.account = account;
+        });
+    }
+    isAuthenticated() {
+        return this.principal.isAuthenticated();
+    }
 
-  login() {
-    this.modalRef = this.loginModalService.open();
-  }
+    login() {
+        this.modalRef = this.loginModalService.open();
+    }
 
-  gotoLife() {
-    this.router.navigate(['life']);
-  }
-  gotoMedical() {
-    this.router.navigate(['medical']);
-  }
+    gotoLife() {
+        this.router.navigate(['life']);
+    }
+    gotoMedical() {
+        this.router.navigate(['medical']);
+    }
 }
