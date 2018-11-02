@@ -119,12 +119,12 @@ export class PromoCodeManageComponent implements OnInit {
         this.modalService.open(content, { ariaLabelledBy: 'PromoModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
-                const isPromoExist = this.checkPromoExist();
-                if (isPromoExist) {
-                    alert('Promocode already exist. Please delete previous or  try different name');
-                } else {
-                    this.UpdatePromo();
-                }
+                // const isPromoExist = this.checkPromoExist();
+                this.UpdatePromo();
+                // if (isPromoExist) {
+                //     alert('Promocode already exist. Please delete previous or  try different name');
+                // } else {
+                // }
             },
             reason => {
                 this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
