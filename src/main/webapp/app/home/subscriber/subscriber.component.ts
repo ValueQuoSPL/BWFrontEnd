@@ -7,6 +7,7 @@ import { PromoCodeService } from 'app/home/subscriber/promo-code';
 import { NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserPlanService } from 'app/home/subscriber/userplan.service';
 import { PromoCodeManageService } from 'app/admin';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 class Offer {
     payable;
@@ -31,7 +32,7 @@ class UserPlan {
 })
 export class SubscriberComponent implements OnInit {
     uid;
-    account: Account;
+    account: any;
     modalRef: NgbModalRef;
     payment: boolean;
     applied = false;
@@ -65,14 +66,14 @@ export class SubscriberComponent implements OnInit {
         private userPlanService: UserPlanService,
         private promoCodeService: PromoCodeService,
         private loginModalService: LoginModalService,
-        private promoCodeModalService: PromoCodeModalService
+        private promoCodeModalService: PromoCodeModalService,
+        private commonservice: CommonSidebarService
     ) {}
 
     ngOnInit() {
-        this.principal.identity().then(account => {
+        this.commonservice.account.subscribe(account => {
             this.account = account;
-            this.uid = account.id;
-            this.get();
+            this.uid = this.account.id;
         });
         this.registerAuthenticationSuccess();
         this.promoCodeService.currentMessage.subscribe(message => {
