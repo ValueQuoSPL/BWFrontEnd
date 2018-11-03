@@ -60,8 +60,7 @@ export class MyAssetsComponent {
         // private account: AccountService,
         private principal: Principal,
         private loginModalService: LoginModalService
-    ) // public assetAccordService: SpendingRouteGuardService
-    {}
+    ) {}
 
     // ngOnInit() {
     //     this.assetAccordService.assetacord.subscribe(route => {
