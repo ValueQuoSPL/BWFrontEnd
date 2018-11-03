@@ -27,7 +27,7 @@
           <div *ngIf="firstName.errors.minlength">
               First Name should be min {{firstName.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="firstName.errors.pattern"> 
+          <div *ngIf="firstName.errors.pattern">
               First Name pattern not match
           </div>
         </div>
@@ -95,7 +95,7 @@
         <mat-form-field>
           <input 
             matInput 
-            [matDatepicker]="picker" 
+            [matDatepicker]="picker"
             placeholder="Date Of Birth"
             name="dob" 
             [(ngModel)]="myProfile.dob"
@@ -356,7 +356,7 @@
             [(ngModel)]="myProfile.state"
             name="state" 
             #state="ngModel"
-            minlength="5" 
+            minlength="3"
             maxlength="20"
             required
           >
@@ -383,7 +383,7 @@
             [(ngModel)]="myProfile.city"
             name="city" 
             #city="ngModel"
-            minlength="4" 
+            minlength="3" 
             maxlength="25" 
             pattern="^[_'.@A-Za-z0-9-]*$"
             required>
@@ -402,9 +402,9 @@
     </div><!-- end of row5.col3-->
       <div class="col-md-3"><!--start of row5.col4-->
         <mat-form-field>
-          <input 
+          <input jhiNumberOnly
             matInput 
-            placeholder="PIN" 
+            placeholder="PIN"
             type="text" 
             id="pin"
             [(ngModel)]="myProfile.pin"

@@ -31,9 +31,11 @@
                             </p>
                         </span>
                     </div>
-                           
-
                 </div>
+
+                <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null" class="col-md-5 bounceInLeft animated ">
+                    {{successMessage}}
+                </ngb-alert>
 
 
                 <!-- modal, dialog -->

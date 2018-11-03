@@ -312,7 +312,6 @@ export class GoalSelectComponent implements OnInit {
                 this.PresentCost = element.presentcost;
                 this.GrandTotal = element.goalNotes;
                 this.AvailableCost = +this.PresentCost - +this.GrandTotal;
-                console.log('available 1', this.AvailableCost);
             }
 
             let F = 0;

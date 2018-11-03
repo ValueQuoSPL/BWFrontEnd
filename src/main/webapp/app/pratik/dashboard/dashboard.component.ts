@@ -358,8 +358,9 @@ export class DashboardComponent implements OnInit {
 
     getGoal() {
         this.dashboardService.getGoal(this.uid).subscribe(data => {
-            this.GoalArray = data;
+            // console.log('goal data', data);
 
+            this.GoalArray = data;
             this.FillGoalCircle();
         });
     }

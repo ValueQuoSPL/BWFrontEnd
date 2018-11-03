@@ -79,6 +79,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
                     if (this.authority === 'ROLE_ADMIN') {
                         this.showSidebarAfterLogin();
                         this.fullAccess = true;
+                        console.log('init -> admin', this.fullAccess);
                     }
                 } else {
                 }
@@ -96,15 +97,23 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
                 if (plan === 'WISE') {
                     this.fullAccess = false;
+                    console.log('wise', this.fullAccess);
+                    if (this.authority === 'ROLE_ADMIN') {
+                        this.fullAccess = true;
+                    }
                 } else {
                     this.fullAccess = true;
+                    console.log('wiser or wisest', this.fullAccess);
                 }
             } else {
                 this.fullAccess = false;
+                console.log('plan not found', this.fullAccess);
+
                 this.isSubscribed = false;
                 if (this.authority === 'ROLE_ADMIN') {
                     this.showSidebarAfterLogin();
                     this.fullAccess = true;
+                    console.log('get -> admin', this.fullAccess);
                 }
             }
         });

@@ -46,17 +46,7 @@ export class StockComponent implements OnInit {
         this.stocks.notes = '';
         this.stocks.share_price = null;
     }
-    // FetchId(): Promise<any> {
-    //     return this.account
-    //         .get()
-    //         .toPromise()
-    //         .then(response => {
-    //             this.user = response.body;
-    //             this.stocks.userid = this.user.id;
-    //             this.uid = this.stocks.userid;
-    //             this.getStockById(this.uid);
-    //         });
-    // }
+
     FetchId() {
         this.commonService.account.subscribe(account => {
             this.account = account;

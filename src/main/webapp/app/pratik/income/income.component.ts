@@ -4,8 +4,9 @@ import { IncomeService } from 'app/pratik/spending/spending.service';
 import { AccountService, LoginModalService, Principal } from 'app/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { CanComponentDeactivate } from 'app/pratik/common/can-deactivate-guard.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { CommonSidebarService } from '../common/sidebar.service';
+import { debounceTime } from 'rxjs/operators';
 
 class NewIncome {
     dynamicIncome: any = [];
@@ -19,7 +20,7 @@ class RemoveIncome {
 @Component({
     selector: 'jhi-income',
     templateUrl: './income.component.html',
-    styleUrls: ['./income.css']
+    styleUrls: ['./income.css', '../../css/animate.css']
 })
 export class IncomeComponent implements OnInit, CanComponentDeactivate {
     resource: any;
@@ -49,6 +50,8 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     isFieldChange: boolean;
 
     prevValue;
+    successMessage: string;
+    private _success = new Subject<string>();
 
     constructor(
         private modalService: NgbModal,
@@ -75,6 +78,14 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         this.isIncomeData = false;
         this.changesSaved = false;
         this.isFieldChange = false;
+
+        this._success.subscribe(message => (this.successMessage = message));
+        this._success.pipe(debounceTime(2000)).subscribe(() => (this.successMessage = null));
+    }
+
+    public changeSuccessMessage() {
+        this.changesSaved = true;
+        this.globalflag = false;
     }
 
     getUserid() {
@@ -214,19 +225,21 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     }
 
     saveIncome(): void {
+        this._success.next(`Your Data successfully saved.`);
         this.income.userid = this.uid;
         // this.income.dynamicIncome = this.dynamicIncome;
         this.incomeService.PostIncome(this.income).subscribe(data => {
+            this.changeSuccessMessage();
             this.isIncomeData = true;
-            this.changesSaved = true;
         });
     }
 
     updateIncome() {
+        this._success.next(`Your Data successfully saved.`);
         this.income.userid = this.uid;
         this.income.dynamicIncome = this.dynamicIncome;
         this.incomeService.PutIncome(this.income, this.uid).subscribe(data => {
-            this.changesSaved = true;
+            this.changeSuccessMessage();
         });
     }
 
