@@ -1,16 +1,17 @@
 import { log } from 'util';
 // import { StockComponent } from 'app/my-assets/stocks/stocks.component';
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { StockService } from 'app/my-assets/stocks/stocks.service';
-import { MutualfundService } from 'app/my-assets/mutual/mutual.service';
-import { AlternateService } from 'app/my-assets/alternate-investment/alternateinvest.service';
-import { CashService } from 'app/my-assets/cash/cash.service';
-import { ChitFundService } from 'app/my-assets/chit-funds/chitfund.service';
-import { PropertyService } from 'app/my-assets/property/property.service';
-import { FutureOptionService } from 'app/my-assets/future-option/futureoption.service';
-import { SavingSchemeService } from 'app/my-assets/saving-scheme/savingscheme.service';
+// import { StockService } from 'app/my-assets/stocks/stocks.service';
+// import { MutualfundService } from 'app/my-assets/mutual/mutual.service';
+// import { AlternateService } from 'app/my-assets/alternate-investment/alternateinvest.service';
+// import { CashService } from 'app/my-assets/cash/cash.service';
+// import { ChitFundService } from 'app/my-assets/chit-funds/chitfund.service';
+// import { PropertyService } from 'app/my-assets/property/property.service';
+// import { FutureOptionService } from 'app/my-assets/future-option/futureoption.service';
+// import { SavingSchemeService } from 'app/my-assets/saving-scheme/savingscheme.service';
 import { AccountService, LoginModalService, Principal } from 'app/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+// import { SpendingRouteGuardService } from 'app/pratik/common/spending-route-guard.service';
 
 @Component({
     selector: 'jhi-myassets',
@@ -46,6 +47,7 @@ export class MyAssetsComponent {
     panelPropertyState = false;
     panelChitState = false;
     panelFutureState = false;
+    commonState: any;
     constructor(
         // private stockService: StockService,
         // private mutualfundService: MutualfundService,
@@ -61,7 +63,94 @@ export class MyAssetsComponent {
     ) {}
 
     // ngOnInit() {
-    //     this.FetchId();
+    //     this.assetAccordService.assetacord.subscribe(route => {
+    //         this.commonState = route;
+    //         this.panelState(this.commonState);
+    //     });
+    // }
+    // panelState(route) {
+    //     console.log(route);
+    //     if (route === 'stock') {
+    //        this. panelOpenState = false;
+    //        this.panelStockState = true;
+    //        this.panelMutualState = false;
+    //        this.panelSavingState = false;
+    //        this.panelAlterState = false;
+    //        this.panelCashState = false;
+    //        this.panelPropertyState = false;
+    //        this.panelChitState = false;
+    //        this.panelFutureState = false;
+    //     } else if (route === 'mutual') {
+    //         this. panelOpenState = false;
+    //        this.panelStockState = false;
+    //        this.panelMutualState = true;
+    //        this.panelSavingState = false;
+    //        this.panelAlterState = false;
+    //        this.panelCashState = false;
+    //        this.panelPropertyState = false;
+    //        this.panelChitState = false;
+    //        this.panelFutureState = false;
+    //     } else if (route === 'saving') {
+    //         this. panelOpenState = false;
+    //        this.panelStockState = false;
+    //        this.panelMutualState = false;
+    //        this.panelSavingState = true;
+    //        this.panelAlterState = false;
+    //        this.panelCashState = false;
+    //        this.panelPropertyState = false;
+    //        this.panelChitState = false;
+    //        this.panelFutureState = false;
+    //     } else if (route === 'altinvest') {
+    //         this. panelOpenState = false;
+    //        this.panelStockState = false;
+    //        this.panelMutualState = false;
+    //        this.panelSavingState = false;
+    //        this.panelAlterState = true;
+    //        this.panelCashState = false;
+    //        this.panelPropertyState = false;
+    //        this.panelChitState = false;
+    //        this.panelFutureState = false;
+    //     } else if (route === 'cash') {
+    //         this. panelOpenState = false;
+    //        this.panelStockState = false;
+    //        this.panelMutualState = false;
+    //        this.panelSavingState = false;
+    //        this.panelAlterState = false;
+    //        this.panelCashState = true;
+    //        this.panelPropertyState = false;
+    //        this.panelChitState = false;
+    //        this.panelFutureState = false;
+    //     } else if (route === 'property') {
+    //         this. panelOpenState = false;
+    //         this.panelStockState = false;
+    //         this.panelMutualState = false;
+    //         this.panelSavingState = false;
+    //         this.panelAlterState = false;
+    //         this.panelCashState = false;
+    //         this.panelPropertyState = true;
+    //         this.panelChitState = false;
+    //         this.panelFutureState = false;
+    //     } else if (route === 'chit') {
+    //         this. panelOpenState = false;
+    //         this.panelStockState = false;
+    //         this.panelMutualState = false;
+    //         this.panelSavingState = false;
+    //         this.panelAlterState = false;
+    //         this.panelCashState = false;
+    //         this.panelPropertyState = false;
+    //         this.panelChitState = true;
+    //         this.panelFutureState = false;
+    //     } else if (route === 'future') {
+    //         this. panelOpenState = false;
+    //         this.panelStockState = false;
+    //         this.panelMutualState = false;
+    //         this.panelSavingState = false;
+    //         this.panelAlterState = false;
+    //         this.panelCashState = false;
+    //         this.panelPropertyState = false;
+    //         this.panelChitState = false;
+    //         this.panelFutureState = true;
+    //     }
     // }
 
     // FetchId(): Promise<any> {

@@ -96,11 +96,15 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
                 if (plan === 'WISE') {
                     this.fullAccess = false;
+                    if (this.authority === 'ROLE_ADMIN') {
+                        this.fullAccess = true;
+                    }
                 } else {
                     this.fullAccess = true;
                 }
             } else {
                 this.fullAccess = false;
+
                 this.isSubscribed = false;
                 if (this.authority === 'ROLE_ADMIN') {
                     this.showSidebarAfterLogin();
@@ -145,4 +149,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     expense(route) {
         this.srs.accordion.next(route);
     }
+    // assets(accord) {
+    //     this.srs.assetacord.next(accord);
+    // }
 }
