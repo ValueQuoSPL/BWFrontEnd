@@ -8,7 +8,7 @@
                             <div class="row justify-content-md-center  text-center  bwtitle">Appointment Booking</div>
                             <div class="row text-center" style="margin-top:15px;">
                                 <div class="col-md-3 text-center">
-                                    <button mat-raised-button (click)="today()" (click)="getCalendar()">
+                                    <button mat-raised-button (click)="today()" (click)="getCalendar()" class="btnSave">
                                         Today
                                     </button>
                                 </div>
@@ -16,7 +16,7 @@
                                     <h5>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h5>
                                 </mat-toolbar>
                                 <div class="col-md-3 text-center">
-                                    <button mat-raised-button (click)="increment()" (click)="getCalendar()">
+                                    <button mat-raised-button (click)="increment()" (click)="getCalendar()" class="btnReset">
                                         Next
                                     </button>
                                 </div>
@@ -108,13 +108,13 @@
                                         StartNow
                                     </button>
                                 </div> -->
-                                <div class="col-md-6 text-center" (click)="gotoAppointment()">
-                                    <button mat-raised-button>
+                                <div class="col-md-6 text-center" (click)="gotoAppointment()" >
+                                    <button mat-raised-button class="btnSave">
                                         Reschedule
                                     </button>
                                 </div>
                                 <div class="col-md-6 text-center">
-                                    <button mat-raised-button (click)="updateStatus()">
+                                    <button mat-raised-button (click)="updateStatus()" class="btnCancel">
                                         Cancel
                                     </button>
                                 </div>

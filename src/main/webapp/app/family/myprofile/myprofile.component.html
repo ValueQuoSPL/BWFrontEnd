@@ -99,6 +99,7 @@
             placeholder="Date Of Birth"
             name="dob" 
             [(ngModel)]="myProfile.dob"
+            required
           >
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
@@ -114,7 +115,7 @@
       </div><!--end of row2.col2-->
       <div class="col-md-3"><!--start of row2.col3-->
         <mat-form-field>
-          <mat-select placeholder="Choose Marrital Status" name="maritalStatus" [(ngModel)]="myProfile.maritalStatus">
+          <mat-select  required placeholder="Choose Marrital Status" name="maritalStatus" [(ngModel)]="myProfile.maritalStatus">
             <mat-option value="single">Single</mat-option>
             <mat-option value="married">Married</mat-option>
           </mat-select>

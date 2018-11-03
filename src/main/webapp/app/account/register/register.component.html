@@ -9,19 +9,17 @@
         <mat-card-content>
             <div class="row justify-content-md-center">
                 <div class="col-md-6">
-                    <h1>Registration</h1> <br>
-        
-                    <div class="alert alert-success" *ngIf="success">
+                    <div class="form-group row justify-content-center bwtitle">Registration</div><br>
+                <!-- <h1>Registration</h1> <br> -->
+                    <div class="alert alert-success" *ngIf="success" style="height:62%; width: 107%;">
                         <strong>You are successfully registered!</strong> <br>
                         We have sent you an activation email on your registered email id
-                         <br>
-                         Click on link in the email to activate your account .
+                            <br>
+                            Click on link in the email to activate your account .
                     </div>
-    
                     <div class="alert alert-danger" *ngIf="errorUserExists">
                         <strong>Login name already registered!</strong> <br> Please choose another one.
                     </div>
-        
                     <div class="alert alert-danger" *ngIf="errorEmailExists">
                         <strong>Email is already in use!</strong> <br> Please choose another one.
                     </div>
