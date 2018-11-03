@@ -145,4 +145,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     expense(route) {
         this.srs.accordion.next(route);
     }
+    // assets(accord) {
+    //     this.srs.assetacord.next(accord);
+    // }
 }
