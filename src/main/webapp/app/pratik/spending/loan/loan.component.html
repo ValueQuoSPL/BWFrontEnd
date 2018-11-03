@@ -36,7 +36,7 @@
                   </mat-form-field>
 
                   <mat-form-field style="width: 100%;">
-                      <input required matInput jhiNumberOnly placeholder="Rate of Interest" name="applicant" [(ngModel)]="loan.roi">
+                      <input required matInput jhiNumberOnly placeholder="Rate of Interest" name="roi" [(ngModel)]="loan.roi">
                   </mat-form-field>
 
                   <mat-form-field style="width: 100%;">
@@ -131,14 +131,13 @@
                         <th scope="col">Outstanding Amount </th>
                         <th scope="col">ROI </th>
                         <th scope="col">emi </th>
-                        <th scope="col">Action </th>
-                        <th></th>
+                        <th scope="col">Update </th>
+                        <th scope="col">Delete </th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- loan_type lender applicant amnt ldate check tenure intrest_type roi rdate -->
                     <tr *ngFor="let field of dynamicLoanArray; let i = index">
-                        <td> {{ field.id }}</td>
                         <td> {{ field.ltype }}</td>
                         <td> {{ field.ldate | date:'shortDate' }}</td>
                         <td> {{ field.lenderName }} </td>
@@ -148,9 +147,9 @@
                         <td> {{ field.roi }} </td>
                         <td> {{ field.emi }} </td>
                         <td>
-                                <button class="btn btn-outline-info" type="button" (click)="onEditLoan(field.id, loanModal)">
-                                        <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
-                                    </button>
+                            <button class="btn btn-outline-info" type="button" (click)="onEditLoan(field.id, loanModal)">
+                                <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
+                            </button>
                         </td>
                         <td><button class="btn btn-outline-danger"  type="button" (click)="RemoveLoan(i, field.id)" >
                             <span> <fa-icon [icon]="'trash'"></fa-icon></span></button>
