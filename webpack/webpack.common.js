@@ -64,8 +64,9 @@ module.exports = (options) => ({
                 // If you use an API server, in `prod` mode, you will need to enable CORS
                 // (see the `jhipster.cors` common JHipster property in the `application-*.yml` configurations)
                 // SERVER_API_URL: `'http://192.168.0.111:8080/'`
-                SERVER_API_URL: `'http://localhost:8080/'`
-                //   SERVER_API_URL: `'https://148.72.206.127:8443/'`
+                //SERVER_API_URL: `'http://localhost:8080/'`
+                //SERVER_API_URL: `'https://www.buckswise.com:8111/'`
+                SERVER_API_URL: `'https://www.buckswise.com:8443/'`
              }
         }),
         new CopyWebpackPlugin([

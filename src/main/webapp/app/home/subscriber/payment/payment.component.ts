@@ -12,8 +12,8 @@ export class PaymentComponent implements OnInit {
     user: User = new User();
     amount: any;
     disablePaymentButton = true;
-    sUrl = 'https://148.72.206.127:8443/api/success';
-    fUrl = 'https://148.72.206.127:8443/api/success';
+    sUrl = 'https://www.buckswise.com:8443/api/success';
+    fUrl = 'https://www.buckswise.com:8443/api/success';
     public paymentDetail: any = [];
 
     @Input() offer;
