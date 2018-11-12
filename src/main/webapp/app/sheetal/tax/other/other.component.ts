@@ -29,7 +29,7 @@ export class OtherComponent implements OnInit {
     isFieldChange = false;
     universalflag: boolean;
     account: any;
-
+    panelOthertate = false;
     constructor(private modalService: NgbModal, private otherService: OtherService, public commonService: CommonSidebarService) {}
 
     ngOnInit() {

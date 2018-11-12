@@ -42,6 +42,7 @@ export class NavbarComponent implements OnInit, DoCheck {
     isPaid = false;
     account: any;
     isAdmin = false;
+    authority: any;
 
     constructor(
         @Inject(DOCUMENT) private document: Document,
@@ -96,8 +97,9 @@ export class NavbarComponent implements OnInit, DoCheck {
 
         this.commonService.account.subscribe(account => {
             this.account = account;
-            if (this.account.authorities[1]) {
-                if (this.account.authorities[1] === 'ROLE_ADMIN') {
+            this.authority = this.account.authorities[1];
+            if (this.authority) {
+                if (this.authority === 'ROLE_ADMIN') {
                     this.isAdmin = true;
                     this.isPaid = true;
                 }
@@ -153,7 +155,7 @@ export class NavbarComponent implements OnInit, DoCheck {
 
     logout() {
         this.isPaid = false;
-        this.commonService.account.next(false);
+        // this.commonService.account.next(false);
         this.collapseNavbar();
         this.loginService.logout();
         this.router.navigate(['']);

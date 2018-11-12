@@ -57,13 +57,13 @@
                 </mat-expansion-panel> &nbsp;
                 <mat-expansion-panel class="accordcol" 
                 (opened)="panelOtherState = true"
-                (closed)="panelOthertate = false">
+                (closed)="panelOtherState = false">
                     <mat-expansion-panel-header class="accordcol">
                         <mat-panel-title class="bwaccordtitle">
                             <h5>Other Deduction</h5>  
                         </mat-panel-title>
                         <mat-panel-description class="bwaccordtitle">
-                                {{panelOthertate ? 'Collapse' : 'Expand'}}
+                                {{panelOtherState ? 'Collapse' : 'Expand'}}
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <jhi-other></jhi-other>

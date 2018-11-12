@@ -11,8 +11,8 @@ export class RiskComponent implements OnInit {
     account: Account;
     step = 0;
     modalRef: NgbModalRef;
-    panelLifeState: false;
-    panelMedicleState: false;
+    panelLifeState = false;
+    panelMedicleState = false;
 
     constructor(private principal: Principal, private loginModalService: LoginModalService, private router: Router) {}
 
