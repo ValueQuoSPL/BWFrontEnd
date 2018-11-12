@@ -13,6 +13,7 @@
             <jhi-footer></jhi-footer>
     </div>
     <div *ngSwitchCase="true">
+    <div>
         <div id="toggle" class="toggleClass" [ngClass]="{'pull':flag}">
             <jhi-sidebar *ngIf="isPaid"></jhi-sidebar>
             <router-outlet></router-outlet>
