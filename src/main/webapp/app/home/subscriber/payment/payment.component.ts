@@ -14,6 +14,7 @@ export class PaymentComponent implements OnInit {
     disablePaymentButton = true;
     sUrl = 'https://148.72.206.127:8443/api/success';
     fUrl = 'https://148.72.206.127:8443/api/success';
+
     public paymentDetail: any = [];
 
     @Input() offer;
@@ -24,6 +25,7 @@ export class PaymentComponent implements OnInit {
     constructor(private paymentService: PaymentService, private route: ActivatedRoute) {}
 
     submitUser() {
+        alert('submit');
         this.user.sUrl = this.sUrl;
         this.user.fUrl = this.fUrl;
         this.paymentService.submitUser(this.user).subscribe(data => {
