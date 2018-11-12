@@ -27,6 +27,7 @@ export class LoanComponent implements OnInit {
     dynamicLoan: any = [];
     tempLoanArray: any = [];
     loanDate = new FormControl(new Date());
+    loanDate2 = new FormControl(new Date());
     repDate = new FormControl(new Date());
     loan: Loan = new Loan();
     currentDate = new Date();
@@ -78,12 +79,19 @@ export class LoanComponent implements OnInit {
         this.loan.applicant = '';
         this.loan.check = false;
         this.loan.intrest_type = '';
-        this.loan.ldate = '';
+        this.loanDate = new FormControl(new Date());
+        this.repDate = new FormControl(new Date());
         this.loan.lender = '';
         this.loan.loan_type = '';
         this.loan.rdate = '';
         this.loan.roi = '';
         this.loan.tenure = '';
+    }
+
+    DateChangeDetector(event) {
+        const date = new Date(event);
+        date.setMonth(date.getMonth() + 1);
+        this.repDate.setValue(date);
     }
 
     private getDismissReason(reason: any): string {
@@ -177,6 +185,7 @@ export class LoanComponent implements OnInit {
     }
 
     openLoan(loanModal) {
+        this.clear();
         this.modalService.open(loanModal, { ariaLabelledBy: 'loanModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
@@ -241,11 +250,13 @@ export class LoanComponent implements OnInit {
                 this.loan.applicant = this.tempLoanArray[i].appName;
                 this.loan.amnt = this.tempLoanArray[i].amount;
                 this.loan.ldate = this.tempLoanArray[i].ldate;
+                this.loanDate = new FormControl(new Date(this.tempLoanArray[i].ldate));
                 this.loan.check = this.tempLoanArray[i].checkType;
                 this.loan.tenure = this.tempLoanArray[i].tenure;
                 this.loan.intrest_type = this.tempLoanArray[i].itype;
                 this.loan.roi = this.tempLoanArray[i].roi;
                 this.loan.rdate = this.tempLoanArray[i].rdate;
+                this.repDate = new FormControl(new Date(this.tempLoanArray[i].rdate));
             }
         }
     }

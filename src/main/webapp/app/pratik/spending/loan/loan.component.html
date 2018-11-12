@@ -40,8 +40,8 @@
                   </mat-form-field>
 
                   <mat-form-field style="width: 100%;">
-                      <input required matInput [matDatepicker]="picker1" placeholder="Loan Date" 
-                      [formControl]="loanDate">
+                      <input required matInput [matDatepicker]="picker1" placeholder="Loan Date"
+                      [formControl]="loanDate" (ngModelChange)="DateChangeDetector($event)">
                       <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                       <mat-datepicker #picker1 ></mat-datepicker>
                   </mat-form-field>

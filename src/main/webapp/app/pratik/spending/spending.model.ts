@@ -118,7 +118,7 @@ export class Loan {
     lender;
     applicant: '';
     amnt;
-    ldate: '';
+    ldate: Date;
     check: boolean;
     tenure;
     intrest_type: '';

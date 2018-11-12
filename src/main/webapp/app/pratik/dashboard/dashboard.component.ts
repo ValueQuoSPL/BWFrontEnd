@@ -135,7 +135,7 @@ export class DashboardComponent implements OnInit {
     }
 
     getUserid() {
-        return this.accountService
+        this.accountService
             .get()
             .toPromise()
             .then(response => {

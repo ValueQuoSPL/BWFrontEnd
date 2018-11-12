@@ -99,6 +99,7 @@ export class GeneralComponent implements OnInit {
     }
 
     openGeneral(generalModal) {
+        this.clear();
         this.modalService.open(generalModal, { ariaLabelledBy: 'generalModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;

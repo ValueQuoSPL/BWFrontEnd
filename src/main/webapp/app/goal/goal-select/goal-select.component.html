@@ -1,6 +1,9 @@
+
 <div [ngSwitch]="isAuthenticated()">
   <div *ngSwitchCase="true">
     <div *ngIf="!isValid"><!-- start of isvalid div -->
+      <div class="form-group row justify-content-center bwtitle"> Add Goals
+        </div>
       <div class="row justify-content-md-center"><!--start of row1 div-->
         <!-- <div>start of row1.col1 div -->
           <h4 style="margin-top:22px;" class="bwaccordtitle">Select Goal</h4>&nbsp;&nbsp;&nbsp;
@@ -24,9 +27,8 @@
         <div [ngSwitch]="goaltype"><!--start of ngSwitch div-->
           <div *ngSwitchCase="'home'"><!--start of ngSwitchCaseHome div-->
             <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New Home Goal</mat-card-title>
-              </mat-card-header>
+                <div class="bwtitle">Enter New Home Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
                   <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="goalselect.goalname" [ngModelOptions]="{standalone: true}">
@@ -47,16 +49,15 @@
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                  <button mat-raised-button color="primary" (click)="Home()">Submit</button>
-                  <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                  <button mat-raised-button class="btnSave" (click)="Home()">Submit</button>
+                  <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
             </mat-card>
           </div><!--end of ngSwitchCaseHome div-->
           <div *ngSwitchCase="'education'"><!--start of ngSwitchCaseEducation div-->
             <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New Education Goal</mat-card-title>
-              </mat-card-header>
+                <div class="bwtitle">Enter New Education Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
                   <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Educationselect.goalname" [ngModelOptions]="{standalone: true}">
@@ -77,17 +78,16 @@
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right"> 
-                <button mat-raised-button color="primary" (click)="Education()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" (click)="Education()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
             </mat-card>
            <!--end of edu-container div-->
           </div><!--end of ngSwitchCaseEducation div-->
           <div *ngSwitchCase="'vehicle'">
             <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New Vehicle Goal</mat-card-title>
-              </mat-card-header>
+                <div class="bwtitle">Enter New Vehicle Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
                   <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Vehicleselect.goalname" [ngModelOptions]="{standalone: true}">
@@ -108,17 +108,16 @@
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="Vehicle()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" (click)="Vehicle()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
             </mat-card>
             <!--end of home-tabpane div-->
           </div><!--end of ngSwitchCaseVehicle div-->
           <div *ngSwitchCase="'childbirth'">
             <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New Child Goal</mat-card-title>
-              </mat-card-header>
+                <div class="bwtitle">Enter New Child Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
                     <input matInput  placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Childbirthselect.goalname" [ngModelOptions]="{standalone: true}">
@@ -139,16 +138,15 @@
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="Childbirth()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" (click)="Childbirth()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
             </mat-card>
           </div><!--end of ngSwitchCasechildbirth div-->
           <div *ngSwitchCase="'merrage'">
             <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New Marriage Goal</mat-card-title>
-              </mat-card-header>
+                <div class="bwtitle">Enter New Marriage Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
                   <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Merrageselect.goalname" [ngModelOptions]="{standalone: true}">
@@ -169,17 +167,16 @@
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">  
-                <button mat-raised-button color="primary" (click)="Merrage()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" (click)="Merrage()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
             </mat-card>
             <!--end of home-tabpane div -->
           </div><!--end of ngSwitchCaseMerrage div-->
           <div *ngSwitchCase="'business'">
             <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New Buiseness Goal</mat-card-title>
-              </mat-card-header>
+                <div class="bwtitle">Enter New Business Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
                     <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Businessselect.goalname" [ngModelOptions]="{standalone: true}">
@@ -200,16 +197,15 @@
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="Business()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" (click)="Business()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
             </mat-card>
           </div><!--end of ngSwitchCaseBusiness div-->
           <div *ngSwitchCase="'familysupport'">
             <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New  Goal</mat-card-title>
-              </mat-card-header>
+                <div class="bwtitle">Enter New Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
                   <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="FamilySupportselect.goalname" [ngModelOptions]="{standalone: true}">
@@ -230,16 +226,15 @@
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="Familysupport()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" (click)="Familysupport()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
             </mat-card>
           </div><!--end of ngSwitchCaseFamilySup div-->
           <div *ngSwitchCase="'vacation'">
             <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New  Goal</mat-card-title>
-              </mat-card-header>
+                <div class="bwtitle">Enter New Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
                   <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Vacationselect.goalname" [ngModelOptions]="{standalone: true}">
@@ -260,16 +255,15 @@
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="Vacation()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" (click)="Vacation()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
             </mat-card>
           </div><!--end of ngSwitchCaseVacation div-->
           <div *ngSwitchCase="'emergencyfund'">
             <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New  Goal</mat-card-title>
-              </mat-card-header>
+                <div class="bwtitle">Enter New Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
                   <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="EmergencyFundselect.goalname" [ngModelOptions]="{standalone: true}">
@@ -290,16 +284,14 @@
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="EmergencyFund()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" (click)="EmergencyFund()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
             </mat-card>
           </div><!--end of ngSwitchCaseEmergency div-->
           <div *ngSwitchCase="'retairementfund'">
             <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New  Goal</mat-card-title>
-              </mat-card-header>
+                <div class="bwtitle">Enter New Goal</div>
               <mat-card-content class="container-fluid">
                 <mat-form-field>
                   <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="RetirementFundselect.goalname" [ngModelOptions]="{standalone: true}">
@@ -320,16 +312,14 @@
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="RetairementFund()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" (click)="RetairementFund()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
             </mat-card>
           </div><!--end of ngSwitchCaseRetaire div-->
           <div *ngSwitchCase="'newgoal'">
             <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New  Goal</mat-card-title>
-              </mat-card-header>
+                <div class="bwtitle">Enter New Goal</div>
               <mat-card-content class="container-fluid">
               <mat-form-field>
                 <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="NewGoalselect.goalname" [ngModelOptions]="{standalone: true}">
@@ -350,8 +340,8 @@
               </mat-form-field>
             </mat-card-content>
             <mat-card-actions class="pull-right">
-              <button mat-raised-button color="primary" (click)="NewGoal()">Submit</button>
-              <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+              <button mat-raised-button class="btnSave" (click)="NewGoal()">Submit</button>
+              <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
             </mat-card-actions>
           </mat-card>
           </div><!--end of ngSwitchCaseNewGoal div-->
@@ -362,7 +352,7 @@
       </div>
       <button 
         mat-button 
-        color="primary" 
+        class="btnSave" 
         class="btn btn-link" 
         (click)="AddGoal()">
         <span><i class="fa fa-plus" aria-hidden="true"></i>
@@ -371,7 +361,7 @@
   <!-- view page -->
       <table 
         class= "table-responsive 
-                table-bordered 
+                table-bordered
                 table-hover
                 table-sm 
                 table-striped"><!-- table start here -->

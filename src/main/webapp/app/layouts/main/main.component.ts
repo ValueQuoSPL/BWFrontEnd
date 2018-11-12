@@ -89,7 +89,6 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
             }
         });
         this.registerAuthenticationSuccess();
-
         this.cd.detectChanges();
     }
 

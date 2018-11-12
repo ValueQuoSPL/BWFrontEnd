@@ -1,40 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
-
-import { Account, LoginModalService, Principal } from 'app/core';
-
 @Component({
     selector: 'jhi-home',
     templateUrl: './home.component.html',
     styleUrls: ['home.scss']
 })
 export class HomeComponent implements OnInit {
-    account: Account;
-    modalRef: NgbModalRef;
-
-    constructor(private principal: Principal, private loginModalService: LoginModalService, private eventManager: JhiEventManager) {}
+    constructor() {}
 
     ngOnInit() {
         // this.principal.identity('home').then(account => {
         //   this.account = account;
         // });
-        this.registerAuthenticationSuccess();
+        // this.registerAuthenticationSuccess();
     }
 
-    registerAuthenticationSuccess() {
-        // this.eventManager.subscribe('authenticationSuccess', message => {
-        //   this.principal.identity('after login home').then(account => {
-        //     this.account = account;
-        //   });
-        // });
-    }
+    // registerAuthenticationSuccess() {
+    //     // this.eventManager.subscribe('authenticationSuccess', message => {
+    //     //   this.principal.identity('after login home').then(account => {
+    //     //     this.account = account;
+    //     //   });
+    //     // });
+    // }
 
-    isAuthenticated() {
-        return this.principal.isAuthenticated();
-    }
+    // isAuthenticated() {
+    // console.log('home -> authenticate');
 
-    login() {
-        this.modalRef = this.loginModalService.open();
-    }
+    //     return this.principal.isAuthenticated();
+    // }
+
+    // login() {
+    //     this.modalRef = this.loginModalService.open();
+    // }
 }
