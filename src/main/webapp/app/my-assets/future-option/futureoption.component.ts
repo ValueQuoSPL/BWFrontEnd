@@ -62,6 +62,7 @@ export class FutureOptionComponent implements OnInit {
         }
     }
     openFuture(content) {
+        this.resetFieldValue();
         this.modalService.open(content, { ariaLabelledBy: 'futureModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
@@ -97,7 +98,7 @@ export class FutureOptionComponent implements OnInit {
             this.fao.asset_type = this.getdata.asset_type;
             this.fao.investor_name = this.getdata.investor_name;
             this.fao.asset_name = this.getdata.asset_name;
-            this.fao.no_of_contracts = this.getdata.tenure;
+            this.fao.no_of_contracts = this.getdata.no_of_contracts;
             this.fao.p_date = this.getdata.p_date;
             this.fao.contract_p_value = this.getdata.contract_p_value;
             this.fao.contract_m_value = this.getdata.contract_m_value;
@@ -106,6 +107,7 @@ export class FutureOptionComponent implements OnInit {
         });
     }
     SaveFAO() {
+        this.fao.userid = this.uid;
         this.futureOptionService.SaveFAO(this.fao).subscribe(data => {
             this.getFAOByUid(this.uid);
         });

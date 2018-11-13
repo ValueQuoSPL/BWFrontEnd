@@ -40,7 +40,7 @@
                     matInput 
                     class="full-width"
                     placeholder="Investment Type"
-                    type="number" 
+                    type="text" 
                     name="investment_type" 
                     id="field_investment_type" 
                     [(ngModel)]="fao.investment_type"
@@ -217,7 +217,7 @@
                     matInput 
                     class="full-width"
                     placeholder="Investment Type"
-                    type="number" 
+                    type="text" 
                     name="investment_type" 
                     id="field_investment_type" 
                     [(ngModel)]="fao.investment_type"
@@ -317,7 +317,7 @@
                 <input 
                     matInput 
                     class="full-width"
-                    placeholder="Number Of Contracts"
+                    placeholder="Contract Purchase Value"
                     type="number"
                     jhiNumberOnly 
                     name="contract_p_value" 
@@ -346,6 +346,7 @@
                     matInput 
                     [matDatepicker]="picker2" 
                     placeholder="As Of Date"  
+                    name="as_of_date"
                     [(ngModel)]="fao.as_of_date" 
                     >
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -456,7 +457,7 @@
         <tr *ngFor="let fao of FutureOptionDetails; let i = index">
             <td> {{fao.num}} </td>
             <td> {{fao.investment_type}} </td>
-            <td>{{fao.asset_type}} </td>num
+            <td>{{fao.asset_type}} </td>
             <td>{{fao.investor_name}} </td>
             <td>{{fao.asset_name}} </td>
             <td>{{fao.no_of_contracts}} </td>
