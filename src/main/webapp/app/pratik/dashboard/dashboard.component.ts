@@ -89,6 +89,8 @@ export class DashboardComponent implements OnInit {
     modalRef: NgbModalRef;
     shortLiability: any = [];
     longLiability: any = [];
+    longLiabilitiesData: number;
+    shortLiabilitiesData: number;
 
     public chartClicked(e: any): void {}
 
@@ -162,6 +164,8 @@ export class DashboardComponent implements OnInit {
 
     // liabilities
     getLiabilities(uid) {
+        let longValue = 0;
+        let shortValue = 0;
         this.totalLiabilities = 0;
         this.dashboardService.getLiabilities(this.uid).subscribe(data => {
             this.resultLiabilities = data;
@@ -170,8 +174,16 @@ export class DashboardComponent implements OnInit {
             for (let i = 0; i < this.resultLiabilities.length; i++) {
                 this.totalLiabilities = this.totalLiabilities + +this.resultLiabilities[i].outstandingpricipal;
             }
+            this.longLiability.forEach(element => {
+                longValue = +longValue + +element.out;
+            });
+            this.shortLiability.forEach(element => {
+                shortValue = +shortValue + +element.out;
+            });
+            this.longLiabilitiesData = longValue;
+            this.shortLiabilitiesData = shortValue;
             this.liabilityTotal = this.totalLiabilities;
-            this.liabilitiesChart(this.totalLiabilities);
+            this.liabilitiesChart(this.shortLiabilitiesData, this.shortLiabilitiesData);
         });
     }
 
@@ -546,10 +558,10 @@ export class DashboardComponent implements OnInit {
         ];
     }
 
-    liabilitiesChart(totalLiabilities) {
+    liabilitiesChart(shortLiabilitiesData, longLiabilitiesData) {
         this.networth = +this.assetTotal - +this.totalLiabilities;
         this.pieChartableLabel.push('totalLiabilities');
-        this.pieChartDataa.push(totalLiabilities);
+        this.pieChartDataa.push(shortLiabilitiesData, longLiabilitiesData);
         this.color = [{ backgroundColor: ['#808080'] }];
     }
 
