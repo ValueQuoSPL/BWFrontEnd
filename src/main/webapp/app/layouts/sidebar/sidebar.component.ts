@@ -135,7 +135,9 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     }
 
     showSidebarAfterLogin() {
-        const x = document.getElementById('main-menu').classList.add('expanded');
+        if (!this.isMobile) {
+            const x = document.getElementById('main-menu').classList.add('expanded');
+        }
     }
 
     collapseNavbar() {
