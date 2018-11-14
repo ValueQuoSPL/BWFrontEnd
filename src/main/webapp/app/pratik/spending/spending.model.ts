@@ -49,8 +49,22 @@ export class Life {
     premium_term;
     premium_mode;
     lifeModelArray: any = [];
-
-    constructor() {}
+}
+export class PrevLife {
+    id;
+    userid;
+    type;
+    ins_name;
+    policy_name;
+    policynumber;
+    premium;
+    policy_term;
+    issuer;
+    start_date;
+    proposer_name;
+    sum;
+    premium_term;
+    premium_mode;
 }
 export class General {
     id;

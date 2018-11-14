@@ -11,6 +11,7 @@
 /node/
 node_tmp/
 node_modules/
+webpack/webpack.common.js
 npm-debug.log.*
 /.awcache/*
 
@@ -143,6 +144,4 @@ Desktop.ini
 .eslintcache
 
 stats.html
-webpack/webpack.common.js
-webpack/webpack.common.js
-webpack/webpack.common.js
+

@@ -13,30 +13,30 @@
                   <div class="col-md-6">
 
                         <mat-form-field  style="width: 100%;">
-                            <input required matInput jhiNumberOnly placeholder="Policy Number" name="polno" [(ngModel)]="life.policynumber" >
+                            <input required matInput jhiNumberOnly placeholder="Policy Number" name="polno" [(ngModel)]="life.policynumber" (ngModelChange)="ChangeDetector($event, 'number')">
                         </mat-form-field>
 
                         <mat-form-field style="width: 100%;">
-                          <input required matInput placeholder="Policy issuer" name="issuer" [(ngModel)]="life.issuer" >
+                          <input required matInput placeholder="Policy issuer" name="issuer" [(ngModel)]="life.issuer" (ngModelChange)="ChangeDetector($event, 'issuer')">
                         </mat-form-field>
 
                         <mat-form-field style="width: 100%;" >
-                          <input required matInput placeholder="Insured Name" name="ins" [(ngModel)]="life.ins_name" >
+                          <input required matInput placeholder="Insured Name" name="ins" [(ngModel)]="life.ins_name" (ngModelChange)="ChangeDetector($event, 'insured')">
                         </mat-form-field>
 
                         <mat-form-field  style="width: 100%;">
-                          <input required matInput placeholder="Proposer name" name="prop" [(ngModel)]="life.proposer_name" >
+                          <input required matInput placeholder="Proposer name" name="prop" [(ngModel)]="life.proposer_name" (ngModelChange)="ChangeDetector($event, 'proposer')">
                         </mat-form-field>
 
                       <mat-form-field style="width: 100%;">
                           <input required matInput [matDatepicker]="picker3" placeholder="Policy Start Date" 
-                          [formControl]="lifeDate">
+                          [formControl]="lifeDate" (ngModelChange)="ChangeDetector($event, 'date')">
                           <mat-datepicker-toggle matSuffix [for]="picker3" ></mat-datepicker-toggle>
                           <mat-datepicker #picker3 ></mat-datepicker>
                       </mat-form-field>
 
                       <mat-form-field class="example-full-width">
-                          <input required matInput jhiNumberOnly placeholder="Policy Term(yrs)" name="term" [(ngModel)]="life.policy_term" >
+                          <input required matInput jhiNumberOnly placeholder="Policy Term(yrs)" name="term" [(ngModel)]="life.policy_term" (ngModelChange)="ChangeDetector($event, 'term')">
                       </mat-form-field>
                   </div>
 
@@ -44,7 +44,7 @@
                   <div class="col-md-6">
 
                     <mat-form-field style="width: 100%;">
-                        <mat-select placeholder="Policy Type"  [(ngModel)]="life.type" name="type">
+                        <mat-select placeholder="Policy Type"  [(ngModel)]="life.type" name="type" (ngModelChange)="ChangeDetector($event, 'type')">
                             <mat-option *ngFor="let type of PolicyTypeArray" [value]="type.name">
                             {{type.name}}
                             </mat-option>
@@ -52,7 +52,7 @@
                     </mat-form-field>
 
                     <mat-form-field  style="width: 100%;">
-                        <mat-select placeholder="Premium Mode" name="type2" [(ngModel)]="life.premium_mode">
+                        <mat-select placeholder="Premium Mode" name="type2" [(ngModel)]="life.premium_mode" (ngModelChange)="ChangeDetector($event, 'mode')">
                             <mat-option *ngFor="let type of PremiumTypeArray" [value]="type.name">
                                 {{type.name}}
                             </mat-option>
@@ -60,19 +60,19 @@
                     </mat-form-field>
 
                     <mat-form-field class="example-full-width">
-                          <input required matInput placeholder="Policy Name" name="namepolicy" [(ngModel)]="life.policy_name" >
+                          <input required matInput placeholder="Policy Name" name="namepolicy" [(ngModel)]="life.policy_name" (ngModelChange)="ChangeDetector($event, 'policy')">
                     </mat-form-field>
 
                         <mat-form-field class="example-full-width">
-                          <input required matInput jhiNumberOnly placeholder="Sum Assured" name="sum" [(ngModel)]="life.sum" >
+                          <input required matInput jhiNumberOnly placeholder="Sum Assured" name="sum" [(ngModel)]="life.sum" (ngModelChange)="ChangeDetector($event, 'sum')">
                       </mat-form-field>
 
                         <mat-form-field class="example-full-width">
-                          <input required matInput jhiNumberOnly placeholder="Premium " name="premium" [(ngModel)]="life.premium" >
+                          <input required matInput jhiNumberOnly placeholder="Premium " name="premium" [(ngModel)]="life.premium" (ngModelChange)="ChangeDetector($event, 'premium')">
                       </mat-form-field>
 
                         <mat-form-field class="example-full-width">
-                          <input required matInput jhiNumberOnly placeholder="Premium Payment Term" name="term23" [(ngModel)]="life.premium_term" >
+                          <input required matInput jhiNumberOnly placeholder="Premium Payment Term" name="term23" [(ngModel)]="life.premium_term" (ngModelChange)="ChangeDetector($event, 'premiumterm')">
                       </mat-form-field>
 
                   </div>  <!-- right end-->
@@ -80,7 +80,8 @@
       </form>
   </div>
   <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Save</button>
+      <button *ngIf="!update" type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Save</button>
+      <button *ngIf="update" type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="!isFieldChanged">Update</button>
   </div>
 </ng-template>
 
