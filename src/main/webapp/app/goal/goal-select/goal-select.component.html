@@ -1,6 +1,8 @@
 <div [ngSwitch]="isAuthenticated()">
   <div *ngSwitchCase="true">
     <div *ngIf="!isValid"><!-- start of isvalid div -->
+      <div class="form-group row justify-content-center bwtitle"> Add Goals
+        </div>
       <div class="row justify-content-md-center"><!--start of row1 div-->
         <!-- <div>start of row1.col1 div -->
           <h4 style="margin-top:22px;" class="bwaccordtitle">Select Goal</h4>&nbsp;&nbsp;&nbsp;
@@ -23,337 +25,325 @@
       </div><!--end of row1 div-->
         <div [ngSwitch]="goaltype"><!--start of ngSwitch div-->
           <div *ngSwitchCase="'home'"><!--start of ngSwitchCaseHome div-->
-            <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New Home Goal</mat-card-title>
-              </mat-card-header>
+
+            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+                <div class="bwtitle">Enter New Home Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
-                  <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="goalselect.goalname" [ngModelOptions]="{standalone: true}">
+                  <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="goalselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="goalselect.priority" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="goalselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="goalselect.yeartogoal" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="goalselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="goalselect.presentcost" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="goalselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="goalselect.dateofcreation">
+                  <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="goalselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                  <button mat-raised-button color="primary" (click)="Home()">Submit</button>
-                  <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                  <button mat-raised-button class="btnSave" [disabled]="data.form.invalid"  (click)="Home()">Submit</button>
+                  <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>
+            </mat-card>           </form>
           </div><!--end of ngSwitchCaseHome div-->
           <div *ngSwitchCase="'education'"><!--start of ngSwitchCaseEducation div-->
-            <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New Education Goal</mat-card-title>
-              </mat-card-header>
+            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+                <div class="bwtitle">Enter New Education Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
-                  <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Educationselect.goalname" [ngModelOptions]="{standalone: true}">
+                  <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Educationselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Educationselect.priority" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Educationselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Educationselect.yeartogoal" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Educationselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Educationselect.presentcost" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Educationselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Educationselect.dateofcreation">
+                  <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Educationselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right"> 
-                <button mat-raised-button color="primary" (click)="Education()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Education()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>
+            </mat-card>           </form>
            <!--end of edu-container div-->
           </div><!--end of ngSwitchCaseEducation div-->
           <div *ngSwitchCase="'vehicle'">
-            <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New Vehicle Goal</mat-card-title>
-              </mat-card-header>
+            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+                <div class="bwtitle">Enter New Vehicle Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
-                  <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Vehicleselect.goalname" [ngModelOptions]="{standalone: true}">
+                  <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Vehicleselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Vehicleselect.priority" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Vehicleselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Vehicleselect.yeartogoal" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Vehicleselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Vehicleselect.presentcost" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Vehicleselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Vehicleselect.dateofcreation">
+                  <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Vehicleselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="Vehicle()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Vehicle()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>
+            </mat-card>           </form>
             <!--end of home-tabpane div-->
           </div><!--end of ngSwitchCaseVehicle div-->
           <div *ngSwitchCase="'childbirth'">
-            <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New Child Goal</mat-card-title>
-              </mat-card-header>
+            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+                <div class="bwtitle">Enter New Child Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
-                    <input matInput  placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Childbirthselect.goalname" [ngModelOptions]="{standalone: true}">
+                    <input matInput required  placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Childbirthselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Childbirthselect.priority" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Childbirthselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Childbirthselect.yeartogoal" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Childbirthselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Childbirthselect.presentcost" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Childbirthselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Childbirthselect.dateofcreation">
+                  <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Childbirthselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="Childbirth()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Childbirth()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>
+            </mat-card>           </form>
           </div><!--end of ngSwitchCasechildbirth div-->
           <div *ngSwitchCase="'merrage'">
-            <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New Marriage Goal</mat-card-title>
-              </mat-card-header>
+            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+                <div class="bwtitle">Enter New Marriage Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
-                  <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Merrageselect.goalname" [ngModelOptions]="{standalone: true}">
+                  <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Merrageselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Merrageselect.priority" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Merrageselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Merrageselect.yeartogoal" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Merrageselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Merrageselect.presentcost" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Merrageselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Merrageselect.dateofcreation">
+                  <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Merrageselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">  
-                <button mat-raised-button color="primary" (click)="Merrage()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Merrage()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>
+            </mat-card>           </form>
             <!--end of home-tabpane div -->
           </div><!--end of ngSwitchCaseMerrage div-->
           <div *ngSwitchCase="'business'">
-            <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New Buiseness Goal</mat-card-title>
-              </mat-card-header>
+            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+                <div class="bwtitle">Enter New Business Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
-                    <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Businessselect.goalname" [ngModelOptions]="{standalone: true}">
+                    <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Businessselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Businessselect.priority" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Businessselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Businessselect.yeartogoal" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Businessselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Businessselect.presentcost" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Businessselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Businessselect.dateofcreation">
+                  <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Businessselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="Business()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Business()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>
+            </mat-card>           </form>
           </div><!--end of ngSwitchCaseBusiness div-->
           <div *ngSwitchCase="'familysupport'">
-            <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New  Goal</mat-card-title>
-              </mat-card-header>
+            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+                <div class="bwtitle">Enter New Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
-                  <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="FamilySupportselect.goalname" [ngModelOptions]="{standalone: true}">
+                  <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="FamilySupportselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="FamilySupportselect.priority" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="FamilySupportselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="FamilySupportselect.yeartogoal" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="FamilySupportselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="FamilySupportselect.presentcost" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="FamilySupportselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="FamilySupportselect.dateofcreation">
+                  <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="FamilySupportselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="Familysupport()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Familysupport()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>
+            </mat-card>           </form>
           </div><!--end of ngSwitchCaseFamilySup div-->
           <div *ngSwitchCase="'vacation'">
-            <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New  Goal</mat-card-title>
-              </mat-card-header>
+            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+                <div class="bwtitle">Enter New Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
-                  <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Vacationselect.goalname" [ngModelOptions]="{standalone: true}">
+                  <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Vacationselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Vacationselect.priority" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Vacationselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Vacationselect.yeartogoal" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Vacationselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Vacationselect.presentcost" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Vacationselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Vacationselect.dateofcreation">
+                  <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Vacationselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="Vacation()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Vacation()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>
+            </mat-card>           </form>
           </div><!--end of ngSwitchCaseVacation div-->
           <div *ngSwitchCase="'emergencyfund'">
-            <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New  Goal</mat-card-title>
-              </mat-card-header>
+            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+                <div class="bwtitle">Enter New Goal</div>
+
               <mat-card-content class="container-fluid">
                 <mat-form-field>
-                  <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="EmergencyFundselect.goalname" [ngModelOptions]="{standalone: true}">
+                  <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="EmergencyFundselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="EmergencyFundselect.priority" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="EmergencyFundselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="EmergencyFundselect.yeartogoal" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="EmergencyFundselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="EmergencyFundselect.presentcost" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="EmergencyFundselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="EmergencyFundselect.dateofcreation">
+                  <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="EmergencyFundselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="EmergencyFund()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="EmergencyFund()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>
+            </mat-card>           </form>
           </div><!--end of ngSwitchCaseEmergency div-->
           <div *ngSwitchCase="'retairementfund'">
-            <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New  Goal</mat-card-title>
-              </mat-card-header>
+            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+                <div class="bwtitle">Enter New Goal</div>
               <mat-card-content class="container-fluid">
                 <mat-form-field>
-                  <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="RetirementFundselect.goalname" [ngModelOptions]="{standalone: true}">
+                  <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="RetirementFundselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="RetirementFundselect.priority" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="RetirementFundselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="RetirementFundselect.yeartogoal" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="RetirementFundselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="RetirementFundselect.presentcost" [ngModelOptions]="{standalone: true}">
+                  <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="RetirementFundselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="RetirementFundselect.dateofcreation">
+                  <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="RetirementFundselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field>
               </mat-card-content>
               <mat-card-actions class="pull-right">
-                <button mat-raised-button color="primary" (click)="RetairementFund()">Submit</button>
-                <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+                <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="RetairementFund()">Submit</button>
+                <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>
+            </mat-card>           </form>
           </div><!--end of ngSwitchCaseRetaire div-->
           <div *ngSwitchCase="'newgoal'">
-            <mat-card class="container-fluid example-card">
-              <mat-card-header>
-                <mat-card-title>Enter New  Goal</mat-card-title>
-              </mat-card-header>
+            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+                <div class="bwtitle">Enter New Goal</div>
               <mat-card-content class="container-fluid">
               <mat-form-field>
-                <input matInput placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="NewGoalselect.goalname" [ngModelOptions]="{standalone: true}">
+                <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="NewGoalselect.goalname" [ngModelOptions]="{standalone: true}">
               </mat-form-field>
               <mat-form-field>
-                <input matInput jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="NewGoalselect.priority" [ngModelOptions]="{standalone: true}">
+                <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="NewGoalselect.priority" [ngModelOptions]="{standalone: true}">
               </mat-form-field>
               <mat-form-field>
-                <input matInput jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="NewGoalselect.yeartogoal" [ngModelOptions]="{standalone: true}">
+                <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="NewGoalselect.yeartogoal" [ngModelOptions]="{standalone: true}">
               </mat-form-field>
               <mat-form-field>
-                <input matInput jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="NewGoalselect.presentcost" [ngModelOptions]="{standalone: true}">
+                <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="NewGoalselect.presentcost" [ngModelOptions]="{standalone: true}">
               </mat-form-field>
               <mat-form-field>
-                <input matInput [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="NewGoalselect.dateofcreation">
+                <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="NewGoalselect.dateofcreation">
                 <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                 <mat-datepicker #picker3></mat-datepicker>
               </mat-form-field>
             </mat-card-content>
             <mat-card-actions class="pull-right">
-              <button mat-raised-button color="primary" (click)="NewGoal()">Submit</button>
-              <button mat-raised-button color="accent" (click)="clear()">Cancel</button>
+              <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="NewGoal()">Submit</button>
+              <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
             </mat-card-actions>
-          </mat-card>
+          </mat-card>           </form>
           </div><!--end of ngSwitchCaseNewGoal div-->
         </div><!-- end of ngSwitch div -->
       </div><!-- end of isvalid div -->
@@ -362,7 +352,7 @@
       </div>
       <button 
         mat-button 
-        color="primary" 
+        class="btnSave" [disabled]="data.form.invalid" 
         class="btn btn-link" 
         (click)="AddGoal()">
         <span><i class="fa fa-plus" aria-hidden="true"></i>
@@ -371,7 +361,7 @@
   <!-- view page -->
       <table 
         class= "table-responsive 
-                table-bordered 
+                table-bordered
                 table-hover
                 table-sm 
                 table-striped"><!-- table start here -->
@@ -559,7 +549,7 @@
                       <span>Oops you are not Signed In </span>
                       Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
               </mat-card-content>
-      </mat-card>
+      </mat-card>           </form>
   </div>
   <br>
 </div>

@@ -14,6 +14,8 @@
   <table class="table table-responsive-md table-hover table-sm">
       <thead>
           <tr>
+              <th scope="col">Policy Number </th>
+              <th scope="col">Issuer </th>
               <th scope="col">Insured name </th>
               <th scope="col">Policy Name </th>
               <th scope="col">Annual Premium </th>
@@ -26,6 +28,8 @@
       <tbody>
 
           <tr *ngFor="let field of dynamicHealth; let i = index">
+              <td> {{ field.policyNumber }}</td>
+              <td> {{ field.issuer }}</td>
               <td> {{ field.insureName }}</td>
               <td> {{ field.policyName }} </td>
               <td> {{ field.premium }} </td>

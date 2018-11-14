@@ -82,6 +82,17 @@ export class AppointmentComponent implements OnInit {
     isStatus: any;
     resolveData: any;
     isBooked = false;
+    diableTimeSlot = false;
+    diableTimeSlot11 = false;
+    diableTimeSlot1 = false;
+    diableTimeSlot3 = false;
+    diableTimeSlot5 = false;
+    diableTimeSlot7 = false;
+    diableTimeSlot9 = false;
+    currentTime: any;
+    currentDate: any;
+    nextDate: any;
+    date = new Date();
 
     constructor(
         private appointmentService: AppointmentService,
@@ -130,6 +141,7 @@ export class AppointmentComponent implements OnInit {
 
         this.viewDate = addFn(this.viewDate, 1);
         this.formatDate = this.datepipe.transform(this.viewDate, 'yyyy-MM-dd');
+        this.validation();
     }
     decrement(): void {
         const subFn: any = {
@@ -142,7 +154,9 @@ export class AppointmentComponent implements OnInit {
 
     today(): void {
         this.viewDate = new Date();
+        this.currentTime = this.datepipe.transform(this.viewDate, 'HH:mm:ss');
         this.formatDate = this.datepipe.transform(this.viewDate, 'yyyy-MM-dd');
+        this.validation();
         this.getCalendar();
     }
 
@@ -163,6 +177,56 @@ export class AppointmentComponent implements OnInit {
         this.principal.identity().then(account => {
             this.account = account;
         });
+        this.validation();
+    }
+
+    validation() {
+        this.currentDate = this.datepipe.transform(this.date, 'yyyy-MM-dd');
+        if (this.currentDate === this.formatDate) {
+            if (this.currentTime > '09:00:00 am') {
+                this.diableTimeSlot = true;
+            } else {
+                this.diableTimeSlot = false;
+            }
+            if (this.currentTime > '11:00:00 a.m') {
+                this.diableTimeSlot11 = true;
+            } else {
+                this.diableTimeSlot11 = false;
+            }
+            if (this.currentTime > '13:00:00 p.m') {
+                this.diableTimeSlot1 = true;
+            } else {
+                this.diableTimeSlot1 = false;
+            }
+            if (this.currentTime > '15:00:00 p.m') {
+                this.diableTimeSlot3 = true;
+            } else {
+                this.diableTimeSlot3 = false;
+            }
+            if (this.currentTime > '17:00:00 p.m') {
+                this.diableTimeSlot5 = true;
+            } else {
+                this.diableTimeSlot5 = false;
+            }
+            if (this.currentTime > '19:00:00 p.m') {
+                this.diableTimeSlot7 = true;
+            } else {
+                this.diableTimeSlot7 = false;
+            }
+            if (this.currentTime > '21:00:00 p.m') {
+                this.diableTimeSlot9 = true;
+            } else {
+                this.diableTimeSlot9 = false;
+            }
+        } else {
+            this.diableTimeSlot = false;
+            this.diableTimeSlot11 = false;
+            this.diableTimeSlot1 = false;
+            this.diableTimeSlot3 = false;
+            this.diableTimeSlot5 = false;
+            this.diableTimeSlot7 = false;
+            this.diableTimeSlot9 = false;
+        }
     }
 
     isAuthenticated() {

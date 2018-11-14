@@ -3,6 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AccountService, Principal } from 'app/core';
 import { FormControl } from '@angular/forms';
 import { Life } from 'app/pratik/spending/spending.model';
+import { PrevLife } from 'app/pratik/spending/spending.model';
 import { LifeService } from 'app/pratik/spending/spending.service';
 
 @Component({
@@ -28,8 +29,11 @@ export class LifeComponent implements OnInit {
     tempLifeArray: any = [];
     dynamicLifeArray: any = [];
     life: Life = new Life();
+    prevLife: Life = new Life();
 
     lifeDate = new FormControl(new Date());
+    isFieldChanged = false;
+    update = false;
 
     PolicyTypeArray = [
         { name: 'Child Policy' },
@@ -74,6 +78,7 @@ export class LifeComponent implements OnInit {
         this.resource = '';
         this.amount = '';
         this.expense = '';
+        this.lifeDate = new FormControl(new Date());
 
         this.life.ins_name = '';
         this.life.issuer = '';
@@ -101,7 +106,7 @@ export class LifeComponent implements OnInit {
     // life insurance
     openLife(lifeModal) {
         this.clear();
-
+        this.update = false;
         this.modalService.open(lifeModal, { ariaLabelledBy: 'lifeModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
@@ -173,7 +178,10 @@ export class LifeComponent implements OnInit {
             this.dynamicLifeArray.splice(index, 1);
         }
     }
+
     onEditLife(id, lifeModal) {
+        this.update = true;
+        this.isFieldChanged = false;
         this.fillModal(id);
         this.modalService.open(lifeModal, { ariaLabelledBy: 'lifeModal' }).result.then(
             result => {
@@ -185,6 +193,92 @@ export class LifeComponent implements OnInit {
             }
         );
     }
+    ChangeDetector(event, from) {
+        if (from === 'number') {
+            if (this.prevLife.policynumber !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'issuer') {
+            if (this.prevLife.issuer !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'insured') {
+            if (this.prevLife.ins_name !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'proposer') {
+            if (this.prevLife.proposer_name !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'date') {
+            const prevdate = new Date(this.prevLife.start_date.value);
+            prevdate.setHours(0);
+            prevdate.setMinutes(0);
+            prevdate.setSeconds(0);
+
+            const newdate = new Date(this.lifeDate.value);
+            newdate.setHours(0);
+            newdate.setMinutes(0);
+            newdate.setSeconds(0);
+
+            // tslint:disable-next-line:triple-equals
+            if (prevdate != newdate) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'term') {
+            if (this.prevLife.policy_term !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'type') {
+            if (this.prevLife.type !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'mode') {
+            if (this.prevLife.premium_mode !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'policy') {
+            if (this.prevLife.policynumber !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'sum') {
+            if (this.prevLife.policynumber !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'premium') {
+            if (this.prevLife.policynumber !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'premiumterm') {
+            if (this.prevLife.policynumber !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        }
+    }
     fillModal(id) {
         this.tempLifeArray = this.dynamicLifeArray;
         for (let i = 0; i < this.tempLifeArray.length; i++) {
@@ -195,12 +289,26 @@ export class LifeComponent implements OnInit {
                 this.life.premium = this.tempLifeArray[i].premium;
                 this.life.policy_term = this.tempLifeArray[i].pterm;
                 this.life.issuer = this.tempLifeArray[i].issuer;
-                this.life.start_date = this.tempLifeArray[i].sDate;
+                this.life.start_date = new FormControl(new Date(this.tempLifeArray[i].sDate));
                 this.life.proposer_name = this.tempLifeArray[i].premiumName;
                 this.life.sum = this.tempLifeArray[i].sum;
                 this.life.policynumber = this.tempLifeArray[i].policynumber;
                 this.life.premium_term = this.tempLifeArray[i].term;
                 this.life.premium_mode = this.tempLifeArray[i].pMode;
+                this.lifeDate = new FormControl(new Date(this.tempLifeArray[i].sDate));
+
+                this.prevLife.type = this.tempLifeArray[i].name;
+                this.prevLife.ins_name = this.tempLifeArray[i].insuranceName;
+                this.prevLife.policy_name = this.tempLifeArray[i].pName;
+                this.prevLife.premium = this.tempLifeArray[i].premium;
+                this.prevLife.policy_term = this.tempLifeArray[i].pterm;
+                this.prevLife.issuer = this.tempLifeArray[i].issuer;
+                this.prevLife.start_date = new FormControl(new Date(this.tempLifeArray[i].sDate));
+                this.prevLife.proposer_name = this.tempLifeArray[i].premiumName;
+                this.prevLife.sum = this.tempLifeArray[i].sum;
+                this.prevLife.policynumber = this.tempLifeArray[i].policynumber;
+                this.prevLife.premium_term = this.tempLifeArray[i].term;
+                this.prevLife.premium_mode = this.tempLifeArray[i].pMode;
             }
         }
     }

@@ -126,7 +126,9 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                 }
                 if (this.authority === 'ROLE_ADMIN') {
                     this.isPaid = true;
-                    this.flag = true;
+                    if (!this.isMobile) {
+                        this.flag = true;
+                    }
                 }
             },
             error => {}

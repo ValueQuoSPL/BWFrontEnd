@@ -26,6 +26,7 @@ export class PaymentComponent implements OnInit {
     constructor(private paymentService: PaymentService, private route: ActivatedRoute) {}
 
     submitUser() {
+        alert('submit');
         this.user.sUrl = this.sUrl;
         this.user.fUrl = this.fUrl;
         this.paymentService.submitUser(this.user).subscribe(data => {

@@ -103,6 +103,7 @@ export class StockComponent implements OnInit {
         });
     }
     saveStocks() {
+        this.stocks.userid = this.uid;
         this.stockService.SaveStocks(this.stocks).subscribe(data => {
             this.getStockById(this.uid);
         });

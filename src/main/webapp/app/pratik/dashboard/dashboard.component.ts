@@ -142,15 +142,15 @@ export class DashboardComponent implements OnInit {
                 const account = response.body;
                 if (account) {
                     this.uid = account.id;
-                    this.getMutualFund(this.uid);
-                    this.getStock(this.uid);
-                    this.getSaving(this.uid);
-                    this.getChit(this.uid);
-                    this.getCash(this.uid);
-                    this.getAlterInvestment(this.uid);
-                    this.getPCJ(this.uid);
-                    this.getFAO(this.uid);
-                    this.getLiabilities(this.uid);
+                    this.getMutualFund();
+                    this.getStock();
+                    this.getSaving();
+                    this.getChit();
+                    this.getCash();
+                    this.getAlterInvestment();
+                    this.getPCJ();
+                    this.getFAO();
+                    this.getLiabilities();
                     this.getGoal();
                     this.getIncome();
                     this.getExpense();
@@ -161,7 +161,7 @@ export class DashboardComponent implements OnInit {
     }
 
     // liabilities
-    getLiabilities(uid) {
+    getLiabilities() {
         this.totalLiabilities = 0;
         this.dashboardService.getLiabilities(this.uid).subscribe(data => {
             this.resultLiabilities = data;
@@ -171,7 +171,7 @@ export class DashboardComponent implements OnInit {
                 this.totalLiabilities = this.totalLiabilities + +this.resultLiabilities[i].outstandingpricipal;
             }
             this.liabilityTotal = this.totalLiabilities;
-            this.liabilitiesChart(this.totalLiabilities);
+            this.liabilitiesChart();
         });
     }
 
@@ -397,7 +397,7 @@ export class DashboardComponent implements OnInit {
     }
 
     // asset
-    getMutualFund(uid) {
+    getMutualFund() {
         this.total = 0;
         this.dashboardService.getMutualFund(this.uid).subscribe(data => {
             this.result = data;
@@ -412,7 +412,7 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    getStock(uid) {
+    getStock() {
         this.totalStock = 0;
         this.dashboardService.getStock(this.uid).subscribe(data => {
             this.resultStock = data;
@@ -427,7 +427,7 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    getSaving(uid) {
+    getSaving() {
         this.totalSaving = 0;
         this.dashboardService.getSaving(this.uid).subscribe(data => {
             this.resultSaving = data;
@@ -442,7 +442,7 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    getChit(uid) {
+    getChit() {
         this.totalChit = 0;
         this.dashboardService.getChit(this.uid).subscribe(data => {
             this.resultChit = data;
@@ -456,7 +456,7 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    getCash(uid) {
+    getCash() {
         this.totalCash = 0;
         this.dashboardService.getCash(this.uid).subscribe(data => {
             this.resultCash = data;
@@ -470,7 +470,7 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    getAlterInvestment(uid) {
+    getAlterInvestment() {
         this.totalAlterInvestment = 0;
         this.dashboardService.getAlterInvestment(this.uid).subscribe(data => {
             this.resultAlterInvestment = data;
@@ -484,7 +484,7 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    getPCJ(uid) {
+    getPCJ() {
         this.totalPCJ = 0;
         this.dashboardService.getPCJ(this.uid).subscribe(data => {
             this.resultPCJ = data;
@@ -498,7 +498,7 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    getFAO(uid) {
+    getFAO() {
         this.totalFAO = 0;
         this.dashboardService.getFAO(this.uid).subscribe(data => {
             this.resultFAO = data;
@@ -546,11 +546,13 @@ export class DashboardComponent implements OnInit {
         ];
     }
 
-    liabilitiesChart(totalLiabilities) {
+    liabilitiesChart() {
         this.networth = +this.assetTotal - +this.totalLiabilities;
-        this.pieChartableLabel.push('totalLiabilities');
-        this.pieChartDataa.push(totalLiabilities);
-        this.color = [{ backgroundColor: ['#808080'] }];
+        this.resultLiabilities.forEach(element => {
+            this.pieChartableLabel.push(element.ltype);
+            this.pieChartDataa.push(element.outstandingpricipal);
+        });
+        this.color = [{ backgroundColor: ['#808080', '#00CED1', '#FF69B4', '#696969', '#00FF00', '#FF4500'] }];
     }
 
     // this.subject.next(1);

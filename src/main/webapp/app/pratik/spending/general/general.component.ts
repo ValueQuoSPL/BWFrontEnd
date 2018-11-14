@@ -188,7 +188,7 @@ export class GeneralComponent implements OnInit {
                 this.general.proposer = this.tempGeneralArray[i].proposer;
                 this.general.sum = this.tempGeneralArray[i].sum;
                 this.general.policy_no = this.tempGeneralArray[i].policyNumber;
-                this.general.premium_mode = this.tempGeneralArray[i].policyMode;
+                this.general.premium_mode = this.tempGeneralArray[i].premiumName;
                 this.general.ins_obj = this.tempGeneralArray[i].insureName;
             }
         }
@@ -205,7 +205,7 @@ export class GeneralComponent implements OnInit {
                 this.dynamicGeneral[i].proposer = this.general.proposer;
                 this.dynamicGeneral[i].sum = this.general.sum;
                 this.dynamicGeneral[i].policyNumber = this.general.policy_no;
-                this.dynamicGeneral[i].policyMode = this.general.premium_mode;
+                this.dynamicGeneral[i].premiumName = this.general.premium_mode;
                 this.dynamicGeneral[i].insureName = this.general.ins_obj;
             }
         }
