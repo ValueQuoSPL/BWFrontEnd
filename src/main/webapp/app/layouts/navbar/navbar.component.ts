@@ -102,7 +102,7 @@ export class NavbarComponent implements OnInit, DoCheck {
                 if (this.account.firstName !== null) {
                     this.FirstName = this.account.firstName;
                 } else {
-                    this.FirstName = 'sorry';
+                    this.FirstName = 'Account';
                 }
                 if (this.account.authorities[1]) {
                     if (this.account.authorities[1] === 'ROLE_ADMIN') {

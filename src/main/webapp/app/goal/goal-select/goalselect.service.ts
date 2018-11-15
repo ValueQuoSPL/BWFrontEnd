@@ -14,11 +14,9 @@ export class GoalselectService {
     goalData: Observable<Object>;
 
     constructor(private http: HttpClient, private commonService: CommonSidebarService) {
-        console.log('service construct');
         this.commonService.account.subscribe(account => {
             this.account = account;
             this.uid = this.account.id;
-            console.log('get uid construct service', this.uid);
         });
     }
 
@@ -26,7 +24,6 @@ export class GoalselectService {
         if (this.uid) {
             uid = this.uid;
         }
-        console.log('get goal data');
         this.ServiceAPIParam = 'api/goalset' + '/' + uid;
         this.goalData = this.http.get(SERVER_API_URL + this.ServiceAPIParam);
         return this.goalData;
