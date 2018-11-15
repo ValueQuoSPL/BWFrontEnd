@@ -111,6 +111,7 @@ export class GoalSelectComponent implements OnInit {
     PresentCost;
     prevGoalID;
     GlobalFlag;
+    data: any;
 
     stockTotal;
     mutualTotal;
