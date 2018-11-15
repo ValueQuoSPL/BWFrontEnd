@@ -96,7 +96,19 @@ export class MutualComponent implements OnInit {
     getMutualFundByUid(uid) {
         this.mutualFundService.getMutualFund(this.uid).subscribe(res => {
             this.output = res;
+            console.log(this.output);
+            this.output.forEach(element => {
+                element.gainloss = this.cal(element.currentvalue, element.purchesprice);
+                element.absolutereturn = this.absoluteReturn(element.currentvalue, element.purchesprice);
+            });
         });
+    }
+    cal(currentValue, purchasePrice) {
+        return +currentValue - +purchasePrice;
+    }
+
+    absoluteReturn(currentValue, purchasePrice) {
+        return (+currentValue - +purchasePrice) / purchasePrice * 100;
     }
     getMutualFundByid(commonid) {
         this.mutualFundService.getMutualFundByid(this.commonid).subscribe(res => {

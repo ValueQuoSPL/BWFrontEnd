@@ -94,6 +94,7 @@ import { advisorRoot } from 'app/advisor/advisor.route';
 import { AdvisorComponent } from 'app/advisor/advisor.component';
 import { AdvisorFilterPipe } from 'app/advisor/advisor-filter.pipe';
 import { successRoute } from 'app/success/success.route';
+import { appointRoot } from 'app/appointment';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -114,6 +115,7 @@ import { successRoute } from 'app/success/success.route';
         RouterModule.forRoot([DashRoute], { useHash: true }),
         RouterModule.forRoot([advisorRoot], { useHash: true }),
         RouterModule.forRoot([successRoute], { useHash: true }),
+        RouterModule.forRoot([appointRoot], { useHash: true }),
         BuckswiseFrontEndSharedModule,
         BuckswiseFrontEndCoreModule,
         BuckswiseFrontEndHomeModule,

@@ -410,10 +410,9 @@ export class DashboardComponent implements OnInit {
         this.totalStock = 0;
         this.dashboardService.getStock(this.uid).subscribe(data => {
             this.resultStock = data;
-
             if (this.resultStock !== 0) {
                 for (let i = 0; i < this.resultStock.length; i++) {
-                    this.totalStock = this.totalStock + +this.resultStock[i].no_of_shares;
+                    this.totalStock = this.totalStock + +this.resultStock[i].share_price;
                 }
                 this.assetTotal = +this.assetTotal + +this.totalStock;
                 this.networth = +this.assetTotal - +this.totalLiabilities;
