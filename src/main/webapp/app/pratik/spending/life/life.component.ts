@@ -230,7 +230,7 @@ export class LifeComponent implements OnInit {
             newdate.setSeconds(0);
 
             // tslint:disable-next-line:triple-equals
-            if (prevdate != newdate) {
+            if (prevdate !== newdate) {
                 this.isFieldChanged = true;
             } else {
                 this.isFieldChanged = false;

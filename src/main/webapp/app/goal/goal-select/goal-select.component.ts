@@ -31,6 +31,8 @@ import {
 } from 'app/goal/goal-select/goalselect.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AccountService } from 'app/core';
+import { keyframes } from '@angular/animations';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 class Mapping {
     id;
@@ -141,9 +143,11 @@ export class GoalSelectComponent implements OnInit {
         public propService: PropertyService,
         public faoService: FutureOptionService,
         public savingService: SavingSchemeService,
-        private _route: ActivatedRoute
+        private _route: ActivatedRoute,
+        private commonService: CommonSidebarService
     ) {
-        this.GoalArray = this._route.snapshot.data['goalselect'];
+        this.GoalArray = this._route.snapshot.data['goaldata'];
+
         this.output = this.GoalArray;
         for (let i = 0; i < this.output.length; i++) {
             const element = this.output[i];
@@ -179,7 +183,7 @@ export class GoalSelectComponent implements OnInit {
         this.goalselect.uid = this.uid;
         this.goalSelectService.saveHome(this.goalselect).subscribe(
             responce => {
-                this.getgoalbyid(this.uid);
+                this.getGoal();
             },
             error => {}
         );
@@ -190,7 +194,7 @@ export class GoalSelectComponent implements OnInit {
         this.Educationselect.goaltype = this.goaltype;
         this.Educationselect.uid = this.uid;
         this.goalSelectService.saveEducation(this.Educationselect).subscribe(responce => {
-            this.getgoalbyid(this.uid);
+            this.getGoal();
         });
         this.isValid = true;
     }
@@ -198,7 +202,7 @@ export class GoalSelectComponent implements OnInit {
         this.Vehicleselect.goaltype = this.goaltype;
         this.Vehicleselect.uid = this.uid;
         this.goalSelectService.saveVehicle(this.Vehicleselect).subscribe(responce => {
-            this.getgoalbyid(this.uid);
+            this.getGoal();
         });
         this.isValid = true;
     }
@@ -206,7 +210,7 @@ export class GoalSelectComponent implements OnInit {
         this.Childbirthselect.goaltype = this.goaltype;
         this.Childbirthselect.uid = this.uid;
         this.goalSelectService.saveChildBirth(this.Childbirthselect).subscribe(responce => {
-            this.getgoalbyid(this.uid);
+            this.getGoal();
         });
         this.isValid = true;
     }
@@ -214,7 +218,7 @@ export class GoalSelectComponent implements OnInit {
         this.Merrageselect.goaltype = this.goaltype;
         this.Merrageselect.uid = this.uid;
         this.goalSelectService.saveMerrage(this.Merrageselect).subscribe(responce => {
-            this.getgoalbyid(this.uid);
+            this.getGoal();
         });
         this.isValid = true;
     }
@@ -222,7 +226,7 @@ export class GoalSelectComponent implements OnInit {
         this.Businessselect.goaltype = this.goaltype;
         this.Businessselect.uid = this.uid;
         this.goalSelectService.saveBusiness(this.Businessselect).subscribe(responce => {
-            this.getgoalbyid(this.uid);
+            this.getGoal();
         });
         this.isValid = true;
     }
@@ -230,13 +234,13 @@ export class GoalSelectComponent implements OnInit {
         this.FamilySupportselect.goaltype = this.goaltype;
         this.FamilySupportselect.uid = this.uid;
         this.goalSelectService.saveFamilySupport(this.FamilySupportselect).subscribe(responce => {
-            this.getgoalbyid(this.uid);
+            this.getGoal();
         });
         this.isValid = true;
     }
     Vacation() {
         this.goalSelectService.saveVacation(this.Vacationselect).subscribe(responce => {
-            this.getgoalbyid(this.uid);
+            this.getGoal();
         });
         this.isValid = true;
     }
@@ -244,7 +248,7 @@ export class GoalSelectComponent implements OnInit {
         this.EmergencyFundselect.goaltype = this.goaltype;
         this.EmergencyFundselect.uid = this.uid;
         this.goalSelectService.saveEmergencyFund(this.EmergencyFundselect).subscribe(responce => {
-            this.getgoalbyid(this.uid);
+            this.getGoal();
         });
         this.isValid = true;
     }
@@ -252,7 +256,7 @@ export class GoalSelectComponent implements OnInit {
         this.RetirementFundselect.goaltype = this.goaltype;
         this.RetirementFundselect.uid = this.uid;
         this.goalSelectService.saveRetirementFund(this.RetirementFundselect).subscribe(responce => {
-            this.getgoalbyid(this.uid);
+            this.getGoal();
         });
         this.isValid = true;
     }
@@ -260,7 +264,7 @@ export class GoalSelectComponent implements OnInit {
         this.NewGoalselect.goaltype = this.goaltype;
         this.NewGoalselect.uid = this.uid;
         this.goalSelectService.saveNewGoal(this.NewGoalselect).subscribe(responce => {
-            this.getgoalbyid(this.uid);
+            this.getGoal();
         });
         this.isValid = true;
     }
@@ -273,18 +277,15 @@ export class GoalSelectComponent implements OnInit {
     selectChange(event: any) {
         this.selectedday = event.target.value;
     }
-    FetchId(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.uid = this.user.id;
-                this.mapping.uid = this.uid;
-                this.getgoalbyid(this.uid);
-            });
+    FetchId() {
+        this.commonService.account.subscribe(account => {
+            this.user = account;
+            this.uid = this.user.id;
+            this.mapping.uid = this.uid;
+        });
     }
-    getgoalbyid(uid) {
+
+    getGoal() {
         this.goalSelectService.getgoalbyid().subscribe(res => {
             this.GoalArray = res;
             this.viewUpdate();
@@ -328,7 +329,10 @@ export class GoalSelectComponent implements OnInit {
 
     calculateFuturecCost(C, Y) {
         let F = 0;
-        F = Math.round(C * Math.pow(1 + this.inflation, Y));
+        let K = 0;
+        K = C * Math.pow(1 + this.inflation, Y);
+        F = Math.round(K);
+
         return F;
     }
     // F = M((((1+R)^n)-1)/R) (1+R)
