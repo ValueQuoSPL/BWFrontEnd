@@ -29,6 +29,17 @@ export class SpendingComponent implements OnInit {
     amount_react = new FormControl('');
 
     modalRef: NgbModalRef;
+    // for accordian state
+    panelUtilityState = false;
+    panelHouseholdState = false;
+    panelLoanState = false;
+    panelInsState = false;
+    panelHealthState = false;
+    panelGeneralState = false;
+    panelCreditState = false;
+    panelTravelState = false;
+    panelMiscState = false;
+    panelLifeState = false;
 
     // for material dialog
     panelOpenState = false;
