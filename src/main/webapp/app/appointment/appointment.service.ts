@@ -16,7 +16,11 @@ export class AppointmentService {
     }
 
     getUserid() {
+        console.log('get uid -appoint');
+
         this.commonSidebarService.account.subscribe(account => {
+            console.log('account data received -appoint');
+
             this.account = account;
             this.userid = this.account.id;
             this.getCalendarByUid();
