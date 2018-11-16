@@ -243,25 +243,25 @@ export class LifeComponent implements OnInit {
                 this.isFieldChanged = false;
             }
         } else if (from === 'policy') {
-            if (this.prevLife.policynumber !== event) {
+            if (this.prevLife.policy_name !== event) {
                 this.isFieldChanged = true;
             } else {
                 this.isFieldChanged = false;
             }
         } else if (from === 'sum') {
-            if (this.prevLife.policynumber !== event) {
+            if (this.prevLife.sum !== event) {
                 this.isFieldChanged = true;
             } else {
                 this.isFieldChanged = false;
             }
         } else if (from === 'premium') {
-            if (this.prevLife.policynumber !== event) {
+            if (this.prevLife.premium !== event) {
                 this.isFieldChanged = true;
             } else {
                 this.isFieldChanged = false;
             }
         } else if (from === 'premiumterm') {
-            if (this.prevLife.policynumber !== event) {
+            if (this.prevLife.premium_term !== event) {
                 this.isFieldChanged = true;
             } else {
                 this.isFieldChanged = false;

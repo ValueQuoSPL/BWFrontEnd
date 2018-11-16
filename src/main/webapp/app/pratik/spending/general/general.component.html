@@ -65,50 +65,51 @@
                       <div class="row">
                            <div class="col-md-6">
                                <mat-form-field style="width: 100%;">
-                                   <input required matInput jhiNumberOnly placeholder="Policy Number" name="polno" [(ngModel)]="general.policy_no" >
+                                   <input required matInput jhiNumberOnly placeholder="Policy Number" name="polno" [(ngModel)]="general.policy_no" (ngModelChange)="ChangeDetector($event, 'number')">
                                </mat-form-field>
                                <mat-form-field style="width: 100%;">
-                                   <input required matInput placeholder="Policy issuer Name" name="h_pol_issuer" [(ngModel)]="general.issuer" >
+                                   <input required matInput placeholder="Policy issuer Name" name="h_pol_issuer" [(ngModel)]="general.issuer" (ngModelChange)="ChangeDetector($event, 'issuer')">
                                </mat-form-field>
                                <mat-form-field style="width: 100%;">
-                                   <input required matInput placeholder="Policy Name" name="polname" [(ngModel)]="general.policy_name" >
+                                   <input required matInput placeholder="Policy Name" name="polname" [(ngModel)]="general.policy_name" (ngModelChange)="ChangeDetector($event, 'policy')">
                                </mat-form-field>
                                <mat-form-field style="width: 100%;">
-                                   <input required matInput placeholder="Proposer Name" name="propname" [(ngModel)]="general.proposer" >
+                                   <input required matInput placeholder="Proposer Name" name="propname" [(ngModel)]="general.proposer" (ngModelChange)="ChangeDetector($event, 'proposer')">
                                </mat-form-field>
                                <mat-form-field style="width: 100%;">
-                                   <input required matInput jhiNumberOnly placeholder="Policy Term(yrs)" name="polterm" [(ngModel)]="general.policy_term" >
+                                   <input required matInput jhiNumberOnly placeholder="Policy Term(yrs)" name="polterm" [(ngModel)]="general.policy_term" (ngModelChange)="ChangeDetector($event, 'term')">
                                </mat-form-field>
                            </div>
                            <!-- right start -->
                            <div class="col-md-6">
                                <mat-form-field style="width: 100%;">
                                    <input required matInput [matDatepicker]="picker5" placeholder="Policy Start Date"
-                                   [formControl]="generalDate">
+                                   [formControl]="generalDate" (ngModelChange)="ChangeDetector($event, 'date')">
                                    <mat-datepicker-toggle matSuffix [for]="picker5" ></mat-datepicker-toggle>
                                    <mat-datepicker #picker5 ></mat-datepicker>
-                               </mat-form-field>        
+                               </mat-form-field>
                                <mat-form-field style="width: 100%;">
-                                   <mat-select placeholder="Premium Mode" name="type3" [(ngModel)]="general.premium_mode">
+                                   <mat-select placeholder="Premium Mode" name="type3" [(ngModel)]="general.premium_mode" (ngModelChange)="ChangeDetector($event, 'mode')">
                                        <mat-option *ngFor="let type of PremiumTypeArray" [value]="type.name">
                                        {{type.name}}
                                        </mat-option>
                                    </mat-select>
                                </mat-form-field>
                                <mat-form-field style="width: 100%;">
-                                   <input required matInput placeholder="Insured Object Name" name="insname" [(ngModel)]="general.ins_obj" >
+                                   <input required matInput placeholder="Insured Object Name" name="insname" [(ngModel)]="general.ins_obj" (ngModelChange)="ChangeDetector($event, 'insured')">
                                </mat-form-field>
                                <mat-form-field style="width: 100%;">
-                                   <input required matInput jhiNumberOnly placeholder="Sum Assured" name="sum" [(ngModel)]="general.sum" >
+                                   <input required matInput jhiNumberOnly placeholder="Sum Assured" name="sum" [(ngModel)]="general.sum" (ngModelChange)="ChangeDetector($event, 'sum')" >
                                </mat-form-field>
                                <mat-form-field style="width: 100%;">
-                                   <input required matInput jhiNumberOnly placeholder="Premium" name="hprem" [(ngModel)]="general.premium" >
+                                   <input required matInput jhiNumberOnly placeholder="Premium" name="hprem" [(ngModel)]="general.premium" (ngModelChange)="ChangeDetector($event, 'premium')">
                                </mat-form-field>
                            </div>  <!-- right end-->
                        </div>  <!-- form end -->
                    </form>
       </div>
       <div class="modal-footer">
-          <button type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid" >Save</button>
-      </div>
+            <button *ngIf="!update" type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Save</button>
+            <button *ngIf="update" type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="!isFieldChanged">Update</button>
+    </div>
   </ng-template>
