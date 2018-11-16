@@ -94,7 +94,6 @@ export class ChitFundComponent implements OnInit {
         this.delete(this.commonid);
     }
     saveChit() {
-        console.log('in chit', this.chitfund);
         this.chitfundService.ChitFundDetails(this.chitfund).subscribe(data => {
             this.getChitByuid(this.uid);
         });
