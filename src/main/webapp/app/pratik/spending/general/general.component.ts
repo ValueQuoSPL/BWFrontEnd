@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { AccountService, Principal } from 'app/core';
 import { GeneralService } from 'app/pratik/spending/spending.service';
-import { General } from 'app/pratik/spending/spending.model';
+import { General, PrevGeneral } from 'app/pratik/spending/spending.model';
 import { FormControl } from '@angular/forms';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-general',
@@ -28,7 +28,9 @@ export class GeneralComponent implements OnInit {
     tempGeneralArray: any = [];
     dynamicGeneral: any = [];
     general: General = new General();
+    prevGeneral: PrevGeneral = new PrevGeneral();
     generalDate = new FormControl(new Date());
+    account: any;
 
     PolicyTypeArray = [
         { name: 'Child Policy' },
@@ -39,35 +41,19 @@ export class GeneralComponent implements OnInit {
     ];
     PremiumTypeArray = [{ name: 'Single' }, { name: 'Monthly' }, { name: 'Quarterly' }, { name: 'Half Yearly' }, { name: 'Yearly' }];
 
-    constructor(
-        private generalService: GeneralService,
-        private principal: Principal,
-        private modalService: NgbModal,
-        private accountService: AccountService
-    ) {}
+    constructor(private generalService: GeneralService, private modalService: NgbModal, private commonService: CommonSidebarService) {}
 
     ngOnInit() {
         this.getUserid();
     }
 
-    isAuthenticated() {
-        return this.principal.isAuthenticated();
-    }
-
     getUserid() {
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-
-                    this.onGetGeneral();
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            console.log('uid received in health', this.uid);
+            this.onGetGeneral();
+        });
     }
 
     clear() {
@@ -157,8 +143,11 @@ export class GeneralComponent implements OnInit {
         });
     }
     onGetGeneral(): void {
+        console.log('fetching general data');
+
         this.generalService.GetGeneral(this.uid).subscribe((response: any[]) => {
             this.dynamicGeneral = response;
+            console.log('general data received', this.dynamicGeneral);
         });
     }
 

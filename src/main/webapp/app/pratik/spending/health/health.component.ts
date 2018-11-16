@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { AccountService, Principal } from 'app/core';
 import { FormControl } from '@angular/forms';
-import { Health } from 'app/pratik/spending/spending.model';
+import { Health, PrevHealth } from 'app/pratik/spending/spending.model';
 import { HealthService } from 'app/pratik/spending/spending.service';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-health',
@@ -28,6 +28,7 @@ export class HealthComponent implements OnInit {
     tempHealthArray: any = [];
     dynamicHealth: any = [];
     health: Health = new Health();
+    prevHealth: PrevHealth = new PrevHealth();
     healthDate = new FormControl(new Date());
 
     PolicyTypeArray = [
@@ -38,34 +39,20 @@ export class HealthComponent implements OnInit {
         { name: 'Term Policy' }
     ];
     PremiumTypeArray = [{ name: 'Single' }, { name: 'Monthly' }, { name: 'Quarterly' }, { name: 'Half Yearly' }, { name: 'Yearly' }];
-    constructor(
-        private healthService: HealthService,
-        private principal: Principal,
-        private modalService: NgbModal,
-        private accountService: AccountService
-    ) {}
+    account: any;
+    constructor(private healthService: HealthService, private modalService: NgbModal, private commonService: CommonSidebarService) {}
 
     ngOnInit() {
         this.getUserid();
     }
 
-    isAuthenticated() {
-        return this.principal.isAuthenticated();
-    }
-
     getUserid() {
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    this.onGetHealth();
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            console.log('uid received in health', this.uid);
+            this.onGetHealth();
+        });
     }
 
     clear() {
@@ -154,8 +141,11 @@ export class HealthComponent implements OnInit {
         });
     }
     onGetHealth(): void {
+        console.log('fetching health data');
+
         this.healthService.GetHealth(this.uid).subscribe((response: any[]) => {
             this.dynamicHealth = response;
+            console.log('health data received', this.dynamicHealth);
         });
     }
 

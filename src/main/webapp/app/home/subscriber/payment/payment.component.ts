@@ -44,15 +44,9 @@ export class PaymentComponent implements OnInit {
     }
 
     AddUserMobile() {
-        console.log('add mobile');
-        console.log(this.user.phone);
-        console.log('before mobile', this.settingsAccount);
         this.settingsAccount.mobile = this.user.phone;
-        console.log('after mobile', this.settingsAccount);
         this.account.save(this.settingsAccount).subscribe(() => {
             this.principal.identity(true).then(account => {
-                console.log('user info from payment proceed', account);
-
                 this.settingsAccount = this.copyAccount(account);
             });
         });
@@ -77,9 +71,7 @@ export class PaymentComponent implements OnInit {
 
     ngOnInit() {
         this.principal.identity().then(account => {
-            console.log('user info from payment init', account);
             this.settingsAccount = this.copyAccount(account);
-            console.log('user info', this.settingsAccount);
         });
 
         const plan = this.route.snapshot.params['plan'];
