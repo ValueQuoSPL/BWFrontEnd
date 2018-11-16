@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ChitFund } from 'app/my-assets/chit-funds/chitfund.modal';
-import { AccountService } from 'app/core';
+import { ChitFund } from './chitfund.modal';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { ChitFundService } from 'app/my-assets/chit-funds/chitfund.service';
+import { ChitFundService } from './chitfund.service';
 import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 
 @Component({
@@ -33,17 +32,6 @@ export class ChitFundComponent implements OnInit {
     ngOnInit() {
         this.FetchId();
     }
-    // FetchId(): Promise<any> {
-    //     return this.account
-    //         .get()
-    //         .toPromise()
-    //         .then(response => {
-    //             this.user = response.body;
-    //             this.chitfund.userid = this.user.id;
-    //             this.uid = this.chitfund.userid;
-    //             this.getChitByuid(this.uid);
-    //         });
-    // }
     FetchId() {
         this.commonService.account.subscribe(account => {
             this.account = account;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Cash } from 'app/my-assets/cash/cash.modal';
-import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CashService } from 'app/my-assets/cash/cash.service';
@@ -118,7 +117,6 @@ export class CashComponent implements OnInit {
                 this.cash.cashsource = this.getdata.cashsource;
                 this.cash.notes = this.getdata.notes;
                 this.cash.amount = this.getdata.amount;
-                console.log('Bank of Personal possession', this.cash.amount);
                 this.cash.userid = this.getdata.userid;
                 this.cash.bankname = this.getdata.bankname;
                 this.cash.accoounttype = this.getdata.accoounttype;
@@ -127,7 +125,6 @@ export class CashComponent implements OnInit {
                 this.cashsource = this.getdata.cashsource;
                 this.cash.cashsource = this.getdata.cashsource;
                 this.cash.amount = this.getdata.amount;
-                console.log('handloan of Personal possession', this.cash.amount);
                 this.cash.notes = this.getdata.notes;
                 this.cash.userid = this.getdata.userid;
                 this.cash.intrestrate = this.getdata.intrestrate;
@@ -137,14 +134,12 @@ export class CashComponent implements OnInit {
                 this.cash.userid = this.getdata.userid;
                 this.cash.cashsource = this.getdata.cashsource;
                 this.cash.amount = this.getdata.amount;
-                console.log('amount of Personal possession', this.cash.amount);
                 this.cash.notes = this.getdata.notes;
             } else if (this.editcash === 'Other Source') {
                 this.cashsource = this.getdata.cashsource;
                 this.cash.cashsource = this.getdata.cashsource;
                 this.cash.cashsource = this.getdata.cashsource;
                 this.cash.amount = this.getdata.amount;
-                console.log('amount of Other Source', this.cash.amount);
                 this.cash.notes = this.getdata.notes;
                 this.cash.userid = this.getdata.userid;
             }

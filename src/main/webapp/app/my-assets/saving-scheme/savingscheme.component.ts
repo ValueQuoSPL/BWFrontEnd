@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SavingScheme } from 'app/my-assets/saving-scheme/savingscheme.modal';
@@ -65,16 +64,6 @@ export class SavingSchemeComponent implements OnInit {
     ngOnInit() {
         this.FetchId();
     }
-    // FetchId(): Promise<any> {
-    //     return this.account
-    //         .get()
-    //         .toPromise()
-    //         .then(response => {
-    //             this.user = response.body;
-    //             this.uid = this.user.id;
-    //             this.getSavingSchemeUid(this.uid);
-    //         });
-    // }
     FetchId() {
         this.commonService.account.subscribe(account => {
             this.account = account;
@@ -117,19 +106,15 @@ export class SavingSchemeComponent implements OnInit {
             }
         );
     }
-    // SavingScheme() {
-    //     this.savingScheme.userId = this.uid;
-    //     this.savingSchemeService.SavingSchemeDetails(this.savingScheme).subscribe(data => {
-    //     });
-    //     this.getSavingSchemeUid(this.uid);
-    // }
     SavingScheme() {
         this.getTempDate = this.savingScheme.start_date;
         const year = this.getTempDate.getFullYear();
         this.setTempDate.setFullYear(year + this.savingScheme.tenure);
         this.savingScheme.end_date = this.setTempDate;
         this.savingScheme.userId = this.uid;
-        this.savingSchemeService.SavingSchemeDetails(this.savingScheme).subscribe(responce => {}, error => error);
+        this.savingSchemeService.SavingSchemeDetails(this.savingScheme).subscribe(responce => {
+            this.getSavingSchemeUid(this.uid);
+        }, error => error);
     }
     getSavingSchemeUid(uid) {
         this.savingSchemeService.getSavingScheme(this.uid).subscribe(res => {
