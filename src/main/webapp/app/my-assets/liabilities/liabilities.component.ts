@@ -27,6 +27,8 @@ export class LiabilitiesComponent implements OnInit {
     loann: Loan = new Loan();
     result: any = [];
     modalRef: NgbModalRef;
+    panelLongTerm = false;
+    panelShortTerm = false;
 
     LoanTypeArray = [
         { name: 'Home Loan' },

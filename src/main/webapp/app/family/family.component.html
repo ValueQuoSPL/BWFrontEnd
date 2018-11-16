@@ -6,12 +6,12 @@
                             <mat-accordion class="container" >
                                 <mat-expansion-panel class="accordcol"
                                 (opened)="panelMyprofileState = true"
-                                (closed)="panelMyprofileState = false"  >
+                                (closed)="panelMyprofileState = false">
                                     <mat-expansion-panel-header class="accordcol">
                                         <mat-panel-title class="bwaccordtitle" >
                                             <h5>My Profile</h5>
                                         </mat-panel-title>
-                                        <mat-panel-description class="bwaccordtitle setmargin">
+                                        <mat-panel-description class="bwaccordtitle setmarginfuture">
                                                 {{panelMyprofileState ? 'Collapse' : 'Expand'}}
                                         </mat-panel-description>
                                     </mat-expansion-panel-header>
@@ -25,7 +25,7 @@
                                         <mat-panel-title class="bwaccordtitle">
                                         <h5>Family Profile</h5>
                                         </mat-panel-title>
-                                        <mat-panel-description class="bwaccordtitle setmargin">
+                                        <mat-panel-description class="bwaccordtitle setmarginfamilyprofile">
                                             {{panelFamilyprofileState ? 'Collapse' : 'Expand'}}
                                         </mat-panel-description>
                                     </mat-expansion-panel-header>
