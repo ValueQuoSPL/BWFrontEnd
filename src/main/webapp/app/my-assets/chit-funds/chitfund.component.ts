@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ChitFund } from 'app/my-assets/chit-funds/chitfund.modal';
+import { ChitFund } from './chitfund.modal';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { ChitFundService } from 'app/my-assets/chit-funds/chitfund.service';
+import { ChitFundService } from './chitfund.service';
 import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 
 @Component({
