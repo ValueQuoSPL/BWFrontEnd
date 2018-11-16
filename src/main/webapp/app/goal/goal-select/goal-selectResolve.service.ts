@@ -1,12 +1,26 @@
 import { GoalselectService } from './goalselect.service';
 import { Observable } from 'rxjs/Observable';
-import { Injectable } from '../../../../../../node_modules/@angular/core';
+import { Injectable, OnInit } from '../../../../../../node_modules/@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 @Injectable()
-export class GoalResolveService implements Resolve<any> {
-    constructor(private goalselectService: GoalselectService) {}
+export class GoalResolveService implements OnInit, Resolve<any> {
+    account: any;
+    uid: any;
+    constructor(private goalselectService: GoalselectService, private commonService: CommonSidebarService) {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+        });
+    }
+    ngOnInit() {
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+        });
+    }
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        return this.goalselectService.getgoalbyid();
+        return this.goalselectService.getGoal(this.uid);
     }
 }

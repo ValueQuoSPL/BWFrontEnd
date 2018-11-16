@@ -101,6 +101,7 @@ export class SubscriberComponent implements OnInit {
             this.oldAmount = this.payable;
             this.offer.payable = this.payable;
         }
+        this.get();
     }
 
     get() {
@@ -111,14 +112,6 @@ export class SubscriberComponent implements OnInit {
                 this.user.id = this.userPlan[0].id;
             } else {
                 this.isSubscribed = false;
-            }
-
-            if (this.userPlan.plan === 'WISE') {
-                this.validity = 3;
-            } else if (this.userPlan.plan === 'WISER') {
-                this.validity = 6;
-            } else if (this.userPlan.plan === 'WISEST') {
-                this.validity = 12;
             }
         });
     }

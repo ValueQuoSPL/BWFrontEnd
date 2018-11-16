@@ -81,6 +81,20 @@ export class General {
     premium_mode: any;
     generalModelArray: any = [];
 }
+export class PrevGeneral {
+    id;
+    proposer;
+    userid;
+    ins_obj;
+    policy_name;
+    premium;
+    policy_term;
+    issuer;
+    start_date;
+    sum;
+    policy_no;
+    premium_mode: any;
+}
 export class Health {
     id;
     userid;
@@ -95,6 +109,20 @@ export class Health {
     proposer_name;
     premium_mode;
     healthModelArray: any = [];
+}
+export class PrevHealth {
+    id;
+    userid;
+    ins_name;
+    policy_name;
+    premium;
+    policy_term;
+    issuer;
+    start_date;
+    sum;
+    policy_no;
+    proposer_name;
+    premium_mode;
 }
 export class House {
     userid;

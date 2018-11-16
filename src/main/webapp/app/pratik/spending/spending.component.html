@@ -4,8 +4,8 @@
         <div class="container">
 
                 <!-- Start expense panel -->
-                <div class="form-group row justify-content-md-center bwtitle">
-                    Expense
+                <div class="form-group row justify-content-md-center bwtitle ">
+                    <span class="animated zoomIn">Expense</span>
                 </div>
         
                 <div> <!-- start expense content -->
@@ -45,11 +45,13 @@
                     </ng-template>
         
                     <!-- utilities -->
-                    <mat-expansion-panel class="accordcol" [expanded]="utilityState">
+                    <mat-expansion-panel class="accordcol"
+                    (opened)="panelUtilityState = true"
+                    (closed)="panelUtilityState = false">
                         <!-- header -->
                         <mat-expansion-panel-header class="accordcol">
                             <mat-panel-title class="bwaccordtitle">Utilities </mat-panel-title>
-                            <mat-panel-description class="bwaccordtitle"> Add your Utilities</mat-panel-description>
+                            <mat-panel-description class="bwaccordtitle setmarginutility">  {{panelUtilityState ? 'Collapse' : 'Expand'}}</mat-panel-description>
                         </mat-expansion-panel-header>
                 
                         <!-- <jhi-utility></jhi-utility> -->
@@ -58,11 +60,13 @@
                     </mat-expansion-panel>     
                     &nbsp;
                     <!-- household -->
-                    <mat-expansion-panel class="accordcolor" [expanded]="houseState">
+                    <mat-expansion-panel class="accordcolor" 
+                    (opened)="panelHouseholdState = true"
+                    (closed)="panelHouseholdState = false">
                         <!-- header -->
                         <mat-expansion-panel-header  class="accordcolor">
                             <mat-panel-title class="bwaccordtitle">Household</mat-panel-title>
-                            <mat-panel-description class="bwaccordtitle">Your household expense</mat-panel-description>
+                            <mat-panel-description class="bwaccordtitle setmarginhousehold" >{{panelHouseholdState ? 'Collapse' : 'Expand'}}</mat-panel-description>
                         </mat-expansion-panel-header>
                     
                         <!-- <jhi-household></jhi-household> -->
@@ -71,11 +75,12 @@
                     </mat-expansion-panel>    
                     &nbsp;
                     <!-- Loan -->
-                    <mat-expansion-panel class="accordcol" [expanded]="loanState">
-
+                    <mat-expansion-panel class="accordcol" 
+                    (opened)="panelLoanState = true"
+                    (closed)="panelLoanState = false">
                         <mat-expansion-panel-header  class="accordcol">
                             <mat-panel-title class="bwaccordtitle">Loans and Debts </mat-panel-title>
-                            <mat-panel-description class="bwaccordtitle">Add Your Loan Details</mat-panel-description>
+                            <mat-panel-description class="bwaccordtitle setmarginloan">{{panelLoanState ? 'Collapse' : 'Expand'}}</mat-panel-description>
                         </mat-expansion-panel-header>
                     
                         <!-- <jhi-loan></jhi-loan>  -->
@@ -84,19 +89,23 @@
                     </mat-expansion-panel>   
                     &nbsp;
                     <!-- Insurance -->
-                    <mat-expansion-panel class="accordcolor" [expanded]="insState">
+                    <mat-expansion-panel class="accordcolor"
+                    (opened)="panelInsState = true"
+                    (closed)="panelInsState = false">
 
                             <mat-expansion-panel-header  class="accordcolor">
                                 <mat-panel-title class="bwaccordtitle">Insurance</mat-panel-title>
-                                <mat-panel-description class="bwaccordtitle">Add your Insurance Details</mat-panel-description>
+                                <mat-panel-description class="bwaccordtitle setmargininsurance">{{panelInsState ? 'Collapse' : 'Expand'}}</mat-panel-description>
                             </mat-expansion-panel-header>
                             &nbsp;
                             <mat-accordion>
                                 <!-- life -->
-                                <mat-expansion-panel class="accordcol" >
+                                <mat-expansion-panel class="accordcol" 
+                                (opened)="panelLifeState = true"
+                                (closed)="panelLifeState = false">
                                     <mat-expansion-panel-header  class="accordcol">
                                             <mat-panel-title class="bwaccordtitle">Life Insurance</mat-panel-title>
-                                            <mat-panel-description class="bwaccordtitle">Add your other Life insurance</mat-panel-description>
+                                            <mat-panel-description class="bwaccordtitle setmarginlifeins">{{panelLifeState ? 'Collapse' : 'Expand'}}</mat-panel-description>
                                     </mat-expansion-panel-header>
                                     
                                     <!-- <jhi-life></jhi-life> -->
@@ -106,10 +115,12 @@
                                 </mat-expansion-panel>
                                 &nbsp;
                                 <!-- health -->
-                                <mat-expansion-panel class="accordcolor">
+                                <mat-expansion-panel class="accordcolor"
+                                (opened)="panelHealthState = true"
+                                (closed)="panelHealthState = false">
                                     <mat-expansion-panel-header  class="accordcolor">
                                             <mat-panel-title class="bwaccordtitle">Health Insurance</mat-panel-title>
-                                            <mat-panel-description class="bwaccordtitle">Add your other Health insurance</mat-panel-description>
+                                            <mat-panel-description class="bwaccordtitle setmarginentertainment">{{panelHealthState ? 'Collapse' : 'Expand'}}</mat-panel-description>
                                     </mat-expansion-panel-header>
                                     
                                     <!-- <jhi-health></jhi-health> -->
@@ -119,10 +130,12 @@
                                 </mat-expansion-panel>
                                 &nbsp;
                                 <!-- General -->
-                                <mat-expansion-panel  class="accordcol" >
+                                <mat-expansion-panel  class="accordcol" 
+                                (opened)="panelGeneralState = true"
+                                (closed) = "panelGeneralState = false">
                                     <mat-expansion-panel-header  class="accordcol">
                                             <mat-panel-title class="bwaccordtitle">General Insurance</mat-panel-title>
-                                            <mat-panel-description class="bwaccordtitle">Add your other general insurance</mat-panel-description>
+                                            <mat-panel-description class="bwaccordtitle setmarginentertainment">{{panelGeneralState ? 'Collapse' : 'Expand'}}</mat-panel-description>
                                     </mat-expansion-panel-header>
         
                                     <!-- <jhi-general></jhi-general> -->
@@ -135,11 +148,12 @@
                     </mat-expansion-panel> 
                     &nbsp;
                     <!-- Credit Cards -->
-                    <mat-expansion-panel class="accordcol" [expanded]="creditState">
-
+                    <mat-expansion-panel class="accordcol"
+                    (opened)="panelCreditState = true"
+                    (closed)="panelCreditState = false">
                             <mat-expansion-panel-header  class="accordcol">
                                 <mat-panel-title class="bwaccordtitle"> Credit Cards</mat-panel-title>
-                                <mat-panel-description class="bwaccordtitle">Your Credit card details(we never disclose it)</mat-panel-description>
+                                <mat-panel-description class="bwaccordtitle setmargincredit">{{panelCreditState ? 'Collapse' : 'Expand'}}</mat-panel-description>
                             </mat-expansion-panel-header>
                     
                             <!-- <jhi-credit></jhi-credit> -->
@@ -149,14 +163,16 @@
                     </mat-expansion-panel>  
                     &nbsp;
                     <!-- Entertainment & Travel -->
-                    <mat-expansion-panel class="accordcolor" [expanded]="travelState">
+                    <mat-expansion-panel class="accordcolor"
+                    (opened)="panelTravelState = true"
+                    (closed)="panelTravelState = false">
                             <!-- header -->
                             <mat-expansion-panel-header  class="accordcolor">
                                 <mat-panel-title class="bwaccordtitle">
                                     Entertainment & Travel
                                 </mat-panel-title>
-                                <mat-panel-description class="bwaccordtitle">
-                                Add your extra expense on Entertainment & Travel
+                                <mat-panel-description class="bwaccordtitle setmarginentertainment">
+                                {{panelTravelState ? 'Collapse' : 'Expand'}}
                                 </mat-panel-description>
                             </mat-expansion-panel-header>
                     
@@ -167,14 +183,16 @@
                     </mat-expansion-panel> 
                     &nbsp;
                     <!-- Misc -->
-                    <mat-expansion-panel  class="accordcol" [expanded]="miscState">
+                    <mat-expansion-panel  class="accordcol"
+                    (opened)="panelMiscState = true"
+                    (closed)="panelMiscState = false">
                             <!-- header -->
                             <mat-expansion-panel-header  class="accordcol">
                                 <mat-panel-title class="bwaccordtitle">
                                     Miscellaneous
                                 </mat-panel-title>
-                                <mat-panel-description class="bwaccordtitle">
-                                Any another miscellaneous expense? Add here to keep track
+                                <mat-panel-description class="bwaccordtitle setmarginmisc">
+                               {{panelMiscState ? 'Collapse' : 'Expand'}}
                                 </mat-panel-description>
                             </mat-expansion-panel-header>
         

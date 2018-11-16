@@ -12,7 +12,7 @@
                         <mat-expansion-panel-header class="specific-class accordcol">
                             <mat-panel-title class="bwaccordtitle"> Stocks </mat-panel-title>
                             <!-- <mat-panel-description class="bwaccordtitle">Total Stock Value&nbsp;&nbsp;{{totalshareprice}}</mat-panel-description> -->
-                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                            <mat-panel-description  class="bwaccordtitle setmarginstock" >
                                     {{panelStockState ? 'Collapse' : 'Expand'}}
                             </mat-panel-description>
                         </mat-expansion-panel-header>
@@ -28,7 +28,7 @@
                         <mat-expansion-panel-header    class="accordcolor">
                           <mat-panel-title class="bwaccordtitle"> Mutual Funds </mat-panel-title>
                              <!--  <mat-panel-description  class="bwaccordtitle">Total Mutual Value&nbsp;&nbsp;{{totalmutual}} </mat-panel-description> -->
-                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                            <mat-panel-description  class="bwaccordtitle setmarginmutual" >
                                     {{panelMutualState ? 'Collapse' : 'Expand'}}
                             </mat-panel-description>
                         </mat-expansion-panel-header>
@@ -44,7 +44,7 @@
                         <mat-expansion-panel-header   class="accordcol">
                             <mat-panel-title class="bwaccordtitle"> Saving Schemes </mat-panel-title>
                              <!--<mat-panel-description  class="bwaccordtitle ">Total Saving Schemes Value&nbsp;&nbsp; {{totalSaving}} </mat-panel-description> -->
-                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                            <mat-panel-description  class="bwaccordtitle setmarginsaving" >
                                     {{panelSavingState ? 'Collapse' : 'Expand'}}
                             </mat-panel-description>
                         </mat-expansion-panel-header>
@@ -60,7 +60,7 @@
                         <mat-expansion-panel-header  class="accordcolor">
                              <mat-panel-title class="bwaccordtitle"> Alternative Investment </mat-panel-title>
                             <!--<mat-panel-description  class="bwaccordtitle">TotalAlternative Investment Value&nbsp;&nbsp; {{totalAltenateInvest}} </mat-panel-description> -->
-                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                            <mat-panel-description  class="bwaccordtitle setmarginalter" >
                                     {{panelAlterState ? 'Collapse' : 'Expand'}}
                             </mat-panel-description>
                         </mat-expansion-panel-header>
@@ -75,7 +75,7 @@
                     (closed)="panelCashState = false">
                         <mat-expansion-panel-header  class="accordcol">
                             <mat-panel-title  class="bwaccordtitle"> Cash </mat-panel-title>
-                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                            <mat-panel-description  class="bwaccordtitle setmargincash" >
                                     {{panelCashState ? 'Collapse' : 'Expand'}}
                             </mat-panel-description>
                              <!--<mat-panel-description  class="bwaccordtitle">Total Cash Value&nbsp;&nbsp; {{totalCash}} </mat-panel-description> -->
@@ -90,9 +90,9 @@
                     (opened)="panelPropertyState = true"
                     (closed)="panelPropertyState = false">
                         <mat-expansion-panel-header   class="accordcolor">
-                             <mat-panel-title  class="bwaccordtitle"> Property, Jewellery & Others </mat-panel-title>
+                             <mat-panel-title  class="bwaccordtitle"> Property,Jewellery </mat-panel-title>
                             <!-- <mat-panel-description  class="bwaccordtitle">Total  Property, Jewellery & Others Value&nbsp;&nbsp; {{totalProperty}} </mat-panel-description> --> 
-                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                            <mat-panel-description  class="bwaccordtitle setmarginproperty" >
                                     {{panelPropertyState ? 'Collapse' : 'Expand'}}
                             </mat-panel-description>
                         </mat-expansion-panel-header>
@@ -109,7 +109,7 @@
                         <mat-expansion-panel-header class="accordcol">
                            <mat-panel-title  class="bwaccordtitle"> Chit Funds </mat-panel-title>
                              <!-- <mat-panel-description  class="bwaccordtitle">Total Chit Funds Value&nbsp;&nbsp; {{totalChitFund}} </mat-panel-description> -->
-                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                            <mat-panel-description  class="bwaccordtitle setmarginchit" >
                                     {{panelChitState ? 'Collapse' : 'Expand'}}
                             </mat-panel-description>
                         </mat-expansion-panel-header>
@@ -125,8 +125,8 @@
                         <mat-expansion-panel-header  class="accordcolor">
                             <!-- <mat-panel-title  class="bwaccordtitle"> Future and Options </mat-panel-title>
                             <mat-panel-description  class="bwaccordtitle" >Total Future and Options Value&nbsp;&nbsp; {{totalFutureOption}} </mat-panel-description> -->
-                             <mat-panel-title>Future and Options</mat-panel-title>
-                            <mat-panel-description  class="bwaccordtitle setmargin" >
+                             <mat-panel-title  class="bwaccordtitle">Future Options</mat-panel-title>
+                            <mat-panel-description  class="bwaccordtitle setmarginfuture" >
                                     {{panelFutureState ? 'Collapse' : 'Expand'}}
                             </mat-panel-description>
                                 

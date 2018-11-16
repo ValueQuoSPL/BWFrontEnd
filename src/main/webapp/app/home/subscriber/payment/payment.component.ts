@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'app/home/subscriber/payment/payment.model';
 import { PaymentService } from 'app/home/subscriber/payment/payment.service';
 import { ActivatedRoute } from '@angular/router';
+import { AccountService, Principal } from 'app/core';
 
 @Component({
     selector: 'jhi-payment',
@@ -22,8 +23,14 @@ export class PaymentComponent implements OnInit {
     plan: any;
     payable: number;
     oldAmount: number;
+    settingsAccount: any;
 
-    constructor(private paymentService: PaymentService, private route: ActivatedRoute) {}
+    constructor(
+        private paymentService: PaymentService,
+        private route: ActivatedRoute,
+        private account: AccountService,
+        private principal: Principal
+    ) {}
 
     submitUser() {
         alert('submit');
@@ -33,6 +40,29 @@ export class PaymentComponent implements OnInit {
             this.paymentDetail.push(data);
             this.disablePaymentButton = false;
         });
+        this.AddUserMobile();
+    }
+
+    AddUserMobile() {
+        this.settingsAccount.mobile = this.user.phone;
+        this.account.save(this.settingsAccount).subscribe(() => {
+            this.principal.identity(true).then(account => {
+                this.settingsAccount = this.copyAccount(account);
+            });
+        });
+    }
+
+    copyAccount(account) {
+        return {
+            activated: account.activated,
+            email: account.email,
+            mobile: account.mobile,
+            firstName: account.firstName,
+            langKey: account.langKey,
+            lastName: account.lastName,
+            login: account.login,
+            imageUrl: account.imageUrl
+        };
     }
 
     backForEdit() {
@@ -40,6 +70,10 @@ export class PaymentComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.principal.identity().then(account => {
+            this.settingsAccount = this.copyAccount(account);
+        });
+
         const plan = this.route.snapshot.params['plan'];
         this.plan = plan;
         this.offer.plan = plan;

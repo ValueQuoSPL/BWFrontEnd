@@ -10,5 +10,5 @@ export const goalSelectRoute: Route = {
         authorities: [],
         pageTitle: 'goal.title'
     },
-    resolve: { goalselect: GoalResolveService }
+    resolve: { goaldata: GoalResolveService }
 };

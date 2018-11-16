@@ -26,7 +26,8 @@
         <div [ngSwitch]="goaltype"><!--start of ngSwitch div-->
           <div *ngSwitchCase="'home'"><!--start of ngSwitchCaseHome div-->
 
-            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+            <form #data="ngForm">
+              <mat-card class="container-fluid example-card">
                 <div class="bwtitle">Enter New Home Goal</div>
 
               <mat-card-content class="container-fluid">
@@ -52,10 +53,13 @@
                   <button mat-raised-button class="btnSave" [disabled]="data.form.invalid"  (click)="Home()">Submit</button>
                   <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>           </form>
+            </mat-card>
+          </form>
           </div><!--end of ngSwitchCaseHome div-->
+
           <div *ngSwitchCase="'education'"><!--start of ngSwitchCaseEducation div-->
-            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+            <form #data="ngForm">
+              <mat-card class="container-fluid example-card">
                 <div class="bwtitle">Enter New Education Goal</div>
 
               <mat-card-content class="container-fluid">
@@ -81,11 +85,14 @@
                 <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Education()">Submit</button>
                 <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>           </form>
+            </mat-card>
+          </form>
            <!--end of edu-container div-->
+
           </div><!--end of ngSwitchCaseEducation div-->
           <div *ngSwitchCase="'vehicle'">
-            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+            <form #data="ngForm">
+              <mat-card class="container-fluid example-card">
                 <div class="bwtitle">Enter New Vehicle Goal</div>
 
               <mat-card-content class="container-fluid">
@@ -111,11 +118,14 @@
                 <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Vehicle()">Submit</button>
                 <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>           </form>
+            </mat-card>
+          </form>
             <!--end of home-tabpane div-->
+
           </div><!--end of ngSwitchCaseVehicle div-->
           <div *ngSwitchCase="'childbirth'">
-            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+            <form #data="ngForm">
+              <mat-card class="container-fluid example-card">
                 <div class="bwtitle">Enter New Child Goal</div>
 
               <mat-card-content class="container-fluid">
@@ -141,10 +151,13 @@
                 <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Childbirth()">Submit</button>
                 <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>           </form>
+            </mat-card>
+          </form>
           </div><!--end of ngSwitchCasechildbirth div-->
+
           <div *ngSwitchCase="'merrage'">
-            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+            <form #data="ngForm">
+              <mat-card class="container-fluid example-card">
                 <div class="bwtitle">Enter New Marriage Goal</div>
 
               <mat-card-content class="container-fluid">
@@ -170,11 +183,14 @@
                 <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Merrage()">Submit</button>
                 <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>           </form>
+            </mat-card>
+          </form>
             <!--end of home-tabpane div -->
+
           </div><!--end of ngSwitchCaseMerrage div-->
           <div *ngSwitchCase="'business'">
-            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+            <form #data="ngForm">
+              <mat-card class="container-fluid example-card">
                 <div class="bwtitle">Enter New Business Goal</div>
 
               <mat-card-content class="container-fluid">
@@ -200,10 +216,13 @@
                 <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Business()">Submit</button>
                 <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>           </form>
+            </mat-card>
+          </form>
           </div><!--end of ngSwitchCaseBusiness div-->
+
           <div *ngSwitchCase="'familysupport'">
-            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+            <form #data="ngForm">
+              <mat-card class="container-fluid example-card">
                 <div class="bwtitle">Enter New Goal</div>
 
               <mat-card-content class="container-fluid">
@@ -229,10 +248,13 @@
                 <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Familysupport()">Submit</button>
                 <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>           </form>
+            </mat-card>
+          </form>
           </div><!--end of ngSwitchCaseFamilySup div-->
+
           <div *ngSwitchCase="'vacation'">
-            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+            <form #data="ngForm">
+               <mat-card class="container-fluid example-card">
                 <div class="bwtitle">Enter New Goal</div>
 
               <mat-card-content class="container-fluid">
@@ -258,10 +280,13 @@
                 <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="Vacation()">Submit</button>
                 <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>           </form>
+            </mat-card>
+          </form>
           </div><!--end of ngSwitchCaseVacation div-->
+
           <div *ngSwitchCase="'emergencyfund'">
-            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+            <form #data="ngForm">
+              <mat-card class="container-fluid example-card">
                 <div class="bwtitle">Enter New Goal</div>
 
               <mat-card-content class="container-fluid">
@@ -287,10 +312,13 @@
                 <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="EmergencyFund()">Submit</button>
                 <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>           </form>
+            </mat-card>
+          </form>
           </div><!--end of ngSwitchCaseEmergency div-->
+
           <div *ngSwitchCase="'retairementfund'">
-            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+            <form #data="ngForm">
+              <mat-card class="container-fluid example-card">
                 <div class="bwtitle">Enter New Goal</div>
               <mat-card-content class="container-fluid">
                 <mat-form-field>
@@ -315,10 +343,13 @@
                 <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="RetairementFund()">Submit</button>
                 <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
               </mat-card-actions>
-            </mat-card>           </form>
+            </mat-card>
+          </form>
           </div><!--end of ngSwitchCaseRetaire div-->
+
           <div *ngSwitchCase="'newgoal'">
-            <form #data="ngForm">             <mat-card class="container-fluid example-card">
+            <form #data="ngForm">
+              <mat-card class="container-fluid example-card">
                 <div class="bwtitle">Enter New Goal</div>
               <mat-card-content class="container-fluid">
               <mat-form-field>
@@ -343,20 +374,22 @@
               <button mat-raised-button class="btnSave" [disabled]="data.form.invalid" (click)="NewGoal()">Submit</button>
               <button mat-raised-button class="btnCancel" (click)="clear()">Cancel</button>
             </mat-card-actions>
-          </mat-card>           </form>
+          </mat-card>
+        </form>
           </div><!--end of ngSwitchCaseNewGoal div-->
         </div><!-- end of ngSwitch div -->
       </div><!-- end of isvalid div -->
+
     <div *ngIf="isValid">
       <div class="form-group row justify-content-center bwtitle">Goal Details
       </div>
       <button 
         mat-button 
-        class="btnSave" [disabled]="data.form.invalid" 
-        class="btn btn-link" 
+        class="btnSave"
+        class="btn btn-link"
         (click)="AddGoal()">
         <span><i class="fa fa-plus" aria-hidden="true"></i>
-        </span>AddGoal
+        </span>Add Goal
       </button>
   <!-- view page -->
       <table 
@@ -367,7 +400,6 @@
                 table-striped"><!-- table start here -->
         <thead>
           <tr>
-              <th>SrNo</th>
               <th>GoalType</th>
               <th>GoalName</th>
               <th>Priority</th>
@@ -384,7 +416,6 @@
         </thead>
         <tbody>
           <tr *ngFor="let out of output let i = index">
-            <td>{{out.id}}</td>
             <td>{{out.goaltype}}</td>
             <td>{{out.goalname}}</td>
             <td>{{out.goalpriority}}</td>
@@ -456,7 +487,7 @@
               </div><!--start of row1.col2 div-->
             </div><!--end of row1 div-->
             <div class="row justify-content-md-center">
-              <h4>Present Value : {{PresentCost}}</h4> <br>
+              <h4>Present Value : {{PresentCost}}</h4> <br><br>
               <h4>Available Asset to map : {{AvailableCost}}</h4>
             </div>
             <div>

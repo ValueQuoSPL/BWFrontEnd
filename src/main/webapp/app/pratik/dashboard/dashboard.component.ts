@@ -143,13 +143,6 @@ export class DashboardComponent implements OnInit {
                 if (account) {
                     this.uid = account.id;
                     this.getMutualFund();
-                    this.getStock();
-                    this.getSaving();
-                    this.getChit();
-                    this.getCash();
-                    this.getAlterInvestment();
-                    this.getPCJ();
-                    this.getFAO();
                     this.getLiabilities();
                     this.getGoal();
                     this.getIncome();
@@ -409,6 +402,7 @@ export class DashboardComponent implements OnInit {
                 this.networth = +this.assetTotal - +this.totalLiabilities;
             } else {
             }
+            this.getStock();
         });
     }
 
@@ -416,14 +410,14 @@ export class DashboardComponent implements OnInit {
         this.totalStock = 0;
         this.dashboardService.getStock(this.uid).subscribe(data => {
             this.resultStock = data;
-
             if (this.resultStock !== 0) {
                 for (let i = 0; i < this.resultStock.length; i++) {
-                    this.totalStock = this.totalStock + +this.resultStock[i].no_of_shares;
+                    this.totalStock = this.totalStock + +this.resultStock[i].share_price;
                 }
                 this.assetTotal = +this.assetTotal + +this.totalStock;
                 this.networth = +this.assetTotal - +this.totalLiabilities;
             }
+            this.getSaving();
         });
     }
 
@@ -439,6 +433,7 @@ export class DashboardComponent implements OnInit {
                 this.assetTotal = +this.assetTotal + +this.totalSaving;
                 this.networth = +this.assetTotal - +this.totalLiabilities;
             }
+            this.getChit();
         });
     }
 
@@ -453,6 +448,7 @@ export class DashboardComponent implements OnInit {
                 this.assetTotal = +this.assetTotal + +this.totalChit;
                 this.networth = +this.assetTotal - +this.totalLiabilities;
             }
+            this.getCash();
         });
     }
 
@@ -467,6 +463,7 @@ export class DashboardComponent implements OnInit {
                 this.assetTotal = +this.assetTotal + +this.totalCash;
                 this.networth = +this.assetTotal - +this.totalLiabilities;
             }
+            this.getAlterInvestment();
         });
     }
 
@@ -481,6 +478,7 @@ export class DashboardComponent implements OnInit {
                 this.assetTotal = +this.assetTotal + +this.totalAlterInvestment;
                 this.networth = +this.assetTotal - +this.totalLiabilities;
             }
+            this.getPCJ();
         });
     }
 
@@ -495,6 +493,7 @@ export class DashboardComponent implements OnInit {
                 this.assetTotal = +this.assetTotal + +this.totalPCJ;
                 this.networth = +this.assetTotal - +this.totalLiabilities;
             }
+            this.getFAO();
         });
     }
 

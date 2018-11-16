@@ -32,4 +32,8 @@ export class MyloginService {
         // console.log('url :', url);
         return this.http.get(url);
     }
+
+    // getUserByKey() {
+    //     return this.http.getByKey();
+    // }
 }
