@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Stocks } from 'app/my-assets/stocks/stocks.modal';
 import { StockService } from 'app/my-assets/stocks/stocks.service';
-import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
-// import {MutualFundService} from './mutual.service';
+import { ReplaySubject } from 'rxjs';
 import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 
 @Component({

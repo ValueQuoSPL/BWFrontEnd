@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ChitFund } from 'app/my-assets/chit-funds/chitfund.modal';
-import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ChitFundService } from 'app/my-assets/chit-funds/chitfund.service';
@@ -33,17 +32,6 @@ export class ChitFundComponent implements OnInit {
     ngOnInit() {
         this.FetchId();
     }
-    // FetchId(): Promise<any> {
-    //     return this.account
-    //         .get()
-    //         .toPromise()
-    //         .then(response => {
-    //             this.user = response.body;
-    //             this.chitfund.userid = this.user.id;
-    //             this.uid = this.chitfund.userid;
-    //             this.getChitByuid(this.uid);
-    //         });
-    // }
     FetchId() {
         this.commonService.account.subscribe(account => {
             this.account = account;
@@ -89,8 +77,6 @@ export class ChitFundComponent implements OnInit {
     getChitById(commonid) {
         this.chitfundService.getChitById(this.commonid).subscribe(res => {
             this.getdata = res;
-            console.log('res chit', this.getdata);
-            console.log('res chit', this.getdata.monthly_investment);
             this.chitfund.chit_name = this.getdata.chit_name;
             this.chitfund.chit_holder_name = this.getdata.chit_holder_name;
             this.chitfund.chit_start_date = this.getdata.chit_start_date;
@@ -98,7 +84,6 @@ export class ChitFundComponent implements OnInit {
             this.chitfund.chit_value = this.getdata.chit_value;
             this.chitfund.tenure = this.getdata.tenure;
             this.chitfund.monthly_investment = this.getdata.monthly_investment;
-            // console.log('res chit', this.chitfund.monthly_investment);
             this.chitfund.current_value = this.getdata.current_value;
             this.chitfund.isCashed = this.getdata.isCashed;
             this.chitfund.notes = this.getdata.notes;

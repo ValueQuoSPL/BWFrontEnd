@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MutualFund } from 'app/my-assets/mutual/mutual.modal';
@@ -33,17 +32,6 @@ export class MutualComponent implements OnInit {
     ngOnInit() {
         this.FetchId();
     }
-    // FetchId(): Promise<any> {
-    //     return this.account
-    //         .get()
-    //         .toPromise()
-    //         .then(response => {
-    //             this.user = response.body;
-    //             this.mutualfund.userid = this.user.id;
-    //             this.uid = this.mutualfund.userid;
-    //             this.getMutualFundByUid(this.uid);
-    //         });
-    // }
     FetchId() {
         this.commonService.account.subscribe(account => {
             this.account = account;
@@ -96,7 +84,6 @@ export class MutualComponent implements OnInit {
     getMutualFundByUid(uid) {
         this.mutualFundService.getMutualFund(this.uid).subscribe(res => {
             this.output = res;
-            console.log(this.output);
             this.output.forEach(element => {
                 element.gainloss = this.cal(element.currentvalue, element.purchesprice);
                 element.absolutereturn = this.absoluteReturn(element.currentvalue, element.purchesprice);
@@ -113,7 +100,6 @@ export class MutualComponent implements OnInit {
     getMutualFundByid(commonid) {
         this.mutualFundService.getMutualFundByid(this.commonid).subscribe(res => {
             this.getdata = res;
-
             this.mutualfund.id = this.getdata[0].id;
             this.mutualfund.mfscheme = this.getdata[0].mfscheme;
             this.mutualfund.folionumber = this.getdata[0].folionumber;
