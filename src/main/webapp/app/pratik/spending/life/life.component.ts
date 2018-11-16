@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { AccountService, Principal } from 'app/core';
 import { FormControl } from '@angular/forms';
 import { Life } from 'app/pratik/spending/spending.model';
 import { PrevLife } from 'app/pratik/spending/spending.model';
 import { LifeService } from 'app/pratik/spending/spending.service';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-life',
@@ -28,8 +28,9 @@ export class LifeComponent implements OnInit {
     UtilityArray: any = [];
     tempLifeArray: any = [];
     dynamicLifeArray: any = [];
+    account: any = [];
     life: Life = new Life();
-    prevLife: Life = new Life();
+    prevLife: PrevLife = new PrevLife();
 
     lifeDate = new FormControl(new Date());
     isFieldChanged = false;
@@ -44,34 +45,19 @@ export class LifeComponent implements OnInit {
     ];
     PremiumTypeArray = [{ name: 'Single' }, { name: 'Monthly' }, { name: 'Quarterly' }, { name: 'Half Yearly' }, { name: 'Yearly' }];
     isLifeData: boolean;
-    constructor(
-        private lifeService: LifeService,
-        private principal: Principal,
-        private modalService: NgbModal,
-        private accountService: AccountService
-    ) {}
+    constructor(private lifeService: LifeService, private modalService: NgbModal, private commonService: CommonSidebarService) {}
 
     ngOnInit() {
         this.getUserid();
     }
 
-    isAuthenticated() {
-        return this.principal.isAuthenticated();
-    }
-
     getUserid() {
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    this.onGetLife();
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            console.log('uid received in life', this.uid);
+            this.onGetLife();
+        });
     }
 
     clear() {
@@ -160,8 +146,11 @@ export class LifeComponent implements OnInit {
         });
     }
     onGetLife(): void {
+        console.log('fetching life data');
+
         this.lifeService.GetLife(this.uid).subscribe((response: any[]) => {
             this.dynamicLifeArray = response;
+            console.log('life data received', this.dynamicLifeArray);
 
             if (this.dynamicLifeArray.length === 0) {
                 this.isLifeData = false;

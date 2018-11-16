@@ -447,7 +447,7 @@
         class="btn btn-primary"
         (click)="saveDetail()"  class="btnSave">Save</button>&nbsp;
        <span><button mat-raised-button class="btnSave" *ngIf="!show" (click)="update()" >Update</button></span>&nbsp;
-       <span><button mat-raised-button  class="btnCancel" (click)="cancel()">Cancel</button></span> 
+       <span><button mat-raised-button  class="btnCancel" (click)="cancel()">Cancel</button></span>
       </div><!--end of row5.col4-->
     </div><!--end of row5-->
     <div class="pull-right row">
@@ -456,7 +456,7 @@
 </div><!--end of container-->
 <!--start of view page-->
 <div *ngIf="isValid"><!--start of view div-->
-  <table 
+  <table
     class="table-responsive-md 
     table table-hover 
     table-striped  
@@ -464,49 +464,86 @@
     setfont" 
     *ngFor="let profile of output"
   ><!--start of table-->
-    <tr></tr>
-    <tr>
-      <td class="heading"><strong>Personal Information</strong></td>
-      <td></td>
-      <td></td>
-      <td>
-        <button 
-          class="btn btn-outline-info  btn-sm"
-          type="button" 
-          (click)="editDetail()"
-        >
-          <span><i class="fa fa-edit" aria-hidden="true"></i></span>
-        </button></td>
-    </tr>
-    <tr></tr>
-    <tr>
-      <td>First Name:&nbsp;{{profile.firstName}}</td>
-      <td>Middle Name:&nbsp;{{profile.middleName}}</td>
-      <td>Last Name:&nbsp;{{profile.lastName}}</td>
-    </tr>
-    <tr>
-        <td>Gender:&nbsp;{{profile.gender}}</td>
-        <td>Marital Status:&nbsp;{{profile.maritalStatus}}</td>
-        <td>Date Of Birth:&nbsp;{{profile.dob | date: 'd/M/y'}}</td>
-    </tr>
-    <tr>
-        <td>Occupation:&nbsp;{{profile.occupation}}</td>
-        <td>Mobile Number:&nbsp;{{profile.mobileNumber}}</td>
-        <td>Alternate Number:&nbsp;{{profile.alternateNumber}}</td>
-    </tr>
-    <tr>
-        <td>Company:&nbsp;{{profile.company}}</td>
-        <td>HowDidYouKnow:&nbsp;{{profile.howDidYouKnow}}</td>
-        <td>Address:&nbsp;{{profile.address}}</td>
-    </tr>
-    <tr></tr>
-    <tr></tr>
-    <tr>
-        <td  class="heading"><strong>Communication Information</strong></td>
+    <thead>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td class="heading"><strong>Personal Information</strong></td>
         <td></td>
         <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <button class="btn btn-outline-info  btn-sm" type="button" (click)="editDetail()" >
+            <span><i class="fa fa-edit" aria-hidden="true"></i></span>
+          </button>
+        </td>
       </tr>
-    <tr></tr>
+      <tr>
+        <th>First Name</th>
+        <td>{{profile.firstName}}</td>
+        <th>Middle Name</th>
+        <td>{{profile.middleName}}</td>
+        <th>Last Name</th>
+        <td>{{profile.lastName}}</td>
+      </tr>
+      <tr>
+        <th>Gender</th>
+        <td>{{profile.gender}}</td>
+        <th>Marital Status</th>
+        <td>{{profile.maritalStatus}}</td>
+        <th>Date Of Birth</th>
+        <td>{{profile.dob | date: 'd/M/y'}}</td>
+      </tr>
+      <tr>
+        <th>Occupation</th>
+        <td>{{profile.occupation}}</td>
+        <th>Mobile Number</th>
+        <td>{{profile.mobileNumber}}</td>
+        <th>Alternate Number</th>
+        <td>{{profile.alternateNumber}}</td>
+      </tr>
+      <tr>
+        <th>Company</th>
+        <td>{{profile.company}}</td>
+        <th>HowDidYouKnow</th>
+        <td>{{profile.howDidYouKnow}}</td>
+        <th>Address</th>
+        <td>{{profile.address}}</td>
+      </tr>
+      <br>
+      <tr>
+        <td class="heading"><strong>Communication Information</strong></td>
+        <td></td><td></td>
+        <td></td><td></td> <td></td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{profile.emailId}}</td>
+        <th>Pan No.</th>
+        <td>{{profile.pan}}</td>
+        <th>City</th>
+        <td>{{profile.city}}</td>
+      </tr>
+      <tr>
+        <th>State</th>
+        <td>{{profile.state}}</td>
+        <th>Country</th>
+        <td>{{profile.country}}</td>
+        <th>Pin</th>
+        <td>{{profile.pin}}</td>
+      </tr>
+
+    </tbody>
+    <!-- <tr></tr>
+
     <tr>
         <td>EmailId:&nbsp;{{profile.emailId}}</td>
         <td>Pan:&nbsp;{{profile.pan}}</td>
@@ -516,6 +553,6 @@
         <td>State:&nbsp;{{profile.state}}</td>
         <td>Country:&nbsp;{{profile.country}}</td>
         <td>Pin:&nbsp;{{profile.pin}}</td>
-    </tr>
+    </tr> -->
   </table><!--start of table-->
 </div><!--end of view div-->
