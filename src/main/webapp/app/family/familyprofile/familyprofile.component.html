@@ -178,31 +178,40 @@
          table-sm setfont"
         *ngFor="let profile of output"><!--start of table-->
         <tr></tr>
-        <tr>
-            <td  class="heading"><strong>Relationship Details</strong></td>
-            <td></td>
-            <td></td>
-            <td>
-                <button 
-                    class="btn btn-outline-info  btn-sm"
-                    type="button" 
-                    (click)="editDetail()">
-                    <span><i class="fa fa-edit" aria-hidden="true"></i>
-                    </span>
-                </button>
-            </td>
-        </tr>
-        <tr></tr>
-        <tr>
-            <td>First Name:&nbsp;{{profile.firstname}}</td>
-            <td>Middle Name:&nbsp;{{profile.middlename}}</td>
-            <td>Last Name:&nbsp;{{profile.lastname}}</td>
-        </tr>
-        <tr>
-            <td>Date Of Birth:&nbsp;{{profile.dateOfBirth | date: 'd/M/y'}}</td>
-            <td>Mobile Number:&nbsp;{{profile.phonenumber}}</td>
-            <td>EmailId:&nbsp;{{profile.email}}</td>
-        </tr>
+        <thead></thead>
+        <tbody>
+
+            <tr>
+                <td  class="heading"><strong>Relationship Details</strong></td>
+                <td></td><td></td><td></td><td></td>
+                <td>
+                    <button 
+                        class="btn btn-outline-info  btn-sm"
+                        type="button"
+                        (click)="editDetail()">
+                        <span><i class="fa fa-edit" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th>First Name:&nbsp;</th>
+                <td>{{profile.firstname}}</td>
+                <th>Middle Name:&nbsp;</th>
+                <td>{{profile.middlename}}</td>
+                <th>Last Name:&nbsp;</th>
+                <td>{{profile.lastname}}</td>
+            </tr>
+            <tr>
+                <th>Date Of Birth:&nbsp;</th>
+                <td>{{profile.dateOfBirth | date: 'd/M/y'}}</td>
+                <th>Mobile Number:&nbsp;</th>
+                <td>{{profile.phonenumber}}</td>
+                <th>EmailId:&nbsp;</th>
+                <td>{{profile.email}}</td>
+            </tr>
+
+        </tbody>
     </table><!--end of table-->
 </div><!--end of container view div-->
 <!--end of view page-->

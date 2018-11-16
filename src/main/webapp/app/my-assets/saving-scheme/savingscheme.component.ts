@@ -119,7 +119,6 @@ export class SavingSchemeComponent implements OnInit {
     }
     // SavingScheme() {
     //     this.savingScheme.userId = this.uid;
-    //     console.log('saving data', this.savingScheme);
     //     this.savingSchemeService.SavingSchemeDetails(this.savingScheme).subscribe(data => {
     //     });
     //     this.getSavingSchemeUid(this.uid);
@@ -130,21 +129,16 @@ export class SavingSchemeComponent implements OnInit {
         this.setTempDate.setFullYear(year + this.savingScheme.tenure);
         this.savingScheme.end_date = this.setTempDate;
         this.savingScheme.userId = this.uid;
-        this.savingSchemeService.SavingSchemeDetails(this.savingScheme).subscribe(responce => {
-            console.log(responce), this.getSavingSchemeUid(this.uid);
-        }, error => error);
+        this.savingSchemeService.SavingSchemeDetails(this.savingScheme).subscribe(responce => {}, error => error);
     }
     getSavingSchemeUid(uid) {
         this.savingSchemeService.getSavingScheme(this.uid).subscribe(res => {
             this.SavingDetails = res;
-            console.log('response of saving', this.SavingDetails);
         });
     }
     getSavingSchemeByid(commonid) {
-        console.log('common id', this.commonid);
         this.savingSchemeService.getSavingSchemeById(this.commonid).subscribe(res => {
             this.getdata = res;
-            console.log('getdata in getsavingById', this.getdata);
             this.savingScheme.type = this.getdata[0].type;
             this.savingScheme.num = this.getdata[0].num;
             this.savingScheme.organisation_name = this.getdata[0].organisation_name;

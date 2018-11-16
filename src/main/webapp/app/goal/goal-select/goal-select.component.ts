@@ -124,15 +124,12 @@ export class GoalSelectComponent implements OnInit {
     savingTotal;
     faoTotal;
     inflation = 0.07;
-    data: any;
 
     constructor(
         private router: Router,
         private principal: Principal,
         private loginModalService: LoginModalService,
         private goalSelectService: GoalselectService,
-        private ActiveModal: NgbActiveModal,
-        private account: AccountService,
         public dialog: MatDialog,
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
@@ -283,6 +280,7 @@ export class GoalSelectComponent implements OnInit {
             this.user = account;
             this.uid = this.user.id;
             this.mapping.uid = this.uid;
+            this.getGoal();
         });
     }
 
