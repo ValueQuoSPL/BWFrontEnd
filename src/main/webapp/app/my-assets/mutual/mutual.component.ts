@@ -96,7 +96,6 @@ export class MutualComponent implements OnInit {
     getMutualFundByUid(uid) {
         this.mutualFundService.getMutualFund(this.uid).subscribe(res => {
             this.output = res;
-            console.log(this.output);
             this.output.forEach(element => {
                 element.gainloss = this.cal(element.currentvalue, element.purchesprice);
                 element.absolutereturn = this.absoluteReturn(element.currentvalue, element.purchesprice);
