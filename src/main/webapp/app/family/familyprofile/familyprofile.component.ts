@@ -35,9 +35,7 @@ export class FamilyprofileComponent implements OnInit {
     }
     // saveMethod to saveFamilyprofile
     saveFamilyProfile() {
-        console.log('uid is', this.uid);
         this.familyProfile.uid = this.uid;
-        console.log('uid is', this.familyProfile.uid);
         this.familyProfile.earncheck = this.earncheck;
         this.Familypro.save(this.familyProfile).subscribe(data => {
             this.getFamilyProfilebyid();
@@ -50,10 +48,8 @@ export class FamilyprofileComponent implements OnInit {
     }
     // getFamilyProfilebyid Method to fetch Familyprofile info by UserId
     getFamilyProfilebyid() {
-        console.log('in familyget', this.uid);
         this.Familypro.getFamilyProfileByUid(this.uid).subscribe(res => {
             this.output = res;
-            console.log('in familyget res', this.output);
             // if (this.output[0].uid != null) {
             //     this.isValid = true;
             // } else {
@@ -71,7 +67,6 @@ export class FamilyprofileComponent implements OnInit {
     }
     // editDetail Method to Edit Info of Familyprofile
     editDetail() {
-        console.log(this.output);
         for (let index = 0; index < this.output.length; index++) {
             this.isValid = false;
             this.familyProfile.relationship = this.output[index].relationship;
@@ -98,7 +93,6 @@ export class FamilyprofileComponent implements OnInit {
     // update Method to Update Info of Familyprofile
 
     update() {
-        console.log('in update', this.familyProfile);
         this.Familypro.updateProfile(this.familyProfile).subscribe(responce => {
             this.getFamilyProfilebyid();
         });

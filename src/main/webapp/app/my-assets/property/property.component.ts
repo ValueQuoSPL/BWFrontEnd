@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Property } from 'app/my-assets/property/property.modal';
-import { AccountService } from 'app/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { PropertyService } from 'app/my-assets/property/property.service';
@@ -35,20 +34,6 @@ export class PropertyComponent implements OnInit {
     ngOnInit() {
         this.FetchId();
     }
-    // FetchId(): Promise<any> {
-    //     return this.account
-    //         .get()
-    //         .toPromise()
-    //         .then(response => {
-    //             this.user = response.body;
-    //             this.property.userid = this.user.id;
-    //             this.uid = this.property.userid;
-    //             // this.getMyProfilebyid(this.uid);
-    //             // this. getAltInvestment(this.uid)
-    //             // this.getCashDetailsByuid(this.uid);
-    //             this.getsavePropertyByuid(this.uid);
-    //         });
-    // }
     FetchId() {
         this.commonService.account.subscribe(account => {
             this.account = account;
@@ -119,10 +104,7 @@ export class PropertyComponent implements OnInit {
         });
     }
     update(commonid) {
-        // this.getStockId(this.id)
         this.property.id = this.commonid;
-        // this.newid= this.stocks.id;
-        // this.getStockId(this.newid);
         this.propertyservice.UpdateProperty(this.property).subscribe(data => {
             this.getsavePropertyByuid(this.uid);
         });
@@ -130,8 +112,6 @@ export class PropertyComponent implements OnInit {
     delete(commonid) {
         this.conformkey = confirm('Are you sure you Want to permanently delete this item?');
         if (this.conformkey === true) {
-            // this.conformkey = 'You pressed OK!';
-            // this.getStockId(this.id)
             this.property.id = this.commonid;
             this.propertyservice.DeleteProperty(this.property.id).subscribe(data => {
                 this.getsavePropertyByuid(this.uid);
