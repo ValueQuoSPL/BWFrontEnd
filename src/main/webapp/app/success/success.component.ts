@@ -89,7 +89,7 @@ export class SuccessComponent implements OnInit, AfterViewInit {
     }
 
     GoDashBoard() {
-        this.router.navigate(['profile']);
+        this.router.navigate(['dashboard']);
     }
 
     // get() {
