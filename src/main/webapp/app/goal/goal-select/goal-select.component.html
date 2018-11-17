@@ -12,13 +12,13 @@
                 <mat-option  value="home">Home</mat-option>
                 <mat-option value="education">Education</mat-option>
                 <mat-option value="vehicle">Vehicle</mat-option>
-                <mat-option value="childbirth">Childbirth</mat-option>
+                <mat-option value="childbirth">Child Birth</mat-option>
                 <mat-option value="merrage">Marriage</mat-option>
                 <mat-option value="business">Business</mat-option>
-                <mat-option value="familysupport">Familysupport</mat-option>
+                <mat-option value="familysupport">Family Support</mat-option>
                 <mat-option value="vacation">Vacation</mat-option>
-                <mat-option value="emergencyfund">Emergencyfund</mat-option>
-                <mat-option value="retairementfund">Retairementfund</mat-option>
+                <mat-option value="emergencyfund">Emergency Fund</mat-option>
+                <mat-option value="retairementfund">Retairement Fund</mat-option>
                 <mat-option value="newgoal">Newgoal</mat-option>
               </mat-select>
             </mat-form-field>
@@ -28,22 +28,22 @@
 
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
-                <div class="bwtitle">Enter New Home Goal</div>
+                <div class="bwtitlegoal">Enter New Home Goal</div>
 
               <mat-card-content class="container-fluid">
-                <mat-form-field>
-                  <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="goalselect.goalname" [ngModelOptions]="{standalone: true}">
+                <mat-form-field style="width:90%;">
+                  <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="goalselect.goalname" [ngModelOptions]="{standalone: true}" >
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="goalselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="goalselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="goalselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="goalselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
@@ -60,22 +60,22 @@
           <div *ngSwitchCase="'education'"><!--start of ngSwitchCaseEducation div-->
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
-                <div class="bwtitle">Enter New Education Goal</div>
+                <div class="bwtitlegoal">Enter New Education Goal</div>
 
               <mat-card-content class="container-fluid">
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Educationselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Educationselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Educationselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Educationselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Educationselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
@@ -93,22 +93,22 @@
           <div *ngSwitchCase="'vehicle'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
-                <div class="bwtitle">Enter New Vehicle Goal</div>
+                <div class="bwtitlegoal">Enter New Vehicle Goal</div>
 
               <mat-card-content class="container-fluid">
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Vehicleselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Vehicleselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Vehicleselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Vehicleselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Vehicleselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
@@ -126,22 +126,22 @@
           <div *ngSwitchCase="'childbirth'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
-                <div class="bwtitle">Enter New Child Goal</div>
+                <div class="bwtitlegoal">Enter New Child Goal</div>
 
               <mat-card-content class="container-fluid">
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                     <input matInput required  placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Childbirthselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Childbirthselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Childbirthselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Childbirthselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Childbirthselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
@@ -158,22 +158,22 @@
           <div *ngSwitchCase="'merrage'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
-                <div class="bwtitle">Enter New Marriage Goal</div>
+                <div class="bwtitlegoal">Enter New Marriage Goal</div>
 
               <mat-card-content class="container-fluid">
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Merrageselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Merrageselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Merrageselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Merrageselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Merrageselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
@@ -191,22 +191,22 @@
           <div *ngSwitchCase="'business'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
-                <div class="bwtitle">Enter New Business Goal</div>
+                <div class="bwtitlegoal">Enter New Business Goal</div>
 
               <mat-card-content class="container-fluid">
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                     <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Businessselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Businessselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Businessselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Businessselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Businessselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
@@ -223,22 +223,22 @@
           <div *ngSwitchCase="'familysupport'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
-                <div class="bwtitle">Enter New Goal</div>
+                <div class="bwtitlegoal">Enter New Goal</div>
 
               <mat-card-content class="container-fluid">
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="FamilySupportselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="FamilySupportselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="FamilySupportselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="FamilySupportselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="FamilySupportselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
@@ -255,22 +255,22 @@
           <div *ngSwitchCase="'vacation'">
             <form #data="ngForm">
                <mat-card class="container-fluid example-card">
-                <div class="bwtitle">Enter New Goal</div>
+                <div class="bwtitlegoal">Enter New Goal</div>
 
               <mat-card-content class="container-fluid">
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="Vacationselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="Vacationselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="Vacationselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="Vacationselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="Vacationselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
@@ -287,22 +287,22 @@
           <div *ngSwitchCase="'emergencyfund'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
-                <div class="bwtitle">Enter New Goal</div>
+                <div class="bwtitlegoal">Enter New Goal</div>
 
               <mat-card-content class="container-fluid">
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="EmergencyFundselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="EmergencyFundselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="EmergencyFundselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="EmergencyFundselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="EmergencyFundselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
@@ -319,21 +319,21 @@
           <div *ngSwitchCase="'retairementfund'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
-                <div class="bwtitle">Enter New Goal</div>
+                <div class="bwtitlegoal">Enter New Goal</div>
               <mat-card-content class="container-fluid">
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="RetirementFundselect.goalname" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;"> 
                   <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="RetirementFundselect.priority" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="RetirementFundselect.yeartogoal" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="RetirementFundselect.presentcost" [ngModelOptions]="{standalone: true}">
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field style="width:90%;">
                   <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="RetirementFundselect.dateofcreation">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
@@ -350,21 +350,21 @@
           <div *ngSwitchCase="'newgoal'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
-                <div class="bwtitle">Enter New Goal</div>
+                <div class="bwtitlegoal">Enter New Goal</div>
               <mat-card-content class="container-fluid">
-              <mat-form-field>
+              <mat-form-field style="width:90%;">
                 <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="NewGoalselect.goalname" [ngModelOptions]="{standalone: true}">
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field style="width:90%;">
                 <input matInput required jhiNumberOnly placeholder="Priority" type="text"name="priority" [(ngModel)]="NewGoalselect.priority" [ngModelOptions]="{standalone: true}">
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field style="width:90%;">
                 <input matInput required jhiNumberOnly placeholder="Year to Goal" type="text" name="yeartogoal" [(ngModel)]="NewGoalselect.yeartogoal" [ngModelOptions]="{standalone: true}">
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field style="width:90%;">
                 <input matInput required jhiNumberOnly placeholder="Present Cost" type="text" name="presentcost" [(ngModel)]="NewGoalselect.presentcost" [ngModelOptions]="{standalone: true}">
               </mat-form-field>
-              <mat-form-field>
+              <mat-form-field style="width:90%;">
                 <input matInput required [matDatepicker]="picker3" placeholder="Creation Date" name="dateofcreation" [(ngModel)]="NewGoalselect.dateofcreation">
                 <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                 <mat-datepicker #picker3></mat-datepicker>

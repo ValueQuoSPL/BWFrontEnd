@@ -237,6 +237,8 @@ export class GoalSelectComponent implements OnInit {
         this.isValid = true;
     }
     Vacation() {
+        this.Vacationselect.goaltype = this.goaltype;
+        this.Vacationselect.uid = this.uid;
         this.goalSelectService.saveVacation(this.Vacationselect).subscribe(responce => {
             this.getGoal();
         });
@@ -267,6 +269,7 @@ export class GoalSelectComponent implements OnInit {
         this.isValid = true;
     }
     AddGoal() {
+        this.resetValues();
         this.isValid = false;
     }
     linkAssets() {
@@ -793,5 +796,86 @@ export class GoalSelectComponent implements OnInit {
     }
     clear() {
         this.isValid = true;
+    }
+    resetValues() {
+        this.goaltype = '';
+        this.Educationselect.goaltype = '';
+        this.Educationselect.goalname = '';
+        this.Educationselect.priority = '';
+        this.Educationselect.price = '';
+        this.Educationselect.duration = '';
+        this.Educationselect.notes = '';
+        this.Educationselect.dateofcreation = '';
+        this.Educationselect.yeartogoal = '';
+        this.Educationselect.presentcost = '';
+        this.goalselect.goaltype = '';
+        this.goalselect.goalname = '';
+        this.goalselect.priority = '';
+        this.goalselect.dateofcreation = '';
+        this.goalselect.yeartogoal = '';
+        this.goalselect.presentcost = '';
+        this.Vehicleselect.goaltype = '';
+        this.Vehicleselect.goalname = '';
+        this.Vehicleselect.priority = '';
+        this.Vehicleselect.price = '';
+        this.Vehicleselect.dateofcreation = '';
+        this.Vehicleselect.yeartogoal = '';
+        this.Vehicleselect.presentcost = '';
+        this.Childbirthselect.goaltype = '';
+        this.Childbirthselect.goalname = '';
+        this.Childbirthselect.priority = '';
+        this.Childbirthselect.price = '';
+        this.Childbirthselect.dateofcreation = '';
+        this.Childbirthselect.yeartogoal = '';
+        this.Childbirthselect.presentcost = '';
+        this.Merrageselect.goaltype = '';
+        this.Merrageselect.goalname = '';
+        this.Merrageselect.priority = '';
+        this.Merrageselect.price = '';
+        this.Merrageselect.dateofcreation = '';
+        this.Merrageselect.yeartogoal = '';
+        this.Merrageselect.presentcost = '';
+        this.Businessselect.goaltype = '';
+        this.Businessselect.goalname = '';
+        this.Businessselect.priority = '';
+        this.Businessselect.price = '';
+        this.Businessselect.dateofcreation = '';
+        this.Businessselect.yeartogoal = '';
+        this.Businessselect.presentcost = '';
+        this.FamilySupportselect.goaltype = '';
+        this.FamilySupportselect.goalname = '';
+        this.FamilySupportselect.priority = '';
+        this.FamilySupportselect.price = '';
+        this.FamilySupportselect.dateofcreation = '';
+        this.FamilySupportselect.yeartogoal = '';
+        this.FamilySupportselect.presentcost = '';
+        this.Vacationselect.goaltype = '';
+        this.Vacationselect.goalname = '';
+        this.Vacationselect.priority = '';
+        this.Vacationselect.price = '';
+        this.Vacationselect.dateofcreation = '';
+        this.Vacationselect.yeartogoal = '';
+        this.Vacationselect.presentcost = '';
+        this.EmergencyFundselect.goaltype = '';
+        this.EmergencyFundselect.goalname = '';
+        this.EmergencyFundselect.priority = '';
+        this.EmergencyFundselect.price = '';
+        this.EmergencyFundselect.dateofcreation = '';
+        this.EmergencyFundselect.yeartogoal = '';
+        this.EmergencyFundselect.presentcost = '';
+        this.RetirementFundselect.goaltype = '';
+        this.RetirementFundselect.goalname = '';
+        this.RetirementFundselect.priority = '';
+        this.RetirementFundselect.price = '';
+        this.RetirementFundselect.dateofcreation = '';
+        this.RetirementFundselect.yeartogoal = '';
+        this.RetirementFundselect.presentcost = '';
+        this.NewGoalselect.goaltype = '';
+        this.NewGoalselect.goalname = '';
+        this.NewGoalselect.priority = '';
+        this.NewGoalselect.price = '';
+        this.NewGoalselect.dateofcreation = '';
+        this.NewGoalselect.yeartogoal = '';
+        this.NewGoalselect.presentcost = '';
     }
 }

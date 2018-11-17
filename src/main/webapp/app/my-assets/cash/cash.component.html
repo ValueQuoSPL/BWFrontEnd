@@ -115,7 +115,7 @@
                                     <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes"></textarea>
                             </mat-form-field>
                             <div class="modal-footer">
-                                <button type="submit" mat-button class="btnSave"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                <button type="submit" mat-button class="btnSave"  [disabled]="editForm.form.invalid || isSaving" 
                                 (click)="c('Save click')">
                                     <span class="fa fa-save"></span>&nbsp;
                                     <span>Save</span>
@@ -184,21 +184,22 @@
                                 mat-raised-button
                                 type="submit"
                                 [disabled]="editForm.form.invalid || isSaving"
-                                class="btn btn-primary"
+                                class="btnSave"
                                 (click)="c('Save click')">
                                 <span class="fa fa-save"></span>&nbsp;
                                 <span>Save</span>
                             </button>
                             <button 
                                 mat-raised-button  
-                                data-dismiss="modal" 
+                                data-dismiss="modal"
+                                class="btnCancel" 
                                 (click)="d('Cross click')">
                                 <span class="fa fa-ban"></span>&nbsp;
                                 <span>Cancel</span></button>&nbsp;
                             <button 
                                 mat-raised-button 
                                 type="button" 
-                                class="btn btn-warning" 
+                                class="btnReset"
                                 (click)=" resetFieldValue()">
                                 <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
                                 <span>Reset</span></span>
@@ -224,12 +225,12 @@
                                 <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes"></textarea>
                             </mat-form-field>
                             <div class="modal-footer">
-                                <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                <button type="submit" mat-button class="btnSave"  [disabled]="editForm.form.invalid || isSaving"
                                     (click)="c('Save click')">
                                     <span class="fa fa-save"></span>&nbsp;
                                     <span>Save</span>
                                 </button>
-                                <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                                <button type="button" mat-button class="btnCancel"  data-dismiss="modal" (click)="d('Cross click')">
                                     <span class="fa fa-ban"></span>&nbsp;
                                     <span>Cancel</span>
                                 </button>
@@ -310,6 +311,7 @@
                                     name="amount" 
                                     id="amount" 
                                     [(ngModel)]="cash.amount"
+                                    jhiNumberOnly
                                     required
                                 >
                                 </mat-form-field>&nbsp;&nbsp;
@@ -320,9 +322,9 @@
                                     <button
                                         type="submit"
                                         mat-button
-                                        class=" btn btn-outline-primary"
+                                        class="btnSave"
                                         [disabled]="editForm.form.invalid || isSaving"
-                                        class="btn btn-primary"
+                                        
                                         (click)="c('Save click')"
                                     >
                                         <span class="fa fa-save"></span>&nbsp;
@@ -331,7 +333,7 @@
                                     <button
                                         type="button"
                                         mat-button
-                                        class=" btn btn-outline-accent"
+                                        class="btnCancel"
                                         data-dismiss="modal" (click)="d('Cross click')"
                                     >
                                         <span class="fa fa-ban"></span>&nbsp;
@@ -349,6 +351,7 @@
                                             type="text" 
                                             name="amount"
                                             id="amount" 
+                                            jhiNumberOnly
                                             [(ngModel)]="cash.amount"
                                             required
                                         >
@@ -357,12 +360,12 @@
                                             <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes"></textarea>
                                     </mat-form-field>
                                     <div class="modal-footer">
-                                        <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                        <button type="submit" mat-button class="btnSave"  [disabled]="editForm.form.invalid || isSaving"
                                         (click)="c('Save click')">
                                             <span class="fa fa-save"></span>&nbsp;
                                             <span>Save</span>
                                         </button>
-                                        <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                                        <button type="button" mat-button class="btnCancel"  data-dismiss="modal" (click)="d('Cross click')">
                                             <span class="fa fa-ban"></span>&nbsp;
                                             <span>Cancel</span>
                                         </button>
@@ -376,11 +379,11 @@
                                             matInput 
                                             class="full-width" 
                                             placeholder="Intrest Rate" 
-                                            type="text" 
+                                            type="number" 
                                             name="intrestrate" 
                                             id="intrestrate" 
                                             [(ngModel)]="cash.intrestrate" 
-                                           
+                                            jhiNumberOnly
                                             required
                                         >
                                     </mat-form-field>&nbsp;&nbsp;
@@ -400,11 +403,11 @@
                                                 <input 
                                                     matInput
                                                     placeholder="Amount" 
-                                                    type="text" 
+                                                    type="number" 
                                                     name="amount" 
                                                     id="amount" 
                                                     [(ngModel)]="cash.amount" 
-                                                   
+                                                    jhiNumberOnly
                                                     required
                                                 >
                                             </mat-form-field>&nbsp;&nbsp;
@@ -412,12 +415,12 @@
                                                     <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes"></textarea>
                                             </mat-form-field>
                                             <div class="modal-footer">
-                                                    <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                                    <button type="submit" mat-button class="btnSave"  [disabled]="editForm.form.invalid || isSaving"
                                                     (click)="c('Save click')">
                                                         <span class="fa fa-save"></span>&nbsp;
                                                         <span>Save</span>
                                                     </button>
-                                                    <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                                                    <button type="button" mat-button class="btnCancel"  data-dismiss="modal" (click)="d('Cross click')">
                                                         <span class="fa fa-ban"></span>&nbsp;
                                                         <span>Cancel</span>
                                                         </button>
@@ -430,11 +433,11 @@
                                             <input 
                                                 matInput
                                                 placeholder="Amount" 
-                                                type="text" 
+                                                type="number" 
                                                 name="amount" 
                                                 id="amount" 
                                                 [(ngModel)]="cash.amount" 
-                                               
+                                                jhiNumberOnly
                                                 required
                                             >
                                         </mat-form-field>&nbsp;&nbsp;
@@ -442,12 +445,12 @@
                                                 <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="notes" [(ngModel)]="cash.notes"></textarea>
                                         </mat-form-field>
                                         <div class="modal-footer">
-                                            <button type="submit" mat-button class=" btn btn-outline-primary"  [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary"
+                                            <button type="submit" mat-button class="btnSave" [disabled]="editForm.form.invalid || isSaving"
                                             (click)="c('Save click')">
                                                 <span class="fa fa-save"></span>&nbsp;
                                                 <span>Update</span>
                                             </button>
-                                            <button type="button" mat-button class=" btn btn-outline-accent"  data-dismiss="modal" (click)="d('Cross click')">
+                                            <button type="button" mat-button class="btnCancel"  data-dismiss="modal" (click)="d('Cross click')">
                                                 <span class="fa fa-ban"></span>&nbsp;
                                                 <span>Cancel</span>
                                             </button>

@@ -114,6 +114,7 @@ export class StockComponent implements OnInit {
             this.stocks.no_of_shares = this.getid.no_of_shares;
             this.stocks.share_price = this.getid.share_price;
             this.stocks.notes = this.getid.notes;
+            this.stocks.userid = this.uid;
         });
     }
     update(commonid) {
