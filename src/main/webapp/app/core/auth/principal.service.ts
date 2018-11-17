@@ -56,8 +56,6 @@ export class Principal {
     }
 
     identity(force?: boolean): Promise<any> {
-        // console.log('called from', a);
-
         if (force === true) {
             this.userIdentity = undefined;
         }

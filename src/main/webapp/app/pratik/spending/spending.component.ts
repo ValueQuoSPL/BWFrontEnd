@@ -81,7 +81,6 @@ export class SpendingComponent implements OnInit {
     }
 
     panelState(route) {
-        console.log(route);
         if (route === 'utility') {
             this.utilityState = true;
             this.houseState = false;

@@ -55,7 +55,6 @@ export class LifeComponent implements OnInit {
         this.commonService.account.subscribe(account => {
             this.account = account;
             this.uid = this.account.id;
-            console.log('uid received in life', this.uid);
             this.onGetLife();
         });
     }
@@ -146,11 +145,8 @@ export class LifeComponent implements OnInit {
         });
     }
     onGetLife(): void {
-        console.log('fetching life data');
-
         this.lifeService.GetLife(this.uid).subscribe((response: any[]) => {
             this.dynamicLifeArray = response;
-            console.log('life data received', this.dynamicLifeArray);
 
             if (this.dynamicLifeArray.length === 0) {
                 this.isLifeData = false;
@@ -243,25 +239,25 @@ export class LifeComponent implements OnInit {
                 this.isFieldChanged = false;
             }
         } else if (from === 'policy') {
-            if (this.prevLife.policynumber !== event) {
+            if (this.prevLife.policy_name !== event) {
                 this.isFieldChanged = true;
             } else {
                 this.isFieldChanged = false;
             }
         } else if (from === 'sum') {
-            if (this.prevLife.policynumber !== event) {
+            if (this.prevLife.sum !== event) {
                 this.isFieldChanged = true;
             } else {
                 this.isFieldChanged = false;
             }
         } else if (from === 'premium') {
-            if (this.prevLife.policynumber !== event) {
+            if (this.prevLife.premium !== event) {
                 this.isFieldChanged = true;
             } else {
                 this.isFieldChanged = false;
             }
         } else if (from === 'premiumterm') {
-            if (this.prevLife.policynumber !== event) {
+            if (this.prevLife.premium_term !== event) {
                 this.isFieldChanged = true;
             } else {
                 this.isFieldChanged = false;

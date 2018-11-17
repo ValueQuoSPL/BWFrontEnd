@@ -120,9 +120,7 @@ export class MainComponent implements OnInit {
             .toPromise()
             .then(response => {
                 this.user = response.body;
-                console.log('user info', this.user);
                 this.uid = this.user.id;
-                // console.log('Id from backend : ', this.uid);
                 // this.onGrossGet(this.id);
                 // this.onEightycGet(this.id);
                 // this.onHomeGet(this.id);
@@ -134,28 +132,17 @@ export class MainComponent implements OnInit {
     }
 
     // gross call function
-    onGrossSave() {
-        this.grossService.save(this.gross).subscribe(response => console.log(response));
-    }
+    onGrossSave() {}
     // eightyc call function
-    onEightycSave() {
-        this.eightycService.save(this.eightyc).subscribe(response => console.log(response));
-    }
+    onEightycSave() {}
     // home call function
-    onHomeSave() {
-        this.homeService.save(this.home).subscribe(response => console.log(response));
-    }
+    onHomeSave() {}
     // eightyd call function
     onEightydSave() {
-        this.eightydService.save(this.eightyd).subscribe(
-            response => console.log(response)
-            // (error) => console.log(error)
-        );
+        this.eightydService.save(this.eightyd).subscribe();
     }
     // Other call function
-    onOtherSave() {
-        this.otherService.save(this.other).subscribe(response => console.log(response));
-    }
+    onOtherSave() {}
     // 80D Reset
     resetEightyd() {
         this.eightyd.medself = 0;
@@ -213,46 +200,31 @@ export class MainComponent implements OnInit {
     }
     onGrossGet() {
         this.grossService.getgross(this.uid).subscribe(res => {
-            console.log(res);
             this.output = res;
-            console.log(this.output);
         });
         // this.onEightycGet(this.id);
     }
     onEightycGet() {
-        //  console.log('in main ts', id);
         this.eightycService.geteightyc(this.uid).subscribe(res => {
-            console.log(res);
             this.out = res;
-            console.log(this.out);
         });
     }
     onHomeGet() {
-        //  console.log('in main ts', id);
         this.homeService.gethome(this.uid).subscribe(res => {
-            console.log(res);
             this.homeout = res;
-            console.log(this.output);
         });
     }
     onEightydGet() {
-        console.log('in main ts', this.uid);
         this.eightydService.geteightyd(this.uid).subscribe(res => {
-            console.log(res);
             this.eightydout = res;
-            console.log(this.output);
         });
     }
     onOtherGet() {
-        console.log('in main ts', this.id);
         this.otherService.getother(this.id).subscribe(res => {
-            console.log(res);
             this.otherout = res;
-            console.log(this.output);
         });
     }
     // updateEightyd() {
-    //   console.log('inside update eightyd');
     //   this.eightyd.FetchID = this.id;
     //   this.eightydService.PutEightyd(this.eightyd, this.id).subscribe(data => {
     //     alert('Your data saved');
@@ -261,9 +233,7 @@ export class MainComponent implements OnInit {
     // }
     // eightyd modal
     onEditStaticField(nameField, modal) {
-        console.log('inside edit eightyd');
         this.nameField = nameField;
-        console.log('inside edit eightyd', nameField);
         if (nameField === 'Medical Insurance for Self') {
             this.nameField = 'Amount of Medical for self';
             this.editField = this.eightydout.medself;
@@ -295,7 +265,6 @@ export class MainComponent implements OnInit {
     }
 
     FillEditEightyd(nameField) {
-        console.log('inside fill edit eightyd');
         if (nameField === 'Medical Insurance for Self') {
             this.eightydout.medself = this.editField;
             this.editField = '';
@@ -308,9 +277,7 @@ export class MainComponent implements OnInit {
         }
     }
     onEditOtherField(nameField, modal) {
-        console.log('inside edit other');
         this.nameField = nameField;
-        console.log('inside edit other', nameField);
         if (nameField === 'Medical Handicapped') {
             this.nameField = 'Amount';
             this.editField = this.otherout.handicapped;
@@ -341,7 +308,6 @@ export class MainComponent implements OnInit {
         );
     }
     FillEditOther(nameField) {
-        console.log('inside fill edit other');
         if (nameField === 'Medical Handicapped') {
             this.otherout.handicapped = this.editField;
             this.editField = '';
@@ -363,9 +329,7 @@ export class MainComponent implements OnInit {
         }
     }
     onEditHomeField(nameField, modal) {
-        console.log('inside home other');
         this.nameField = nameField;
-        console.log('inside edit home', nameField);
         if (nameField === 'Housing Loan') {
             this.nameField = 'Amount';
             this.editField = this.homeout.homeloan;
@@ -393,7 +357,6 @@ export class MainComponent implements OnInit {
         );
     }
     FillEditHome(nameField) {
-        console.log('inside fill edit home');
         if (nameField === 'Housing Loan') {
             this.homeout.homeloan = this.editField;
             this.editField = '';
@@ -412,9 +375,7 @@ export class MainComponent implements OnInit {
         }
     }
     onEditEightycField(nameField, modal) {
-        console.log('inside edit eightyc');
         this.nameField = nameField;
-        console.log('inside edit eightyc', nameField);
         if (nameField === 'Fixed Deposit in Schedule Bank') {
             this.nameField = 'Amount';
             this.editField = this.out.fixed;
@@ -463,7 +424,6 @@ export class MainComponent implements OnInit {
         );
     }
     FillEditEightyc(nameField) {
-        console.log('inside fill edit eightyc');
         if (nameField === 'Fixed Deposit in Schedule Bank') {
             this.out.fixed = this.editField;
             this.editField = '';

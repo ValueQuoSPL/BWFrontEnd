@@ -40,6 +40,8 @@ export class HealthComponent implements OnInit {
     ];
     PremiumTypeArray = [{ name: 'Single' }, { name: 'Monthly' }, { name: 'Quarterly' }, { name: 'Half Yearly' }, { name: 'Yearly' }];
     account: any;
+    isFieldChanged: boolean;
+    update: boolean;
     constructor(private healthService: HealthService, private modalService: NgbModal, private commonService: CommonSidebarService) {}
 
     ngOnInit() {
@@ -50,7 +52,6 @@ export class HealthComponent implements OnInit {
         this.commonService.account.subscribe(account => {
             this.account = account;
             this.uid = this.account.id;
-            console.log('uid received in health', this.uid);
             this.onGetHealth();
         });
     }
@@ -84,7 +85,7 @@ export class HealthComponent implements OnInit {
     // health insurance
     openHealth(healthModal) {
         this.clear();
-
+        this.update = false;
         this.modalService.open(healthModal, { ariaLabelledBy: 'healthModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
@@ -141,15 +142,14 @@ export class HealthComponent implements OnInit {
         });
     }
     onGetHealth(): void {
-        console.log('fetching health data');
-
         this.healthService.GetHealth(this.uid).subscribe((response: any[]) => {
             this.dynamicHealth = response;
-            console.log('health data received', this.dynamicHealth);
         });
     }
 
     onEditHealth(id, healthModal) {
+        this.update = true;
+        this.isFieldChanged = false;
         this.fillModal(id);
         this.modalService.open(healthModal, { ariaLabelledBy: 'healthModal' }).result.then(
             result => {
@@ -176,6 +176,17 @@ export class HealthComponent implements OnInit {
                 this.health.sum = this.tempHealthArray[i].sum;
                 this.health.policy_no = this.tempHealthArray[i].policyNumber;
                 this.health.premium_mode = this.tempHealthArray[i].policyMode;
+
+                this.prevHealth.ins_name = this.tempHealthArray[i].insureName;
+                this.prevHealth.policy_name = this.tempHealthArray[i].policyName;
+                this.prevHealth.premium = this.tempHealthArray[i].premium;
+                this.prevHealth.issuer = this.tempHealthArray[i].issuer;
+                this.prevHealth.start_date = new FormControl(new Date(this.tempHealthArray[i].date));
+                this.prevHealth.proposer_name = this.tempHealthArray[i].premiumName;
+                this.prevHealth.sum = this.tempHealthArray[i].sum;
+                this.prevHealth.policy_no = this.tempHealthArray[i].policyNumber;
+                this.prevHealth.policy_term = this.tempHealthArray[i].premiumTerm;
+                this.prevHealth.premium_mode = this.tempHealthArray[i].policyMode;
             }
         }
     }
@@ -203,5 +214,85 @@ export class HealthComponent implements OnInit {
         this.healthService.PutHealth(this.health, this.uid).subscribe(res => {
             this.clear();
         });
+    }
+    ChangeDetector(event, from) {
+        if (from === 'number') {
+            if (this.prevHealth.policy_no !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'issuer') {
+            if (this.prevHealth.issuer !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'insured') {
+            if (this.prevHealth.ins_name !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'proposer') {
+            if (this.prevHealth.proposer_name !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'date') {
+            const prevdate = new Date(this.prevHealth.start_date.value);
+            prevdate.setHours(0);
+            prevdate.setMinutes(0);
+            prevdate.setSeconds(0);
+
+            const newdate = new Date(this.healthDate.value);
+            newdate.setHours(0);
+            newdate.setMinutes(0);
+            newdate.setSeconds(0);
+
+            // tslint:disable-next-line:triple-equals
+            if (prevdate !== newdate) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'term') {
+            if (this.prevHealth.policy_term !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'mode') {
+            if (this.prevHealth.premium_mode !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'policy') {
+            if (this.prevHealth.policy_name !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'sum') {
+            if (this.prevHealth.sum !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'premium') {
+            if (this.prevHealth.premium !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'premiumterm') {
+            if (this.prevHealth.policy_term !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        }
     }
 }

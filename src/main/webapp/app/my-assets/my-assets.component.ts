@@ -69,7 +69,6 @@ export class MyAssetsComponent {
     //     });
     // }
     // panelState(route) {
-    //     console.log(route);
     //     if (route === 'stock') {
     //        this. panelOpenState = false;
     //        this.panelStockState = true;

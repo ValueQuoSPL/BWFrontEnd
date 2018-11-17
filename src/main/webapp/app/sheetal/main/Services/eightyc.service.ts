@@ -28,13 +28,10 @@ export class EightycService {
             .toPromise()
             .then(response => {
                 this.user = response.body;
-                console.log('user info', this.user);
                 this.userID = this.user.id;
-                console.log('in service', this.userID);
             });
     }
     public geteightyc(id) {
-        console.log('in geteightyc service', id);
         this.ServiceAPIParam = 'api/eightycs' + '/' + id;
         return this.http.get(SERVER_API_URL + this.ServiceAPIParam).pipe(map(res => res));
     }

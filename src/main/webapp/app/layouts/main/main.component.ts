@@ -80,12 +80,12 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         this.principal.identity().then(account => {
             if (account) {
                 this.account = account;
-                this.uid = account.id;
                 this.sc.account.next(this.account);
-                this.checkSuccess(this.uid);
+                this.uid = account.id;
                 if (this.account.authorities[1]) {
                     this.authority = this.account.authorities[1];
                 }
+                this.checkSuccess(this.uid);
             }
         });
         this.registerAuthenticationSuccess();
@@ -98,41 +98,48 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         this.eventManager.subscribe('authenticationSuccess', message => {
             this.principal.identity().then(account => {
                 this.account = account;
-                this.uid = account.id;
                 this.sc.account.next(this.account);
+                this.uid = account.id;
+                if (this.account.authorities[1]) {
+                    this.authority = this.account.authorities[1];
+                }
                 this.checkSuccess(this.uid);
             });
         });
     }
 
     checkSuccess(uid) {
-        this.successService.getTransactionData(uid).subscribe(
-            data => {
-                this.result = data;
-                this.last = this.result.pop();
-                if (this.last) {
-                    if (this.last.status === 'success') {
-                        this.isPaid = true;
-                        if (!this.isMobile) {
-                            this.flag = true;
-                        }
-                        this.planService.isPaid.next(true);
-                    } else {
-                        this.isPaid = false;
+        this.successService.getTransactionData(uid).subscribe(data => {
+            this.result = data;
+            this.last = this.result.pop();
+            if (this.last) {
+                if (this.last.status === 'success') {
+                    this.isPaid = true;
+
+                    if (!this.isMobile) {
+                        this.flag = true;
                     }
+                    this.planService.isPaid.next(true);
                 } else {
                     this.isPaid = false;
-                    this.flag = false;
                 }
+            } else {
+                this.isPaid = false;
+                this.flag = false;
                 if (this.authority === 'ROLE_ADMIN') {
                     this.isPaid = true;
                     if (!this.isMobile) {
                         this.flag = true;
                     }
                 }
-            },
-            error => {}
-        );
+            }
+        });
+        if (this.authority === 'ROLE_ADMIN') {
+            this.isPaid = true;
+            if (!this.isMobile) {
+                this.flag = true;
+            }
+        }
     }
 
     isAuthenticated() {

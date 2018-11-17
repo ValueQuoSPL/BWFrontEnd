@@ -40,6 +40,8 @@ export class GeneralComponent implements OnInit {
         { name: 'Term Policy' }
     ];
     PremiumTypeArray = [{ name: 'Single' }, { name: 'Monthly' }, { name: 'Quarterly' }, { name: 'Half Yearly' }, { name: 'Yearly' }];
+    isFieldChanged: boolean;
+    update: boolean;
 
     constructor(private generalService: GeneralService, private modalService: NgbModal, private commonService: CommonSidebarService) {}
 
@@ -51,7 +53,6 @@ export class GeneralComponent implements OnInit {
         this.commonService.account.subscribe(account => {
             this.account = account;
             this.uid = this.account.id;
-            console.log('uid received in health', this.uid);
             this.onGetGeneral();
         });
     }
@@ -85,6 +86,8 @@ export class GeneralComponent implements OnInit {
     }
 
     openGeneral(generalModal) {
+        this.clear();
+        this.update = false;
         this.modalService.open(generalModal, { ariaLabelledBy: 'generalModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
@@ -133,7 +136,6 @@ export class GeneralComponent implements OnInit {
             this.dynamicGeneral.splice(index, 1);
         }
     }
-
     onGeneralSave(): void {
         this.general.userid = this.uid;
         this.generalService.PostGeneral(this.general.generalModelArray).subscribe(data => {
@@ -143,15 +145,13 @@ export class GeneralComponent implements OnInit {
         });
     }
     onGetGeneral(): void {
-        console.log('fetching general data');
-
         this.generalService.GetGeneral(this.uid).subscribe((response: any[]) => {
             this.dynamicGeneral = response;
-            console.log('general data received', this.dynamicGeneral);
         });
     }
-
     onEditGeneral(id, generalModal) {
+        this.update = true;
+        this.isFieldChanged = false;
         this.fillModal(id);
 
         this.modalService.open(generalModal, { ariaLabelledBy: 'generalModal' }).result.then(
@@ -174,11 +174,23 @@ export class GeneralComponent implements OnInit {
                 this.general.issuer = this.tempGeneralArray[i].issuer;
                 this.general.start_date = this.tempGeneralArray[i].policyDate;
                 this.general.proposer = this.tempGeneralArray[i].proposer;
-                this.general.proposer = this.tempGeneralArray[i].proposer;
                 this.general.sum = this.tempGeneralArray[i].sum;
                 this.general.policy_no = this.tempGeneralArray[i].policyNumber;
                 this.general.premium_mode = this.tempGeneralArray[i].premiumName;
                 this.general.ins_obj = this.tempGeneralArray[i].insureName;
+
+                this.prevGeneral.premium_mode = this.tempGeneralArray[i].premiumName;
+                this.prevGeneral.ins_obj = this.tempGeneralArray[i].insureName;
+                this.prevGeneral.policy_name = this.tempGeneralArray[i].policyName;
+                this.prevGeneral.premium = this.tempGeneralArray[i].premium;
+                this.prevGeneral.policy_term = this.tempGeneralArray[i].pterm;
+                this.prevGeneral.issuer = this.tempGeneralArray[i].issuer;
+                this.prevGeneral.start_date = new FormControl(new Date(this.tempGeneralArray[i].policyDate));
+                this.prevGeneral.proposer = this.tempGeneralArray[i].proposer;
+                this.prevGeneral.sum = this.tempGeneralArray[i].sum;
+                this.prevGeneral.policy_no = this.tempGeneralArray[i].policyNumber;
+                this.prevGeneral.policy_term = this.tempGeneralArray[i].premiumTerm;
+                this.prevGeneral.premium_mode = this.tempGeneralArray[i].pMode;
             }
         }
     }
@@ -206,5 +218,85 @@ export class GeneralComponent implements OnInit {
         this.generalService.PutGeneral(this.general, this.uid).subscribe(res => {
             this.clear();
         });
+    }
+    ChangeDetector(event, from) {
+        if (from === 'number') {
+            if (this.prevGeneral.policy_no !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'issuer') {
+            if (this.prevGeneral.issuer !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'insured') {
+            if (this.prevGeneral.ins_obj !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'proposer') {
+            if (this.prevGeneral.proposer !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'date') {
+            const prevdate = new Date(this.prevGeneral.start_date.value);
+            prevdate.setHours(0);
+            prevdate.setMinutes(0);
+            prevdate.setSeconds(0);
+
+            const newdate = new Date(this.generalDate.value);
+            newdate.setHours(0);
+            newdate.setMinutes(0);
+            newdate.setSeconds(0);
+
+            // tslint:disable-next-line:triple-equals
+            if (prevdate !== newdate) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'term') {
+            if (this.prevGeneral.policy_term !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'mode') {
+            if (this.prevGeneral.premium_mode !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'policy') {
+            if (this.prevGeneral.policy_name !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'sum') {
+            if (this.prevGeneral.sum !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'premium') {
+            if (this.prevGeneral.premium !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        } else if (from === 'premiumterm') {
+            if (this.prevGeneral.policy_term !== event) {
+                this.isFieldChanged = true;
+            } else {
+                this.isFieldChanged = false;
+            }
+        }
     }
 }

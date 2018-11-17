@@ -43,17 +43,12 @@ export class EightydComponent implements OnInit {
         });
     }
     onEightydSave() {
-        this.eightydService.save(this.eightyd).subscribe(
-            responce => {
-                console.log(responce), this.onEightydGet(this.uid);
-                // alert("data update successfully");
-            },
-            error => console.log(error)
-        );
+        this.eightydService.save(this.eightyd).subscribe(responce => {
+            // alert("data update successfully");
+        });
         this.valid = true;
     }
     updateEightyd() {
-        console.log(' in update method eightyd', this.eightyd);
         this.eightydService.PutEightyd(this.eightyd).subscribe(data => {
             alert('Your data update');
             this.changesSaved = true;
@@ -66,9 +61,7 @@ export class EightydComponent implements OnInit {
     }
 
     onEightydGet(uid) {
-        console.log('in eightyd get ts uid', this.uid);
         this.eightydService.geteightyd(this.uid).subscribe(res => {
-            console.log('eightyd res', res);
             this.eightydout = res;
             if (this.eightydout.length === 0) {
                 this.valid = false;
@@ -79,9 +72,7 @@ export class EightydComponent implements OnInit {
     }
 
     onEditStaticField(nameField, eightydEditContent) {
-        console.log('inside edit eightyd');
         this.nameField = nameField;
-        console.log('inside edit eightyd', nameField);
         if (nameField === 'Medical Insurance for Self') {
             this.nameField = 'Amount of Medical for self';
             this.editField = this.eightydout[0].medself;

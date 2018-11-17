@@ -56,6 +56,7 @@ export class MedicalInsuranceComponent implements OnInit {
     }
 
     openMedical(lifeContent) {
+        this.resetModel();
         this.modalService.open(lifeContent, { ariaLabelledBy: 'lifeModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
@@ -126,5 +127,10 @@ export class MedicalInsuranceComponent implements OnInit {
             this.medicalInsurance.hosp_type = this.result.hosp_type;
             this.medicalInsurance.room_type = this.result.room_type;
         });
+    }
+    resetModel() {
+        this.medicalInsurance.hosp_type = null;
+        this.medicalInsurance.room_type = null;
+        this.medicalInsurance.family_members = null;
     }
 }

@@ -100,7 +100,6 @@ export class CreditService {
     constructor(private http: HttpClient) {}
 
     public PutCredit(credit) {
-        console.log(credit);
         return this.http.post(SERVER_API_URL + 'api/creditcard/credit', credit);
     }
     public GetCredit(uid) {
@@ -166,12 +165,10 @@ export class GeneralService {
     constructor(private http: HttpClient) {}
 
     public PostGeneral(data) {
-        console.log(data);
         const url = SERVER_API_URL + 'api/general-insurance/general';
         return this.http.post(url, data);
     }
     public PutGeneral(data, uid) {
-        console.log(data);
         const url = SERVER_API_URL + 'api/general-insurance/putgeneral/' + uid;
         return this.http.put(url, data);
     }

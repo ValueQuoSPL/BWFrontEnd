@@ -29,7 +29,6 @@ export class MyloginService {
             param.otp +
             '&otp_expiry=60';
 
-        // console.log('url :', url);
         return this.http.get(url);
     }
 

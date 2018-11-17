@@ -161,7 +161,6 @@ export class LifeInsuranceComponent implements OnInit {
             userid: this.lifeInsurance.userid
         });
         this.riskService.SaveLifeInsurance(this.lifeInsurance).subscribe(data => {
-            alert('Added new stocks details');
             this.onGetLife();
         });
     }
@@ -189,7 +188,6 @@ export class LifeInsuranceComponent implements OnInit {
     update(commanId) {
         this.lifeInsurance.id = this.commanId;
         this.lifeInsurance.userid = this.uid;
-        console.log(this.lifeInsurance);
         this.riskService.updatelifeInsurance(this.lifeInsurance).subscribe(data => {
             this.onGetLife();
         });
@@ -233,5 +231,11 @@ export class LifeInsuranceComponent implements OnInit {
                 }
             }
         }
+    }
+
+    resetModal() {
+        this.lifeInsurance.expense_cover = null;
+        this.lifeInsurance.total = null;
+        this.lifeInsurance.risk_coverage = null;
     }
 }

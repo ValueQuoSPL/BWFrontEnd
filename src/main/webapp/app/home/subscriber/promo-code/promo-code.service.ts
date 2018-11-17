@@ -3,21 +3,20 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class PromoCodeService {
-  private messageSource = new BehaviorSubject(0);
-  currentMessage = this.messageSource.asObservable();
+    private messageSource = new BehaviorSubject(0);
+    currentMessage = this.messageSource.asObservable();
 
-  constructor() {}
+    constructor() {}
 
-  apply(promocode) {
-    // console.log('applying Promo-Code', promocode);
-    if (promocode === 'buckswise') {
-      return true;
-    } else {
-      return false;
+    apply(promocode) {
+        if (promocode === 'buckswise') {
+            return true;
+        } else {
+            return false;
+        }
     }
-  }
 
-  changeMessage(message) {
-    this.messageSource.next(message);
-  }
+    changeMessage(message) {
+        this.messageSource.next(message);
+    }
 }

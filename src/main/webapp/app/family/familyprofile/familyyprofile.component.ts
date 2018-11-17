@@ -18,9 +18,7 @@
 //   }
 //   getFamilyProfile() {
 //     this.Familypro.getFamilyProfile().subscribe(res => {
-//       console.log(res);
 //       this.output = res;
-//       console.log('responce of familyprofile service', this.output);
 //     });
 //   }
 // }

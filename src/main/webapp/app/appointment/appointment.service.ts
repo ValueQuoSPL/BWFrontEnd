@@ -16,11 +16,7 @@ export class AppointmentService {
     }
 
     getUserid() {
-        console.log('get uid -appoint');
-
         this.commonSidebarService.account.subscribe(account => {
-            console.log('account data received -appoint');
-
             this.account = account;
             this.userid = this.account.id;
             this.getCalendarByUid();
@@ -42,7 +38,6 @@ export class AppointmentService {
     // get Appointment data by uid
     getCalendarByUid() {
         const uid = this.userid;
-        console.log('inside under getuid');
         const url = SERVER_API_URL + 'api/appointmentByUid/' + uid;
         return this._http.get(url);
     }
