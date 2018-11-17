@@ -407,9 +407,12 @@ export class DashboardComponent implements OnInit {
         this.totalStock = 0;
         this.dashboardService.getStock(this.uid).subscribe(data => {
             this.resultStock = data;
+            console.log(this.resultStock);
             if (this.resultStock !== 0) {
                 for (let i = 0; i < this.resultStock.length; i++) {
-                    this.totalStock = this.totalStock + +this.resultStock[i].share_price;
+                    const no_of_shares = this.resultStock[i].no_of_shares;
+                    const sum = no_of_shares * this.resultStock[i].share_price;
+                    this.totalStock = this.totalStock + +sum;
                 }
                 this.assetTotal = +this.assetTotal + +this.totalStock;
                 this.networth = +this.assetTotal - +this.totalLiabilities;
@@ -422,10 +425,9 @@ export class DashboardComponent implements OnInit {
         this.totalSaving = 0;
         this.dashboardService.getSaving(this.uid).subscribe(data => {
             this.resultSaving = data;
-
             if (this.resultSaving !== 0) {
                 for (let i = 0; i < this.resultSaving.length; i++) {
-                    this.totalSaving = this.totalSaving + +this.resultSaving[i].amount_invested;
+                    this.totalSaving = this.totalSaving + +this.resultSaving[i].fund_value;
                 }
                 this.assetTotal = +this.assetTotal + +this.totalSaving;
                 this.networth = +this.assetTotal - +this.totalLiabilities;
@@ -470,7 +472,7 @@ export class DashboardComponent implements OnInit {
             this.resultAlterInvestment = data;
             if (this.resultAlterInvestment !== 0) {
                 for (let i = 0; i < this.resultAlterInvestment.length; i++) {
-                    this.totalAlterInvestment = this.totalAlterInvestment + +this.resultAlterInvestment[i].amount_invested;
+                    this.totalAlterInvestment = this.totalAlterInvestment + +this.resultAlterInvestment[i].market_value;
                 }
                 this.assetTotal = +this.assetTotal + +this.totalAlterInvestment;
                 this.networth = +this.assetTotal - +this.totalLiabilities;

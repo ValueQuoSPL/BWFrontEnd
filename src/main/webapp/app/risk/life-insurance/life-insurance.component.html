@@ -28,7 +28,7 @@
             <div class="modal-body">
                 <form name="editForm" role="form" novalidate #editForm="ngForm">
                     <mat-form-field style="width: 100%;">
-                            <mat-select placeholder="Select Name" [(ngModel)]="lifeInsurance.name" name="name">
+                            <mat-select placeholder="Select Name" [(ngModel)]="lifeInsurance.name" name="name" required>
                                 <mat-option *ngFor="let item of familyName" [value]="item.firstname">
                                 {{item.firstname}}
                                 </mat-option>
@@ -114,7 +114,7 @@
                         {{lifeInsurance.total }}
                     </div>
                     <div class="modal-footer">
-                        <button mat-raised-button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary" (click)="c('Save click')">
+                        <button mat-raised-button type="submit" [disabled]="editForm.form.invalid" class="btn btn-primary" (click)="c('Save click')">
                             <span class="fa fa-save"></span>&nbsp;
                             <span>Save</span>
                         </button>

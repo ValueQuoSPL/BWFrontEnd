@@ -96,12 +96,14 @@ export class MutualComponent implements OnInit {
     }
 
     absoluteReturn(currentValue, purchasePrice) {
-        return (+currentValue - +purchasePrice) / purchasePrice * 100;
+        return Math.round(+currentValue - +purchasePrice) / purchasePrice * 100;
     }
 
     cagr(currentValue, purchasePrice, days) {
         const years = days / 365;
-        return Math.round(((currentValue / purchasePrice) ** (1 / years) - 1) * 100);
+        const x = Math.round(((currentValue / purchasePrice) ** (1 / years) - 1) * 100);
+        console.log(x);
+        return x;
     }
     getMutualFundByid(commonid) {
         this.mutualFundService.getMutualFundByid(this.commonid).subscribe(res => {
