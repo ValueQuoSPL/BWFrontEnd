@@ -98,7 +98,9 @@ export class StockComponent implements OnInit {
             this.out = res;
             this.totalshareprice = 0;
             for (let j = 0; j < this.out.length; j++) {
-                this.totalshareprice = +this.totalshareprice + +this.out[j].share_price;
+                const no_of_shares = this.out[j].no_of_shares;
+                const sum = no_of_shares * this.out[j].share_price;
+                this.totalshareprice = +this.totalshareprice + +sum;
             }
         });
     }

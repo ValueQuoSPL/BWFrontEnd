@@ -174,7 +174,8 @@
                     mat-raised-button
                     [disabled]="editForm.form.invalid || isSaving"
                     class="btnSave"
-                    (click)="c('Save click')">
+                    (click)="c('Save click')"
+                    >
                     <span class="fa fa-save"></span>&nbsp;
                     <span>Update</span>
                 </button>
@@ -207,6 +208,7 @@
                 <th scope="col">Investor Name</th>
                 <th scope="col">No of Shares</th>
                 <th scope="col">Share Price</th>
+                <th scope="col">Total Share Price</th>
                 <th scope="col">Notes</th>
                 <th scope="col">Update</th>
                 <th scope="col">Delete</th>
@@ -217,7 +219,8 @@
                 <td>{{stocks.company_name}}</td>
                 <td>{{stocks.investor_name}}</td>
                 <td>{{stocks.no_of_shares}}</td>
-                <td>{{stocks.share_price}}</td>
+                <td>{{stocks.share_price}}</td> 
+                <td>{{totalshareprice}}</td> 
                 <td>{{stocks.notes}}</td>
                 <td>
                     <button 
