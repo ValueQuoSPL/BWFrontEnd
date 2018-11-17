@@ -5,37 +5,28 @@ import { SERVER_API_URL } from 'app/app.constants';
 import { AccountService } from 'app/core';
 @Injectable()
 export class OtherService {
-  ServiceAPIParam: string;
-  user;
-  userID;
-  id;
+    ServiceAPIParam: string;
+    user;
+    userID;
+    id;
 
-  constructor(private http: HttpClient, private account: AccountService) {}
+    constructor(private http: HttpClient, private account: AccountService) {}
 
-  // public ServiceOther(other) {
-  //  console.log(other.Handicapped);
-  //  console.log(other.Medicaltreat);
-  //  console.log(other.Selfedu);
-  //  console.log(other.Nps);
-  //  console.log(other.Rgess);
-  //  console.log(other.Donation);
-  save(other: any): Observable<any> {
-    return this.http.post(SERVER_API_URL + 'api/others', other);
-  }
-  // FetchID(): Promise<any> {
-  //   return this.account
-  //     .get()
-  //     .toPromise()
-  //     .then(response => {
-  //       this.user = response.body;
-  //       console.log('user info', this.user);
-  //       this.userID = this.user.id;
-  //       console.log('in service', this.userID);
-  //     });
-  // }
-  public getother(id) {
-    console.log('in other service', id);
-    this.ServiceAPIParam = 'api/others' + '/' + id;
-    return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
-  }
+    // public ServiceOther(other) {
+    save(other: any): Observable<any> {
+        return this.http.post(SERVER_API_URL + 'api/others', other);
+    }
+    // FetchID(): Promise<any> {
+    //   return this.account
+    //     .get()
+    //     .toPromise()
+    //     .then(response => {
+    //       this.user = response.body;
+    //       this.userID = this.user.id;
+    //     });
+    // }
+    public getother(id) {
+        this.ServiceAPIParam = 'api/others' + '/' + id;
+        return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
+    }
 }

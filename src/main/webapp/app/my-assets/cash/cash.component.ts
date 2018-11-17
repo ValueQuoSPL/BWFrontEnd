@@ -108,8 +108,6 @@ export class CashComponent implements OnInit {
     getCashId(commonid) {
         this.cashservice.getCashById(this.commonid).subscribe(res => {
             this.getdata = res;
-            console.log('res of Personal possession', this.getdata.amount);
-            console.log('res of cash', this.getdata);
             this.editcash = this.getdata.cashsource;
             this.cashsource = this.getdata.cashsource;
             if (this.editcash === 'Bank') {

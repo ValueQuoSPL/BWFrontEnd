@@ -189,7 +189,6 @@ export class LifeInsuranceComponent implements OnInit {
     update(commanId) {
         this.lifeInsurance.id = this.commanId;
         this.lifeInsurance.userid = this.uid;
-        console.log(this.lifeInsurance);
         this.riskService.updatelifeInsurance(this.lifeInsurance).subscribe(data => {
             this.onGetLife();
         });

@@ -53,7 +53,6 @@ export class GeneralComponent implements OnInit {
         this.commonService.account.subscribe(account => {
             this.account = account;
             this.uid = this.account.id;
-            console.log('uid received in health', this.uid);
             this.onGetGeneral();
         });
     }
@@ -146,11 +145,8 @@ export class GeneralComponent implements OnInit {
         });
     }
     onGetGeneral(): void {
-        console.log('fetching general data');
-
         this.generalService.GetGeneral(this.uid).subscribe((response: any[]) => {
             this.dynamicGeneral = response;
-            console.log('general data received', this.dynamicGeneral);
         });
     }
     onEditGeneral(id, generalModal) {
@@ -225,8 +221,6 @@ export class GeneralComponent implements OnInit {
     }
     ChangeDetector(event, from) {
         if (from === 'number') {
-            console.log();
-
             if (this.prevGeneral.policy_no !== event) {
                 this.isFieldChanged = true;
             } else {

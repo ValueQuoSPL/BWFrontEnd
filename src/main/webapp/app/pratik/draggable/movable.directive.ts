@@ -33,14 +33,12 @@ export class MovableDirective extends DraggableDirective {
             x: event.clientX - this.position.x,
             y: event.clientY - this.position.y
         };
-        // console.log('start');
     }
 
     @HostListener('dragMove', ['$event'])
     onDragMove(event) {
         this.position.x = event.clientX - this.startPosition.x;
         this.position.y = event.clientY - this.startPosition.y;
-        // console.log('moving...');
     }
 
     @HostListener('dragEnd', ['$event'])
@@ -48,6 +46,5 @@ export class MovableDirective extends DraggableDirective {
         if (this.reset) {
             this.position = { x: 0, y: 0 };
         }
-        // console.log('end');
     }
 }

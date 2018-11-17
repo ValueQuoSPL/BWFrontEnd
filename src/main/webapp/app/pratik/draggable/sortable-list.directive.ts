@@ -13,9 +13,6 @@ export class SortableListDirective implements AfterContentInit {
     constructor() {}
 
     ngAfterContentInit(): void {
-        console.log('hi');
-        console.log(`Got ${this.sortables.length} sortable items`);
-
         this.sortables.forEach(sortable => {
             sortable.dragStart.subscribe(() => this.measureClientRects());
             sortable.dragMove.subscribe(() => this.detectSorting());
@@ -26,7 +23,5 @@ export class SortableListDirective implements AfterContentInit {
         // this.clientRects = this.sortables.map(sortable => sortable.element.nativeElement.getBoundingClientRect());
     }
 
-    private detectSorting(): any {
-        console.log('Detect Sorting...');
-    }
+    private detectSorting(): any {}
 }

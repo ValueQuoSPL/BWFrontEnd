@@ -47,17 +47,12 @@ export class OtherComponent implements OnInit {
     }
     // Other call function
     onOtherSave() {
-        this.otherService.save(this.other).subscribe(
-            responce => {
-                console.log(responce), this.onOtherGet();
-                // alert("data update successfully");
-            },
-            error => console.log(error)
-        );
+        this.otherService.save(this.other).subscribe(responce => {
+            // alert("data update successfully");
+        });
         this.valid = true;
     }
     updateOther() {
-        console.log(' in update method other', this.other);
         this.otherService.PutOther(this.other).subscribe(data => {
             alert('Your data update');
             this.changesSaved = true;
@@ -136,7 +131,6 @@ export class OtherComponent implements OnInit {
         }
     }
     FillEditOther(nameField) {
-        console.log('inside fill edit other');
         if (nameField === 'Medical Handicapped') {
             this.other.handicapped = this.editField;
             this.otherout[0].handicapped = this.other.handicapped;

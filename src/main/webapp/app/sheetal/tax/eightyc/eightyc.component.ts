@@ -59,12 +59,7 @@ export class EightycComponent implements OnInit {
 
     // eightyc call function for post data
     onEightycSave() {
-        this.eightycService.save(this.eightyc).subscribe(
-            responce => {
-                console.log(responce), this.onEightycGet();
-            },
-            error => console.log(error)
-        );
+        this.eightycService.save(this.eightyc).subscribe(responce => {});
         this.valid = true;
     }
     // eightyc call function for update data

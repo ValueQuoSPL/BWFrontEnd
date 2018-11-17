@@ -46,8 +46,6 @@ export class MovableAreaDirective implements OnInit, AfterContentInit {
             minY: viewRect.top - movableClientRect.top + movable.position.y,
             maxY: viewRect.bottom - movableClientRect.bottom + movable.position.y
         };
-
-        // console.log('boundaries : ', this.boundaries);
     }
     private maintainBoundaries(movable: MovableDirective) {
         // maintain boundaries here

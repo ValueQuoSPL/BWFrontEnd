@@ -105,7 +105,6 @@ export class AppointmentComponent implements OnInit {
         private _route: ActivatedRoute
     ) {
         this.appointmentResult = this._route.snapshot.data['appointment'];
-        // console.log(this.resolveData);
         for (let index = 0; index < this.appointmentResult.length; index++) {
             this.isStatus = this.appointmentResult[index].status;
         }
@@ -261,9 +260,7 @@ export class AppointmentComponent implements OnInit {
                 this.elementId = this.appointmentResult[index].id;
             }
             this.appointment.id = this.elementId;
-            this.appointmentService.updateCalendar(this.appointment).subscribe(data => {
-                console.log(data);
-            });
+            this.appointmentService.updateCalendar(this.appointment).subscribe(data => {});
             this.route.navigate(['dashboard']);
         } else {
             this.isBooked = false;

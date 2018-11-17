@@ -61,7 +61,7 @@ nav.main-menu.expanded {
     border-collapse: collapse;
     border-spacing: 0;
     color: #999;
-    font-family: sans-serif;
+    font-family: 'Tahoma';
     font-size: 14px;
     text-decoration: none;
     -webkit-transform: translateZ(0) scale(1, 1);
@@ -84,7 +84,7 @@ nav.main-menu.expanded {
     display: table-cell;
     vertical-align: middle;
     width: 190px;
-    font-family: sans-serif;
+    font-family: 'Tahoma';
     color: white;
 }
 
@@ -172,7 +172,7 @@ nav.main-menu li.active > a,
     border-collapse: collapse;
     border-spacing: 0;
     color: #999;
-    font-family: sans-serif;
+    font-family: 'Tahoma';
     font-size: 14px;
     font-weight: 700;
     text-decoration: none;

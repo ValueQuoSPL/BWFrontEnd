@@ -122,10 +122,13 @@ export class NavbarComponent implements OnInit, DoCheck {
     contact() {
         this.router.navigate(['/contact']);
     }
+
     ngDoCheck() {
         setTimeout(() => {
             this.param = this.router.url;
-
+            if (this.param === '/contact') {
+                this.router.navigate(['/contact']);
+            }
             if (this.param === '/') {
                 this.isHomePage = true;
                 this.solid = 'solid';

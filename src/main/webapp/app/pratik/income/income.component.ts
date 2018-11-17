@@ -80,12 +80,9 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         this.isFieldChange = false;
 
         this._success.subscribe(message => (this.successMessage = message));
-        this._success.pipe(debounceTime(2000)).subscribe(() => (this.successMessage = null));
-    }
-
-    public changeSuccessMessage() {
-        this.changesSaved = true;
-        this.globalflag = false;
+        this._success.pipe(debounceTime(2000)).subscribe(() => {
+            this.successMessage = null;
+        });
     }
 
     getUserid() {
@@ -222,6 +219,11 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
 
         this.dynamicIncome.splice(index, 1);
         this.calcIncomeTotal();
+    }
+
+    public changeSuccessMessage() {
+        this.changesSaved = true;
+        this.globalflag = false;
     }
 
     saveIncome(): void {

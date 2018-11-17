@@ -8,25 +8,24 @@ import { AccountService } from 'app/core';
 
 @Injectable()
 export class EightydService {
-  id;
-  userID;
-  user;
-  model: Eightyd = new Eightyd();
+    id;
+    userID;
+    user;
+    model: Eightyd = new Eightyd();
 
-  ServiceAPIParam: string;
-  constructor(private http: HttpClient, private account: AccountService) {}
+    ServiceAPIParam: string;
+    constructor(private http: HttpClient, private account: AccountService) {}
 
-  save(eightyd: any): Observable<any> {
-    return this.http.post(SERVER_API_URL + 'api/eightds', eightyd);
-  }
+    save(eightyd: any): Observable<any> {
+        return this.http.post(SERVER_API_URL + 'api/eightds', eightyd);
+    }
 
-  public geteightyd(uid) {
-    console.log('in geteightyd service', uid);
-    this.ServiceAPIParam = 'api/eightds' + '/' + uid;
-    return this.http.get(SERVER_API_URL + this.ServiceAPIParam).pipe(map(res => res));
-  }
-  // public PutEightyd(eightyd) {
-  //   const url = SERVER_API_URL + 'api/eightds' + id;
-  //   return this.http.put(url);
-  // }
+    public geteightyd(uid) {
+        this.ServiceAPIParam = 'api/eightds' + '/' + uid;
+        return this.http.get(SERVER_API_URL + this.ServiceAPIParam).pipe(map(res => res));
+    }
+    // public PutEightyd(eightyd) {
+    //   const url = SERVER_API_URL + 'api/eightds' + id;
+    //   return this.http.put(url);
+    // }
 }

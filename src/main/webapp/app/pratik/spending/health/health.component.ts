@@ -52,7 +52,6 @@ export class HealthComponent implements OnInit {
         this.commonService.account.subscribe(account => {
             this.account = account;
             this.uid = this.account.id;
-            console.log('uid received in health', this.uid);
             this.onGetHealth();
         });
     }
@@ -143,11 +142,8 @@ export class HealthComponent implements OnInit {
         });
     }
     onGetHealth(): void {
-        console.log('fetching health data');
-
         this.healthService.GetHealth(this.uid).subscribe((response: any[]) => {
             this.dynamicHealth = response;
-            console.log('health data received', this.dynamicHealth);
         });
     }
 

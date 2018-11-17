@@ -14,7 +14,6 @@ export class LiabilitiesService {
 
     // update the loan information
     updateloan(loan, uid) {
-        console.log(loan);
         const url = SERVER_API_URL + 'api/loananddebt/putloandebt/' + uid;
         return this._http.put(url, loan);
     }

@@ -55,7 +55,6 @@ export class LifeComponent implements OnInit {
         this.commonService.account.subscribe(account => {
             this.account = account;
             this.uid = this.account.id;
-            console.log('uid received in life', this.uid);
             this.onGetLife();
         });
     }
@@ -146,11 +145,8 @@ export class LifeComponent implements OnInit {
         });
     }
     onGetLife(): void {
-        console.log('fetching life data');
-
         this.lifeService.GetLife(this.uid).subscribe((response: any[]) => {
             this.dynamicLifeArray = response;
-            console.log('life data received', this.dynamicLifeArray);
 
             if (this.dynamicLifeArray.length === 0) {
                 this.isLifeData = false;

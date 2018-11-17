@@ -48,8 +48,8 @@
                     </a>
                 </li>
                 <!-- contact us -->
-                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                    <a class="nav-link" routerLink="/contact" (click)="collapseNavbar()">
+                <li class="nav-item"  >
+                    <a class="nav-link" (click)="collapseNavbar()" (click)="contact()">
                         <fa-icon [icon]="'handshake'" [fixedWidth]="true"></fa-icon>
                         <span jhiTranslate="global.menu.contact">
                             <span>Contact Us</span>
@@ -152,7 +152,7 @@
                             <fa-icon [icon]="'user'"></fa-icon>
 
                                 {{FirstName}}
-                           
+
                         </span>
                         <span *ngIf="getImageUrl()">
                             <img [src]="getImageUrl()" class="profile-image img-circle" alt="Avatar">
