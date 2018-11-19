@@ -144,9 +144,9 @@ export class CreditComponent implements OnInit {
     }
     // update credit
     updateCredit(id) {
-        this.dynamicCredit.userid = this.uid;
-        this.dynamicCredit.id = id;
-        this.creditService.update(this.dynamicCredit, this.uid).subscribe(data => {
+        console.log(this.dynamicCredit[id]);
+
+        this.creditService.update(this.dynamicCredit[id], this.uid).subscribe(data => {
             this.clear();
         });
     }

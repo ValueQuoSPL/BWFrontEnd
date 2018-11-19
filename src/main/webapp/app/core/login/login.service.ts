@@ -18,7 +18,6 @@ export class LoginService {
                     this.principal.identity(true).then(account => {
                         this.account = account;
                         const id: string = this.account.id;
-                        console.log(id);
 
                         this.putCookie('1', this.account);
                         resolve(data);
@@ -46,7 +45,6 @@ export class LoginService {
 
     getCookie() {
         const all: {} = this._cookieService.getAll();
-        console.log(all);
 
         return this._cookieService.get('1');
     }

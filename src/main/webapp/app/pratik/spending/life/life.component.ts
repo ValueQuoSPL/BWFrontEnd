@@ -319,6 +319,7 @@ export class LifeComponent implements OnInit {
     }
     Updatelife(id) {
         this.life.id = id;
+        this.life.start_date = this.life.start_date.value;
         this.life.userid = this.uid;
 
         this.lifeService.PutLife(this.life, this.uid).subscribe(res => {
