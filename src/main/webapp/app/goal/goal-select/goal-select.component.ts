@@ -325,17 +325,21 @@ export class GoalSelectComponent implements OnInit {
             let M = 0;
             M = this.calculateMonthlyAmount(element.futurecost, element.yeartogoal);
             element.requiremonthinvest = M;
+
             element.fundshortage = +element.futurecost - +element.goalNotes;
+            if (element.fundshortage < 0) {
+                element.fundshortage = 0;
+            }
         }
     }
 
+    // C = present cost
+    // Y = year to complete
+    // inflation = rate to modify diff between present to furture value
     calculateFuturecCost(C, Y) {
-        let F = 0;
-        let K = 0;
-        K = C * Math.pow(1 + this.inflation, Y);
-        F = Math.round(K);
-
-        return F;
+        let FC = 0;
+        FC = Math.round(C * Math.pow(1 + this.inflation, Y));
+        return FC;
     }
     // F = M((((1+R)^n)-1)/R) (1+R)
     // M = F / ( ( ( (1+R)^n)-1)/R) (1+R)

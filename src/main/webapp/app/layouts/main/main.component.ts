@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer, Chan
 import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
 
 import { Title } from '@angular/platform-browser';
-import { Principal, LoginModalService } from 'app/core';
+import { Principal, LoginModalService, LoginService } from 'app/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 import { DeviceDetectorService } from 'ngx-device-detector';
@@ -18,6 +18,7 @@ import { JhiLoginModalComponent } from 'app/shared';
 })
 export class JhiMainComponent implements OnInit, AfterViewInit {
     account: any;
+    ac: any;
     modalRef: NgbModalRef;
     deviceInfo = null;
     isMobile;
@@ -50,7 +51,8 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         private successService: SuccessService,
         private cd: ChangeDetectorRef,
         private sc: CommonSidebarService,
-        private paymentCheck: SuccessService
+        private paymentCheck: SuccessService,
+        private loginService: LoginService
     ) {
         this.epicFunction();
     }
@@ -77,6 +79,15 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
 
     // after every load/reload
     ngAfterViewInit() {
+        const a = this.loginService.getCookie();
+        this.ac = a;
+
+        const w = this.ac.toString();
+
+        const y = JSON.stringify(this.ac);
+
+        const z = JSON.parse(y);
+
         this.principal.identity().then(account => {
             if (account) {
                 this.account = account;
@@ -99,6 +110,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
             this.principal.identity().then(account => {
                 this.account = account;
                 this.sc.account.next(this.account);
+                this.loginService.putCookie('1', this.account);
                 this.uid = account.id;
                 if (this.account.authorities[1]) {
                     this.authority = this.account.authorities[1];

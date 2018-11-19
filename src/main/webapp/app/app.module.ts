@@ -95,6 +95,7 @@ import { AdvisorComponent } from 'app/advisor/advisor.component';
 import { AdvisorFilterPipe } from 'app/advisor/advisor-filter.pipe';
 import { successRoute } from 'app/success/success.route';
 import { appointRoot } from 'app/appointment';
+import { CookieService } from 'ngx-cookie-service';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -133,7 +134,6 @@ import { appointRoot } from 'app/appointment';
             innerStrokeWidth: 10,
             toFixed: 0,
             animateTitle: true,
-            animationDuration: 1000,
             showUnits: false,
             showBackground: false,
             clockwise: true,
@@ -182,6 +182,7 @@ import { appointRoot } from 'app/appointment';
     ],
     providers: [
         NavbarComponent,
+        CookieService,
         // Production Services
         CanDeactivateGuard,
         IncomeService,
