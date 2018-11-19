@@ -9,22 +9,22 @@
           <!-- <div>start of select div -->
             <mat-form-field>
               <mat-select placeholder="Choose Goal" name="goaltype" [(ngModel)]="goaltype">
-                <mat-option  value="home">Home</mat-option>
-                <mat-option value="education">Education</mat-option>
-                <mat-option value="vehicle">Vehicle</mat-option>
-                <mat-option value="childbirth">Child Birth</mat-option>
-                <mat-option value="merrage">Marriage</mat-option>
-                <mat-option value="business">Business</mat-option>
-                <mat-option value="familysupport">Family Support</mat-option>
-                <mat-option value="vacation">Vacation</mat-option>
-                <mat-option value="emergencyfund">Emergency Fund</mat-option>
-                <mat-option value="retairementfund">Retairement Fund</mat-option>
-                <mat-option value="newgoal">Newgoal</mat-option>
+                <mat-option  value="Home">Home</mat-option>
+                <mat-option value="Education">Education</mat-option>
+                <mat-option value="Vehicle">Vehicle</mat-option>
+                <mat-option value="Child Birth">Child Birth</mat-option>
+                <mat-option value="Marriage">Marriage</mat-option>
+                <mat-option value="Business">Business</mat-option>
+                <mat-option value="Family Support">Family Support</mat-option>
+                <mat-option value="Vacation">Vacation</mat-option>
+                <mat-option value="Emergency Fund">Emergency Fund</mat-option>
+                <mat-option value="Retairement Fund">Retairement Fund</mat-option>
+                <mat-option value="New Goal">New Goal</mat-option>
               </mat-select>
             </mat-form-field>
       </div><!--end of row1 div-->
         <div [ngSwitch]="goaltype"><!--start of ngSwitch div-->
-          <div *ngSwitchCase="'home'"><!--start of ngSwitchCaseHome div-->
+          <div *ngSwitchCase="'Home'"><!--start of ngSwitchCaseHome div-->
 
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
@@ -57,7 +57,7 @@
           </form>
           </div><!--end of ngSwitchCaseHome div-->
 
-          <div *ngSwitchCase="'education'"><!--start of ngSwitchCaseEducation div-->
+          <div *ngSwitchCase="'Education'"><!--start of ngSwitchCaseEducation div-->
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
                 <div class="bwtitlegoal">Enter New Education Goal</div>
@@ -90,7 +90,7 @@
            <!--end of edu-container div-->
 
           </div><!--end of ngSwitchCaseEducation div-->
-          <div *ngSwitchCase="'vehicle'">
+          <div *ngSwitchCase="'Vehicle'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
                 <div class="bwtitlegoal">Enter New Vehicle Goal</div>
@@ -123,7 +123,7 @@
             <!--end of home-tabpane div-->
 
           </div><!--end of ngSwitchCaseVehicle div-->
-          <div *ngSwitchCase="'childbirth'">
+          <div *ngSwitchCase="'Child Birth'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
                 <div class="bwtitlegoal">Enter New Child Goal</div>
@@ -155,7 +155,7 @@
           </form>
           </div><!--end of ngSwitchCasechildbirth div-->
 
-          <div *ngSwitchCase="'merrage'">
+          <div *ngSwitchCase="'Marriage'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
                 <div class="bwtitlegoal">Enter New Marriage Goal</div>
@@ -188,7 +188,7 @@
             <!--end of home-tabpane div -->
 
           </div><!--end of ngSwitchCaseMerrage div-->
-          <div *ngSwitchCase="'business'">
+          <div *ngSwitchCase="'Business'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
                 <div class="bwtitlegoal">Enter New Business Goal</div>
@@ -220,10 +220,10 @@
           </form>
           </div><!--end of ngSwitchCaseBusiness div-->
 
-          <div *ngSwitchCase="'familysupport'">
+          <div *ngSwitchCase="'Family Support'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
-                <div class="bwtitlegoal">Enter New Goal</div>
+                <div class="bwtitlegoal">Enter New Family Support Goal</div>
 
               <mat-card-content class="container-fluid">
                 <mat-form-field style="width:90%;">
@@ -252,10 +252,10 @@
           </form>
           </div><!--end of ngSwitchCaseFamilySup div-->
 
-          <div *ngSwitchCase="'vacation'">
+          <div *ngSwitchCase="'Vacation'">
             <form #data="ngForm">
                <mat-card class="container-fluid example-card">
-                <div class="bwtitlegoal">Enter New Goal</div>
+                <div class="bwtitlegoal">Enter New Vacation Goal</div>
 
               <mat-card-content class="container-fluid">
                 <mat-form-field style="width:90%;">
@@ -284,10 +284,10 @@
           </form>
           </div><!--end of ngSwitchCaseVacation div-->
 
-          <div *ngSwitchCase="'emergencyfund'">
+          <div *ngSwitchCase="'Emergency Fund'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
-                <div class="bwtitlegoal">Enter New Goal</div>
+                <div class="bwtitlegoal">Enter new Emergency Fund Goal</div>
 
               <mat-card-content class="container-fluid">
                 <mat-form-field style="width:90%;">
@@ -316,10 +316,10 @@
           </form>
           </div><!--end of ngSwitchCaseEmergency div-->
 
-          <div *ngSwitchCase="'retairementfund'">
+          <div *ngSwitchCase="'Retairement Fund'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
-                <div class="bwtitlegoal">Enter New Goal</div>
+                <div class="bwtitlegoal">Enter New Retairement Fund Goal</div>
               <mat-card-content class="container-fluid">
                 <mat-form-field style="width:90%;">
                   <input matInput required placeholder="Goal Name" type="text" name="goalname" [(ngModel)]="RetirementFundselect.goalname" [ngModelOptions]="{standalone: true}">
@@ -347,7 +347,7 @@
           </form>
           </div><!--end of ngSwitchCaseRetaire div-->
 
-          <div *ngSwitchCase="'newgoal'">
+          <div *ngSwitchCase="'New Goal'">
             <form #data="ngForm">
               <mat-card class="container-fluid example-card">
                 <div class="bwtitlegoal">Enter New Goal</div>
@@ -400,8 +400,8 @@
                 table-striped"><!-- table start here -->
         <thead>
           <tr>
-              <th>GoalType</th>
-              <th>GoalName</th>
+              <th>Goal Type</th>
+              <th>Goal Name</th>
               <th>Priority</th>
               <th>Year To Goal</th>
               <th>Present Cost</th>
