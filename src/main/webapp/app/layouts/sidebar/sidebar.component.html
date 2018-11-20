@@ -144,7 +144,7 @@
                         </a>
                     </li>
                     <li *ngIf="fullAccess">
-                            <a routerLink="appointment" routerLinkActive="active">
+                            <a  [routerLink]="['/appointment', encrypt]" routerLinkActive="active">
                                 <i class="fa fa-chart-line fa-2x"></i>
                                 <span class="nav-text">
                                         Appointment

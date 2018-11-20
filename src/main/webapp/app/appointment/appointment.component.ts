@@ -124,7 +124,7 @@ export class AppointmentComponent implements OnInit {
                 if (account) {
                     this.uid = account.id;
                     this.getCalendar();
-                    // this.getCalendarByUid();
+                    this.getCalendarByUid();
                 } else {
                 }
             })
@@ -263,7 +263,7 @@ export class AppointmentComponent implements OnInit {
             this.appointmentService.updateCalendar(this.appointment).subscribe(data => {});
             this.route.navigate(['dashboard']);
         } else {
-            this.isBooked = false;
+            this.isBooked = true;
         }
     }
 
@@ -284,7 +284,7 @@ export class AppointmentComponent implements OnInit {
 
     // get by uid appointment
     getCalendarByUid() {
-        this.appointmentService.getCalendarByUid().subscribe(data => {
+        this.appointmentService.getCalendarByUid(this.uid).subscribe(data => {
             this.appointmentResult = data;
             for (let index = 0; index < this.appointmentResult.length; index++) {
                 this.isStatus = this.appointmentResult[index].status;

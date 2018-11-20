@@ -9,6 +9,7 @@ import { JhiEventManager } from 'ng-jhipster';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { SpendingComponent } from 'app/pratik';
 import { SpendingRouteGuardService } from 'app/pratik/common/spending-route-guard.service';
+// import * as CryptoJS from 'crypto-js';
 
 @Component({
     selector: 'jhi-sidebar',
@@ -34,6 +35,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     result: any = [];
     last: any;
     authority: any;
+    encrypt: any;
 
     constructor(
         private principal: Principal,
@@ -73,6 +75,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             if (account) {
                 this.account = account;
                 this.uid = this.account.id;
+                this.encrypt = this.uid * 1993;
                 this.get(this.uid);
                 if (this.account.authorities[1]) {
                     this.authority = this.account.authorities[1];
