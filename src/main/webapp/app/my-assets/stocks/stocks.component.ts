@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, OnInit } from '@angular/core';
 import { Stocks } from 'app/my-assets/stocks/stocks.modal';
 import { StockService } from 'app/my-assets/stocks/stocks.service';
@@ -24,6 +25,7 @@ export class StockComponent implements OnInit {
     account: any;
     totalshareprice: any;
     data = new ReplaySubject(0);
+    price: any;
 
     constructor(
         private stockService: StockService,
@@ -95,9 +97,11 @@ export class StockComponent implements OnInit {
             this.out = res;
             this.totalshareprice = 0;
             for (let j = 0; j < this.out.length; j++) {
-                const no_of_shares = this.out[j].no_of_shares;
-                const sum = no_of_shares * this.out[j].share_price;
-                this.totalshareprice = +this.totalshareprice + +sum;
+                // tslint:disable-next-line:no-shadowed-variable
+                const element = this.out[j];
+                const no_of_shares = element.no_of_shares;
+                const sum = no_of_shares * element.share_price;
+                element.totalshareprice = sum;
             }
         });
     }
@@ -116,6 +120,7 @@ export class StockComponent implements OnInit {
             this.stocks.no_of_shares = this.getid.no_of_shares;
             this.stocks.share_price = this.getid.share_price;
             this.stocks.notes = this.getid.notes;
+            this.stocks.userid = this.uid;
         });
     }
     update(commonid) {

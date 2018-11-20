@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Income } from 'app/pratik/spending/spending.model';
 import { IncomeService } from 'app/pratik/spending/spending.service';
-import { AccountService, LoginModalService, Principal } from 'app/core';
+import { LoginModalService, Principal } from 'app/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { CanComponentDeactivate } from 'app/pratik/common/can-deactivate-guard.service';
 import { Observable, Subject } from 'rxjs';
@@ -53,13 +53,7 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     successMessage: string;
     private _success = new Subject<string>();
 
-    constructor(
-        private modalService: NgbModal,
-        private incomeService: IncomeService,
-        private loginModalService: LoginModalService,
-        private principal: Principal,
-        private commonService: CommonSidebarService
-    ) {}
+    constructor(private modalService: NgbModal, private incomeService: IncomeService, private commonService: CommonSidebarService) {}
 
     ngOnInit() {
         this.getUserid();

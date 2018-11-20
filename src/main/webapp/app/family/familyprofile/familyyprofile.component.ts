@@ -12,7 +12,7 @@
 
 //   constructor(private Familypro: FamilyprofileService) {}
 
-//   ngOnInit() {
+//   ngOnInit()  {
 //     this.familyProfile = {};
 //     // this.getFamilyProfile();
 //   }

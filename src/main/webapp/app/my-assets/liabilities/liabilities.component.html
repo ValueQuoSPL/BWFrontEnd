@@ -6,11 +6,11 @@
                 <div>
                     <mat-accordion>
                         <mat-expansion-panel class="accordion accordcol">
-                            <mat-expansion-panel-header class="accordcol"
+                            <mat-expansion-panel-header class="accordcol  right-aligned-header""
                             (opened) = "panelShortTerm = true"
                             (closed) = "panelShortTerm = false">
                                 <mat-panel-title  class="bwaccordtitle"> Short Term Liabilities </mat-panel-title>
-                                <mat-panel-description  class="bwaccordtitle">{{panelShortTerm ? 'Collapse' : 'Expand'}}</mat-panel-description>
+                                <mat-panel-description  class="bwaccordtitle setmarginshortliability">{{panelShortTerm ? 'Collapse' : 'Expand'}}</mat-panel-description>
                             </mat-expansion-panel-header>
                             <div>
                                 <table class="table table-hover table-sm">
@@ -45,9 +45,9 @@
                         <mat-expansion-panel  class="accordcolor"
                         (opened) = "panelLongTerm = true"
                         (closed) = "panelLongTerm = false">
-                            <mat-expansion-panel-header class="accordcolor">
+                            <mat-expansion-panel-header class="accordcolor  right-aligned-header">
                                 <mat-panel-title  class="bwaccordtitle"> Long Term Liabilities </mat-panel-title>
-                                <mat-panel-description  class="bwaccordtitle">{{panelLongTerm ? 'Collapse' : 'Expand'}}</mat-panel-description>
+                                <mat-panel-description  class="bwaccordtitle setmarginlongliability">{{panelLongTerm ? 'Collapse' : 'Expand'}}</mat-panel-description>
                             </mat-expansion-panel-header>
     
                             <div>

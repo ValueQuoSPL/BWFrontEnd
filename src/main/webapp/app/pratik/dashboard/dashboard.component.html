@@ -90,8 +90,8 @@
                                         <div class="pull-right">
                                                 <a routerLink="/assets" routerLinkActiveOptions="active"> Details </a>
                                         </div>
-                                        <mat-card-header> 
-                                            <div class="pull-left  bwsubtitle">
+                                        <mat-card-header class="bwtitlegoal"> 
+                                            <div class="pull-left ">
                                                 Assets
                                             </div>
                                         </mat-card-header>
@@ -138,11 +138,11 @@
                     
                                 <mat-card class="example-card" jhiMovable>
                                     <div class="pull-right">
-                                            <a routerLink="/liability" routerLinkActiveOptions="active"> Details </a>
+                                            <a routerLink="/liability" routerLinkActiveOptions="active" > Details </a>
                                     </div>
-                                    <mat-card-header>
+                                    <mat-card-header class="bwtitlegoal">
                                         <div>
-                                            <div class="pull-left bwsubtitle">
+                                            <div class="pull-left">
                                                 Liabilities
                                             </div>
                                         </div>
@@ -201,19 +201,17 @@
                         <div class="row justify-content-md-center ">
                     
                             <mat-card class="example-card"  >
-                                <div >
-                                    <div class="pull-left bwsubtitle">
-                                        Goals
-                                    </div>
+                                    <mat-card-header class="bwtitlegoal">
+                                            <div>
+                                                <div class="pull-left">
+                                                        Goals
+                                                </div>
+                                            </div>
+                                        </mat-card-header>
                                     <div class="pull-right">
                                             <a routerLink="/goalselect" routerLinkActiveOptions="active"> Details </a>
                                     </div>
-                                </div>
-        
-                                    
                                     <mat-card-content>
-                    
-        
                                                 <table class="table table-hovered">
                                                         <thead>
                                                             <tr>
@@ -231,18 +229,18 @@
                                                                 <td>
                                                                     <circle-progress
                                                                     [percent]= item.percent
-                                                                    [radius]="20"
+                                                                    [radius]="25"
                                                                     [title]= item.percent
                                                                     [titleFontSize]="13"
                                                                     [outerStrokeWidth]="9"
                                                                     [innerStrokeWidth]="8"
                                                                     [outerStrokeColor]="'#4882c2'"
                                                                     [innerStrokeColor]="'#e7e8ea'"
-                                                                    [animationDuration]="1000"
-                                                                    [maxPercent] = "100"
+                                                                    [animationDuration]="10"
+                                                                    [maxPercent] = "50"
                                                                     [toFixed] = "0"
                                                                     [showUnits] = "true"
-                                                                    [animation]="true"
+                                                                    [animation]="false"
                                                                     [startFromZero] = "true"
                                                                     [showSubtitle]="false"
                                                                     ></circle-progress>

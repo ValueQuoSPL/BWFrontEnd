@@ -35,7 +35,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     result: any = [];
     last: any;
     authority: any;
-    encrypt: any;
+    encrypt: number;
 
     constructor(
         private principal: Principal,
@@ -134,6 +134,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     }
 
     showSidebar() {
+        this.epicFunction();
+
         const x = document.getElementById('main-menu').classList.toggle('expanded');
     }
 

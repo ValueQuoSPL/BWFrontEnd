@@ -124,6 +124,10 @@ export class GoalSelectComponent implements OnInit {
     savingTotal;
     faoTotal;
     inflation = 0.07;
+    singleGoalToal: any;
+    isAssetSelected: boolean;
+    fundShortage: boolean;
+    isLoaded: boolean;
 
     constructor(
         private router: Router,
@@ -144,6 +148,7 @@ export class GoalSelectComponent implements OnInit {
         private _route: ActivatedRoute,
         private commonService: CommonSidebarService
     ) {
+        // let id = this._route.paramMap.get("id");
         this.GoalArray = this._route.snapshot.data['goaldata'];
 
         this.output = this.GoalArray;
@@ -160,6 +165,7 @@ export class GoalSelectComponent implements OnInit {
     ngOnInit() {
         this.singleAssetTotal = 0;
         this.GrandTotal = 0;
+        this.singleGoalToal = 0;
         this.stockTotal = 0;
         this.mutualTotal = 0;
         this.chitTotal = 0;
@@ -237,6 +243,8 @@ export class GoalSelectComponent implements OnInit {
         this.isValid = true;
     }
     Vacation() {
+        this.Vacationselect.goaltype = this.goaltype;
+        this.Vacationselect.uid = this.uid;
         this.goalSelectService.saveVacation(this.Vacationselect).subscribe(responce => {
             this.getGoal();
         });
@@ -267,6 +275,7 @@ export class GoalSelectComponent implements OnInit {
         this.isValid = true;
     }
     AddGoal() {
+        this.resetValues();
         this.isValid = false;
     }
     linkAssets() {
@@ -274,6 +283,23 @@ export class GoalSelectComponent implements OnInit {
     }
     selectChange(event: any) {
         this.selectedday = event.target.value;
+    }
+    openDialog(): void {
+        const dialogRef = this.dialog.open(GoalAddButtonComponent, {
+            width: '550px'
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            this.animal = result;
+        });
+    }
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+    getGoalbyId(commonid) {
+        this.goalSelectService.getGoalbyId(this.commonid).subscribe(res => {
+            this.SingleGoal = res;
+        });
     }
     FetchId() {
         this.commonService.account.subscribe(account => {
@@ -283,7 +309,6 @@ export class GoalSelectComponent implements OnInit {
             this.getGoal();
         });
     }
-
     getGoal() {
         this.goalSelectService.getgoalbyid().subscribe(res => {
             this.GoalArray = res;
@@ -313,65 +338,37 @@ export class GoalSelectComponent implements OnInit {
                 this.PresentCost = element.presentcost;
                 this.GrandTotal = element.goalNotes;
                 this.AvailableCost = +this.PresentCost - +this.GrandTotal;
+                if (this.AvailableCost <= 0) {
+                    this.AvailableCost = 0;
+                }
             }
 
-            let F = 0;
-            F = this.calculateFuturecCost(element.presentcost, element.yeartogoal);
-            element.futurecost = F;
+            // Calculate future cost
+            element.futurecost = Math.round(element.presentcost * Math.pow(1 + this.inflation, element.yeartogoal));
 
-            let M = 0;
-            M = this.calculateMonthlyAmount(element.futurecost, element.yeartogoal);
-            element.requiremonthinvest = M;
+            // Calculate required monthly investment
+            const N = element.yeartogoal * 12;
+            const IR = this.inflation;
+            element.requiremonthinvest = Math.round(element.futurecost / ((Math.pow(1 + IR, N) - 1) / (IR * (1 + IR))));
+
+            // calculate fund shortage
+            element.isFundShortage = true;
             element.fundshortage = +element.futurecost - +element.goalNotes;
+            if (element.fundshortage <= 0) {
+                element.fundshortage = 0;
+                element.isFundShortage = false;
+            }
         }
     }
 
-    calculateFuturecCost(C, Y) {
-        let F = 0;
-        let K = 0;
-        K = C * Math.pow(1 + this.inflation, Y);
-        F = Math.round(K);
-
-        return F;
-    }
-    // F = M((((1+R)^n)-1)/R) (1+R)
-    // M = F / ( ( ( (1+R)^n)-1)/R) (1+R)
-    // Where
-    // M = Regular monthly investment
-    // F = Future value of investment
-    // R = Interest rate assumed / 12
-    // N = Duration (number of months or number of years *12)
-    calculateMonthlyAmount(F, Y) {
-        let N = 0,
-            R = 0,
-            M = 0;
-        N = Y * 12;
-        R = this.inflation;
-
-        M = Math.round(F / ((Math.pow(1 + R, N) - 1) / R * (1 + R)));
-        return M;
-    }
-
-    openDialog(): void {
-        const dialogRef = this.dialog.open(GoalAddButtonComponent, {
-            width: '550px'
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            this.animal = result;
-        });
-    }
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
-    getGoalbyId(commonid) {
-        this.goalSelectService.getGoalbyId(this.commonid).subscribe(res => {
-            this.SingleGoal = res;
-        });
-    }
-    openLinkAsset(editLinkModal, goalid) {
+    openLinkAsset(editLinkModal, goalid, SingleGoalGrand) {
+        this.isAssetSelected = false;
+        this.singleGoalToal = SingleGoalGrand;
+        this.assettype = null;
+        this.singleAssetTotal = 0;
         this.commonid = goalid;
         this.viewUpdate();
+
         this.HTMLArray.splice(0, this.HTMLArray.length);
 
         for (let index = 0; index < this.GoalArray.length; index++) {
@@ -387,7 +384,6 @@ export class GoalSelectComponent implements OnInit {
         this.modalService.open(editLinkModal, { ariaLabelledBy: 'editLinkModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
-                this.updateGoal();
             },
             reason => {
                 this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -406,7 +402,6 @@ export class GoalSelectComponent implements OnInit {
     }
     updateGoal() {
         this.SetGrandTotal();
-
         this.goalSelectService.UpdateGoal(this.GoalNotesUpdate).subscribe(res => {});
     }
 
@@ -421,7 +416,12 @@ export class GoalSelectComponent implements OnInit {
             +this.savingTotal +
             +this.altTotal;
 
+        this.singleGoalToal = this.GrandTotal;
+
         this.AvailableCost = +this.PresentCost - +this.GrandTotal;
+        if (this.AvailableCost <= 0) {
+            this.AvailableCost = 0;
+        }
         this.GoalNotesUpdate.splice(0, this.GoalNotesUpdate.length);
 
         this.GoalNotesUpdate.push({
@@ -462,11 +462,12 @@ export class GoalSelectComponent implements OnInit {
 
         for (let index = 0; index < this.HTMLArray.length; index++) {
             const element = this.HTMLArray[index];
-
             if (element.id === assetid) {
-                if (element.assetvalue >= this.valtomap) {
+                const asset = Number(element.assetvalue);
+                const map = Number(this.valtomap);
+                if (asset >= map) {
                     element.mappedvalue = this.valtomap;
-                    const total = this.calculateSingleAssetTotal();
+                    this.calculateSingleAssetTotal();
                 } else {
                     alert('Please enter value which is less than Asset Value');
                 }
@@ -501,6 +502,7 @@ export class GoalSelectComponent implements OnInit {
         } else if (this.assettype === 'Propertyandhousehold') {
             this.propertyTotal = this.singleAssetTotal;
         }
+        this.isLoaded = true;
 
         return this.singleAssetTotal;
     }
@@ -514,7 +516,7 @@ export class GoalSelectComponent implements OnInit {
 
                 if (this.checked === true) {
                     this.PostMapping();
-                    this.SetGrandTotal();
+                    this.updateGoal();
                 } else {
                     for (let j = 0; j < this.AssetMappingDB.length; j++) {
                         const row = this.AssetMappingDB[j];
@@ -615,6 +617,9 @@ export class GoalSelectComponent implements OnInit {
     get(assetid) {}
 
     getAsset() {
+        this.isAssetSelected = true;
+        this.isLoaded = false;
+
         if (this.assettype === 'stocks') {
             this.getStockById(this.uid);
         } else if (this.assettype === 'mutual') {
@@ -664,7 +669,7 @@ export class GoalSelectComponent implements OnInit {
                 this.HTMLArray.push({
                     id: element.id,
                     assetname: element.company_name,
-                    assetvalue: element.share_price,
+                    assetvalue: element.share_price * element.no_of_shares,
                     mappedvalue: 0,
                     disable: true
                 });
@@ -762,10 +767,11 @@ export class GoalSelectComponent implements OnInit {
         this.cashService.getCashDetailsByuid(this.uid).subscribe(res => {
             this.mutualres = res;
             this.AssetArray = res;
+
             this.AssetArray.forEach(element => {
                 this.HTMLArray.push({
                     id: element.id,
-                    assetname: element.cash_source,
+                    assetname: element.cashsource,
                     assetvalue: element.amount,
                     mappedvalue: 0,
                     disable: true
@@ -794,4 +800,96 @@ export class GoalSelectComponent implements OnInit {
     clear() {
         this.isValid = true;
     }
+    resetValues() {
+        this.goaltype = '';
+        this.Educationselect.goaltype = '';
+        this.Educationselect.goalname = '';
+        this.Educationselect.priority = '';
+        this.Educationselect.price = '';
+        this.Educationselect.duration = '';
+        this.Educationselect.notes = '';
+        this.Educationselect.dateofcreation = '';
+        this.Educationselect.yeartogoal = '';
+        this.Educationselect.presentcost = '';
+        this.goalselect.goaltype = '';
+        this.goalselect.goalname = '';
+        this.goalselect.priority = '';
+        this.goalselect.dateofcreation = '';
+        this.goalselect.yeartogoal = '';
+        this.goalselect.presentcost = '';
+        this.Vehicleselect.goaltype = '';
+        this.Vehicleselect.goalname = '';
+        this.Vehicleselect.priority = '';
+        this.Vehicleselect.price = '';
+        this.Vehicleselect.dateofcreation = '';
+        this.Vehicleselect.yeartogoal = '';
+        this.Vehicleselect.presentcost = '';
+        this.Childbirthselect.goaltype = '';
+        this.Childbirthselect.goalname = '';
+        this.Childbirthselect.priority = '';
+        this.Childbirthselect.price = '';
+        this.Childbirthselect.dateofcreation = '';
+        this.Childbirthselect.yeartogoal = '';
+        this.Childbirthselect.presentcost = '';
+        this.Merrageselect.goaltype = '';
+        this.Merrageselect.goalname = '';
+        this.Merrageselect.priority = '';
+        this.Merrageselect.price = '';
+        this.Merrageselect.dateofcreation = '';
+        this.Merrageselect.yeartogoal = '';
+        this.Merrageselect.presentcost = '';
+        this.Businessselect.goaltype = '';
+        this.Businessselect.goalname = '';
+        this.Businessselect.priority = '';
+        this.Businessselect.price = '';
+        this.Businessselect.dateofcreation = '';
+        this.Businessselect.yeartogoal = '';
+        this.Businessselect.presentcost = '';
+        this.FamilySupportselect.goaltype = '';
+        this.FamilySupportselect.goalname = '';
+        this.FamilySupportselect.priority = '';
+        this.FamilySupportselect.price = '';
+        this.FamilySupportselect.dateofcreation = '';
+        this.FamilySupportselect.yeartogoal = '';
+        this.FamilySupportselect.presentcost = '';
+        this.Vacationselect.goaltype = '';
+        this.Vacationselect.goalname = '';
+        this.Vacationselect.priority = '';
+        this.Vacationselect.price = '';
+        this.Vacationselect.dateofcreation = '';
+        this.Vacationselect.yeartogoal = '';
+        this.Vacationselect.presentcost = '';
+        this.EmergencyFundselect.goaltype = '';
+        this.EmergencyFundselect.goalname = '';
+        this.EmergencyFundselect.priority = '';
+        this.EmergencyFundselect.price = '';
+        this.EmergencyFundselect.dateofcreation = '';
+        this.EmergencyFundselect.yeartogoal = '';
+        this.EmergencyFundselect.presentcost = '';
+        this.RetirementFundselect.goaltype = '';
+        this.RetirementFundselect.goalname = '';
+        this.RetirementFundselect.priority = '';
+        this.RetirementFundselect.price = '';
+        this.RetirementFundselect.dateofcreation = '';
+        this.RetirementFundselect.yeartogoal = '';
+        this.RetirementFundselect.presentcost = '';
+        this.NewGoalselect.goaltype = '';
+        this.NewGoalselect.goalname = '';
+        this.NewGoalselect.priority = '';
+        this.NewGoalselect.price = '';
+        this.NewGoalselect.dateofcreation = '';
+        this.NewGoalselect.yeartogoal = '';
+        this.NewGoalselect.presentcost = '';
+    }
+    // calculateFutureCost(C, Y) {
+    //     return Math.round(C * Math.pow(1 + this.inflation, Y));
+    // }
+
+    // calculateMonthlyAmount(F, Y) {
+    //     let N = 0,
+    //         R = 0;
+    //     N = Y * 12;
+    //     R = this.inflation;
+    //     return Math.round(F / ((Math.pow(1 + R, N) - 1) / R * (1 + R)));
+    // }
 }

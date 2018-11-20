@@ -16,7 +16,7 @@ export class PaymentComponent implements OnInit {
     // sUrl = 'https://www.buckswise.com:8443/api/success';
     sUrl = 'http://www.buckswise.com:8080/api/success';
     // fUrl = 'https://www.buckswise.com:8443/api/success';
-    fUrl = 'https://www.buckswise.com:8080/api/success';
+    fUrl = 'http://www.buckswise.com:8080/api/success';
     public paymentDetail: any = [];
 
     @Input() offer;
@@ -33,7 +33,6 @@ export class PaymentComponent implements OnInit {
     ) {}
 
     submitUser() {
-        alert('submit');
         this.user.sUrl = this.sUrl;
         this.user.fUrl = this.fUrl;
         this.paymentService.submitUser(this.user).subscribe(data => {

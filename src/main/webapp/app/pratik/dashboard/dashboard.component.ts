@@ -372,7 +372,11 @@ export class DashboardComponent implements OnInit {
                 element.futurecost = Math.round(element.presentcost * Math.pow(1 + this.inflation, element.yeartogoal));
 
                 calc = +element.goalNotes / +element.futurecost * 100;
+
                 calc = Math.round(calc);
+                if (calc >= 100) {
+                    calc = 100;
+                }
 
                 this.HTMLGoalArray.push({
                     name: element.goalname,
@@ -407,7 +411,6 @@ export class DashboardComponent implements OnInit {
         this.totalStock = 0;
         this.dashboardService.getStock(this.uid).subscribe(data => {
             this.resultStock = data;
-            console.log(this.resultStock);
             if (this.resultStock !== 0) {
                 for (let i = 0; i < this.resultStock.length; i++) {
                     const no_of_shares = this.resultStock[i].no_of_shares;

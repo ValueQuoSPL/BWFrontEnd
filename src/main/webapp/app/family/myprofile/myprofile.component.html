@@ -216,7 +216,7 @@
             [(ngModel)]="myProfile.company"
             name="company"
             #company="ngModel"
-            minlength="5"
+            minlength="2"
             maxlength="20"
             pattern="^[_'.@A-Za-z0-9-]*$"
             required
@@ -279,9 +279,6 @@
           <div *ngIf="emailId.errors.minlength">
             Email Id should be min {{emailId.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="emailId.errors.minlength">
-            Email Id should be min {{emailId.errors.minlength.requiredLength}} char
-          </div>
           <div *ngIf="emailId.errors.pattern"> 
             Email pattern not match
           </div>
@@ -297,7 +294,7 @@
             [(ngModel)]="myProfile.pan"
             name="pan" 
             #pan="ngModel"
-            minlength="5" 
+            minlength="2" 
             maxlength="10" 
             pattern="^[_'.@A-Za-z0-9-]*$"
             required
@@ -329,7 +326,7 @@
             [(ngModel)]="myProfile.country"
             name="country" 
             #country="ngModel"
-            minlength="5" 
+            minlength="2" 
             maxlength="10" 
             pattern="^[_'.@A-Za-z0-9-]*$"
             required
@@ -357,7 +354,7 @@
             [(ngModel)]="myProfile.state"
             name="state" 
             #state="ngModel"
-            minlength="3"
+            minlength="1"
             maxlength="20"
             required
           >
@@ -384,7 +381,7 @@
             [(ngModel)]="myProfile.city"
             name="city" 
             #city="ngModel"
-            minlength="3" 
+            minlength="2" 
             maxlength="25" 
             pattern="^[_'.@A-Za-z0-9-]*$"
             required>
@@ -411,7 +408,7 @@
             [(ngModel)]="myProfile.pin"
             name="pin" 
             #pin="ngModel"
-            minlength="5" 
+            minlength="3" 
             maxlength="10" 
             pattern="^[_'.@A-Za-z0-9-]*$"
             required>
