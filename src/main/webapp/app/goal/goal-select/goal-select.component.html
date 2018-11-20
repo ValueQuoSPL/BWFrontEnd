@@ -1,3 +1,5 @@
+
+
 <div class="container">
   <div [ngSwitch]="isAuthenticated()">
     <div *ngSwitchCase="true">
@@ -402,15 +404,15 @@
                   table-striped"><!-- table start here -->
           <thead>
             <tr>
+              <th>Date Of Creation</th>
                 <th>Goal Type</th>
                 <th>Goal Name</th>
                 <th>Priority</th>
                 <th>Year To Goal</th>
                 <th>Present Cost</th>
                 <th>Future Cost</th>
-                <th>Req.Monthly Investment</th>
+                <th>Req. Monthly Investment</th>
                 <th>Fund Shortage</th>
-                <th>Date Of Creation</th>
                 <th>Linked Asset Value</th>
                 <th>Link Assets</th>
                 <th>View</th>
@@ -418,21 +420,22 @@
           </thead>
           <tbody>
             <tr *ngFor="let out of output let i = index">
+              <td>{{out.crationdate}}</td>
               <td>{{out.goaltype}}</td>
               <td>{{out.goalname}}</td>
               <td>{{out.goalpriority}}</td>
               <td>{{out.yeartogoal}}</td>
-              <td>{{out.presentcost}}</td>
+              <td>{{out.presentcost  | currency:"INR"}}</td>
               <td>{{out.futurecost | currency:"INR"}}</td>
-              <td>{{out.requiremonthinvest}}</td>
+              <td>{{out.requiremonthinvest  | currency:"INR"}}</td>
               <td>{{out.fundshortage | currency:"INR"}}</td>
-              <td>{{out.crationdate}}</td>
-              <td>{{out.goalNotes}}</td>
+              <td>{{out.goalNotes  | currency:"INR"}}</td>
               <td>
                 <button 
                   class="btn btn-sm btn-outline-info" 
-                  type="button" 
-                  (click)="openLinkAsset(editLinkModal,out.id,out.goalNotes)">
+                  type="button"
+                  (click)="openLinkAsset(editLinkModal,out.id,out.goalNotes)"
+                  >
                   <span>
                     <fa-icon [icon]="'link'"></fa-icon>
                 </span>
@@ -451,6 +454,8 @@
             </tr>
           </tbody>
         </table><!-- table end here -->
+
+
         <!-- asset link modal-->
         <ng-template #editLinkModal let-c="close" let-d="dismiss"><!-- editStocksModal ng-template start -->
           <div class="modal-header"><!-- modal header start -->
@@ -469,7 +474,7 @@
             <form name="editForm" role="form" novalidate #editForm="ngForm">
               <div class="row justify-content-md-center"><!--start of row1 div-->
                   <div>
-                    <label>Select Asset: </label>&nbsp;
+                    <label> <strong>Select Asset:</strong> </label>&nbsp;&nbsp;
 
                     <mat-form-field>
                       <mat-select placeholder="Choose Assets" name="assettype" [(ngModel)]="assettype">
@@ -483,9 +488,8 @@
                         <mat-option value="Propertyandhousehold"  (click)="getAsset()">Property and Household</mat-option>
                       </mat-select>
                     </mat-form-field>
-                  </div><!--end of select div-->
-              </div><!--end of row1 div-->
-
+                  </div>
+              </div>
               <div>
                 <div class="row justify-content-md-center">
                   <h4>Present Goal Value : {{PresentCost}}</h4> &nbsp;
@@ -495,66 +499,71 @@
                 </div>
               </div>
 
-              <div>
-                <table class="table table-responsive table-sm table-striped table-hover table-bordered" >
-                  <thead>
-                    <th>Select</th>
-                    <th>Asset Name</th>
-                    <th>Asset Value</th>
-                    <th>Mapped Value</th>
-                  </thead>
-                    <tr *ngFor="let output of HTMLArray" >
-                        <td> <mat-checkbox  #cb [ngModel]="get(output.id)" (ngModelChange)="selectedRecord(cb.checked, output.id)" name="rada">
-                              </mat-checkbox>
-                        </td>
-                        <td>{{output.assetname}}</td>
-                        <td>{{output.assetvalue}}</td>
-                        <td>{{output.mappedvalue}}</td>
-                        <td>
-                          <button class="btn btn-sm btn-outline-success" [disabled]="output.disable" (click)="getMapValue(output.id)">{{output.valid}} map</button>
-                        </td>
-  
-                    </tr>
-                    <tfoot>
-                      <tr>
-                        <th colspan="3">Total</th>
-                        <td colspan="2"> {{ singleAssetTotal }}</td>
+              <div *ngIf="!isAssetSelected" class="container alert alert-warning">
+                No Asset Selected Please Choose Asset From above
+              </div>
+
+              <div *ngIf="isAssetSelected">
+                <div *ngIf="isLoaded">
+                  <table class="table table-responsive table-sm table-striped table-hover table-bordered" >
+                    <thead>
+                      <th>Select</th>
+                      <th>Asset Name</th>
+                      <th>Asset Value</th>
+                      <th>Mapped Value</th>
+                      <th colspan="2">Actions</th>
+                    </thead>
+                      <tr *ngFor="let output of HTMLArray" >
+                          <td> <mat-checkbox  #cb [ngModel]="get(output.id)" (ngModelChange)="selectedRecord(cb.checked, output.id)" name="rada">
+                                </mat-checkbox>
+                          </td>
+                          <td>{{output.assetname}}</td>
+                          <td>{{output.assetvalue}}</td>
+                          <td>{{output.mappedvalue}}</td>
+                          <td>
+                            <button class="btn btn-sm btn-outline-success" [disabled]="output.disable" (click)="getMapValue(output.id)">{{output.valid}} map</button>
+                          </td>
+                          <td>
+                            <button class="btn btn-sm btn-outline-danger" [disabled]="output.disable" (click)="deleteMapping(output.id)">{{output.valid}} unmap</button>
+                          </td>
                       </tr>
-                    </tfoot>
-                    </table>
-                    <table>
-                      <thead>
-                          <tr>
-                              <th colspan="3">Mapped Total</th>
-                              <td></td><td></td><td></td>
-                              <td colspan="2"> {{ singleGoalToal }}</td>
-                            </tr>
-                      </thead>
-                    </table>
-                  </div>
+                      <tfoot>
+                        <tr>
+                          <th colspan="3">Total</th>
+                          <th > {{ singleAssetTotal }}</th>
+                        </tr>
+                      </tfoot>
+                  </table>
+                  <table>
+                    <thead>
+                        <tr>
+                            <th colspan="3">Mapped Total</th>
+                            <td></td><td></td><td></td>
+                            <th colspan="2"> {{ singleGoalToal }}</th>
+                          </tr>
+                    </thead>
+                  </table>
+                </div>
+                <div *ngIf="!isLoaded" class=" row justify-content-md-center" >
+                  <br>
+                  <small class=" alert alert-primary">Fetching Data Please wait... </small>
+                </div>
+                <br>
+              </div>
         
-                      </mat-form-field>
-                      <div class="modal-footer">
-                          <button 
-                              type="submit"
-                              class="btn btn-primary"
-                              [disabled]="editForm.form.invalid || isSaving"
-                              class="btn btn-primary"
-                              (click)="c('Save click')">
-                              <span class="fa fa-save"></span>&nbsp;
-                              <span>Save</span>
-                          </button>
-                          <button 
-                              type="button" 
-                              class="btn btn-secondary" 
-                              data-dismiss="modal" 
-                              (click)="d('Cross click')">
-                              <span class="fa fa-ban"></span>&nbsp;
-                              <span>Cancel</span>
-                          </button>
-                      </div>
-                  </form>
-              </div>    
+                  <div class="modal-footer">
+                      <button
+                          type="submit"
+                          class="btn btn-primary"
+                          [disabled]="editForm.form.invalid || isSaving"
+                          class="btn btn-primary"
+                          (click)="c('Save click')">
+                          <span class="fa fa-save"></span>&nbsp;
+                          <span>Close</span>
+                      </button>
+                  </div>
+                </form>
+              </div>
           </ng-template>
         </div>
         

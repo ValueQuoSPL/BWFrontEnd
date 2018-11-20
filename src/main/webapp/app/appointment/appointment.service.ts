@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { SERVER_API_URL } from 'app/app.constants';
 import { Observable } from '../../../../../node_modules/rxjs';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { promise } from '../../../../../node_modules/protractor';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +20,7 @@ export class AppointmentService {
         this.commonSidebarService.account.subscribe(account => {
             this.account = account;
             this.userid = this.account.id;
-            this.getCalendarByUid();
+            this.getCalendarByUid(this.userid);
         });
     }
 
@@ -36,8 +37,8 @@ export class AppointmentService {
     }
 
     // get Appointment data by uid
-    getCalendarByUid() {
-        const uid = this.userid;
+    getCalendarByUid(uid) {
+        // const uid = this.userid;
         const url = SERVER_API_URL + 'api/appointmentByUid/' + uid;
         return this._http.get(url);
     }
