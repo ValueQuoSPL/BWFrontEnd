@@ -400,44 +400,6 @@ export class GoalSelectComponent implements OnInit {
             return `with: ${reason}`;
         }
     }
-    updateGoal() {
-        this.SetGrandTotal();
-        this.goalSelectService.UpdateGoal(this.GoalNotesUpdate).subscribe(res => {});
-    }
-
-    SetGrandTotal() {
-        this.GrandTotal =
-            +this.stockTotal +
-            +this.mutualTotal +
-            +this.chitTotal +
-            +this.cashTotal +
-            +this.propertyTotal +
-            +this.faoTotal +
-            +this.savingTotal +
-            +this.altTotal;
-
-        this.singleGoalToal = this.GrandTotal;
-
-        this.AvailableCost = +this.PresentCost - +this.GrandTotal;
-        if (this.AvailableCost <= 0) {
-            this.AvailableCost = 0;
-        }
-        this.GoalNotesUpdate.splice(0, this.GoalNotesUpdate.length);
-
-        this.GoalNotesUpdate.push({
-            id: this.commonid,
-            notes: this.GrandTotal
-        });
-
-        for (let index = 0; index < this.GoalArray.length; index++) {
-            const element = this.GoalArray[index];
-
-            if (element.id === this.commonid) {
-                element.goalNotes = this.GrandTotal;
-                break;
-            }
-        }
-    }
 
     selectedRecord(checked, id) {
         this.assetid = id;
@@ -457,56 +419,6 @@ export class GoalSelectComponent implements OnInit {
         }
     }
 
-    getMapValue(assetid) {
-        this.valtomap = prompt('Enter value to map ');
-
-        for (let index = 0; index < this.HTMLArray.length; index++) {
-            const element = this.HTMLArray[index];
-            if (element.id === assetid) {
-                const asset = Number(element.assetvalue);
-                const map = Number(this.valtomap);
-                if (asset >= map) {
-                    element.mappedvalue = this.valtomap;
-                    this.calculateSingleAssetTotal();
-                } else {
-                    alert('Please enter value which is less than Asset Value');
-                }
-                break;
-            }
-        }
-        this.ManipulateMapping(assetid);
-    }
-
-    calculateSingleAssetTotal() {
-        this.singleAssetTotal = 0;
-
-        for (let index = 0; index < this.HTMLArray.length; index++) {
-            const element = this.HTMLArray[index];
-            this.singleAssetTotal = this.singleAssetTotal + +element.mappedvalue;
-        }
-
-        if (this.assettype === 'stocks') {
-            this.stockTotal = this.singleAssetTotal;
-        } else if (this.assettype === 'mutual') {
-            this.mutualTotal = this.singleAssetTotal;
-        } else if (this.assettype === 'ChitFund') {
-            this.chitTotal = this.singleAssetTotal;
-        } else if (this.assettype === 'FutureandOption') {
-            this.faoTotal = this.singleAssetTotal;
-        } else if (this.assettype === 'SavingScheme') {
-            this.savingTotal = this.singleAssetTotal;
-        } else if (this.assettype === 'AlternativeInvestment') {
-            this.altTotal = this.singleAssetTotal;
-        } else if (this.assettype === 'cash') {
-            this.cashTotal = this.singleAssetTotal;
-        } else if (this.assettype === 'Propertyandhousehold') {
-            this.propertyTotal = this.singleAssetTotal;
-        }
-        this.isLoaded = true;
-
-        return this.singleAssetTotal;
-    }
-
     ManipulateMapping(assetid) {
         for (let index = 0; index < this.HTMLArray.length; index++) {
             const asset = this.HTMLArray[index];
@@ -516,15 +428,6 @@ export class GoalSelectComponent implements OnInit {
 
                 if (this.checked === true) {
                     this.PostMapping();
-                    this.updateGoal();
-                } else {
-                    for (let j = 0; j < this.AssetMappingDB.length; j++) {
-                        const row = this.AssetMappingDB[j];
-                        if (row.assettype === this.assettype && row.assetid === assetid) {
-                            const res = this.goalSelectService.DeleteMapping(row.id).subscribe();
-                            break;
-                        }
-                    }
                 }
                 break;
             }
@@ -638,9 +541,27 @@ export class GoalSelectComponent implements OnInit {
             this.getProperty();
         }
     }
+
+    deleteMapping(assetid) {
+        const ret = confirm('Are you sure to delete mapping? This cant be undone!');
+        if (ret) {
+            for (let j = 0; j < this.AssetMappingDB.length; j++) {
+                const row = this.AssetMappingDB[j];
+                if (row.assettype === this.assettype && row.assetid === assetid) {
+                    const res = this.goalSelectService.DeleteMapping(row.id).subscribe(resdata => {
+                        this.getMappedAsset();
+                    });
+                    break;
+                }
+            }
+        }
+        // this.goalSelectService.DeleteMapping(id).subscribe();
+    }
+
     getMappedAsset() {
         this.goalSelectService.GetMapping(this.uid).subscribe(data => {
             this.AssetMappingDB = data;
+
             this.AssetViewUpdate();
         });
     }
@@ -650,14 +571,105 @@ export class GoalSelectComponent implements OnInit {
         this.HTMLArray.forEach(html => {
             for (let index = 0; index < this.AssetMappingDB.length; index++) {
                 const db = this.AssetMappingDB[index];
+                html.mappedvalue = 0;
                 if (this.commonid === db.goalid && this.assettype === db.assettype && html.id === db.assetid) {
                     html.mappedvalue = db.valuetomap;
+
                     break;
                 }
             }
         });
 
         this.calculateSingleAssetTotal();
+    }
+
+    getMapValue(assetid) {
+        this.valtomap = prompt('Enter value to map ');
+
+        for (let index = 0; index < this.HTMLArray.length; index++) {
+            const element = this.HTMLArray[index];
+            if (element.id === assetid) {
+                const asset = Number(element.assetvalue);
+                const map = Number(this.valtomap);
+                if (asset >= map) {
+                    element.mappedvalue = this.valtomap;
+                    this.calculateSingleAssetTotal();
+                } else {
+                    alert('Please enter value which is less than Asset Value');
+                }
+                break;
+            }
+        }
+        this.ManipulateMapping(assetid);
+    }
+
+    calculateSingleAssetTotal() {
+        this.singleAssetTotal = 0;
+
+        for (let index = 0; index < this.HTMLArray.length; index++) {
+            const element = this.HTMLArray[index];
+            this.singleAssetTotal = this.singleAssetTotal + +element.mappedvalue;
+        }
+
+        if (this.assettype === 'stocks') {
+            this.stockTotal = this.singleAssetTotal;
+        } else if (this.assettype === 'mutual') {
+            this.mutualTotal = this.singleAssetTotal;
+        } else if (this.assettype === 'ChitFund') {
+            this.chitTotal = this.singleAssetTotal;
+        } else if (this.assettype === 'FutureandOption') {
+            this.faoTotal = this.singleAssetTotal;
+        } else if (this.assettype === 'SavingScheme') {
+            this.savingTotal = this.singleAssetTotal;
+        } else if (this.assettype === 'AlternativeInvestment') {
+            this.altTotal = this.singleAssetTotal;
+        } else if (this.assettype === 'cash') {
+            this.cashTotal = this.singleAssetTotal;
+        } else if (this.assettype === 'Propertyandhousehold') {
+            this.propertyTotal = this.singleAssetTotal;
+        }
+        this.isLoaded = true;
+        this.updateGoal();
+        return this.singleAssetTotal;
+    }
+
+    updateGoal() {
+        this.SetGrandTotal();
+        this.goalSelectService.UpdateGoal(this.GoalNotesUpdate).subscribe(res => {});
+    }
+
+    SetGrandTotal() {
+        this.GrandTotal =
+            +this.stockTotal +
+            +this.mutualTotal +
+            +this.chitTotal +
+            +this.cashTotal +
+            +this.propertyTotal +
+            +this.faoTotal +
+            +this.savingTotal +
+            +this.altTotal;
+
+        this.singleGoalToal = this.GrandTotal;
+
+        this.AvailableCost = +this.PresentCost - +this.GrandTotal;
+        if (this.AvailableCost <= 0) {
+            this.AvailableCost = 0;
+        }
+        this.GoalNotesUpdate.splice(0, this.GoalNotesUpdate.length);
+
+        this.GoalNotesUpdate.push({
+            id: this.commonid,
+            notes: this.GrandTotal
+        });
+
+        for (let index = 0; index < this.GoalArray.length; index++) {
+            const element = this.GoalArray[index];
+
+            if (element.id === this.commonid) {
+                element.goalNotes = this.GrandTotal;
+                break;
+            }
+        }
     }
 
     getStockById(uid) {
