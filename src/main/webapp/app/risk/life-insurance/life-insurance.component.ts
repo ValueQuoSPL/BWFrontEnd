@@ -272,6 +272,7 @@ export class LifeInsuranceComponent implements OnInit {
     }
 
     resetModal() {
+        this.lifeInsurance.id = null;
         this.lifeInsurance.expense_cover = null;
         this.lifeInsurance.total = null;
         this.lifeInsurance.risk_coverage = null;
