@@ -7,8 +7,11 @@ import { Observable } from 'rxjs';
 export class AppointmentResolverService implements Resolve<any> {
     account: any;
     userid: any;
+    id: any;
     constructor(private appointmentService: AppointmentService) {}
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        return this.appointmentService.getCalendarByUid();
+        this.id = route.paramMap.get('id');
+        this.userid = this.id / 1993;
+        return this.appointmentService.getCalendarByUid(this.userid);
     }
 }
