@@ -125,6 +125,9 @@ export class GoalSelectComponent implements OnInit {
     faoTotal;
     inflation = 0.07;
     singleGoalToal: any;
+    isAssetSelected: boolean;
+    fundShortage: boolean;
+    isLoaded: boolean;
 
     constructor(
         private router: Router,
@@ -145,6 +148,7 @@ export class GoalSelectComponent implements OnInit {
         private _route: ActivatedRoute,
         private commonService: CommonSidebarService
     ) {
+        // let id = this._route.paramMap.get("id");
         this.GoalArray = this._route.snapshot.data['goaldata'];
 
         this.output = this.GoalArray;
@@ -280,6 +284,23 @@ export class GoalSelectComponent implements OnInit {
     selectChange(event: any) {
         this.selectedday = event.target.value;
     }
+    openDialog(): void {
+        const dialogRef = this.dialog.open(GoalAddButtonComponent, {
+            width: '550px'
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            this.animal = result;
+        });
+    }
+    onNoClick(): void {
+        this.dialogRef.close();
+    }
+    getGoalbyId(commonid) {
+        this.goalSelectService.getGoalbyId(this.commonid).subscribe(res => {
+            this.SingleGoal = res;
+        });
+    }
     FetchId() {
         this.commonService.account.subscribe(account => {
             this.user = account;
@@ -288,7 +309,6 @@ export class GoalSelectComponent implements OnInit {
             this.getGoal();
         });
     }
-
     getGoal() {
         this.goalSelectService.getgoalbyid().subscribe(res => {
             this.GoalArray = res;
@@ -323,25 +343,32 @@ export class GoalSelectComponent implements OnInit {
                 }
             }
 
-            element.futurecost = this.calculateFutureCost(element.presentcost, element.yeartogoal);
+            // Calculate future cost
+            element.futurecost = Math.round(element.presentcost * Math.pow(1 + this.inflation, element.yeartogoal));
 
-            let M = 0;
-            M = this.calculateMonthlyAmount(element.futurecost, element.yeartogoal);
-            element.requiremonthinvest = M;
+            // Calculate required monthly investment
+            const N = element.yeartogoal * 12;
+            const IR = this.inflation;
+            element.requiremonthinvest = Math.round(element.futurecost / ((Math.pow(1 + IR, N) - 1) / (IR * (1 + IR))));
 
+            // calculate fund shortage
+            element.isFundShortage = true;
             element.fundshortage = +element.futurecost - +element.goalNotes;
-            if (element.fundshortage < 0) {
+            if (element.fundshortage <= 0) {
                 element.fundshortage = 0;
+                element.isFundShortage = false;
             }
         }
     }
 
     openLinkAsset(editLinkModal, goalid, SingleGoalGrand) {
+        this.isAssetSelected = false;
         this.singleGoalToal = SingleGoalGrand;
         this.assettype = null;
         this.singleAssetTotal = 0;
         this.commonid = goalid;
         this.viewUpdate();
+
         this.HTMLArray.splice(0, this.HTMLArray.length);
 
         for (let index = 0; index < this.GoalArray.length; index++) {
@@ -357,42 +384,11 @@ export class GoalSelectComponent implements OnInit {
         this.modalService.open(editLinkModal, { ariaLabelledBy: 'editLinkModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
-                this.updateGoal();
             },
             reason => {
                 this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             }
         );
-    }
-
-    calculateFutureCost(C, Y) {
-        return Math.round(C * Math.pow(1 + this.inflation, Y));
-    }
-
-    calculateMonthlyAmount(F, Y) {
-        let N = 0,
-            R = 0;
-        N = Y * 12;
-        R = this.inflation;
-        return Math.round(F / ((Math.pow(1 + R, N) - 1) / R * (1 + R)));
-    }
-
-    openDialog(): void {
-        const dialogRef = this.dialog.open(GoalAddButtonComponent, {
-            width: '550px'
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            this.animal = result;
-        });
-    }
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
-    getGoalbyId(commonid) {
-        this.goalSelectService.getGoalbyId(this.commonid).subscribe(res => {
-            this.SingleGoal = res;
-        });
     }
 
     private getDismissReason(reason: any): string {
@@ -406,7 +402,6 @@ export class GoalSelectComponent implements OnInit {
     }
     updateGoal() {
         this.SetGrandTotal();
-
         this.goalSelectService.UpdateGoal(this.GoalNotesUpdate).subscribe(res => {});
     }
 
@@ -472,7 +467,7 @@ export class GoalSelectComponent implements OnInit {
                 const map = Number(this.valtomap);
                 if (asset >= map) {
                     element.mappedvalue = this.valtomap;
-                    const total = this.calculateSingleAssetTotal();
+                    this.calculateSingleAssetTotal();
                 } else {
                     alert('Please enter value which is less than Asset Value');
                 }
@@ -507,6 +502,7 @@ export class GoalSelectComponent implements OnInit {
         } else if (this.assettype === 'Propertyandhousehold') {
             this.propertyTotal = this.singleAssetTotal;
         }
+        this.isLoaded = true;
 
         return this.singleAssetTotal;
     }
@@ -520,7 +516,7 @@ export class GoalSelectComponent implements OnInit {
 
                 if (this.checked === true) {
                     this.PostMapping();
-                    this.SetGrandTotal();
+                    this.updateGoal();
                 } else {
                     for (let j = 0; j < this.AssetMappingDB.length; j++) {
                         const row = this.AssetMappingDB[j];
@@ -621,6 +617,9 @@ export class GoalSelectComponent implements OnInit {
     get(assetid) {}
 
     getAsset() {
+        this.isAssetSelected = true;
+        this.isLoaded = false;
+
         if (this.assettype === 'stocks') {
             this.getStockById(this.uid);
         } else if (this.assettype === 'mutual') {
@@ -768,10 +767,11 @@ export class GoalSelectComponent implements OnInit {
         this.cashService.getCashDetailsByuid(this.uid).subscribe(res => {
             this.mutualres = res;
             this.AssetArray = res;
+
             this.AssetArray.forEach(element => {
                 this.HTMLArray.push({
                     id: element.id,
-                    assetname: element.cash_source,
+                    assetname: element.cashsource,
                     assetvalue: element.amount,
                     mappedvalue: 0,
                     disable: true
@@ -881,4 +881,15 @@ export class GoalSelectComponent implements OnInit {
         this.NewGoalselect.yeartogoal = '';
         this.NewGoalselect.presentcost = '';
     }
+    // calculateFutureCost(C, Y) {
+    //     return Math.round(C * Math.pow(1 + this.inflation, Y));
+    // }
+
+    // calculateMonthlyAmount(F, Y) {
+    //     let N = 0,
+    //         R = 0;
+    //     N = Y * 12;
+    //     R = this.inflation;
+    //     return Math.round(F / ((Math.pow(1 + R, N) - 1) / R * (1 + R)));
+    // }
 }

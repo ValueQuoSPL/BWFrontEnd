@@ -21,6 +21,8 @@ export class GoalResolveService implements OnInit, Resolve<any> {
         });
     }
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
-        return this.goalselectService.getGoal(this.uid);
+        let id: any = route.paramMap.get('id');
+        id = id / 1993;
+        return this.goalselectService.getGoal(id);
     }
 }
