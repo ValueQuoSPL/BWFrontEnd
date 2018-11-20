@@ -453,14 +453,14 @@
 </div><!--end of container-->
 <!--start of view page-->
 <div *ngIf="isValid"><!--start of view div-->
-  <table
+  <!-- <table
     class="table-responsive-md 
     table table-hover 
     table-striped  
     table-sm 
     setfont" 
     *ngFor="let profile of output"
-  ><!--start of table-->
+  >
     <thead>
       <th></th>
       <th></th>
@@ -538,7 +538,7 @@
         <td>{{profile.pin}}</td>
       </tr>
 
-    </tbody>
+    </tbody> -->
     <!-- <tr></tr>
 
     <tr>
@@ -551,5 +551,72 @@
         <td>Country:&nbsp;{{profile.country}}</td>
         <td>Pin:&nbsp;{{profile.pin}}</td>
     </tr> -->
-  </table><!--start of table-->
+  <!-- </table>start of table -->
+    <table class="table  table-responsive-md">
+        <thead>
+            <tr>
+                <td  class="heading"><strong>Personal Information</strong></td>
+                <td></td><td></td><td></td><td></td><td></td>
+                <td>
+                    <button class="btn btn-outline-info  btn-sm" type="button" (click)="editDetail()" >
+                        <span><i class="fa fa-edit" aria-hidden="true"></i></span>
+                      </button>
+                </td>
+            </tr>
+        </thead>
+        <tbody *ngFor="let profile of output">
+          <tr>
+              <th class="subheading">First Name:</th>
+              <td class="tddata">{{profile.firstName}}</td>
+              <th class="subheading">Middle Name:</th>
+              <td class="tddata">{{profile.middleName}}</td>
+              <th class="subheading">Last Name:</th>
+              <td class="tddata">{{profile.lastName}}</td>
+          </tr>
+          <tr>
+              <th class="subheading">Gender:</th>
+              <td class="tddata">{{profile.gender}}</td>
+              <th class="subheading">Marital Status:</th>
+              <td class="tddata">{{profile.maritalStatus}}</td>
+              <th class="subheading">Date Of Birth:</th>
+              <td class="tddata">{{profile.dob | date: 'd/M/y'}}</td>
+            </tr>
+            <tr>
+              <th class="subheading">Occupation:</th>
+              <td class="tddata">{{profile.occupation}}</td>
+              <th class="subheading">Mobile Number:</th>
+              <td class="tddata">{{profile.mobileNumber}}</td>
+              <th class="subheading">Alternate Number:</th>
+              <td class="tddata">{{profile.alternateNumber}}</td>
+            </tr>
+            <tr>
+              <th class="subheading">Company:</th>
+              <td class="tddata">{{profile.company}}</td>
+              <th class="subheading">How Did You Know:</th>
+              <td class="tddata">{{profile.howDidYouKnow}}</td>
+              <th class="subheading">Address:</th>
+              <td class="tddata">{{profile.address}}</td>
+            </tr>
+            <hr>
+            <tr>
+                <th class="heading">Communication Information</th>
+            </tr>
+            <tr>
+                <th class="subheading">Email Id:</th>
+                <td class="tddata">{{profile.emailId}}</td>
+                <th class="subheading">Pan No.</th>
+                <td class="tddata">{{profile.pan}}</td>
+                <th class="subheading">City:</th>
+                <td class="tddata">{{profile.city}}</td>
+              </tr>
+              <tr>
+                <th class="subheading">State:</th>
+                <td class="tddata">{{profile.state}}</td>
+                <th class="subheading">Country:</th>
+                <td class="tddata">{{profile.country}}</td>
+                <th class="subheading">Pin:</th>
+                <td class="tddata">{{profile.pin}}</td>
+              </tr>
+        </tbody>
+    </table>
 </div><!--end of view div-->

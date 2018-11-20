@@ -5,11 +5,11 @@
     <form  name="form" role="form" #familyproForm="ngForm"><!--start of form-->
         <mat-form-field>
             <mat-select placeholder="Choose Relation" name="relationship" [(ngModel)]="familyProfile.relationship">
-                <mat-option  value="Mother">Mother</mat-option>
+                <mat-option value="Mother">Mother</mat-option>
                 <mat-option value="Father">Father</mat-option>
-                <mat-option  value="Spouce">Spouce</mat-option>
+                <mat-option value="Spouce">Spouce</mat-option>
                 <mat-option value="Son">Son</mat-option>
-                <mat-option  value="Daughter">Daughter</mat-option>
+                <mat-option value="Daughter">Daughter</mat-option>
             </mat-select>
         </mat-form-field><br>
         <div class="row"><!--start of row1-->
@@ -155,15 +155,37 @@
          <div class="row">
             <div class="col-md-8"></div>
             <div class="col-md-4">
-                        <div *ngIf="show" >
-                            <button mat-raised-button class="btnSave" [disabled]="familyproForm.form.invalid"  (click)="saveFamilyProfile()">Save</button>&nbsp;
-                            <button mat-raised-button class="btnCancel" (click)="viewpage()">Cancel</button>
-                        </div>
-                        <div *ngIf="!show">
-                            <button mat-raised-button class="btnSave" [disabled]="familyproForm.form.invalid" (click)="update()">update</button>&nbsp;
-                            <button mat-raised-button class="btnCancel" (click)="viewpage()">Cancel</button>
-                        </div>
-                  
+                <div *ngIf="show" >
+                    <button 
+                        mat-raised-button 
+                        class="btnSave" 
+                        [disabled]="familyproForm.form.invalid" 
+                        (click)="saveFamilyProfile()">Save
+                    </button>&nbsp;
+                    <button *ngIf="!Addmember" 
+                        mat-raised-button 
+                        class="btnCancel" 
+                        (click)="formpage()">Cancel
+                    </button>
+                    <button *ngIf="Addmember" 
+                        mat-raised-button 
+                        class="btnCancel" 
+                        (click)="viewpage()">Cancel
+                    </button>
+                </div>
+                <div *ngIf="!show">
+                    <button 
+                        mat-raised-button 
+                        class="btnSave" 
+                        [disabled]="familyproForm.form.invalid" 
+                        (click)="update()">update
+                    </button>&nbsp;
+                    <button 
+                        mat-raised-button 
+                        class="btnCancel" 
+                        (click)="viewpage()">Cancel
+                    </button>
+                </div>
             </div>
          </div>
     </form><!--end of form-->
@@ -171,13 +193,13 @@
 
 <!--start of view page-->
 <div class="container" *ngIf="isValid"><!--start of container div-->
-    <table class="table  table-responsive-md">
+    <table class="table  table-responsive-md" >
         <thead>
             <tr>
                 <td  class="heading"><strong>Relationship Details</strong></td>
                 <td></td><td></td><td></td><td></td><td></td>
                 <td>
-                    <button type="button" class="btn btn-sm  btn-link" (click)="formpage()">
+                    <button type="button" class="btn btn-sm  btn-link" (click)="AddNewMember()">
                         <fa-icon [icon]="'plus'"></fa-icon>
                         <span>Add</span>
                     </button> 
@@ -185,41 +207,37 @@
             </tr>
         </thead>
         <tbody *ngFor="let profile of output">
-                <tr>
-                    <th>Relation Ship:</th>
-                    <td>{{profile.relationship}}</td>
-                    <td></td><td></td><td></td><td></td>
-                    <td>
-                        <button 
-                            class="btn btn-outline-info  btn-sm"
-                            type="button"
-                            (click)="editDetail(profile.id)">
-                            <span><i class="fa fa-edit" aria-hidden="true"></i>
-                            </span>
-                        </button>
-                    </td>
-                </tr>
-          <tr>
-            <th>First Name:</th>
-            <td>{{profile.firstname}}</td>
-            <th>Middle Name:</th>
-            <td>{{profile.middlename}}</td>
-            <th>Last Name:</th>
-            <td>{{profile.lastname}}</td>
-          </tr>
-          <tr>
-                <th>Date Of Birth:&nbsp;</th>
-                <td>{{profile.dateOfBirth | date: 'd/M/y'}}</td>
-                <th>Mobile Number:&nbsp;</th>
-                <td>{{profile.phonenumber}}</td>
-                <th>EmailId:&nbsp;</th>
-                <td>{{profile.email}}</td>
+                <th>Relation Ship:</th>
+                <td>{{profile.relationship}}</td>
+                <td></td><td></td><td></td><td></td>
                 <td>
-
-                </td> 
+                    <button 
+                        class="btn btn-outline-info  btn-sm"
+                        type="button"
+                        (click)="editDetail(profile.id)">
+                        <span><i class="fa fa-edit" aria-hidden="true"></i>
+                        </span>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <th class="subheading">First Name:</th>
+                <td class="tddata">{{profile.firstname}}</td>
+                <th class="subheading">Middle Name:</th>
+                <td class="tddata">{{profile.middlename}}</td>
+                <th class="subheading">Last Name:</th>
+                <td class="tddata">{{profile.lastname}}</td>
+            </tr>
+            <tr>
+                <th class="subheading">Date Of Birth:&nbsp;</th>
+                <td class="tddata">{{profile.dateOfBirth | date: 'd/M/y'}}</td>
+                <th class="subheading">Mobile Number:&nbsp;</th>
+                <td class="tddata">{{profile.phonenumber}}</td>
+                <th class="subheading">Email Id:&nbsp;</th>
+                <td class="tddata">{{profile.email}}</td>
+                <td></td> 
             </tr>
         </tbody>
-      </table>
-    <!--end of table-->
+    </table><!--end of table-->
 </div><!--end of container view div-->
 <!--end of view page-->
