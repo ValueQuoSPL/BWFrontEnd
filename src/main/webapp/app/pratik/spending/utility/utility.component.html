@@ -242,7 +242,7 @@
             <tbody>
             <tr>
                 <td> Electricity </td>
-                <td> <input required jhiNumberOnly type="number" id="11" [(ngModel)]="utility.electricity"  [ngModelOptions]="{standalone: true}"   > </td>
+                <td> <input required jhiNumberOnly type="number" id="11" [(ngModel)]="utility.electricity"  [ngModelOptions]="{standalone: true}" (ngModelChange)="staticChange($event)"  > </td>
                 <td> {{utility.electricity * 12}} </td>
                 <td></td>
                 <td></td>

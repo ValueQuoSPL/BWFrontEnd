@@ -33,6 +33,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AccountService } from 'app/core';
 import { keyframes } from '@angular/animations';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { isNumber } from 'util';
 
 class Mapping {
     id;
@@ -419,63 +420,6 @@ export class GoalSelectComponent implements OnInit {
         }
     }
 
-    ManipulateMapping(assetid) {
-        for (let index = 0; index < this.HTMLArray.length; index++) {
-            const asset = this.HTMLArray[index];
-
-            if (asset.id === this.assetid) {
-                this.findAssetAndFillMapping(this.assetid);
-
-                if (this.checked === true) {
-                    this.PostMapping();
-                }
-                break;
-            }
-        }
-    }
-
-    PostMapping() {
-        let flag = 0;
-        for (let index = 0; index < this.AssetMappingDB.length; index++) {
-            const db = this.AssetMappingDB[index];
-            if (this.mapping.goalid === db.goalid && this.mapping.assettype === db.assettype && this.mapping.assetid === db.assetid) {
-                flag = 0;
-                this.GlobalFlag = false;
-                this.mapping.id = db.id;
-
-                this.goalSelectService.PutMapping(this.mapping).subscribe(res => {
-                    this.getMappedAsset();
-                });
-
-                break;
-            } else {
-                flag = 1;
-                this.GlobalFlag = true;
-            }
-        }
-
-        if (flag === 1 || this.AssetMappingDB.length === 0) {
-            this.goalSelectService.PostMapping(this.mapping).subscribe(res => {
-                this.getMappedAsset();
-            });
-        }
-    }
-
-    findAssetAndFillMapping(assetid) {
-        for (let index = 0; index < this.HTMLArray.length; index++) {
-            const element = this.HTMLArray[index];
-            if (assetid === element.id) {
-                this.mapping.goalid = this.commonid;
-                this.mapping.assettype = this.assettype;
-                this.mapping.assetname = element.assetname;
-                this.mapping.assetid = element.id;
-                this.mapping.assetValue = element.assetvalue;
-                this.mapping.valuetomap = element.mappedvalue;
-                break;
-            }
-        }
-    }
-
     viewByGoalId(id, content) {
         this.goalid = id;
 
@@ -586,21 +530,27 @@ export class GoalSelectComponent implements OnInit {
     getMapValue(assetid) {
         this.valtomap = prompt('Enter value to map ');
 
-        for (let index = 0; index < this.HTMLArray.length; index++) {
-            const element = this.HTMLArray[index];
-            if (element.id === assetid) {
-                const asset = Number(element.assetvalue);
-                const map = Number(this.valtomap);
-                if (asset >= map) {
-                    element.mappedvalue = this.valtomap;
-                    this.calculateSingleAssetTotal();
-                } else {
-                    alert('Please enter value which is less than Asset Value');
+        const ret = isNaN(this.valtomap);
+        console.log(ret);
+        if (!ret) {
+            for (let index = 0; index < this.HTMLArray.length; index++) {
+                const element = this.HTMLArray[index];
+                if (element.id === assetid) {
+                    const asset = Number(element.assetvalue);
+                    const map = Number(this.valtomap);
+                    if (asset >= map) {
+                        element.mappedvalue = this.valtomap;
+                        this.calculateSingleAssetTotal();
+                    } else {
+                        alert('Please enter value which is less than Asset Value');
+                    }
+                    break;
                 }
-                break;
             }
+            this.ManipulateMapping(assetid);
+        } else {
+            alert('Please enter Numbers(Digits) Only');
         }
-        this.ManipulateMapping(assetid);
     }
 
     calculateSingleAssetTotal() {
@@ -667,6 +617,63 @@ export class GoalSelectComponent implements OnInit {
 
             if (element.id === this.commonid) {
                 element.goalNotes = this.GrandTotal;
+                break;
+            }
+        }
+    }
+
+    ManipulateMapping(assetid) {
+        for (let index = 0; index < this.HTMLArray.length; index++) {
+            const asset = this.HTMLArray[index];
+
+            if (asset.id === this.assetid) {
+                this.findAssetAndFillMapping(this.assetid);
+
+                if (this.checked === true) {
+                    this.PostMapping();
+                }
+                break;
+            }
+        }
+    }
+
+    PostMapping() {
+        let flag = 0;
+        for (let index = 0; index < this.AssetMappingDB.length; index++) {
+            const db = this.AssetMappingDB[index];
+            if (this.mapping.goalid === db.goalid && this.mapping.assettype === db.assettype && this.mapping.assetid === db.assetid) {
+                flag = 0;
+                this.GlobalFlag = false;
+                this.mapping.id = db.id;
+
+                this.goalSelectService.PutMapping(this.mapping).subscribe(res => {
+                    this.getMappedAsset();
+                });
+
+                break;
+            } else {
+                flag = 1;
+                this.GlobalFlag = true;
+            }
+        }
+
+        if (flag === 1 || this.AssetMappingDB.length === 0) {
+            this.goalSelectService.PostMapping(this.mapping).subscribe(res => {
+                this.getMappedAsset();
+            });
+        }
+    }
+
+    findAssetAndFillMapping(assetid) {
+        for (let index = 0; index < this.HTMLArray.length; index++) {
+            const element = this.HTMLArray[index];
+            if (assetid === element.id) {
+                this.mapping.goalid = this.commonid;
+                this.mapping.assettype = this.assettype;
+                this.mapping.assetname = element.assetname;
+                this.mapping.assetid = element.id;
+                this.mapping.assetValue = element.assetvalue;
+                this.mapping.valuetomap = element.mappedvalue;
                 break;
             }
         }
