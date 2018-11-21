@@ -5,6 +5,7 @@ import { House } from 'app/pratik/spending/spending.model';
 import { HouseService } from 'app/pratik/spending/spending.service';
 import { Observable } from 'rxjs/Observable';
 import { SpendingRouteGuardService } from 'app/pratik/common/spending-route-guard.service';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 class NewHousehold {
     dynamicHousehold: any = [];
@@ -37,13 +38,15 @@ export class HouseholdComponent implements OnInit {
     prevValue: any;
     globalflag: boolean;
     isFieldChange: boolean;
+    account: any;
 
     constructor(
         private principal: Principal,
         private houseService: HouseService,
         private modalService: NgbModal,
         private accountService: AccountService,
-        private routeGuard: SpendingRouteGuardService
+        private routeGuard: SpendingRouteGuardService,
+        private commonService: CommonSidebarService
     ) {}
 
     ngOnInit() {
@@ -83,18 +86,11 @@ export class HouseholdComponent implements OnInit {
     }
 
     getUserid() {
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    this.GetHousehold();
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.GetHousehold();
+        });
     }
 
     GetHousehold(): void {
@@ -127,7 +123,7 @@ export class HouseholdComponent implements OnInit {
             } else if (this.HouseholdArray[i].name === 'auto') {
                 this.house.auto = +this.HouseholdArray[i].amount;
             } else if (this.HouseholdArray[i].name === 'edu') {
-                this.house.vcd = +this.HouseholdArray[i].amount;
+                this.house.edu = +this.HouseholdArray[i].amount;
             } else if (this.HouseholdArray[i].name === 'grocery') {
                 this.house.grocery = +this.HouseholdArray[i].amount;
             } else if (this.HouseholdArray[i].name === 'servent') {
@@ -216,6 +212,7 @@ export class HouseholdComponent implements OnInit {
 
     SaveHousehold(): void {
         this.house.userid = this.uid;
+
         // this.house.dynamicHousehold = this.dynamicHousehold;
         this.houseService.PostHouse(this.house).subscribe(data => {
             this.isHouseData = true;

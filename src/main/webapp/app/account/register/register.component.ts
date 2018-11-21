@@ -1,11 +1,11 @@
-import { Component, OnInit, AfterViewInit, Renderer, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 import { Register } from 'app/account/register/register.service';
 
 import { UserMgmtComponent } from 'app/admin';
-import { User, UserService, LoginModalService } from 'app/core';
+import { User, LoginModalService } from 'app/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -39,14 +39,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     length;
     chars;
 
-    constructor(
-        private loginModalService: LoginModalService,
-        private registerService: Register,
-        private elementRef: ElementRef,
-        private renderer: Renderer,
-        private userService: UserService,
-        private router: Router
-    ) {}
+    constructor(private loginModalService: LoginModalService, private registerService: Register, private router: Router) {}
 
     ngOnInit() {
         this.success = false;
@@ -122,7 +115,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
         // Validate special chars
         const chars = /[!@#$%^&*]/g;
-        if (data.match(numbers)) {
+        if (data.match(chars)) {
             this.chars = false;
         } else {
             this.chars = true;
