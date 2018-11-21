@@ -188,6 +188,7 @@ export class LifeInsuranceComponent implements OnInit {
 
     opnLife(id, lifeContent) {
         this.edit = true;
+        this.lifeInsurance.total = 0;
         this.sum();
         this.getGoal1();
         this.commanId = id;
