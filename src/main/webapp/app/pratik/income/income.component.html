@@ -1,6 +1,6 @@
 <div class="container">
 
-    <div >
+    <div>
 
         <div class="form-group row justify-content-md-center bwtitle">
             <span class="animated zoomIn">Income</span>
@@ -18,7 +18,7 @@
                         </button>
                         <span [ngSwitch]="isIncomeData" class="btn-right">
                             <p *ngSwitchCase="true">
-                                <button type="button" class="btn btn-sm  btn-link" (click)="updateIncome()" [disabled]="!globalflag" >
+                                <button type="button" class="btn btn-sm  btn-link" (click)="updateIncome()" [disabled]="!globalflag">
                                     <fa-icon [icon]="'save'"></fa-icon>
                                     <span>Update</span>
                                 </button>
@@ -50,22 +50,35 @@
                         <form class="example-container" #incomeAdd="ngForm">
                             <div>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput required placeholder="Name" value="" [(ngModel)]="resource" name="resource-name">
-                                    <mat-hint>Please enter your resource of income </mat-hint>
+                                    <input matInput required placeholder="Name" value="" #resource_name="ngModel" [(ngModel)]="resource" name="resource_name" jhiCharsOnly>
+                                    <mat-hint *ngIf="!resource_name.dirty " >Please enter your resource of income </mat-hint>
                                 </mat-form-field>
                             </div>
 
                             <div>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput jhiNumberOnly required placeholder="Amount" type="number" value=""
-                                        [(ngModel)]="amount" name="amount-name" >
-                                    <mat-hint>Please enter amount</mat-hint>
+                                    <input matInput placeholder="Amount" value="" [(ngModel)]="amount" name="amount_name"
+                                        id="amount_name" #amount_name="ngModel" maxlength=13 minlength=2 jhiNumberOnly
+                                        required (ngModelChange)="detect($event)" >
+                                    <mat-hint *ngIf="!amount_name.dirty ">Please eneter your income amount</mat-hint>
                                 </mat-form-field>
+
+                                <div *ngIf="amount_name.dirty && amount_name.invalid">
+                                    <small class="form-text text-danger" *ngIf="amount_name.errors.minlength">
+                                        Your amount is required to be at least 2 digit.
+                                    </small>
+                                    <small class="form-text text-danger" *ngIf="amount_name.errors.required">
+                                        Your amount is required.
+                                    </small>
+                                </div>
+                                <small class="form-text text-danger" *ngIf="maxlength">
+                                    Your amount cannot be longer than 12 digits.
+                                </small>
                             </div>
                             <br> <br>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-sm btn-outline-dark" (click)="c('Save click')"
-                                    [disabled]="incomeAdd.form.invalid">Add</button>
+                                    [disabled]="incomeAdd.form.invalid || maxlength">Add</button>
                             </div>
                         </form>
                     </div>
@@ -95,7 +108,7 @@
                             <br> <br>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-sm btn-outline-success" (click)="c('Save click')"
-                                    [disabled]="!isFieldChange" >Update</button>
+                                    [disabled]="!isFieldChange">Update</button>
                             </div>
                         </form>
                     </div>

@@ -36,7 +36,7 @@ export class UtilityComponent implements OnInit {
     newUtility: NewUtility = new NewUtility();
     prevValue: any;
     globalflag: boolean;
-    isFieldChange: boolean;
+    isFieldChange = false;
 
     constructor(
         private utilityService: UtilityService,
@@ -144,15 +144,23 @@ export class UtilityComponent implements OnInit {
         this.calcUtilityTotal();
     }
 
-    SaveUtility(): void {
-        this.utility.userid = this.uid;
-        // this.utility.dynamicUtility = this.dynamicUtilityArray;
-        this.utilityService.PostUtility(this.utility).subscribe(data => {
-            this.routeGuard.GuardSource.next(false);
+    staticChange(data) {
+        this.isFieldChange = true;
+        this.routeGuard.GuardSource.next(true);
+    }
 
-            this.isUtilityData = true;
-            this.changesSaved = true;
-        });
+    SaveUtility(): void {
+        if (this.isFieldChange) {
+            this.utility.userid = this.uid;
+            // this.utility.dynamicUtility = this.dynamicUtilityArray;
+            this.utilityService.PostUtility(this.utility).subscribe(data => {
+                this.routeGuard.GuardSource.next(false);
+                this.isUtilityData = true;
+                this.changesSaved = true;
+            });
+        } else {
+            alert('nothing changed to save');
+        }
     }
 
     GetUtility(): void {
@@ -197,10 +205,6 @@ export class UtilityComponent implements OnInit {
         }
         this.loadUtility = true;
         this.calcUtilityTotal();
-    }
-
-    isFieldChanged() {
-        return true;
     }
 
     onEditStaticField(nameField, modal) {
@@ -310,8 +314,7 @@ export class UtilityComponent implements OnInit {
         });
     }
     canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-        this.dataChanged = this.isFieldChanged();
-        if (!this.dataChanged && !this.changesSaved) {
+        if (!this.isFieldChange && !this.changesSaved) {
             return confirm('Do you want to leave this page Before changes saved ?');
         } else {
             return true;
