@@ -15,19 +15,19 @@
             name="firstName" 
             #firstName="ngModel"
             minlength="2" 
-            maxlength="10" 
+            maxlength="20" 
             pattern="^[_'.@A-Za-z0-9-]*$"
             required
           >
         </mat-form-field>
         <div *ngIf=" firstName.touched && !firstName.valid">
-          <div *ngIf="firstName.errors.required">
+          <div *ngIf="firstName.errors.required"  class="form-text text-danger">
               First Name is required
           </div>
-          <div *ngIf="firstName.errors.minlength">
+          <div *ngIf="firstName.errors.minlength"  class="form-text text-danger">
               First Name should be min {{firstName.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="firstName.errors.pattern">
+          <div *ngIf="firstName.errors.pattern"  class="form-text text-danger">
               First Name pattern not match
           </div>
         </div>
@@ -42,19 +42,16 @@
             [(ngModel)]="myProfile.middleName"
             name="middleName" 
             #middleName="ngModel"
-            minlength="2" 
-            maxlength="10" 
-            pattern="^[_'.@A-Za-z0-9-]*$"
           >
         </mat-form-field>
         <div *ngIf=" middleName.touched && !middleName.valid">
-          <div *ngIf="middleName.errors.required">
+          <div *ngIf="middleName.errors.required" class="form-text text-danger">
             Middle Name is required
           </div>
-          <div *ngIf="middleName.errors.minlength">
+          <div *ngIf="middleName.errors.minlength" class="form-text text-danger">
             Middle Name  should be min {{middleName.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="middleName.errors.pattern"> 
+          <div *ngIf="middleName.errors.pattern" class="form-text text-danger"> 
               Middle Name pattern not match
           </div>
         </div>
@@ -70,19 +67,19 @@
             name="lastName" 
             #lastName="ngModel"
             minlength="2" 
-            maxlength="10" 
+            maxlength="20" 
             pattern="^[_'.@A-Za-z0-9-]*$"
             required
             >
         </mat-form-field>
-        <div *ngIf=" lastName.touched && !lastName.valid">
+        <div *ngIf=" lastName.touched && !lastName.valid" class="form-text text-danger">
           <div *ngIf="lastName.errors.required">
             Last Name is required
           </div>
-          <div *ngIf="lastName.errors.minlength">
+          <div *ngIf="lastName.errors.minlength" class="form-text text-danger">
             Last Name name should be min {{lastName.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="lastName.errors.pattern"> 
+          <div *ngIf="lastName.errors.pattern" class="form-text text-danger"> 
               Last Name pattern not match
           </div>
         </div>
@@ -138,13 +135,13 @@
             >
         </mat-form-field>
         <div *ngIf="mobileNumber.touched && !mobileNumber.valid">
-          <div *ngIf="mobileNumber.errors.required">
+          <div *ngIf="mobileNumber.errors.required" class="form-text text-danger">
               Mobile Number is required
           </div>
-          <div *ngIf="mobileNumber.errors.minlength">
+          <div *ngIf="mobileNumber.errors.minlength" class="form-text text-danger">
             Mobile Number name should be min {{mobileNumber.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="mobileNumber.errors.pattern"> 
+          <div *ngIf="mobileNumber.errors.pattern" class="form-text text-danger"> 
               pattern not match
           </div>
         </div>
@@ -154,6 +151,7 @@
       <div class="col-md-3"><!-- start of row3.col1-->
         <mat-form-field>
           <input 
+            (ngModelChange)="onChange($event)"
             matInput 
             jhiNumberOnly 
             placeholder="Alternamte Number"
@@ -167,16 +165,19 @@
           >
         </mat-form-field>
         <div *ngIf="alternateNumber.touched && !alternateNumber.valid">
-          <div *ngIf="alternateNumber.errors.required">
+          <div *ngIf="alternateNumber.errors.required" class="form-text text-danger">
               Alternate Number is required
           </div>
-          <div *ngIf="alternateNumber.errors.minlength">
+          <div *ngIf="alternateNumber.errors.minlength"class="form-text text-danger">
               Alternate Number should be min {{alternateNumber.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="alternateNumber.errors.pattern"> 
-              pattern not match
+          <div  *ngIf="checkNum" class="form-text text-danger"> 
+              Mobile Number & Alternate Number can't be same
           </div>
         </div>
+        <div  *ngIf="checkNum" class="form-text text-danger"> 
+          Mobile Number & Alternate Number can't be same
+      </div>
       </div><!-- end of row3.col1-->
       <div class="col-md-3"><!-- start of row3.col2-->
         <mat-form-field>
@@ -189,19 +190,19 @@
             name="occupation" 
             #occupation="ngModel"
             minlength="5" 
-            maxlength="10" 
+            maxlength="20" 
             pattern="^[_'.@A-Za-z0-9-]*$"
             required
           >
         </mat-form-field>
         <div *ngIf="occupation.touched && !occupation.valid">
-          <div *ngIf="occupation.errors.required">
+          <div *ngIf="occupation.errors.required" class="form-text text-danger">
             Occupation is required
           </div>
-          <div *ngIf="occupation.errors.minlength">
+          <div *ngIf="occupation.errors.minlength" class="form-text text-danger">
               Occupation should be min {{alternateNumber.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="occupation.errors.pattern"> 
+          <div *ngIf="occupation.errors.pattern" class="form-text text-danger"> 
               pattern not match
           </div>
         </div>
@@ -223,13 +224,13 @@
           >
         </mat-form-field>
         <div *ngIf="company.touched && !company.valid">
-          <div *ngIf="company.errors.required">
+          <div *ngIf="company.errors.required" class="form-text text-danger">
             Company name is required
           </div>
-          <div *ngIf="company.errors.minlength">
+          <div *ngIf="company.errors.minlength" class="form-text text-danger">
             Company should be min {{company.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="company.errors.pattern"> 
+          <div *ngIf="company.errors.pattern" class="form-text text-danger"> 
               pattern not match
           </div>
         </div>
@@ -238,7 +239,7 @@
         <mat-form-field>
           <mat-select placeholder="How Did You Know About Us?" name="howDidYouKnow" [(ngModel)]="myProfile.howDidYouKnow">
             <mat-option  value="advertiesment">Advertiesment</mat-option>
-            <mat-option value="byfriend">ByFriend</mat-option>
+            <mat-option value="byfriend">By Friend</mat-option>
           </mat-select>
         </mat-form-field> 
       </div><!--end of row3.col4-->
@@ -259,7 +260,7 @@
         <mat-form-field>
           <input 
             matInput 
-            placeholder="Email"
+            placeholder="Email Id"
             type="text" 
             id="emailId"    
             [(ngModel)]="myProfile.emailId"
@@ -273,13 +274,13 @@
           >
         </mat-form-field>
         <div *ngIf="emailId.touched && !emailId.valid">
-          <div *ngIf="emailId.errors.required">
+          <div *ngIf="emailId.errors.required" class="form-text text-danger">
             Email Id is required
           </div>
-          <div *ngIf="emailId.errors.minlength">
+          <div *ngIf="emailId.errors.minlength" class="form-text text-danger">
             Email Id should be min {{emailId.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="emailId.errors.pattern"> 
+          <div *ngIf="emailId.errors.pattern" class="form-text text-danger"> 
             Email pattern not match
           </div>
         </div> 
@@ -301,13 +302,13 @@
           >
         </mat-form-field>
         <div *ngIf="pan.touched && !pan.valid">
-          <div *ngIf="pan.errors.required">
+          <div *ngIf="pan.errors.required" class="form-text text-danger">
             pan is required
           </div>
-          <div *ngIf="pan.errors.minlength">
+          <div *ngIf="pan.errors.minlength" class="form-text text-danger">
             pan should be min {{pan.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="pan.errors.pattern"> 
+          <div *ngIf="pan.errors.pattern" class="form-text text-danger"> 
             pan pattern not match
           </div>
         </div>
@@ -333,13 +334,13 @@
           >
         </mat-form-field>
         <div *ngIf="country.touched && !country.valid">
-          <div *ngIf="country.errors.required">
+          <div *ngIf="country.errors.required" class="form-text text-danger">
               Country is required
           </div>
-          <div *ngIf="country.errors.minlength">
+          <div *ngIf="country.errors.minlength" class="form-text text-danger">
               Country should be min {{country.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="country.errors.pattern"> 
+          <div *ngIf="country.errors.pattern" class="form-text text-danger"> 
             Country pattern not match
           </div>
         </div>
@@ -360,13 +361,13 @@
           >
         </mat-form-field>
         <div *ngIf="state.touched && !state.valid">
-          <div *ngIf="state.errors.required">
+          <div *ngIf="state.errors.required" class="form-text text-danger">
             state is required
           </div>
-          <div *ngIf="state.errors.minlength">
+          <div *ngIf="state.errors.minlength" class="form-text text-danger">
             state should be min {{state.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="state.errors.pattern"> 
+          <div *ngIf="state.errors.pattern" class="form-text text-danger"> 
             state pattern not match
           </div>
         </div> 
@@ -387,13 +388,13 @@
             required>
         </mat-form-field>
         <div *ngIf="city.touched && !city.valid">
-          <div *ngIf="city.errors.required">
+          <div *ngIf="city.errors.required" class="form-text text-danger">
             city is required
           </div>
-          <div *ngIf="city.errors.minlength">
+          <div *ngIf="city.errors.minlength" class="form-text text-danger">
             city should be min {{city.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="city.errors.pattern"> 
+          <div *ngIf="city.errors.pattern" class="form-text text-danger"> 
             city pattern not match
           </div>
       </div>
@@ -414,13 +415,13 @@
             required>
         </mat-form-field>
         <div *ngIf="pin.touched && !pin.valid">
-          <div *ngIf="pin.errors.required">
+          <div *ngIf="pin.errors.required" class="form-text text-danger">
             pin is required
           </div>
-          <div *ngIf="pin.errors.minlength">
+          <div *ngIf="pin.errors.minlength" class="form-text text-danger">
             pin should be min {{pin.errors.minlength.requiredLength}} char
           </div>
-          <div *ngIf="pin.errors.pattern"> 
+          <div *ngIf="pin.errors.pattern" class="form-text text-danger"> 
             pin pattern not match
           </div>
         </div>
@@ -558,9 +559,12 @@
                 <td  class="heading"><strong>Personal Information</strong></td>
                 <td></td><td></td><td></td><td></td><td></td>
                 <td>
-                    <button class="btn btn-outline-info  btn-sm" type="button" (click)="editDetail()" >
-                        <span><i class="fa fa-edit" aria-hidden="true"></i></span>
-                      </button>
+                      <button 
+                    class="btn btn-outline-info" 
+                    type="button" 
+                    (click)="editDetail()">
+                    <span><fa-icon [icon]="'edit'"></fa-icon></span>
+                </button>   
                 </td>
             </tr>
         </thead>
