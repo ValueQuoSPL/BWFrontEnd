@@ -29,6 +29,8 @@ export class LifeInsuranceComponent implements OnInit {
     closeResult: string;
     public output: any;
     commanId: any;
+    panelFutureState = true;
+    panelLiabilityState = false;
 
     checkLife: any;
     dynamicGoalArray: any;

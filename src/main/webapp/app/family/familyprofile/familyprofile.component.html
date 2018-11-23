@@ -27,10 +27,10 @@
                         required>
                 </mat-form-field>
                 <div *ngIf=" firstname?.touched && !firstname?.valid">
-                    <div *ngIf="firstname.errors.required" style="color: red" >
+                    <div *ngIf="firstname.errors.required" class="form-text text-danger" >
                         First Name is required
                     </div>
-                    <div *ngIf="firstname.errors.minlength" style="color: red">
+                    <div *ngIf="firstname.errors.minlength" class="form-text text-danger">
                             First Name should be min {{firstname.errors.minlength.requiredLength}} char
                     </div>
                 </div>
@@ -44,19 +44,16 @@
                         [(ngModel)]="familyProfile.middlename"
                         name="middlename" 
                         #middlename="ngModel"
-                        minlength="2" 
-                        maxlength="30"
-                        required
                     >
               </mat-form-field>
-              <div *ngIf="middlename?.touched && !middlename?.valid">
+              <!-- <div *ngIf="middlename?.touched && !middlename?.valid">
                     <div *ngIf="middlename.errors.required" style="color: red">
                         Middle name is required
                     </div>
                     <div *ngIf="middlename.errors.minlength" style="color: red">
                        Middle name should be min {{middlename.errors.minlength.requiredLength}} char
                     </div>
-                </div>
+                </div> -->
             </div><!--end of  row1.col2-->
             <div class="col-md-4"><!--start of row1.col3-->
                 <mat-form-field>
@@ -72,10 +69,10 @@
                         required>
                 </mat-form-field>
                 <div *ngIf="lastname?.touched && !lastname?.valid" >
-                    <div *ngIf="lastname.errors.required" style="color: red">
+                    <div *ngIf="lastname.errors.required" class="form-text text-danger">
                         Last name is required
                     </div>
-                    <div *ngIf="lastname.errors.minlength" style="color: red">
+                    <div *ngIf="lastname.errors.minlength" class="form-text text-danger">
                         Last name should be min {{lastname.errors.minlength.requiredLength}} char
                     </div>
                 </div>
@@ -112,13 +109,13 @@
                     >
                 </mat-form-field>
                 <div *ngIf=" email?.touched && !email?.valid">
-                    <div *ngIf="email.errors.required" style="color: red">
+                    <div *ngIf="email.errors.required" class="form-text text-danger">
                         Email is required
                     </div>
-                    <div *ngIf="email.errors.minlength" style="color: red">
+                    <div *ngIf="email.errors.minlength" class="form-text text-danger">
                         Email should be min {{email.errors.minlength.requiredLength}} char
                     </div>
-                    <div *ngIf="email.errors.pattern" style="color: red"> 
+                    <div *ngIf="email.errors.pattern" class="form-text text-danger"> 
                         pattern not match
                     </div>
                 </div>
@@ -140,13 +137,13 @@
                     >
                 </mat-form-field>
                 <div *ngIf="phonenumber?.touched && !phonenumber?.valid">
-                    <div *ngIf="phonenumber.errors.required" style="color: red">
-                        Email is required
+                    <div *ngIf="phonenumber.errors.required" class="form-text text-danger">
+                        Mobile Number is required
                     </div>
-                    <div *ngIf="phonenumber.errors.minlength" style="color: red">
-                        Email should be min {{phonenumber.errors.minlength.requiredLength}} char
+                    <div *ngIf="phonenumber.errors.minlength" class="form-text text-danger">
+                            Mobile Number should be min {{phonenumber.errors.minlength.requiredLength}} char
                     </div>
-                    <div *ngIf="phonenumber.errors.pattern" style="color: red"> 
+                    <div *ngIf="phonenumber.errors.pattern" class="form-text text-danger"> 
                         pattern not match
                     </div>
                 </div>
@@ -211,13 +208,19 @@
                 <td>{{profile.relationship}}</td>
                 <td></td><td></td><td></td><td></td>
                 <td>
-                    <button 
+                    <!-- <button 
                         class="btn btn-outline-info  btn-sm"
                         type="button"
                         (click)="editDetail(profile.id)">
                         <span><i class="fa fa-edit" aria-hidden="true"></i>
                         </span>
-                    </button>
+                    </button> -->
+                    <button 
+                    class="btn btn-outline-info" 
+                    type="button" 
+                    (click)="editDetail(profile.id)">
+                    <span><fa-icon [icon]="'edit'"></fa-icon></span>
+                </button>
                 </td>
             </tr>
             <tr>
