@@ -47,10 +47,14 @@
                         </mat-card-header>
                         <mat-card-content>
                             <mat-accordion>
-                                <mat-expansion-panel [expanded]="true">
-                                    <mat-expansion-panel-header>
-                                        <mat-panel-title>Future Goals</mat-panel-title>
-                                        <mat-panel-description></mat-panel-description>
+                                <mat-expansion-panel class="accordcol" [expanded]="true"
+                                (opened)="panelFutureState = true"
+                                (closed)="panelFutureState = false">
+                                    <mat-expansion-panel-header  class="specific-class accordcol  right-aligned-header">
+                                        <mat-panel-title class="bwaccordtitle">Future Goals</mat-panel-title>
+                                        <mat-panel-description class="bwaccordtitle">
+                                            {{panelFutureState ? 'Collapse' : 'Expand'}}
+                                        </mat-panel-description>
                                     </mat-expansion-panel-header>
 
                                     <div>
@@ -77,10 +81,14 @@
                                     </div>
 
                                 </mat-expansion-panel>&nbsp;
-                                <mat-expansion-panel [hideToggle]="false">
-                                    <mat-expansion-panel-header>
-                                        <mat-panel-title>Non Insured Liabilities</mat-panel-title>
-                                        <mat-panel-description></mat-panel-description>
+                                <mat-expansion-panel [hideToggle]="false" class="accordcolor"
+                                (opened)="panelLiabilityState = true"
+                                (closed)="panelLiabilityState = false">
+                                    <mat-expansion-panel-header  class="specific-class accordcolor  right-aligned-header">
+                                        <mat-panel-title class="bwaccordtitle">Non Insured Liabilities</mat-panel-title>
+                                        <mat-panel-description class="bwaccordtitle">
+                                            {{panelLiabilityState ? 'Collapse' : 'Expand'}}
+                                        </mat-panel-description>
                                     </mat-expansion-panel-header>
 
                                     <div>
@@ -111,11 +119,11 @@
                         {{lifeInsurance.total }}
                     </div>
                     <div class="modal-footer">
-                        <button mat-raised-button type="submit" [disabled]="editForm.form.invalid" class="btn btn-primary" (click)="c('Save click')">
+                        <button mat-raised-button type="submit" [disabled]="editForm.form.invalid" class="btnSave" (click)="c('Save click')">
                             <span class="fa fa-save"></span>&nbsp;
                             <span>Save</span>
                         </button>
-                        <button mat-raised-button data-dismiss="modal" (click)="d('Cross click')">
+                        <button mat-raised-button data-dismiss="modal" class="btnCancel" (click)="d('Cross click')">
                             <span class="fa fa-ban"></span>&nbsp;
                             <span>Cancel</span>
                         </button>&nbsp;
@@ -133,7 +141,8 @@
                         <th scope="col">Name</th>
                         <th scope="col">Expense percentage</th>
                         <th scope="col">Total yearly expenses</th>
-                        <th scope="col">Edit/Delete</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -150,11 +159,11 @@
                                     <fa-icon [icon]="'edit'"></fa-icon>
                                 </span>
                             </button>
-                            <button class="btn  btn-outline-danger" type="button" (click)="deleteField(i, lifeInsurance.id)">
+                            <!-- <button class="btn  btn-outline-danger" type="button" (click)="deleteField(i, lifeInsurance.id)">
                                 <span>
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </span>
-                            </button>
+                            </button> -->
 
                         </td>
 

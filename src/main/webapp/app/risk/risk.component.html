@@ -1,7 +1,7 @@
 <div [ngSwitch]="isAuthenticated()">
     <div *ngSwitchCase="true">
         <div class="container">
-            <div class="form-group row justify-content-md-center colored bwtitle animated zoomIn">
+            <div class="form-group row justify-content-md-center colored bwtitle">
                     <span class="animated zoomIn">Risk Management</span> 
             </div>
             <mat-accordion>
@@ -10,7 +10,7 @@
                     (closed)="panelLifeState = false">
                     <mat-expansion-panel-header class="accordcol right-aligned-header">
                         <mat-panel-title class="bwaccordtitle">Life Insurance</mat-panel-title>
-                        <mat-panel-description class="bwaccordtitle setmarginrisklife">
+                        <mat-panel-description class="bwaccordtitle">
                                 {{panelLifeState ? 'Collapse' : 'Expand'}}
                         </mat-panel-description>
                     </mat-expansion-panel-header>
@@ -21,7 +21,7 @@
                     (closed)="panelMedicleState = false">
                     <mat-expansion-panel-header  class="accordcolor right-aligned-header">
                         <mat-panel-title class="bwaccordtitle"> Medical Insurance</mat-panel-title>
-                        <mat-panel-description class="bwaccordtitle setmarginriskmedi">
+                        <mat-panel-description class="bwaccordtitle">
                                 {{panelMedicleState ? 'Collapse' : 'Expand'}}
                         </mat-panel-description>
                     </mat-expansion-panel-header>

@@ -1396,6 +1396,7 @@ a.btn-nav .btn {
 
 .intro-body:before {
     background: rgba(7, 9, 21, 0.5);
+    color: #eee;
     content: '';
     left: 0;
     top: 0;
@@ -2683,8 +2684,10 @@ li .shop-cart a:hover {
 
 /* Footer */
 .footer {
-    color: #444;
+    color: white;
     font-size: 14px;
+    height: 300px;
+    width: 100%;
 }
 .footer .footer-menu a {
     line-height: 24px;
