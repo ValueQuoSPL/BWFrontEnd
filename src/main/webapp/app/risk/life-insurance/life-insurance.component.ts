@@ -131,9 +131,10 @@ export class LifeInsuranceComponent implements OnInit {
     getLoan() {
         this.loanService.GetLoan(this.uid).subscribe((response: any[]) => {
             this.dynamicLoanArray = response;
+            this.outstandingpricipal = 0;
             for (let i = 0; i < this.dynamicLoanArray.length; i++) {
                 const type = this.dynamicLoanArray[i].checkType;
-                this.outstandingpricipal = this.dynamicLoanArray[i].outstandingpricipal;
+                this.outstandingpricipal = +this.outstandingpricipal + +this.dynamicLoanArray[i].outstandingpricipal;
                 if (type === true) {
                 } else {
                     this.liability.push(this.dynamicLoanArray[i]);
@@ -171,6 +172,7 @@ export class LifeInsuranceComponent implements OnInit {
 
     sum() {
         this.lifeInsurance.total = +this.futurecost + +this.outstandingpricipal;
+        console.log(this.lifeInsurance.total);
     }
 
     saveLifeInsurance() {
