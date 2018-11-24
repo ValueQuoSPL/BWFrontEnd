@@ -23,6 +23,7 @@ import { PropertyService } from 'app/my-assets/property/property.service';
 import { FutureOptionService } from 'app/my-assets/future-option/futureoption.service';
 import { SavingSchemeService } from 'app/my-assets/saving-scheme/savingscheme.service';
 import { StockService } from 'app/my-assets/stocks/stocks.service';
+import { CustomDirectiveModule } from '../pratik/directive/directive.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -39,6 +40,7 @@ library.add(fas, far);
         RouterModule.forRoot([liRoute], { useHash: true }),
         CustomMaterialModule,
         CommonModule,
+        CustomDirectiveModule,
         NgbModule
     ],
     declarations: [

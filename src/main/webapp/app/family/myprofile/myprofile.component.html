@@ -7,6 +7,7 @@
       <div class="col-md-3"><!-- start of row1.col1-->
         <mat-form-field>
           <input 
+            jhiCharsOnly
             matInput 
             placeholder="First Name" 
             type="text" 
@@ -42,6 +43,7 @@
             [(ngModel)]="myProfile.middleName"
             name="middleName" 
             #middleName="ngModel"
+            jhiCharsOnly
           >
         </mat-form-field>
         <div *ngIf=" middleName.touched && !middleName.valid">
@@ -59,6 +61,7 @@
       <div class="col-md-3"><!--start of row1.col3-->
         <mat-form-field>
           <input 
+            jhiCharsOnly
             matInput
             placeholder="Last Name"
             type="text" 
@@ -181,7 +184,8 @@
       </div><!-- end of row3.col1-->
       <div class="col-md-3"><!-- start of row3.col2-->
         <mat-form-field>
-          <input 
+          <input
+            jhiCharsOnly
             matInput 
             placeholder="Occupation" 
             type="text" 
@@ -221,6 +225,7 @@
             maxlength="20"
             pattern="^[_'.@A-Za-z0-9-]*$"
             required
+            jhiCharsOnly
           >
         </mat-form-field>
         <div *ngIf="company.touched && !company.valid">
@@ -331,6 +336,7 @@
             maxlength="10" 
             pattern="^[_'.@A-Za-z0-9-]*$"
             required
+            jhiCharsOnly
           >
         </mat-form-field>
         <div *ngIf="country.touched && !country.valid">
@@ -358,6 +364,7 @@
             minlength="1"
             maxlength="20"
             required
+            jhiCharsOnly
           >
         </mat-form-field>
         <div *ngIf="state.touched && !state.valid">
@@ -374,7 +381,8 @@
       </div><!--end of row5.col2-->
       <div class="col-md-3"><!--start of row5.col3-->
         <mat-form-field>
-          <input 
+          <input
+            jhiCharsOnly
             matInput 
             placeholder="City" 
             type="text" 
@@ -454,105 +462,7 @@
 </div><!--end of container-->
 <!--start of view page-->
 <div *ngIf="isValid"><!--start of view div-->
-  <!-- <table
-    class="table-responsive-md 
-    table table-hover 
-    table-striped  
-    table-sm 
-    setfont" 
-    *ngFor="let profile of output"
-  >
-    <thead>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </thead>
-    <tbody>
-
-      <tr>
-        <td class="heading"><strong>Personal Information</strong></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-          <button class="btn btn-outline-info  btn-sm" type="button" (click)="editDetail()" >
-            <span><i class="fa fa-edit" aria-hidden="true"></i></span>
-          </button>
-        </td>
-      </tr>
-      <tr>
-        <th>First Name</th>
-        <td>{{profile.firstName}}</td>
-        <th>Middle Name</th>
-        <td>{{profile.middleName}}</td>
-        <th>Last Name</th>
-        <td>{{profile.lastName}}</td>
-      </tr>
-      <tr>
-        <th>Gender</th>
-        <td>{{profile.gender}}</td>
-        <th>Marital Status</th>
-        <td>{{profile.maritalStatus}}</td>
-        <th>Date Of Birth</th>
-        <td>{{profile.dob | date: 'd/M/y'}}</td>
-      </tr>
-      <tr>
-        <th>Occupation</th>
-        <td>{{profile.occupation}}</td>
-        <th>Mobile Number</th>
-        <td>{{profile.mobileNumber}}</td>
-        <th>Alternate Number</th>
-        <td>{{profile.alternateNumber}}</td>
-      </tr>
-      <tr>
-        <th>Company</th>
-        <td>{{profile.company}}</td>
-        <th>HowDidYouKnow</th>
-        <td>{{profile.howDidYouKnow}}</td>
-        <th>Address</th>
-        <td>{{profile.address}}</td>
-      </tr>
-      <br>
-      <tr>
-        <td class="heading"><strong>Communication Information</strong></td>
-        <td></td><td></td>
-        <td></td><td></td> <td></td>
-      </tr>
-      <tr>
-        <th>Email</th>
-        <td>{{profile.emailId}}</td>
-        <th>Pan No.</th>
-        <td>{{profile.pan}}</td>
-        <th>City</th>
-        <td>{{profile.city}}</td>
-      </tr>
-      <tr>
-        <th>State</th>
-        <td>{{profile.state}}</td>
-        <th>Country</th>
-        <td>{{profile.country}}</td>
-        <th>Pin</th>
-        <td>{{profile.pin}}</td>
-      </tr>
-
-    </tbody> -->
-    <!-- <tr></tr>
-
-    <tr>
-        <td>EmailId:&nbsp;{{profile.emailId}}</td>
-        <td>Pan:&nbsp;{{profile.pan}}</td>
-        <td>City:&nbsp;{{profile.city}}</td>
-    </tr>
-    <tr>
-        <td>State:&nbsp;{{profile.state}}</td>
-        <td>Country:&nbsp;{{profile.country}}</td>
-        <td>Pin:&nbsp;{{profile.pin}}</td>
-    </tr> -->
-  <!-- </table>start of table -->
+   </table>start of table -->
     <table class="table  table-responsive-md">
         <thead>
             <tr>

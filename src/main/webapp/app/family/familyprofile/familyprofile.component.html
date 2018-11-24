@@ -16,6 +16,7 @@
             <div class="col-md-4"><!--start of row1.col1-->
                 <mat-form-field>
                     <input matInput
+                        jhiCharsOnly
                         placeholder="First Name"
                         type="text" 
                         id="firstname"
@@ -37,7 +38,8 @@
             </div><!--end of row1.col1-->
             <div class="col-md-4"><!--start of col2-->
                 <mat-form-field>
-                    <input 
+                    <input
+                        jhiCharsOnly 
                         matInput 
                         placeholder="Middle Name" 
                         id="middlename"  
@@ -57,7 +59,8 @@
             </div><!--end of  row1.col2-->
             <div class="col-md-4"><!--start of row1.col3-->
                 <mat-form-field>
-                    <input 
+                    <input
+                        jhiCharsOnly
                         matInput 
                         placeholder="Last Name"
                         id="lastname"
@@ -190,7 +193,7 @@
 
 <!--start of view page-->
 <div class="container" *ngIf="isValid"><!--start of container div-->
-    <table class="table  table-responsive-md" >
+    <table class="table  table-responsive-md"  style=" border-collapse: collapse;">
         <thead>
             <tr>
                 <td  class="heading"><strong>Relationship Details</strong></td>
@@ -208,13 +211,6 @@
                 <td>{{profile.relationship}}</td>
                 <td></td><td></td><td></td><td></td>
                 <td>
-                    <!-- <button 
-                        class="btn btn-outline-info  btn-sm"
-                        type="button"
-                        (click)="editDetail(profile.id)">
-                        <span><i class="fa fa-edit" aria-hidden="true"></i>
-                        </span>
-                    </button> -->
                     <button 
                     class="btn btn-outline-info" 
                     type="button" 

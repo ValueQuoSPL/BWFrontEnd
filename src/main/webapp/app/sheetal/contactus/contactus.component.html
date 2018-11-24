@@ -10,7 +10,18 @@
 		<form class="Contact" #submitform="ngForm">
 			<div class="form">
 				<mat-form-field>
-					<input matInput id="name" type="text" name="name" value="" #name="ngModel" placeholder="Name"[(ngModel)]="user.name"pattern="[a-zA-Z][a-zA-Z ]+"required>
+					<input 
+						matInput 
+						id="name" 
+						type="text" 
+						name="name" 
+						value="" 
+						#name="ngModel" 
+						placeholder="Name"
+						[(ngModel)]="user.name"
+						pattern="[a-zA-Z][a-zA-Z ]+"
+						required
+					>
 				</mat-form-field>
 				<div [hidden]="name.valid || name.pristine">
 					<div class="c" [hidden]="!name.hasError('required')"><small>Name is required</small></div>
@@ -19,7 +30,18 @@
 			</div>
 			<div class="form">
 				<mat-form-field>
-					<input matInput id="email" type="text" name="email" value="" #email="ngModel"placeholder="E-mail"[(ngModel)]="user.email"pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+					<input 
+						matInput 
+						id="email" 
+						type="text" 
+						name="email" 
+						value="" 
+						#email="ngModel"
+						placeholder="E-mail"
+						[(ngModel)]="user.email"
+						pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
+						required
+					>
 				</mat-form-field>
 				<div class="c" [hidden]="email.valid || email.pristine">
 					<div class="c" [hidden]="!email.hasError('required')">Email is required</div>

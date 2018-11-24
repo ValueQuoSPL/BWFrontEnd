@@ -26,10 +26,10 @@
     <div class="modal-body"><!-- modal body start -->
         <form name="editForm" role="form" novalidate   #editForm="ngForm"> 
             <mat-form-field>
-                <input matInput class="full-width" required type="text" name="company_name" placeholder="Company Name" [(ngModel)]="stocks.company_name"  >
+                <input matInput class="full-width" jhiCharsOnly required type="text" name="company_name" placeholder="Company Name" [(ngModel)]="stocks.company_name"  >
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
-                <input matInput class="full-width" required type="text" placeholder="Investor Name" name="investor_name" [(ngModel)]="stocks.investor_name"  >
+                <input matInput class="full-width" jhiCharsOnly required type="text" placeholder="Investor Name" name="investor_name" [(ngModel)]="stocks.investor_name"  >
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
                 <input matInput style="width: 100%;" type="number" jhiNumberOnly placeholder="No of shares" name="no_of_shares" id="no_of_shares" [(ngModel)]="stocks.no_of_shares" required />
@@ -38,7 +38,7 @@
                 <input matInput style="width: 100%;" type="number" jhiNumberOnly placeholder="Share Price" name="share_price" id="share_price" [(ngModel)]="stocks.share_price"required/>
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
-                <input matInput style="width: 100%;" type="textarea" placeholder="Notes" name="notes" id="notes" [(ngModel)]="stocks.notes" [ngModelOptions]="{standalone: true}" />
+                <input matInput style="width: 100%;" jhiCharsOnly type="textarea" placeholder="Notes" name="notes" id="notes" [(ngModel)]="stocks.notes" [ngModelOptions]="{standalone: true}" />
             </mat-form-field>
             <div class="modal-footer">
                 <button
@@ -87,7 +87,8 @@
         <form name="editForm" role="form" novalidate   #editForm="ngForm"> 
             <mat-form-field>
                 <input
-                    matInput 
+                    matInput
+                    jhiCharsOnly
                     class="full-width"
                     name="company_name"
                     required 
@@ -100,6 +101,7 @@
             <mat-form-field>
                 <input 
                     matInput
+                    jhiCharsOnly
                     class="full-width"
                     required
                     type="text"
@@ -135,7 +137,8 @@
             </mat-form-field>&nbsp;&nbsp;
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    jhiCharsOnly
                     style="width: 100%;" 
                     type="textarea" 
                     placeholder="Notes" 
@@ -145,31 +148,6 @@
                 />
             </mat-form-field>
             <div class="modal-footer">
-                <!-- <button 
-                    type="submit"
-                    class="btn btn-primary"
-                    [disabled]="editForm.form.invalid || isSaving"
-                    class="btn btn-primary"
-                    (click)="c('Save click')">
-                    <span class="fa fa-save"></span>&nbsp;
-                    <span>Save</span>
-                </button>
-                <button 
-                    type="button" 
-                    class="btn btn-secondary" 
-                    data-dismiss="modal" 
-                    (click)="d('Cross click')">
-                    <span class="fa fa-ban"></span>&nbsp;
-                    <span>Cancel</span>
-                </button>
-                <button 
-                    type="button" 
-                    class="btn btn-warning" 
-                    (click)="resetFieldValue()">
-                    <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
-                        <span>Reset</span>
-                    </span>
-                </button> -->
                 <button
                     mat-raised-button
                     [disabled]="editForm.form.invalid || isSaving"

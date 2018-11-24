@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ViewContainerRef } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NumberOnlyDirective } from 'app/pratik/directive/number-only.directive';
 import { CharsOnlyDirective } from './chars-only.directive';
