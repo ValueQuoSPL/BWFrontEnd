@@ -46,7 +46,6 @@ Table of contents
 
 -------------------------------------------------------------------*/
 /* Fonts */
-@import "https://fonts.googleapis.com/css?family=Raleway:100, 200, 300, 400, 500, 600, 700, 800, 900|Roboto+Mono:100, 400|Caveat";
 
 /* Plugins */
 /* @import url(ve
@@ -1370,7 +1369,8 @@ a.btn-nav .btn {
     z-index: 1;
 }
 .intro .intro-body .badge {
-    color: #424242;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: #eee;
     font-size: 8px;
     position: absolute;
     margin: -9px -14px;
@@ -1395,6 +1395,7 @@ a.btn-nav .btn {
 }
 
 .intro-body:before {
+    background: rgba(7, 9, 21, 0.5);
     color: #eee;
     content: '';
     left: 0;

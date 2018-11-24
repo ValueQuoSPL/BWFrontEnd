@@ -79,26 +79,21 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
 
     // after every load/reload
     ngAfterViewInit() {
-        const a = this.loginService.getCookie();
-        this.ac = a;
+        this.ac = this.loginService.getCookie();
 
-        const w = this.ac.toString();
+        this.account = this.ac;
+        if (this.account) {
+            this.sc.account.next(this.account);
+            this.uid = this.account.id;
+            console.log(this.uid);
 
-        const y = JSON.stringify(this.ac);
-
-        const z = JSON.parse(y);
-
-        this.principal.identity().then(account => {
-            if (account) {
-                this.account = account;
-                this.sc.account.next(this.account);
-                this.uid = account.id;
-                if (this.account.authorities[1]) {
-                    this.authority = this.account.authorities[1];
-                }
-                this.checkSuccess(this.uid);
+            if (this.account.authorities[1]) {
+                this.authority = this.account.authorities[1];
+                console.log(this.authority);
             }
-        });
+            this.checkSuccess(this.uid);
+        }
+
         this.registerAuthenticationSuccess();
 
         this.cd.detectChanges();

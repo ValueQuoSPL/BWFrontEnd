@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Principal } from 'app/core/auth/principal.service';
 import { AuthServerProvider } from 'app/core/auth/auth-jwt.service';
-import { CookieService } from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
@@ -45,15 +45,14 @@ export class LoginService {
 
     getCookie() {
         const all: {} = this._cookieService.getAll();
-
-        return this._cookieService.get('1');
+        return this._cookieService.getObject('1');
     }
 
     putCookie(key: string, data) {
-        return this._cookieService.set(key, data);
+        return this._cookieService.putObject(key, data);
     }
 
     deleteCookie(key: string) {
-        return this._cookieService.delete(key);
+        return this._cookieService.remove(key);
     }
 }
