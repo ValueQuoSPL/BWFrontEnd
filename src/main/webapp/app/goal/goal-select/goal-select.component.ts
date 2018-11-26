@@ -349,8 +349,8 @@ export class GoalSelectComponent implements OnInit {
 
             // Calculate required monthly investment
             const N = element.yeartogoal * 12;
-            const IR = this.inflation;
-            element.requiremonthinvest = Math.round(element.futurecost / ((Math.pow(1 + IR, N) - 1) / (IR * (1 + IR))));
+            const IR = this.inflation / 12;
+            element.requiremonthinvest = Math.round(element.futurecost / ((Math.pow(1 + IR, N) - 1) / IR * (1 + IR)));
 
             // calculate fund shortage
             element.isFundShortage = true;
@@ -385,11 +385,23 @@ export class GoalSelectComponent implements OnInit {
         this.modalService.open(editLinkModal, { ariaLabelledBy: 'editLinkModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
+                this.clearAssetTotal();
             },
             reason => {
                 this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             }
         );
+    }
+
+    clearAssetTotal() {
+        this.stockTotal = 0;
+        this.mutualTotal = 0;
+        this.chitTotal = 0;
+        this.cashTotal = 0;
+        this.propertyTotal = 0;
+        this.faoTotal = 0;
+        this.savingTotal = 0;
+        this.altTotal = 0;
     }
 
     private getDismissReason(reason: any): string {
@@ -463,31 +475,9 @@ export class GoalSelectComponent implements OnInit {
 
     get(assetid) {}
 
-    getAsset() {
-        this.isAssetSelected = true;
-        this.isLoaded = false;
-
-        if (this.assettype === 'stocks') {
-            this.getStockById(this.uid);
-        } else if (this.assettype === 'mutual') {
-            this.getMutualFundByUid(this.uid);
-        } else if (this.assettype === 'ChitFund') {
-            this.getChitFund();
-        } else if (this.assettype === 'FutureandOption') {
-            this.getFAO();
-        } else if (this.assettype === 'SavingScheme') {
-            this.getSaving();
-        } else if (this.assettype === 'AlternativeInvestment') {
-            this.getAlt();
-        } else if (this.assettype === 'cash') {
-            this.getCash();
-        } else if (this.assettype === 'Propertyandhousehold') {
-            this.getProperty();
-        }
-    }
-
     deleteMapping(assetid) {
         const ret = confirm('Are you sure to delete mapping? This cant be undone!');
+
         if (ret) {
             for (let j = 0; j < this.AssetMappingDB.length; j++) {
                 const row = this.AssetMappingDB[j];
@@ -498,6 +488,7 @@ export class GoalSelectComponent implements OnInit {
                     break;
                 }
             }
+        } else {
         }
         // this.goalSelectService.DeleteMapping(id).subscribe();
     }
@@ -505,7 +496,6 @@ export class GoalSelectComponent implements OnInit {
     getMappedAsset() {
         this.goalSelectService.GetMapping(this.uid).subscribe(data => {
             this.AssetMappingDB = data;
-
             this.AssetViewUpdate();
         });
     }
@@ -531,25 +521,26 @@ export class GoalSelectComponent implements OnInit {
         this.valtomap = prompt('Enter value to map ');
 
         const ret = isNaN(this.valtomap);
-        console.log(ret);
-        if (!ret) {
-            for (let index = 0; index < this.HTMLArray.length; index++) {
-                const element = this.HTMLArray[index];
-                if (element.id === assetid) {
-                    const asset = Number(element.assetvalue);
-                    const map = Number(this.valtomap);
-                    if (asset >= map) {
-                        element.mappedvalue = this.valtomap;
-                        this.calculateSingleAssetTotal();
-                    } else {
-                        alert('Please enter value which is less than Asset Value');
+        if (this.valtomap !== null) {
+            if (!ret) {
+                for (let index = 0; index < this.HTMLArray.length; index++) {
+                    const element = this.HTMLArray[index];
+                    if (element.id === assetid) {
+                        const asset = Number(element.assetvalue);
+                        const map = Number(this.valtomap);
+                        if (asset >= map) {
+                            element.mappedvalue = this.valtomap;
+                            this.calculateSingleAssetTotal();
+                        } else {
+                            alert('Please enter value which is less than Asset Value');
+                        }
+                        break;
                     }
-                    break;
                 }
+                this.ManipulateMapping(assetid);
+            } else {
+                alert('Please enter Numbers(Digits) Only');
             }
-            this.ManipulateMapping(assetid);
-        } else {
-            alert('Please enter Numbers(Digits) Only');
         }
     }
 
@@ -617,6 +608,11 @@ export class GoalSelectComponent implements OnInit {
 
             if (element.id === this.commonid) {
                 element.goalNotes = this.GrandTotal;
+                element.fundshortage = +element.futurecost - +element.goalNotes;
+                if (element.fundshortage <= 0) {
+                    element.fundshortage = 0;
+                    element.isFundShortage = false;
+                }
                 break;
             }
         }
@@ -632,6 +628,21 @@ export class GoalSelectComponent implements OnInit {
                 if (this.checked === true) {
                     this.PostMapping();
                 }
+                break;
+            }
+        }
+    }
+
+    findAssetAndFillMapping(assetid) {
+        for (let index = 0; index < this.HTMLArray.length; index++) {
+            const element = this.HTMLArray[index];
+            if (assetid === element.id) {
+                this.mapping.goalid = this.commonid;
+                this.mapping.assettype = this.assettype;
+                this.mapping.assetname = element.assetname;
+                this.mapping.assetid = element.id;
+                this.mapping.assetValue = element.assetvalue;
+                this.mapping.valuetomap = element.mappedvalue;
                 break;
             }
         }
@@ -658,27 +669,35 @@ export class GoalSelectComponent implements OnInit {
         }
 
         if (flag === 1 || this.AssetMappingDB.length === 0) {
+            this.mapping.id = null;
             this.goalSelectService.PostMapping(this.mapping).subscribe(res => {
                 this.getMappedAsset();
             });
         }
     }
 
-    findAssetAndFillMapping(assetid) {
-        for (let index = 0; index < this.HTMLArray.length; index++) {
-            const element = this.HTMLArray[index];
-            if (assetid === element.id) {
-                this.mapping.goalid = this.commonid;
-                this.mapping.assettype = this.assettype;
-                this.mapping.assetname = element.assetname;
-                this.mapping.assetid = element.id;
-                this.mapping.assetValue = element.assetvalue;
-                this.mapping.valuetomap = element.mappedvalue;
-                break;
-            }
+    getAsset() {
+        this.isAssetSelected = true;
+        this.isLoaded = false;
+
+        if (this.assettype === 'stocks') {
+            this.getStockById(this.uid);
+        } else if (this.assettype === 'mutual') {
+            this.getMutualFundByUid(this.uid);
+        } else if (this.assettype === 'ChitFund') {
+            this.getChitFund();
+        } else if (this.assettype === 'FutureandOption') {
+            this.getFAO();
+        } else if (this.assettype === 'SavingScheme') {
+            this.getSaving();
+        } else if (this.assettype === 'AlternativeInvestment') {
+            this.getAlt();
+        } else if (this.assettype === 'cash') {
+            this.getCash();
+        } else if (this.assettype === 'Propertyandhousehold') {
+            this.getProperty();
         }
     }
-
     getStockById(uid) {
         this.HTMLArray.splice(0, this.HTMLArray.length);
         this.stockService.getStockById(this.uid).subscribe(res => {

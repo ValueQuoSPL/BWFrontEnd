@@ -85,11 +85,9 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         if (this.account) {
             this.sc.account.next(this.account);
             this.uid = this.account.id;
-            console.log(this.uid);
 
             if (this.account.authorities[1]) {
                 this.authority = this.account.authorities[1];
-                console.log(this.authority);
             }
             this.checkSuccess(this.uid);
         }
