@@ -73,6 +73,8 @@ export class GoalSelectComponent implements OnInit {
     mutualres: any;
     valtomap: any;
     HTMLArray: any = [];
+    deletegoaltype;
+    conformkey: Boolean;
 
     goalselect: GoalSelect = new GoalSelect();
     Educationselect: EducationSelect = new EducationSelect();
@@ -97,6 +99,7 @@ export class GoalSelectComponent implements OnInit {
     name: string;
     stockout: any = [];
     keyid: number;
+    id;
 
     tempArray: any = [];
     AssetMappingDB: any = [];
@@ -313,6 +316,7 @@ export class GoalSelectComponent implements OnInit {
     getGoal() {
         this.goalSelectService.getgoalbyid().subscribe(res => {
             this.GoalArray = res;
+            console.log('data in goal array', this.GoalArray);
             this.viewUpdate();
             this.output = this.GoalArray;
             for (let i = 0; i < this.output.length; i++) {
@@ -930,4 +934,18 @@ export class GoalSelectComponent implements OnInit {
     //     R = this.inflation;
     //     return Math.round(F / ((Math.pow(1 + R, N) - 1) / R * (1 + R)));
     // }
+    deleteGoal(id) {
+        this.commonid = id;
+        console.log('deletegoal id is', this.commonid);
+        this.conformkey = confirm('Are you sure you Want to permanently delete this item?');
+        // this.deletegoaltype = goaltype;
+        if (this.conformkey === true) {
+            this.id = this.commonid;
+            this.goalSelectService.DeleteGoal(this.id).subscribe(data => {
+                this.getGoal();
+            });
+        } else {
+            this.getGoal();
+        }
+    }
 }

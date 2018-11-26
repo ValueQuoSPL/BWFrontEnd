@@ -416,6 +416,7 @@
                 <th>Linked Asset Value</th>
                 <th>Link Assets</th>
                 <th>View</th>
+                <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -450,6 +451,15 @@
                     <fa-icon [icon]="'eye'"></fa-icon>
                 </span>
                 </button>
+              </td>
+              <td>
+                  <button 
+                  class="btn btn-sm btn-outline-danger"
+                      type="button"
+                      (click)="deleteGoal(out.id)"
+                      >
+                      <fa-icon [icon]="'trash'"></fa-icon>
+                  </button>
               </td>
             </tr>
           </tbody>
