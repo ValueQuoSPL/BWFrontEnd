@@ -40,7 +40,8 @@
                     matInput 
                     class="full-width"
                     placeholder="Investment Type"
-                    type="text" 
+                    type="text"
+                    jhiCharsOnly
                     name="investment_type" 
                     id="field_investment_type" 
                     [(ngModel)]="fao.investment_type"
@@ -52,6 +53,7 @@
                     matInput 
                     class="full-width"
                     type="text"
+                    jhiCharsOnly
                     placeholder="Assset Type"
                     name="asset_type" 
                     id="field_asset_type" 
@@ -61,7 +63,8 @@
             </mat-form-field>&nbsp;&nbsp;
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    jhiCharsOnly
                     class="full-width"
                     type="text"
                     placeholder="Investor Name"
@@ -76,6 +79,7 @@
                     matInput 
                     class="full-width"
                     type="text"
+                    jhiCharsOnly
                     placeholder="Asset Name"
                     name="asset_name" 
                     id="field_asset_name" 
@@ -112,7 +116,7 @@
                 <input 
                     matInput 
                     class="full-width"
-                    placeholder="Number Of Contracts"
+                    placeholder="Contracts Purches Value"
                     type="number"
                     jhiNumberOnly 
                     name="contract_p_value" 
@@ -150,7 +154,8 @@
                 <textarea 
                     matInput 
                     rows="3" 
-                    cols="50" 
+                    cols="50"
+                    jhiCharsOnly 
                     placeholder="Comment"  
                     name="notes" 
                     id="field_notes" 
@@ -207,13 +212,13 @@
                     jhiNumberOnly 
                     id="id" 
                     name="id" 
-                    [(ngModel)]="fao.num" 
-                    
+                    [(ngModel)]="fao.num"
                     required
                 >
             </mat-form-field>&nbsp;&nbsp;
             <mat-form-field>
                 <input 
+                    jhiCharsOnly
                     matInput 
                     class="full-width"
                     placeholder="Investment Type"
@@ -229,6 +234,7 @@
                     matInput 
                     class="full-width"
                     type="text"
+                    jhiCharsOnly
                     placeholder="Assset Type"
                     name="asset_type" 
                     id="field_asset_type" 
@@ -248,7 +254,8 @@
                     class="full-width"
                     type="text"
                     placeholder="Investor Name"
-                    name="investor_name" 
+                    name="investor_name"
+                    jhiCharsOnly
                     id="field_investor_name" 
                     [(ngModel)]="fao.investor_name" 
                     
@@ -269,7 +276,7 @@
                     name="asset_name" 
                     id="field_asset_name" 
                     [(ngModel)]="fao.asset_name" 
-                    
+                    jhiCharsOnly
                     required
                 >
             </mat-form-field>&nbsp;&nbsp;

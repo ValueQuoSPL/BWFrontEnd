@@ -12,6 +12,7 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 // import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppointmentResolverService } from 'app/appointment/appointment-resolver.service';
+import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import { AppointmentResolverService } from 'app/appointment/appointment-resolver
         // BsDatepickerModule.forRoot(),
         NgbModalModule,
         TimepickerModule.forRoot(),
+        NgxLoadingModule.forRoot({}),
         CalendarModule.forRoot({
             provide: DateAdapter,
             useFactory: adapterFactory

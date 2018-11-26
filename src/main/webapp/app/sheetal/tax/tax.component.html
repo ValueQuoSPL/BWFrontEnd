@@ -1,16 +1,17 @@
 <div [ngSwitch]="isAuthenticated()">
     <div *ngSwitchCase="true">
         <div class="container">
-            <div class="form-group row justify-content-center bwtitle">Tax Details</div>
+            <div class="form-group row justify-content-center bwtitle">
+                    <span class="animated zoomIn">Tax Details</span></div>
             <mat-accordion>
                 <mat-expansion-panel class="accordion accordcol"
                 (opened)="panelGrossState = true"
                 (closed)="panelGrossState = false">
-                    <mat-expansion-panel-header class="accordcol">
+                    <mat-expansion-panel-header class="accordcol right-aligned-header">
                         <mat-panel-title class="bwaccordtitle">
-                                <h5>Gross Income</h5>
+                                <h5 class="bwaccordtitle">Gross Income</h5>
                         </mat-panel-title>
-                        <mat-panel-description class="bwaccordtitle setmargingross">
+                        <mat-panel-description class="bwaccordtitle ">
                            {{panelGrossState ? 'Collapse' : 'Expand'}}
                         </mat-panel-description>
                     </mat-expansion-panel-header>
@@ -19,9 +20,9 @@
                 <mat-expansion-panel class="accordcolor"
                 (opened)="panelEightyCState = true"
                 (closed)="panelEightyCState = false">
-                    <mat-expansion-panel-header class="accordcolor">
+                    <mat-expansion-panel-header class="accordcolor right-aligned-header">
                         <mat-panel-title class="bwaccordtitle">
-                            <h5>80C Deduction</h5>
+                            <h5  class="bwaccordtitle">80C Deduction</h5>
                         </mat-panel-title>
                         <mat-panel-description class="bwaccordtitle setmargineightyc">
                                 {{panelEightyCState ? 'Collapse' : 'Expand'}}
@@ -32,9 +33,9 @@
                 <mat-expansion-panel  class="accordcol"
                 (opened)="panelEightyDState = true"
                 (closed)="panelEightyDState = false">
-                    <mat-expansion-panel-header class="accordcol">
+                    <mat-expansion-panel-header class="accordcol right-aligned-header">
                         <mat-panel-title class="bwaccordtitle">
-                            <h5> 80D Deduction</h5>
+                            <h5 class="bwaccordtitle"> 80D Deduction</h5>
                         </mat-panel-title>
                         <mat-panel-description class="bwaccordtitle setmargineightyd">
                                 {{panelEightyDState ? 'Collapse' : 'Expand'}}
@@ -45,9 +46,9 @@
                 <mat-expansion-panel class="accordcolor"
                 (opened)="panelHomeState = true"
                 (closed)="panelHomeState = false">
-                    <mat-expansion-panel-header class="accordcolor">
+                    <mat-expansion-panel-header class="accordcolor right-aligned-header">
                         <mat-panel-title class="bwaccordtitle">
-                            <h5>Home Deduction</h5>
+                            <h5 class="bwaccordtitle">Home Deduction</h5>
                         </mat-panel-title>
                         <mat-panel-description class="bwaccordtitle setmarginhome">
                                 {{panelHomeState ? 'Collapse' : 'Expand'}}
@@ -58,9 +59,9 @@
                 <mat-expansion-panel class="accordcol" 
                 (opened)="panelOtherState = true"
                 (closed)="panelOtherState = false">
-                    <mat-expansion-panel-header class="accordcol">
+                    <mat-expansion-panel-header class="accordcol right-aligned-header">
                         <mat-panel-title class="bwaccordtitle">
-                            <h5>Other Deduction</h5>  
+                            <h5 class="bwaccordtitle">Other Deduction</h5>  
                         </mat-panel-title>
                         <mat-panel-description class="bwaccordtitle setmarginother">
                                 {{panelOtherState ? 'Collapse' : 'Expand'}}

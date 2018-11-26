@@ -6,6 +6,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CreditService, LoanService } from 'app/pratik/spending/spending.service';
 import { GoalselectService } from 'app/goal/goal-select/goalselect.service';
 import { Principal, AccountService } from 'app/core';
+import { MyprofileService } from 'app/family/myprofile/myprofile.service';
 
 @Component({
     selector: 'jhi-life-insurance',
@@ -28,6 +29,8 @@ export class LifeInsuranceComponent implements OnInit {
     closeResult: string;
     public output: any;
     commanId: any;
+    panelFutureState = true;
+    panelLiabilityState = false;
 
     checkLife: any;
     dynamicGoalArray: any;
@@ -37,14 +40,16 @@ export class LifeInsuranceComponent implements OnInit {
     familyName: any = [];
     check;
     goalLife: any;
-    futurecost: any;
-    outstandingpricipal: any;
+    futurecost = 0;
+    outstandingpricipal = 0;
     result: any;
     i;
     goalId: any;
     tick: any;
     ischecked;
     unchecked;
+    edit: any;
+    names: any = [];
 
     constructor(
         private principal: Principal,
@@ -54,7 +59,8 @@ export class LifeInsuranceComponent implements OnInit {
         private modalService: NgbModal,
         private creditService: CreditService,
         private loanService: LoanService,
-        private goalService: GoalselectService
+        private goalService: GoalselectService,
+        private MyProfileSer: MyprofileService
     ) {}
 
     ngOnInit() {
@@ -64,7 +70,14 @@ export class LifeInsuranceComponent implements OnInit {
         });
         this.getUserid();
     }
-    checklife(checked, id) {
+    checklife(checked, id, cost) {
+        if (checked) {
+            this.futurecost = +this.futurecost + +cost;
+            this.lifeInsurance.total = +this.futurecost + +this.outstandingpricipal;
+        } else {
+            this.futurecost = +this.futurecost - +cost;
+            this.lifeInsurance.total = +this.futurecost + +this.outstandingpricipal;
+        }
         this.goalId = id;
         this.checkLife = checked;
         this.updateGoalArray.push({
@@ -83,10 +96,10 @@ export class LifeInsuranceComponent implements OnInit {
                 if (account) {
                     this.uid = account.id;
                     this.getGoal();
-                    this.getCredit(this.uid);
-                    this.getLoan(this.uid);
+                    this.getCredit();
+                    this.getLoan();
                     this.onGetLife();
-                    this.getName(this.uid);
+                    this.getName();
                 } else {
                 }
             })
@@ -97,24 +110,33 @@ export class LifeInsuranceComponent implements OnInit {
         this.goalService.getgoalbyid().subscribe((response: any[]) => {
             this.dynamicGoalArray = response;
             for (let i = 0; i < this.dynamicGoalArray.length; i++) {
-                this.futurecost = this.dynamicGoalArray[i].futurecost;
+                const element = this.dynamicGoalArray[i];
+                if (element.check === 'true') {
+                    this.futurecost = +this.futurecost + +element.futurecost;
+                }
                 this.ischecked = this.dynamicGoalArray[i].check;
             }
         });
     }
+    getGoal1() {
+        this.goalService.getgoalbyid().subscribe((response: any[]) => {
+            this.dynamicGoalArray = response;
+        });
+    }
 
-    getCredit(uid) {
-        this.creditService.GetCredit(uid).subscribe((response: any[]) => {
+    getCredit() {
+        this.creditService.GetCredit(this.uid).subscribe((response: any[]) => {
             this.dynamicCreditArray = response;
         });
     }
 
-    getLoan(uid) {
-        this.loanService.GetLoan(uid).subscribe((response: any[]) => {
+    getLoan() {
+        this.loanService.GetLoan(this.uid).subscribe((response: any[]) => {
             this.dynamicLoanArray = response;
+            this.outstandingpricipal = 0;
             for (let i = 0; i < this.dynamicLoanArray.length; i++) {
                 const type = this.dynamicLoanArray[i].checkType;
-                this.outstandingpricipal = this.dynamicLoanArray[i].outstandingpricipal;
+                this.outstandingpricipal = +this.outstandingpricipal + +this.dynamicLoanArray[i].outstandingpricipal;
                 if (type === true) {
                 } else {
                     this.liability.push(this.dynamicLoanArray[i]);
@@ -136,7 +158,9 @@ export class LifeInsuranceComponent implements OnInit {
 
     // life
     openLife(lifeContent) {
-        this.sum();
+        this.edit = false;
+        this.resetModal();
+        // this.sum();
         this.modalService.open(lifeContent, { ariaLabelledBy: 'lifeModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
@@ -150,6 +174,7 @@ export class LifeInsuranceComponent implements OnInit {
 
     sum() {
         this.lifeInsurance.total = +this.futurecost + +this.outstandingpricipal;
+        console.log(this.lifeInsurance.total);
     }
 
     saveLifeInsurance() {
@@ -166,12 +191,16 @@ export class LifeInsuranceComponent implements OnInit {
     }
 
     opnLife(id, lifeContent) {
-        this.getGoal();
+        this.edit = true;
+        this.lifeInsurance.total = 0;
+        this.sum();
+        this.getGoal1();
         this.commanId = id;
+        this.getid();
         this.modalService.open(lifeContent, { ariaLabelledBy: 'lifeModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
-                this.update(this.commanId);
+                this.update();
             },
             reason => {
                 this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -185,7 +214,7 @@ export class LifeInsuranceComponent implements OnInit {
         });
     }
     // update service for lifeInsurance
-    update(commanId) {
+    update() {
         this.lifeInsurance.id = this.commanId;
         this.lifeInsurance.userid = this.uid;
         this.riskService.updatelifeInsurance(this.lifeInsurance).subscribe(data => {
@@ -198,11 +227,12 @@ export class LifeInsuranceComponent implements OnInit {
         this.goalLife.splice(index, 1);
     }
     // getid
-    getid(id) {
-        this.riskService.getbyid(id).subscribe(data => {
+    getid() {
+        this.riskService.getbyid(this.commanId).subscribe(data => {
             this.result = data;
             this.lifeInsurance.id = this.result.id;
             this.lifeInsurance.userid = this.result.userid;
+            this.lifeInsurance.name = this.result.name;
             this.lifeInsurance.expense_cover = this.result.expense_cover;
             this.lifeInsurance.total = this.result.total;
             this.lifeInsurance.risk_coverage = this.result.risk_coverage;
@@ -210,32 +240,47 @@ export class LifeInsuranceComponent implements OnInit {
     }
 
     // get family profile name
-    getName(uid) {
+    getName() {
         this.riskService.getFamilyName(this.uid).subscribe(data => {
             this.familyName = data;
+            this.familyName.forEach(element => {
+                this.names.push({ nameFirst: element.firstname });
+            });
+            this.MyProfileSer.getMyProfileByUid(this.uid).subscribe(res => {
+                this.output = res;
+                this.output.forEach(element => {
+                    this.names.push({ nameFirst: element.firstName });
+                });
+            });
         });
     }
 
     get(id) {
-        let flag = 0;
-        for (let i = 0; i < this.dynamicGoalArray.length; i++) {
-            const goal = this.dynamicGoalArray[i];
-            if (goal.id === id) {
-                const value = goal.check;
-                if (value === 'true') {
-                    flag = 1;
-                    return true;
-                } else {
-                    flag = 0;
-                    return false;
+        if (this.edit) {
+            let flag = 0;
+            for (let i = 0; i < this.dynamicGoalArray.length; i++) {
+                const goal = this.dynamicGoalArray[i];
+                if (goal.id === id) {
+                    const value = goal.check;
+                    if (value === 'true') {
+                        flag = 1;
+                        return true;
+                    } else {
+                        flag = 0;
+                        return false;
+                    }
                 }
             }
+        } else {
+            return false;
         }
     }
 
     resetModal() {
+        this.lifeInsurance.id = null;
         this.lifeInsurance.expense_cover = null;
         this.lifeInsurance.total = null;
         this.lifeInsurance.risk_coverage = null;
+        this.lifeInsurance.name = null;
     }
 }

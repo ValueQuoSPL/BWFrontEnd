@@ -9,6 +9,7 @@ import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { SuccessService } from 'app/success/success.service';
 import { AccountService, Principal } from 'app/core';
 import { PlanService } from 'app/pratik/common/plan.service';
+import { CookieService } from 'ngx-cookie';
 
 @Component({
     selector: 'jhi-login-modal',
@@ -41,12 +42,15 @@ export class JhiLoginModalComponent implements AfterViewInit {
         private paymentCheck: SuccessService,
         private accountService: AccountService,
         private planService: PlanService,
-        private principal: Principal
+        private principal: Principal,
+        private _cookieService: CookieService
     ) {
         this.credentials = {};
     }
 
     ngAfterViewInit() {
+        const x = this.loginService.getCookie();
+
         setTimeout(() => this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#username'), 'focus', []), 0);
         this.principal.getAuthenticationState().subscribe(identity => {
             if (identity) {

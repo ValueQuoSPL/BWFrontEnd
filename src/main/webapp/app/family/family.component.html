@@ -1,15 +1,16 @@
 <div class="container">
         <div [ngSwitch]="isAuthenticated()">
             <div *ngSwitchCase="true">                  
-                        <div class="form-group row justify-content-center bwtitle">Profile
+                        <div class="form-group row justify-content-center bwtitle">
+                                <span class="animated zoomIn">Profile</span>
                         </div>
                             <mat-accordion class="container" >
                                 <mat-expansion-panel class="accordcol"
                                 (opened)="panelMyprofileState = true"
                                 (closed)="panelMyprofileState = false">
-                                    <mat-expansion-panel-header class="accordcol">
+                                    <mat-expansion-panel-header class="accordcol right-aligned-header">
                                         <mat-panel-title class="bwaccordtitle" >
-                                            <h5>My Profile</h5>
+                                            <h5 class="bwaccordtitle">My Profile</h5>
                                         </mat-panel-title>
                                         <mat-panel-description class="bwaccordtitle setmarginfuture">
                                                 {{panelMyprofileState ? 'Collapse' : 'Expand'}}
@@ -21,9 +22,9 @@
                                 <mat-expansion-panel class="accordcolor"
                                 (opened)="panelFamilyprofileState = true"
                                 (closed)="panelFamilyprofileState = false">
-                                    <mat-expansion-panel-header class="accordcolor">
+                                    <mat-expansion-panel-header class="accordcolor right-aligned-header">
                                         <mat-panel-title class="bwaccordtitle">
-                                        <h5>Family Profile</h5>
+                                        <h5 class="bwaccordtitle">Family Profile</h5>
                                         </mat-panel-title>
                                         <mat-panel-description class="bwaccordtitle setmarginfamilyprofile">
                                             {{panelFamilyprofileState ? 'Collapse' : 'Expand'}}

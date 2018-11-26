@@ -16,6 +16,7 @@
     <div>
         <div id="toggle" class="toggleClass" [ngClass]="{'pull':flag}">
             <jhi-sidebar *ngIf="isPaid"></jhi-sidebar>
+
             <router-outlet></router-outlet>
             <router-outlet name="popup"></router-outlet>
         </div>

@@ -6,6 +6,7 @@ import { Loan } from 'app/pratik/spending/spending.model';
 import { LoanService } from 'app/pratik/spending/spending.service';
 import { MyprofileService } from 'app/family/myprofile/myprofile.service';
 import { FamilyprofileService } from 'app/family/familyprofile/familyprofile.service';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 @Component({
     selector: 'jhi-loan',
@@ -50,6 +51,7 @@ export class LoanComponent implements OnInit {
     InterestTypeArray = [{ name: 'Fixed' }, { name: 'Floating' }, { name: 'Fixed-Floating' }];
     emi: number;
     totalEmi = 0;
+    account: any;
 
     constructor(
         private loanService: LoanService,
@@ -57,7 +59,8 @@ export class LoanComponent implements OnInit {
         private modalService: NgbModal,
         private accountService: AccountService,
         private myProfileService: MyprofileService,
-        private familyProfileService: FamilyprofileService
+        private familyProfileService: FamilyprofileService,
+        private commonService: CommonSidebarService
     ) {}
 
     ngOnInit() {
@@ -109,18 +112,11 @@ export class LoanComponent implements OnInit {
     }
 
     getUserid() {
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    this.getata();
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.getata();
+        });
     }
 
     getata() {
@@ -287,6 +283,7 @@ export class LoanComponent implements OnInit {
         this.loan.userid = this.uid;
         this.loanService.PutLoan(this.loan, this.uid).subscribe(res => {
             this.clear();
+            this.getLoanandDebt();
         });
     }
 

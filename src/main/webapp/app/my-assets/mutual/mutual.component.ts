@@ -102,7 +102,6 @@ export class MutualComponent implements OnInit {
     cagr(currentValue, purchasePrice, days) {
         const years = days / 365;
         const x = Math.round(((currentValue / purchasePrice) ** (1 / years) - 1) * 100);
-        console.log(x);
         return x;
     }
     getMutualFundByid(commonid) {

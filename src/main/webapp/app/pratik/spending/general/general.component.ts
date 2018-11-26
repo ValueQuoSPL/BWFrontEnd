@@ -27,6 +27,7 @@ export class GeneralComponent implements OnInit {
     UtilityArray: any = [];
     tempGeneralArray: any = [];
     dynamicGeneral: any = [];
+    GeneralModel: any = [];
     general: General = new General();
     prevGeneral: PrevGeneral = new PrevGeneral();
     generalDate = new FormControl(new Date());
@@ -112,8 +113,12 @@ export class GeneralComponent implements OnInit {
             premiumName: this.general.premium_mode,
             userid: this.uid
         });
-        this.general.generalModelArray.pop();
-        this.general.generalModelArray.push({
+
+        // this.general.generalModelArray = this.dynamicGeneral;
+        // if (this.general.generalModelArray.length > 0) {
+        //     this.general.generalModelArray.pop();
+        // }
+        this.GeneralModel.push({
             iName: this.general.ins_obj,
             pName: this.general.policy_name,
             prName: this.general.premium_mode,
@@ -126,6 +131,8 @@ export class GeneralComponent implements OnInit {
             proposer: this.general.proposer,
             userid: this.uid
         });
+
+        this.general.generalModelArray = this.GeneralModel;
         this.onGeneralSave();
         this.clear();
     }
@@ -140,6 +147,7 @@ export class GeneralComponent implements OnInit {
         this.general.userid = this.uid;
         this.generalService.PostGeneral(this.general.generalModelArray).subscribe(data => {
             this.general.generalModelArray = [];
+            this.GeneralModel = [];
 
             this.onGetGeneral();
         });

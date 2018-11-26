@@ -1,11 +1,11 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-    selector: '[jhiNumberOnly]'
+    selector: '[jhiCharsOnly]'
 })
-export class NumberOnlyDirective {
+export class CharsOnlyDirective {
     // Allow decimal numbers and negative values
-    private regex: RegExp = new RegExp(/^-?[0-9]+(\.[0-9]*){0,1}$/g);
+    private regex: RegExp = new RegExp(/^[a-zA-Z]*$/g);
     // Allow key codes for special events. Reflect :
     // Backspace, tab, end, home
     private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home'];

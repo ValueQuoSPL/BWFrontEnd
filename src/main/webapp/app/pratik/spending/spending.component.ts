@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { SpendingRouteGuardService } from 'app/pratik/common/spending-route-guard.service';
 import { RouterModule, Router } from '@angular/router';
+import { CanComponentDeactivate } from 'app/pratik/common/can-deactivate-guard.service';
 
 export interface DialogData {
     animal: string;
@@ -16,7 +17,7 @@ export interface DialogData {
     templateUrl: './spending.component.html',
     styleUrls: ['./spending.component.css']
 })
-export class SpendingComponent implements OnInit {
+export class SpendingComponent implements OnInit, CanComponentDeactivate {
     resource: any;
     amount: any;
     expense;
@@ -73,6 +74,7 @@ export class SpendingComponent implements OnInit {
         });
         this.routeGuard.GuardSource.subscribe(flag => {
             this.dataChanged = flag;
+            console.log('received change', this.dataChanged);
         });
         this.routeGuard.accordion.subscribe(route => {
             this.commonState = route;
@@ -155,6 +157,8 @@ export class SpendingComponent implements OnInit {
     }
 
     canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+        console.log('leaving page. flag = ', this.dataChanged);
+
         if (this.dataChanged) {
             return confirm(
                 'Do you want to leave this page Before changes saved ? ' +

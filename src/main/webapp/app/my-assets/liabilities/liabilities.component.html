@@ -1,12 +1,13 @@
 <div [ngSwitch]="isAuthenticated()">
     <div *ngSwitchCase="true">
         <div class="container">
-            <div class="form-group row justify-content-center bwtitle">Liabilities
+            <div class="form-group row justify-content-center bwtitle">
+                    <span class="animated zoomIn">Liabilities</span>
             </div>
                 <div>
                     <mat-accordion>
                         <mat-expansion-panel class="accordion accordcol">
-                            <mat-expansion-panel-header class="accordcol"
+                            <mat-expansion-panel-header class="accordcol  right-aligned-header""
                             (opened) = "panelShortTerm = true"
                             (closed) = "panelShortTerm = false">
                                 <mat-panel-title  class="bwaccordtitle"> Short Term Liabilities </mat-panel-title>
@@ -45,7 +46,7 @@
                         <mat-expansion-panel  class="accordcolor"
                         (opened) = "panelLongTerm = true"
                         (closed) = "panelLongTerm = false">
-                            <mat-expansion-panel-header class="accordcolor">
+                            <mat-expansion-panel-header class="accordcolor  right-aligned-header">
                                 <mat-panel-title  class="bwaccordtitle"> Long Term Liabilities </mat-panel-title>
                                 <mat-panel-description  class="bwaccordtitle setmarginlongliability">{{panelLongTerm ? 'Collapse' : 'Expand'}}</mat-panel-description>
                             </mat-expansion-panel-header>
@@ -59,7 +60,7 @@
                                             <th scope="col">Tenure</th>
                                             <th scope="col">ROI</th>
                                             <th scope="col">OutstandingAmount</th>
-                                            <th scope="col">Action</th>
+                                            <th scope="col">Update</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -69,7 +70,6 @@
                                             <td>{{l.tenure}}</td>
                                             <td>{{l.roi}}</td>
                                             <td>{{l.outstandingpricipal}}</td>
-                                            <td></td>
                                             <td>
                                             <button class="btn btn-outline-info" type="button" (click)="openLongTerm(l.id, loanModal)">
                                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span>

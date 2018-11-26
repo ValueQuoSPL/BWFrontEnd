@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Income } from 'app/pratik/spending/spending.model';
 import { IncomeService } from 'app/pratik/spending/spending.service';
-import { AccountService, LoginModalService, Principal } from 'app/core';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { CanComponentDeactivate } from 'app/pratik/common/can-deactivate-guard.service';
 import { Observable, Subject } from 'rxjs';
@@ -52,14 +51,9 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     prevValue;
     successMessage: string;
     private _success = new Subject<string>();
+    maxlength = false;
 
-    constructor(
-        private modalService: NgbModal,
-        private incomeService: IncomeService,
-        private loginModalService: LoginModalService,
-        private principal: Principal,
-        private commonService: CommonSidebarService
-    ) {}
+    constructor(private modalService: NgbModal, private incomeService: IncomeService, private commonService: CommonSidebarService) {}
 
     ngOnInit() {
         this.getUserid();
@@ -105,6 +99,13 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         });
     }
 
+    detect(data) {
+        if (data.length > 12) {
+            this.maxlength = true;
+        } else {
+            this.maxlength = false;
+        }
+    }
     clear() {
         this.resource = '';
         this.amount = '';
@@ -165,6 +166,7 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     }
 
     openIncome(incomeContent) {
+        this.clear();
         this.modalService.open(incomeContent, { ariaLabelledBy: 'incomeModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
@@ -381,6 +383,8 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     }
 
     canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+        console.log('component deactive');
+
         this.dataChanged = this.isFieldChanged();
         if (!this.dataChanged && !this.changesSaved) {
             return confirm('Do you want to leave this page Before changes saved ? ' + '<Cancel> to cancel leaving <OK> to leave page');

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Principal, LoginModalService, AccountService } from 'app/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import {
@@ -20,6 +20,7 @@ import { AppointmentService } from 'app/appointment/appointment.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgxLoadingModule } from 'ngx-loading';
 
 export class Appointment {
     id;
@@ -93,6 +94,8 @@ export class AppointmentComponent implements OnInit {
     currentDate: any;
     nextDate: any;
     date = new Date();
+    public loading = false;
+    customLoadingTemplate;
 
     constructor(
         private appointmentService: AppointmentService,
@@ -102,6 +105,7 @@ export class AppointmentComponent implements OnInit {
         private principal: Principal,
         private loginModalService: LoginModalService,
         private route: Router,
+        private ref: ChangeDetectorRef,
         private _route: ActivatedRoute
     ) {
         this.appointmentResult = this._route.snapshot.data['appointment'];
@@ -124,7 +128,7 @@ export class AppointmentComponent implements OnInit {
                 if (account) {
                     this.uid = account.id;
                     this.getCalendar();
-                    // this.getCalendarByUid();
+                    this.getCalendarByUid();
                 } else {
                 }
             })
@@ -263,7 +267,7 @@ export class AppointmentComponent implements OnInit {
             this.appointmentService.updateCalendar(this.appointment).subscribe(data => {});
             this.route.navigate(['dashboard']);
         } else {
-            this.isBooked = false;
+            this.isBooked = true;
         }
     }
 
@@ -284,12 +288,17 @@ export class AppointmentComponent implements OnInit {
 
     // get by uid appointment
     getCalendarByUid() {
-        this.appointmentService.getCalendarByUid().subscribe(data => {
+        this.appointmentService.getCalendarByUid(this.uid).subscribe(data => {
             this.appointmentResult = data;
             for (let index = 0; index < this.appointmentResult.length; index++) {
                 this.isStatus = this.appointmentResult[index].status;
             }
+            setInterval(() => {
+                this.ref.detectChanges();
+                this.loading = false;
+            }, 4000);
             if (this.isStatus === 'confirm') {
+                console.log('under get calendarbyuid', this.loading);
                 this.isBooked = true;
             } else {
                 this.isBooked = false;
@@ -338,6 +347,7 @@ export class AppointmentComponent implements OnInit {
         this.modalService.open(appointmentModal, { ariaLabelledBy: 'appointmentModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
+                this.loading = true;
                 this.postCalendar(time, appointmentStatus);
                 this.getCalendar();
             },

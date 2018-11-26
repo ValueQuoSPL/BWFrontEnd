@@ -8,4 +8,5 @@ export class FamilyProfile {
     public phonenumber: number;
     public uid: string;
     public earncheck: string;
+    public id: any;
 }

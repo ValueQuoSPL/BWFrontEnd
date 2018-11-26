@@ -1,3 +1,4 @@
+import { FamilyProfile } from 'app/family/familyprofile/familyprofile.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -18,7 +19,12 @@ export class FamilyprofileService {
         this.ServiceAPIParam = 'api/familyprofiles' + '/' + uid;
         return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
     }
-    public updateProfile(familyProfile: any): Observable<any> {
-        return this.http.put(SERVER_API_URL + 'api/familyprofile', familyProfile);
+    public updateProfile(familyProfile) {
+        console.log('in updateProfile', familyProfile);
+        return this.http.put<FamilyProfile[]>(SERVER_API_URL + 'api/familyprofile', familyProfile);
+    }
+    public updateProfileById(commonid) {
+        this.ServiceAPIParam = 'api/familypro' + '/' + commonid;
+        return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
     }
 }

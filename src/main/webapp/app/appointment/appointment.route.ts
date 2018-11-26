@@ -3,7 +3,7 @@ import { AppointmentComponent } from 'app/appointment/appointment.component';
 import { AppointmentResolverService } from 'app/appointment/appointment-resolver.service';
 
 export const appointRoot: Route = {
-    path: 'appointment',
+    path: 'appointment/:id',
     component: AppointmentComponent,
     data: {
         authorities: [],

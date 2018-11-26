@@ -120,7 +120,7 @@
                         </a>
                     </li>
                     <li *ngIf="fullAccess">
-                        <a routerLink="goalselect" routerLinkActive="active">
+                        <a [routerLink]="['/goalselect', encrypt]" routerLinkActive="active">
                             <i class="fa fa-bullseye fa-2x"></i>
                             <span class="nav-text">
                                 Goals
@@ -144,7 +144,7 @@
                         </a>
                     </li>
                     <li *ngIf="fullAccess">
-                            <a routerLink="appointment" routerLinkActive="active">
+                            <a  [routerLink]="['/appointment', encrypt]" routerLinkActive="active">
                                 <i class="fa fa-chart-line fa-2x"></i>
                                 <span class="nav-text">
                                         Appointment

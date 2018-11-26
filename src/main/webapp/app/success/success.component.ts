@@ -34,6 +34,7 @@ export class SuccessComponent implements OnInit, AfterViewInit {
     promoCode;
     discount: number;
     fullAccess: boolean;
+    usernew: any;
 
     constructor(
         private successService: SuccessService,
@@ -50,6 +51,11 @@ export class SuccessComponent implements OnInit, AfterViewInit {
     ngOnInit() {
         this.principal.identity().then(account => {
             this.account = account;
+        });
+
+        this.planService.user.subscribe(user => {
+            this.usernew = user;
+            console.log(this.usernew);
         });
 
         this.registerAuthenticationSuccess();
@@ -77,7 +83,10 @@ export class SuccessComponent implements OnInit, AfterViewInit {
                     this.successService.getTransactionData(this.uid).subscribe(data => {
                         this.result = data;
                         this.last = this.result.pop();
+                        console.log(this.last);
+
                         if (this.last.status === 'success') {
+                            this.updateUserPlan();
                             this.planService.isPaid.next(true);
                         }
                     });
@@ -86,6 +95,10 @@ export class SuccessComponent implements OnInit, AfterViewInit {
                 }
             })
             .catch(err => {});
+    }
+
+    updateUserPlan() {
+        this.userPlanService.UpdateUserPlan(this.usernew).subscribe();
     }
 
     GoDashBoard() {

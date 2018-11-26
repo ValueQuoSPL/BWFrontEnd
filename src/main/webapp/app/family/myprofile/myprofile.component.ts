@@ -17,6 +17,7 @@ export class MyprofileComponent implements OnInit {
     date = new FormControl(new Date());
     show = true;
     account: any;
+    checkNum: boolean;
 
     constructor(private MyProfileSer: MyprofileService, public commonService: CommonSidebarService) {}
 
@@ -98,5 +99,12 @@ export class MyprofileComponent implements OnInit {
     // cencel Method to cencel Myprofile
     cancel() {
         this.isValid = true;
+    }
+    onChange(data) {
+        if (data === this.myProfile.mobileNumber) {
+            this.checkNum = true;
+        } else {
+            this.checkNum = false;
+        }
     }
 }

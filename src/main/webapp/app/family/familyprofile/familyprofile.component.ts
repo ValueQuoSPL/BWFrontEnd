@@ -19,7 +19,9 @@ export class FamilyprofileComponent implements OnInit {
     earncheck = 'notearning';
     account: any;
     date = new FormControl(new Date());
-
+    commonid: any;
+    Addmember = false;
+    addbutton = true;
     constructor(private Familypro: FamilyprofileService, public commonService: CommonSidebarService) {}
 
     ngOnInit() {
@@ -50,6 +52,7 @@ export class FamilyprofileComponent implements OnInit {
     getFamilyProfilebyid() {
         this.Familypro.getFamilyProfileByUid(this.uid).subscribe(res => {
             this.output = res;
+            this.Addmember = true;
             // if (this.output[0].uid != null) {
             //     this.isValid = true;
             // } else {
@@ -66,19 +69,23 @@ export class FamilyprofileComponent implements OnInit {
         this.earncheck = 'Earning';
     }
     // editDetail Method to Edit Info of Familyprofile
-    editDetail() {
-        for (let index = 0; index < this.output.length; index++) {
+    editDetail(id) {
+        this.commonid = id;
+        console.log('edit detail id', this.commonid);
+        this.Familypro.updateProfileById(this.commonid).subscribe(res => {
+            this.output = res;
             this.isValid = false;
-            this.familyProfile.relationship = this.output[index].relationship;
-            this.familyProfile.firstname = this.output[index].firstname;
-            this.familyProfile.middlename = this.output[index].middlename;
-            this.familyProfile.lastname = this.output[index].lastname;
-            this.familyProfile.dateOfBirth = this.output[index].dateOfBirth;
-            this.familyProfile.email = this.output[index].email;
-            this.familyProfile.phonenumber = this.output[index].phonenumber;
+            console.log('response of update profile by id id', this.output);
+            this.familyProfile.relationship = this.output.relationship;
+            this.familyProfile.firstname = this.output.firstname;
+            this.familyProfile.middlename = this.output.middlename;
+            this.familyProfile.lastname = this.output.lastname;
+            this.familyProfile.dateOfBirth = this.output.dateOfBirth;
+            this.familyProfile.email = this.output.email;
+            this.familyProfile.phonenumber = this.output.phonenumber;
             this.familyProfile.uid = this.uid;
             this.show = false;
-        }
+        });
         // this.isValid = false;
         // this.familyProfile.relationship = this.output[0].relationship;
         // this.familyProfile.firstname = this.output[0].firstname;
@@ -93,14 +100,35 @@ export class FamilyprofileComponent implements OnInit {
     // update Method to Update Info of Familyprofile
 
     update() {
+        console.log('in update id', this.commonid);
+        this.familyProfile.id = this.commonid;
         this.Familypro.updateProfile(this.familyProfile).subscribe(responce => {
             this.getFamilyProfilebyid();
         });
     }
     formpage() {
+        console.log('in form page');
         this.isValid = false;
     }
     viewpage() {
+        console.log('in view page');
         this.isValid = true;
+        this.getFamilyProfilebyid();
+    }
+    resetValue() {
+        this.familyProfile.relationship = '';
+        this.familyProfile.firstname = '';
+        this.familyProfile.middlename = '';
+        this.familyProfile.lastname = '';
+        this.familyProfile.dateOfBirth = '';
+        this.familyProfile.email = '';
+        this.familyProfile.phonenumber = null;
+        this.familyProfile.uid = '';
+        this.familyProfile.id = '';
+    }
+    AddNewMember() {
+        this.resetValue();
+        this.isValid = false;
+        this.show = true;
     }
 }
