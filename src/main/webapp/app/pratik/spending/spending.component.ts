@@ -69,9 +69,6 @@ export class SpendingComponent implements OnInit, CanComponentDeactivate {
     ) {}
 
     ngOnInit() {
-        this.principal.identity().then(account => {
-            this.account = account;
-        });
         this.routeGuard.GuardSource.subscribe(flag => {
             this.dataChanged = flag;
             console.log('received change', this.dataChanged);

@@ -8,6 +8,7 @@ import { NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserPlanService } from 'app/home/subscriber/userplan.service';
 import { PromoCodeManageService } from 'app/admin';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { PlanService } from 'app/pratik/common/plan.service';
 
 class Offer {
     payable;
@@ -61,6 +62,7 @@ export class SubscriberComponent implements OnInit {
         private router: Router,
         private principal: Principal,
         private route: ActivatedRoute,
+        private subscriber: PlanService,
         public activeModal: NgbActiveModal,
         private eventManager: JhiEventManager,
         private userPlanService: UserPlanService,
@@ -143,6 +145,8 @@ export class SubscriberComponent implements OnInit {
     }
 
     registerAuthenticationSuccess() {
+        console.log('calling account');
+
         this.eventManager.subscribe('authenticationSuccess', message => {
             this.principal.identity().then(account => {
                 this.account = account;
@@ -163,7 +167,6 @@ export class SubscriberComponent implements OnInit {
 
     saveUserPlan() {
         this.fillUserPlanData();
-
         if (!this.isSubscribed) {
             this.userPlanService.SaveUserPlan(this.user).subscribe();
         } else {
@@ -177,9 +180,10 @@ export class SubscriberComponent implements OnInit {
         this.user.expiryDate = this.user.applyDate;
         const year = this.user.expiryDate.getFullYear() + 1;
         this.user.expiryDate.setFullYear(year);
-        this.user.plan = this.plan;
+        this.user.plan = null;
         this.user.discount = this.discount;
         this.user.paid = this.payable;
         this.user.promocode = this.dynamicPromo.promocode;
+        this.subscriber.user.next(this.user);
     }
 }

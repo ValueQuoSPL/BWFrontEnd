@@ -12,6 +12,8 @@ export class UserResolve implements CanActivate {
     constructor(private principal: Principal) {}
 
     canActivate() {
+        console.log('calling account');
+
         return this.principal.identity().then(account => this.principal.hasAnyAuthority(['ROLE_ADMIN']));
     }
 }

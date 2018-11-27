@@ -48,7 +48,7 @@
                             name="investor_name" 
                             id="field_investor_name" 
                             [(ngModel)]="savingScheme.investor_name"
-                            
+                            jhiCharsOnly
                             required
                         />
                     </mat-form-field>
@@ -78,7 +78,7 @@
                                 name="fund_value"
                                 id="field_fund_value"
                                 [(ngModel)]="savingScheme.fund_value"
-                               
+                                jhiNumberOnly
                                 required
                             />
                     </mat-form-field>
@@ -87,6 +87,7 @@
                     <mat-form-field>
                         <input 
                             matInput
+                            jhiCharsOnly
                             type="text"
                             placeholder="Organisation Name"
                             name="organisation_name"
@@ -114,7 +115,7 @@
                             name="amount_invested"
                             id="field_amount_invested"
                             [(ngModel)]="savingScheme.amount_invested"
-                           
+                            jhiNumberOnly
                             required/>
                     </mat-form-field>
                     <mat-form-field>
@@ -124,7 +125,7 @@
                             placeholder="Tenure in Years" 
                             name="tenure" id="field_tenure" 
                             [(ngModel)]="savingScheme.tenure" 
-                           
+                            jhiNumberOnly
                             required
                         />
                     </mat-form-field>
@@ -218,7 +219,7 @@
                             name="investor_name" 
                             id="field_investor_name" 
                             [(ngModel)]="savingScheme.investor_name"
-                            
+                            jhiCharsOnly
                             required
                         />
                     </mat-form-field>
@@ -253,7 +254,7 @@
                                 name="fund_value"
                                 id="field_fund_value"
                                 [(ngModel)]="savingScheme.fund_value"
-                               
+                                jhiNumberOnly 
                                 required
                             />
                     </mat-form-field>
@@ -263,6 +264,7 @@
                         <input 
                             matInput
                             type="text"
+                            jhiCharsOnly
                             placeholder="Organisation Name"
                             name="organisation_name"
                             id="field_organisation_name"
@@ -289,7 +291,7 @@
                             name="amount_invested"
                             id="field_amount_invested"
                             [(ngModel)]="savingScheme.amount_invested"
-                           
+                            jhiNumberOnly 
                             required/>
                     </mat-form-field>
                     <mat-form-field>
@@ -299,7 +301,7 @@
                             placeholder="Tenure in Years" 
                             name="tenure" id="field_tenure" 
                             [(ngModel)]="savingScheme.tenure" 
-                           
+                            jhiNumberOnly 
                             required
                         />
                     </mat-form-field>

@@ -9,15 +9,14 @@ import * as $ from 'jquery';
 })
 export class ContactusComponent implements OnInit {
     user: UserContact = new UserContact();
-    mobile;
-    name;
-    phone;
-    msg;
-
     constructor(private contactService: ContactService) {}
     submitUser() {
-        this.contactService.save(this.user);
-        alert('thanx for contactus');
+        console.log('in contact ts', this.user.name);
+        console.log('in contact ts', this.user.email);
+        console.log('in contact ts', this.user.phone);
+        console.log('in contact ts', this.user.msg);
+        this.contactService.save(this.user).subscribe();
+        alert('Thank you for your Intrest we will shortly contact you');
     }
 
     resetContact() {}
@@ -33,5 +32,11 @@ export class ContactusComponent implements OnInit {
                 return /[a-zA-Z\s]/.test(keyChar);
             }
         });
+    }
+    resetValue() {
+        this.user.name = '';
+        this.user.phone = '';
+        this.user.email = '';
+        this.user.msg = '';
     }
 }

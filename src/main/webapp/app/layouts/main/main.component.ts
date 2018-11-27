@@ -39,6 +39,8 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     PaymentArray: any = [];
     isPayment: boolean;
     authority: any;
+    change;
+    loggedIn = false;
 
     constructor(
         private titleService: Title,
@@ -75,49 +77,52 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                 this.titleService.setTitle(this.getPageTitle(this.router.routerState.snapshot.root));
             }
         });
+        this.sc.logout.subscribe(() => {
+            this.isPaid = false;
+            this.flag = false;
+        });
     }
 
     // after every load/reload
     ngAfterViewInit() {
-        const a = this.loginService.getCookie();
-        this.ac = a;
+        this.ac = this.loginService.getCookie();
 
-        const w = this.ac.toString();
+        this.account = this.ac;
+        if (this.account) {
+            this.loggedIn = true;
+            this.sc.account.next(this.account);
+            this.uid = this.account.id;
 
-        const y = JSON.stringify(this.ac);
-
-        const z = JSON.parse(y);
-
-        this.principal.identity().then(account => {
-            if (account) {
-                this.account = account;
-                this.sc.account.next(this.account);
-                this.uid = account.id;
-                if (this.account.authorities[1]) {
-                    this.authority = this.account.authorities[1];
-                }
-                this.checkSuccess(this.uid);
+            if (this.account.authorities[1]) {
+                this.authority = this.account.authorities[1];
             }
-        });
+            this.checkSuccess(this.uid);
+        } else {
+            this.router.navigate(['']);
+            this.loginService.logout();
+            this.loggedIn = false;
+
+            // alert('Session Timed Out Please re-login');
+        }
+
         this.registerAuthenticationSuccess();
 
-        this.cd.detectChanges();
+        this.change = this.cd.detectChanges();
     }
 
     // after login
     registerAuthenticationSuccess() {
-        this.eventManager.subscribe('authenticationSuccess', message => {
-            this.principal.identity().then(account => {
-                this.account = account;
-                this.sc.account.next(this.account);
-                this.loginService.putCookie('1', this.account);
-                this.uid = account.id;
-                if (this.account.authorities[1]) {
-                    this.authority = this.account.authorities[1];
-                }
-                this.checkSuccess(this.uid);
-            });
+        this.sc.account.subscribe(account => {
+            this.loggedIn = true;
+
+            this.account = account;
+            this.uid = this.account.id;
+            this.checkSuccess(this.uid);
+            if (this.account.authorities[1]) {
+                this.authority = this.account.authorities[1];
+            }
         });
+        this.eventManager.subscribe('authenticationSuccess', message => {});
     }
 
     checkSuccess(uid) {
@@ -138,6 +143,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
             } else {
                 this.isPaid = false;
                 this.flag = false;
+
                 if (this.authority === 'ROLE_ADMIN') {
                     this.isPaid = true;
                     if (!this.isMobile) {
@@ -146,12 +152,6 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                 }
             }
         });
-        if (this.authority === 'ROLE_ADMIN') {
-            this.isPaid = true;
-            if (!this.isMobile) {
-                this.flag = true;
-            }
-        }
     }
 
     isAuthenticated() {

@@ -1,5 +1,5 @@
 <div>
-    <nav class="navbar navbar-dark navbar-expand-md jh-navbar fixed-top" [ngClass]="navIsFixed ? solid : transparent" [ngSwitch]="isAuthenticated()">
+    <nav class="navbar navbar-dark navbar-expand-md jh-navbar fixed-top" [ngClass]="navIsFixed ? solid : transparent" >
         <div class="jh-logo-container float-left">
 
             <a *ngIf="isPaid" class="float-left sidebar-toggler" (click)="toggle()">
@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <!-- pricing -->
-                <li *ngSwitchCase="false" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <li *ngIf="!loggedIn" class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                     <a class="nav-link" routerLink="/subscription" (click)="collapseNavbar()">
                         <fa-icon [icon]="'rupee-sign'" [fixedWidth]="true"></fa-icon>
                         <span jhiTranslate="global.menu.pricing">
@@ -66,7 +66,7 @@
                     </a>
                 </li>
                 <!-- admin -->
-                <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <li *ngIf="isAdmin" ngbDropdown class="nav-item dropdown pointer" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                     <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                         <span>
                             <fa-icon [icon]="'user-plus'"></fa-icon>
@@ -149,41 +149,38 @@
                 <li ngbDropdown class="nav-item dropdown pointer" placement="bottom-right" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                     <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu">
                         <span *ngIf="!getImageUrl()">
-                            <fa-icon [icon]="'user'"></fa-icon>
-
-                                {{FirstName}}
-
+                            <fa-icon [icon]="'user'"></fa-icon>{{FirstName}}
                         </span>
                         <span *ngIf="getImageUrl()">
                             <img [src]="getImageUrl()" class="profile-image img-circle" alt="Avatar">
                         </span>
                     </a>
                     <ul class="dropdown-menu" ngbDropdownMenu>
-                        <li *ngSwitchCase="true">
+                        <li *ngIf="loggedIn">
                             <a class="dropdown-item nav-link" routerLink="settings" routerLinkActive="active" (click)="collapseNavbar()">
                                 <fa-icon [icon]="'wrench'" [fixedWidth]="true"></fa-icon>
                                 <span jhiTranslate="global.menu.account.settings">Settings</span>
                             </a>
                         </li>
-                        <li *ngSwitchCase="true">
+                        <li *ngIf="loggedIn">
                             <a class="dropdown-item nav-link" routerLink="password" routerLinkActive="active" (click)="collapseNavbar()">
                                 <fa-icon [icon]="'clock'" [fixedWidth]="true"></fa-icon>
                                 <span jhiTranslate="global.menu.account.password">Password</span>
                             </a>
                         </li>
-                        <li *ngSwitchCase="true">
+                        <li *ngIf="loggedIn">
                             <a class="dropdown-item nav-link" (click)="logout()" id="logout">
                                 <fa-icon [icon]="'sign-out-alt'" [fixedWidth]="true"></fa-icon>
                                 <span jhiTranslate="global.menu.account.logout">Sign out</span>
                             </a>
                         </li>
-                        <li *ngSwitchCase="false">
+                        <li *ngIf="!loggedIn">
                             <a class="dropdown-item nav-link" (click)="login()" id="login">
                                 <fa-icon [icon]="'sign-in-alt'" [fixedWidth]="true"></fa-icon>
                                 <span jhiTranslate="global.menu.account.login">Sign in</span>
                             </a>
                         </li>
-                        <li *ngSwitchCase="false">
+                        <li *ngIf="!loggedIn">
                             <a class="dropdown-item nav-link" (click)="register1()" routerLinkActive="active" (click)="collapseNavbar()">
                                 <fa-icon [icon]="'user-plus'" [fixedWidth]="true"></fa-icon>
                                 <span jhiTranslate="global.menu.account.register">Register</span>

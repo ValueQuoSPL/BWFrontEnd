@@ -9,5 +9,7 @@ export class CommonSidebarService {
     // sidebarSource = new ReplaySubject(0);
     // newlogin = new ReplaySubject(0);
     account = new ReplaySubject(this.a);
+    logout = new ReplaySubject(0);
+
     constructor() {}
 }

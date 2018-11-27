@@ -51,11 +51,15 @@ export class LiabilitiesComponent implements OnInit {
 
     ngOnInit() {
         this.getUserid();
+        console.log('calling account');
+
         this.principal.identity().then(account => {
             this.account = account;
         });
     }
     getUserid() {
+        console.log('calling account');
+
         // retrieve the userIdentity data from the server, update the identity object, and then resolve.
         return this.accountService
             .get()

@@ -95,6 +95,7 @@ export class AppointmentComponent implements OnInit {
     nextDate: any;
     date = new Date();
     public loading = false;
+    customLoadingTemplate;
 
     constructor(
         private appointmentService: AppointmentService,

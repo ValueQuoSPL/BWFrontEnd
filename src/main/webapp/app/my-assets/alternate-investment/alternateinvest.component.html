@@ -37,7 +37,7 @@
                     class="full-width"
                     type="text"
                     required type="Fund Name" 
-                    jhiNumberOnly 
+                    jhiCharsOnly 
                     placeholder="Fund Name"
                     name="fund_name" 
                     id="field_fund_name" 
@@ -46,7 +46,8 @@
                 >
             </mat-form-field>&nbsp;&nbsp;
             <mat-form-field>
-                <input 
+                <input
+                    jhiCharsOnly
                     matInput 
                     class="full-width" 
                     required
@@ -109,17 +110,6 @@
             <mat-form-field>
                 <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="field_notes" [(ngModel)]="altInvest.notes" [ngModelOptions]="{standalone: true}"></textarea>
             </mat-form-field>&nbsp;&nbsp;
-            <!-- <div class="modal-footer">
-                <button type="submit" mat-button class=" btn btn-outline-primary" [disabled]="editForm.form.invalid || isSaving"
-                    (click)="c('Save click')">
-                    <span class="fa fa-save"></span>&nbsp;
-                    <span>Save</span>
-                </button>
-                <button type="button"mat-button class=" btn btn-outline-accent" data-dismiss="modal" (click)="d('Cross click')">
-                    <span class="fa fa-ban"></span>&nbsp;
-                    <span>Cancel</span>
-                </button>
-            </div> -->
             <div class="modal-footer">
                 <button
                     mat-raised-button
@@ -176,7 +166,7 @@
                     class="full-width"
                     type="text"
                     required type="Fund Name" 
-                    jhiNumberOnly 
+                    jhiCharsOnly 
                     placeholder="Fund Name"
                     name="fund_name" 
                     id="field_fund_name" 
@@ -189,6 +179,7 @@
                     matInput 
                     class="full-width" 
                     required
+                    jhiCharsOnly
                     type="text"
                     placeholder="Investor Name"
                     name="investor_name" 
@@ -248,17 +239,6 @@
             <mat-form-field>
                 <textarea matInput rows="3" cols="50" placeholder="Comment"  name="notes" id="field_notes" [(ngModel)]="altInvest.notes" [ngModelOptions]="{standalone: true}"></textarea>
             </mat-form-field>&nbsp;&nbsp;
-            <!-- <div class="modal-footer">
-                <button type="submit" mat-button class=" btn btn-outline-primary" [disabled]="editForm.form.invalid || isSaving"
-                    (click)="c('Save click')">
-                    <span class="fa fa-save"></span>&nbsp;
-                    <span>Save</span>
-                </button>
-                <button type="button"mat-button class=" btn btn-outline-accent" data-dismiss="modal" (click)="d('Cross click')">
-                    <span class="fa fa-ban"></span>&nbsp;
-                    <span>Cancel</span>
-                </button>
-            </div> -->
             <div class="modal-footer">
                 <button
                     mat-raised-button
@@ -319,7 +299,7 @@
                     type="button"
                     (click)="openDeleteAltInvest(altInvest.id)"
                     >
-                    <fa-icon [icon]="'trash'"></fa-icon></i></span>
+                    <fa-icon [icon]="'trash'"></fa-icon>
                 </button>
             </td>
         </tr>

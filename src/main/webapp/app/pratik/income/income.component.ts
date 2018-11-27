@@ -383,8 +383,6 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     }
 
     canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-        console.log('component deactive');
-
         this.dataChanged = this.isFieldChanged();
         if (!this.dataChanged && !this.changesSaved) {
             return confirm('Do you want to leave this page Before changes saved ? ' + '<Cancel> to cancel leaving <OK> to leave page');

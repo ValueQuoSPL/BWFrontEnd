@@ -6,7 +6,7 @@
         <h1 class="display-4">Welcome, Java Hipster!</h1>
         <p class="lead">This is your homepage</p>
 
-        <div [ngSwitch]="isAuthenticated()">
+        <div >
             <div class="alert alert-success" *ngSwitchCase="true">
                 <span *ngIf="account"
                    > You are logged in as user "{{account.login}}". </span>
@@ -46,7 +46,7 @@
 <jhi-intro></jhi-intro>
 <jhi-services></jhi-services>-->
 <jhi-subscription></jhi-subscription>
-<!-- <jhi-partners class="partner"></jhi-partners> -->
+  <!-- <jhi-partners class="partner"></jhi-partners> -->
 <!--<jhi-refer></jhi-refer>
 <jhi-how-do-we-do-it></jhi-how-do-we-do-it>
 <jhi-footer></jhi-footer>-->

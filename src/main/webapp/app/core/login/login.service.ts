@@ -2,12 +2,24 @@ import { Injectable } from '@angular/core';
 
 import { Principal } from 'app/core/auth/principal.service';
 import { AuthServerProvider } from 'app/core/auth/auth-jwt.service';
-import { CookieService } from 'ngx-cookie-service';
+import { CookieService } from 'ngx-cookie';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
     account: any;
-    constructor(private principal: Principal, private authServerProvider: AuthServerProvider, private _cookieService: CookieService) {}
+    expiry = new Date();
+    options = { expires: this.expiry };
+    id: any;
+    all: any;
+    single: any;
+
+    constructor(
+        private principal: Principal,
+        private authServerProvider: AuthServerProvider,
+        private _cookieService: CookieService,
+        private sc: CommonSidebarService
+    ) {}
 
     login(credentials, callback?) {
         const cb = callback || function() {};
@@ -17,9 +29,11 @@ export class LoginService {
                 data => {
                     this.principal.identity(true).then(account => {
                         this.account = account;
-                        const id: string = this.account.id;
+                        this.sc.account.next(this.account);
 
+                        this.id = this.account.id;
                         this.putCookie('1', this.account);
+                        this.getCookie();
                         resolve(data);
                     });
                     return cb();
@@ -44,16 +58,20 @@ export class LoginService {
     }
 
     getCookie() {
-        const all: {} = this._cookieService.getAll();
-
-        return this._cookieService.get('1');
+        //    this.all = this._cookieService.getAll();
+        this.single = this._cookieService.getObject('1');
+        return this.single;
     }
 
-    putCookie(key: string, data) {
-        return this._cookieService.set(key, data);
+    putCookie(key, data) {
+        this.expiry = new Date();
+        this.expiry.setMinutes(this.expiry.getMinutes() + 5);
+        this.options.expires = this.expiry;
+
+        return this._cookieService.putObject(key, data, this.options);
     }
 
     deleteCookie(key: string) {
-        return this._cookieService.delete(key);
+        return this._cookieService.remove(key);
     }
 }

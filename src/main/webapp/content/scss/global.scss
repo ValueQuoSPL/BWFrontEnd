@@ -453,8 +453,22 @@ ui bootstrap tweaks
     flex: 0 0 auto;
 }
 .imag {
-    height: 50%;
-    width: 50%;
+    height: 100%;
+    width: 100%;
+    vertical-align: center;
+}
+.divimg {
+    display: flex;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+}
+#myImage {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    border: 1px solid yellow;
 }
 .partner {
     background-color: #f8f9fa;

@@ -72,6 +72,8 @@ export class LifeInsuranceComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        console.log('calling account');
+
         this.principal.identity().then(account => {
             this.account = account;
             this.uid = account.id;

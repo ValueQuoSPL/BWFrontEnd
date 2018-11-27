@@ -12,7 +12,7 @@ import { CommonSidebarService } from '../../../pratik/common/sidebar.service';
 export class EightycComponent implements OnInit {
     user: any;
     userID: any;
-    valid = true;
+    valid = false;
     eightycResponse: any = [];
     eightyc: Eightyc = new Eightyc();
     uid: any;
@@ -34,7 +34,6 @@ export class EightycComponent implements OnInit {
     ngOnInit() {
         this.FetchId();
         this.changesSaved = true;
-        this.eightyc.fixed = 0;
     }
 
     // FetchID(): Promise<any> {
@@ -54,18 +53,6 @@ export class EightycComponent implements OnInit {
             this.uid = this.account.id;
             this.eightyc.uid = this.account.id;
             this.onEightycGet();
-        });
-    }
-
-    // eightyc call function for post data
-    onEightycSave() {
-        this.eightycService.save(this.eightyc).subscribe(responce => {});
-        this.valid = true;
-    }
-    // eightyc call function for update data
-    updateEightyc() {
-        this.eightycService.PutEightyc(this.eightyc).subscribe(data => {
-            this.changesSaved = true;
         });
     }
     // // EightyC Reset
@@ -93,6 +80,22 @@ export class EightycComponent implements OnInit {
             } else {
                 this.valid = true;
             }
+        });
+    }
+    // eightyc call function for post data
+    onEightycSave() {
+        this.eightycService.save(this.eightyc).subscribe(
+            responce => {
+                console.log(responce), this.onEightycGet();
+            },
+            error => console.log(error)
+        );
+        this.valid = true;
+    }
+    // eightyc call function for update data
+    updateEightyc() {
+        this.eightycService.PutEightyc(this.eightyc).subscribe(data => {
+            this.changesSaved = true;
         });
     }
     onEditEightycField(nameField, eightycEditContent) {
@@ -208,8 +211,11 @@ export class EightycComponent implements OnInit {
         if (this.prevValue === event || this.prevValue === null) {
             this.universalflag = false;
             this.isFieldChange = false;
+            console.log('same');
+        } else {
             this.universalflag = true;
             this.isFieldChange = true;
+            console.log('differ');
         }
     }
 }

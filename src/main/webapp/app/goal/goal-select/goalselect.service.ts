@@ -117,4 +117,8 @@ export class GoalselectService {
         this.ServiceAPIParam = 'api/mlfnd' + '/' + uid;
         return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
     }
+    public DeleteGoal(id) {
+        this.ServiceAPIParam = 'api/goaldelete' + '/' + id;
+        return this.http.delete(SERVER_API_URL + this.ServiceAPIParam);
+    }
 }
