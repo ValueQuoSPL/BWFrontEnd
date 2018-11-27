@@ -7,6 +7,7 @@ import { CreditService, LoanService } from 'app/pratik/spending/spending.service
 import { GoalselectService } from 'app/goal/goal-select/goalselect.service';
 import { Principal, AccountService } from 'app/core';
 import { MyprofileService } from 'app/family/myprofile/myprofile.service';
+import { IncomeService } from 'app/pratik/spending/spending.service';
 
 @Component({
     selector: 'jhi-life-insurance',
@@ -50,6 +51,12 @@ export class LifeInsuranceComponent implements OnInit {
     unchecked;
     edit: any;
     names: any = [];
+    tempIncomeArray: any[];
+    percentage: any;
+    totalIncome = 0;
+    annualIncome = 0;
+    totalIncomeYearly: number;
+    showAdd = false;
 
     constructor(
         private principal: Principal,
@@ -60,7 +67,8 @@ export class LifeInsuranceComponent implements OnInit {
         private creditService: CreditService,
         private loanService: LoanService,
         private goalService: GoalselectService,
-        private MyProfileSer: MyprofileService
+        private MyProfileSer: MyprofileService,
+        private incomeService: IncomeService
     ) {}
 
     ngOnInit() {
@@ -71,12 +79,15 @@ export class LifeInsuranceComponent implements OnInit {
         this.getUserid();
     }
     checklife(checked, id, cost) {
+        this.lifeInsurance.total = 0;
         if (checked) {
             this.futurecost = +this.futurecost + +cost;
             this.lifeInsurance.total = +this.futurecost + +this.outstandingpricipal;
+            this.lifeInsurance.total = +this.lifeInsurance.total + +this.totalIncomeYearly;
         } else {
             this.futurecost = +this.futurecost - +cost;
             this.lifeInsurance.total = +this.futurecost + +this.outstandingpricipal;
+            this.lifeInsurance.total = +this.lifeInsurance.total + +this.totalIncomeYearly;
         }
         this.goalId = id;
         this.checkLife = checked;
@@ -99,7 +110,7 @@ export class LifeInsuranceComponent implements OnInit {
                     this.getCredit();
                     this.getLoan();
                     this.onGetLife();
-                    this.getName();
+                    this.onIncomeGet();
                 } else {
                 }
             })
@@ -159,8 +170,13 @@ export class LifeInsuranceComponent implements OnInit {
     // life
     openLife(lifeContent) {
         this.edit = false;
+        this.lifeInsurance.total = 0;
+        this.futurecost = 0;
+        for (let i = 0; i < this.dynamicGoalArray.length; i++) {
+            const goal = this.dynamicGoalArray[i];
+            goal.check = false;
+        }
         this.resetModal();
-        // this.sum();
         this.modalService.open(lifeContent, { ariaLabelledBy: 'lifeModal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
@@ -173,8 +189,14 @@ export class LifeInsuranceComponent implements OnInit {
     }
 
     sum() {
+        this.lifeInsurance.total = 0;
         this.lifeInsurance.total = +this.futurecost + +this.outstandingpricipal;
-        console.log(this.lifeInsurance.total);
+    }
+
+    detectChange(value) {
+        this.totalIncomeYearly = 0;
+        this.percentage = value;
+        this.totalIncomeYearly = this.annualIncome * this.percentage / 100;
     }
 
     saveLifeInsurance() {
@@ -193,9 +215,12 @@ export class LifeInsuranceComponent implements OnInit {
     opnLife(id, lifeContent) {
         this.edit = true;
         this.lifeInsurance.total = 0;
-        this.sum();
         this.getGoal1();
         this.commanId = id;
+        for (let i = 0; i < this.dynamicGoalArray.length; i++) {
+            const goal = this.dynamicGoalArray[i];
+            goal.check = false;
+        }
         this.getid();
         this.modalService.open(lifeContent, { ariaLabelledBy: 'lifeModal' }).result.then(
             result => {
@@ -211,6 +236,11 @@ export class LifeInsuranceComponent implements OnInit {
     onGetLife() {
         this.riskService.getLifeInsurance(this.uid).subscribe(data => {
             this.goalLife = data;
+            if (this.goalLife.length === 0) {
+                this.showAdd = false;
+            } else {
+                this.showAdd = true;
+            }
         });
     }
     // update service for lifeInsurance
@@ -252,6 +282,17 @@ export class LifeInsuranceComponent implements OnInit {
                     this.names.push({ nameFirst: element.firstName });
                 });
             });
+        });
+    }
+
+    // get income data
+    onIncomeGet() {
+        this.incomeService.GetIncome(this.uid).subscribe((response: any[]) => {
+            this.tempIncomeArray = response;
+            for (let j = 0; j < this.tempIncomeArray.length; j++) {
+                this.totalIncome = +this.totalIncome + +this.tempIncomeArray[j].amount;
+            }
+            this.annualIncome = this.totalIncome * 12;
         });
     }
 
