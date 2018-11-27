@@ -1,5 +1,5 @@
-<div [ngSwitch]="isAuthenticated()">
-    <div *ngSwitchCase="true">
+<div >
+    <div >
         <div *ngIf="!isBooked">
             <mat-card class="container-fluid example-card1">
                 <mat-card-content class="container-fluid">
@@ -129,15 +129,5 @@
                 </div>
             </div>
         </div>
-        <div *ngSwitchCase="false" class="form-group row justify-content-center">
-            <mat-card class="example-card">
-                <mat-card-content class="example-card" class="shadow">
 
-                    <span>Oops you are not Signed In </span>
-                    Please
-                    <a class="alert-link" (click)="login()">Click here</a>
-                    <span> to sign-in now.</span>
-                </mat-card-content>
-            </mat-card>
-        </div>
 </div>

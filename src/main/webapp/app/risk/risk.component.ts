@@ -17,6 +17,8 @@ export class RiskComponent implements OnInit {
     constructor(private principal: Principal, private loginModalService: LoginModalService, private router: Router) {}
 
     ngOnInit() {
+        console.log('calling account');
+
         this.principal.identity().then(account => {
             this.account = account;
         });

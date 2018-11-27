@@ -19,6 +19,8 @@ export class PasswordComponent implements OnInit {
     constructor(private passwordService: PasswordService, private principal: Principal) {}
 
     ngOnInit() {
+        console.log('calling account');
+
         this.principal.identity().then(account => {
             this.account = account;
         });

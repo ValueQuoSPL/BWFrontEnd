@@ -5,14 +5,10 @@ import { HostListener } from '@angular/core';
 import { Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { WINDOW } from 'app/layouts/navbar/window.service';
-
-import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { Principal, LoginModalService, LoginService, JhiLanguageHelper } from 'app/core';
-
 import { VERSION } from 'app/app.constants';
 import { JhiMainComponent } from 'app/layouts/main/main.component';
 import { SidebarComponent } from 'app/layouts/sidebar/sidebar.component';
-import { Register } from 'app/account';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { JhiLanguageService } from 'ng-jhipster';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
@@ -38,7 +34,7 @@ export class NavbarComponent implements OnInit, DoCheck {
     transparent;
     solid;
     isMobile: any;
-    looggedIn = false;
+    loggedIn = false;
     isPaid = false;
     account: any;
     isAdmin = false;
@@ -51,11 +47,9 @@ export class NavbarComponent implements OnInit, DoCheck {
         private router: Router,
         private loginModalService: LoginModalService,
         private principal: Principal,
-        private profileService: ProfileService,
         private main: JhiMainComponent,
         private sidebar: SidebarComponent,
         private deviceService: DeviceDetectorService,
-        private register: Register,
         private languageService: JhiLanguageService,
         private languageHelper: JhiLanguageHelper,
         private cd: ChangeDetectorRef,
@@ -98,6 +92,7 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.commonService.account.subscribe(account => {
             if (account) {
                 this.account = account;
+                this.loggedIn = true;
 
                 if (this.account.firstName !== null) {
                     this.FirstName = this.account.firstName;
@@ -150,13 +145,13 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.isNavbarCollapsed = true;
     }
 
-    isAuthenticated() {
-        const flag = this.principal.isAuthenticated();
-        if (flag === true) {
-            this.transparent = 'solid';
-        }
-        return flag;
-    }
+    // isAuthenticated() {
+    //     const flag = this.principal.isAuthenticated();
+    //     if (flag === true) {
+    //         this.transparent = 'solid';
+    //     }
+    //     return flag;
+    // }
 
     login() {
         this.collapseNavbar();
@@ -166,9 +161,14 @@ export class NavbarComponent implements OnInit, DoCheck {
     logout() {
         this.FirstName = 'Account';
         this.isPaid = false;
+        this.isAdmin = false;
+        this.loggedIn = false;
+        this.sidebar.showSidebar();
+
         this.collapseNavbar();
         this.loginService.logout();
         this.router.navigate(['']);
+        this.commonService.logout.next(1);
     }
 
     toggleNavbar() {
@@ -176,7 +176,7 @@ export class NavbarComponent implements OnInit, DoCheck {
     }
 
     getImageUrl() {
-        return this.isAuthenticated() ? this.principal.getImageUrl() : null;
+        return this.loggedIn ? this.principal.getImageUrl() : null;
     }
 
     toggle() {

@@ -43,6 +43,8 @@ export class PaymentComponent implements OnInit {
     }
 
     AddUserMobile() {
+        console.log('calling account');
+
         this.settingsAccount.mobile = this.user.phone;
         this.account.save(this.settingsAccount).subscribe(() => {
             this.principal.identity(true).then(account => {
@@ -69,6 +71,8 @@ export class PaymentComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log('calling account');
+
         this.principal.identity().then(account => {
             this.settingsAccount = this.copyAccount(account);
         });

@@ -18,6 +18,7 @@ import {
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { MainComponent } from 'app/sheetal';
+import { CommonSidebarService } from '../common/sidebar.service';
 
 @Component({
     selector: 'jhi-dashboard',
@@ -109,12 +110,9 @@ export class DashboardComponent implements OnInit {
         private utilityService: UtilityService,
         private houseService: HouseService,
         private incomeService: IncomeService,
-        private loginModalService: LoginModalService
-    ) {
-        this.principal.identity().then(account => {
-            this.account = account;
-        });
-    }
+        private loginModalService: LoginModalService,
+        private commonService: CommonSidebarService
+    ) {}
 
     ngOnInit() {
         this.getUserid();
@@ -134,22 +132,15 @@ export class DashboardComponent implements OnInit {
     }
 
     getUserid() {
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    this.getMutualFund();
-                    this.getLiabilities();
-                    this.getGoal();
-                    this.getIncome();
-                    this.getExpense();
-                    // this.calcNetworth();
-                }
-            });
-        // .catch(err => {});
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.getMutualFund();
+            this.getLiabilities();
+            this.getGoal();
+            this.getIncome();
+            this.getExpense();
+        });
     }
 
     // liabilities

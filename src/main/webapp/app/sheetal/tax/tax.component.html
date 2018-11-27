@@ -1,5 +1,5 @@
-<div [ngSwitch]="isAuthenticated()">
-    <div *ngSwitchCase="true">
+<div >
+    <div >
         <div class="container">
             <div class="form-group row justify-content-center bwtitle">
                     <span class="animated zoomIn">Tax Details</span></div>
@@ -72,13 +72,6 @@
             </mat-accordion>
         </div>
     </div>
-    <div *ngSwitchCase="false" class="form-group row justify-content-center">
-        <mat-card class="example-card">     
-            <mat-card-content class="example-card" class="shadow">
-                <span>Oops you are not Signed In </span>
-                Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
-            </mat-card-content>
-        </mat-card>
-    </div>
+    
 </div>
                 

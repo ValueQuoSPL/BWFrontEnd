@@ -15,6 +15,8 @@ export class SettingsComponent implements OnInit {
     constructor(private account: AccountService, private principal: Principal) {}
 
     ngOnInit() {
+        console.log('calling account');
+
         this.principal.identity().then(account => {
             this.settingsAccount = this.copyAccount(account);
         });
@@ -25,6 +27,8 @@ export class SettingsComponent implements OnInit {
             () => {
                 this.error = null;
                 this.success = 'OK';
+                console.log('calling account');
+
                 this.principal.identity(true).then(account => {
                     this.settingsAccount = this.copyAccount(account);
                 });

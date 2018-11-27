@@ -1,8 +1,8 @@
 <br><br>
 
 <div class="row justify-content-xl-center" >
-    <div [ngSwitch]="isAuthenticated()">
-        <div *ngSwitchCase="true">
+    <div>
+        <div >
             <div *ngIf="!payment">
                 <mat-card  class="example-card">
                     <mat-card-header>
@@ -50,12 +50,6 @@
             </div>
         </div>
 
-        <div  *ngSwitchCase="false" class="alert alert-warning justify-content-md-center">
-                <span>Oops you are not Signed In </span>
-                Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
-                <br>
-                <span>You don't have an account yet?</span>
-                <a class="alert-link" (click)="register()">Register a new account</a>
-        </div>
+       
     </div>
 </div>

@@ -145,6 +145,8 @@ export class SubscriberComponent implements OnInit {
     }
 
     registerAuthenticationSuccess() {
+        console.log('calling account');
+
         this.eventManager.subscribe('authenticationSuccess', message => {
             this.principal.identity().then(account => {
                 this.account = account;
