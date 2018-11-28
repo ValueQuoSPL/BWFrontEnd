@@ -517,6 +517,10 @@ export class DashboardComponent implements OnInit {
     }
 
     piechart(total, totalStock, totalSaving, totalChit, totalCash, totalAlterInvestment, totalPCJ, totalFAO) {
+        this.pieChartableLabels.splice(0, this.pieChartableLabels.length);
+        this.pieChartData.splice(0, this.pieChartData.length);
+        this.AssetArray.splice(0, this.AssetArray.length);
+
         this.pieChartableLabels.push('MutualFund', 'stock', 'saving', 'chit', 'cash', 'alterInvest', 'pcj', 'fao');
         this.pieChartData.push(total, totalStock, totalSaving, totalChit, totalCash, totalAlterInvestment, totalPCJ, totalFAO);
 
