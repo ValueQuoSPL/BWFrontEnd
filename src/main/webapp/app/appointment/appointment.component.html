@@ -95,8 +95,9 @@
                                     
                                 </div>
                             </form>
-                            <table class="table table-bordered table-striped table-responsive-md">
-                                    <tbody *ngFor="let result of appointmentResult">
+                            <div *ngFor="let result of appointmentResult">
+                                <table class="table table-bordered table-striped table-responsive-md">
+                                    <tbody>
                                         <tr>
                                             <th>Date</th>
                                             <td>{{result.date | date: 'dd/MM/yyyy'}}</td>
@@ -106,24 +107,26 @@
                                             <td>{{result.time}}</td>
                                         </tr>
                                     </tbody>
-                                </table>
+                            </table>
                             <div class="row text-center">
-                                <!-- <div class="col-md-4 text-center">
-                                    <button mat-raised-button>
-                                        StartNow
+                                <div class="col-md-4 text-center" >
+                                    <button mat-raised-button class="btnReset">
+                                        <a href="{{result.hangoutlink}}" target="_blank" style="color: white; font: 'Tahoma'; font-size: 14px; font-weight: 100;">Start Now</a>
                                     </button>
-                                </div> -->
-                                <div class="col-md-6 text-center" (click)="gotoAppointment()" >
+                                </div>
+                                <div class="col-md-4 text-center" (click)="gotoAppointment()" >
                                     <button mat-raised-button class="btnSave">
                                         Reschedule
                                     </button>
                                 </div>
-                                <div class="col-md-6 text-center">
+                                <div class="col-md-4 text-center">
                                     <button mat-raised-button (click)="updateStatus()" class="btnCancel">
                                         Cancel
                                     </button>
                                 </div>
                             </div>
+                            </div>
+                            
                         </mat-card-content>
                     </mat-card>
                 </div>
