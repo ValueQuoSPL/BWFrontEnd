@@ -48,6 +48,8 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        console.log('calling account');
+
         this.principal.identity().then(account => {
             this.currentAccount = account;
             this.loadAll();

@@ -29,6 +29,7 @@ export class JhiLoginModalComponent implements AfterViewInit {
     PaymentArray: any = [];
     route: any;
     admin: any;
+    account: any;
 
     constructor(
         private stateStorageService: StateStorageService,
@@ -38,7 +39,7 @@ export class JhiLoginModalComponent implements AfterViewInit {
         private elementRef: ElementRef,
         private router: Router,
         public activeModal: NgbActiveModal,
-        private commonSidebarService: CommonSidebarService,
+        private commonService: CommonSidebarService,
         private paymentCheck: SuccessService,
         private accountService: AccountService,
         private planService: PlanService,
@@ -49,9 +50,13 @@ export class JhiLoginModalComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        const x = this.loginService.getCookie();
-
+        this.getUserid();
         setTimeout(() => this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#username'), 'focus', []), 0);
+        /**
+         * author - Pratik
+         * function - gets asObservable user identity account info
+         * purpose - to provide all permission if user is admin
+         */
         this.principal.getAuthenticationState().subscribe(identity => {
             if (identity) {
                 this.route = identity.authorities[0];
@@ -74,20 +79,11 @@ export class JhiLoginModalComponent implements AfterViewInit {
     }
 
     getUserid() {
-        this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    this.CheckPlanSelected();
-                } else {
-                }
-            })
-            .catch(err => {
-                confirm('Sorry for inconvenience. We are facing some technical issues.');
-            });
+        this.commonService.account.subscribe(account => {
+            this.account = account;
+            this.uid = this.account.id;
+            this.CheckPlanSelected();
+        });
     }
 
     CheckPlanSelected() {

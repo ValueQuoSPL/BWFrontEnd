@@ -33,6 +33,8 @@ export class MedicalInsuranceComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        console.log('calling account');
+
         this.principal.identity().then(account => {
             this.account = account;
         });
@@ -94,7 +96,18 @@ export class MedicalInsuranceComponent implements OnInit {
     onGetMedical() {
         this.riskService.getMedicalInsurance(this.uid).subscribe(data => {
             this.riskmedical = data;
+            this.riskmedical.forEach(element => {
+                const price = element.price;
+                const familyMembers = element.family_members;
+                const ret = this.riskMedicalCoverage(price, familyMembers);
+                element.price = ret;
+            });
         });
+    }
+
+    // riskCoverage function
+    riskMedicalCoverage(price, familyMembers) {
+        return price * familyMembers;
     }
     opnMedical(id, lifeModal) {
         this.tempId = id;

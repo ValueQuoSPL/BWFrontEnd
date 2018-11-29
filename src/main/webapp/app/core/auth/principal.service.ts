@@ -3,6 +3,7 @@ import { JhiLanguageService } from 'ng-jhipster';
 import { SessionStorageService } from 'ngx-webstorage';
 import { Observable, Subject } from 'rxjs';
 import { AccountService } from 'app/core/auth/account.service';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
 @Injectable({ providedIn: 'root' })
 export class Principal {
@@ -13,8 +14,18 @@ export class Principal {
     constructor(
         private languageService: JhiLanguageService,
         private sessionStorage: SessionStorageService,
-        private account: AccountService
+        private account: AccountService,
+        private commonService: CommonSidebarService
     ) {}
+
+    ngOninit() {
+        this.commonService.account.subscribe(() => {
+            this.authenticated = true;
+        });
+        this.commonService.logout.subscribe(() => {
+            this.authenticated = false;
+        });
+    }
 
     authenticate(identity) {
         this.userIdentity = identity;

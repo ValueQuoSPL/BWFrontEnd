@@ -36,6 +36,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     last: any;
     authority: any;
     encrypt: number;
+    loggedIn = false;
 
     constructor(
         private principal: Principal,
@@ -44,7 +45,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
         private planService: PlanService,
         private userPlanService: UserPlanService,
         private commonService: CommonSidebarService,
-        private spend: SpendingComponent,
         private srs: SpendingRouteGuardService
     ) {
         this.epicFunction();
@@ -55,6 +55,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+        console.log('sidebar');
+
         this.principal.getAuthenticationState().subscribe(authority => {
             if (authority) {
                 if (authority.authorities[1]) {
@@ -73,6 +75,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
         });
         this.commonService.account.subscribe(account => {
             if (account) {
+                this.loggedIn = true;
                 this.account = account;
                 this.uid = this.account.id;
                 this.encrypt = this.uid * 1993;
@@ -86,6 +89,10 @@ export class SidebarComponent implements OnInit, AfterViewInit {
                 } else {
                 }
             }
+        });
+        this.commonService.logout.subscribe(() => {
+            this.loggedIn = false;
+            this.isPaid = false;
         });
     }
 
@@ -124,7 +131,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     }
 
     isAuthenticated() {
-        return this.principal.isAuthenticated();
+        return this.loggedIn;
     }
 
     RouteChanged() {

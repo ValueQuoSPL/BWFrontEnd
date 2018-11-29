@@ -9,8 +9,7 @@
 
     <div class="navbar-header">
 
-        <div [ngSwitch]="isAuthenticated()">
-            <div *ngSwitchCase="true">
+            <div >
                 <ul (click)="RouteChanged()">
                     <br>
                     <br>
@@ -163,7 +162,7 @@
 
                 </ul>
             </div>
-            <div *ngSwitchCase="false">
+            <div >
                 <ul>
                     <li>
                         <a (click)="Login()"  >

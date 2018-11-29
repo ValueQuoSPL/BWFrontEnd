@@ -104,6 +104,7 @@
                 <th scope="col">Hospital Type</th>
                 <th scope="col">Room Type</th>
                 <th scope="col">Family Members</th>
+                <th scope="col">Risk Coverage</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
             </tr>
@@ -116,6 +117,7 @@
                 <td> {{medical.hosp_type}} </td>
                 <td>{{medical.room_type}} </td>
                 <td>{{medical.family_members}} </td>
+                <td>{{medical.price}} </td>
                 <td>
                     <button class="btn btn-outline-info" type="button" (click)="opnMedical(medical.id,lifeModal)">
                         <span> <fa-icon [icon]="'edit'"></fa-icon></span>

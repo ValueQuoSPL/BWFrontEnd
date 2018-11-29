@@ -1,6 +1,6 @@
-<span [ngSwitch]="isAuthenticated()">
+<span >
     
-    <div *ngSwitchCase="true">
+    <div >
         <div class="container">
 
                 <!-- Start expense panel -->
@@ -208,12 +208,7 @@
 
         </div>
     </div>
-    <div *ngSwitchCase="false">
-        <div class="alert alert-warning" *ngSwitchCase="false">
-            <span>You are not signed in. <br> If you want to sign in</span>
-            <a class="alert-link" (click)="login()">Click here</a>
-        </div>
-    </div>
+
 </span>
 
 

@@ -1,6 +1,6 @@
 <div class="container">
-        <div [ngSwitch]="isAuthenticated()">
-            <div *ngSwitchCase="true">                  
+
+            <div >
                         <div class="form-group row justify-content-center bwtitle">
                                 <span class="animated zoomIn">Profile</span>
                         </div>
@@ -34,23 +34,6 @@
                                 </mat-expansion-panel>
                             </mat-accordion>
             </div>
-            <!-- <div class="alert alert-warning" *ngSwitchCase="false">
-                <img src="../Assests/oops.jpg" style="height:500px;width:500px"><br>
-                <span>Oops you are not Signed In </span>
-                Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
-            </div> -->
-            <div *ngSwitchCase="false" class="form-group row justify-content-center">
 
-                    <mat-card class="example-card">
-                            
-                            <mat-card-content class="example-card" class="shadow">
-                                   
-                                    <span>Oops you are not Signed In </span>
-                                    Please <a class="alert-link" (click)="login()">Click here</a><span> to sign-in now.</span>
-                            </mat-card-content>
-                    </mat-card>
-        
-                </div>
             <br>
-        </div>
 </div>

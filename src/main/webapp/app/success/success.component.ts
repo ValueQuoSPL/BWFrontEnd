@@ -49,6 +49,8 @@ export class SuccessComponent implements OnInit, AfterViewInit {
     ) {}
 
     ngOnInit() {
+        console.log('calling account');
+
         this.principal.identity().then(account => {
             this.account = account;
         });
@@ -63,6 +65,8 @@ export class SuccessComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {}
 
     registerAuthenticationSuccess() {
+        console.log('calling account');
+
         this.eventManager.subscribe('authenticationSuccess', message => {
             this.principal.identity().then(account => {
                 this.account = account;
