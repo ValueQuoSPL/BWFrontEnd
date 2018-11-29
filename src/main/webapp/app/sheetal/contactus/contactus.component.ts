@@ -9,6 +9,7 @@ import * as $ from 'jquery';
 })
 export class ContactusComponent implements OnInit {
     user: UserContact = new UserContact();
+    isDataSaved: Boolean = false;
     constructor(private contactService: ContactService) {}
     submitUser() {
         console.log('in contact ts', this.user.name);
@@ -16,7 +17,8 @@ export class ContactusComponent implements OnInit {
         console.log('in contact ts', this.user.phone);
         console.log('in contact ts', this.user.msg);
         this.contactService.save(this.user).subscribe();
-        alert('Thank you for your Intrest we will shortly contact you');
+        this.isDataSaved = true;
+        // alert('Thank you for your Intrest we will shortly contact you');
     }
 
     resetContact() {}
