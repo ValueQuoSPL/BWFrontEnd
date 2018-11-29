@@ -26,19 +26,19 @@
     <div class="modal-body"><!-- modal body start -->
         <form name="editForm" role="form" novalidate   #editForm="ngForm"> 
             <mat-form-field>
-                <input matInput class="full-width" jhiCharsOnly required type="text" name="company_name" placeholder="Company Name" [(ngModel)]="stocks.company_name"  >
+                <input matInput class="full-width" jhiCharsOnly maxlength="25" required type="text" name="company_name" placeholder="Company Name" [(ngModel)]="stocks.company_name"  >
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
-                <input matInput class="full-width" jhiCharsOnly required type="text" placeholder="Investor Name" name="investor_name" [(ngModel)]="stocks.investor_name"  >
+                <input matInput class="full-width" jhiCharsOnly maxlength="25" required type="text" placeholder="Investor Name" name="investor_name" [(ngModel)]="stocks.investor_name"  >
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
-                <input matInput style="width: 100%;" type="number" jhiNumberOnly placeholder="No of shares" name="no_of_shares" id="no_of_shares" [(ngModel)]="stocks.no_of_shares" required />
+                <input matInput style="width: 100%;" type="number" maxlength="5" jhiNumberOnly placeholder="No of shares" name="no_of_shares" id="no_of_shares" [(ngModel)]="stocks.no_of_shares" required />
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
-                <input matInput style="width: 100%;" type="number" jhiNumberOnly placeholder="Share Price" name="share_price" id="share_price" [(ngModel)]="stocks.share_price"required/>
+                <input matInput style="width: 100%;" type="number" maxlength="8" jhiNumberOnly placeholder="Share Price" name="share_price" id="share_price" [(ngModel)]="stocks.share_price"required/>
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
-                <input matInput style="width: 100%;" jhiCharsOnly type="textarea" placeholder="Notes" name="notes" id="notes" [(ngModel)]="stocks.notes" [ngModelOptions]="{standalone: true}" />
+                <input matInput style="width: 100%;" maxlength="8" jhiCharsOnly type="textarea" placeholder="Notes" name="notes" id="notes" [(ngModel)]="stocks.notes" [ngModelOptions]="{standalone: true}" />
             </mat-form-field>
             <div class="modal-footer">
                 <button
@@ -202,7 +202,7 @@
                 <td>{{stocks.notes}}</td>
                 <td>
                     <button 
-                        class="btn btn-outline-info" 
+                        class="btn btn-outline-info btn-sm" 
                         type="button" 
                         (click)="openEditStocks(editStocksModal,stocks.id)">
                         <span> <fa-icon [icon]="'edit'"></fa-icon></span>
@@ -210,7 +210,7 @@
                 </td>
                 <td>
                     <button 
-                        class="btn btn-outline-danger" 
+                        class="btn btn-outline-danger btn-sm" 
                         type="button"
                         (click)="opendeleteStocks(stocks.id)">
                         <span> <fa-icon [icon]="'trash'"></fa-icon></i></span>

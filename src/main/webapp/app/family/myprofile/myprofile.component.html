@@ -243,8 +243,8 @@
       <div class="col-md-3"><!--start of row3.col4-->
         <mat-form-field>
           <mat-select placeholder="How Did You Know About Us?" name="howDidYouKnow" [(ngModel)]="myProfile.howDidYouKnow">
-            <mat-option  value="advertiesment">Advertiesment</mat-option>
-            <mat-option value="byfriend">By Friend</mat-option>
+            <mat-option  value="Advertiesment">Advertiesment</mat-option>
+            <mat-option value="By Friend">By Friend</mat-option>
           </mat-select>
         </mat-form-field> 
       </div><!--end of row3.col4-->
@@ -462,7 +462,7 @@
 </div><!--end of container-->
 <!--start of view page-->
 <div *ngIf="isValid"><!--start of view div-->
-   </table>start of table -->
+   </table>
     <table class="table  table-responsive-md">
         <thead>
             <tr>
@@ -470,7 +470,7 @@
                 <td></td><td></td><td></td><td></td><td></td>
                 <td>
                       <button 
-                    class="btn btn-outline-info" 
+                    class="btn btn-outline-info btn-sm" 
                     type="button" 
                     (click)="editDetail()">
                     <span><fa-icon [icon]="'edit'"></fa-icon></span>
