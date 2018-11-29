@@ -26,19 +26,19 @@
     <div class="modal-body"><!-- modal body start -->
         <form name="editForm" role="form" novalidate   #editForm="ngForm"> 
             <mat-form-field>
-                <input matInput class="full-width" jhiCharsOnly maxlength="25" required type="text" name="company_name" placeholder="Company Name" [(ngModel)]="stocks.company_name"  >
+                <input matInput class="full-width"  maxlength="25" jhiCharsOnly  required type="text" name="company_name" placeholder="Company Name" [(ngModel)]="stocks.company_name" />
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
-                <input matInput class="full-width" jhiCharsOnly maxlength="25" required type="text" placeholder="Investor Name" name="investor_name" [(ngModel)]="stocks.investor_name"  >
+                <input matInput class="full-width"   maxlength="25" jhiCharsOnly required type="text" placeholder="Investor Name" name="investor_name" [(ngModel)]="stocks.investor_name"  >
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
-                <input matInput style="width: 100%;" type="number" maxlength="5" jhiNumberOnly placeholder="No of shares" name="no_of_shares" id="no_of_shares" [(ngModel)]="stocks.no_of_shares" required />
+                <input matInput style="width: 100%;"   maxlength="5" type="text" jhiNumberOnly placeholder="No of shares" name="no_of_shares" id="no_of_shares" [(ngModel)]="stocks.no_of_shares" required />
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
-                <input matInput style="width: 100%;" type="number" maxlength="8" jhiNumberOnly placeholder="Share Price" name="share_price" id="share_price" [(ngModel)]="stocks.share_price"required/>
+                <input matInput style="width: 100%;"   maxlength="7" type="text"   jhiNumberOnly placeholder="Share Price" name="share_price" id="share_price" [(ngModel)]="stocks.share_price"required/>
             </mat-form-field> &nbsp;&nbsp;
             <mat-form-field>
-                <input matInput style="width: 100%;" maxlength="8" jhiCharsOnly type="textarea" placeholder="Notes" name="notes" id="notes" [(ngModel)]="stocks.notes" [ngModelOptions]="{standalone: true}" />
+                <input matInput style="width: 100%;" maxlength="100" jhiCharsOnly type="textarea" placeholder="Notes" name="notes" id="notes" [(ngModel)]="stocks.notes" [ngModelOptions]="{standalone: true}" />
             </mat-form-field>
             <div class="modal-footer">
                 <button
@@ -88,6 +88,7 @@
             <mat-form-field>
                 <input
                     matInput
+                    maxlength="25" 
                     jhiCharsOnly
                     class="full-width"
                     name="company_name"
@@ -101,6 +102,7 @@
             <mat-form-field>
                 <input 
                     matInput
+                    maxlength="25" 
                     jhiCharsOnly
                     class="full-width"
                     required
@@ -113,9 +115,10 @@
             </mat-form-field>&nbsp;&nbsp;
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="5"
                     style="width: 100%;" 
-                    type="number" 
+                    type="text" 
                     jhiNumberOnly 
                     placeholder="No of shares"
                     name="no_of_shares" id="no_of_shares" 
@@ -127,7 +130,8 @@
                 <input 
                     matInput 
                     style="width: 100%;" 
-                    type="number" 
+                    type="text"
+                    maxlength="7"  
                     jhiNumberOnly 
                     placeholder="Share Price" 
                     name="share_price" id="share_price" 
@@ -138,6 +142,7 @@
             <mat-form-field>
                 <input 
                     matInput
+                    maxlength="100" 
                     jhiCharsOnly
                     style="width: 100%;" 
                     type="textarea" 

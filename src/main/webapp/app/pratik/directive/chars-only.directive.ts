@@ -5,10 +5,10 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 })
 export class CharsOnlyDirective {
     // Allow decimal numbers and negative values
-    private regex: RegExp = new RegExp(/^[a-zA-Z]*$/g);
+    private regex: RegExp = new RegExp(/^[a-zA-Z_ ]*$/g);
     // Allow key codes for special events. Reflect :
     // Backspace, tab, end, home
-    private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home'];
+    private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Space'];
 
     constructor(private el: ElementRef) {}
     @HostListener('keydown', ['$event'])

@@ -28,15 +28,15 @@
                     </mat-form-field> -->
 
                   <mat-form-field style="width: 100%;">
-                      <input required matInput  placeholder="Lender Name" name="lender" [(ngModel)]="loan.lender">
+                      <input required matInput  maxlength="25" type="text" placeholder="Lender Name" name="lender" [(ngModel)]="loan.lender">
                   </mat-form-field>
 
                   <mat-form-field style="width: 100%;">
-                      <input required matInput  placeholder="Applicant Name" name="applicant" [(ngModel)]="loan.applicant">
+                      <input required matInput  maxlength="25" type="text" placeholder="Applicant Name" name="applicant" [(ngModel)]="loan.applicant">
                   </mat-form-field>
 
                   <mat-form-field style="width: 100%;">
-                      <input required matInput jhiNumberOnly placeholder="Rate of Interest" name="roi" [(ngModel)]="loan.roi" maxlength=2>
+                      <input required matInput maxlength="5" type="text" jhiNumberOnly placeholder="Rate of Interest" name="roi" [(ngModel)]="loan.roi" maxlength=2>
                   </mat-form-field>
 
                   <mat-form-field style="width: 100%;">
@@ -59,11 +59,11 @@
 
                   <mat-checkbox [(ngModel)]="loan.check" name="check">Is Loan Insured</mat-checkbox>
                   <mat-form-field style="width: 100%;">
-                      <input required matInput jhiNumberOnly placeholder="Amount of Loan" name="amnt" [(ngModel)]="loan.amnt">
+                      <input required matInput maxlength="7" type="text" jhiNumberOnly placeholder="Amount of Loan" name="amnt" [(ngModel)]="loan.amnt">
                   </mat-form-field>
 
                   <mat-form-field style="width: 100%;">
-                      <input required matInput jhiNumberOnly placeholder="Loan Tenure" name="tenure" [(ngModel)]="loan.tenure">
+                      <input required matInput maxlength="7" type="text" jhiNumberOnly placeholder="Loan Tenure" name="tenure" [(ngModel)]="loan.tenure">
                   </mat-form-field>
 
                   <mat-form-field style="width: 100%;">

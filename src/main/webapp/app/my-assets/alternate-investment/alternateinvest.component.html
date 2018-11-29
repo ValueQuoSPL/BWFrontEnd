@@ -22,9 +22,11 @@
         <form name="editForm" role="form" novalidate  #editForm="ngForm">
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="10" 
                     class="full-width" 
-                    required type="number" 
+                    required 
+                    type="text" 
                     jhiNumberOnly 
                     placeholder="ID"
                     name="id"
@@ -33,7 +35,8 @@
             </mat-form-field>&nbsp;&nbsp;
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="25" 
                     class="full-width"
                     type="text"
                     required type="Fund Name" 
@@ -48,6 +51,7 @@
             <mat-form-field>
                 <input
                     jhiCharsOnly
+                    maxlength="25"
                     matInput 
                     class="full-width" 
                     required
@@ -75,7 +79,8 @@
                     matInput 
                     class="full-width"
                     placeholder="Amount Invested"
-                    type="number"
+                    type="text"
+                    maxlength="7" 
                     jhiNumberOnly 
                     name="amount_invested" 
                     id="field_amount_invested" 
@@ -85,10 +90,11 @@
             </mat-form-field>&nbsp;&nbsp;
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="7" 
                     class="full-width" 
                     placeholder="Market Value" 
-                    type="number"
+                    type="text"
                     jhiNumberOnly 
                     name="market_value" 
                     id="field_market_value" 
@@ -150,7 +156,8 @@
         <form name="editForm" role="form" novalidate  #editForm="ngForm">
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="10" 
                     class="full-width" 
                     required type="number" 
                     jhiNumberOnly 
@@ -162,7 +169,8 @@
             </mat-form-field>&nbsp;&nbsp;
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="25"
                     class="full-width"
                     type="text"
                     required type="Fund Name" 
@@ -176,7 +184,8 @@
             </mat-form-field>&nbsp;&nbsp;
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="25" 
                     class="full-width" 
                     required
                     jhiCharsOnly
@@ -201,10 +210,11 @@
             </mat-form-field>&nbsp;&nbsp;
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="7" 
                     class="full-width"
                     placeholder="Amount Invested"
-                    type="number"
+                    type="text"
                     jhiNumberOnly 
                     name="amount_invested" 
                     id="field_amount_invested" 
@@ -214,10 +224,11 @@
             </mat-form-field>&nbsp;&nbsp;
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="7" 
                     class="full-width" 
                     placeholder="Market Value" 
-                    type="number"
+                    type="text"
                     jhiNumberOnly 
                     name="market_value" 
                     id="field_market_value" 

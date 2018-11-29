@@ -13,19 +13,19 @@
                   <div class="col-md-6">
 
                         <mat-form-field  style="width: 100%;">
-                            <input required matInput jhiNumberOnly placeholder="Policy Number" name="polno" [(ngModel)]="life.policynumber" (ngModelChange)="ChangeDetector($event, 'number')">
+                            <input required matInput jhiNumberOnly maxlength="25" type="text" placeholder="Policy Number" name="polno" [(ngModel)]="life.policynumber" (ngModelChange)="ChangeDetector($event, 'number')">
                         </mat-form-field>
 
                         <mat-form-field style="width: 100%;">
-                          <input required matInput placeholder="Policy issuer" name="issuer" [(ngModel)]="life.issuer" (ngModelChange)="ChangeDetector($event, 'issuer')">
+                          <input required matInput placeholder="Policy issuer" maxlength="25" type="text" name="issuer" [(ngModel)]="life.issuer" (ngModelChange)="ChangeDetector($event, 'issuer')">
                         </mat-form-field>
 
                         <mat-form-field style="width: 100%;" >
-                          <input required matInput placeholder="Insured Name" name="ins" [(ngModel)]="life.ins_name" (ngModelChange)="ChangeDetector($event, 'insured')">
+                          <input required matInput placeholder="Insured Name" maxlength="25" type="text" name="ins" [(ngModel)]="life.ins_name" (ngModelChange)="ChangeDetector($event, 'insured')">
                         </mat-form-field>
 
                         <mat-form-field  style="width: 100%;">
-                          <input required matInput placeholder="Proposer name" name="prop" [(ngModel)]="life.proposer_name" (ngModelChange)="ChangeDetector($event, 'proposer')">
+                          <input required matInput placeholder="Proposer name" maxlength="25" type="text" name="prop" [(ngModel)]="life.proposer_name" (ngModelChange)="ChangeDetector($event, 'proposer')">
                         </mat-form-field>
 
                       <mat-form-field style="width: 100%;">
@@ -36,7 +36,7 @@
                       </mat-form-field>
 
                       <mat-form-field class="example-full-width">
-                          <input required matInput jhiNumberOnly placeholder="Policy Term(yrs)" name="term" [(ngModel)]="life.policy_term" (ngModelChange)="ChangeDetector($event, 'term')">
+                          <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Policy Term(yrs)" name="term" [(ngModel)]="life.policy_term" (ngModelChange)="ChangeDetector($event, 'term')">
                       </mat-form-field>
                   </div>
 
@@ -60,19 +60,19 @@
                     </mat-form-field>
 
                     <mat-form-field class="example-full-width">
-                          <input required matInput placeholder="Policy Name" name="namepolicy" [(ngModel)]="life.policy_name" (ngModelChange)="ChangeDetector($event, 'policy')">
+                          <input required matInput placeholder="Policy Name" maxlength="25" type="text" name="namepolicy" [(ngModel)]="life.policy_name" (ngModelChange)="ChangeDetector($event, 'policy')">
                     </mat-form-field>
 
                         <mat-form-field class="example-full-width">
-                          <input required matInput jhiNumberOnly placeholder="Sum Assured" name="sum" [(ngModel)]="life.sum" (ngModelChange)="ChangeDetector($event, 'sum')">
+                          <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Sum Assured" name="sum" [(ngModel)]="life.sum" (ngModelChange)="ChangeDetector($event, 'sum')">
                       </mat-form-field>
 
                         <mat-form-field class="example-full-width">
-                          <input required matInput jhiNumberOnly placeholder="Premium " name="premium" [(ngModel)]="life.premium" (ngModelChange)="ChangeDetector($event, 'premium')">
+                          <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Premium " name="premium" [(ngModel)]="life.premium" (ngModelChange)="ChangeDetector($event, 'premium')">
                       </mat-form-field>
 
                         <mat-form-field class="example-full-width">
-                          <input required matInput jhiNumberOnly placeholder="Premium Payment Term" name="term23" [(ngModel)]="life.premium_term" (ngModelChange)="ChangeDetector($event, 'premiumterm')">
+                          <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Premium Payment Term" name="term23" [(ngModel)]="life.premium_term" (ngModelChange)="ChangeDetector($event, 'premiumterm')">
                       </mat-form-field>
 
                   </div>  <!-- right end-->
