@@ -3,13 +3,17 @@
 <div class="container">
     <!--start of buttons -->
     <div>
-        <div class="pull-right">
-            <button type="button" class="btn btn-link" (click)="openLife(lifeModal)">
-                <span>
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                    <span>Add New</span>
-                </span>
-            </button>
+        <div class="row pull-right">
+        <span [ngSwitch]="showAdd">
+            <p *ngSwitchCase="false">
+                <button type="button" class="btn btn-link" (click)="openLife(lifeModal)">
+                    <span>
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <span>Add New</span>
+                    </span>
+                </button>
+            </p> 
+        </span>    
             <button type="button" class="btn btn-link">
                 <span>
                     <i class="fa fa-info" aria-hidden="true"></i>
@@ -27,16 +31,18 @@
             </div>
             <div class="modal-body">
                 <form name="editForm" role="form" novalidate #editForm="ngForm">
-                    <mat-form-field style="width: 100%;">
+                        <label>Risk coverage for Family Annual Income  {{ annualIncome | currency:"INR" }} </label><br>
+                        <!-- <mat-form-field style="width: 50%;">
                             <mat-select placeholder="Select Name" [(ngModel)]="lifeInsurance.name" name="name" required>
                                 <mat-option *ngFor="let item of names" [value]="item.nameFirst">
-                                {{item.nameFirst}}
+                                    {{item.nameFirst}}
                                 </mat-option>
                             </mat-select>
-                    </mat-form-field>
+                        </mat-form-field> -->
+
                     <mat-form-field style="width: 100%;">
-                        <mat-label>How much of Expense would you want to be replaced through insurance cover?</mat-label>
-                        <input matInput type="number" placeholder="Amount in Percentage(%)" [(ngModel)]="lifeInsurance.expense_cover" [ngModelOptions]="{standalone: true}"
+                        <label>How much of Expense(%) would you want to be replaced through insurance cover?</label>
+                        <input matInput type="number" (ngModelChange)="detectChange($event)" [(ngModel)]="lifeInsurance.expense_cover" [ngModelOptions]="{standalone: true}"
                             required>
                     </mat-form-field>
 
@@ -47,10 +53,8 @@
                         </mat-card-header>
                         <mat-card-content>
                             <mat-accordion>
-                                <mat-expansion-panel class="accordcol" [expanded]="true"
-                                (opened)="panelFutureState = true"
-                                (closed)="panelFutureState = false">
-                                    <mat-expansion-panel-header  class="specific-class accordcol  right-aligned-header">
+                                <mat-expansion-panel class="accordcol" [expanded]="true" (opened)="panelFutureState = true" (closed)="panelFutureState = false">
+                                    <mat-expansion-panel-header class="specific-class accordcol  right-aligned-header">
                                         <mat-panel-title class="bwaccordtitle">Future Goals</mat-panel-title>
                                         <mat-panel-description class="bwaccordtitle">
                                             {{panelFutureState ? 'Collapse' : 'Expand'}}
@@ -74,17 +78,15 @@
                                                         </mat-checkbox>
                                                     </td>
                                                     <td> {{goal.goalname}} </td>
-                                                    <td>{{goal.futurecost}} </td>
+                                                    <td>{{goal.futurecost | currency:"INR"}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
 
                                 </mat-expansion-panel>&nbsp;
-                                <mat-expansion-panel [hideToggle]="false" class="accordcolor"
-                                (opened)="panelLiabilityState = true"
-                                (closed)="panelLiabilityState = false">
-                                    <mat-expansion-panel-header  class="specific-class accordcolor  right-aligned-header">
+                                <mat-expansion-panel [hideToggle]="false" class="accordcolor" (opened)="panelLiabilityState = true" (closed)="panelLiabilityState = false">
+                                    <mat-expansion-panel-header class="specific-class accordcolor  right-aligned-header">
                                         <mat-panel-title class="bwaccordtitle">Non Insured Liabilities</mat-panel-title>
                                         <mat-panel-description class="bwaccordtitle">
                                             {{panelLiabilityState ? 'Collapse' : 'Expand'}}
@@ -138,11 +140,9 @@
             <table class="table table-hover table-sm">
                 <thead>
                     <tr>
-                        <th scope="col">Name</th>
                         <th scope="col">Expense percentage</th>
                         <th scope="col">Total yearly expenses</th>
                         <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -150,7 +150,6 @@
                     <tr *ngFor="let lifeInsurance of goalLife; let i = index">
                         <!-- <td><a [routerLink]="['../stocks', stocks.id ]">{{stocks.id}}</a></td>
     <td> {{stocks.id}} </td> -->
-                        <td> {{lifeInsurance.name}} </td>
                         <td>{{lifeInsurance.expense_cover}} </td>
                         <td>{{lifeInsurance.total}} </td>
                         <td>

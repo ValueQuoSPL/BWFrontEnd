@@ -37,8 +37,8 @@
                     <input 
                         matInput 
                         class="full-width" 
-                        requiredtype="number" 
-                        jhiNumberOnly  
+                        requiredtype="text" 
+                        jhiCharsOnly
                         placeholder="MFScheme" 
                         [(ngModel)]="mutualfund.mfscheme" 
                         name="mfscheme"
@@ -191,23 +191,12 @@
         <div class="modal-body ">
             <div class=" rowjustify-content-center">
                 <form name="editForm" role="form" novalidate  #editForm="ngForm">
-                    <!-- <mat-form-field>
-                        <input 
-                            matInput 
-                            class="full-width" 
-                            required type="number" 
-                            jhiNumberOnly 
-                            placeholder="mutualfundid" 
-                            [(ngModel)]="mutualfund.mutualfundid" 
-                            name="mutualfundid" 
-                        >
-                    </mat-form-field>&nbsp;&nbsp; -->
                     <mat-form-field>
                         <input 
                             matInput 
                             class="full-width" 
-                            requiredtype="number" 
-                            jhiNumberOnly  
+                            requiredtype="text" 
+                            jhiCharsOnly 
                             placeholder="MFScheme" 
                             [(ngModel)]="mutualfund.mfscheme" 
                             name="mfscheme"
@@ -357,7 +346,7 @@
             <td>{{mf.cagr}}%</td>
             <td>
                 <button 
-                class="btn btn-outline-info" 
+                class="btn btn-outline-info btn-sm" 
                 type="button" 
                 (click)="openEditMutual(editMutualModal,mf.id)">
                 <span> <fa-icon [icon]="'edit'"></fa-icon></span>
@@ -365,7 +354,7 @@
             </td>
             <td>
                 <button 
-                    class="btn btn-outline-danger" 
+                    class="btn btn-outline-danger btn-sm" 
                     type="button"
                     (click)="opendeleteStocks(mf.id)"
                     >

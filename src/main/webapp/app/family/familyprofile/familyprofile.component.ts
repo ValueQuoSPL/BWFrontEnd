@@ -86,16 +86,6 @@ export class FamilyprofileComponent implements OnInit {
             this.familyProfile.uid = this.uid;
             this.show = false;
         });
-        // this.isValid = false;
-        // this.familyProfile.relationship = this.output[0].relationship;
-        // this.familyProfile.firstname = this.output[0].firstname;
-        // this.familyProfile.middlename = this.output[0].middlename;
-        // this.familyProfile.lastname = this.output[0].lastname;
-        // this.familyProfile.dateOfBirth = this.output[0].dateOfBirth;
-        // this.familyProfile.email = this.output[0].email;
-        // this.familyProfile.phonenumber = this.output[0].phonenumber;
-        // this.familyProfile.uid = this.uid;
-        // this.show = false;
     }
     // update Method to Update Info of Familyprofile
 

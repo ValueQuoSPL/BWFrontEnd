@@ -22,7 +22,8 @@
         <form name="editForm" role="form" novalidate  #editForm="ngForm">
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="25"
                     style="width: 100%;" 
                     type="text"
                     placeholder="Property Name" 
@@ -52,9 +53,9 @@
                     <mat-form-field  style="width: 80%;">
                         <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
                             required>
-                            <mat-option value="apartments">Apartment</mat-option>
-                            <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
-                            <mat-option value="land">Land</mat-option>
+                            <mat-option value="Apartments">Apartment</mat-option>
+                            <mat-option value="Individual Villa/House">Individual villa/house</mat-option>
+                            <mat-option value="Land">Land</mat-option>
                         </mat-select>
                     </mat-form-field>&nbsp;&nbsp;
                 </div>
@@ -64,8 +65,8 @@
                             required>
                             <mat-option value="commercialoffice">Commercial Office</mat-option>
                             <mat-option value="apartments">Apartments</mat-option>
-                            <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
-                            <mat-option value="land">Land</mat-option>
+                            <mat-option value="Individual Villa/House">Individual villa/house</mat-option>
+                            <mat-option value="Land">Land</mat-option>
                         </mat-select>
                     </mat-form-field>&nbsp;&nbsp;
                 </div>
@@ -73,8 +74,8 @@
                     <mat-form-field style="width: 80%;">
                         <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
                             required>
-                            <mat-option value="formhouse">Form House</mat-option>
-                            <mat-option value="land">Land</mat-option>
+                            <mat-option value="Farm House">Farm House</mat-option>
+                            <mat-option value="Land">Land</mat-option>
                         </mat-select>
                     </mat-form-field>&nbsp;&nbsp;
                 </div>
@@ -82,8 +83,8 @@
                     <mat-form-field style="width: 80%;">
                         <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
                             required>
-                            <mat-option value="fourwheller">Four Wheeler</mat-option>
-                            <mat-option value="twowheller">Two Wheeler</mat-option>
+                            <mat-option value="Four Wheller">Four Wheeler</mat-option>
+                            <mat-option value="Two Wheller">Two Wheeler</mat-option>
                         </mat-select>
                     </mat-form-field>&nbsp;&nbsp;
                 </div>
@@ -91,17 +92,18 @@
                     <mat-form-field style="width: 80%;">
                         <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
                             required>
-                            <mat-option value="gold">Gold</mat-option>
-                            <mat-option value="silver">Silver</mat-option>
-                            <mat-option value="other">Other</mat-option>
+                            <mat-option value="Gold">Gold</mat-option>
+                            <mat-option value="Silver">Silver</mat-option>
+                            <mat-option value="Other">Other</mat-option>
                         </mat-select>
                     </mat-form-field>&nbsp;&nbsp;
                 </div>
             </div>
             <mat-form-field>
                 <input 
-                    matInput 
-                    type="number" 
+                    matInput
+                    maxlength="7" 
+                    type="text" 
                     jhiNumberOnly 
                     placeholder="Current Market Value" 
                     name="current_m_value" 
@@ -152,7 +154,8 @@
         <form name="editForm" role="form" novalidate  #editForm="ngForm">
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="25"
                     style="width: 100%;" 
                     type="text"
                     jhiCharsOnly
@@ -182,9 +185,9 @@
                     <mat-form-field  style="width: 80%;">
                         <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
                             required>
-                            <mat-option value="apartments">Apartment</mat-option>
-                            <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
-                            <mat-option value="land">Land</mat-option>
+                            <mat-option value="Apartments">Apartment</mat-option>
+                            <mat-option value="Individual Villa/House">Individual villa/house</mat-option>
+                            <mat-option value="Land">Land</mat-option>
                         </mat-select>
                     </mat-form-field>&nbsp;&nbsp;
                 </div>
@@ -192,10 +195,10 @@
                     <mat-form-field style="width: 80%;">
                         <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
                             required>
-                            <mat-option value="commercialoffice">Commercial Office</mat-option>
-                            <mat-option value="apartments">Apartments</mat-option>
-                            <mat-option value="Individualvilla/house">Individual villa/house</mat-option>
-                            <mat-option value="land">Land</mat-option>
+                            <mat-option value="Commercial Office">Commercial Office</mat-option>
+                            <mat-option value="Apartments">Apartments</mat-option>
+                            <mat-option value="Individual villa/house">Individual villa/house</mat-option>
+                            <mat-option value="Land">Land</mat-option>
                         </mat-select>
                     </mat-form-field>&nbsp;&nbsp;
                 </div>
@@ -203,8 +206,8 @@
                     <mat-form-field style="width: 80%;">
                         <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
                             required>
-                            <mat-option value="formhouse">Form House</mat-option>
-                            <mat-option value="land">Land</mat-option>
+                            <mat-option value="Form House">Farm House</mat-option>
+                            <mat-option value="Land">Land</mat-option>
                         </mat-select>
                     </mat-form-field>&nbsp;&nbsp;
                 </div>
@@ -212,8 +215,8 @@
                     <mat-form-field style="width: 80%;">
                         <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
                             required>
-                            <mat-option value="fourwheller">Four Wheeler</mat-option>
-                            <mat-option value="twowheller">Two Wheeler</mat-option>
+                            <mat-option value="Four Wheller">Four Wheeler</mat-option>
+                            <mat-option value="Two Wheller">Two Wheeler</mat-option>
                         </mat-select>
                     </mat-form-field>&nbsp;&nbsp;
                 </div>
@@ -221,17 +224,18 @@
                     <mat-form-field style="width: 80%;">
                         <mat-select placeholder="Property Details" id="field_prop_details" name="prop_details" [(ngModel)]="property.prop_details"
                             required>
-                            <mat-option value="gold">Gold</mat-option>
-                            <mat-option value="silver">Silver</mat-option>
-                            <mat-option value="other">Other</mat-option>
+                            <mat-option value="Gold">Gold</mat-option>
+                            <mat-option value="Silver">Silver</mat-option>
+                            <mat-option value="Other">Other</mat-option>
                         </mat-select>
                     </mat-form-field>&nbsp;&nbsp;
                 </div>
             </div>
             <mat-form-field>
                 <input 
-                    matInput 
-                    type="number" 
+                    matInput
+                    maxlength="7"
+                    type="text" 
                     jhiNumberOnly 
                     placeholder="Current Market Value" 
                     name="current_m_value" 
@@ -289,7 +293,7 @@
             <td>{{prop.current_m_value}} </td>
             <td>
                 <button 
-                class="btn btn-outline-info" 
+                class="btn btn-outline-info btn-sm" 
                 type="button" 
                 (click)="openEditProperty(editpropertyModal,prop.id)">
                 <span> <fa-icon [icon]="'edit'"></fa-icon></span>
@@ -297,7 +301,7 @@
             </td>
             <td>
                 <button 
-                    class="btn btn-outline-danger" 
+                    class="btn btn-outline-danger btn-sm" 
                     type="button"
                     (click)="opendeleteProperty(prop.id)"
                     >

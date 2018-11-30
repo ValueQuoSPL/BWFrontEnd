@@ -1,6 +1,7 @@
 <div *ngIf="!valid">
     <div class="card">
         <div>
+                <div class="row pull-right">
             <button type="button" class="btn btn-link" (click)="onGrossSave()" [disabled]="!universalflag">
                 <span>
                         <fa-icon [icon]="'save'"></fa-icon>
@@ -19,12 +20,12 @@
                 <span> Help</span>
                 </span>
             </button>
-        </div>
-        <div class="card-header">
+        </div></div></div>
+        <div class="header">
             Income from salaries (Per Annum)
         </div>
-        <div class="card-body">
-            <table class="table table-hover table-sm">
+        <!-- <div class="card-body"> -->
+            <table class="table-responsive-md table table-hover table-sm">
                 <thead class="thead-light">
                     <tr>
                             <!--Head of table start-->
@@ -110,14 +111,13 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-    </div><br>
-    <div class="card">
-        <div class="card-header">
+    <br>
+    <!-- <div class="card"> -->
+        <div class="header">
         Income from House Properties
         </div>
-        <div class="card-body">
-            <table class="table table-hover table-sm">
+        <!-- <div class="card-body"> -->
+            <table class="table-responsive-md table table-hover table-sm">
                 <thead class="thead-light">
                     <tr>
                         <!--Head of table start-->
@@ -139,13 +139,11 @@
                     </tr>
                 </tbody>
             </table>
+    <!-- <div class="card"> -->
+        <div class="header">Income from other Sources
         </div>
-    </div>
-    <div class="card">
-        <div class="card-header">Income from other Sources
-        </div>
-        <div class="card-body">
-            <table class="table table-hover table-sm">
+        <!-- <div class="card-body"> -->
+            <table class="table-responsive-md table table-hover table-sm">
                 <thead class="thead-light"><!--Head of table start-->
                     <tr>
                         <th scope="col">Name</th>
@@ -183,8 +181,6 @@
             </tbody><!--Body of table end-->
         </table>           
       </div>
-    </div>
-</div>
 <!-- modal, edit dialog -->
 <div *ngIf="valid">
     <ng-template #grossEditContent let-c="close" let-d="dismiss">
@@ -215,13 +211,15 @@
         <div class="card">
             <div class="card-header">
               Income from salaries (Per Annum)
-            </div>
-            <div class="float-right" style="margin-left: 800px;">
+            </div></div>
+            <!-- <div class="float-right" style="margin-left: 800px;"> -->
+                <div>
+                        <div class="row pull-right">
                 <button type="button" (click)="updateGross()" [disabled]="!globalflag" class="btn btn-link">
                     <fa-icon [icon]="'save'"></fa-icon> 
                     <span>Update</span>
                 </button>
-            </div>
+            </div></div>
             <div class="card-body">
                 <table class="table table-hover table-sm" >
                     <thead class="thead-light">
@@ -324,7 +322,7 @@
                     </tbody>
                 </table>
             </div>
-        </div><br>
+        <br>
         <div class="card">
             <div class="card-header">Income from House Properties
             </div>
@@ -403,7 +401,4 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-</div>
             

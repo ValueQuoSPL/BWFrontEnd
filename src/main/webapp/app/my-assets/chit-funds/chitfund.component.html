@@ -203,9 +203,11 @@
                         </mat-form-field>&nbsp;&nbsp;
                             <mat-form-field>
                                 <input 
-                                    matInput 
+                                    matInput
+                                    maxlength="7" 
                                     class="full-width" 
-                                    required type="number" 
+                                    required 
+                                    type="text" 
                                     jhiNumberOnly
                                     placeholder="Chit Value" 
                                     name="chit_value" 
@@ -216,10 +218,11 @@
                             </mat-form-field>
                                 <mat-form-field>
                                     <input 
-                                        matInput 
+                                        matInput
+                                        maxlength="7" 
                                         class="full-width" 
                                         required 
-                                        type="number" 
+                                        type="text" 
                                         jhiNumberOnly 
                                         placeholder="Tenure [Months]" 
                                         name="tenure" 
@@ -230,10 +233,11 @@
                                 </mat-form-field>&nbsp;&nbsp;
                                     <mat-form-field>
                                         <input 
-                                            matInput 
+                                            matInput
+                                            maxlength="8"
                                             class="full-width" 
                                             required 
-                                            type="number" 
+                                            type="text" 
                                             jhiNumberOnly 
                                             placeholder="Monthly Payment" 
                                             name="monthly_investment" 
@@ -242,59 +246,60 @@
                                            
                                         >
                                     </mat-form-field>
-                                            <mat-form-field>
-                                                <input 
-                                                    matInput 
-                                                    class="full-width" 
-                                                    required 
-                                                    type="number" 
-                                                    jhiNumberOnly 
-                                                    placeholder="Current Value" 
-                                                    name="current_value" 
-                                                    id="current_value" 
-                                                    [(ngModel)]="chitfund.current_value" 
-                                                   
-                                                >
-                                            </mat-form-field>&nbsp;&nbsp;
-                            <mat-form-field>
-                                <textarea 
-                                    matInput 
-                                    rows="3" 
-                                    cols="50" 
-                                    placeholder="Comment"
-                                    name="notes" 
-                                    id="notes" 
-                                    [(ngModel)]="chitfund.notes"
-                                    [ngModelOptions]="{standalone: true}"
-                                   >
-                                </textarea>
-                            </mat-form-field>
-                <div class="modal-footer">
-                    <button
-                        mat-raised-button
-                        type="submit"
-                        [disabled]="editForm.form.invalid || isSaving"
-                        class="btnSave"
-                        (click)="c('Save click')">
-                        <span class="fa fa-save"></span>&nbsp;
-                        <span>Update</span>
-                    </button>
-                    <button 
-                        mat-raised-button  
-                        class="btnCancel"
-                        data-dismiss="modal" 
-                        (click)="d('Cross click')">
-                        <span class="fa fa-ban"></span>&nbsp;
-                        <span>Cancel</span></button>&nbsp;
-                    <button 
-                        mat-raised-button 
-                        type="button" 
-                        class="btnReset"
-                        (click)=" resetFieldValue()">
-                        <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
-                        <span>Reset</span></span>
-                    </button>
-                </div>
+                                    <mat-form-field>
+                                        <input 
+                                            matInput
+                                            maxlength="8"
+                                            class="full-width" 
+                                            required 
+                                            type="text" 
+                                            jhiNumberOnly 
+                                            placeholder="Current Value" 
+                                            name="current_value" 
+                                            id="current_value" 
+                                            [(ngModel)]="chitfund.current_value" 
+                                            
+                                        >
+                                    </mat-form-field>&nbsp;&nbsp;
+                                    <mat-form-field>
+                                        <textarea 
+                                            matInput 
+                                            rows="3" 
+                                            cols="50" 
+                                            placeholder="Comment"
+                                            name="notes" 
+                                            id="notes" 
+                                            [(ngModel)]="chitfund.notes"
+                                            [ngModelOptions]="{standalone: true}"
+                                        >
+                                        </textarea>
+                                    </mat-form-field>
+                                    <div class="modal-footer">
+                                        <button
+                                            mat-raised-button
+                                            type="submit"
+                                            [disabled]="editForm.form.invalid || isSaving"
+                                            class="btnSave"
+                                            (click)="c('Save click')">
+                                            <span class="fa fa-save"></span>&nbsp;
+                                            <span>Update</span>
+                                        </button>
+                                        <button 
+                                            mat-raised-button  
+                                            class="btnCancel"
+                                            data-dismiss="modal" 
+                                            (click)="d('Cross click')">
+                                            <span class="fa fa-ban"></span>&nbsp;
+                                            <span>Cancel</span></button>&nbsp;
+                                        <button 
+                                            mat-raised-button 
+                                            type="button" 
+                                            class="btnReset"
+                                            (click)=" resetFieldValue()">
+                                            <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                                            <span>Reset</span></span>
+                                        </button>
+                                    </div>
             </form>
         </div> <!-- body -->
     </ng-template>
@@ -323,7 +328,7 @@
                 <td>{{chit.current_value}} </td>
                 <td>
                     <button 
-                    class="btn btn-outline-info" 
+                    class="btn btn-outline-info btn-sm" 
                     type="button" 
                     (click)="openEditchit(editChitModal,chit.id)">
                     <span> <fa-icon [icon]="'edit'"></fa-icon></span>
@@ -331,7 +336,7 @@
                 </td>
                 <td>
                     <button 
-                        class="btn btn-outline-danger" 
+                        class="btn btn-outline-danger btn-sm" 
                         type="button"
                         (click)="opendeleteChit(chit.id)"
                         >

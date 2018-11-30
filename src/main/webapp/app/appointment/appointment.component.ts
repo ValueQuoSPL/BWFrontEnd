@@ -96,6 +96,7 @@ export class AppointmentComponent implements OnInit {
     date = new Date();
     public loading = false;
     customLoadingTemplate;
+    hangoutlink: any;
 
     constructor(
         private appointmentService: AppointmentService,
@@ -292,11 +293,12 @@ export class AppointmentComponent implements OnInit {
             this.appointmentResult = data;
             for (let index = 0; index < this.appointmentResult.length; index++) {
                 this.isStatus = this.appointmentResult[index].status;
+                this.hangoutlink = this.appointmentResult[index].hangoutlink;
             }
             setInterval(() => {
                 this.ref.detectChanges();
                 this.loading = false;
-            }, 4000);
+            }, 3000);
             if (this.isStatus === 'confirm') {
                 console.log('under get calendarbyuid', this.loading);
                 this.isBooked = true;

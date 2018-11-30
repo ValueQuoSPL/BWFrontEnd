@@ -3,6 +3,7 @@ import { User } from 'app/home/subscriber/payment/payment.model';
 import { PaymentService } from 'app/home/subscriber/payment/payment.service';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService, Principal } from 'app/core';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'jhi-payment',
@@ -12,7 +13,8 @@ import { AccountService, Principal } from 'app/core';
 export class PaymentComponent implements OnInit {
     user: User = new User();
     amount: any;
-    disablePaymentButton = true;
+    disablePaymentButton1 = false;
+    disablePaymentButton2 = true;
     // sUrl = 'https://www.buckswise.com:8443/api/success';
     sUrl = 'http://www.buckswise.com:8080/api/success';
     // fUrl = 'https://www.buckswise.com:8443/api/success';
@@ -36,10 +38,17 @@ export class PaymentComponent implements OnInit {
         this.user.sUrl = this.sUrl;
         this.user.fUrl = this.fUrl;
         this.paymentService.submitUser(this.user).subscribe(data => {
-            this.paymentDetail.push(data);
-            this.disablePaymentButton = false;
+            this.paymentDetail = data;
+            console.log(this.paymentDetail);
         });
+        this.disablePaymentButton1 = true;
+        this.disablePaymentButton2 = false;
         this.AddUserMobile();
+    }
+
+    goBack() {
+        this.disablePaymentButton2 = true;
+        this.disablePaymentButton1 = false;
     }
 
     AddUserMobile() {
@@ -64,10 +73,6 @@ export class PaymentComponent implements OnInit {
             login: account.login,
             imageUrl: account.imageUrl
         };
-    }
-
-    backForEdit() {
-        this.disablePaymentButton = true;
     }
 
     ngOnInit() {

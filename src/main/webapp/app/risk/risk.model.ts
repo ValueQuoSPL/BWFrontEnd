@@ -8,6 +8,7 @@ export class LifeInsurance {
     public name?: string;
 }
 export class MedicalInsurance {
+    public price: string;
     public hosp_type: string;
     public room_type: string;
     public family_members: string;
