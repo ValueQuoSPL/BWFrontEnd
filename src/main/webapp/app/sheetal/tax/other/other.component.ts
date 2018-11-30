@@ -47,9 +47,13 @@ export class OtherComponent implements OnInit {
     }
     // Other call function
     onOtherSave() {
-        this.otherService.save(this.other).subscribe(responce => {
-            // alert("data update successfully");
-        });
+        this.otherService.save(this.other).subscribe(
+            responce => {
+                console.log(responce), this.onOtherGet();
+                // alert("data update successfully");
+            },
+            error => console.log(error)
+        );
         this.valid = true;
     }
     updateOther() {

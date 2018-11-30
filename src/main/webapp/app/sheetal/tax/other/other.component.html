@@ -1,6 +1,7 @@
 <div *ngIf="!valid">
     <div  class="card">
         <div>
+            <div class="row pull-right">
             <button type="button" class="btn btn-link" (click)="onOtherSave()" [disabled]="!universalflag">
               <span>
                   <fa-icon [icon]="'save'"></fa-icon>
@@ -19,12 +20,12 @@
                 <span> Help</span>
               </span>
             </button>
-        </div>
-      <div class="card-header">
+        </div></div></div>
+      <!-- <div class="card-header">
         Other Deduction
       </div>
-      <div class="card-body">
-        <table class="table table-hover table-sm">
+      <div class="card-body"> -->
+        <table class="table-responsive-md table table-hover table-sm">
           <thead class="thead-light">
             <tr>
               <!--Head of table start-->
@@ -160,8 +161,7 @@
           <!--Body of table end-->
         </table>            
   </div>
-</div>
-</div>
+
  <!-- modal, edit dialog -->
  <div *ngIf="valid">
 <ng-template #otherEditContent let-c="close" let-d="dismiss">
@@ -193,12 +193,14 @@
 <div class="card-body">
     <table class="table table-hover table-sm" *ngFor="let otherout of otherout">
       <thead class="thead-light">
-          <div class="float-right" style="margin-left: 0px;">
+          <!-- <div class="float-right" style="margin-left: 0px;"> -->
+            <div>
+              <div class="row pull-right">
           <button type="button" class="btn btn-link" (click)="updateOther()"[disabled]="!globalflag">
               <fa-icon [icon]="'save'"></fa-icon>
               <span>Update</span>
           </button> 
-          </div>
+          </div></div>
         <tr>
           <!--Head of table start-->
           <th scope="col">Deduction Under Section 80DD</th>

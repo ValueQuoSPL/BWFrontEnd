@@ -1,6 +1,7 @@
 <div *ngIf="!valid">
     <div class="card">
             <div>
+                    <div class="row pull-right">
                     <button type="button" class="btn btn-link" (click)="onEightycSave()" [disabled]="!universalflag">
                         <span>
                         <fa-icon [icon]="'save'"></fa-icon>
@@ -19,12 +20,12 @@
                             <span> Help</span>
                         </span>
                     </button>
-            </div>
-                <div class="card-header">
+            </div></div></div>
+                <div class="header">
                 Investment Other than Home
             </div>
-                <div class="card-body">
-                    <table class="table table-hover table-sm">
+                <!-- <div class="card-body"> -->
+                    <table class="table-responsive-md table table-hover table-sm">
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col">Name</th>
@@ -131,10 +132,7 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>           
-                </div>
-            </div>
-</div>
+                    </table></div>        
 <div *ngIf="valid">
         <ng-template #eightycEditContent let-c="close" let-d="dismiss">
                 <div class="modal-header">
@@ -164,12 +162,14 @@
                 <div class="card-header">
                     Investment Other than Home
                 </div>
-                <div class="float-right" style="margin-left: 0px;">
+                <div>
+                <div class="row pull-right">
+                <!-- <div class="float-right" style="margin-left: 0px;"> -->
                 <button type="button" class="btn btn-link" (click)="updateEightyc()"[disabled]="!globalflag">
                         <fa-icon [icon]="'save'"></fa-icon> 
                     <span>Update</span>
                 </button>  
-                </div>
+                </div></div>
                 <div class="card-body">
                     <table class="table table-hover table-sm" *ngFor="let eightycResponse of eightycResponse">
                         <thead class="thead-light">

@@ -96,6 +96,7 @@ import { AdvisorFilterPipe } from 'app/advisor/advisor-filter.pipe';
 import { successRoute } from 'app/success/success.route';
 import { appointRoot } from 'app/appointment';
 import { CookieService } from 'ngx-cookie-service';
+import { UserIdleModule } from 'angular-user-idle';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -112,6 +113,11 @@ import { CookieService } from 'ngx-cookie-service';
         BuckswiseFrontEndAppRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         DeviceDetectorModule.forRoot(),
+        /* Optionally you can set time for `idle`, `timeout` and `ping` in seconds.
+        * Default values: `idle` is 600 (10 minutes),
+        * `timeout` is 300 (5 minutes)
+        * and `ping` is 120 (2 minutes). */
+        UserIdleModule.forRoot({ idle: 280, timeout: 5, ping: 120 }),
         RouterModule.forChild(pratikState),
         RouterModule.forRoot([DashRoute], { useHash: true }),
         RouterModule.forRoot([advisorRoot], { useHash: true }),

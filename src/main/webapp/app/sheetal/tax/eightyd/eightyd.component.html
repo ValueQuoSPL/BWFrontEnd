@@ -1,6 +1,7 @@
 <div *ngIf="!valid">
-<div class="card">
+<!-- <div class="card"> -->
     <div>
+        <div class="row pull-right">
         <button type="button" class="btn btn-link" (click)="onEightydSave()"[disabled]="!universalflag">
           <span>
               <fa-icon [icon]="'save'"></fa-icon> 
@@ -19,11 +20,11 @@
             <span> Help</span>
           </span>
         </button>
-      </div>
-<div class="card-header">80D Deduction
+      </div></div>
+<!-- <div class="card-header">80D Deduction
 </div>
-  <div class="card-body">
-    <table class="table table-hover table-sm">
+  <div class="card-body"> -->
+    <table class="table-responsive-md table table-hover table-sm">
       <thead class="thead-light">
         <tr>
           <!--Head of table start-->
@@ -64,8 +65,7 @@
       <!--Body of table end-->
     </table>          
   </div>
-</div> <!--form end-->   
-</div><!--container end-->
+
 <div *ngIf="valid">
 <ng-template #eightydEditContent let-c="close" let-d="dismiss">
   <div class="modal-header">
@@ -98,11 +98,13 @@
           <div class="card-header">
              80D Deduction
           </div>  
-          <div class="float-right" style="margin-left: 0px;"> 
+          <!-- <div class="float-right" style="margin-left: 0px;">  -->
+            <div>
+              <div class="row pull-right">
           <button type="button" class="btn btn-link" (click)="updateEightyd()"[disabled]="!globalflag">
               <fa-icon [icon]="'save'"></fa-icon>  </i> 
             <span>Update</span>
-          </button></div>
+          </button></div></div>
           <div class="card-body">
             <table class="table table-hover table-sm" *ngFor="let eightydout of eightydout">
               <thead class="thead-light">
