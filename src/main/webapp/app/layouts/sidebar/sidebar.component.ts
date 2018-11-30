@@ -55,8 +55,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        console.log('sidebar');
-
         this.principal.getAuthenticationState().subscribe(authority => {
             if (authority) {
                 if (authority.authorities[1]) {

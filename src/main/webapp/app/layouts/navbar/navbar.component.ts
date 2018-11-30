@@ -13,6 +13,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 import { JhiLanguageService } from 'ng-jhipster';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { PlanService } from 'app/pratik/common/plan.service';
+import { UserIdleService } from 'angular-user-idle';
 
 @Component({
     selector: 'jhi-navbar',
@@ -54,7 +55,8 @@ export class NavbarComponent implements OnInit, DoCheck {
         private languageHelper: JhiLanguageHelper,
         private cd: ChangeDetectorRef,
         private commonService: CommonSidebarService,
-        private planService: PlanService
+        private planService: PlanService,
+        private userIdle: UserIdleService
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
@@ -107,7 +109,41 @@ export class NavbarComponent implements OnInit, DoCheck {
                 }
             }
         });
+
+        // Start watching for user inactivity.
+        // this.userIdle.startWatching();
+
+        // Start watching when user idle is starting.
+        this.userIdle.onTimerStart().subscribe(count => {
+            console.log(count);
+        });
+
+        // Start watch when time is up.
+        this.userIdle.onTimeout().subscribe(() => {
+            console.log('Time is up!');
+            alert('Your session timed out. Please re-login');
+            this.logout();
+        });
     }
+
+    // idle start
+    stop() {
+        this.userIdle.stopTimer();
+    }
+
+    stopWatching() {
+        this.userIdle.stopWatching();
+    }
+
+    startWatching() {
+        console.log('session start');
+        this.userIdle.startWatching();
+    }
+
+    restart() {
+        this.userIdle.resetTimer();
+    }
+    // idle end
 
     changeLanguage(languageKey: string) {
         this.collapseNavbar();
