@@ -40,7 +40,7 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <input jhiNumberOnly type="number" name="bsalary" [(ngModel)]="gross.bsalary"(ngModelChange)="FindValue($event)">
+                            <input jhiNumberOnly type="text" maxlength="8" name="bsalary" [(ngModel)]="gross.bsalary"(ngModelChange)="FindValue($event)">
                             
                         </td>
                     </tr>
@@ -49,7 +49,7 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <input type="number"  name="da" [(ngModel)]="gross.da"(ngModelChange)="FindValue($event)">
+                            <input type="text" maxlength="8" name="da" [(ngModel)]="gross.da"(ngModelChange)="FindValue($event)">
                         </td>
                     </tr>
                     <tr>
@@ -57,7 +57,7 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <input type="number" value="0" name="hra" [(ngModel)]="gross.hra"(ngModelChange)="FindValue($event)">
+                            <input type="text" maxlength="8" value="0" name="hra" [(ngModel)]="gross.hra"(ngModelChange)="FindValue($event)">
                         </td>
                     </tr>
                     <tr>
@@ -65,7 +65,7 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <input type="number" value="0" name="conveyance" [(ngModel)]="gross.conveyance"(ngModelChange)="FindValue($event)">
+                            <input type="text" maxlength="8" value="0" name="conveyance" [(ngModel)]="gross.conveyance"(ngModelChange)="FindValue($event)">
                         </td>
                     </tr>
                     <tr>
@@ -73,7 +73,7 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <input type="number" value="0" name="childedu" [(ngModel)]="gross.childedu"(ngModelChange)="FindValue($event)">
+                            <input type="text" maxlength="8" value="0" name="childedu" [(ngModel)]="gross.childedu"(ngModelChange)="FindValue($event)">
                         </td>
                     </tr>
                     <tr>
@@ -81,7 +81,7 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <input type="number" value="0" name="medical" [(ngModel)]="gross.medical"(ngModelChange)="FindValue($event)">
+                            <input type="text" maxlength="8" value="0" name="medical" [(ngModel)]="gross.medical"(ngModelChange)="FindValue($event)">
                         </td>
                     </tr>
                     <tr>
@@ -89,7 +89,7 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <input type="number" value="0" name="lta" [(ngModel)]="gross.lta"(ngModelChange)="FindValue($event)">
+                            <input type="text" maxlength="8" value="0" name="lta" [(ngModel)]="gross.lta"(ngModelChange)="FindValue($event)">
                         </td>
                     </tr>
                     <tr>
@@ -97,7 +97,7 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <input type="number" value="0" name="otherallown" [(ngModel)]="gross.otherallown"(ngModelChange)="FindValue($event)">
+                            <input type="text" maxlength="8" value="0" name="otherallown" [(ngModel)]="gross.otherallown"(ngModelChange)="FindValue($event)">
                         </td>
                     </tr>
                     <tr>
@@ -105,7 +105,7 @@
                         <td></td>
                         <td></td>
                         <td>
-                            <input type="number" value="0" name="bonus" [(ngModel)]="gross.bonus"(ngModelChange)="FindValue($event)">
+                            <input type="text" maxlength="8" value="0" name="bonus" [(ngModel)]="gross.bonus"(ngModelChange)="FindValue($event)">
                         </td>
                     </tr>
                 </tbody>
@@ -134,7 +134,7 @@
                         <td></td>
                         
                         <td>
-                        <input type="number" value="0" name="rentincome" [(ngModel)]="gross.rentincome"(ngModelChange)="FindValue($event)">
+                        <input type="text" maxlength="8" value="0" name="rentincome" [(ngModel)]="gross.rentincome"(ngModelChange)="FindValue($event)">
                         </td>
                     </tr>
                 </tbody>
@@ -161,7 +161,7 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <input type="number" value="0" name="saving" [(ngModel)]="gross.saving"(ngModelChange)="FindValue($event)">
+                        <input type="text" maxlength="8" value="0" name="saving" [(ngModel)]="gross.saving"(ngModelChange)="FindValue($event)">
                     </td>
                 </tr>
                 <tr>
@@ -169,7 +169,7 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <input type="number" value="0" name="bonds" [(ngModel)]="gross.bonds"(ngModelChange)="FindValue($event)">
+                        <input type="text" maxlength="8" value="0" name="bonds" [(ngModel)]="gross.bonds"(ngModelChange)="FindValue($event)">
                     </td>
                 </tr>
                 <tr>
@@ -177,7 +177,7 @@
                     <td></td>
                     <td></td>
                     <td>
-                        <input type="number" value="0" name="conveyanceother" [(ngModel)]="gross.conveyanceother"(ngModelChange)="FindValue($event)">
+                        <input type="text" maxlength="8" value="0" name="conveyanceother" [(ngModel)]="gross.conveyanceother"(ngModelChange)="FindValue($event)">
                     </td>
                 </tr>
             </tbody><!--Body of table end-->
@@ -201,7 +201,7 @@
                 </div>
                 <div>
                     <mat-form-field class="example-full-width">
-                        <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name" (ngModelChange)="DetectChange($event)" >
+                        <input matInput jhiNumberOnly required placeholder="Amount" type="text" maxlength="8" value="" [(ngModel)]="editField" name="amount-name" (ngModelChange)="DetectChange($event)" >
                         <mat-hint>Please enter amount</mat-hint>
                     </mat-form-field>
                 </div><br> <br>
@@ -241,7 +241,7 @@
                             <td>
                             {{output.bsalary}}
                             </td>
-                        <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('bsalary', grossEditContent)" >
+                        <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('bsalary', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                                 
                         </tr>
@@ -252,7 +252,7 @@
                             <td>
                             {{output.da}}
                             </td>
-                            <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('da', grossEditContent)" >
+                            <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('da', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
                         <tr>
@@ -262,7 +262,7 @@
                             </td>
                             <td></td>
                             <td>{{output.hra}}</td>
-                            <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('hra', grossEditContent)" >
+                            <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('hra', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
                         <tr>
@@ -280,7 +280,7 @@
                             <td>
                             {{output.childedu}}                           
                             </td>
-                            <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('ce', grossEditContent)" >
+                            <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('ce', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
                         <tr>
@@ -290,7 +290,7 @@
                             <td>
                             {{output.medical}}
                             </td>
-                            <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('med', grossEditContent)" >
+                            <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('med', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
                         <tr>
@@ -298,7 +298,7 @@
                             <td></td>
                             <td></td>
                             <td>{{output.lta}}</td>
-                            <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('lta', grossEditContent)" >
+                            <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('lta', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
                         <tr>
@@ -308,7 +308,7 @@
                             <td>
                             {{output.otherallown}}
                             </td>
-                            <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('oa', grossEditContent)" >
+                            <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('oa', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
                         <tr>
@@ -318,7 +318,7 @@
                             <td>
                             {{output.bonus}}
                             </td>
-                            <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('bonus', grossEditContent)" >
+                            <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('bonus', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
                     </tbody>
@@ -347,7 +347,7 @@
                             <td>
                             {{output.rentincome}}
                             </td>
-                            <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('rent', grossEditContent)" >
+                            <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('rent', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
                     </tbody>
@@ -377,7 +377,7 @@
                             <td>
                             {{output.saving}}
                             </td>
-                            <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('saving', grossEditContent)" >
+                            <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('saving', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
                         <tr>
@@ -387,7 +387,7 @@
                             <td>
                             {{output.bonds}}
                             </td>
-                            <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('bonds', grossEditContent)" >
+                            <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('bonds', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
                         <tr>
@@ -397,7 +397,7 @@
                             <td>
                             {{output.conveyanceother}}
                             </td>
-                            <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('conveyance', grossEditContent)" >
+                            <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('conveyance', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
                     </tbody>

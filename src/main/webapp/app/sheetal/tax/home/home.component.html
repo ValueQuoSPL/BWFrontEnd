@@ -45,7 +45,7 @@
               </td>
               <td></td>
               <td>
-                <input type="number" value="0" name="hoamloan" [(ngModel)]="home.hoamloan"(ngModelChange)="FindValue($event)">
+                <input type="text" maxlength="8" value="0" name="hoamloan" [(ngModel)]="home.hoamloan"(ngModelChange)="FindValue($event)">
               </td>
             </tr>
           </tbody>
@@ -67,7 +67,7 @@
               <td></td>
               <td></td>
               <td>
-                <input type="number" value="0" name="prncpalloan" [(ngModel)]="home.prncpalloan"(ngModelChange)="FindValue($event)">
+                <input type="text" maxlength="8" value="0" name="prncpalloan" [(ngModel)]="home.prncpalloan"(ngModelChange)="FindValue($event)">
               </td>
             </tr>
           </tbody>
@@ -89,7 +89,7 @@
               <td></td>
               <td></td>
               <td>
-                <input type="number" value="0" name="rentclm" [(ngModel)]="home.rentclm"(ngModelChange)="FindValue($event)">
+                <input type="text" maxlength="8" value="0" name="rentclm" [(ngModel)]="home.rentclm"(ngModelChange)="FindValue($event)">
               </td>
             </tr>
           </tbody>
@@ -111,7 +111,7 @@
               <td></td>
               <td></td>
               <td>
-                <input type="number" value="0" name="remintrst" [(ngModel)]="home.remintrst"(ngModelChange)="FindValue($event)">
+                <input type="text" maxlength="8" value="0" name="remintrst" [(ngModel)]="home.remintrst"(ngModelChange)="FindValue($event)">
               </td>
             </tr>
           </tbody>
@@ -133,7 +133,7 @@
               <td></td>
               <td></td>
               <td>
-                <input type="number" value="0" name="rentclmgg" [(ngModel)]="home.rentclmgg"(ngModelChange)="FindValue($event)">
+                <input type="text" maxlength="8" value="0" name="rentclmgg" [(ngModel)]="home.rentclmgg"(ngModelChange)="FindValue($event)">
               </td>
             </tr>
           </tbody>
@@ -160,7 +160,7 @@
 
   <div>
   <mat-form-field class="example-full-width">
-      <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name" (ngModelChange)="DetectChange($event)">
+      <input matInput jhiNumberOnly required placeholder="Amount" type="text" maxlength="8" value="" [(ngModel)]="editField" name="amount-name" (ngModelChange)="DetectChange($event)">
       <mat-hint>Please enter amount</mat-hint>
   </mat-form-field>
   </div>
@@ -205,7 +205,7 @@
 <td>
 {{homeout.hoamloan}}
 </td>
-<button class="btn btn-outline-info"  type="button" (click)="onEditHomeField('Housing Loan', homeEditContent)" >
+<button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditHomeField('Housing Loan', homeEditContent)" >
 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
 
 </tr>
@@ -230,7 +230,7 @@
 <td>
 {{homeout.prncpalloan}}
 </td>
-<button class="btn btn-outline-info"  type="button" (click)="onEditHomeField('Pricipal Loan', homeEditContent)" >
+<button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditHomeField('Pricipal Loan', homeEditContent)" >
 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
 
 </tr>
@@ -255,7 +255,7 @@
 <td>
 {{homeout.rentclm}}
 </td>
-<button class="btn btn-outline-info"  type="button" (click)="onEditHomeField('Rent Claimed', homeEditContent)" >
+<button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditHomeField('Rent Claimed', homeEditContent)" >
 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
 </tr>
 </tbody>
@@ -279,7 +279,7 @@
 <td>
 {{homeout.remintrst}}
 </td>
-<button class="btn btn-outline-info"  type="button" (click)="onEditHomeField('Remaining Interest', homeEditContent)" >
+<button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditHomeField('Remaining Interest', homeEditContent)" >
 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
 </tr>
 </tbody>
@@ -303,7 +303,7 @@
 <td>
 {{homeout.rentclmgg}}
 </td>
-<button class="btn btn-outline-info"  type="button" (click)="onEditHomeField('Mentioned the Rent claimed', homeEditContent)" >
+<button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditHomeField('Mentioned the Rent claimed', homeEditContent)" >
 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
 </tr>
 </tbody>

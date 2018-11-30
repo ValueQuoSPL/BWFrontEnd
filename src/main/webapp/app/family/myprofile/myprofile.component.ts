@@ -14,7 +14,6 @@ export class MyprofileComponent implements OnInit {
     user: any;
     uid: any;
     isValid: boolean;
-    date = new FormControl(new Date());
     show = true;
     account: any;
     checkNum: boolean;
@@ -36,6 +35,7 @@ export class MyprofileComponent implements OnInit {
     // saveMethod to saveMyprofile
     saveDetail() {
         this.myProfile.uid = this.uid;
+        console.log('in myprofile', this.myProfile);
         this.MyProfileSer.save(this.myProfile).subscribe(data => {
             this.getMyProfilebyid();
         });
@@ -91,6 +91,7 @@ export class MyprofileComponent implements OnInit {
     }
     // update Method to Update Myprofile
     update() {
+        console.log('in update myprofile', this.myProfile);
         this.MyProfileSer.updateProfile(this.myProfile).subscribe(responce => {
             this.getMyProfilebyid();
         });

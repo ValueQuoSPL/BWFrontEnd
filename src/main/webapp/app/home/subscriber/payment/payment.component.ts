@@ -3,7 +3,6 @@ import { User } from 'app/home/subscriber/payment/payment.model';
 import { PaymentService } from 'app/home/subscriber/payment/payment.service';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService, Principal } from 'app/core';
-import { Subject } from 'rxjs';
 
 @Component({
     selector: 'jhi-payment',
