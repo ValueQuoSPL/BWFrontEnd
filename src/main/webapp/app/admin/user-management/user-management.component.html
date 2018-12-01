@@ -10,22 +10,28 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="login"><span>Login</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <!-- <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th> -->
+                <th jhiSortBy="firstName"><span>Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <!-- <th jhiSortBy="login"><span>Login</span> <fa-icon [icon]="'sort'"></fa-icon></th> -->
                 <th jhiSortBy="email"><span>Email</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="Phone"><span>Phone</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th></th>
                 <th><span>Profiles</span></th>
                 <th jhiSortBy="createdDate"><span>Created Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="lastModifiedBy"><span>Last Modified By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="lastModifiedDate"><span>Last Modified Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="SelectMailTemplate"><span>Select Mail Template</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                
                 <th></th>
             </tr>
             </thead>
             <tbody *ngIf ="users">
             <tr *ngFor="let user of users; trackBy: trackIdentity">
-                <td><a [routerLink]="['./', user.login, 'view']">{{user.id}}</a></td>
-                <td>{{user.login}}</td>
+                <!-- <td><a [routerLink]="['./', user.login, 'view']">{{user.id}}</a></td> -->
+                <td>{{user.firstName}}</td>
+                <!-- <td>{{user.login}}</td> -->
                 <td>{{user.email}}</td>
+                <td>{{user.mobile}}</td>
                 <td>
                     <button class="btn btn-danger btn-sm" (click)="setActive(user, true)" *ngIf="!user.activated"
                            >Deactivated</button>
@@ -41,8 +47,18 @@
                 <td>{{user.createdDate | date:'dd/MM/yy HH:mm'}}</td>
                 <td>{{user.lastModifiedBy}}</td>
                 <td>{{user.lastModifiedDate | date:'dd/MM/yy HH:mm'}}</td>
+                <td>
+                    <mat-select placeholder="Select Mail Template" name="mailDetail" [(ngModel)]="user.mailDetail">
+                        <mat-option value="welcomeMail">Welcome Mail</mat-option>
+                        <mat-option value="registrationSupport">Registration Support</mat-option>
+                    </mat-select>
+                </td>&nbsp;
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
+                        <button type="button" (click)="send(user)"
+                            class="btn btn-success btn-sm">
+                            <span class="d-none d-md-inline">Send Mail</span>
+                        </button>
                         <button type="submit"
                                 [routerLink]="['./', user.login, 'view']"
                                 class="btn btn-info btn-sm">

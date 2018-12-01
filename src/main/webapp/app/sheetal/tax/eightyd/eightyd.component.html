@@ -1,6 +1,7 @@
 <div *ngIf="!valid">
-<div class="card">
+<!-- <div class="card"> -->
     <div>
+        <div class="row pull-right">
         <button type="button" class="btn btn-link" (click)="onEightydSave()"[disabled]="!universalflag">
           <span>
               <fa-icon [icon]="'save'"></fa-icon> 
@@ -19,11 +20,11 @@
             <span> Help</span>
           </span>
         </button>
-      </div>
-<div class="card-header">80D Deduction
+      </div></div>
+<!-- <div class="card-header">80D Deduction
 </div>
-  <div class="card-body">
-    <table class="table table-hover table-sm">
+  <div class="card-body"> -->
+    <table class="table-responsive-md table table-hover table-sm">
       <thead class="thead-light">
         <tr>
           <!--Head of table start-->
@@ -41,7 +42,7 @@
           <td> </td>
           <td></td>
           <td>
-            <input type="number" value="0" name="medself" [(ngModel)]="eightyd.medself"(ngModelChange)="FindValue($event)">
+            <input type="text" maxlength="8" value="0" name="medself" [(ngModel)]="eightyd.medself"(ngModelChange)="FindValue($event)">
           </td>
         </tr>
         <tr>
@@ -49,7 +50,7 @@
           <td></td>
           <td></td>
           <td>
-            <input type="number" value="0" name="medparents" [(ngModel)]="eightyd.medparents"(ngModelChange)="FindValue($event)">
+            <input type="text" maxlength="8" value="0" name="medparents" [(ngModel)]="eightyd.medparents"(ngModelChange)="FindValue($event)">
           </td>
         </tr>
         <tr>
@@ -57,15 +58,14 @@
           <td></td>
           <td></td>
           <td>
-            <input type="number" value="0" name="healthcheck" [(ngModel)]="eightyd.healthcheck"(ngModelChange)="FindValue($event)">
+            <input type="text" maxlength="8" value="0" name="healthcheck" [(ngModel)]="eightyd.healthcheck"(ngModelChange)="FindValue($event)">
           </td>
         </tr>
       </tbody>
       <!--Body of table end-->
     </table>          
   </div>
-</div> <!--form end-->   
-</div><!--container end-->
+
 <div *ngIf="valid">
 <ng-template #eightydEditContent let-c="close" let-d="dismiss">
   <div class="modal-header">
@@ -81,7 +81,7 @@
       </div>
       <div>
       <mat-form-field class="example-full-width">
-        <input matInput jhiNumberOnly required placeholder="Amount" type="number" value=""
+        <input matInput jhiNumberOnly required placeholder="Amount" type="text" maxlength="8" value=""
          [(ngModel)]="editField" name="amount-name" (ngModelChange)="DetectChange($event)">
         <mat-hint>Please enter amount</mat-hint>
       </mat-form-field>
@@ -98,11 +98,13 @@
           <div class="card-header">
              80D Deduction
           </div>  
-          <div class="float-right" style="margin-left: 0px;"> 
+          <!-- <div class="float-right" style="margin-left: 0px;">  -->
+            <div>
+              <div class="row pull-right">
           <button type="button" class="btn btn-link" (click)="updateEightyd()"[disabled]="!globalflag">
               <fa-icon [icon]="'save'"></fa-icon>  </i> 
             <span>Update</span>
-          </button></div>
+          </button></div></div>
           <div class="card-body">
             <table class="table table-hover table-sm" *ngFor="let eightydout of eightydout">
               <thead class="thead-light">
@@ -124,7 +126,7 @@
                   <td>
                     {{eightydout.medself}}
                   </td>
-                  <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('Medical Insurance for Self', eightydEditContent )" >
+                  <td><button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditStaticField('Medical Insurance for Self', eightydEditContent )" >
                     <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                     </td>
                 </tr>
@@ -135,7 +137,7 @@
                   <td>
                     {{eightydout.medparents}}
                   </td>
-                  <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('Medical Insurance for Parents', eightydEditContent)" >
+                  <td><button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditStaticField('Medical Insurance for Parents', eightydEditContent)" >
                     <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                     </td>
                 </tr>
@@ -146,7 +148,7 @@
                   <td>
                     {{eightydout.healthcheck}}
                   </td>
-                  <td><button class="btn btn-outline-info"  type="button" (click)="onEditStaticField('Preventive Health Checkup', eightydEditContent)" >
+                  <td><button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditStaticField('Preventive Health Checkup', eightydEditContent)" >
                     <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                     </td>
                 </tr>

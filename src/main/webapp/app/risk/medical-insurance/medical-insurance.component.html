@@ -98,7 +98,7 @@
 
 <!-- table starts here -->
 <div>
-    <table class="table table-hover table-sm">
+    <table class="table-responsive-md table table-hover table-sm">
         <thead>
             <tr>
                 <th scope="col">Hospital Type</th>
@@ -119,12 +119,12 @@
                 <td>{{medical.family_members}} </td>
                 <td>{{medical.price}} </td>
                 <td>
-                    <button class="btn btn-outline-info" type="button" (click)="opnMedical(medical.id,lifeModal)">
+                    <button class="btn btn-outline-info btn-sm" type="button" (click)="opnMedical(medical.id,lifeModal)">
                         <span> <fa-icon [icon]="'edit'"></fa-icon></span>
                     </button>
                 </td>
                 <td>
-                    <button class="btn btn-outline-danger" type="button" (click)="deleteField(i, medical.id)">
+                    <button class="btn btn-outline-danger btn-sm" type="button" (click)="deleteField(i, medical.id)">
                         <span>
                             <fa-icon [icon]="'trash'"></fa-icon>
                         </span>
