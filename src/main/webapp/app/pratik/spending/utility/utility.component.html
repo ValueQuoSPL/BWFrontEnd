@@ -10,14 +10,14 @@
             <form class="example-container" #incomeAdd="ngForm">
                 <div>
                         <mat-form-field class="example-full-width">
-                            <input required matInput required placeholder="Name" value="" [(ngModel)]="resource" name="resource-name" >
+                            <input required matInput required maxlength="25" type="text" placeholder="Name" value="" [(ngModel)]="resource" name="resource-name" >
                             <mat-hint >Please enter your resource of expense </mat-hint>
                         </mat-form-field>
                         </div>
                     
                         <div>
                         <mat-form-field class="example-full-width">
-                            <input required matInput required jhiNumberOnly placeholder="Amount" type="number" value="" name="expense"
+                            <input required matInput required maxlength="7" type="text" jhiNumberOnly placeholder="Amount" value="" name="expense"
                             [(ngModel)]="expense" 
                             >
                             <mat-hint >Please enter amount</mat-hint>
@@ -47,7 +47,7 @@
 
             <div>
                 <mat-form-field class="example-full-width">
-                    <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" (ngModelChange)="DetectChange($event)"  name="amount-name" >
+                    <input matInput jhiNumberOnly required maxlength="7" type="text" placeholder="Amount"  value="" [(ngModel)]="editField" (ngModelChange)="DetectChange($event)"  name="amount-name" >
                     <mat-hint>Please enter amount</mat-hint>
                 </mat-form-field>
                 </div>
@@ -242,70 +242,70 @@
             <tbody>
             <tr>
                 <td> Electricity </td>
-                <td> <input required jhiNumberOnly type="number" id="11" [(ngModel)]="utility.electricity"  [ngModelOptions]="{standalone: true}" (ngModelChange)="staticChange($event)"  > </td>
+                <td> <input required jhiNumberOnly maxlength="7" type="text"  id="11" [(ngModel)]="utility.electricity"  [ngModelOptions]="{standalone: true}" (ngModelChange)="staticChange($event)"  > </td>
                 <td> {{utility.electricity * 12}} </td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td> Gas </td>
-                <td> <input required jhiNumberOnly type="number" id="21" [(ngModel)]="utility.gas"  [ngModelOptions]="{standalone: true}"  > </td>
+                <td> <input required jhiNumberOnly maxlength="7" type="text"  id="21" [(ngModel)]="utility.gas"  [ngModelOptions]="{standalone: true}"  > </td>
                 <td> {{utility.gas * 12}} </td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td> Water </td>
-                <td> <input required jhiNumberOnly type="number" id="31" [(ngModel)]="utility.water"  [ngModelOptions]="{standalone: true}"   > </td>
+                <td> <input required jhiNumberOnly maxlength="7" type="text"  id="31" [(ngModel)]="utility.water"  [ngModelOptions]="{standalone: true}"   > </td>
                 <td>{{utility.water * 12}} </td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td> Telephone </td>
-                <td> <input required jhiNumberOnly type="number" id="41" [(ngModel)]="utility.telephone" [ngModelOptions]="{standalone: true}"    > </td>
+                <td> <input required jhiNumberOnly maxlength="7" type="text"  id="41" [(ngModel)]="utility.telephone" [ngModelOptions]="{standalone: true}"    > </td>
                 <td> {{utility.telephone * 12}} </td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td> Mobile </td>
-                <td> <input required jhiNumberOnly type="number" id="51" [(ngModel)]="utility.mobile"  [ngModelOptions]="{standalone: true}"   > </td>
+                <td> <input required jhiNumberOnly maxlength="7" type="text"  id="51" [(ngModel)]="utility.mobile"  [ngModelOptions]="{standalone: true}"   > </td>
                 <td> {{utility.mobile * 12}} </td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td> Internet </td>
-                <td> <input required jhiNumberOnly type="number" id="61" [(ngModel)]="utility.internet"  [ngModelOptions]="{standalone: true}"   > </td>
+                <td> <input required jhiNumberOnly maxlength="7" type="text"  id="61" [(ngModel)]="utility.internet"  [ngModelOptions]="{standalone: true}"   > </td>
                 <td> {{utility.internet * 12}} </td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td> Satellite TV </td>
-                <td> <input required jhiNumberOnly type="number" id="71" [(ngModel)]="utility.tv"  [ngModelOptions]="{standalone: true}"   > </td>
+                <td> <input required jhiNumberOnly maxlength="7" type="text"  id="71" [(ngModel)]="utility.tv"  [ngModelOptions]="{standalone: true}"   > </td>
                 <td> {{utility.tv * 12}} </td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td> Video / CD Rentals </td>
-                <td> <input required jhiNumberOnly type="number" id="81" [(ngModel)]="utility.vcd"  [ngModelOptions]="{standalone: true}"   > </td>
+                <td> <input required jhiNumberOnly maxlength="7" type="text"  id="81" [(ngModel)]="utility.vcd"  [ngModelOptions]="{standalone: true}"   > </td>
                 <td> {{utility.vcd * 12}} </td>
                 <td></td>
                 <td></td>
             </tr>
             <tr>
                 <td> News Paper </td>
-                <td> <input required jhiNumberOnly type="number" id="91" [(ngModel)]="utility.news" [ngModelOptions]="{standalone: true}"    > </td>
+                <td> <input required jhiNumberOnly maxlength="7" type="text"  id="91" [(ngModel)]="utility.news" [ngModelOptions]="{standalone: true}"    > </td>
                 <td> {{utility.news * 12}} </td>
                 <td></td>
                 <td></td>
             </tr>
             <tr *ngFor="let field of dynamicUtilityArray; let i = index">
                 <td> {{field.name}} </td>
-                <td> <input required  type="number" value="{{field.value}}" disabled> </td>
+                <td> <input required  maxlength="7" type="text"  value="{{field.value}}" disabled> </td>
                 <td> {{field.value * 12}} </td>
                 <td>
                     <button class="btn btn-outline-info"  type="button" (click)="onEditDynamicField(i, utilityEditContent)" >

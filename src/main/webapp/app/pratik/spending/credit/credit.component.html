@@ -58,16 +58,16 @@
                   <div class="col-md-6">
 
                       <mat-form-field>
-                          <input required matInput placeholder="Card issuer(Bank)" name="insname" [(ngModel)]="credit.issuer" >
+                          <input maxlength="7" type="text"  matInput placeholder="Card issuer(Bank)" name="insname" [(ngModel)]="credit.issuer" >
                       </mat-form-field>
                       <mat-form-field>
-                          <input required matInput jhiNumberOnly placeholder="Card Limit" name="insname21" [(ngModel)]="credit.limit" >
+                          <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Card Limit" name="insname21" [(ngModel)]="credit.limit" >
                       </mat-form-field>
                       <mat-form-field>
-                          <input required matInput jhiNumberOnly placeholder="Average Monthly usage" name="insndame21" [(ngModel)]="credit.monthly_usage" >
+                          <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Average Monthly usage" name="insndame21" [(ngModel)]="credit.monthly_usage" >
                       </mat-form-field>
                       <mat-form-field>
-                          <input required matInput jhiNumberOnly placeholder="Monthly payment" name="insnme" [(ngModel)]="credit.monthly_pay" >
+                          <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Monthly payment" name="insnme" [(ngModel)]="credit.monthly_pay" >
                       </mat-form-field>
 
                   </div>

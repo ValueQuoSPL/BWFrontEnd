@@ -23,14 +23,14 @@
                                 <form class="example-container" #incomeAdd="ngForm">
                                     <div>
                                             <mat-form-field class="example-full-width">
-                                                <input required matInput required placeholder="Name" value="" [(ngModel)]="resource" name="resource-name" >
+                                                <input required matInput required maxlength="25" type="text" placeholder="Name" value="" [(ngModel)]="resource" name="resource-name" >
                                                 <mat-hint >Please enter your resource of expense </mat-hint>
                                             </mat-form-field>
                                             </div>
                                         
                                             <div>
                                             <mat-form-field class="example-full-width">
-                                                <input required matInput required jhiNumberOnly placeholder="Amount" type="number" value="" name="expense"
+                                                <input required matInput required maxlength="7" type="text" jhiNumberOnly placeholder="Amount" type="number" value="" name="expense"
                                                 [(ngModel)]="expense" 
                                                 >
                                                 <mat-hint >Please enter amount</mat-hint>

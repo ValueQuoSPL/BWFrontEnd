@@ -1,21 +1,38 @@
 ::ng-deep .cdk-overlay-container {
-  z-index: 1200 !important;
+    z-index: 1200 !important;
 }
 
 .example-card {
-  max-width: 400px;
-  height: 415px;
+    max-width: 400px;
+    height: 415px;
 }
 
 .example-header-image {
-  background-size: cover;
+    background-size: cover;
 }
 
 .mat-card-header {
-  background: lightgray;
+    background: lightgray;
 }
 
 .colored {
-  background: #f7f7f7;
-border-radius: 57px;
+    background: #f7f7f7;
+    border-radius: 57px;
+}
+
+.modal-content2 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 125%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.125rem;
+    outline: 0;
+}
+
+.modal-sm {
+    max-width: 660px;
 }

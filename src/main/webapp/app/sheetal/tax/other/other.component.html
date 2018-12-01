@@ -1,6 +1,7 @@
 <div *ngIf="!valid">
     <div  class="card">
         <div>
+            <div class="row pull-right">
             <button type="button" class="btn btn-link" (click)="onOtherSave()" [disabled]="!universalflag">
               <span>
                   <fa-icon [icon]="'save'"></fa-icon>
@@ -19,12 +20,12 @@
                 <span> Help</span>
               </span>
             </button>
-        </div>
-      <div class="card-header">
+        </div></div></div>
+      <!-- <div class="card-header">
         Other Deduction
       </div>
-      <div class="card-body">
-        <table class="table table-hover table-sm">
+      <div class="card-body"> -->
+        <table class="table-responsive-md table table-hover table-sm">
           <thead class="thead-light">
             <tr>
               <!--Head of table start-->
@@ -43,7 +44,7 @@
               <td></td>
               <td></td>
               <td>
-                <input type="number" value="0" name="handicapped" [(ngModel)]="other.handicapped"(ngModelChange)="FindValue($event)">
+                <input type="text" maxlength="8" value="0" name="handicapped" [(ngModel)]="other.handicapped"(ngModelChange)="FindValue($event)">
               </td>
             </tr>
           </tbody>
@@ -65,7 +66,7 @@
               <td></td>
               <td></td>
               <td>
-                <input type="number" value="0" name="medicaltreat" [(ngModel)]="other.medicaltreat"(ngModelChange)="FindValue($event)">
+                <input type="text" maxlength="8" value="0" name="medicaltreat" [(ngModel)]="other.medicaltreat"(ngModelChange)="FindValue($event)">
                 </td>
             </tr>
           </tbody>
@@ -87,7 +88,7 @@
               <td></td>
               <td></td>
               <td>
-                <input type="number" value="0" name="selfedu" [(ngModel)]="other.selfedu"(ngModelChange)="FindValue($event)">
+                <input type="text" maxlength="8" value="0" name="selfedu" [(ngModel)]="other.selfedu"(ngModelChange)="FindValue($event)">
               </td>
             </tr>
           </tbody>
@@ -109,7 +110,7 @@
               <td></td>
               <td></td>
               <td>
-                <input type="number" value="0" name="nps" [(ngModel)]="other.nps"(ngModelChange)="FindValue($event)">
+                <input type="text" maxlength="8" value="0" name="nps" [(ngModel)]="other.nps"(ngModelChange)="FindValue($event)">
               </td>
             </tr>
           </tbody>
@@ -131,7 +132,7 @@
               <td></td>
               <td></td>
               <td>
-                <input type="number" value="0" name="rgess" [(ngModel)]="other.rgess"(ngModelChange)="FindValue($event)">
+                <input type="text" maxlength="8" value="0" name="rgess" [(ngModel)]="other.rgess"(ngModelChange)="FindValue($event)">
               </td>
             </tr>
           </tbody>
@@ -153,15 +154,14 @@
               <td></td>
               <td></td>
               <td>
-                  <input type="number" value="0" name="donation" [(ngModel)]="other.donation"(ngModelChange)="FindValue($event)">
+                  <input type="text" maxlength="8" value="0" name="donation" [(ngModel)]="other.donation"(ngModelChange)="FindValue($event)">
                     </td>
             </tr>
           </tbody>
           <!--Body of table end-->
         </table>            
   </div>
-</div>
-</div>
+
  <!-- modal, edit dialog -->
  <div *ngIf="valid">
 <ng-template #otherEditContent let-c="close" let-d="dismiss">
@@ -179,7 +179,7 @@
 
     <div>
     <mat-form-field class="example-full-width">
-        <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name"(ngModelChange)="DetectChange($event)" >
+        <input matInput jhiNumberOnly required placeholder="Amount" type="text" maxlength="8" value="" [(ngModel)]="editField" name="amount-name"(ngModelChange)="DetectChange($event)" >
         <mat-hint>Please enter amount</mat-hint>
     </mat-form-field>
     </div>
@@ -193,12 +193,14 @@
 <div class="card-body">
     <table class="table table-hover table-sm" *ngFor="let otherout of otherout">
       <thead class="thead-light">
-          <div class="float-right" style="margin-left: 0px;">
+          <!-- <div class="float-right" style="margin-left: 0px;"> -->
+            <div>
+              <div class="row pull-right">
           <button type="button" class="btn btn-link" (click)="updateOther()"[disabled]="!globalflag">
               <fa-icon [icon]="'save'"></fa-icon>
               <span>Update</span>
           </button> 
-          </div>
+          </div></div>
         <tr>
           <!--Head of table start-->
           <th scope="col">Deduction Under Section 80DD</th>
@@ -219,7 +221,7 @@
               {{otherout.handicapped}}
              
           </td>
-          <button class="btn btn-outline-info"  type="button" (click)="onEditOtherField('Medical Handicapped', otherEditContent)" >
+          <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditOtherField('Medical Handicapped', otherEditContent)" >
               <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
           
         </tr>
@@ -245,7 +247,7 @@
               {{otherout.medicaltreat}}
               
             </td>
-            <button class="btn btn-outline-info"  type="button" (click)="onEditOtherField('Medical Treatment', otherEditContent)" >
+            <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditOtherField('Medical Treatment', otherEditContent)" >
                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
         </tr>
       </tbody>
@@ -269,7 +271,7 @@
           <td>
               {{otherout.selfedu}}
           </td>
-          <button class="btn btn-outline-info"  type="button" (click)="onEditOtherField('Repayment', otherEditContent)" >
+          <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditOtherField('Repayment', otherEditContent)" >
               <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
         </tr>
       </tbody>
@@ -293,7 +295,7 @@
           <td>
               {{otherout.nps}}
           </td>
-          <button class="btn btn-outline-info"  type="button" (click)="onEditOtherField('nps', otherEditContent)" >
+          <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditOtherField('nps', otherEditContent)" >
               <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
         </tr>
       </tbody>
@@ -317,7 +319,7 @@
           <td>
               {{otherout.rgess}}
           </td>
-          <button class="btn btn-outline-info"  type="button" (click)="onEditOtherField('rgess', otherEditContent)" >
+          <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditOtherField('rgess', otherEditContent)" >
               <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
         </tr>
       </tbody>
@@ -341,7 +343,7 @@
           <td>
               {{otherout.donation}}
                 </td>
-                <button class="btn btn-outline-info"  type="button" (click)="onEditOtherField('donation', otherEditContent)" >
+                <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditOtherField('donation', otherEditContent)" >
                     <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
         </tr>
       </tbody>

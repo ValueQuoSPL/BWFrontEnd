@@ -273,7 +273,7 @@
             #emailId="ngModel"
             minlength="5" 
             maxlength="50"
-            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" 
             required 
             email
           >
@@ -417,8 +417,8 @@
             [(ngModel)]="myProfile.pin"
             name="pin" 
             #pin="ngModel"
-            minlength="3" 
-            maxlength="10" 
+            minlength="6" 
+            maxlength="6" 
             pattern="^[_'.@A-Za-z0-9-]*$"
             required>
         </mat-form-field>

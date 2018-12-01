@@ -43,6 +43,7 @@
                     <mat-form-field>
                         <input 
                             matInput
+                            maxlength="25"
                             type="text" 
                             placeholder="Investor Name"
                             name="investor_name" 
@@ -54,9 +55,10 @@
                     </mat-form-field>
                     <mat-form-field>
                         <input 
-                            matInput 
+                            matInput
+                            maxlength="5"
                             jhiNumberOnly 
-                            type="number" 
+                            type="text" 
                             placeholder="Rate of Interest"
                             name="rate_of_interest" 
                             id="field_rate_of_interest" 
@@ -73,6 +75,7 @@
                     <mat-form-field>
                             <input 
                                 matInput
+                                maxlength="8" 
                                 type="number"
                                 placeholder="Fund Value"
                                 name="fund_value"
@@ -87,6 +90,7 @@
                     <mat-form-field>
                         <input 
                             matInput
+                            maxlength="25" 
                             jhiCharsOnly
                             type="text"
                             placeholder="Organisation Name"
@@ -109,8 +113,10 @@
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field>
-                        <input matInput 
-                            type="number"
+                        <input 
+                            matInput 
+                            maxlength="7" 
+                            type="text"
                             placeholder="Amount Invested"
                             name="amount_invested"
                             id="field_amount_invested"
@@ -120,8 +126,9 @@
                     </mat-form-field>
                     <mat-form-field>
                         <input 
-                            matInput 
-                            type="number" 
+                            matInput
+                            maxlength="7" 
+                            type="text" 
                             placeholder="Tenure in Years" 
                             name="tenure" id="field_tenure" 
                             [(ngModel)]="savingScheme.tenure" 
@@ -129,11 +136,6 @@
                             required
                         />
                     </mat-form-field>
-                    <!-- <mat-form-field>
-                        <input matInput [matDatepicker]="picker1" placeholder="End Date" name="end_date"   [(ngModel)]="savingScheme.end_date" >
-                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                        <mat-datepicker #picker1></mat-datepicker>
-                      </mat-form-field> -->
                     <mat-form-field>
                         <input matInput [matDatepicker]="picker2" placeholder="As of Date" name="as_of_date" [(ngModel)]="savingScheme.as_of_date" >
                         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -141,21 +143,6 @@
                       </mat-form-field>
                 </div>
             </div>
-            <!-- <div class="modal-footer">
-                <button 
-                    type="submit" 
-                    class="btn btn-primary" 
-                    [disabled]="editForm.form.invalid || isSaving" 
-                    class="btn btn-primary"
-                    (click)="c('Save click')">
-                        <span class="fa fa-save"></span>&nbsp;
-                        <span>Save</span>
-                </button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="d('Cross click')">
-                    <span class="fa fa-ban"></span>&nbsp;
-                    <span>Cancel</span>
-                </button>                                   
-            </div>footer end -->
             <div class="modal-footer">
                 <button
                     mat-raised-button
@@ -214,6 +201,7 @@
                     <mat-form-field>
                         <input 
                             matInput
+                            maxlength="25"
                             type="text" 
                             placeholder="Investor Name"
                             name="investor_name" 
@@ -225,7 +213,8 @@
                     </mat-form-field>
                     <mat-form-field>
                         <input 
-                            matInput 
+                            matInput
+                            maxlength="5"
                             jhiNumberOnly 
                             type="number" 
                             placeholder="Rate of Interest"
@@ -249,7 +238,8 @@
                     <mat-form-field>
                             <input 
                                 matInput
-                                type="number"
+                                maxlength="7" 
+                                type="text"
                                 placeholder="Fund Value"
                                 name="fund_value"
                                 id="field_fund_value"
@@ -263,6 +253,7 @@
                     <mat-form-field>
                         <input 
                             matInput
+                            maxlength="25"
                             type="text"
                             jhiCharsOnly
                             placeholder="Organisation Name"
@@ -286,7 +277,8 @@
                     </mat-form-field>
                     <mat-form-field>
                         <input matInput 
-                            type="number"
+                            type="text"
+                            maxlength="7" 
                             placeholder="Amount Invested"
                             name="amount_invested"
                             id="field_amount_invested"
@@ -296,8 +288,9 @@
                     </mat-form-field>
                     <mat-form-field>
                         <input 
-                            matInput 
-                            type="number" 
+                            matInput
+                            maxlength="7"
+                            type="text" 
                             placeholder="Tenure in Years" 
                             name="tenure" id="field_tenure" 
                             [(ngModel)]="savingScheme.tenure" 
@@ -316,7 +309,7 @@
                     </mat-form-field>
                     <mat-form-field>
                         <input 
-                            matInput 
+                            matInput
                             type="text" 
                             placeholder="As of Date"
                             [(ngModel)]="savingScheme.as_of_date" 
@@ -325,21 +318,6 @@
                     </mat-form-field>
                 </div>
             </div>
-            <!-- <div class="modal-footer">
-                <button 
-                    type="submit" 
-                    class="btn btn-primary" 
-                    [disabled]="editForm.form.invalid || isSaving" 
-                    class="btn btn-primary"
-                    (click)="c('Save click')">
-                        <span class="fa fa-save"></span>&nbsp;
-                        <span>Save</span>
-                </button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="d('Cross click')">
-                    <span class="fa fa-ban"></span>&nbsp;
-                    <span>Cancel</span>
-                </button>                                   
-            </div> -->
             <div class="modal-footer">
                 <button
                     mat-raised-button

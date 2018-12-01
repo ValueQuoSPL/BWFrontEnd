@@ -205,7 +205,8 @@
         <form name="editForm" role="form" novalidate  #editForm="ngForm">
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="10"
                     class="full-width"
                     placeholder="ID"
                     type="number"
@@ -219,7 +220,8 @@
             <mat-form-field>
                 <input 
                     jhiCharsOnly
-                    matInput 
+                    matInput
+                    maxlength="20" 
                     class="full-width"
                     placeholder="Investment Type"
                     type="text" 
@@ -239,15 +241,10 @@
                     name="asset_type" 
                     id="field_asset_type" 
                     [(ngModel)]="fao.asset_type" 
-                    
+                    maxlength="20" 
                     required
                 >
             </mat-form-field>&nbsp;&nbsp;
-            <!-- <div class="form-group">
-                <label class="form-control-label" for="field_investor_name">Investor Name</label>
-                <input type="text" class="form-control" name="investor_name" id="field_investor_name" [(ngModel)]="fao.investor_name"
-                    required/>
-            </div> -->
             <mat-form-field>
                 <input 
                     matInput 
@@ -258,18 +255,14 @@
                     jhiCharsOnly
                     id="field_investor_name" 
                     [(ngModel)]="fao.investor_name" 
-                    
+                    maxlength="25" 
                     required
                 >
             </mat-form-field>
-            <!-- <div class="form-group">
-                <label class="form-control-label" for="field_asset_name">Asset Name</label>
-                <input type="text" class="form-control" name="asset_name" id="field_asset_name" [(ngModel)]="fao.asset_name"
-                    required/>
-            </div> -->
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="25" 
                     class="full-width"
                     type="text"
                     placeholder="Asset Name"
@@ -287,10 +280,11 @@
             </div> -->
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="7" 
                     class="full-width"
                     placeholder="Number Of Contracts"
-                    type="number"
+                    type="text"
                     jhiNumberOnly 
                     name="no_of_contracts" 
                     id="field_no_of_contracts" 
@@ -314,18 +308,13 @@
                 <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
                 <mat-datepicker #picker1 ></mat-datepicker>
             </mat-form-field>&nbsp;&nbsp;
-
-            <!-- <div class="form-group">
-                <label class="form-control-label" for="field_contract_p_value">contract Purchase Value</label>
-                <input type="number" class="form-control" name="contract_p_value" id="field_contract_p_value" [(ngModel)]="fao.contract_p_value"
-                    required />
-            </div> -->
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="7"
                     class="full-width"
                     placeholder="Contract Purchase Value"
-                    type="number"
+                    type="text"
                     jhiNumberOnly 
                     name="contract_p_value" 
                     id="field_contract_p_value" 
@@ -335,10 +324,11 @@
             </mat-form-field>
             <mat-form-field>
                 <input 
-                    matInput 
+                    matInput
+                    maxlength="7" 
                     class="full-width"
                     placeholder="Contract Market Value"
-                    type="number"
+                    type="text"
                     jhiNumberOnly 
                     name="contract_m_value"
                     id="field_contract_m_value"
@@ -359,35 +349,6 @@
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2 ></mat-datepicker>
             </mat-form-field>
-            <!-- <div class="row">
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        <label class="form-control-label" for="field_contract_m_value">contract Market Value</label>
-                        <input type="number" 
-                        class="form-control"
-                        name="contract_m_value"
-                        id="field_contract_m_value"
-                        [(ngModel)]="fao.contract_m_value"
-                        
-                        required />
-                    </div>
-                </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <div class="col-xs-6">
-                    <div class="form-group">
-                        <label class="form-control-label" f7or="field_as_of_date">As of Date</label>
-                        <input type="text" 
-                                placeholder="" 
-                                class="form-control"
-                                    [(ngModel)]="fao.as_of_date"
-                                
-                                bsDatepicker>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="form-group">
-                <label class="form-control-label" for="field_notes">Notes</label>
-                <input type="text" class="form-control" name="notes" id="field_notes" [(ngModel)]="fao.notes"/>
-            </div> -->
             <mat-form-field>
                 <textarea 
                     matInput 
@@ -400,18 +361,6 @@
                     >
                 </textarea>
             </mat-form-field>&nbsp;&nbsp;
-            <!-- <div class="modal-footer">
-                <button type="submit" mat-button class=" btn btn-outline-primary"
-                [disabled]="editForm.form.invalid || isSaving"
-                (click)="c('Save click')">
-                    <span class="fa fa-save"></span>&nbsp;
-                    <span>Save</span>
-                </button>
-                <button type="button"  mat-button class=" btn btn-outline-accent" data-dismiss="modal" (click)="d('Cross click')">
-                    <span class="fa fa-ban"></span>&nbsp;
-                    <span>Cancel</span>
-                </button>  
-            </div> -->
             <div class="modal-footer">
                 <button
                     mat-raised-button
