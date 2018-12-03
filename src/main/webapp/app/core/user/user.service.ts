@@ -36,4 +36,9 @@ export class UserService {
     authorities(): Observable<string[]> {
         return this.http.get<string[]>(SERVER_API_URL + 'api/users/authorities');
     }
+
+    // send Mail by Admin
+    sendMail(user): Observable<any> {
+        return this.http.post<any>(SERVER_API_URL + 'api/sendmail', user);
+    }
 }

@@ -98,7 +98,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
             }
             this.checkSuccess(this.uid);
         } else {
-            this.router.navigate(['']);
+            // this.router.navigate(['']);
             this.loginService.logout();
             this.loggedIn = false;
 

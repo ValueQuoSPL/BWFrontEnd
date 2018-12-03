@@ -18,7 +18,7 @@ export class FamilyprofileComponent implements OnInit {
     show = true;
     earncheck = 'notearning';
     account: any;
-    date = new FormControl(new Date());
+    // date = new FormControl(new Date());
     commonid: any;
     Addmember = false;
     addbutton = true;
@@ -80,7 +80,9 @@ export class FamilyprofileComponent implements OnInit {
             this.familyProfile.firstname = this.output.firstname;
             this.familyProfile.middlename = this.output.middlename;
             this.familyProfile.lastname = this.output.lastname;
+            console.log('date familyProfile.dateOfBirth is', this.familyProfile.dateOfBirth);
             this.familyProfile.dateOfBirth = this.output.dateOfBirth;
+            console.log('date ofthis.output.dateOfBirth is', this.output.dateOfBirth);
             this.familyProfile.email = this.output.email;
             this.familyProfile.phonenumber = this.output.phonenumber;
             this.familyProfile.uid = this.uid;

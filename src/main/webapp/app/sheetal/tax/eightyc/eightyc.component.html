@@ -40,7 +40,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number"  name="fixed" [(ngModel)]="eightyc.fixed" (ngModelChange)="FindValue($event)">
+                                    <input type="text" maxlength="8"  name="fixed" [(ngModel)]="eightyc.fixed" (ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -48,7 +48,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="tution" [(ngModel)]="eightyc.tution" (ngModelChange)="FindValue($event)">
+                                    <input type="text" maxlength="8" value="0" name="tution" [(ngModel)]="eightyc.tution" (ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -56,7 +56,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="nsc" [(ngModel)]="eightyc.nsc"(ngModelChange)="FindValue($event)">
+                                    <input type="text" maxlength="8" value="0" name="nsc" [(ngModel)]="eightyc.nsc"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -64,7 +64,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="nss" [(ngModel)]="eightyc.nss"(ngModelChange)="FindValue($event)">
+                                    <input type="text" maxlength="8" value="0" name="nss" [(ngModel)]="eightyc.nss"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -72,7 +72,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="post" [(ngModel)]="eightyc.post"(ngModelChange)="FindValue($event)">
+                                    <input type="text" maxlength="8" value="0" name="post" [(ngModel)]="eightyc.post"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -80,7 +80,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="reinvest" [(ngModel)]="eightyc.reinvest"(ngModelChange)="FindValue($event)">
+                                    <input type="text" maxlength="8" value="0" name="reinvest" [(ngModel)]="eightyc.reinvest"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -88,7 +88,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="licpremium" [(ngModel)]="eightyc.licpremium"(ngModelChange)="FindValue($event)">
+                                    <input type="text" maxlength="8" value="0" name="licpremium" [(ngModel)]="eightyc.licpremium"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -96,7 +96,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="pf" [(ngModel)]="eightyc.pf"(ngModelChange)="FindValue($event)">
+                                    <input type="text" maxlength="8" value="0" name="pf" [(ngModel)]="eightyc.pf"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -104,7 +104,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="ppf" [(ngModel)]="eightyc.ppf"(ngModelChange)="FindValue($event)">
+                                    <input type="text" maxlength="8" value="0" name="ppf" [(ngModel)]="eightyc.ppf"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <tr>
@@ -112,7 +112,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="other" [(ngModel)]="eightyc.other"(ngModelChange)="FindValue($event)">
+                                    <input type="text" maxlength="8" value="0" name="other" [(ngModel)]="eightyc.other"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                             <!-- <tr>
@@ -128,7 +128,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <input type="number" value="0" name="ulip" [(ngModel)]="eightyc.ulip"(ngModelChange)="FindValue($event)">
+                                    <input type="text" maxlength="8" value="0" name="ulip" [(ngModel)]="eightyc.ulip"(ngModelChange)="FindValue($event)">
                                 </td>
                             </tr>
                         </tbody>
@@ -148,7 +148,7 @@
                         </div>
                         <div>
                             <mat-form-field class="example-full-width">
-                                <input matInput jhiNumberOnly required placeholder="Amount" type="number" value="" [(ngModel)]="editField" name="amount-name"(ngModelChange)="DetectChange($event)" >
+                                <input matInput type="text" maxlength="8" jhiNumberOnly required placeholder="Amount"  value="" [(ngModel)]="editField" name="amount-name"(ngModelChange)="DetectChange($event)" >
                                 <mat-hint>Please enter amount</mat-hint>
                             </mat-form-field>
                         </div><br><br>
@@ -187,7 +187,7 @@
                                 <td></td>
                                 <td></td>
                                  <td>{{eightycResponse.fixed}}</td>
-                                 <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Fixed Deposit in Schedule Bank', eightycEditContent)" >
+                                 <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditEightycField('Fixed Deposit in Schedule Bank', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                              </tr>
                               <tr>
@@ -197,7 +197,7 @@
                                 <td>
                                 {{eightycResponse.tution}}
                                 </td>
-                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Tution Fees', eightycEditContent)" >
+                                <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditEightycField('Tution Fees', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                             </tr> 
                              <tr>
@@ -209,7 +209,7 @@
                                 <td>
                                 {{eightycResponse.nsc}}
                                 </td>
-                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Deposite in NSC', eightycEditContent)" >
+                                <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditEightycField('Deposite in NSC', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                             </tr>
                             <tr>
@@ -219,7 +219,7 @@
                                 <td>
                                 {{eightycResponse.nss}}
                                 </td>
-                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Deposite in NSS', eightycEditContent)" >
+                                <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditEightycField('Deposite in NSS', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                             </tr>
                             <tr>
@@ -229,7 +229,7 @@
                                 <td>
                                 {{eightycResponse.post}}
                                 </td>
-                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Post Office saving Scheme', eightycEditContent)" >
+                                <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditEightycField('Post Office saving Scheme', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                             </tr>
                             <tr>
@@ -239,7 +239,7 @@
                                 <td>
                                 {{eightycResponse.reinvest}}
                                 </td>
-                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Interest on NSC Reinvested', eightycEditContent)" >
+                                <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditEightycField('Interest on NSC Reinvested', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                             </tr>
                             <tr>
@@ -251,7 +251,7 @@
                                 <td>
                                 {{eightycResponse.licpremium}}
                                 </td>
-                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Life Insurance Premium', eightycEditContent)" >
+                                <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditEightycField('Life Insurance Premium', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                             </tr>
                             <tr>
@@ -261,7 +261,7 @@
                                 <td>
                                 {{eightycResponse.equity}}
                                 </td>
-                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Equity linked Savings Scheme', eightycEditContent)" >
+                                <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditEightycField('Equity linked Savings Scheme', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                             </tr>
                             <tr>
@@ -271,7 +271,7 @@
                                 <td>
                                 {{eightycResponse.pf}}
                                 </td>
-                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Provident Fund', eightycEditContent)" >
+                                <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditEightycField('Provident Fund', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                             </tr>
                             <tr>
@@ -279,7 +279,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>{{eightycResponse.ppf}}</td>
-                                    <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Public Provident Fund', eightycEditContent)" >
+                                    <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditEightycField('Public Provident Fund', eightycEditContent)" >
                                     <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                             </tr>
                             <tr>
@@ -289,7 +289,7 @@
                                 <td>
                                 {{eightycResponse.other}}
                                 </td>
-                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('Others', eightycEditContent)" >
+                                <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditEightycField('Others', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                             </tr>
                             <tr>
@@ -299,7 +299,7 @@
                                 <td>
                                 {{eightycResponse.ulip}}
                                 </td>
-                                <button class="btn btn-outline-info"  type="button" (click)="onEditEightycField('ULIP of UTI/LIC', eightycEditContent)" >
+                                <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditEightycField('ULIP of UTI/LIC', eightycEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button> 
                              </tr>
                         </tbody>

@@ -135,6 +135,11 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
         );
     }
 
+    send(user: User) {
+        console.log('from usermanagment', user);
+        this.userService.sendMail(user).subscribe();
+    }
+
     private onSuccess(data, headers) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');

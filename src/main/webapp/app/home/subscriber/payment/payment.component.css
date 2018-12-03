@@ -1,4 +1,19 @@
 .center-div {
-  margin: 0 auto;
-  width: 100px;
+    margin: 0 auto;
+    width: 100px;
+}
+.btnPayment {
+    font-size: 12px !important;
+    letter-spacing: 2px;
+    outline: 0;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    text-shadow: none;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 12px 6px 15px;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
 }

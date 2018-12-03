@@ -10,6 +10,7 @@ export class FamilyprofileService {
     constructor(private http: HttpClient) {}
 
     save(familyProfile: any): Observable<any> {
+        console.log('in save', familyProfile);
         return this.http.post(SERVER_API_URL + 'api/familyprofiles', familyProfile);
     }
     public getFamilyProfile() {

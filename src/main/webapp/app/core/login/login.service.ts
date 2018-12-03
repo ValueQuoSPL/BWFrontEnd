@@ -4,6 +4,7 @@ import { Principal } from 'app/core/auth/principal.service';
 import { AuthServerProvider } from 'app/core/auth/auth-jwt.service';
 import { CookieService } from 'ngx-cookie';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { UserIdleService } from 'angular-user-idle';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
@@ -18,7 +19,8 @@ export class LoginService {
         private principal: Principal,
         private authServerProvider: AuthServerProvider,
         private _cookieService: CookieService,
-        private sc: CommonSidebarService
+        private sc: CommonSidebarService,
+        private userIdle: UserIdleService
     ) {}
 
     login(credentials, callback?) {
@@ -30,6 +32,7 @@ export class LoginService {
                     this.principal.identity(true).then(account => {
                         this.account = account;
                         this.sc.account.next(this.account);
+                        this.startWatching();
 
                         this.id = this.account.id;
                         this.putCookie('1', this.account);
@@ -45,6 +48,11 @@ export class LoginService {
                 }
             );
         });
+    }
+
+    startWatching() {
+        console.log('session start');
+        this.userIdle.startWatching();
     }
 
     loginWithToken(jwt, rememberMe) {

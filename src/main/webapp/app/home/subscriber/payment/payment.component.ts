@@ -3,7 +3,6 @@ import { User } from 'app/home/subscriber/payment/payment.model';
 import { PaymentService } from 'app/home/subscriber/payment/payment.service';
 import { ActivatedRoute } from '@angular/router';
 import { AccountService, Principal } from 'app/core';
-import { Subject } from 'rxjs';
 
 @Component({
     selector: 'jhi-payment',
@@ -15,10 +14,10 @@ export class PaymentComponent implements OnInit {
     amount: any;
     disablePaymentButton1 = false;
     disablePaymentButton2 = true;
-    // sUrl = 'https://www.buckswise.com:8443/api/success';
-    sUrl = 'http://www.buckswise.com:8080/api/success';
-    // fUrl = 'https://www.buckswise.com:8443/api/success';
-    fUrl = 'http://www.buckswise.com:8080/api/success';
+    sUrl = 'https://www.buckswise.com:8443/api/success';
+    //sUrl = 'http://www.buckswise.com:8080/api/success';
+    fUrl = 'https://www.buckswise.com:8443/api/success';
+    //fUrl = 'http://www.buckswise.com:8080/api/success';
     public paymentDetail: any = [];
 
     @Input() offer;

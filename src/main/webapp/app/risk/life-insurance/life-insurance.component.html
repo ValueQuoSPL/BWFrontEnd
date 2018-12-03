@@ -143,6 +143,7 @@
                         <th scope="col">Expense percentage</th>
                         <th scope="col">Total yearly expenses</th>
                         <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -153,14 +154,14 @@
                         <td>{{lifeInsurance.expense_cover}} </td>
                         <td>{{lifeInsurance.total}} </td>
                         <td>
-                            <button class="btn btn-outline-info" type="button" (click)="opnLife(lifeInsurance.id,lifeModal)">
+                            <button class="btn btn-outline-info btn-sm" type="button" (click)="opnLife(lifeInsurance.id,lifeModal)">
                                 <span>
                                     <fa-icon [icon]="'edit'"></fa-icon>
                                 </span>
                             </button>
                             </td>
                             <td>
-                            <button class="btn  btn-outline-danger" type="button" (click)="deleteField(i, lifeInsurance.id)">
+                            <button class="btn  btn-outline-danger btn-sm" type="button" (click)="deleteField(i, lifeInsurance.id)">
                                 <span><fa-icon [icon]="'trash'"></fa-icon></span>
                             </button>
 

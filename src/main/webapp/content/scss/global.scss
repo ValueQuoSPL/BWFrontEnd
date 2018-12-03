@@ -361,88 +361,6 @@ ui bootstrap tweaks
     margin-left: 457px;
 }
 
-//Accordian margins
-// .setmarginstock {
-//     margin-left: 904px;
-// }
-// .setmarginmutual {
-//     margin-left: 856px;
-// }
-// .setmarginsaving {
-//     margin-left: 840px;
-// }
-// .setmarginalter {
-//     margin-left: 791px;
-// }
-// .setmargincash {
-//     margin-left: 925px;
-// }
-// .setmarginproperty {
-//     margin-left: 830px;
-// }
-// .setmarginchit {
-//     margin-left: 882px;
-// }
-// .setmarginfuture {
-//     margin-left: 852px;
-// }
-// .setmarginmyprofile {
-//     margin-left: 859px;
-// }
-// .setmarginfamilyprofile {
-//     margin-left: 832px;
-// }
-// .setmarginutility {
-//     margin-left: 899px;
-// }
-// .setmarginhousehold {
-//     margin-left: 875px;
-// }
-// .setmarginloan {
-//     margin-left: 881px;
-// }
-// .setmargininsurance {
-//     margin-left: 887px;
-// }
-// .setmargincredit {
-//     margin-left: 870px;
-// }
-// .setmarginentertainment {
-//     margin-left: 791px;
-// }
-// .setmarginmisc {
-//     margin-left: 858px;
-// }
-// .setmarginlifeins {
-//     margin-left: 813px;
-// }
-// .setmargingross {
-//     margin-left: 845px;
-// }
-// .setmargineightyc {
-//     margin-left: 838px;
-// }
-// .setmargineightyd {
-//     margin-left: 837px;
-// }
-// .setmarginhome {
-//     margin-left: 823px;
-// }
-// .setmarginother {
-//     margin-left: 827px;
-// }
-// .setmarginrisklife {
-//     margin-left: 852px;
-// }
-// .setmarginriskmedi {
-//     margin-left: 824px;
-// }
-// .setmarginshortliability {
-//     margin-left: 790px;
-// }
-// .setmarginlongliability {
-//     margin-left: 795px;
-// }
 .right-aligned-header > .mat-content {
     justify-content: space-between;
 }
@@ -513,6 +431,22 @@ hr {
     color: white;
     background-color: #2e3192;
 }
+.btnPay {
+    height: 34px;
+    color: white;
+    background-color: #2e3192;
+}
+.btnProceed {
+    height: 34px;
+    color: white;
+    background-color: #f1592a;
+}
+.btnEdit {
+    height: 34px;
+    color: white;
+    background-color: #2e3192;
+}
+
 .roundBorder {
     border-radius: 25px;
     border: 2px solid #2e3192;
@@ -537,3 +471,16 @@ hr {
 //     margin-top: -323px;
 //     margin-left: 66px;
 // }
+
+.modal-content2 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 125%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.125rem;
+    outline: 0;
+}
