@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit, AfterViewInit {
     confirmPassword: string;
+    useraggree: string;
+    isCheck: Boolean = false;
     doNotMatch: string;
     error: string;
     errorEmailExists: string;
@@ -59,6 +61,7 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     }
 
     register() {
+        this.registerAccount.useraggree = this.useraggree;
         this.userid = this.registerAccount.email;
         this.registerAccount.login = this.userid;
         const resp = grecaptcha.getResponse();
@@ -161,5 +164,8 @@ export class RegisterComponent implements OnInit, AfterViewInit {
 
     openLogin() {
         this.modalRef = this.loginModalService.open();
+    }
+    isChecked() {
+        this.useraggree = 'yes';
     }
 }

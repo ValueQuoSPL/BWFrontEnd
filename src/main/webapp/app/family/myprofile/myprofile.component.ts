@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Myprofile } from 'app/family/family.model';
 import { MyprofileService } from 'app/family/myprofile/myprofile.service';
@@ -17,8 +18,9 @@ export class MyprofileComponent implements OnInit {
     show = true;
     account: any;
     checkNum: boolean;
+    date: any;
 
-    constructor(private MyProfileSer: MyprofileService, public commonService: CommonSidebarService) {}
+    constructor(private MyProfileSer: MyprofileService, public commonService: CommonSidebarService, private datePipe: DatePipe) {}
 
     ngOnInit() {
         this.myProfile = {};
@@ -49,6 +51,7 @@ export class MyprofileComponent implements OnInit {
     getMyProfilebyid() {
         this.MyProfileSer.getMyProfileByUid(this.uid).subscribe(res => {
             this.output = res;
+            console.log('in get', this.output);
             // for (let i = 0; i < this.output.length; i++) {
             //   const element = this.output[i];
             //   if (element.uid === 0) {
@@ -73,7 +76,11 @@ export class MyprofileComponent implements OnInit {
         this.myProfile.city = this.output[0].city;
         this.myProfile.company = this.output[0].company;
         this.myProfile.country = this.output[0].country;
-        this.myProfile.dob = this.output[0].dob;
+        this.date = this.output[0].dob;
+        const finalDate = this.datePipe.transform(this.date, 'd/M/yy');
+        console.log(finalDate);
+        this.myProfile.dob = new Date(finalDate);
+        console.log(this.myProfile.dob);
         this.myProfile.emailId = this.output[0].emailId;
         this.myProfile.firstName = this.output[0].firstName;
         this.myProfile.gender = this.output[0].gender;
