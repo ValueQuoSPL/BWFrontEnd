@@ -1,3 +1,4 @@
+import { goalAddRoute } from './goal-add-button/goal-add-button.route';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule, Route } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -6,7 +7,6 @@ import { BuckswiseFrontEndSharedModule } from 'app/shared';
 import { goalSelectRoute } from 'app/goal/goal-select/goal-select.route';
 //  import { GoalComponent, goalRoot } from './';
 // import { GoalSelectComponent } from './Goal-select/goalselect.component';
-// import { GoalAddComponent } from './Goal-AddButton/goalAddButton.component';
 import { GoalselectService } from 'app/goal/goal-select/goalselect.service';
 import { CustomMaterialModule } from 'app/custom-material.module';
 import { GoalComponent, goalRoot } from 'app/goal';
@@ -34,7 +34,7 @@ library.add(fas, far);
 
 @NgModule({
     imports: [
-        // RouterModule.forRoot([goalRoot], { useHash: true }),
+        RouterModule.forRoot([goalAddRoute], { useHash: true }),
         RouterModule.forRoot([goalSelectRoute], { useHash: true }),
         // BsDatepickerModule.forRoot(),
         FormsModule,

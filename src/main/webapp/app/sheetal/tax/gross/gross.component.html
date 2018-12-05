@@ -21,10 +21,10 @@
                 </span>
             </button>
         </div></div></div>
-        <div class="header">
+        <div class="card-header">
             Income from salaries (Per Annum)
         </div>
-        <!-- <div class="card-body"> -->
+        <div class="card-body">
             <table class="table-responsive-md table table-hover table-sm">
                 <thead class="thead-light">
                     <tr>
@@ -111,12 +111,12 @@
                     </tr>
                 </tbody>
             </table>
-    <br>
-    <!-- <div class="card"> -->
-        <div class="header">
+    <br></div>
+    <div class="card">
+        <div class="card-header">
         Income from House Properties
         </div>
-        <!-- <div class="card-body"> -->
+        <div class="card-body">
             <table class="table-responsive-md table table-hover table-sm">
                 <thead class="thead-light">
                     <tr>
@@ -138,11 +138,11 @@
                         </td>
                     </tr>
                 </tbody>
-            </table>
-    <!-- <div class="card"> -->
-        <div class="header">Income from other Sources
+            </table></div></div>
+    <div class="card">
+        <div class="card-header">Income from other Sources
         </div>
-        <!-- <div class="card-body"> -->
+        <div class="card-body">
             <table class="table-responsive-md table table-hover table-sm">
                 <thead class="thead-light"><!--Head of table start-->
                     <tr>
@@ -180,7 +180,7 @@
                 </tr>
             </tbody><!--Body of table end-->
         </table>           
-      </div>
+      </div></div>
 <!-- modal, edit dialog -->
 <div *ngIf="valid">
     <ng-template #grossEditContent let-c="close" let-d="dismiss">
@@ -221,7 +221,7 @@
                 </button>
             </div></div>
             <div class="card-body">
-                <table class="table table-hover table-sm" >
+                <table class="table-responsive-md table table-hover table-sm">
                     <thead class="thead-light">
                         <tr>
                             <!--Head of table start-->
