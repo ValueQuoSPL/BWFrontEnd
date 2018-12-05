@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FamilyprofileService } from 'app/family/familyprofile/familyprofile.service';
 import { FormControl } from '@angular/forms';
@@ -22,7 +23,8 @@ export class FamilyprofileComponent implements OnInit {
     commonid: any;
     Addmember = false;
     addbutton = true;
-    constructor(private Familypro: FamilyprofileService, public commonService: CommonSidebarService) {}
+    date: any;
+    constructor(private Familypro: FamilyprofileService, public commonService: CommonSidebarService, private datePipe: DatePipe) {}
 
     ngOnInit() {
         this.FetchId();
@@ -80,6 +82,10 @@ export class FamilyprofileComponent implements OnInit {
             this.familyProfile.firstname = this.output.firstname;
             this.familyProfile.middlename = this.output.middlename;
             this.familyProfile.lastname = this.output.lastname;
+            this.date = this.output.dateOfBirth;
+            const finalDate = this.datePipe.transform(this.date, 'd/M/yy');
+            console.log(finalDate);
+            this.familyProfile.dateOfBirth = new Date(finalDate);
             console.log('date familyProfile.dateOfBirth is', this.familyProfile.dateOfBirth);
             this.familyProfile.dateOfBirth = this.output.dateOfBirth;
             console.log('date ofthis.output.dateOfBirth is', this.output.dateOfBirth);
@@ -112,7 +118,7 @@ export class FamilyprofileComponent implements OnInit {
         this.familyProfile.firstname = '';
         this.familyProfile.middlename = '';
         this.familyProfile.lastname = '';
-        this.familyProfile.dateOfBirth = '';
+        this.familyProfile.dateOfBirth = null;
         this.familyProfile.email = '';
         this.familyProfile.phonenumber = null;
         this.familyProfile.uid = '';
