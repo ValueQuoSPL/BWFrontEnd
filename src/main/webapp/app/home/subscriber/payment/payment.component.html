@@ -160,47 +160,47 @@
                 </div>
 
                 <div [hidden]="disablePaymentButton2">
-                        <mat-card style="width: 150%">
-                            <mat-header>
-                                <mat-card-title class="text-center  bwtitle heading">Subscription Details</mat-card-title>
-                            </mat-header>
-                            <mat-card-content class="shadow">
-                                <input type="hidden" name="key" value="{{paymentDetail.key}}" />
-                                <input type="hidden" name="hash_string" value="{{paymentDetail.hashString}}" />
-                                <input type="hidden" name="hash" value="{{paymentDetail.hash}}" />
-                                <input type="hidden" name="txnid" value="{{paymentDetail.txnid}}" />
-                                <div class="container justify-content-md-center">
-                                    <table class="table table-bordered table-striped table-responsive-md" style="width: 100%; margin-right: 300px;">
-                                        <tbody>
-                                            <tr>
-                                                <th>Amount:</th>
-                                                <td>{{paymentDetail.amount}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>First Name:</th>
-                                                <td>{{paymentDetail.firstname}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Mobile No:</th>
-                                                <td>{{paymentDetail.phone}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>e-Mail:</th>
-                                                <td>{{paymentDetail.email}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Plan:</th>
-                                                <td>{{paymentDetail.productinfo}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table> 
-                                </div>
-                                <div class="row">
-                                    <button class="btnEdit" (click)="goBack()" style="margin-left: 15%">Back to Edit</button>
-                                    <button class="btnProceed" (click)="form.submit()" style="margin-left: 25%">Proceed to Payment</button>
-                                </div>&nbsp;
-                            </mat-card-content>
-                        </mat-card>
+                    <mat-card style="width: 150%">
+                        <mat-header>
+                            <mat-card-title class="text-center  bwtitle heading">Subscription Details</mat-card-title>
+                        </mat-header>
+                        <mat-card-content class="shadow">
+                            <input type="hidden" name="key" value="{{paymentDetail.key}}" />
+                            <input type="hidden" name="hash_string" value="{{paymentDetail.hashString}}" />
+                            <input type="hidden" name="hash" value="{{paymentDetail.hash}}" />
+                            <input type="hidden" name="txnid" value="{{paymentDetail.txnid}}" />
+                            <div class="container justify-content-md-center">
+                                <table class="table table-bordered table-striped table-responsive-md" style="width: 100%; margin-right: 300px;">
+                                    <tbody>
+                                        <tr>
+                                            <th>Amount:</th>
+                                            <td>{{paymentDetail.amount}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>First Name:</th>
+                                            <td>{{paymentDetail.firstname}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Mobile No:</th>
+                                            <td>{{paymentDetail.phone}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>e-Mail:</th>
+                                            <td>{{paymentDetail.email}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Plan:</th>
+                                            <td>{{paymentDetail.productinfo}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <button class="btnEdit" (click)="goBack()" style="margin-left: 15%">Back to Edit</button>
+                                <button class="btnProceed" (click)="form.submit()" style="margin-left: 25%">Proceed to Payment</button>
+                            </div>&nbsp;
+                        </mat-card-content>
+                    </mat-card>
                 </div>
             </form>
         </div>
