@@ -104,7 +104,7 @@ export class MyprofileComponent implements OnInit {
         });
         this.isValid = true;
     }
-    // cencel Method to cencel Myprofile
+    // cancel Method to cancel Myprofile
     cancel() {
         this.isValid = true;
     }
