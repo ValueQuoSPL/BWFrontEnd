@@ -15,9 +15,7 @@ export class PaymentComponent implements OnInit {
     disablePaymentButton1 = false;
     disablePaymentButton2 = true;
     sUrl = 'https://www.buckswise.com:8443/api/success';
-    //sUrl = 'http://www.buckswise.com:8080/api/success';
     fUrl = 'https://www.buckswise.com:8443/api/success';
-    //fUrl = 'http://www.buckswise.com:8080/api/success';
     public paymentDetail: any = [];
 
     @Input() offer;
