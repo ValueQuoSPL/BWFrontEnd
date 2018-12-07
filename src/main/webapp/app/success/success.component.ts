@@ -49,15 +49,12 @@ export class SuccessComponent implements OnInit, AfterViewInit {
     ) {}
 
     ngOnInit() {
-        console.log('calling account');
-
         this.principal.identity().then(account => {
             this.account = account;
         });
 
         this.planService.user.subscribe(user => {
             this.usernew = user;
-            console.log(this.usernew);
         });
 
         this.registerAuthenticationSuccess();
@@ -65,8 +62,6 @@ export class SuccessComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {}
 
     registerAuthenticationSuccess() {
-        console.log('calling account');
-
         this.eventManager.subscribe('authenticationSuccess', message => {
             this.principal.identity().then(account => {
                 this.account = account;
@@ -84,10 +79,9 @@ export class SuccessComponent implements OnInit, AfterViewInit {
                 const account = response.body;
                 if (account) {
                     this.uid = account.id;
-                    this.successService.getTransactionData(this.uid).subscribe(data => {
+                    this.successService.getTransactionData(this.uid, 'success').subscribe(data => {
                         this.result = data;
                         this.last = this.result.pop();
-                        console.log(this.last);
 
                         if (this.last.status === 'success') {
                             this.updateUserPlan();

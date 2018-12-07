@@ -50,7 +50,7 @@ export class PaymentComponent implements OnInit {
     }
 
     AddUserMobile() {
-        console.log('calling account');
+        console.log('fill mobile ');
 
         this.settingsAccount.mobile = this.user.phone;
         this.account.save(this.settingsAccount).subscribe(() => {

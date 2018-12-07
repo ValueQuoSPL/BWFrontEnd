@@ -27,4 +27,13 @@ export class ChitFundService {
         this.ServiceAPI = 'api/deletechit' + '/' + id;
         return this.http.delete<ChitFund[]>(SERVER_API_URL + this.ServiceAPI);
     }
+
+    /**
+     * Author - Pratik
+     * @param data
+     */
+    public updateAvailable(data) {
+        this.ServiceAPI = 'api/availableChit';
+        return this.http.put(SERVER_API_URL + this.ServiceAPI, data);
+    }
 }
