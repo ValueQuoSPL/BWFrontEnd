@@ -48,14 +48,8 @@ export class PaymentComponent implements OnInit {
     }
 
     AddUserMobile() {
-        console.log('fill mobile ');
-
         this.settingsAccount.mobile = this.user.phone;
-        this.account.save(this.settingsAccount).subscribe(() => {
-            // this.principal.identity(true).then(account => {
-            //     this.settingsAccount = this.copyAccount(account);
-            // });
-        });
+        this.account.save(this.settingsAccount).subscribe(() => {});
     }
 
     copyAccount(account) {

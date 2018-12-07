@@ -84,12 +84,7 @@ export class EightycComponent implements OnInit {
     }
     // eightyc call function for post data
     onEightycSave() {
-        this.eightycService.save(this.eightyc).subscribe(
-            responce => {
-                console.log(responce), this.onEightycGet();
-            },
-            error => console.log(error)
-        );
+        this.eightycService.save(this.eightyc).subscribe();
         this.valid = true;
     }
     // eightyc call function for update data
@@ -211,11 +206,9 @@ export class EightycComponent implements OnInit {
         if (this.prevValue === event || this.prevValue === null) {
             this.universalflag = false;
             this.isFieldChange = false;
-            console.log('same');
         } else {
             this.universalflag = true;
             this.isFieldChange = true;
-            console.log('differ');
         }
     }
 }
