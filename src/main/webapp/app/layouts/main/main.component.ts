@@ -126,7 +126,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     }
 
     checkSuccess(uid) {
-        this.successService.getTransactionData(uid).subscribe(data => {
+        this.successService.getTransactionData(uid, 'main').subscribe(data => {
             this.result = data;
             this.last = this.result.pop();
             if (this.last) {

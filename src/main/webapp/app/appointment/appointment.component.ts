@@ -300,7 +300,6 @@ export class AppointmentComponent implements OnInit {
                 this.loading = false;
             }, 3000);
             if (this.isStatus === 'confirm') {
-                console.log('under get calendarbyuid', this.loading);
                 this.isBooked = true;
             } else {
                 this.isBooked = false;

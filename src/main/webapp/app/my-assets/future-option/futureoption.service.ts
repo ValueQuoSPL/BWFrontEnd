@@ -28,4 +28,13 @@ export class FutureOptionService {
         this.ServiceAPI = 'api/deletefutureoptions' + '/' + id;
         return this.http.delete<FAO[]>(SERVER_API_URL + this.ServiceAPI);
     }
+
+    /**
+     * Author - Pratik
+     * @param data
+     */
+    public updateAvailable(data) {
+        this.ServiceAPI = 'api/availableFao';
+        return this.http.put(SERVER_API_URL + this.ServiceAPI, data);
+    }
 }

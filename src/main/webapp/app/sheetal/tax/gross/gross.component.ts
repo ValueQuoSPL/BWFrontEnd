@@ -62,7 +62,6 @@ export class GrossComponent implements OnInit {
         this.gross.conveyanceother = '';
     }
     onGrossGet(uid) {
-        console.log('in grossget ts uid', this.uid);
         this.grossService.getgross(this.uid).subscribe(res => {
             this.output = res;
             if (this.output.length === 0) {
@@ -70,47 +69,21 @@ export class GrossComponent implements OnInit {
             } else {
                 this.valid = true;
             }
-            console.log('gross data in output', this.output);
-            // for (let index = 0; index < this.output.length; index++) {
-            //     const element = this.output[index];
-            //     this.gross.bsalary = element.bsalary;
-            //     this.gross.da = element.da;
-            //     this.gross.hra = element.hra;
-            //     this.gross.conveyance = element.conveyance;
-            //     this.gross.childedu = element.childedu;
-            //     this.gross.medical = element.medical;
-            //     this.gross.lta = element.lta;
-            //     this.gross.otherallown = element.otherallown;
-            //     this.gross.bonus = element.bonus;
-            //     this.gross.rentincome = element.rentincome;
-            //     this.gross.saving = element.saving;
-            //     this.gross.bonds = element.bonds;
-            //     this.gross.conveyanceother = element.conveyanceother;
-            //     this.gross.uid = element.uid;
-            //     this.gross.id = element.id;
-            // }
         });
     }
     onGrossSave() {
-        this.grossService.save(this.gross).subscribe(
-            responce => {
-                console.log(responce), this.onGrossGet(this.uid);
-                // alert("data update successfully");
-            },
-            error => console.log(error)
-        );
+        this.grossService.save(this.gross).subscribe(responce => {
+            // alert("data update successfully");
+        });
         this.valid = true;
     }
     updateGross() {
-        console.log(' in update method gross', this.gross);
         this.grossService.PutGross(this.gross).subscribe(data => {
             alert('Your data update');
             this.changesSaved = true;
         });
     }
     onEditGrossField(nameField, grossEditContent) {
-        console.log('name field', nameField);
-        console.log('inside gross');
         this.nameField = nameField;
         if (nameField === 'bsalary') {
             this.nameField = 'Amount';
@@ -166,16 +139,12 @@ export class GrossComponent implements OnInit {
         }
     }
     DetectChange(event) {
-        console.log('input data', event);
-        console.log('prev value ', this.prevValue);
         if (this.prevValue === event || this.prevValue === null) {
             this.globalflag = false;
             this.isFieldChange = false;
-            console.log('same');
         } else {
             this.globalflag = true;
             this.isFieldChange = true;
-            console.log('differ');
         }
     }
     getDismissReason(reason: any): string {
@@ -190,7 +159,6 @@ export class GrossComponent implements OnInit {
     FillEditGross(nameField) {
         if (nameField === 'bsalary') {
             this.gross.bsalary = this.editField;
-            console.log('updated gross value', this.gross.bsalary);
             this.output[0].bsalary = this.gross.bsalary;
         } else if (nameField === 'da') {
             this.gross.da = this.editField;
@@ -232,16 +200,12 @@ export class GrossComponent implements OnInit {
         }
     }
     FindValue(event) {
-        console.log('input data', event);
-        console.log('prev value ', this.prevValue);
         if (this.prevValue === event || this.prevValue === null) {
             this.universalflag = false;
             this.isFieldChange = false;
-            console.log('same');
         } else {
             this.universalflag = true;
             this.isFieldChange = true;
-            console.log('differ');
         }
     }
 }

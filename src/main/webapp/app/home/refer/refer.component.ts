@@ -12,10 +12,6 @@ export class ReferComponent implements OnInit {
     constructor(private contactService: ContactService) {}
     // isDataSaved: Boolean = false;
     submitUser() {
-        console.log('in reffer ts', this.user.name);
-        console.log('in reffer ts', this.user.email);
-        console.log('in reffer ts', this.user.phone);
-        console.log('in reffer ts', this.user.msg);
         this.contactService.refferSave(this.user).subscribe();
         // this.isDataSaved = true;
         // alert('Thank you for your Intrest we will shortly contact you');

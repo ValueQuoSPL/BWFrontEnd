@@ -537,9 +537,8 @@
                   <thead>
                     <th>Select</th>
                     <th>Asset Name</th>
-                    <th>Asset Value</th>
-                    <th>Mapped Value</th>
                     <th>Available Value</th>
+                    <th>Mapped Value</th>
                     <th colspan="2">Actions</th>
                   </thead>
                   <tr *ngFor="let output of HTMLArray">
@@ -549,15 +548,14 @@
                       </mat-checkbox>
                     </td>
                     <td>{{output.assetname}}</td>
-                    <td>{{output.assetvalue}}</td>
-                    <td>{{output.mappedvalue}}</td>
                     <td>{{output.available}}</td>
+                    <td>{{output.mappedvalue}}</td>
                     <td>
                       <button class="btn btn-sm btn-outline-success" [disabled]="output.disable" (click)="getMapValue(output.id, output.mappedvalue, output.available)">{{output.valid}}
                         map</button>
                     </td>
                     <td>
-                      <button class="btn btn-sm btn-outline-danger" [disabled]="output.disable" (click)="deleteMapping(output.id)">{{output.valid}}
+                      <button class="btn btn-sm btn-outline-danger" [disabled]="output.disable" (click)="deleteMapping(output.id, output.available, output.mappedvalue)">{{output.valid}}
                         unmap</button>
                     </td>
                   </tr>
@@ -610,7 +608,7 @@
         </div>
         <div class="modal-body">
           <div class="container">
-            <table class="table table-responsive table-hover table-striped">
+            <table class="table container table-responsive table-hover table-striped">
               <thead>
                 <th>Asset Type</th>
                 <th>Asset Name</th>
@@ -625,7 +623,7 @@
                   <td> {{ item.element.assetValue }} </td>
                   <td> {{ item.element.valuetomap }} </td>
                   <td>
-                    <button class="btn btn-sm btn-outline-danger" [disabled]="output.disable" (click)="deleteMappingToDeleteGoal(item.element.id, item.element.goalid)">
+                    <button class="btn btn-sm btn-outline-danger" [disabled]="output.disable" (click)="deleteMappingToDeleteGoal(item.element.assetid, item.element.valuetomap, item.element.id, item.element.goalid)">
                       <fa-icon [icon]="'trash'"></fa-icon>
                       unmap
                     </button>

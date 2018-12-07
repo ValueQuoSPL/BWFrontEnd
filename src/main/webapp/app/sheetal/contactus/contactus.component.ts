@@ -12,10 +12,6 @@ export class ContactusComponent implements OnInit {
     isDataSaved: Boolean = false;
     constructor(private contactService: ContactService) {}
     submitUser() {
-        console.log('in contact ts', this.user.name);
-        console.log('in contact ts', this.user.email);
-        console.log('in contact ts', this.user.phone);
-        console.log('in contact ts', this.user.msg);
         this.contactService.save(this.user).subscribe();
         this.isDataSaved = true;
         // alert('Thank you for your Intrest we will shortly contact you');

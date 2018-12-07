@@ -51,7 +51,6 @@ export class LoginService {
     }
 
     startWatching() {
-        console.log('session start');
         this.userIdle.startWatching();
     }
 

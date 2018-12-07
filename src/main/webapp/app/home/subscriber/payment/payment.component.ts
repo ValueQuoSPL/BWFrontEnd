@@ -14,10 +14,8 @@ export class PaymentComponent implements OnInit {
     amount: any;
     disablePaymentButton1 = false;
     disablePaymentButton2 = true;
-    sUrl = 'https://www.buckswise.com:8443/api/success';
-    //sUrl = 'http://www.buckswise.com:8080/api/success';
-    fUrl = 'https://www.buckswise.com:8443/api/success';
-    //fUrl = 'http://www.buckswise.com:8080/api/success';
+    sUrl = 'https://www.buckswise.com:8111/api/success';
+    fUrl = 'https://www.buckswise.com:8111/api/success';
     public paymentDetail: any = [];
 
     @Input() offer;
@@ -50,14 +48,8 @@ export class PaymentComponent implements OnInit {
     }
 
     AddUserMobile() {
-        console.log('calling account');
-
         this.settingsAccount.mobile = this.user.phone;
-        this.account.save(this.settingsAccount).subscribe(() => {
-            // this.principal.identity(true).then(account => {
-            //     this.settingsAccount = this.copyAccount(account);
-            // });
-        });
+        this.account.save(this.settingsAccount).subscribe(() => {});
     }
 
     copyAccount(account) {

@@ -135,7 +135,6 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
     }
 
     send(user: User) {
-        console.log('from usermanagment', user);
         this.userService.sendMail(user).subscribe();
     }
 

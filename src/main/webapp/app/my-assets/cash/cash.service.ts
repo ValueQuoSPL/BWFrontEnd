@@ -29,4 +29,13 @@ export class CashService {
         this.ServiceAPI = 'api/deletecash' + '/' + id;
         return this.http.delete<Cash[]>(SERVER_API_URL + this.ServiceAPI);
     }
+
+    /**
+     * Author - Pratik
+     * @param data
+     */
+    public updateAvailable(data) {
+        this.ServiceAPI = 'api/availableCash';
+        return this.http.put(SERVER_API_URL + this.ServiceAPI, data);
+    }
 }
