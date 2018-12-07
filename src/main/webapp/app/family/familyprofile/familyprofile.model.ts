@@ -3,7 +3,7 @@ export class FamilyProfile {
     public firstname: string;
     public middlename: string;
     public lastname: string;
-    public dateOfBirth: string;
+    public dateOfBirth: Date;
     public email: string;
     public phonenumber: number;
     public uid: string;

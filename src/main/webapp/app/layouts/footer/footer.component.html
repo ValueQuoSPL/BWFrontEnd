@@ -1,16 +1,4 @@
 
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-    (function () {
-        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = 'https://embed.tawk.to/5a66b8084b401e45400c4dcf/default';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-    })();
-</script>
 <!--End of Tawk.to Script-->
 <!-- <section class="section-small footer bg-gray">
     <div class="container">
@@ -27,7 +15,7 @@
           <h6 class="no-pad"><a routerLink="/contact">About us</a></h6>
           <h6 class="no-pad"><a routerLink="/register">Register</a></h6>
         </div>
-        <!-- <div class="col-sm-2 footer-menu">
+         <div class="col-sm-2 footer-menu">
           <h5>&nbsp;</h5>
           
         </div> -->
@@ -115,6 +103,128 @@
                 </form>
                 <!-- End MailChimp Signup Form-<img src="img/misc/mailchimp.png" alt="">-->
             </div>
+        </div>
+        <div class="row">
+                <!-- <div class="col-sm-4"></div>
+                <div class="col-sm-4"></div>
+            <div class="col-sm-4 text-center">
+                <h6>tems & Condition |</h6>&nbsp;
+                <h6>tems & Condition |</h6>&nbsp;
+                <h6>tems & Condition |</h6>
+            </div> -->
+            <div class="col-sm-3"></div>
+            <div class="col-sm-4"></div>
+                <!-- <div class="col-sm-4"></div> -->
+            <!-- <div class="col-sm-4 col-sm-offset-1 text-right">
+                    <ul class="list-inline">
+                        <li><a href="#" >tems & Condition |</a></li>
+                        <li><a href="#">tems & Condition |</a></li>
+                        <li><a href="#" >tems & Condition |</a></li>
+                    </ul>
+                </div> -->
+                <div class="col-sm-5  text-right" >
+                        <ul class="list-inline">
+                          <a style="color:black;"  (click)="openTerms(termModal)">
+                                Terms & Conditions |</a> &nbsp;                
+              
+                          <a style="color:black;" (click)="openPrivacy(privacyModal)">
+                           Privacy Policy |</a>&nbsp;
+              
+                          <a style="color:black;"  (click)="openCookie(cookieModal)" >
+                              Cookie Policy</a>&nbsp;
+                           </ul>
+                           <ng-template #cookieModal let-c="close" let-d="dismiss">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="cookieModal">Cookie Policy</h4>
+                                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                        Then answer the questions concerning the relationships, the book:
+
+                                        Has many-to-one relationship with the “author” entity
+                                        And this relationship uses the “name” field (from the Author entity) to be displayed
+                                        Check the generated code
+                                        Run the generated test suite, with mvn test, which will test the Author entity and the Book entity.
+                                        
+                                        Launch the application (for example with mvn), log in and select the “Author” and “Book” entities in the “entities” menu.
+                                        
+                                        Check the database tables, to see if your data is correctly inserted.
+                                        
+                                        Improve the generated code
+                                        The generated files contain all the basic CRUD operations, and don’t need to be modified if your needs are simple.
+                                        
+                                        If you want to modify the generated code or the database schema, you should follow our development guide
+                                        
+                                        If you want some more complex business behaviors, you might need to add a Spring @Service class, using the service sub-generator.
+                                        
+                                        You’re done!
+                                </div>
+                                
+                            </ng-template>
+                            <ng-template #privacyModal let-c="close" let-d="dismiss">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title" id="privacyModal"> Privacy Policy</h4>
+                                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                            Then answer the questions concerning the relationships, the book:
+
+                                            Has many-to-one relationship with the “author” entity
+                                            And this relationship uses the “name” field (from the Author entity) to be displayed
+                                            Check the generated code
+                                            Run the generated test suite, with mvn test, which will test the Author entity and the Book entity.
+                                            
+                                            Launch the application (for example with mvn), log in and select the “Author” and “Book” entities in the “entities” menu.
+                                            
+                                            Check the database tables, to see if your data is correctly inserted.
+                                            
+                                            Improve the generated code
+                                            The generated files contain all the basic CRUD operations, and don’t need to be modified if your needs are simple.
+                                            
+                                            If you want to modify the generated code or the database schema, you should follow our development guide
+                                            
+                                            If you want some more complex business behaviors, you might need to add a Spring @Service class, using the service sub-generator.
+                                            
+                                            You’re done!
+                                    </div>
+                                    
+                                </ng-template>
+                                <ng-template #termModal let-c="close" let-d="dismiss">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="termModal"> Terms & Conditions</h4>
+                                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                                Then answer the questions concerning the relationships, the book:
+
+                                                Has many-to-one relationship with the “author” entity
+                                                And this relationship uses the “name” field (from the Author entity) to be displayed
+                                                Check the generated code
+                                                Run the generated test suite, with mvn test, which will test the Author entity and the Book entity.
+                                                
+                                                Launch the application (for example with mvn), log in and select the “Author” and “Book” entities in the “entities” menu.
+                                                
+                                                Check the database tables, to see if your data is correctly inserted.
+                                                
+                                                Improve the generated code
+                                                The generated files contain all the basic CRUD operations, and don’t need to be modified if your needs are simple.
+                                                
+                                                If you want to modify the generated code or the database schema, you should follow our development guide
+                                                
+                                                If you want some more complex business behaviors, you might need to add a Spring @Service class, using the service sub-generator.
+                                                
+                                                You’re done!
+                                        </div>
+                                        
+                                    </ng-template>
+                      </div>
+
         </div>
     </div>
 </section>

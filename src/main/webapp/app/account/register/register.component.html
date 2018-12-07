@@ -11,7 +11,7 @@
                 <div class="col-md-6"  style="background-color: #f1592a;height: 39px;">
                     <div class="form-group row justify-content-center bwtitle">Registration</div><br>
                 <!-- <h1>Registration</h1> <br> -->
-                    <div class="alert alert-success" *ngIf="success" style="height:62%; width: 107%;">
+                    <div class="alert alert-success" *ngIf="success" style="height:328%; width: 107%;">
                         <strong>You are successfully registered!</strong> <br>
                         We have sent you an activation email on your registered email id
                             <br>
@@ -33,20 +33,20 @@
             <div class="row justify-content-md-center">
                 <div class="col-md-8">
                     <form name="form" role="form" (ngSubmit)="register()" #registerForm="ngForm" *ngIf="!success">
-                        <!-- <div class="form-group">
-                            <mat-form-field style="width: 100%;">
+                         <div class="form-group">
+                        <!--   <mat-form-field style="width: 100%;">
                                 <input matInput [(ngModel)]="registerAccount.login" id="login" name="login" #login="ngModel" placeholder="Login Id" required
                                     minlength="3" maxlength="40" pattern="^[_.@A-Za-z0-9-]*$">
                             </mat-form-field>
                             </div> -->
-                            <!-- <div>
+                            <div>
                                 <mat-form-field style="width: 100%;">
-                                    <input matInput [(ngModel)]="registerAccount.fname" id="fname" name="fname" #login="ngModel" placeholder="First Name" required
+                                    <input matInput [(ngModel)]="registerAccount.firstName" id="fname" name="fname" #login="ngModel" placeholder="First Name" required
                                         minlength="3" maxlength="40" pattern="^[_.@A-Za-z0-9-]*$">
                                 </mat-form-field>
-                            </div> -->
+                            </div>
                            
-                            <!-- <div *ngIf="login.dirty && login.invalid">
+                            <div *ngIf="login.dirty && login.invalid">
                                 <small class="form-text text-danger" *ngIf="login.errors.required">
                                     Your username is required.
                                 </small>
@@ -59,14 +59,14 @@
                                 <small class="form-text text-danger" *ngIf="login.errors.pattern">
                                     Your username can only contain letters and digits.
                                 </small>
-                            </div> -->
-<!--                         
+                            </div>
+                        </div>
                         <div class="form-group">
                             <mat-form-field style="width: 100%;">
-                                <input matInput [(ngModel)]="registerAccount.lname" id="lname" name="lname" #login="ngModel"  placeholder="Last Name" required
+                                <input matInput [(ngModel)]="registerAccount.lastName" id="lname" name="lname" #login="ngModel"  placeholder="Last Name" required
                                     minlength="3" maxlength="40" pattern="^[_.@A-Za-z0-9-]*$">
-                            </mat-form-field> -->
-                            <!-- <div *ngIf="email.dirty && email.invalid">
+                            </mat-form-field>
+                            <div *ngIf="email.dirty && email.invalid">
                                 <small class="form-text text-danger" *ngIf="email.errors.required">
                                     Your email is required.
                                 </small>
@@ -79,7 +79,8 @@
                                 <small class="form-text text-danger" *ngIf="email.errors.maxlength">
                                     Your email cannot be longer than 100 characters.
                                 </small>
-                            </div> -->
+                            </div>
+                        </div>    
                         <!-- </div> -->
                         <!-- <div class="form-group">
                         <mat-form-field style="width: 100%;">
@@ -170,17 +171,16 @@
                                     Your confirmation password cannot be longer than 50 characters.
                                 </small>
                             </div>
-                        </div>                       
+                        </div>
+                                 <mat-checkbox  type="checkbox" name="isCheck" [(ngModel)]="isCheck" (click)="isChecked()" required >
+                                    I have read,understand & aggree to terms & conditions by registering.
+                                </mat-checkbox>        
                        <div class="form-group row justify-content-md-center">
-
                             <re-captcha></re-captcha>
                             <!-- <div class="g-recaptcha" data-sitekey="6Lca-nUUAAAAAJyHWjKfB8YhUUFa98MhgY1qs1WR" aria-required="true"></div> -->
                         </div>
                         <div class="form-group row justify-content-center" id="g-recaptcha-error"></div>
                         <!-- <re-captcha id="captcha" (resolved)="resolved($event)" siteKey="6LdjNGoUAAAAAF19XxCrlQfq7XshPNBJ6HaFjNKU" required></re-captcha> -->
-    
-    
-                        <br>
                         <div class="form-group row justify-content-center">
                             <ng-container *ngIf="registerForm.form.invalid ; else elseTemplate">
                                 <button type="submit" [disabled]="registerForm.form.invalid" class="btn btn-outline-danger ">Register</button>
@@ -189,8 +189,6 @@
                                 <button type="submit" class="btn btn-outline-success btn-lg btn-block">Register</button>
                             </ng-template>
                         </div>
-    
-    
                     </form>
                     <p></p>
                     <!-- <div class="alert alert-warning">
@@ -200,7 +198,6 @@
                 </div>
             </div>
         </mat-card-content>
-    
       </mat-card>
 </div>
 

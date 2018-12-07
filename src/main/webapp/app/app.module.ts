@@ -25,7 +25,7 @@ import { BuckswiseFrontEndAccountModule } from 'app/account/account.module';
 import { AuthExpiredInterceptor } from 'app/blocks/interceptor/auth-expired.interceptor';
 import { ErrorHandlerInterceptor } from 'app/blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from 'app/blocks/interceptor/notification.interceptor';
-
+import { FooterpageModule } from './footer-pages/footerpage/footerpage.module';
 // From Inbuilt Component
 import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from 'app/layouts';
 
@@ -97,6 +97,9 @@ import { successRoute } from 'app/success/success.route';
 import { appointRoot } from 'app/appointment';
 import { CookieService } from 'ngx-cookie-service';
 import { UserIdleModule } from 'angular-user-idle';
+import { privacyRoute } from './footer-pages/footerpage/privacy-policy/privacy-policy.route';
+import { cookieRoute } from './footer-pages/footerpage/cookie-policy/cookie-policy.route';
+import { termRoute } from './footer-pages/footerpage/terms-condition/terms-condition.route';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -113,6 +116,7 @@ import { UserIdleModule } from 'angular-user-idle';
         BuckswiseFrontEndAppRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         DeviceDetectorModule.forRoot(),
+        FooterpageModule,
         /* Optionally you can set time for `idle`, `timeout` and `ping` in seconds.
         * Default values: `idle` is 600 (10 minutes),
         * `timeout` is 300 (5 minutes)
@@ -123,6 +127,9 @@ import { UserIdleModule } from 'angular-user-idle';
         RouterModule.forRoot([advisorRoot], { useHash: true }),
         RouterModule.forRoot([successRoute], { useHash: true }),
         RouterModule.forRoot([appointRoot], { useHash: true }),
+        RouterModule.forRoot([termRoute], { useHash: true }),
+        RouterModule.forRoot([privacyRoute], { useHash: true }),
+        RouterModule.forRoot([cookieRoute], { useHash: true }),
         BuckswiseFrontEndSharedModule,
         BuckswiseFrontEndCoreModule,
         BuckswiseFrontEndHomeModule,

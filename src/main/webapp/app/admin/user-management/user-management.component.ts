@@ -27,7 +27,6 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
-
     constructor(
         private userService: UserService,
         private alertService: JhiAlertService,
@@ -133,6 +132,11 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
                 // Left blank intentionally, nothing to do here
             }
         );
+    }
+
+    send(user: User) {
+        console.log('from usermanagment', user);
+        this.userService.sendMail(user).subscribe();
     }
 
     private onSuccess(data, headers) {

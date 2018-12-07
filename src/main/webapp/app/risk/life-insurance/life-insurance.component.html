@@ -4,16 +4,16 @@
     <!--start of buttons -->
     <div>
         <div class="row pull-right">
-        <span [ngSwitch]="showAdd">
-            <p *ngSwitchCase="false">
-                <button type="button" class="btn btn-link" (click)="openLife(lifeModal)">
-                    <span>
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        <span>Add New</span>
-                    </span>
-                </button>
-            </p> 
-        </span>    
+            <span [ngSwitch]="showAdd">
+                <p *ngSwitchCase="false">
+                    <button type="button" class="btn btn-link" (click)="openLife(lifeModal)">
+                        <span>
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            <span>Add New</span>
+                        </span>
+                    </button>
+                </p>
+            </span>
             <button type="button" class="btn btn-link">
                 <span>
                     <i class="fa fa-info" aria-hidden="true"></i>
@@ -31,8 +31,9 @@
             </div>
             <div class="modal-body">
                 <form name="editForm" role="form" novalidate #editForm="ngForm">
-                        <label>Risk coverage for Family Annual Income  {{ annualIncome | currency:"INR" }} </label><br>
-                        <!-- <mat-form-field style="width: 50%;">
+                    <label>Risk coverage for Family Annual Income {{ annualIncome | currency:"INR" }} </label>
+                    <br>
+                    <!-- <mat-form-field style="width: 50%;">
                             <mat-select placeholder="Select Name" [(ngModel)]="lifeInsurance.name" name="name" required>
                                 <mat-option *ngFor="let item of names" [value]="item.nameFirst">
                                     {{item.nameFirst}}
@@ -62,7 +63,7 @@
                                     </mat-expansion-panel-header>
 
                                     <div>
-                                        <table class="table table-hover table-sm">
+                                        <table class="table-responsive-md table table-hover table-sm">
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
@@ -94,7 +95,7 @@
                                     </mat-expansion-panel-header>
 
                                     <div>
-                                        <table class="table table-hover table-sm">
+                                        <table class="table-responsive-md table table-hover table-sm">
                                             <thead>
                                                 <tr>
                                                     <th scope="col">Liability Type</th>
@@ -137,13 +138,13 @@
 
         <!-- table starts here -->
         <div>
-            <table class="table table-hover table-sm">
+            <table class="table-responsive-md table table-hover table-sm">
                 <thead>
                     <tr>
                         <th scope="col">Expense percentage</th>
                         <th scope="col">Total yearly expenses</th>
                         <th scope="col">Edit</th>
-                        <th scope="col">Delete</th>
+                        <!-- <th scope="col">Delete</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -159,11 +160,11 @@
                                     <fa-icon [icon]="'edit'"></fa-icon>
                                 </span>
                             </button>
-                            </td>
-                            <td>
-                            <button class="btn  btn-outline-danger btn-sm" type="button" (click)="deleteField(i, lifeInsurance.id)">
+                        </td>
+                        <td>
+                            <!-- <button class="btn  btn-outline-danger btn-sm" type="button" (click)="deleteField(i, lifeInsurance.id)">
                                 <span><fa-icon [icon]="'trash'"></fa-icon></span>
-                            </button>
+                            </button> -->
 
                         </td>
 

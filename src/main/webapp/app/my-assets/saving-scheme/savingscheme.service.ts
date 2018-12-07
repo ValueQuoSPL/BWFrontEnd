@@ -10,8 +10,6 @@ export class SavingSchemeService {
 
     constructor(private http: HttpClient) {}
     public SavingSchemeDetails(savingScheme) {
-        console.log(savingScheme);
-
         return this.http.post<SavingScheme[]>(SERVER_API_URL + 'api/savingscheme', savingScheme);
     }
     public getSavingScheme(uid) {
