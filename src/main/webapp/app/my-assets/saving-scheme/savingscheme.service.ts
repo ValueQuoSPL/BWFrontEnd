@@ -5,32 +5,37 @@ import { SavingScheme } from 'app/my-assets/saving-scheme/savingscheme.modal';
 
 @Injectable()
 export class SavingSchemeService {
-  public ServiceAPIParam: any;
-  public ServiceAPI: any;
+    public ServiceAPIParam: any;
+    public ServiceAPI: any;
 
-  constructor(private http: HttpClient) {}
-  public SavingSchemeDetails(savingScheme) {
-    return this.http.post<SavingScheme[]>(
-      SERVER_API_URL + 'api/savingscheme',
-      savingScheme
-    );
-  }
-  public getSavingScheme(uid) {
-    this.ServiceAPIParam = 'api/getsaving' + '/' + uid;
-    return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
-  }
-  public UpdateSaving(savingScheme) {
-    return this.http.put<SavingScheme[]>(
-      SERVER_API_URL + 'api/savingUpdate',
-      savingScheme
-    );
-  }
-  public DeleteSaving(id) {
-    this.ServiceAPI = 'api/savingdelete' + '/' + id;
-    return this.http.delete<SavingScheme[]>(SERVER_API_URL + this.ServiceAPI);
-  }
-  public getSavingSchemeById(commonid) {
-    this.ServiceAPIParam = 'api/getsavingSchemebyid' + '/' + commonid;
-    return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
-  }
+    constructor(private http: HttpClient) {}
+    public SavingSchemeDetails(savingScheme) {
+        console.log(savingScheme);
+
+        return this.http.post<SavingScheme[]>(SERVER_API_URL + 'api/savingscheme', savingScheme);
+    }
+    public getSavingScheme(uid) {
+        this.ServiceAPIParam = 'api/getsaving' + '/' + uid;
+        return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
+    }
+    public UpdateSaving(savingScheme) {
+        return this.http.put<SavingScheme[]>(SERVER_API_URL + 'api/savingUpdate', savingScheme);
+    }
+    public DeleteSaving(id) {
+        this.ServiceAPI = 'api/savingdelete' + '/' + id;
+        return this.http.delete<SavingScheme[]>(SERVER_API_URL + this.ServiceAPI);
+    }
+    public getSavingSchemeById(commonid) {
+        this.ServiceAPIParam = 'api/getsavingSchemebyid' + '/' + commonid;
+        return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
+    }
+
+    /**
+     * Author - Pratik
+     * @param data
+     */
+    public updateAvailable(data) {
+        this.ServiceAPI = 'api/availableSaving';
+        return this.http.put(SERVER_API_URL + this.ServiceAPI, data);
+    }
 }

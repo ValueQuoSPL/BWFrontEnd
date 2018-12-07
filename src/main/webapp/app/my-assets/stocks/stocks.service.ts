@@ -29,4 +29,8 @@ export class StockService {
         this.ServiceAPI = 'api/deletestocks' + '/' + id;
         return this.http.delete<Stocks[]>(SERVER_API_URL + this.ServiceAPI);
     }
+    public updateAvailable(data) {
+        this.ServiceAPI = 'api/availableStock';
+        return this.http.put(SERVER_API_URL + this.ServiceAPI, data);
+    }
 }

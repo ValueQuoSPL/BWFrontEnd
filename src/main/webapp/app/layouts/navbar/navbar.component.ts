@@ -115,7 +115,7 @@ export class NavbarComponent implements OnInit, DoCheck {
 
         // Start watching when user idle is starting.
         this.userIdle.onTimerStart().subscribe(count => {
-            console.log(count);
+            // console.log(count);
         });
 
         // Start watch when time is up.

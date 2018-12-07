@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Renderer, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, Renderer, ElementRef, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { JhiEventManager } from 'ng-jhipster';
@@ -15,7 +15,7 @@ import { CookieService } from 'ngx-cookie';
     selector: 'jhi-login-modal',
     templateUrl: './login.component.html'
 })
-export class JhiLoginModalComponent implements AfterViewInit {
+export class JhiLoginModalComponent implements OnInit, AfterViewInit {
     authenticationError: boolean;
     password: string;
     rememberMe: boolean;
@@ -43,20 +43,12 @@ export class JhiLoginModalComponent implements AfterViewInit {
         private paymentCheck: SuccessService,
         private accountService: AccountService,
         private planService: PlanService,
-        private principal: Principal,
-        private _cookieService: CookieService
+        private principal: Principal
     ) {
         this.credentials = {};
     }
 
-    ngAfterViewInit() {
-        this.getUserid();
-        setTimeout(() => this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#username'), 'focus', []), 0);
-        /**
-         * author - Pratik
-         * function - gets asObservable user identity account info
-         * purpose - to provide all permission if user is admin
-         */
+    ngOnInit() {
         this.principal.getAuthenticationState().subscribe(identity => {
             if (identity) {
                 this.route = identity.authorities[0];
@@ -66,6 +58,10 @@ export class JhiLoginModalComponent implements AfterViewInit {
                 this.routing();
             }
         });
+    }
+
+    ngAfterViewInit() {
+        setTimeout(() => this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#username'), 'focus', []), 0);
     }
 
     cancel() {
@@ -87,7 +83,7 @@ export class JhiLoginModalComponent implements AfterViewInit {
     }
 
     CheckPlanSelected() {
-        this.paymentCheck.getTransactionData(this.uid).subscribe(paymentData => {
+        this.paymentCheck.getTransactionData(this.uid, 'login').subscribe(paymentData => {
             if (paymentData) {
                 this.isPlan = true;
                 this.PaymentArray = paymentData;

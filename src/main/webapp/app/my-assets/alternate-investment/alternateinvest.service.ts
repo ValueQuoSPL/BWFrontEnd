@@ -27,4 +27,13 @@ export class AlternateService {
         this.ServiceAPI = 'api/atlerInvest' + '/' + id;
         return this.http.delete<AltInvest[]>(SERVER_API_URL + this.ServiceAPI);
     }
+
+    /**
+     * Author - Pratik
+     * @param data
+     */
+    public updateAvailable(data) {
+        this.ServiceAPI = 'api/availableAlt';
+        return this.http.put(SERVER_API_URL + this.ServiceAPI, data);
+    }
 }
