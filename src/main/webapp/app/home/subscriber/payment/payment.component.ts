@@ -38,7 +38,6 @@ export class PaymentComponent implements OnInit {
         this.user.fUrl = this.fUrl;
         this.paymentService.submitUser(this.user).subscribe(data => {
             this.paymentDetail = data;
-            console.log(this.paymentDetail);
         });
         this.disablePaymentButton1 = true;
         this.disablePaymentButton2 = false;
@@ -55,9 +54,9 @@ export class PaymentComponent implements OnInit {
 
         this.settingsAccount.mobile = this.user.phone;
         this.account.save(this.settingsAccount).subscribe(() => {
-            this.principal.identity(true).then(account => {
-                this.settingsAccount = this.copyAccount(account);
-            });
+            // this.principal.identity(true).then(account => {
+            //     this.settingsAccount = this.copyAccount(account);
+            // });
         });
     }
 

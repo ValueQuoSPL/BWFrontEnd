@@ -16,4 +16,8 @@ export class ContactService {
         console.log('in service contact', user);
         return this.http.post<[UserContact]>(SERVER_API_URL + 'api/contactuses', user);
     }
+    public refferSave(user) {
+        console.log('in service refferSave', user);
+        return this.http.post<[UserContact]>(SERVER_API_URL + 'api/referFriend', user);
+    }
 }

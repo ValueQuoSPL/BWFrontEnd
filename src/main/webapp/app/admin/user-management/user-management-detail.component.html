@@ -1,34 +1,74 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <div *ngIf="user">
+        <div *ngIf="user">    
             <h2>
-                <span>User</span> [<b>{{user.login}}</b>]
+                <span>User</span> [
+                <b>{{user.login}}</b>]
             </h2>
-            <dl class="row-md jh-entity-details">
-                <dt><span>Login</span></dt>
+            <table class="table table-striped">
+                <thead>
+                    <th><b>Login</b></th>
+                    <th><b>Created By</b></th>
+                    <th><b>Created Date</b></th>
+                    <th><b>Last Modified By</b></th>
+                    <th><b>Last Modified Date</b></th>
+                    <th><b>Profiles</b></th>
+                </thead>  
+                <tbody>
+                    <td>{{user.login}}</td>
+                    <td>{{user.createdBy}}</td>
+                    <td>{{user.createdDate | date:'dd/MM/yy HH:mm'}}</td>
+                    <td>{{user.lastModifiedBy}}</td>
+                    <td>{{user.lastModifiedDate | date:'dd/MM/yy HH:mm'}}</td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li *ngFor="let authority of user.authorities">
+                                <span class="badge badge-info">{{authority}}</span>
+                            </li>
+                        </ul>
+                    </td>
+                </tbody>  
+            </table>
+            <!-- <dl class="col-md jh-entity-details">
+                <dt>
+                    <span>Login</span>
+                </dt>
                 <dd>
                     <span>{{user.login}}</span>
-                    <jhi-boolean
-                        [value]="user.activated"
-                        textTrue="Activated"
-                        textFalse="Deactivated">
+                    <jhi-boolean [value]="user.activated" textTrue="Activated" textFalse="Deactivated">
                     </jhi-boolean>
                 </dd>
-                <dt><span>First Name</span></dt>
+                <dt>
+                    <span>First Name</span>
+                </dt>
                 <dd>{{user.firstName}}</dd>
-                <dt><span>Last Name</span></dt>
+                <dt>
+                    <span>Last Name</span>
+                </dt>
                 <dd>{{user.lastName}}</dd>
-                <dt><span>Email</span></dt>
+                <dt>
+                    <span>Email</span>
+                </dt>
                 <dd>{{user.email}}</dd>
-                <dt><span>Created By</span></dt>
+                <dt>
+                    <span>Created By</span>
+                </dt>
                 <dd>{{user.createdBy}}</dd>
-                <dt><span>Created Date</span></dt>
+                <dt>
+                    <span>Created Date</span>
+                </dt>
                 <dd>{{user.createdDate | date:'dd/MM/yy HH:mm' }}</dd>
-                <dt><span>Last Modified By</span></dt>
+                <dt>
+                    <span>Last Modified By</span>
+                </dt>
                 <dd>{{user.lastModifiedBy}}</dd>
-                <dt><span>Last Modified Date</span></dt>
+                <dt>
+                    <span>Last Modified Date</span>
+                </dt>
                 <dd>{{user.lastModifiedDate | date:'dd/MM/yy HH:mm'}}</dd>
-                <dt><span>Profiles</span></dt>
+                <dt>
+                    <span>Profiles</span>
+                </dt>
                 <dd>
                     <ul class="list-unstyled">
                         <li *ngFor="let authority of user.authorities">
@@ -36,11 +76,71 @@
                         </li>
                     </ul>
                 </dd>
-            </dl>
-            <button type="submit"
-                    routerLink="../../"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </dl> -->
+            <table class="table  table-responsive-md">
+                <thead>
+                    <td class="heading">
+                        <strong>User Information</strong>
+                    </td>
+                </thead>
+                <tbody *ngFor="let profile of profileInformation">
+                    <tr>
+                        <th class="subheading"><b>First Name:</b></th>
+                        <td class="tddata">{{profile.firstName}}</td>
+                        <th class="subheading"><b>Middle Name:</b></th>
+                        <td class="tddata">{{profile.middleName}}</td>
+                        <th class="subheading"><b>Last Name:</b></th>
+                        <td class="tddata">{{profile.lastName}}</td>
+                    </tr>
+                    <tr>
+                        <th class="subheading"><b>Gender:</b></th>
+                        <td class="tddata">{{profile.gender}}</td>
+                        <th class="subheading"><b>Marital Status:</b></th>
+                        <td class="tddata">{{profile.maritalStatus}}</td>
+                        <th class="subheading"><b>Date Of Birth:</b></th>
+                        <td class="tddata">{{profile.dob | date: 'd/M/y'}}</td>
+                    </tr>
+                    <tr>
+                        <th class="subheading"><b>Occupation:</b></th>
+                        <td class="tddata">{{profile.occupation}}</td>
+                        <th class="subheading"><b>Mobile Number:</b></th>
+                        <td class="tddata">{{profile.mobileNumber}}</td>
+                        <th class="subheading"><b>Alternate Number:</b></th>
+                        <td class="tddata">{{profile.alternateNumber}}</td>
+                    </tr>
+                    <tr>
+                        <th class="subheading"><b>Company:</b></th>
+                        <td class="tddata">{{profile.company}}</td>
+                        <th class="subheading"><b>How Did You Know:</b></th>
+                        <td class="tddata">{{profile.howDidYouKnow}}</td>
+                        <th class="subheading"><b>Address:</b></th>
+                        <td class="tddata">{{profile.address}}</td>
+                    </tr>
+                    <hr>
+                    <tr>
+                        <th class="heading">Communication Information</th>
+                    </tr>
+                    <tr>
+                        <th class="subheading"><b>Email Id:</b></th>
+                        <td class="tddata">{{profile.emailId}}</td>
+                        <th class="subheading"><b>Pan No.</b></th>
+                        <td class="tddata">{{profile.pan}}</td>
+                        <th class="subheading"><b>City:</b></th>
+                        <td class="tddata">{{profile.city}}</td>
+                    </tr>
+                    <tr>
+                        <th class="subheading"><b>State:</b></th>
+                        <td class="tddata">{{profile.state}}</td>
+                        <th class="subheading"><b>Country:</b></th>
+                        <td class="tddata">{{profile.country}}</td>
+                        <th class="subheading"><b>Pin:</b></th>
+                        <td class="tddata">{{profile.pin}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" routerLink="../../" class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;
+                <span> Back</span>
             </button>
         </div>
     </div>

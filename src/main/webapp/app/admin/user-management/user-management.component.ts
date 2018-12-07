@@ -27,7 +27,6 @@ export class UserMgmtComponent implements OnInit, OnDestroy {
     predicate: any;
     previousPage: any;
     reverse: any;
-
     constructor(
         private userService: UserService,
         private alertService: JhiAlertService,
