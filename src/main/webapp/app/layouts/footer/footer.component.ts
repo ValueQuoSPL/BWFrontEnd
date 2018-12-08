@@ -12,7 +12,7 @@ export class FooterComponent {
     constructor(private router: Router, private modalService: NgbModal) {}
 
     openCookie(cookieModal) {
-        this.modalService.open(cookieModal, { ariaLabelledBy: 'cookieModal' }).result.then(
+        this.modalService.open(cookieModal, { ariaLabelledBy: 'cookieModal', size: 'lg' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
             },
@@ -22,7 +22,7 @@ export class FooterComponent {
         );
     }
     openPrivacy(privacyModal) {
-        this.modalService.open(privacyModal, { ariaLabelledBy: 'privacyModal' }).result.then(
+        this.modalService.open(privacyModal, { ariaLabelledBy: 'privacyModal', size: 'lg' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
             },
@@ -32,7 +32,7 @@ export class FooterComponent {
         );
     }
     openTerms(termModal) {
-        this.modalService.open(termModal, { ariaLabelledBy: 'termModal' }).result.then(
+        this.modalService.open(termModal, { ariaLabelledBy: 'termModal', size: 'lg' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
             },

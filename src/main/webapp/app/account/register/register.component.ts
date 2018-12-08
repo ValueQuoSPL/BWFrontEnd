@@ -7,6 +7,7 @@ import { Register } from 'app/account/register/register.service';
 import { UserMgmtComponent } from 'app/admin';
 import { User, LoginModalService } from 'app/core';
 import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'jhi-register',
@@ -40,8 +41,14 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     number;
     length;
     chars;
+    closeResult: string;
 
-    constructor(private loginModalService: LoginModalService, private registerService: Register, private router: Router) {}
+    constructor(
+        private modalService: NgbModal,
+        private loginModalService: LoginModalService,
+        private registerService: Register,
+        private router: Router
+    ) {}
 
     ngOnInit() {
         this.success = false;
@@ -167,5 +174,24 @@ export class RegisterComponent implements OnInit, AfterViewInit {
     }
     isChecked() {
         this.useraggree = 'yes';
+    }
+    openTerms(termModal) {
+        this.modalService.open(termModal, { ariaLabelledBy: 'termModal', size: 'lg' }).result.then(
+            result => {
+                this.closeResult = `Closed with: ${result}`;
+            },
+            reason => {
+                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+            }
+        );
+    }
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return `with: ${reason}`;
+        }
     }
 }

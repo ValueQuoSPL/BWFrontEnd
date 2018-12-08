@@ -13,8 +13,8 @@ header .icon-big {
 }
 
 .example-card {
-    width: 711px;
-    height: 692px;
+    width: 780px;
+    height: 120%;
 }
 
 .image {
@@ -51,4 +51,15 @@ header .icon-big {
 }
 .col {
     margin-left: 500px;
+}
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-bottom: 1px solid #e9ecef;
+    border-top-left-radius: 0.125rem;
+    border-top-right-radius: 0.125rem;
+    background-color: white;
+    color: white;
 }
