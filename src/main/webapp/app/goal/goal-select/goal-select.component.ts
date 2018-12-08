@@ -46,6 +46,11 @@ class Mapping {
     assettype;
 }
 
+class Available {
+    assetid: number;
+    available: number;
+}
+
 // class GoalUpdate {
 //   id;
 //   notes;
@@ -139,6 +144,9 @@ export class GoalSelectComponent implements OnInit {
     availableValue: number;
     requiredValue: number;
 
+    available: Available = new Available();
+    afterMap: boolean;
+
     constructor(
         private router: Router,
         private principal: Principal,
@@ -161,13 +169,15 @@ export class GoalSelectComponent implements OnInit {
         // let id = this._route.paramMap.get("id");
         this.GoalArray = this._route.snapshot.data['goaldata'];
 
-        this.output = this.GoalArray;
-        for (let i = 0; i < this.output.length; i++) {
-            const element = this.output[i];
-            if (element.uid === 0) {
-                this.isValid = false;
-            } else {
-                this.isValid = true;
+        if (this.GoalArray) {
+            this.output = this.GoalArray;
+            for (let i = 0; i < this.output.length; i++) {
+                const element = this.output[i];
+                if (element.uid === 0) {
+                    this.isValid = false;
+                } else {
+                    this.isValid = true;
+                }
             }
         }
     }
@@ -334,9 +344,9 @@ export class GoalSelectComponent implements OnInit {
             }
         });
 
-        this.goalSelectService.GetMapping(this.uid).subscribe(data => {
-            this.AssetMappingDB = data;
-        });
+        // this.goalSelectService.GetMapping(this.uid, this.commonid).subscribe(data => {
+        //     this.AssetMappingDB = data;
+        // });
     }
     viewUpdate() {
         for (let index = 0; index < this.GoalArray.length; index++) {
@@ -348,6 +358,7 @@ export class GoalSelectComponent implements OnInit {
                 this.GrandTotal = element.goalNotes;
                 this.AvailableCost = +this.PresentCost - +this.GrandTotal;
                 if (this.AvailableCost <= 0) {
+                    this.goalComplete = true;
                     this.AvailableCost = 0;
                 }
             }
@@ -384,6 +395,7 @@ export class GoalSelectComponent implements OnInit {
     openLinkAsset(editLinkModal, goalid, SingleGoalGrand) {
         this.isAssetSelected = false;
         this.goalComplete = false;
+        this.afterMap = false;
         this.singleGoalToal = SingleGoalGrand;
         this.assettype = null;
         this.singleAssetTotal = 0;
@@ -461,41 +473,15 @@ export class GoalSelectComponent implements OnInit {
 
     get(assetid) {}
 
-    deleteMapping(assetid) {
-        const ret = confirm('Are you sure to delete mapping? This cant be undone!');
-
-        if (ret) {
-            for (let j = 0; j < this.AssetMappingDB.length; j++) {
-                const row = this.AssetMappingDB[j];
-                if (row.assettype === this.assettype && row.assetid === assetid) {
-                    const res = this.goalSelectService.DeleteMapping(row.id).subscribe(resdata => {
-                        this.getMappedAsset();
-                    });
-                    break;
-                }
-            }
-        } else {
-        }
-        // this.goalSelectService.DeleteMapping(id).subscribe();
-    }
-
     getMappedAsset() {
-        return new Promise((resolve, reject) => {
-            this.goalSelectService.GetMapping(this.uid).subscribe(
-                data => {
-                    resolve(data);
+        this.goalSelectService.GetMapping(this.uid, this.commonid).subscribe(data => {
+            this.AssetMappingDB = data;
 
-                    this.AssetMappingDB = data;
-                    this.AssetViewUpdate();
-                },
-                err => {
-                    reject(err);
-                }
-            );
+            this.AssetViewUpdate('get mapped Asset');
         });
     }
 
-    AssetViewUpdate() {
+    AssetViewUpdate(from) {
         this.singleAssetTotal = 0;
         this.HTMLArray.forEach(html => {
             for (let index = 0; index < this.AssetMappingDB.length; index++) {
@@ -505,11 +491,7 @@ export class GoalSelectComponent implements OnInit {
                 if (this.commonid === db.goalid) {
                     if (this.assettype === db.assettype && html.id === db.assetid) {
                         html.mappedvalue = db.valuetomap;
-                        html.available = +html.assetvalue - +db.valuetomap;
-
                         break;
-                    } else {
-                        html.available = html.assetvalue;
                     }
                 }
             }
@@ -525,40 +507,25 @@ export class GoalSelectComponent implements OnInit {
      * @param available : available asset value to map
      */
     getMapValue(assetid, value, available) {
-        this.valtomap = prompt('Enter value to map ');
-
-        this.mappedValue = Number(value);
-        this.currentValue = Number(this.valtomap);
         this.availableValue = Number(available);
-        this.requiredValue = Number(this.AvailableCost);
-        const ret = isNaN(this.currentValue);
 
-        // filter for checking the previously mapping
-        if (this.mappedValue === 0) {
-            // filter for value should not be null
-            if (this.currentValue !== null) {
-                // filter for value should be number
-                if (!ret) {
-                    // filter for required value should be greater than available
-                    if (this.requiredValue >= this.availableValue + this.mappedValue) {
-                        // filter for value should be less than available value
-                        if (this.currentValue <= this.availableValue + this.mappedValue) {
-                            for (let index = 0; index < this.HTMLArray.length; index++) {
-                                const element = this.HTMLArray[index];
-                                if (element.id === assetid) {
-                                    // filter for comparing record id with asset id
-                                    element.mappedvalue = this.currentValue;
-                                    this.calculateSingleAssetTotal();
-                                    break;
-                                }
-                            }
-                            this.ManipulateMapping(assetid);
-                        } else {
-                            alert('Please Enter value which is less than Available value or unmap this value and map again');
-                        }
-                    } else {
-                        // filter for value should be less than required value
-                        if (this.currentValue <= this.requiredValue + this.mappedValue) {
+        if (this.availableValue !== 0) {
+            this.valtomap = prompt('Enter value to map ');
+
+            this.mappedValue = Number(value);
+            this.currentValue = Number(this.valtomap);
+            this.requiredValue = Number(this.AvailableCost);
+            const ret = isNaN(this.currentValue);
+
+            // filter for checking the previously mapping
+            if (this.mappedValue === 0) {
+                // filter for value should not be null
+                if (this.currentValue !== null) {
+                    // filter for value should be number
+                    if (!ret) {
+                        // filter for required value should be greater than available
+                        if (this.requiredValue >= this.availableValue + this.mappedValue) {
+                            // filter for value should be less than available value
                             if (this.currentValue <= this.availableValue + this.mappedValue) {
                                 for (let index = 0; index < this.HTMLArray.length; index++) {
                                     const element = this.HTMLArray[index];
@@ -574,21 +541,41 @@ export class GoalSelectComponent implements OnInit {
                                 alert('Please Enter value which is less than Available value or unmap this value and map again');
                             }
                         } else {
-                            // tslint:disable-next-line:max-line-length
-                            alert(
-                                'Please Enter value which is less than addition of mapped value and required value. Value should be less than or equal to: ' +
-                                    (this.mappedValue + this.requiredValue)
-                            );
+                            // filter for value should be less than required value
+                            if (this.currentValue <= this.requiredValue + this.mappedValue) {
+                                if (this.currentValue <= this.availableValue + this.mappedValue) {
+                                    for (let index = 0; index < this.HTMLArray.length; index++) {
+                                        const element = this.HTMLArray[index];
+                                        if (element.id === assetid) {
+                                            // filter for comparing record id with asset id
+                                            element.mappedvalue = this.currentValue;
+                                            this.calculateSingleAssetTotal();
+                                            break;
+                                        }
+                                    }
+                                    this.ManipulateMapping(assetid);
+                                } else {
+                                    alert('Please Enter value which is less than Available value or unmap this value and map again');
+                                }
+                            } else {
+                                // tslint:disable-next-line:max-line-length
+                                alert(
+                                    'Please Enter value which is less than addition of mapped value and required value. Value should be less than or equal to: ' +
+                                        (this.mappedValue + this.requiredValue)
+                                );
+                            }
                         }
+                    } else {
+                        alert('Please enter Numbers(Digits) Only');
                     }
                 } else {
-                    alert('Please enter Numbers(Digits) Only');
+                    // clicked cancel button
                 }
             } else {
-                // clicked cancel button
+                alert('Please unmap this value before re-map');
             }
         } else {
-            alert('Please unmap this value before re-map');
+            alert('Congratulation! Your Goal is Completed!');
         }
     }
 
@@ -668,7 +655,7 @@ export class GoalSelectComponent implements OnInit {
             const asset = this.HTMLArray[index];
 
             if (asset.id === this.assetid) {
-                this.findAssetAndFillMapping(this.assetid);
+                this.fillObject(this.assetid);
 
                 if (this.checked === true) {
                     this.PostMapping();
@@ -678,7 +665,7 @@ export class GoalSelectComponent implements OnInit {
         }
     }
 
-    findAssetAndFillMapping(assetid) {
+    fillObject(assetid) {
         for (let index = 0; index < this.HTMLArray.length; index++) {
             const element = this.HTMLArray[index];
             if (assetid === element.id) {
@@ -691,6 +678,10 @@ export class GoalSelectComponent implements OnInit {
                 break;
             }
         }
+
+        this.available.assetid = assetid;
+        this.available.available = this.availableValue - this.currentValue;
+        this.UpdateAsset();
     }
 
     PostMapping() {
@@ -703,7 +694,7 @@ export class GoalSelectComponent implements OnInit {
                 this.mapping.id = db.id;
 
                 this.goalSelectService.PutMapping(this.mapping).subscribe(res => {
-                    this.getMappedAsset();
+                    this.getAsset();
                 });
 
                 break;
@@ -716,9 +707,11 @@ export class GoalSelectComponent implements OnInit {
         if (flag === 1 || this.AssetMappingDB.length === 0) {
             this.mapping.id = null;
             this.goalSelectService.PostMapping(this.mapping).subscribe(res => {
-                this.getMappedAsset();
+                this.getAsset();
             });
         }
+
+        this.afterMap = true;
     }
 
     getAsset() {
@@ -749,19 +742,20 @@ export class GoalSelectComponent implements OnInit {
             this.stockService.getStockById(this.uid).subscribe(
                 res => {
                     resolve(res);
-
                     this.stockout = res;
                     this.AssetArray = res;
+
                     this.AssetArray.forEach(element => {
                         this.HTMLArray.push({
                             id: element.id,
                             assetname: element.company_name,
                             assetvalue: element.share_price * element.no_of_shares,
                             mappedvalue: 0,
-                            available: element.share_price * element.no_of_shares,
+                            available: element.available,
                             disable: true
                         });
                     });
+
                     this.getMappedAsset();
                 },
                 err => {
@@ -981,20 +975,8 @@ export class GoalSelectComponent implements OnInit {
         this.NewGoalselect.yeartogoal = '';
         this.NewGoalselect.presentcost = '';
     }
-    // calculateFutureCost(C, Y) {
-    //     return Math.round(C * Math.pow(1 + this.inflation, Y));
-    // }
 
-    // calculateMonthlyAmount(F, Y) {
-    //     let N = 0,
-    //         R = 0;
-    //     N = Y * 12;
-    //     R = this.inflation;
-    //     return Math.round(F / ((Math.pow(1 + R, N) - 1) / R * (1 + R)));
-    // }
     deleteGoal(goalid, content) {
-        console.log('goalid:', goalid);
-
         this.commonid = goalid;
         this.conformkey = confirm('Are you sure you Want to permanently delete this item?');
 
@@ -1023,7 +1005,6 @@ export class GoalSelectComponent implements OnInit {
         let flag = false;
         for (let index = 0; index < this.MappedArrayDB.length; index++) {
             const db = this.MappedArrayDB[index];
-            console.log(db.goalid);
 
             if (this.commonid === db.goalid) {
                 flag = true;
@@ -1035,13 +1016,41 @@ export class GoalSelectComponent implements OnInit {
         return flag;
     }
 
-    deleteMappingToDeleteGoal(mappingid, goalid) {
-        console.log(mappingid, goalid);
+    // unmap from asset linking
+    deleteMapping(assetid, availableValue, mappedValue) {
+        const ret = confirm('Are you sure to delete mapping? This cant be undone!');
 
+        if (ret) {
+            this.available.assetid = assetid;
+            this.available.available = +availableValue + +mappedValue;
+            this.UpdateAsset();
+
+            for (let j = 0; j < this.AssetMappingDB.length; j++) {
+                const row = this.AssetMappingDB[j];
+                if (row.assettype === this.assettype && row.assetid === assetid) {
+                    const res = this.goalSelectService.DeleteMapping(row.id).subscribe(resdata => {
+                        this.goalComplete = false;
+                        this.getAsset();
+                        this.getMappedAsset();
+                    });
+                    break;
+                }
+            }
+        } else {
+        }
+        // this.goalSelectService.DeleteMapping(id).subscribe();
+    }
+
+    // unmap from mapped asset view
+    deleteMappingToDeleteGoal(assetid, mappedValue, mappingid, goalid) {
         const ret = confirm('Delete this Mapping?, this cant be undone!');
         if (ret === true) {
+            this.available.assetid = assetid;
+            this.available.available = this.availableValue + mappedValue;
+            this.UpdateAsset();
+
             this.goalSelectService.DeleteMapping(mappingid).subscribe(resdata => {
-                console.log('1.mapping deleted');
+                this.goalComplete = false;
                 this.getMapping(goalid);
                 this.getMappedAsset();
             });
@@ -1049,19 +1058,15 @@ export class GoalSelectComponent implements OnInit {
     }
 
     getMapping(goalid) {
-        this.goalSelectService.GetMapping(this.uid).subscribe(response => {
-            console.log('2.mapping get');
+        this.goalSelectService.GetMapping(this.uid, goalid).subscribe(response => {
             this.MappedArrayDB = response;
             this.MappedArray.splice(0, this.MappedArray.length);
             for (let index = 0; index < this.MappedArrayDB.length; index++) {
                 const element = this.MappedArrayDB[index];
                 if (element.goalid === goalid) {
-                    console.log('3.fill array:', element);
-
                     this.MappedArray.push({ element });
                 }
             }
-            console.log('4.mapped array:', this.MappedArray);
         });
     }
 
@@ -1106,5 +1111,49 @@ export class GoalSelectComponent implements OnInit {
                 this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
             }
         );
+    }
+
+    UpdateAsset() {
+        if (this.assettype === 'stocks') {
+            this.updateStock();
+        } else if (this.assettype === 'mutual') {
+            this.updateMutualFund();
+        } else if (this.assettype === 'ChitFund') {
+            this.updateChitFund();
+        } else if (this.assettype === 'FutureandOption') {
+            this.updateFAO();
+        } else if (this.assettype === 'SavingScheme') {
+            this.updateSaving();
+        } else if (this.assettype === 'AlternativeInvestment') {
+            this.updateAlt();
+        } else if (this.assettype === 'cash') {
+            this.updateCash();
+        } else if (this.assettype === 'Propertyandhousehold') {
+            this.updateProperty();
+        }
+    }
+    updateProperty(): any {
+        this.propService.updateAvailable(this.available).subscribe();
+    }
+    updateCash(): any {
+        this.cashService.updateAvailable(this.available).subscribe();
+    }
+    updateAlt(): any {
+        this.altService.updateAvailable(this.available).subscribe();
+    }
+    updateSaving(): any {
+        this.savingService.updateAvailable(this.available).subscribe();
+    }
+    updateFAO(): any {
+        this.faoService.updateAvailable(this.available).subscribe();
+    }
+    updateChitFund(): any {
+        this.chitService.updateAvailable(this.available).subscribe();
+    }
+    updateMutualFund(): any {
+        this.Mutualfundservice.updateAvailable(this.available).subscribe();
+    }
+    updateStock(): any {
+        this.stockService.updateAvailable(this.available).subscribe();
     }
 }

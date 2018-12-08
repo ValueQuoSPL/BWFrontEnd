@@ -15,13 +15,15 @@ import { HowDoWeDoItComponent } from 'app/home/how-do-we-do-it/how-do-we-do-it.c
 import { PartnersComponent } from 'app/home/partners/partners.component';
 import { SubscriptionModule } from 'app/home/subscription/subscribe.module';
 import { SubscriberModule } from 'app/home/subscriber/subscriber.module';
+import { servicesRoute } from '../../app/home/services/services.route';
 
 @NgModule({
     imports: [
         BuckswiseFrontEndSharedModule,
         SubscriptionModule,
         SubscriberModule,
-        RouterModule.forChild([ HOME_ROUTE ])
+        RouterModule.forChild([HOME_ROUTE]),
+        RouterModule.forRoot([servicesRoute])
     ],
     declarations: [
         HomeComponent,
@@ -33,12 +35,10 @@ import { SubscriberModule } from 'app/home/subscriber/subscriber.module';
         SubscriptionComponent,
         ReferComponent,
         HowDoWeDoItComponent,
-        PartnersComponent,
+        PartnersComponent
     ],
-    entryComponents: [
-    ],
-    providers: [
-    ],
+    entryComponents: [],
+    providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BuckswiseFrontEndHomeModule {}

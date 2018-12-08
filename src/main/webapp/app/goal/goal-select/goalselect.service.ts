@@ -104,8 +104,8 @@ export class GoalselectService {
         const url = SERVER_API_URL + 'api/assetmappings';
         return this.http.put(url, data);
     }
-    public GetMapping(uid) {
-        const url = SERVER_API_URL + 'api/getbyuid/' + uid;
+    public GetMapping(uid, goalid) {
+        const url = SERVER_API_URL + 'api/getbyuid/' + uid + '/' + goalid;
         return this.http.get(url);
     }
 

@@ -29,4 +29,13 @@ export class PropertyService {
         this.ServiceAPI = 'api/deleteproperties' + '/' + id;
         return this.http.delete<Property[]>(SERVER_API_URL + this.ServiceAPI);
     }
+
+    /**
+     * Author - Pratik
+     * @param data
+     */
+    public updateAvailable(data) {
+        this.ServiceAPI = 'api/availableProperty';
+        return this.http.put(SERVER_API_URL + this.ServiceAPI, data);
+    }
 }

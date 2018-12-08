@@ -10,7 +10,6 @@ export class SavingSchemeService {
 
     constructor(private http: HttpClient) {}
     public SavingSchemeDetails(savingScheme) {
-        console.log('in saving scheme', savingScheme);
         return this.http.post<SavingScheme[]>(SERVER_API_URL + 'api/savingscheme', savingScheme);
     }
     public getSavingScheme(uid) {
@@ -27,5 +26,14 @@ export class SavingSchemeService {
     public getSavingSchemeById(commonid) {
         this.ServiceAPIParam = 'api/getsavingSchemebyid' + '/' + commonid;
         return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
+    }
+
+    /**
+     * Author - Pratik
+     * @param data
+     */
+    public updateAvailable(data) {
+        this.ServiceAPI = 'api/availableSaving';
+        return this.http.put(SERVER_API_URL + this.ServiceAPI, data);
     }
 }

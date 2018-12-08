@@ -37,7 +37,6 @@ export class MyprofileComponent implements OnInit {
     // saveMethod to saveMyprofile
     saveDetail() {
         this.myProfile.uid = this.uid;
-        console.log('in myprofile', this.myProfile);
         this.MyProfileSer.save(this.myProfile).subscribe(data => {
             this.getMyProfilebyid();
         });
@@ -51,7 +50,6 @@ export class MyprofileComponent implements OnInit {
     getMyProfilebyid() {
         this.MyProfileSer.getMyProfileByUid(this.uid).subscribe(res => {
             this.output = res;
-            console.log('in get', this.output);
             // for (let i = 0; i < this.output.length; i++) {
             //   const element = this.output[i];
             //   if (element.uid === 0) {
@@ -78,9 +76,7 @@ export class MyprofileComponent implements OnInit {
         this.myProfile.country = this.output[0].country;
         this.date = this.output[0].dob;
         const finalDate = this.datePipe.transform(this.date, 'd/M/yy');
-        console.log(finalDate);
         this.myProfile.dob = new Date(finalDate);
-        console.log(this.myProfile.dob);
         this.myProfile.emailId = this.output[0].emailId;
         this.myProfile.firstName = this.output[0].firstName;
         this.myProfile.gender = this.output[0].gender;
@@ -98,13 +94,12 @@ export class MyprofileComponent implements OnInit {
     }
     // update Method to Update Myprofile
     update() {
-        console.log('in update myprofile', this.myProfile);
         this.MyProfileSer.updateProfile(this.myProfile).subscribe(responce => {
             this.getMyProfilebyid();
         });
         this.isValid = true;
     }
-    // cencel Method to cencel Myprofile
+    // cancel Method to cancel Myprofile
     cancel() {
         this.isValid = true;
     }

@@ -114,13 +114,10 @@ export class NavbarComponent implements OnInit, DoCheck {
         // this.userIdle.startWatching();
 
         // Start watching when user idle is starting.
-        this.userIdle.onTimerStart().subscribe(count => {
-            console.log(count);
-        });
+        this.userIdle.onTimerStart().subscribe(count => {});
 
         // Start watch when time is up.
         this.userIdle.onTimeout().subscribe(() => {
-            console.log('Time is up!');
             alert('Your session timed out. Please re-login');
             this.logout();
         });
@@ -136,7 +133,6 @@ export class NavbarComponent implements OnInit, DoCheck {
     }
 
     startWatching() {
-        console.log('session start');
         this.userIdle.startWatching();
     }
 

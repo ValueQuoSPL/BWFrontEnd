@@ -51,11 +51,6 @@ export class LiabilitiesComponent implements OnInit {
 
     ngOnInit() {
         this.getUserid();
-        console.log('calling account');
-
-        this.principal.identity().then(account => {
-            this.account = account;
-        });
     }
     getUserid() {
         console.log('calling account');

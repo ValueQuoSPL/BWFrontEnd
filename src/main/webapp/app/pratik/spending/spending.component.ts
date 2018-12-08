@@ -71,7 +71,6 @@ export class SpendingComponent implements OnInit, CanComponentDeactivate {
     ngOnInit() {
         this.routeGuard.GuardSource.subscribe(flag => {
             this.dataChanged = flag;
-            console.log('received change', this.dataChanged);
         });
         this.routeGuard.accordion.subscribe(route => {
             this.commonState = route;
@@ -154,8 +153,6 @@ export class SpendingComponent implements OnInit, CanComponentDeactivate {
     }
 
     canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-        console.log('leaving page. flag = ', this.dataChanged);
-
         if (this.dataChanged) {
             return confirm(
                 'Do you want to leave this page Before changes saved ? ' +
