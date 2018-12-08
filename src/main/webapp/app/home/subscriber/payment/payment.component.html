@@ -1,208 +1,132 @@
-<div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col-md-8">
-            <!-- <form #form action="https://secure.payu.in/_payment" method="POST">
-                        <div *ngFor="let payment of paymentDetail">
-                            <input type="hidden" name="key" value="{{payment.key}}" />
-                            <input type="hidden" name="hash_string" value="{{payment.hashString}}" />
-                            <input type="hidden" name="hash" value="{{payment.hash}}" />
-                            <input type="hidden" name="txnid" value="{{payment.txnid}}" />
+<div class="container ">
+    <form #form action="https://secure.payu.in/_payment" method="POST">
+        <div class="form-group" [hidden]="disablePaymentButton1">
+            <mat-card>
+                <mat-header>
+                    <mat-card-title class="text-center  bwtitle heading">Subscription Details</mat-card-title>
+                </mat-header>
+                <mat-card-content>
+                    <div class="row justify-content-center">
+                        <div class="col-md-12 form-group">
+                            <mat-form-field style="width: 90%;">
+                                <input matInput [(ngModel)]="user.amount" placeholder="Amount Payable" #amount="ngModel"
+                                    name="amount" id="amount" readonly>
+                            </mat-form-field>
                         </div>
-                        <div class="form-group">
-                            <div class="row justify-content-center">
-                                <div class="col-md-12 form-group">
-                                    <mat-form-field style="width: 90%;">
-                                        <input matInput [(ngModel)]="user.amount" placeholder="Amount Payable" #amount="ngModel" name="amount" id="amount" readonly>
-                                    </mat-form-field>
+                        <div class="col-md-12 form-group">
+                            <mat-form-field style="width: 90%;">
+                                <input matInput [(ngModel)]="user.firstName" placeholder="Full Name" #amount="ngModel"
+                                    name="firstName" id="firstName" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <mat-form-field style="width: 90%;">
+                                <input matInput jhiNumberOnly placeholder="Mobile Number" id="phone" [(ngModel)]="user.phone"
+                                    name="phone" #phone="ngModel" minlength="10" maxlength="10" pattern="^[_'.@A-Za-z0-9-]*$"
+                                    required>
+                            </mat-form-field>
+                            <div *ngIf="phone.touched && !phone.valid">
+                                <div *ngIf="phone.errors.required">
+                                    Mobile Number is required
                                 </div>
-                                <div class="col-md-12 form-group">
-                                    <mat-form-field style="width: 90%;">
-                                        <input matInput [(ngModel)]="user.firstName" placeholder="Full Name" #amount="ngModel" name="firstName" id="firstName" required>
-                                    </mat-form-field>
+                                <div *ngIf="phone.errors.minlength">
+                                    Mobile Number name should be min {{phone.errors.minlength.requiredLength}} char
                                 </div>
-                                <div class="col-md-12 form-group">
-                                    <mat-form-field style="width: 90%;">
-                                        <input matInput jhiNumberOnly placeholder="Mobile Number" id="phone" [(ngModel)]="user.phone" name="phone" #phone="ngModel"
-                                            minlength="10" maxlength="10" pattern="^[_'.@A-Za-z0-9-]*$" required>
-                                    </mat-form-field>
-                                    <div *ngIf="phone.touched && !phone.valid">
-                                        <div *ngIf="phone.errors.required">
-                                            Mobile Number is required
-                                        </div>
-                                        <div *ngIf="phone.errors.minlength">
-                                            Mobile Number name should be min {{phone.errors.minlength.requiredLength}} char
-                                        </div>
-                                        <div *ngIf="phone.errors.pattern">
-                                            pattern not match
-                                        </div>
-                                    </div>
+                                <div *ngIf="phone.errors.pattern">
+                                    pattern not match
                                 </div>
-                                <div class="col-md-12 form-group">
-                                    <mat-form-field style="width: 90%;">
-                                        <input matInput placeholder="Email" type="text" id="eMail" [(ngModel)]="user.eMail" name="eMail" #eMail="ngModel" minlength="5"
-                                            maxlength="50" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required email>
-                                    </mat-form-field>
-                                    <br>
-                                    <div *ngIf="eMail.touched && !eMail.valid">
-                                        <div *ngIf="eMail.errors.required">
-                                            e-Mail is required
-                                        </div>
-                                        <div *ngIf="eMail.errors.minlength">
-                                            e-Mail should be min {{eMail.errors.minlength.requiredLength}} char
-                                        </div>
-                                        <div *ngIf="eMail.errors.minlength">
-                                            e-Mail should be min {{eMail.errors.minlength.requiredLength}} char
-                                        </div>
-                                        <div *ngIf="eMail.errors.pattern">
-                                            e-Mail pattern not match
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <mat-form-field style="width: 90%;">
-                                        <input matInput [(ngModel)]="user.productInfo" placeholder="Your Plan" #amount="ngModel" name="productInfo" id="productInfo"
-                                            readonly>
-                                    </mat-form-field>
-                                </div>
-                                <input type="hidden" name="service_provider" value="payu_paisa" />
-                                <input type="hidden" name="surl" [(ngModel)]="sUrl" />
-                                <div class="container inline-block">
-                                    <br>
-                                    <div class="row">
-                                        <div class="col">
-                                            <button [hidden]="disablePaymentButton1" type="submit" class="btnReset" (click)="submitUser()">Proceed to Checkout</button>
-                                        </div>
-                                        <div class="col">
-                                            <button [hidden]="disablePaymentButton2" class="btnSave" (click)="form.submit()">Proceed to Payment</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-
                             </div>
                         </div>
-                    </form> -->
-            <form #form action="https://secure.payu.in/_payment" method="POST">
-                <div class="form-group" [hidden]="disablePaymentButton1">
-                    <mat-card>
-                        <mat-header>
-                            <mat-card-title class="text-center  bwtitle heading">Subscription Details</mat-card-title>
-                        </mat-header>
-                        <mat-card-content>
+                        <div class="col-md-12 form-group">
+                            <mat-form-field style="width: 90%;">
+                                <input matInput placeholder="Email" type="text" id="eMail" [(ngModel)]="user.eMail"
+                                    name="eMail" #eMail="ngModel" minlength="5" maxlength="50" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                    required email>
+                            </mat-form-field>
+                            <br>
+                            <div *ngIf="eMail.touched && !eMail.valid">
+                                <div *ngIf="eMail.errors.required">
+                                    Email is required
+                                </div>
+                                <div *ngIf="eMail.errors.minlength">
+                                    Email should be min {{eMail.errors.minlength.requiredLength}} char
+                                </div>
+                                <div *ngIf="eMail.errors.minlength">
+                                    Email should be min {{eMail.errors.minlength.requiredLength}} char
+                                </div>
+                                <div *ngIf="eMail.errors.pattern">
+                                    Email pattern not match
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <mat-form-field style="width: 90%;">
+                                <input matInput [(ngModel)]="user.productInfo" placeholder="Your Plan" #amount="ngModel"
+                                    name="productInfo" id="productInfo" readonly>
+                            </mat-form-field>
+                        </div>
+                        <input type="hidden" name="service_provider" value="payu_paisa" />
+                        <input type="hidden" name="surl" [(ngModel)]="sUrl" />
+                        <div class="container inline-block">
+                            <br>
                             <div class="row justify-content-center">
-                                <div class="col-md-12 form-group">
-                                    <mat-form-field style="width: 90%;">
-                                        <input matInput [(ngModel)]="user.amount" placeholder="Amount Payable" #amount="ngModel" name="amount" id="amount" readonly>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <mat-form-field style="width: 90%;">
-                                        <input matInput [(ngModel)]="user.firstName" placeholder="Full Name" #amount="ngModel" name="firstName" id="firstName" required>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <mat-form-field style="width: 90%;">
-                                        <input matInput jhiNumberOnly placeholder="Mobile Number" id="phone" [(ngModel)]="user.phone" name="phone" #phone="ngModel"
-                                            minlength="10" maxlength="10" pattern="^[_'.@A-Za-z0-9-]*$" required>
-                                    </mat-form-field>
-                                    <div *ngIf="phone.touched && !phone.valid">
-                                        <div *ngIf="phone.errors.required">
-                                            Mobile Number is required
-                                        </div>
-                                        <div *ngIf="phone.errors.minlength">
-                                            Mobile Number name should be min {{phone.errors.minlength.requiredLength}} char
-                                        </div>
-                                        <div *ngIf="phone.errors.pattern">
-                                            pattern not match
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <mat-form-field style="width: 90%;">
-                                        <input matInput placeholder="Email" type="text" id="eMail" [(ngModel)]="user.eMail" name="eMail" #eMail="ngModel" minlength="5"
-                                            maxlength="50" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required email>
-                                    </mat-form-field>
-                                    <br>
-                                    <div *ngIf="eMail.touched && !eMail.valid">
-                                        <div *ngIf="eMail.errors.required">
-                                            Email is required
-                                        </div>
-                                        <div *ngIf="eMail.errors.minlength">
-                                            Email should be min {{eMail.errors.minlength.requiredLength}} char
-                                        </div>
-                                        <div *ngIf="eMail.errors.minlength">
-                                            Email should be min {{eMail.errors.minlength.requiredLength}} char
-                                        </div>
-                                        <div *ngIf="eMail.errors.pattern">
-                                            Email pattern not match
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <mat-form-field style="width: 90%;">
-                                        <input matInput [(ngModel)]="user.productInfo" placeholder="Your Plan" #amount="ngModel" name="productInfo" id="productInfo"
-                                            readonly>
-                                    </mat-form-field>
-                                </div>
-                                <input type="hidden" name="service_provider" value="payu_paisa" />
-                                <input type="hidden" name="surl" [(ngModel)]="sUrl" />
-                                <div class="container inline-block">
-                                    <br>
-                                    <div class="row justify-content-center">
-                                        <div class="row justify-content-center">
-                                            <button type="submit" class="btnPay" (click)="submitUser()">Proceed to Checkout</button>
-                                        </div>
-                                    </div>
+                                <div class="row justify-content-center">
+                                    <button type="submit" class="btnPay" (click)="submitUser()">Proceed to Checkout</button>
                                 </div>
                             </div>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-
-                <div [hidden]="disablePaymentButton2">
-                    <mat-card style="width: 150%">
-                        <mat-header>
-                            <mat-card-title class="text-center  bwtitle heading">Subscription Details</mat-card-title>
-                        </mat-header>
-                        <mat-card-content class="shadow">
-                            <input type="hidden" name="key" value="{{paymentDetail.key}}" />
-                            <input type="hidden" name="hash_string" value="{{paymentDetail.hashString}}" />
-                            <input type="hidden" name="hash" value="{{paymentDetail.hash}}" />
-                            <input type="hidden" name="txnid" value="{{paymentDetail.txnid}}" />
-                            <div class="container justify-content-md-center">
-                                <table class="table table-bordered table-striped table-responsive-md" style="width: 100%; margin-right: 300px;">
-                                    <tbody>
-                                        <tr>
-                                            <th>Amount:</th>
-                                            <td>{{paymentDetail.amount}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>First Name:</th>
-                                            <td>{{paymentDetail.firstname}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Mobile No:</th>
-                                            <td>{{paymentDetail.phone}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>e-Mail:</th>
-                                            <td>{{paymentDetail.email}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Plan:</th>
-                                            <td>{{paymentDetail.productinfo}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="row">
-                                <button class="btnEdit" (click)="goBack()" style="margin-left: 15%">Back to Edit</button>
-                                <button class="btnProceed" (click)="form.submit()" style="margin-left: 25%">Proceed to Payment</button>
-                            </div>&nbsp;
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-            </form>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
         </div>
+
+
+    <div [hidden]="disablePaymentButton2" class="bwshadow">
+
+        <div class="container text-center bwtitle">Subscription Details</div>
+        <br>
+
+                <input type="hidden" name="key" value="{{paymentDetail.key}}" />
+                <input type="hidden" name="hash_string" value="{{paymentDetail.hashString}}" />
+                <input type="hidden" name="hash" value="{{paymentDetail.hash}}" />
+                <input type="hidden" name="txnid" value="{{paymentDetail.txnid}}" />
+
+
+            <div class="container justify-content-center mymargin" >
+                <table class="table table-bordered table-striped table-responsive-md">
+                    <tbody>
+                        <tr>
+                            <th>Amount:</th>
+                            <td>{{paymentDetail.amount}}</td>
+                        </tr>
+                        <tr>
+                            <th>First Name:</th>
+                            <td>{{paymentDetail.firstname}}</td>
+                        </tr>
+                        <tr>
+                            <th>Mobile No:</th>
+                            <td>{{paymentDetail.phone}}</td>
+                        </tr>
+                        <tr>
+                            <th>e-Mail:</th>
+                            <td>{{paymentDetail.email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Plan:</th>
+                            <td>{{paymentDetail.productinfo}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="container">
+                        <div class="row justify-content-md-center">
+                                <br>
+                                <button class="btnEdit" (click)="goBack()">Back to Edit</button> &nbsp; &nbsp;
+                                <button class="btnProceed" (click)="form.submit()">Proceed to Payment</button>
+                                <br><br><br>
+                            </div>
+                </div>
+
+            </div>
+        </form>
     </div>
 </div>

@@ -199,7 +199,7 @@ export class NavbarComponent implements OnInit, DoCheck {
 
         this.collapseNavbar();
         this.loginService.logout();
-        this.router.navigate(['']);
+        this.router.navigate(['/']);
         this.commonService.logout.next(1);
     }
 

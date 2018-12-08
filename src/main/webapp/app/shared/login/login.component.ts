@@ -121,16 +121,17 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
         const url = this.router.url;
 
         if (url === '/subscriber/WISE') {
-            this.router.navigate(['/payment/WISE']);
+            this.router.navigate(['/subscriber/WISE']);
         }
         if (url === '/subscriber/WISER') {
-            this.router.navigate(['/paymentWISER']);
+            this.router.navigate(['/subscriber/WISER']);
         }
         if (url === '/subscriber/WISEST') {
-            this.router.navigate(['/payment/WISEST']);
+            this.router.navigate(['/subscriber/WISEST']);
         }
 
         if (this.router.url === '/register' || /^\/activate\//.test(this.router.url) || /^\/reset\//.test(this.router.url)) {
+            console.log('go to subscription');
             this.router.navigate(['/subscription']);
         }
 

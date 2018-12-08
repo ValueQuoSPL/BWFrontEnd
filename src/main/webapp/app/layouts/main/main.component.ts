@@ -90,6 +90,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         this.account = this.ac;
         if (this.account) {
             this.loggedIn = true;
+
             this.sc.account.next(this.account);
             this.uid = this.account.id;
 

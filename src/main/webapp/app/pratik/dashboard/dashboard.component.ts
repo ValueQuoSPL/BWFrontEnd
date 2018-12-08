@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountService, Principal, LoginModalService } from 'app/core';
+import { AccountService, Principal, LoginModalService, LoginService } from 'app/core';
 import { DashboardService } from 'app/pratik/dashboard/dashboard.service';
 import { Color } from 'ng2-charts';
 // tslint:disable-next-line:max-line-length
@@ -17,7 +17,6 @@ import {
 } from 'app/pratik/spending/spending.service';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
-import { MainComponent } from 'app/sheetal';
 import { CommonSidebarService } from '../common/sidebar.service';
 
 @Component({
@@ -90,6 +89,7 @@ export class DashboardComponent implements OnInit {
     modalRef: NgbModalRef;
     shortLiability: any = [];
     longLiability: any = [];
+    ac: any;
 
     public chartClicked(e: any): void {}
 
@@ -111,11 +111,13 @@ export class DashboardComponent implements OnInit {
         private houseService: HouseService,
         private incomeService: IncomeService,
         private loginModalService: LoginModalService,
-        private commonService: CommonSidebarService
+        private commonService: CommonSidebarService,
+        private loginService: LoginService
     ) {}
 
     ngOnInit() {
         this.getUserid();
+        this.expenseTotal = 0;
         // this.main.toggleSide(true);
     }
 
@@ -132,15 +134,20 @@ export class DashboardComponent implements OnInit {
     }
 
     getUserid() {
-        this.commonService.account.subscribe(account => {
-            this.account = account;
+        this.ac = this.loginService.getCookie();
+
+        if (this.ac) {
+            this.account = this.ac;
             this.uid = this.account.id;
             this.getMutualFund();
             this.getLiabilities();
             this.getGoal();
             this.getIncome();
             this.getExpense();
-        });
+        } else {
+        }
+
+        this.commonService.account.subscribe(account => {});
     }
 
     // liabilities
@@ -190,14 +197,15 @@ export class DashboardComponent implements OnInit {
 
     // expense
     getExpense() {
+        this.expenseTotal = 0;
+
         this.getUtility();
-        this.getHousehold();
         this.getTravel();
         this.getMisc();
         this.getHealth();
+        this.getHousehold();
         this.getLife();
         this.getGeneral();
-        // this.getCredit();
         this.getLoan();
     }
 

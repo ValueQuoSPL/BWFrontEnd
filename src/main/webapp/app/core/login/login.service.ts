@@ -31,6 +31,7 @@ export class LoginService {
                 data => {
                     this.principal.identity(true).then(account => {
                         this.account = account;
+
                         this.sc.account.next(this.account);
                         this.startWatching();
 

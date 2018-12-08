@@ -1,55 +1,71 @@
 <br><br>
-
-<div class="row justify-content-xl-center" >
-    <div>
-        <div >
-            <div *ngIf="!payment">
-                <mat-card  class="example-card">
-                    <mat-card-header>
-                        <div mat-card-avatar class="header-image"></div>
-                        <mat-card-title class="bwtitle">Plan Confirmation</mat-card-title>
-                        <mat-card-subtitle>Check your plan details are correct or not</mat-card-subtitle>
-                    </mat-card-header>
-                    <br>
-                    &nbsp;&nbsp;&nbsp;<h3 class="row justify-content-md-center">
-                        Your Selected Plan is {{ plan }}
-                    </h3>  &nbsp;&nbsp;&nbsp;
-                    <br><br>
-                    <h5 class="row justify-content-md-center">
-                        Amount payable &nbsp;<strong> {{ payable }}</strong>
-                    </h5>
-                    <br>
-                    <div class="row justify-content-md-center">
-                        <mat-card-content >
-                            <div *ngIf="!applied">
-                                Do you have any PromoCode?
-                                <button class="btn btn-sm btn-outline-warning" (click)="apply()">
-                                        Click here To Apply
-                                </button>
-                            </div>
-                            <div *ngIf="applied" class="alert alert-success">
-                                <strong>Promocode applied successfully</strong>
-                                <br>
-                                <small>Previous amount {{ oldAmount }}</small>
-                                        <br>
-                                <small>Your Saving {{ pay }}</small>
-                            </div>
-                        </mat-card-content>
-                    </div>
-                    <br>
-                    <div class="row justify-content-md-center">
-                        <mat-card-actions >
-                            <button mat-button (click)="goToPayment()" class="btn btn-outline-success">Proceed to checkout</button>
-                            <button mat-button class="btn btn-outline-primary" [routerLink]="['/']" routerLinkActive="router-link-active" >Go Back</button>
-                        </mat-card-actions>
-                    </div>
-                </mat-card>
-            </div>
-            <div *ngIf="payment">
-                <jhi-payment [offer]="offer"></jhi-payment>
+<div [ngSwitch]="isAuthenticated()">
+    <div *ngSwitchCase="false">
+        <div class="container">
+            <div class="alert alert-warning text-center">
+                Please log-in First
+                <br>
+                <button (click)="login()" class="btnProceed">
+                    Sign in
+                </button>
             </div>
         </div>
+    </div>
+    <div *ngSwitchCase="true">
+        <div class="row justify-content-center">
+            <div>
+                <div>
+                    <div *ngIf="!payment">
+                        <mat-card class="example-card">
+                            <mat-card-header>
+                                <div mat-card-avatar class="header-image"></div>
+                                <mat-card-title class="bwtitle">Plan Confirmation</mat-card-title>
+                                <mat-card-subtitle>Check your plan details are correct or not</mat-card-subtitle>
+                            </mat-card-header>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;<h3 class="row justify-content-md-center">
+                                Your Selected Plan is {{ plan }}
+                            </h3> &nbsp;&nbsp;&nbsp;
+                            <br><br>
+                            <h5 class="row justify-content-md-center">
+                                Amount payable &nbsp;<strong> {{ payable }}</strong>
+                            </h5>
+                            <br>
+                            <div class="row justify-content-md-center">
+                                <mat-card-content>
+                                    <div *ngIf="!applied">
+                                        Do you have any PromoCode?
+                                        <button class="btn btn-sm btn-outline-warning" (click)="apply()">
+                                            Click here To Apply
+                                        </button>
+                                    </div>
+                                    <div *ngIf="applied" class="alert alert-success">
+                                        <strong>Promocode applied successfully</strong>
+                                        <br>
+                                        <small>Previous amount {{ oldAmount }}</small>
+                                        <br>
+                                        <small>Your Saving {{ pay }}</small>
+                                    </div>
+                                </mat-card-content>
+                            </div>
+                            <br>
+                            <div class="row justify-content-md-center">
+                                <mat-card-actions>
+                                    <button mat-button (click)="goToPayment()" class="btn btn-outline-success">Proceed
+                                        to checkout</button>
+                                    <button mat-button class="btn btn-outline-primary" [routerLink]="['/']"
+                                        routerLinkActive="router-link-active">Go Back</button>
+                                </mat-card-actions>
+                            </div>
+                        </mat-card>
+                    </div>
+                    <div *ngIf="payment">
+                        <jhi-payment [offer]="offer"></jhi-payment>
+                    </div>
+                </div>
 
-       
+
+            </div>
+        </div>
     </div>
 </div>

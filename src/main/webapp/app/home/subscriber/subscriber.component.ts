@@ -54,6 +54,7 @@ export class SubscriberComponent implements OnInit {
     dynamicPromo: any;
 
     isSubscribed = false;
+    loggedIn = false;
     validity: number;
     fullAccess: boolean;
 
@@ -73,9 +74,12 @@ export class SubscriberComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.loggedIn = false;
+
         this.commonservice.account.subscribe(account => {
             this.account = account;
             this.uid = this.account.id;
+            this.loggedIn = true;
         });
         this.registerAuthenticationSuccess();
         this.promoCodeService.currentMessage.subscribe(message => {
@@ -145,11 +149,10 @@ export class SubscriberComponent implements OnInit {
     }
 
     registerAuthenticationSuccess() {
-        console.log('calling account');
-
         this.eventManager.subscribe('authenticationSuccess', message => {
             this.principal.identity().then(account => {
                 this.account = account;
+                this.loggedIn = true;
             });
         });
     }
