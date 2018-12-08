@@ -47,7 +47,6 @@
                         <hr class="bwblueline">
                         <div> {{ assetTotal | currency:"INR"}} </div>
                     </div>
-
                 </mat-card>
             </div>
             <div class="col-md-2">
@@ -103,8 +102,8 @@
 
                     <mat-card-content class="example-card" class="shadow">
 
-                        <div style="display: grid">
-                            <canvas baseChart [data]="pieChartData" [labels]="pieChartableLabels" [chartType]="assetChart"
+                        <div style="display: grid; height: 43vh; width: 30vw; margin: auto;">
+                            <canvas baseChart [data]="pieChartData" [options]="pieChartOption" [labels]="pieChartableLabels" [chartType]="assetChart"
                                 [colors]="colors" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
                             </canvas>
                         </div>
@@ -118,7 +117,7 @@
                                 <tbody>
                                     <tr *ngFor="let item of AssetArray">
                                         <td> {{ item.name }} </td>
-                                        <td> {{ item.value }} </td>
+                                        <td> {{ item.value | currency:"INR"}} </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -161,7 +160,7 @@
                             <tbody>
                                 <tr *ngFor="let l of shortLiability">
                                     <td>{{l.name}}</td>
-                                    <td>{{l.out}}</td>
+                                    <td>{{l.out | currency:"INR"}}</td>
                                 </tr>
                             </tbody>
 
@@ -176,7 +175,7 @@
                             <tbody>
                                 <tr *ngFor="let l of longLiability">
                                     <td>{{l.name}}</td>
-                                    <td>{{l.out}}</td>
+                                    <td>{{l.out | currency:"INR"}}</td>
                                 </tr>
                             </tbody>
                         </table>

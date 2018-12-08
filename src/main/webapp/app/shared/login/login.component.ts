@@ -10,6 +10,7 @@ import { SuccessService } from 'app/success/success.service';
 import { AccountService, Principal } from 'app/core';
 import { PlanService } from 'app/pratik/common/plan.service';
 import { CookieService } from 'ngx-cookie';
+import { UserPlanService } from 'app/home/subscriber/userplan.service';
 
 @Component({
     selector: 'jhi-login-modal',
@@ -30,6 +31,7 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
     route: any;
     admin: any;
     account: any;
+    checkData: any = [];
 
     constructor(
         private stateStorageService: StateStorageService,
@@ -43,7 +45,9 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
         private paymentCheck: SuccessService,
         private accountService: AccountService,
         private planService: PlanService,
-        private principal: Principal
+        private principal: Principal,
+        private _cookieService: CookieService,
+        private userPlanService: UserPlanService
     ) {
         this.credentials = {};
     }
@@ -79,6 +83,22 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
             this.account = account;
             this.uid = this.account.id;
             this.CheckPlanSelected();
+            this.checkExpiryDate();
+        });
+    }
+
+    checkExpiryDate() {
+        let date;
+        this.userPlanService.GetUserPlan(this.uid).subscribe(data => {
+            this.checkData = data;
+            this.checkData.forEach(element => {
+                date = new Date(element.expiryDate);
+            });
+            if (new Date() === date) {
+                this.router.navigate(['/subscription']);
+            } else {
+                this.router.navigate(['/dashboard']);
+            }
         });
     }
 

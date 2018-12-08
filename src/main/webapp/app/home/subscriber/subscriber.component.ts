@@ -187,6 +187,7 @@ export class SubscriberComponent implements OnInit {
         this.user.discount = this.discount;
         this.user.paid = this.payable;
         this.user.promocode = this.dynamicPromo.promocode;
+        this.user.applyDate = new Date();
         this.subscriber.user.next(this.user);
     }
 }
