@@ -52,6 +52,7 @@ export class DashboardComponent implements OnInit {
     resultLiabilities: any;
 
     public pieChartableLabels: string[] = [];
+    public pieChartOption;
     public pieChartData: number[] = [];
     public colors: Array<Color>;
     public assetChart = 'pie';
@@ -164,11 +165,13 @@ export class DashboardComponent implements OnInit {
             const duration = data[index].tenure;
 
             if (duration <= 5) {
+                this.shortLiability.splice(0, this.shortLiability.length);
                 this.shortLiability.push({
                     name: element.ltype,
                     out: element.outstandingpricipal
                 });
             } else {
+                this.longLiability.splice(0, this.longLiability.length);
                 this.longLiability.push({
                     name: element.ltype,
                     out: element.outstandingpricipal
@@ -520,6 +523,10 @@ export class DashboardComponent implements OnInit {
         this.pieChartableLabels.splice(0, this.pieChartableLabels.length);
         this.pieChartData.splice(0, this.pieChartData.length);
         this.AssetArray.splice(0, this.AssetArray.length);
+
+        this.pieChartOption = {
+            maintainAspectRatio: false
+        };
 
         this.pieChartableLabels.push('MutualFund', 'stock', 'saving', 'chit', 'cash', 'alterInvest', 'pcj', 'fao');
         this.pieChartData.push(total, totalStock, totalSaving, totalChit, totalCash, totalAlterInvestment, totalPCJ, totalFAO);

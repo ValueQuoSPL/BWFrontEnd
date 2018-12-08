@@ -1,24 +1,27 @@
 ul.li:hover {
-  background-color: blue;
+    background-color: blue;
 }
 .b {
-  background-color: white;
+    background-color: white;
 }
 .margin {
-  margin-top: 900px;
+    margin-top: 900px;
 }
 .accordion {
-  background: rgb(255, 255, 255);
+    background: rgb(255, 255, 255);
 }
 .col {
-  background-color: #2e3192;
+    background-color: #2e3192;
 }
 .colm {
-  background-color: #f1592a;
+    background-color: #f1592a;
 }
 .gray {
-  background-color: #a9a9a9;
+    background-color: #a9a9a9;
 }
 .gray1 {
-  background-color: #dcdcdc;
+    background-color: #dcdcdc;
+}
+.accountPMargin {
+    margin-left: 100px;
 }
