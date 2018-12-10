@@ -1,6 +1,6 @@
 <br><br>
-<div [ngSwitch]="isAuthenticated()">
-    <div *ngSwitchCase="false">
+<div >
+    <div *ngIf="!loggedIn">
         <div class="container">
             <div class="alert alert-warning text-center">
                 Please log-in First
@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    <div *ngSwitchCase="true">
+    <div *ngIf="loggedIn">
         <div class="row justify-content-center">
             <div>
                 <div>

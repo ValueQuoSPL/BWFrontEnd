@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     isLogin = false;
     account: any;
     isMobile;
-    isPaid: boolean;
+    isPaid: any;
     isSubscribed: boolean;
     userPlan: any;
     uid: any;
@@ -134,14 +134,20 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
     RouteChanged() {
         if (this.isMobile) {
-            const x = document.getElementById('main-menu').classList.toggle('expanded');
+            const x = document.getElementById('main-menu');
+            if (x) {
+                x.classList.add('expanded');
+            }
         }
     }
 
-    showSidebar() {
+    showSidebar(from) {
         this.epicFunction();
-
-        const x = document.getElementById('main-menu').classList.toggle('expanded');
+        this.planService.isPaid.subscribe(flag => {
+            if (flag) {
+                document.getElementById('main-menu').classList.toggle('expanded');
+            }
+        });
     }
 
     showSidebarAfterLogin() {
@@ -164,7 +170,4 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     expense(route) {
         this.srs.accordion.next(route);
     }
-    // assets(accord) {
-    //     this.srs.assetacord.next(accord);
-    // }
 }

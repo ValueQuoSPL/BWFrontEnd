@@ -1,7 +1,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, NgZone, AfterContentInit, DoCheck, AfterContentChecked, AfterViewChecked } from '@angular/core';
 import { JhiEventManager } from 'ng-jhipster';
-import { Account, LoginModalService, Principal } from 'app/core';
+import { Account, LoginModalService, Principal, LoginService } from 'app/core';
 import { PromoCodeModalService } from 'app/home/subscriber/promo-code/promo-code-modal.service';
 import { PromoCodeService } from 'app/home/subscriber/promo-code';
 import { NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -65,6 +65,7 @@ export class SubscriberComponent implements OnInit {
         private route: ActivatedRoute,
         private subscriber: PlanService,
         public activeModal: NgbActiveModal,
+        private loginService: LoginService,
         private eventManager: JhiEventManager,
         private userPlanService: UserPlanService,
         private promoCodeService: PromoCodeService,
@@ -74,14 +75,21 @@ export class SubscriberComponent implements OnInit {
     ) {}
 
     ngOnInit() {
+        this.registerAuthenticationSuccess();
+
         this.loggedIn = false;
+
+        this.account = this.loginService.getCookie();
+        if (this.account) {
+            this.uid = this.account.id;
+            this.loggedIn = true;
+        }
 
         this.commonservice.account.subscribe(account => {
             this.account = account;
             this.uid = this.account.id;
-            this.loggedIn = true;
         });
-        this.registerAuthenticationSuccess();
+
         this.promoCodeService.currentMessage.subscribe(message => {
             this.dynamicPromo = message;
             this.discount = this.dynamicPromo.discount;

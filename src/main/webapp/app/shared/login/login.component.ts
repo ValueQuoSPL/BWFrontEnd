@@ -53,13 +53,17 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+        this.admin = null;
+
         this.principal.getAuthenticationState().subscribe(identity => {
             if (identity) {
                 this.route = identity.authorities[0];
                 if (identity.authorities[1]) {
                     this.admin = identity.authorities[1];
+                } else {
+                    this.admin = null;
                 }
-                this.routing();
+                // this.routing();
             }
         });
     }
@@ -79,25 +83,32 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
     }
 
     getUserid() {
-        this.commonService.account.subscribe(account => {
-            this.account = account;
+        this.account = this.loginService.getCookie();
+        if (this.account) {
             this.uid = this.account.id;
             this.CheckPlanSelected();
             this.checkExpiryDate();
-        });
+        }
     }
 
     checkExpiryDate() {
         let date;
+        let plan;
         this.userPlanService.GetUserPlan(this.uid).subscribe(data => {
             this.checkData = data;
             this.checkData.forEach(element => {
                 date = new Date(element.expiryDate);
+                plan = element.plan;
             });
-            if (new Date() === date) {
-                this.router.navigate(['/subscription']);
+
+            if (plan) {
+                if (new Date() === date) {
+                    this.router.navigate(['/subscription']);
+                } else {
+                    this.router.navigate(['/dashboard']);
+                }
             } else {
-                this.router.navigate(['/dashboard']);
+                alert('You have not subscribed to any paln. To use Full feature Please Subscribe');
             }
         });
     }
@@ -151,7 +162,6 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
         }
 
         if (this.router.url === '/register' || /^\/activate\//.test(this.router.url) || /^\/reset\//.test(this.router.url)) {
-            console.log('go to subscription');
             this.router.navigate(['/subscription']);
         }
 
@@ -188,9 +198,6 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
                     this.stateStorageService.storeUrl(null);
                     this.router.navigate([redirect]);
                 }
-                // this.toggle();
-                // this.commonSidebarService.sidebarSource.next(true);
-                // this.commonSidebarService.newlogin.next(true);
             })
             .catch(() => {
                 this.authenticationError = true;
