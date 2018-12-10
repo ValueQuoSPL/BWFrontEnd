@@ -10,7 +10,7 @@ import { VERSION } from 'app/app.constants';
 import { JhiMainComponent } from 'app/layouts/main/main.component';
 import { SidebarComponent } from 'app/layouts/sidebar/sidebar.component';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { JhiLanguageService } from 'ng-jhipster';
+import { JhiLanguageService, JhiEventManager } from 'ng-jhipster';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { PlanService } from 'app/pratik/common/plan.service';
 import { UserIdleService } from 'angular-user-idle';
@@ -56,7 +56,8 @@ export class NavbarComponent implements OnInit, DoCheck {
         private cd: ChangeDetectorRef,
         private commonService: CommonSidebarService,
         private planService: PlanService,
-        private userIdle: UserIdleService
+        private userIdle: UserIdleService,
+        private eventManager: JhiEventManager
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
@@ -75,6 +76,8 @@ export class NavbarComponent implements OnInit, DoCheck {
     }
 
     ngOnInit() {
+        this.registerAuthenticationSuccess();
+
         this.languageHelper.getAll().then(languages => {
             this.languages = languages;
         });
@@ -91,11 +94,57 @@ export class NavbarComponent implements OnInit, DoCheck {
             }
         });
 
-        this.commonService.account.subscribe(account => {
-            if (account) {
-                this.account = account;
-                this.loggedIn = true;
+        console.log('get cookie from navbar');
 
+        this.account = this.loginService.getCookie();
+        if (this.account) {
+            this.loggedIn = true;
+            if (this.account.firstName !== null) {
+                this.FirstName = this.account.firstName;
+            } else {
+                this.FirstName = 'Account';
+            }
+            if (this.account.authorities[1]) {
+                if (this.account.authorities[1] === 'ROLE_ADMIN') {
+                    this.isAdmin = true;
+                    this.isPaid = true;
+                }
+            }
+        } else {
+            console.log('cookie not found logout');
+            this.logoutOnReload();
+        }
+
+        // Start watching when user idle is starting.
+        this.userIdle.onTimerStart().subscribe(count => {});
+
+        // Start watch when time is up.
+        this.userIdle.onTimeout().subscribe(() => {
+            alert('Your session timed out. Please re-login');
+            this.logout();
+        });
+    }
+
+    logoutOnReload(): any {
+        this.FirstName = 'Account';
+        this.isPaid = false;
+        this.isAdmin = false;
+        this.loggedIn = false;
+
+        this.loginService.logout();
+        this.commonService.logout.next(1);
+        this.planService.isPaid.next(false);
+        this.router.navigate(['/']);
+    }
+
+    // after login
+    registerAuthenticationSuccess() {
+        this.eventManager.subscribe('authenticationSuccess', message => {
+            this.account = this.loginService.getCookie();
+
+            if (this.account) {
+                console.log('cookie found navbar');
+                this.loggedIn = true;
                 if (this.account.firstName !== null) {
                     this.FirstName = this.account.firstName;
                 } else {
@@ -107,19 +156,10 @@ export class NavbarComponent implements OnInit, DoCheck {
                         this.isPaid = true;
                     }
                 }
+            } else {
+                console.log('cookie not found logout');
+                this.logout();
             }
-        });
-
-        // Start watching for user inactivity.
-        // this.userIdle.startWatching();
-
-        // Start watching when user idle is starting.
-        this.userIdle.onTimerStart().subscribe(count => {});
-
-        // Start watch when time is up.
-        this.userIdle.onTimeout().subscribe(() => {
-            alert('Your session timed out. Please re-login');
-            this.logout();
         });
     }
 
@@ -195,12 +235,14 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.isPaid = false;
         this.isAdmin = false;
         this.loggedIn = false;
-        this.sidebar.showSidebar();
-
         this.collapseNavbar();
+
+        this.sidebar.showSidebar('navbar logout()');
         this.loginService.logout();
-        this.router.navigate(['/']);
+        this.main.toggleSide(true);
         this.commonService.logout.next(1);
+        this.planService.isPaid.next(false);
+        this.router.navigate(['/']);
     }
 
     toggleNavbar() {
@@ -215,7 +257,7 @@ export class NavbarComponent implements OnInit, DoCheck {
         // let flag = false;
         this.flag = !this.flag;
         this.main.toggleSide(this.flag);
-        this.sidebar.showSidebar();
+        this.sidebar.showSidebar('navbar toggle()');
     }
     register1() {
         this.router.navigate(['register']);
