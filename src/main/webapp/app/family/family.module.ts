@@ -18,6 +18,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { AccountprofileComponent } from './accountprofile/accountprofile.component';
+import { AccountProfileSerivce } from './accountprofile/accountProfile.service';
 library.add(fas, far);
 // import { MyprofileRouteService } from 'app/family/myprofile/myprofileRoute.service';
 
@@ -33,6 +34,6 @@ library.add(fas, far);
     ],
     declarations: [FamilyComponent, MyprofileComponent, AssumptionComponent, FamilyprofileComponent, AccountprofileComponent],
     entryComponents: [],
-    providers: [MyprofileService, FamilyprofileService, FamilyserviceService]
+    providers: [MyprofileService, FamilyprofileService, FamilyserviceService, AccountProfileSerivce]
 })
 export class FamilyModule {}

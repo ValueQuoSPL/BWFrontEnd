@@ -172,17 +172,17 @@ export class DashboardComponent implements OnInit {
             const duration = data[index].tenure;
 
             if (duration <= 5) {
-                this.shortLiability.splice(0, this.shortLiability.length);
                 this.shortLiability.push({
                     name: element.ltype,
                     out: element.outstandingpricipal
                 });
+                this.shortLiability.slice();
             } else {
-                this.longLiability.splice(0, this.longLiability.length);
                 this.longLiability.push({
                     name: element.ltype,
                     out: element.outstandingpricipal
                 });
+                this.longLiability.slice();
             }
         }
     }
@@ -214,7 +214,6 @@ export class DashboardComponent implements OnInit {
 
     calcExpense(value, from) {
         this.expenseTotal = +this.expenseTotal + +value;
-
         this.surplus = +this.incomeTotal - +this.expenseTotal;
     }
 
