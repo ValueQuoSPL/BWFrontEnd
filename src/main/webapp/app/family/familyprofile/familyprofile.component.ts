@@ -24,6 +24,7 @@ export class FamilyprofileComponent implements OnInit {
     Addmember = false;
     addbutton = true;
     date: any;
+    conformkey: boolean;
     constructor(private Familypro: FamilyprofileService, public commonService: CommonSidebarService, private datePipe: DatePipe) {}
 
     ngOnInit() {
@@ -105,8 +106,24 @@ export class FamilyprofileComponent implements OnInit {
         this.isValid = true;
         this.getFamilyProfilebyid();
     }
+    deletefamilyProfile(id) {
+        this.commonid = id;
+        this.conformkey = confirm('Are you sure you Want to permanently delete this item?');
+        if (this.conformkey === true) {
+            console.log(this.commonid);
+            this.familyProfile.id = this.commonid;
+            this.Familypro.DeleteFamilyProfile(this.familyProfile.id).subscribe(data => {
+                this.getFamilyProfilebyid();
+            });
+        } else {
+            this.getFamilyProfilebyid();
+        }
+    }
     resetValue() {
         this.familyProfile.relationship = '';
+        this.familyProfile.firstname = '';
+        this.familyProfile.firstname = '';
+        this.familyProfile.firstname = '';
         this.familyProfile.firstname = '';
         this.familyProfile.middlename = '';
         this.familyProfile.lastname = '';
