@@ -99,11 +99,8 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
             }
             this.checkSuccess(this.uid);
         } else {
-            // this.router.navigate(['']);
             this.loginService.logout();
             this.loggedIn = false;
-
-            // alert('Session Timed Out Please re-login');
         }
 
         this.registerAuthenticationSuccess();
@@ -113,17 +110,29 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
 
     // after login
     registerAuthenticationSuccess() {
-        this.sc.account.subscribe(account => {
-            this.loggedIn = true;
+        this.eventManager.subscribe('authenticationSuccess', message => {
+            console.log('login found');
 
-            this.account = account;
-            this.uid = this.account.id;
-            this.checkSuccess(this.uid);
-            if (this.account.authorities[1]) {
-                this.authority = this.account.authorities[1];
+            this.account = this.loginService.getCookie();
+            console.log(this.account);
+            if (this.account) {
+                this.loggedIn = true;
+                this.sc.account.next(this.account);
+                this.uid = this.account.id;
+                if (this.account.authorities[1]) {
+                    this.authority = this.account.authorities[1];
+                    console.log(this.authority);
+                } else {
+                    this.authority = null;
+                }
+                console.log('check payment');
+
+                this.checkSuccess(this.uid);
+            } else {
+                this.loginService.logout();
+                this.loggedIn = false;
             }
         });
-        this.eventManager.subscribe('authenticationSuccess', message => {});
     }
 
     checkSuccess(uid) {
@@ -146,6 +155,8 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                 this.flag = false;
 
                 if (this.authority === 'ROLE_ADMIN') {
+                    console.log(this.authority);
+
                     this.isPaid = true;
                     if (!this.isMobile) {
                         this.flag = true;
@@ -170,9 +181,10 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         const element = document.getElementById('toggle');
         if (!this.isMobile) {
             if (flag) {
-                element.setAttribute('style', 'margin-left: 0px;');
+                this.flag = false;
             } else {
-                element.setAttribute('style', 'margin-left: 200px;');
+                this.flag = true;
+                // element.setAttribute('style', 'margin-left: 200px;');
             }
         }
     }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserPlanService } from 'app/home/subscriber/userplan.service';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { AccountProfileSerivce } from 'app/family/accountprofile/accountProfile.service';
+import { Router } from '../../../../../../node_modules/@angular/router';
 
 class UserAccount {
     plan;
@@ -18,11 +20,15 @@ export class AccountprofileComponent implements OnInit {
     uid: any;
     userAccount: UserAccount = new UserAccount();
     profile: Object;
-    constructor(private userPlanService: UserPlanService, private commonService: CommonSidebarService) {
+    constructor(
+        private userPlanService: UserPlanService,
+        private commonService: CommonSidebarService,
+        private accountProfileSerivce: AccountProfileSerivce,
+        private route: Router
+    ) {
         this.commonService.account.subscribe(account => {
             this.account = account;
             this.uid = this.account.id;
-            console.log('inside contructor');
         });
     }
 
@@ -37,7 +43,17 @@ export class AccountprofileComponent implements OnInit {
                 this.userAccount.applyDate = this.profile[0].applyDate;
                 this.userAccount.expiryDate = this.profile[0].expiryDate;
             }
-            console.log('inside ngOninit', data);
         });
+    }
+
+    deleleAccount() {
+        const res = confirm('Are you sure want to delete account');
+        if (res) {
+            this.accountProfileSerivce.update(this.uid).subscribe();
+        }
+    }
+
+    upgrade() {
+        this.route.navigate(['subscription']);
     }
 }

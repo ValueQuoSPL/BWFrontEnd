@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -7,7 +7,7 @@ import { ReplaySubject } from 'rxjs';
 export class PlanService {
     plan = new ReplaySubject(0);
     planInfo = new ReplaySubject(0);
-    isPaid = new ReplaySubject(0);
+    isPaid = new BehaviorSubject(false);
     user = new ReplaySubject(0);
     constructor() {}
 }
