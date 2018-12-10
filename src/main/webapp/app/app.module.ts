@@ -121,7 +121,7 @@ import { termRoute } from './footer-pages/footerpage/terms-condition/terms-condi
         * Default values: `idle` is 600 (10 minutes),
         * `timeout` is 300 (5 minutes)
         * and `ping` is 120 (2 minutes). */
-        UserIdleModule.forRoot({ idle: 300, timeout: 5, ping: 120 }),
+        UserIdleModule.forRoot({ idle: 600, timeout: 5, ping: 120 }),
         RouterModule.forChild(pratikState),
         RouterModule.forRoot([DashRoute], { useHash: true }),
         RouterModule.forRoot([advisorRoot], { useHash: true }),
