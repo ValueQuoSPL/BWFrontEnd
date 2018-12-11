@@ -50,14 +50,14 @@
                         <form class="example-container" #incomeAdd="ngForm">
                             <div>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput required placeholder="Name" type="text" value="" maxlength="25"  #resource_name="ngModel" [(ngModel)]="resource" name="resource_name" jhiCharsOnly>
+                                    <input matInput required placeholder="Name" type="number" value="" maxlength="25"  #resource_name="ngModel" [(ngModel)]="resource" name="resource_name" jhiCharsOnly>
                                     <mat-hint *ngIf="!resource_name.dirty " >Please enter your resource of income </mat-hint>
                                 </mat-form-field>
                             </div>
 
                             <div>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput maxlength="7" placeholder="Amount" value="" type="text" [(ngModel)]="amount" name="amount_name"
+                                    <input matInput maxlength="7" placeholder="Amount" value="" type="number" [(ngModel)]="amount" name="amount_name"
                                         id="amount_name" #amount_name="ngModel" maxlength=13 minlength=2 jhiNumberOnly
                                         required (ngModelChange)="detect($event)" >
                                     <mat-hint *ngIf="!amount_name.dirty ">Please eneter your income amount</mat-hint>
@@ -100,7 +100,7 @@
 
                             <div>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput jhiNumberOnly required maxlength="7" placeholder="Amount" type="text" value=""
+                                    <input matInput jhiNumberOnly required maxlength="7" placeholder="Amount" type="number" value=""
                                         [(ngModel)]="editField" name="amount-name" (ngModelChange)="DetectChange($event)">
                                     <mat-hint>Please enter amount</mat-hint>
                                 </mat-form-field>
@@ -248,43 +248,43 @@
                             <tbody>
                                 <tr>
                                     <td> Post Tax Take Home Salary of # </td>
-                                    <td><input jhiNumberOnly type="text" maxlength="7" [(ngModel)]="income.incomeSalary" name="income-salary">
+                                    <td><input jhiNumberOnly type="number" maxlength="7" [(ngModel)]="income.incomeSalary" name="income-salary">
                                     </td>
                                     <td> {{income.incomeSalary * 12}} </td>
                                 </tr>
                                 <tr>
                                     <td> Performance award / bonus </td>
-                                    <td> <input jhiNumberOnly type="text" maxlength="7"  id="21" [(ngModel)]="income.incomeAward"
+                                    <td> <input jhiNumberOnly type="number" maxlength="7"  id="21" [(ngModel)]="income.incomeAward"
                                             name="income-award"> </td>
                                     <td> {{income.incomeAward * 12}} </td>
                                 </tr>
                                 <tr>
                                     <td> Sign-up bonus </td>
-                                    <td> <input jhiNumberOnly maxlength="7" type="text" id="31" [(ngModel)]="income.incomeBonus"
+                                    <td> <input jhiNumberOnly maxlength="7" type="number" id="31" [(ngModel)]="income.incomeBonus"
                                             name="income-bonus"> </td>
                                     <td> {{income.incomeBonus * 12}} </td>
                                 </tr>
                                 <tr>
                                     <td> Pensions </td>
-                                    <td> <input jhiNumberOnly maxlength="7" type="text" id="41" [(ngModel)]="income.incomePension"
+                                    <td> <input jhiNumberOnly maxlength="7" type="number" id="41" [(ngModel)]="income.incomePension"
                                             name="income-pension"> </td>
                                     <td> {{income.incomePension * 12}} </td>
                                 </tr>
                                 <tr>
                                     <td> Interest earned on savings </td>
-                                    <td> <input jhiNumberOnly maxlength="7" type="text" id="51" [(ngModel)]="income.incomeSaving"
+                                    <td> <input jhiNumberOnly maxlength="7" type="number" id="51" [(ngModel)]="income.incomeSaving"
                                             name="income-saving"> </td>
                                     <td> {{income.incomeSaving * 12}} </td>
                                 </tr>
                                 <tr>
                                     <td> Income from investments(Deposites, Securities) </td>
-                                    <td> <input jhiNumberOnly maxlength="7" type="text" id="61" [(ngModel)]="income.incomeDeposit"
+                                    <td> <input jhiNumberOnly maxlength="7" type="number" id="61" [(ngModel)]="income.incomeDeposit"
                                             name="income-deposit"> </td>
                                     <td> {{income.incomeDeposit * 12}} </td>
                                 </tr>
                                 <tr>
                                     <td> Rental Income </td>
-                                    <td> <input jhiNumberOnly maxlength="7" type="text" id="71" [(ngModel)]="income.incomeRental"
+                                    <td> <input jhiNumberOnly maxlength="7" type="number" id="71" [(ngModel)]="income.incomeRental"
                                             name="income-rental"> </td>
                                     <td> {{income.incomeRental * 12}} </td>
                                 </tr>

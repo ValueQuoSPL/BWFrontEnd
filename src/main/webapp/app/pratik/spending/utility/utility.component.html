@@ -17,7 +17,7 @@
                     
                         <div>
                         <mat-form-field class="example-full-width">
-                            <input required matInput required maxlength="7" type="text" jhiNumberOnly placeholder="Amount" value="" name="expense"
+                            <input required matInput required maxlength="7" type="number" jhiNumberOnly placeholder="Amount" value="" name="expense"
                             [(ngModel)]="expense" 
                             >
                             <mat-hint >Please enter amount</mat-hint>
@@ -47,7 +47,7 @@
 
             <div>
                 <mat-form-field class="example-full-width">
-                    <input matInput jhiNumberOnly required maxlength="7" type="text" placeholder="Amount"  value="" [(ngModel)]="editField" (ngModelChange)="DetectChange($event)"  name="amount-name" >
+                    <input matInput jhiNumberOnly required maxlength="7" type="number" placeholder="Amount"  value="" [(ngModel)]="editField" (ngModelChange)="DetectChange($event)"  name="amount-name" >
                     <mat-hint>Please enter amount</mat-hint>
                 </mat-form-field>
                 </div>
