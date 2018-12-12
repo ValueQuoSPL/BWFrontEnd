@@ -110,7 +110,6 @@ export class FamilyprofileComponent implements OnInit {
         this.commonid = id;
         this.conformkey = confirm('Are you sure you Want to permanently delete this item?');
         if (this.conformkey === true) {
-            console.log(this.commonid);
             this.familyProfile.id = this.commonid;
             this.Familypro.DeleteFamilyProfile(this.familyProfile.id).subscribe(data => {
                 this.getFamilyProfilebyid();

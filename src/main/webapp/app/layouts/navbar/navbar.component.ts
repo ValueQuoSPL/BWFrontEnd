@@ -94,8 +94,6 @@ export class NavbarComponent implements OnInit, DoCheck {
             }
         });
 
-        console.log('get cookie from navbar');
-
         this.account = this.loginService.getCookie();
         if (this.account) {
             this.loggedIn = true;
@@ -111,7 +109,6 @@ export class NavbarComponent implements OnInit, DoCheck {
                 }
             }
         } else {
-            console.log('cookie not found logout');
             this.logoutOnReload();
         }
 
@@ -143,7 +140,6 @@ export class NavbarComponent implements OnInit, DoCheck {
             this.account = this.loginService.getCookie();
 
             if (this.account) {
-                console.log('cookie found navbar');
                 this.loggedIn = true;
                 if (this.account.firstName !== null) {
                     this.FirstName = this.account.firstName;
@@ -157,7 +153,6 @@ export class NavbarComponent implements OnInit, DoCheck {
                     }
                 }
             } else {
-                console.log('cookie not found logout');
                 this.logout();
             }
         });
