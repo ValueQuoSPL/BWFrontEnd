@@ -188,14 +188,13 @@ export class SubscriberComponent implements OnInit {
     fillUserPlanData() {
         this.user.uid = this.uid;
         this.user.applyDate = new Date();
-        this.user.expiryDate = this.user.applyDate;
-        const year = this.user.expiryDate.getFullYear() + 1;
-        this.user.expiryDate.setFullYear(year);
+        this.user.expiryDate = new Date();
+        this.user.expiryDate.setFullYear(this.user.expiryDate.getFullYear() + 1);
+
         this.user.plan = null;
         this.user.discount = this.discount;
         this.user.paid = this.payable;
         this.user.promocode = this.dynamicPromo.promocode;
-        this.user.applyDate = new Date();
         this.subscriber.user.next(this.user);
     }
 }

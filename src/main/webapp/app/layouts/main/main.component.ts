@@ -111,21 +111,16 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     // after login
     registerAuthenticationSuccess() {
         this.eventManager.subscribe('authenticationSuccess', message => {
-            console.log('login found');
-
             this.account = this.loginService.getCookie();
-            console.log(this.account);
             if (this.account) {
                 this.loggedIn = true;
                 this.sc.account.next(this.account);
                 this.uid = this.account.id;
                 if (this.account.authorities[1]) {
                     this.authority = this.account.authorities[1];
-                    console.log(this.authority);
                 } else {
                     this.authority = null;
                 }
-                console.log('check payment');
 
                 this.checkSuccess(this.uid);
             } else {
@@ -155,8 +150,6 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                 this.flag = false;
 
                 if (this.authority === 'ROLE_ADMIN') {
-                    console.log(this.authority);
-
                     this.isPaid = true;
                     if (!this.isMobile) {
                         this.flag = true;

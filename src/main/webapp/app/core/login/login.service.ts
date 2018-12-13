@@ -60,6 +60,8 @@ export class LoginService {
     }
 
     logout() {
+        // console.log('login service logout');
+
         this.authServerProvider.logout().subscribe();
         this.principal.authenticate(null);
         this.deleteCookie('1');

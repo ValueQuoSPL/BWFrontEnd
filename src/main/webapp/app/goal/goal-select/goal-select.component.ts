@@ -538,7 +538,7 @@ export class GoalSelectComponent implements OnInit {
                                 }
                                 this.ManipulateMapping(assetid);
                             } else {
-                                alert('Please Enter value which is less than Available value or unmap this value and map again');
+                                alert('Please Enter value which is less than Available value');
                             }
                         } else {
                             // filter for value should be less than required value
@@ -555,14 +555,11 @@ export class GoalSelectComponent implements OnInit {
                                     }
                                     this.ManipulateMapping(assetid);
                                 } else {
-                                    alert('Please Enter value which is less than Available value or unmap this value and map again');
+                                    alert('Please Enter value which is less than Available value ');
                                 }
                             } else {
                                 // tslint:disable-next-line:max-line-length
-                                alert(
-                                    'Please Enter value which is less than addition of mapped value and required value. Value should be less than or equal to: ' +
-                                        (this.mappedValue + this.requiredValue)
-                                );
+                                alert('Please Enter value which is less than Goal Requirement value');
                             }
                         }
                     } else {

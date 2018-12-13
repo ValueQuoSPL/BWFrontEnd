@@ -100,6 +100,8 @@ import { UserIdleModule } from 'angular-user-idle';
 import { privacyRoute } from './footer-pages/footerpage/privacy-policy/privacy-policy.route';
 import { cookieRoute } from './footer-pages/footerpage/cookie-policy/cookie-policy.route';
 import { termRoute } from './footer-pages/footerpage/terms-condition/terms-condition.route';
+import { FailPaymentComponent } from './fail-payment/fail-payment.component';
+import { failRoute } from './fail-payment/fail-payment.route';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -126,6 +128,7 @@ import { termRoute } from './footer-pages/footerpage/terms-condition/terms-condi
         RouterModule.forRoot([DashRoute], { useHash: true }),
         RouterModule.forRoot([advisorRoot], { useHash: true }),
         RouterModule.forRoot([successRoute], { useHash: true }),
+        RouterModule.forRoot([failRoute], { useHash: true }),
         RouterModule.forRoot([appointRoot], { useHash: true }),
         RouterModule.forRoot([termRoute], { useHash: true }),
         RouterModule.forRoot([privacyRoute], { useHash: true }),
@@ -190,7 +193,8 @@ import { termRoute } from './footer-pages/footerpage/terms-condition/terms-condi
         HealthComponent,
         GeneralComponent,
         AdvisorFilterPipe,
-        SubscriptionComponent
+        SubscriptionComponent,
+        FailPaymentComponent
         // Production directive
     ],
     providers: [
