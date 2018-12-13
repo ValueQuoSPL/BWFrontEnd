@@ -131,7 +131,7 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.loginService.logout();
         this.commonService.logout.next(1);
         this.planService.isPaid.next(false);
-        this.router.navigate(['/']);
+        // this.router.navigate(['/']);
     }
 
     // after login
@@ -237,6 +237,7 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.main.toggleSide(true);
         this.commonService.logout.next(1);
         this.planService.isPaid.next(false);
+
         this.router.navigate(['/']);
     }
 
