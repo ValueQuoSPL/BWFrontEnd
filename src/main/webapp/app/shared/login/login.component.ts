@@ -108,7 +108,7 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
                     this.router.navigate(['/dashboard']);
                 }
             } else {
-                alert('You have not subscribed to any paln. To use Full feature Please Subscribe');
+                // alert('You have not subscribed to any paln. To use Full feature Please Subscribe');
             }
         });
     }

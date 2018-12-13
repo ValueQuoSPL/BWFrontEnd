@@ -45,6 +45,7 @@ export class LifeComponent implements OnInit {
     ];
     PremiumTypeArray = [{ name: 'Single' }, { name: 'Monthly' }, { name: 'Quarterly' }, { name: 'Half Yearly' }, { name: 'Yearly' }];
     isLifeData: boolean;
+    selectedFile: File;
     constructor(private lifeService: LifeService, private modalService: NgbModal, private commonService: CommonSidebarService) {}
 
     ngOnInit() {
@@ -65,18 +66,7 @@ export class LifeComponent implements OnInit {
         this.expense = '';
         this.lifeDate = new FormControl(new Date());
 
-        this.life.ins_name = '';
-        this.life.issuer = '';
-        this.life.policy_name = '';
-        this.life.policy_term = '';
-        this.life.premium = '';
-        this.life.premium_mode = '';
-        this.life.premium_term = '';
-        this.life.proposer_name = '';
-        this.life.start_date = '';
-        this.life.sum = '';
-        this.life.type = '';
-        this.life.policynumber = '';
+        this.life = new Life();
     }
 
     private getDismissReason(reason: any): string {
@@ -325,5 +315,26 @@ export class LifeComponent implements OnInit {
         this.lifeService.PutLife(this.life, this.uid).subscribe(res => {
             this.clear();
         });
+    }
+
+    onFileSelected(event) {
+        console.log(event.target.files[0]);
+        this.selectedFile = null;
+        this.selectedFile = event.target.files[0];
+    }
+
+    onFileUpload() {
+        if (this.selectedFile) {
+            // const formData = new FormData();
+            // formData.append('text', this.selectedFile, this.selectedFile.name);
+            this.lifeService.uploadFile2(this.selectedFile).subscribe(
+                res => {
+                    console.log('response', res);
+                },
+                err => {
+                    console.log('error', err);
+                }
+            );
+        }
     }
 }

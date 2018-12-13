@@ -29,7 +29,7 @@
                         </mat-form-field>
 
                       <mat-form-field style="width: 100%;">
-                          <input required matInput [matDatepicker]="picker3" placeholder="Policy Start Date" 
+                          <input required matInput [matDatepicker]="picker3" placeholder="Policy Start Date"
                           [formControl]="lifeDate" (ngModelChange)="ChangeDetector($event, 'date')">
                           <mat-datepicker-toggle matSuffix [for]="picker3" ></mat-datepicker-toggle>
                           <mat-datepicker #picker3 ></mat-datepicker>
@@ -113,6 +113,7 @@
                   <th scope="col">Sum Assured </th>
                   <th scope="col">Update </th>
                   <th scope="col">Delete </th>
+                  <th scope="col">Upload document </th>
               </tr>
           </thead>
           <tbody>
@@ -131,6 +132,14 @@
                   </td>
                   <td><button class="btn btn-sm btn-outline-danger"  type="button" (click)="RemoveLifeInsurance(i, field.id)" >
                       <span> <fa-icon [icon]="'trash'"></fa-icon></span></button>
+                  </td>
+                  <td>
+                      <!-- <input type="file" (change)="onFileSelected($event)"> -->
+                      <input type="file" style="display: none" (change)="onFileSelected($event)" #fileInput>
+                      <div class="btn-group">
+                        <button class="btn btn-sm btn-outline-primary" (click)="fileInput.click()">Pick File</button>
+                        <button class="btn btn-sm btn-outline-success" (click)="onFileUpload()">Upload</button>
+                      </div>
                   </td>
               </tr>
           </tbody>

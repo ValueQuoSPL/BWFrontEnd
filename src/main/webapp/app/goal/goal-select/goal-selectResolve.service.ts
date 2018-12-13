@@ -3,7 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { Injectable, OnInit } from '../../../../../../node_modules/@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
-import { CookieService } from 'ngx-cookie';
 import { LoginService } from 'app/core';
 
 @Injectable()
@@ -36,7 +35,7 @@ export class GoalResolveService implements OnInit, Resolve<any> {
         if (this.ac) {
             return this.goalselectService.getGoal(id);
         } else {
-            this.router.navigate(['']);
+            this.loginService.logout();
             return null;
         }
     }

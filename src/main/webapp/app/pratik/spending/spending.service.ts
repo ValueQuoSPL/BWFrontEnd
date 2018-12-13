@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from 'app/app.constants';
 import { Utility, Credit, General, Health, House, Income, Life, Loan, Misc, Travel } from 'app/pratik/spending/spending.model';
@@ -223,5 +223,38 @@ export class LifeService {
     public DeleteLife(id) {
         const url = SERVER_API_URL + 'api/life/deletelife/' + id;
         return this.http.delete(url);
+    }
+    // uploadFile(data): any {
+    //     const url = SERVER_API_URL + 'api/life/uploadFile';
+
+    //     const headers = new Headers();
+    //     /** In Angular 5, including the header Content-Type can invalidate your request */
+    //     headers.append('Content-Type', 'multipart/form-data');
+    //     headers.append('Accept', 'application/json');
+    //     const options = new RequestOptions({ headers });
+
+    //     return this.http.post(url, data, options);
+    // }
+
+    uploadFile2(file): Observable<HttpEvent<any>> {
+        console.log(file);
+
+        const url = SERVER_API_URL + 'api/life/uploadFile';
+
+        const formData = new FormData();
+        formData.append('upload', file);
+        console.log(formData);
+
+        const params = new HttpParams();
+
+        const options = {
+            params,
+            reportProgress: true
+        };
+
+        const req = new HttpRequest('POST', url, formData, options);
+        console.log(req);
+
+        return this.http.request(req);
     }
 }

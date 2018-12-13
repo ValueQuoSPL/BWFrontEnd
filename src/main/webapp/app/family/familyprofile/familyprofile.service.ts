@@ -26,4 +26,8 @@ export class FamilyprofileService {
         this.ServiceAPIParam = 'api/familypro' + '/' + commonid;
         return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
     }
+    public DeleteFamilyProfile(id) {
+        this.ServiceAPIParam = 'api/familyprofiles' + '/' + id;
+        return this.http.delete<FamilyProfile[]>(SERVER_API_URL + this.ServiceAPIParam);
+    }
 }
