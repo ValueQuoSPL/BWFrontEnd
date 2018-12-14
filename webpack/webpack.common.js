@@ -67,7 +67,7 @@ module.exports = (options) => ({
                 // SERVER_API_URL: `'http://localhost:8080/'`
                 // SERVER_API_URL: `'https://www.buckswise.com:8111/'`
                 SERVER_API_URL: `'https://www.buckswise.com:8443/'`
-            //    SERVER_API_URL: `'http://www.buckswise.com:8080/'`
+                // SERVER_API_URL: `'http://www.buckswise.com:8080/'`
              }
         }),
         new CopyWebpackPlugin([
