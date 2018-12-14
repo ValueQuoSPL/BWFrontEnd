@@ -104,9 +104,15 @@ export class GoalselectService {
         const url = SERVER_API_URL + 'api/assetmappings';
         return this.http.put(url, data);
     }
-    public GetMapping(uid, goalid) {
+    public GetMapping(uid: number, goalid: number): Observable<any> {
         const url = SERVER_API_URL + 'api/getbyuid/' + uid + '/' + goalid;
         return this.http.get(url);
+        // .do(x => {
+        // })
+        // .catch(error => {
+        //   alert('Unable to read configuration file:' + JSON.stringify(error));
+        //   return Observable.throw(error);
+        // });
     }
 
     public DeleteMapping(id) {

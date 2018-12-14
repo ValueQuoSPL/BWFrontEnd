@@ -349,7 +349,7 @@
                   <mat-form-field style="width:90%;">
                     <input matInput required jhiCharsOnly placeholder="Goal Name" maxlength="25"  type="text" name="goalname" [(ngModel)]="RetirementFundselect.goalname" [ngModelOptions]="{standalone: true}">
                   </mat-form-field>
-                  <mat-form-field style="width:90%;"> 
+                  <mat-form-field style="width:90%;">
                     <input matInput required jhiNumberOnly placeholder="Priority" maxlength="7" type="text"name="priority" [(ngModel)]="RetirementFundselect.priority" [ngModelOptions]="{standalone: true}">
                   </mat-form-field>
                   <mat-form-field style="width:90%;">
@@ -406,7 +406,7 @@
             </div><!--end of ngSwitchCaseNewGoal div-->
           </div><!-- end of ngSwitch div -->
         </div><!-- end of isvalid div -->
-  
+
       <div *ngIf="isValid">
         <div class="form-group row justify-content-center bwtitle">
           <span class="animated zoomIn">Goal Details</span>
@@ -416,10 +416,10 @@
           </span>Add Goal
         </button>
         <!-- view page -->
-        <table class="table-responsive 
+        <table class="table-responsive
                   table-bordered
                   table-hover
-                  table-sm 
+                  table-sm
                   table-striped">
           <!-- table start here -->
           <thead>
@@ -456,7 +456,6 @@
                   <span>
                     <fa-icon [icon]="'link'"></fa-icon>
                   </span>
-
                 </button>
               </td>
               <td>
@@ -525,7 +524,7 @@
                     </small>
                     <br>
                   </div>
-      
+
                   <div *ngIf="!isAssetSelected" class="container alert alert-warning">
                     No Asset Selected Please Choose Asset From above
                   </div>
@@ -630,7 +629,7 @@
                   </td>
                 </tr>
               </tbody>
-  
+
             </table>
           </div>
         </div>
