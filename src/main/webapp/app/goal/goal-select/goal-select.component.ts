@@ -980,7 +980,7 @@ export class GoalSelectComponent implements OnInit {
     deleteGoal(goalid, content) {
         this.content = content;
         this.commonid = goalid;
-        this.conformkey = confirm('Are you sure you Want to permanently delete this item?');
+        this.conformkey = confirm('Are you sure you Want to permanently delete this goal?');
 
         if (this.conformkey === true) {
             this.getMapping(goalid, 'deleteHelp');
@@ -1004,23 +1004,23 @@ export class GoalSelectComponent implements OnInit {
             }
 
             if (flag === true) {
-                const ret = confirm('Please unmap all asset which are mapped to this goal');
+                const ret = confirm('Before deleting this goal, unmap all assets which are mapped to this goal');
                 if (ret) {
                     this.viewMapping(goalid, this.content);
                 } else {
-                    alert('You cant delete goal before unmapping its asset!');
+                    alert('You cant delete goal without unmapping assets!');
                 }
             } else {
-                // this.goalSelectService.DeleteGoal(this.commonid).subscribe(data => {
-                //     this.getGoal();
-                // });
+                this.goalSelectService.DeleteGoal(this.commonid).subscribe(() => {
+                    this.getGoal();
+                });
             }
         }
     }
 
     // unmap from asset linking
     deleteMapping(assetid, availableValue, mappedValue) {
-        const ret = confirm('Are you sure to delete mapping? This cant be undone!');
+        const ret = confirm('Are you sure to you want to permanently delete mapping? This cant be undone!');
 
         if (ret) {
             this.available.assetid = assetid;
