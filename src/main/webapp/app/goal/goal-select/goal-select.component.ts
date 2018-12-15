@@ -81,6 +81,8 @@ export class GoalSelectComponent implements OnInit {
     deletegoaltype;
     conformkey: Boolean;
 
+    mappingTemp: any;
+
     goalselect: GoalSelect = new GoalSelect();
     Educationselect: EducationSelect = new EducationSelect();
     Vehicleselect: VehicleSelect = new VehicleSelect();
@@ -146,6 +148,7 @@ export class GoalSelectComponent implements OnInit {
 
     available: Available = new Available();
     afterMap: boolean;
+    content: any;
 
     constructor(
         private router: Router,
@@ -170,6 +173,7 @@ export class GoalSelectComponent implements OnInit {
         this.GoalArray = this._route.snapshot.data['goaldata'];
 
         if (this.GoalArray) {
+            this.GoalArray.sort((a, b) => (a.yeartogoal > b.yeartogoal ? 1 : b.yeartogoal > a.yeartogoal ? -1 : 0));
             this.output = this.GoalArray;
             for (let i = 0; i < this.output.length; i++) {
                 const element = this.output[i];
@@ -974,48 +978,49 @@ export class GoalSelectComponent implements OnInit {
     }
 
     deleteGoal(goalid, content) {
+        this.content = content;
         this.commonid = goalid;
-        this.conformkey = confirm('Are you sure you Want to permanently delete this item?');
+        this.conformkey = confirm('Are you sure you Want to permanently delete this goal?');
 
         if (this.conformkey === true) {
-            const mapped = this.isGoalMapped(goalid);
+            this.getMapping(goalid, 'deleteHelp');
+        }
+    }
 
-            if (mapped === true) {
-                const ret = confirm('Please unmap all asset which are mapped to this goal');
-                if (ret === true) {
-                    // open modal to delete
-                    this.viewMapping(goalid, content);
+    deleteHelper(goalid, data, helpText) {
+        if (helpText === 'deleteHelp') {
+            let flag = false;
+            for (let index = 0; index < data.length; index++) {
+                const db = data[index];
 
-                    // further task in  deleteMappingToDeleteGoal(id);
+                if (this.commonid === db.goalid) {
+                    flag = true;
+
+                    break;
                 } else {
-                    alert('You cant delete goal before unmapping its asset!');
+                    console.error('7. mapping not found');
+                    flag = false;
+                }
+            }
+
+            if (flag === true) {
+                const ret = confirm('Before deleting this goal, unmap all assets which are mapped to this goal');
+                if (ret) {
+                    this.viewMapping(goalid, this.content);
+                } else {
+                    alert('You cant delete goal without unmapping assets!');
                 }
             } else {
-                this.goalSelectService.DeleteGoal(this.commonid).subscribe(data => {
+                this.goalSelectService.DeleteGoal(this.commonid).subscribe(() => {
                     this.getGoal();
                 });
             }
         }
     }
 
-    isGoalMapped(goalid) {
-        let flag = false;
-        for (let index = 0; index < this.MappedArrayDB.length; index++) {
-            const db = this.MappedArrayDB[index];
-
-            if (this.commonid === db.goalid) {
-                flag = true;
-                break;
-            } else {
-                flag = false;
-            }
-        }
-        return flag;
-    }
-
     // unmap from asset linking
     deleteMapping(assetid, availableValue, mappedValue) {
-        const ret = confirm('Are you sure to delete mapping? This cant be undone!');
+        const ret = confirm('Are you sure to you want to permanently delete mapping? This cant be undone!');
 
         if (ret) {
             this.available.assetid = assetid;
@@ -1048,22 +1053,31 @@ export class GoalSelectComponent implements OnInit {
 
             this.goalSelectService.DeleteMapping(mappingid).subscribe(resdata => {
                 this.goalComplete = false;
-                this.getMapping(goalid);
+                this.getMapping(goalid, 'alreadyMapped');
                 this.getMappedAsset();
             });
         }
     }
 
-    getMapping(goalid) {
-        this.goalSelectService.GetMapping(this.uid, goalid).subscribe(response => {
-            this.MappedArrayDB = response;
-            this.MappedArray.splice(0, this.MappedArray.length);
-            for (let index = 0; index < this.MappedArrayDB.length; index++) {
-                const element = this.MappedArrayDB[index];
-                if (element.goalid === goalid) {
-                    this.MappedArray.push({ element });
+    async getMapping(goalid: number, helpText: string) {
+        return new Promise((resolve, reject) => {
+            this.goalSelectService.GetMapping(this.uid, goalid).subscribe(
+                response => {
+                    resolve(response);
+                    this.MappedArrayDB = response;
+                    this.deleteHelper(goalid, this.MappedArrayDB, helpText);
+                    this.MappedArray.splice(0, this.MappedArray.length);
+                    for (let index = 0; index < this.MappedArrayDB.length; index++) {
+                        const element = this.MappedArrayDB[index];
+                        if (element.goalid === goalid) {
+                            this.MappedArray.push({ element });
+                        }
+                    }
+                },
+                err => {
+                    reject(err);
                 }
-            }
+            );
         });
     }
 
@@ -1093,7 +1107,7 @@ export class GoalSelectComponent implements OnInit {
         //             this.MappedArray.push({ element });
         //         }
         //     }
-        this.getMapping(goalid);
+        this.getMapping(goalid, 'viewGoal');
 
         this.OpenMappedAsset(content);
         // });
