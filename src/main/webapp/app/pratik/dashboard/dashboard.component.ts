@@ -560,6 +560,9 @@ export class DashboardComponent implements OnInit {
         this.pieChartableLabel.splice(0, this.pieChartableLabel.length);
         this.pieChartDataa.splice(0, this.pieChartDataa.length);
 
+        this.pieChartOption = {
+            maintainAspectRatio: false
+        };
         this.networth = +this.assetTotal - +this.totalLiabilities;
         this.resultLiabilities.forEach(element => {
             this.pieChartableLabel.push(element.ltype);

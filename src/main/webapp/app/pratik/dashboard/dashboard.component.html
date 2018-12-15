@@ -103,8 +103,9 @@
                     <mat-card-content class="example-card" class="shadow">
 
                         <div style="display: grid; height: 43vh; width: 30vw; margin: auto;">
-                            <canvas baseChart [data]="pieChartData" [options]="pieChartOption" [labels]="pieChartableLabels" [chartType]="assetChart"
-                                [colors]="colors" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                            <canvas baseChart [data]="pieChartData" [options]="pieChartOption" [labels]="pieChartableLabels"
+                                [chartType]="assetChart" [colors]="colors" (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)">
                             </canvas>
                         </div>
 
@@ -134,7 +135,6 @@
             </div>
 
             <div class="col-md-6">
-
                 <mat-card class="example-card" jhiMovable>
                     <div class="pull-right">
                         <a routerLink="/liability" routerLinkActiveOptions="active"> Details </a>
@@ -146,40 +146,44 @@
                             </div>
                         </div>
                     </mat-card-header>
-                    <div style="display: grid" class="shadow">
-                        <canvas baseChart [data]="pieChartDataa" [labels]="pieChartableLabel" [chartType]="liabilityChart"
-                            [colors]="color" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                        </canvas>
+                    <mat-card-content class="example-card" class="shadow">
+                        <div style="display: grid; height: 40vh; width: 30vw; margin: auto;">
+                            <canvas baseChart [data]="pieChartDataa" [options]="pieChartOption" [labels]="pieChartableLabel"
+                                [chartType]="liabilityChart" [colors]="color" (chartHover)="chartHovered($event)"
+                                (chartClick)="chartClicked($event)">
+                            </canvas>
+                        </div>
+                        <div>
+                            <th colspan="2" class="text-center"> Short Term Liabilities</th>
+                            <table class="table table-bordered  table-striped table-hovered table-sm">
+                                <thead>
+                                    <th>Liability Name</th>
+                                    <th>Outstanding Amount</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let l of shortLiability">
+                                        <td>{{l.name}}</td>
+                                        <td>{{l.out | currency:"INR"}}</td>
+                                    </tr>
+                                </tbody>
 
-                        <th colspan="2" class="text-center"> Short Term Liabilities</th>
-                        <table class="table table-bordered  table-striped table-hovered table-sm">
-                            <thead>
-                                <th>Liability Name</th>
-                                <th>Outstanding Amount</th>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let l of shortLiability">
-                                    <td>{{l.name}}</td>
-                                    <td>{{l.out | currency:"INR"}}</td>
-                                </tr>
-                            </tbody>
+                            </table>
+                            <th colspan="2" class="text-center"> Long Term Liabilities</th>
+                            <table class="table table-bordered  table-striped table-hovered table-sm">
 
-                        </table>
-                        <th colspan="2" class="text-center"> Long Term Liabilities</th>
-                        <table class="table table-bordered  table-striped table-hovered table-sm">
-
-                            <thead>
-                                <th>Liability Name</th>
-                                <th>Outstanding Amount</th>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let l of longLiability">
-                                    <td>{{l.name}}</td>
-                                    <td>{{l.out | currency:"INR"}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                <thead>
+                                    <th>Liability Name</th>
+                                    <th>Outstanding Amount</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let l of longLiability">
+                                        <td>{{l.name}}</td>
+                                        <td>{{l.out | currency:"INR"}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </mat-card-content>
 
                     <!-- <mat-card-actions class="pull-right">
                                             <button mat-button (click)="onLiabilityEdit()">Details</button>
