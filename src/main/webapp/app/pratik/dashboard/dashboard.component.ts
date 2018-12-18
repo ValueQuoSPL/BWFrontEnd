@@ -532,7 +532,8 @@ export class DashboardComponent implements OnInit {
         this.AssetArray.splice(0, this.AssetArray.length);
 
         this.pieChartOption = {
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+            responsive: true
         };
 
         this.pieChartableLabels.push('MutualFund', 'stock', 'saving', 'chit', 'cash', 'alterInvest', 'pcj', 'fao');
@@ -561,7 +562,8 @@ export class DashboardComponent implements OnInit {
         this.pieChartDataa.splice(0, this.pieChartDataa.length);
 
         this.pieChartOption = {
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+            responsive: true
         };
         this.networth = +this.assetTotal - +this.totalLiabilities;
         this.resultLiabilities.forEach(element => {

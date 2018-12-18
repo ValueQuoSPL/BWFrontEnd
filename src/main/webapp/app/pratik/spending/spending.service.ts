@@ -239,7 +239,7 @@ export class LifeService {
     uploadFile2(file): Observable<HttpEvent<any>> {
         console.log(file);
 
-        const url = SERVER_API_URL + 'api/life/uploadFile';
+        const url = SERVER_API_URL + 'api/google-drive/drive';
 
         const formData = new FormData();
         formData.append('upload', file);
