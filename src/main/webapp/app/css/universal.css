@@ -293,7 +293,7 @@ section,
     padding-bottom: 20px;
 }
 .footer {
-    padding-top: 50px;
+    padding-top: 0px;
     padding-bottom: 10px;
 }
 .list-inline > li {
@@ -2855,6 +2855,9 @@ li .shop-cart a:hover {
     }
     .footer .text-right {
         text-align: center !important;
+    }
+    .bg-light {
+        background-color: #f8f9fa !important;
     }
 }
 /*# sourceMappingURL=universal.css.map */
