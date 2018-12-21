@@ -4,7 +4,7 @@
     <div class="refer-intro-body">
       <!-- Login-->
       <div class="col-md-6">
-          <h4>Refer Friend</h4>
+          <h4>Refer Your Friends</h4>
           <!-- <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis pulvinar vestibulum. Doneceleifend, sem sed dictum. Lorem ipsum dolor sit amet, consectetur adipiscing elits</h6> -->
       </div>
       <div class="container">
@@ -14,7 +14,7 @@
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
                   <label for="name" class="sr-only control-label">Name</label>
-                  <input id="name" type="text" placeholder="Name" required="" name="name" [(ngModel)]="user.name"
+                  <input id="name" type="text" placeholder="Friend's Name" required="" name="name" [(ngModel)]="user.name"
                   data-validation-required-message="Please enter name"
                   class="form-control input-lg"><span class="help-block text-danger"></span>
                 </div>
@@ -22,7 +22,7 @@
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
                   <label for="email" class="sr-only control-label">Email</label>
-                  <input id="email" type="email" placeholder="Email" 
+                  <input id="email" type="email" placeholder="Friend's Email" 
                   required=""
                   name="email" [(ngModel)]="user.email" 
                   data-validation-required-message="Please enter email" 
@@ -32,7 +32,7 @@
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
                   <label for="phone" class="sr-only control-label">Phone</label>
-                  <input id="phone" type="tel" placeholder="Phone" required="" 
+                  <input id="phone" type="tel" placeholder="Friend's Phone" required="" 
                   data-validation-required-message="Please enter phone number" 
                   class="form-control input-lg"
                   name="phone" [(ngModel)]="user.phone"><span class="help-block text-danger"></span>
@@ -41,7 +41,7 @@
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
                   <label for="message" class="sr-only control-label">Message</label>
-                  <textarea id="message" rows="2" placeholder="Message" 
+                  <textarea id="message" rows="2" placeholder="Your message for your Friend. e.g. I stongly recommend you to subscribe for www.buckwise.com..." 
                   required="" data-validation-required-message="Please enter a message." 
                   aria-invalid="false" class="form-control input-lg"
                   name="msg" [(ngModel)]="user.msg"></textarea><span class="help-block text-danger"></span>
