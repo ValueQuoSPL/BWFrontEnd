@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA, ChangeDetectorRef } from '@angular/core';
+import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core';
 import { NgbDatepickerConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2Webstorage, LocalStorageService, SessionStorageService } from 'ngx-webstorage';
@@ -112,6 +112,7 @@ import { termRoute } from './footer-pages/footerpage/terms-condition/terms-condi
 import { FailPaymentComponent } from './fail-payment/fail-payment.component';
 import { failRoute } from './fail-payment/fail-payment.route';
 import { NotificationComponent } from './pratik/notification/notification.component';
+import { DocumentComponent } from './document/document.component';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -230,6 +231,7 @@ const customNotifierOptions: NotifierOptions = {
         PageRibbonComponent,
         FooterComponent,
         ActiveMenuDirective,
+        DocumentComponent,
         // Production Component
         SidebarComponent,
         SuccessComponent,
@@ -300,7 +302,7 @@ const customNotifierOptions: NotifierOptions = {
             deps: [Injector]
         }
     ],
-    entryComponents: [SpendingComponent, IdleAlertComponent, SessionTimeoutComponent],
+    entryComponents: [SpendingComponent, IdleAlertComponent, SessionTimeoutComponent, DocumentComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [JhiMainComponent]
 })
