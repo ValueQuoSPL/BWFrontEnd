@@ -5,6 +5,8 @@ import { Life } from 'app/pratik/spending/spending.model';
 import { PrevLife } from 'app/pratik/spending/spending.model';
 import { LifeService } from 'app/pratik/spending/spending.service';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { DocumentComponent } from 'app/document/document.component';
 
 @Component({
     selector: 'jhi-life',
@@ -35,6 +37,7 @@ export class LifeComponent implements OnInit {
     lifeDate = new FormControl(new Date());
     isFieldChanged = false;
     update = false;
+    modal = false;
 
     PolicyTypeArray = [
         { name: 'Child Policy' },
@@ -46,7 +49,16 @@ export class LifeComponent implements OnInit {
     PremiumTypeArray = [{ name: 'Single' }, { name: 'Monthly' }, { name: 'Quarterly' }, { name: 'Half Yearly' }, { name: 'Yearly' }];
     isLifeData: boolean;
     selectedFile: File;
-    constructor(private lifeService: LifeService, private modalService: NgbModal, private commonService: CommonSidebarService) {}
+    url: any = [];
+    driveLink: any;
+    element: any;
+    responseUrl: any;
+    constructor(
+        private lifeService: LifeService,
+        private modalService: NgbModal,
+        private commonService: CommonSidebarService,
+        public dialog: MatDialog
+    ) {}
 
     ngOnInit() {
         this.getUserid();
@@ -317,24 +329,41 @@ export class LifeComponent implements OnInit {
         });
     }
 
-    onFileSelected(event) {
-        console.log(event.target.files[0]);
-        this.selectedFile = null;
-        this.selectedFile = event.target.files[0];
-    }
+    // onFileSelected(event) {
+    //     console.log(event.target.files[0]);
+    //     this.selectedFile = null;
+    //     this.selectedFile = event.target.files[0];
+    // }
 
-    onFileUpload() {
-        if (this.selectedFile) {
-            // const formData = new FormData();
-            // formData.append('text', this.selectedFile, this.selectedFile.name);
-            this.lifeService.uploadFile2(this.selectedFile).subscribe(
-                res => {
-                    console.log('response', res);
-                },
-                err => {
-                    console.log('error', err);
-                }
-            );
-        }
+    // onFileUpload(tid) {
+    //     if (this.selectedFile) {
+    //         // const formData = new FormData();
+    //         // formData.append('text', this.selectedFile, this.selectedFile.name);
+    //         this.lifeService.uploadFile2(this.selectedFile, tid, this.uid, 'LifeInsurance').subscribe(
+    //             res => {
+    //                 this.responseUrl = res;
+    //                 // this.url = this.responseUrl.body.url;
+    //                 if (this.responseUrl.body) {
+    //                     this.driveLink = this.responseUrl.body.url;
+    //                 }
+    //                 // url = res.url;
+    //             },
+    //             err => {
+    //                 console.log('error', err);
+    //             }
+    //         );
+    //     }
+    // }
+
+    openDialog(id, type): void {
+        console.log(type);
+        const dialogRef = this.dialog.open(DocumentComponent, {
+            data: { tid: id, Type: type }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log('The dialog was closed');
+            //   this.animal = result;
+        });
     }
 }

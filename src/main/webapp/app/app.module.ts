@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core';
 import { NgbDatepickerConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2Webstorage, LocalStorageService, SessionStorageService } from 'ngx-webstorage';
@@ -102,6 +102,7 @@ import { cookieRoute } from './footer-pages/footerpage/cookie-policy/cookie-poli
 import { termRoute } from './footer-pages/footerpage/terms-condition/terms-condition.route';
 import { FailPaymentComponent } from './fail-payment/fail-payment.component';
 import { failRoute } from './fail-payment/fail-payment.route';
+import { DocumentComponent } from './document/document.component';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -178,6 +179,7 @@ import { failRoute } from './fail-payment/fail-payment.route';
         PageRibbonComponent,
         FooterComponent,
         ActiveMenuDirective,
+        DocumentComponent,
         // Production Component
         SidebarComponent,
         SuccessComponent,
@@ -242,7 +244,7 @@ import { failRoute } from './fail-payment/fail-payment.route';
             deps: [Injector]
         }
     ],
-    entryComponents: [SpendingComponent],
+    entryComponents: [SpendingComponent, DocumentComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [JhiMainComponent]
 })
