@@ -1,6 +1,6 @@
-import { Component, OnInit, DoCheck, Injectable, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, DoCheck, Injectable, ChangeDetectorRef, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalRef, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HostListener } from '@angular/core';
 import { Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
@@ -14,6 +14,7 @@ import { JhiLanguageService, JhiEventManager } from 'ng-jhipster';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { PlanService } from 'app/pratik/common/plan.service';
 import { UserIdleService } from 'angular-user-idle';
+import { NotificationService } from 'app/pratik/notification/notification.service';
 
 @Component({
     selector: 'jhi-navbar',
@@ -40,6 +41,14 @@ export class NavbarComponent implements OnInit, DoCheck {
     account: any;
     isAdmin = false;
     FirstName = 'Account';
+    notify_count = 0;
+    show: boolean;
+    // isNotification = false;
+    titleNotify = 'Notifications';
+    notifyArray: any = [];
+    notification: any;
+    timerflag: boolean;
+    idleModalRef: NgbModalRef;
 
     constructor(
         @Inject(DOCUMENT) private document: Document,
@@ -57,7 +66,9 @@ export class NavbarComponent implements OnInit, DoCheck {
         private commonService: CommonSidebarService,
         private planService: PlanService,
         private userIdle: UserIdleService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private notifyService: NotificationService,
+        private modalService: NgbModal
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
@@ -112,14 +123,87 @@ export class NavbarComponent implements OnInit, DoCheck {
             this.logoutOnReload();
         }
 
+        this.planService.idle.subscribe(flag => {
+            this.timerflag = true;
+            this.onHereClick();
+        });
+
         // Start watching when user idle is starting.
-        this.userIdle.onTimerStart().subscribe(count => {});
+        this.startTimer();
 
         // Start watch when time is up.
+        this.timeOut();
+
+        this.notifyService.showNotifier.subscribe((message: string) => {
+            // this.notification = data;
+            this.onAddNotify(message);
+        });
+        this.notifyService.clearNotify.subscribe(data => {
+            this.onClearNotify();
+        });
+    }
+
+    // idle start
+    stop() {
+        this.userIdle.stopTimer();
+    }
+
+    stopWatching() {
+        this.userIdle.stopWatching();
+    }
+
+    startWatching() {
+        this.userIdle.startWatching();
+    }
+
+    startTimer() {
+        this.timerflag = true;
+        this.userIdle.onTimerStart().subscribe(count => {
+            if (count) {
+                if (this.timerflag) {
+                    this.timerflag = false;
+                    this.openIdleAlert();
+                }
+            }
+        });
+    }
+
+    onHereClick() {
+        this.timerflag = true;
+        this.stop();
+        this.restart();
+    }
+
+    timeOut() {
         this.userIdle.onTimeout().subscribe(() => {
-            alert('Your session timed out. Please re-login');
+            this.openSessionTimeout();
             this.logout();
         });
+    }
+
+    restart() {
+        this.userIdle.resetTimer();
+    }
+
+    openIdleAlert() {
+        this.idleModalRef = this.modalService.open(IdleAlertComponent);
+        // modalRef.componentInstance.name = 'World';
+    }
+
+    openSessionTimeout() {
+        this.idleModalRef.close();
+        const modalRef = this.modalService.open(SessionTimeoutComponent);
+    }
+    // idle end
+
+    onAddNotify(message: string) {
+        this.notify_count++;
+        this.notifyArray.push(message);
+    }
+
+    onClearNotify() {
+        this.notify_count = 0;
+        this.notifyArray.length = 0;
     }
 
     logoutOnReload(): any {
@@ -140,6 +224,7 @@ export class NavbarComponent implements OnInit, DoCheck {
             this.account = this.loginService.getCookie();
 
             if (this.account) {
+                this.startWatching();
                 this.loggedIn = true;
                 if (this.account.firstName !== null) {
                     this.FirstName = this.account.firstName;
@@ -157,24 +242,6 @@ export class NavbarComponent implements OnInit, DoCheck {
             }
         });
     }
-
-    // idle start
-    stop() {
-        this.userIdle.stopTimer();
-    }
-
-    stopWatching() {
-        this.userIdle.stopWatching();
-    }
-
-    startWatching() {
-        this.userIdle.startWatching();
-    }
-
-    restart() {
-        this.userIdle.resetTimer();
-    }
-    // idle end
 
     changeLanguage(languageKey: string) {
         this.collapseNavbar();
@@ -212,14 +279,6 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.isNavbarCollapsed = true;
     }
 
-    // isAuthenticated() {
-    //     const flag = this.principal.isAuthenticated();
-    //     if (flag === true) {
-    //         this.transparent = 'solid';
-    //     }
-    //     return flag;
-    // }
-
     login() {
         this.collapseNavbar();
         this.modalRef = this.loginModalService.open();
@@ -231,6 +290,7 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.isAdmin = false;
         this.loggedIn = false;
         this.collapseNavbar();
+        this.stopWatching();
 
         this.sidebar.showSidebar('navbar logout()');
         this.loginService.logout();
@@ -258,4 +318,54 @@ export class NavbarComponent implements OnInit, DoCheck {
     register1() {
         this.router.navigate(['register']);
     }
+
+    onOpenNotify() {
+        this.show = !this.show;
+    }
+}
+
+@Component({
+    selector: 'jhi-ngbd-modal-content',
+    template: `
+      <div class="modal-header">
+        <h4 class="modal-title">Hi there!</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you still here? </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="onHereClick()" (click)="activeModal.close('Close click')">I'm Here</button>
+      </div>
+    `
+})
+export class IdleAlertComponent {
+    constructor(public activeModal: NgbActiveModal, public idle: PlanService) {}
+
+    onHereClick() {
+        this.idle.idle.next(0);
+    }
+}
+
+@Component({
+    selector: 'jhi-ngbd-modal-content',
+    template: `
+      <div class="modal-header">
+        <h4 class="modal-title">Hi there!</h4>
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Your session has been timed out! Please re-login. </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+      </div>
+    `
+})
+export class SessionTimeoutComponent {
+    constructor(public activeModal: NgbActiveModal) {}
 }

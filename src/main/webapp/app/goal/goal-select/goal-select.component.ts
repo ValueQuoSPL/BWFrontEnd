@@ -659,7 +659,7 @@ export class GoalSelectComponent implements OnInit {
                 this.fillObject(this.assetid);
 
                 if (this.checked === true) {
-                    this.PostMapping();
+                    this.SaveMapping();
                 }
                 break;
             }
@@ -685,7 +685,7 @@ export class GoalSelectComponent implements OnInit {
         this.UpdateAsset();
     }
 
-    PostMapping() {
+    SaveMapping() {
         let flag = 0;
         for (let index = 0; index < this.AssetMappingDB.length; index++) {
             const db = this.AssetMappingDB[index];

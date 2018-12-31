@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { Utility } from 'app/pratik/spending/spending.model';
 import { UtilityService } from 'app/pratik/spending/spending.service';
 import { SpendingRouteGuardService } from 'app/pratik/common/spending-route-guard.service';
+import { NotifierService } from 'angular-notifier';
+import { NotificationService } from 'app/pratik/notification/notification.service';
 
 class NewUtility {
     dynamicUtility: any = [];
@@ -42,7 +44,9 @@ export class UtilityComponent implements OnInit {
         private utilityService: UtilityService,
         private modalService: NgbModal,
         private accountService: AccountService,
-        private routeGuard: SpendingRouteGuardService
+        private routeGuard: SpendingRouteGuardService,
+        private notifier: NotifierService,
+        private notifyService: NotificationService
     ) {}
 
     ngOnInit() {
@@ -134,7 +138,9 @@ export class UtilityComponent implements OnInit {
             value: this.expense
         });
         this.newUtility.userid = this.uid;
-        this.utilityService.PostUtility(this.newUtility).subscribe();
+        this.utilityService.PostUtility(this.newUtility).subscribe(res => {
+            this.notifyService.showNotification('success', 'Your information is saved Successfully!');
+        });
         this.clear();
     }
 
@@ -157,6 +163,7 @@ export class UtilityComponent implements OnInit {
                 this.routeGuard.GuardSource.next(false);
                 this.isUtilityData = true;
                 this.changesSaved = true;
+                this.notifyService.showNotification('success', 'Your information is saved Successfully!');
             });
         } else {
             alert('nothing changed to save');
@@ -309,8 +316,9 @@ export class UtilityComponent implements OnInit {
         this.utility.dynamicUtility = this.dynamicUtilityArray;
         this.utilityService.PutUtility(this.utility, this.uid).subscribe(data => {
             this.routeGuard.GuardSource.next(false);
-
             this.changesSaved = true;
+
+            this.notifyService.showNotification('success', 'Your information is saved Successfully!');
         });
     }
     canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
@@ -320,4 +328,6 @@ export class UtilityComponent implements OnInit {
             return true;
         }
     }
+
+    // notification
 }
