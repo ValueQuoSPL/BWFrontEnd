@@ -1,5 +1,5 @@
 <!-- <div class="container"> -->
-  <h2 mat-dialog-title class="bwtitle">File Upload</h2>
+  <h2 mat-dialog-title class="bwtitle text-center">File Upload</h2>
   <mat-dialog-content class="mat-typography">
   <div class="row">
     <div class="col-md-5">
@@ -32,16 +32,25 @@
       <tr *ngFor="let item of fileResult">
         <td>{{item.filename}}</td>
         <td>
-          <a href="{{item.fileweblink}}" target="_blank">View</a>
+          <a href="{{item.fileweblink}}" target="_blank">
+            <button class="btn btn-sm btn-outline-warning">
+              <fa-icon [icon]="'eye'"></fa-icon>
+            </button>
+          </a>
+        </td>
+        <td>
+          <button class="btn btn-sm btn-outline-danger" type="button" (click)="delete(item.id)">
+            <fa-icon [icon]="'trash'"></fa-icon>
+          </button>
         </td>
       </tr>
     </tbody>
   </table>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close class="btnCancel">Cancel</button>
-    <button>
-        <a class="btn btn-primary" href="{{driveLink}}" onclick="window.open(this.href, 'windowName', 'width=300, height=400, top=400,left=500,toolbar=no,scrollbars=no,status=yes'); return false;">
+    <button mat-raised-button mat-dialog-close class="btnCancel">Cancel</button>
+    <button mat-raised-button>
+        <a class="btn btn-primary" href="{{driveLink}}" onclick="window.open(this.href, 'windowName', 'width=300, height=150, top=200,left=500,toolbar=no,scrollbars=no,status=yes'); return false;">
             Upload
           </a>
     </button>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ChangeDetectorRef } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { LifeService } from 'app/pratik';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
@@ -25,6 +25,7 @@ export class DocumentComponent implements OnInit {
     constructor(
         private lifeService: LifeService,
         private commonService: CommonSidebarService,
+        private ref: ChangeDetectorRef,
         public dialogRef: MatDialogRef<DocumentComponent>,
         @Inject(MAT_DIALOG_DATA) public data: DialogData
     ) {
@@ -61,8 +62,11 @@ export class DocumentComponent implements OnInit {
                     this.responseUrl = res;
                     if (this.responseUrl.body) {
                         this.driveLink = this.responseUrl.body.url;
-                        this.getFilesData();
                     }
+                    setInterval(() => {
+                        this.ref.detectChanges();
+                        this.getFilesData();
+                    }, 3000);
                 },
                 err => {
                     console.log('error', err);
@@ -76,6 +80,12 @@ export class DocumentComponent implements OnInit {
             this.fileResult = data.filter(data1 => {
                 return data1.type === this.data.Type;
             });
+        });
+    }
+
+    delete(id) {
+        this.lifeService.deleteFile(id).subscribe(data => {
+            this.getFilesData();
         });
     }
 }

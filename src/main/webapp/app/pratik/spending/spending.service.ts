@@ -258,6 +258,9 @@ export class LifeService {
 
     getFile(uid: any): Observable<any> {
         return this.http.get(SERVER_API_URL + 'api/google-drive/drive/' + uid);
-        // .pipe(filter( (res: any = []) => res.type === 'LifeInsurance'));
+    }
+
+    deleteFile(id) {
+        return this.http.delete(SERVER_API_URL + 'api/google-drive/drive/' + id);
     }
 }
