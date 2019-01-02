@@ -1,58 +1,64 @@
 <!-- life modal -->
 <ng-template #lifeModal let-c="close" let-d="dismiss">
-  <div class="modal-header">
-      <h4 class="modal-title" id="lifeModal">Add Your Life Insurance Details</h4>
-      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-      <span aria-hidden="true">&times;</span>
-      </button>
-  </div>
-  <div class="modal-body">
-      <form class="example-container" #incomeAdd="ngForm">
-           <!-- form start-->
-           <div class="row">
-                  <div class="col-md-6">
-
-                        <mat-form-field  style="width: 100%;">
-                            <input required matInput jhiNumberOnly maxlength="25" type="text" placeholder="Policy Number" name="polno" [(ngModel)]="life.policynumber" (ngModelChange)="ChangeDetector($event, 'number')">
-                        </mat-form-field>
-
-                        <mat-form-field style="width: 100%;">
-                          <input required matInput placeholder="Policy issuer" maxlength="25" type="text" name="issuer" [(ngModel)]="life.issuer" (ngModelChange)="ChangeDetector($event, 'issuer')">
-                        </mat-form-field>
-
-                        <mat-form-field style="width: 100%;" >
-                          <input required matInput placeholder="Insured Name" maxlength="25" type="text" name="ins" [(ngModel)]="life.ins_name" (ngModelChange)="ChangeDetector($event, 'insured')">
-                        </mat-form-field>
-
-                        <mat-form-field  style="width: 100%;">
-                          <input required matInput placeholder="Proposer name" maxlength="25" type="text" name="prop" [(ngModel)]="life.proposer_name" (ngModelChange)="ChangeDetector($event, 'proposer')">
-                        </mat-form-field>
-
-                      <mat-form-field style="width: 100%;">
-                          <input required matInput [matDatepicker]="picker3" placeholder="Policy Start Date"
-                          [formControl]="lifeDate" (ngModelChange)="ChangeDetector($event, 'date')">
-                          <mat-datepicker-toggle matSuffix [for]="picker3" ></mat-datepicker-toggle>
-                          <mat-datepicker #picker3 ></mat-datepicker>
-                      </mat-form-field>
-
-                      <mat-form-field class="example-full-width">
-                          <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Policy Term(yrs)" name="term" [(ngModel)]="life.policy_term" (ngModelChange)="ChangeDetector($event, 'term')">
-                      </mat-form-field>
-                  </div>
-
-                  <!-- right start -->
-                  <div class="col-md-6">
+    <div class="modal-header">
+        <h4 class="modal-title" id="lifeModal">Add Your Life Insurance Details</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form class="example-container" #incomeAdd="ngForm">
+            <!-- form start-->
+            <div class="row">
+                <div class="col-md-6">
 
                     <mat-form-field style="width: 100%;">
-                        <mat-select placeholder="Policy Type"  [(ngModel)]="life.type" name="type" (ngModelChange)="ChangeDetector($event, 'type')">
+                        <input required matInput jhiNumberOnly maxlength="25" type="text" placeholder="Policy Number"
+                            name="polno" [(ngModel)]="life.policynumber" (ngModelChange)="ChangeDetector($event, 'number')">
+                    </mat-form-field>
+
+                    <mat-form-field style="width: 100%;">
+                        <input required matInput placeholder="Policy issuer" maxlength="25" type="text" name="issuer"
+                            [(ngModel)]="life.issuer" (ngModelChange)="ChangeDetector($event, 'issuer')">
+                    </mat-form-field>
+
+                    <mat-form-field style="width: 100%;">
+                        <input required matInput placeholder="Insured Name" maxlength="25" type="text" name="ins"
+                            [(ngModel)]="life.ins_name" (ngModelChange)="ChangeDetector($event, 'insured')">
+                    </mat-form-field>
+
+                    <mat-form-field style="width: 100%;">
+                        <input required matInput placeholder="Proposer name" maxlength="25" type="text" name="prop"
+                            [(ngModel)]="life.proposer_name" (ngModelChange)="ChangeDetector($event, 'proposer')">
+                    </mat-form-field>
+
+                    <mat-form-field style="width: 100%;">
+                        <input required matInput [matDatepicker]="picker3" placeholder="Policy Start Date"
+                            [formControl]="lifeDate" (ngModelChange)="ChangeDetector($event, 'date')">
+                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                        <mat-datepicker #picker3></mat-datepicker>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                        <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Policy Term(yrs)"
+                            name="term" [(ngModel)]="life.policy_term" (ngModelChange)="ChangeDetector($event, 'term')">
+                    </mat-form-field>
+                </div>
+
+                <!-- right start -->
+                <div class="col-md-6">
+
+                    <mat-form-field style="width: 100%;">
+                        <mat-select placeholder="Policy Type" [(ngModel)]="life.type" name="type" (ngModelChange)="ChangeDetector($event, 'type')">
                             <mat-option *ngFor="let type of PolicyTypeArray" [value]="type.name">
-                            {{type.name}}
+                                {{type.name}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
 
-                    <mat-form-field  style="width: 100%;">
-                        <mat-select placeholder="Premium Mode" name="type2" [(ngModel)]="life.premium_mode" (ngModelChange)="ChangeDetector($event, 'mode')">
+                    <mat-form-field style="width: 100%;">
+                        <mat-select placeholder="Premium Mode" name="type2" [(ngModel)]="life.premium_mode"
+                            (ngModelChange)="ChangeDetector($event, 'mode')">
                             <mat-option *ngFor="let type of PremiumTypeArray" [value]="type.name">
                                 {{type.name}}
                             </mat-option>
@@ -60,88 +66,101 @@
                     </mat-form-field>
 
                     <mat-form-field class="example-full-width">
-                          <input required matInput placeholder="Policy Name" maxlength="25" type="text" name="namepolicy" [(ngModel)]="life.policy_name" (ngModelChange)="ChangeDetector($event, 'policy')">
+                        <input required matInput placeholder="Policy Name" maxlength="25" type="text" name="namepolicy"
+                            [(ngModel)]="life.policy_name" (ngModelChange)="ChangeDetector($event, 'policy')">
                     </mat-form-field>
 
-                        <mat-form-field class="example-full-width">
-                          <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Sum Assured" name="sum" [(ngModel)]="life.sum" (ngModelChange)="ChangeDetector($event, 'sum')">
-                      </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Sum Assured" name="sum"
+                            [(ngModel)]="life.sum" (ngModelChange)="ChangeDetector($event, 'sum')">
+                    </mat-form-field>
 
-                        <mat-form-field class="example-full-width">
-                          <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Premium " name="premium" [(ngModel)]="life.premium" (ngModelChange)="ChangeDetector($event, 'premium')">
-                      </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Premium " name="premium"
+                            [(ngModel)]="life.premium" (ngModelChange)="ChangeDetector($event, 'premium')">
+                    </mat-form-field>
 
-                        <mat-form-field class="example-full-width">
-                          <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Premium Payment Term" name="term23" [(ngModel)]="life.premium_term" (ngModelChange)="ChangeDetector($event, 'premiumterm')">
-                      </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Premium Payment Term"
+                            name="term23" [(ngModel)]="life.premium_term" (ngModelChange)="ChangeDetector($event, 'premiumterm')">
+                    </mat-form-field>
 
-                  </div>  <!-- right end-->
-              </div>  <!-- form end -->
-      </form>
-  </div>
-  <div class="modal-footer">
-      <button *ngIf="!update" type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Save</button>
-      <button *ngIf="update" type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="!isFieldChanged">Update</button>
-  </div>
+                </div> <!-- right end-->
+            </div> <!-- form end -->
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button *ngIf="!update" type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="incomeAdd.form.invalid">Save</button>
+        <button *ngIf="update" type="button" class="btn btn-outline-dark" (click)="c('Save click')" [disabled]="!isFieldChanged">Update</button>
+    </div>
 </ng-template>
 
-<div> <!--start of buttons -->
-  <div class="float-right">
-  <button type="button" class="btn btn-link" data-toggle="modal" (click)="openLife(lifeModal)">
-          <span>
-              <i class="fa fa-plus" aria-hidden="true"></i>
-              <span>Add</span>
-          </span>
-  </button>
+<div>
+    <!--start of buttons -->
+    <div class="float-right">
+        <button type="button" class="btn btn-link" data-toggle="modal" (click)="openLife(lifeModal)">
+            <span>
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <span>Add</span>
+            </span>
+        </button>
 
-  </div>
+    </div>
 </div>
 
 
 <!-- life table -->
 <div>
-      <table class="table table-responsive-md table-hover table-sm">
-          <thead>
-              <tr>
-                  <th scope="col">Policy Number </th>
-                  <th scope="col">Issuer </th>
-                  <th scope="col">Insured name </th>
-                  <th scope="col">Policy Name </th>
-                  <th scope="col">Annual Premium </th>
-                  <th scope="col">Premium Payment term </th>
-                  <th scope="col">Policy Term </th>
-                  <th scope="col">Sum Assured </th>
-                  <th scope="col">Update </th>
-                  <th scope="col">Delete </th>
-                  <th scope="col">Upload document </th>
-              </tr>
-          </thead>
-          <tbody>
-              <!-- loan_type lender applicant amnt ldate check tenure intrest_type roi rdate -->
-              <tr *ngFor="let field of dynamicLifeArray; let i = index">
-                  <td> {{ field.policynumber }}</td>
-                  <td> {{ field.issuer }}</td>
-                  <td> {{ field.insuranceName }}</td>
-                  <td> {{ field.pName }} </td>
-                  <td> {{ field.premium }} </td>
-                  <td> {{ field.term }} </td>
-                  <td> {{ field.pterm }} </td>
-                  <td> {{ field.sum }} </td>
-                  <td><button class="btn btn-sm btn-outline-info"  type="button" (click)="onEditLife(field.id, lifeModal)" >
-                      <span> <fa-icon [icon]="'edit'"></fa-icon></i></span></button>
-                  </td>
-                  <td><button class="btn btn-sm btn-outline-danger"  type="button" (click)="RemoveLifeInsurance(i, field.id)" >
-                      <span> <fa-icon [icon]="'trash'"></fa-icon></span></button>
-                  </td>
-                  <td>
-                      <!-- <input type="file" (change)="onFileSelected($event)"> -->
-                      <input type="file" style="display: none" (change)="onFileSelected($event)" #fileInput>
-                      <div class="btn-group">
-                        <button class="btn btn-sm btn-outline-primary" (click)="fileInput.click()">Pick File</button>
-                        <button class="btn btn-sm btn-outline-success" (click)="onFileUpload()">Upload</button>
-                      </div>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
+    <table class="table table-responsive-md table-hover table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Policy Number </th>
+                <th scope="col">Issuer </th>
+                <th scope="col">Insured name </th>
+                <th scope="col">Policy Name </th>
+                <th scope="col">Annual Premium </th>
+                <th scope="col">Premium Payment term </th>
+                <th scope="col">Policy Term </th>
+                <th scope="col">Sum Assured </th>
+                <th scope="col">Update </th>
+                <th scope="col">Delete </th>
+                <!-- <th scope="col">Upload Document </th> -->
+            </tr>
+        </thead>
+        <tbody>
+            <!-- loan_type lender applicant amnt ldate check tenure intrest_type roi rdate -->
+            <tr *ngFor="let field of dynamicLifeArray; let i = index">
+                <td> {{ field.policynumber }}</td>
+                <td> {{ field.issuer }}</td>
+                <td> {{ field.insuranceName }}</td>
+                <td> {{ field.pName }} </td>
+                <td> {{ field.premium }} </td>
+                <td> {{ field.term }} </td>
+                <td> {{ field.pterm }} </td>
+                <td> {{ field.sum }} </td>
+                <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditLife(field.id, lifeModal)">
+                        <span>
+                            <fa-icon [icon]="'edit'"></fa-icon></i>
+                        </span></button>
+                </td>
+                <td><button class="btn btn-sm btn-outline-danger" type="button" (click)="RemoveLifeInsurance(i, field.id)">
+                        <span>
+                            <fa-icon [icon]="'trash'"></fa-icon>
+                        </span></button>
+                </td>
+                <td>
+                    <button mat-raised-button (click)="openDialog(field.id, 'LifeInsurance')">Upload/View</button>
+                </td>    
+                <!-- <td>
+                    <input type="file" (change)="onFileSelected($event)">
+                    <div class="btn-group">
+                         <button class="btn btn-sm btn-outline-success" (click)="onFileUpload(field.id)">
+                            <a>Upload</a>
+                            <a href="{{driveLink}}" onclick="window.open(this.href, 'windowName', 'width=500, height=600, left=24, top=24, scrollbars, resizable'); return false;">Upload</a>
+                        </button>
+                    </div>
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
 </div>

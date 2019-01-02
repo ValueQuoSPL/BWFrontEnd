@@ -115,11 +115,11 @@ export class LoanComponent implements OnInit {
         this.commonService.account.subscribe(account => {
             this.account = account;
             this.uid = this.account.id;
-            this.getata();
+            this.getdata();
         });
     }
 
-    getata() {
+    getdata() {
         this.getLoanandDebt();
         this.getFamilyName();
     }

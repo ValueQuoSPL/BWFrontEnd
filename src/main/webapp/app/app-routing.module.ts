@@ -13,6 +13,7 @@ import { CreditComponent } from 'app/pratik/spending/credit/credit.component';
 import { TravelComponent } from 'app/pratik/spending/travel/travel.component';
 import { MiscComponent } from 'app/pratik/spending/misc/misc.component';
 import { CookiePolicyComponent, PrivacyPolicyComponent, TermsConditionComponent } from './footer-pages/footerpage';
+import { NotificationComponent } from './pratik/notification/notification.component';
 
 const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
 
@@ -34,10 +35,11 @@ const Spend_Routes: Routes = [
     }
 ];
 
-const policy_routes: Routes = [
+const custom_routes: Routes = [
     { path: 'cookiepolicy', component: CookiePolicyComponent },
     { path: 'privacypolicy', component: PrivacyPolicyComponent },
-    { path: 'tnc', component: TermsConditionComponent }
+    { path: 'tnc', component: TermsConditionComponent },
+    { path: 'notify', component: NotificationComponent }
 ];
 
 @NgModule({
@@ -53,7 +55,7 @@ const policy_routes: Routes = [
             { useHash: true, enableTracing: DEBUG_INFO_ENABLED }
         ),
         RouterModule.forChild(Spend_Routes),
-        RouterModule.forRoot(policy_routes)
+        RouterModule.forRoot(custom_routes)
     ],
     exports: [RouterModule]
 })

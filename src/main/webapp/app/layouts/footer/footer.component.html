@@ -1,41 +1,43 @@
-  <div class="footer">
-  <section class="section-small footer bg-gray">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <h5>About Company</h5>
-                <p>Buckswise is a brand product of ValueQuo Solutions Pvt. Ltd. Thanks for choosing ValueQuo as your trusted partner. ValueQuo team is always keen to support and go out of way to ensure your success. We value our relationship and hope for a long term relationship.
+<div class="footer">
+    <section class="section-small footer bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h5>About Company</h5>
+                    <p>Buckswise is a brand product of ValueQuo Solutions Pvt. Ltd. Thanks for choosing ValueQuo as
+                        your trusted partner. ValueQuo team is always keen to support and go out of way to ensure your
+                        success. We value our relationship and hope for a long term relationship.
 
                     </p>
-            </div>
-            <div class="col-sm-1"></div>
-            <div class="col-sm-2 col-sm-offset-1 footer-menu">
-                <h5>Quick Links</h5>
-                <h6 class="no-pad"><a href="#">Home</a></h6>
-                <h6 class="no-pad"><a href="#">Our Services</a></h6>
-                <h6 class="no-pad"><a routerLink="/subscription">Pricing</a></h6>
-                <h6 class="no-pad"><a routerLink="/contact">Contact Us</a></h6>
-               <!---- <h6 class="no-pad"><a href="blogs">Blogs</a></h6>-->
-            </div> 
-            <div class="col-sm-5 text-center">
+                </div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2 col-sm-offset-1 footer-menu">
+                    <h5>Quick Links</h5>
+                    <h6 class="no-pad"><a href="#">Home</a></h6>
+                    <h6 class="no-pad"><a href="#">Our Services</a></h6>
+                    <h6 class="no-pad"><a routerLink="/subscription">Pricing</a></h6>
+                    <h6 class="no-pad"><a routerLink="/contact">Contact Us</a></h6>
+                    <!---- <h6 class="no-pad"><a href="blogs">Blogs</a></h6>-->
+                </div>
+                <div class="col-sm-5 text-center">
 
-                <h4 class="cust-head">Subscribe</h4>
-                <h6>Sign-Up For News Updates and Alerts</h6>
-                <!-- MailChimp Signup Form - Replace the form action in the line below with your MailChimp embed action! For more information on how to do this please visit the Docs!-->
-                <form id="mc-embedded-subscribe-form"  name="subscribe"  class="form-inline subscribe-form">
-                    <div class="input-group input-group-lg"style="margin-left:60px;">
-                        <input style="width: 240px;height:40px;" type="email" name="email"  placeholder="Email address...">&nbsp;
-                        <span class="input-group-btn">
-                            <button type="submit" name="subscribe" class="btn btn-dark">Subscribe</button></span>
-                        <div id="mce-responses"></div>
-                        <div id="mce-error-response" style="display:none" class="response"></div>
-                        <div id="mce-success-response" style="display:none" class="response"></div>
-                    </div>
-                </form>
-                <!-- End MailChimp Signup Form-<img src="img/misc/mailchimp.png" alt="">-->
+                    <h4 class="cust-head">Subscribe</h4>
+                    <h6>Sign-Up For News Updates and Alerts</h6>
+                    <!-- MailChimp Signup Form - Replace the form action in the line below with your MailChimp embed action! For more information on how to do this please visit the Docs!-->
+                    <form id="mc-embedded-subscribe-form" name="subscribe" class="form-inline subscribe-form">
+                        <div class="input-group input-group-lg" style="margin-left:60px;">
+                            <input style="width: 240px;height:40px;" type="email" name="email" placeholder="Email address...">&nbsp;
+                            <span class="input-group-btn">
+                                <button type="submit" name="subscribe" class="btn btn-dark">Subscribe</button></span>
+                            <div id="mce-responses"></div>
+                            <div id="mce-error-response" style="display:none" class="response"></div>
+                            <div id="mce-success-response" style="display:none" class="response"></div>
+                        </div>
+                    </form>
+                    <!-- End MailChimp Signup Form-<img src="img/misc/mailchimp.png" alt="">-->
+                </div>
             </div>
-        </div>
-        <div class="row">
+            <div class="row">
                 <!-- <div class="col-sm-4"></div>
                 <div class="col-sm-4"></div>
             <div class="col-sm-4 text-center">
@@ -43,145 +45,327 @@
                 <h6>tems & Condition |</h6>&nbsp;
                 <h6>tems & Condition |</h6>
             </div> -->
-            <div class="col-sm-3"></div>
-            <div class="col-sm-4"></div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-4"></div>
                 <!-- <div class="col-sm-4"></div> -->
-            <!-- <div class="col-sm-4 col-sm-offset-1 text-right">
+                <!-- <div class="col-sm-4 col-sm-offset-1 text-right">
                     <ul class="list-inline">
                         <li><a href="#" >tems & Condition |</a></li>
                         <li><a href="#">tems & Condition |</a></li>
                         <li><a href="#" >tems & Condition |</a></li>
                     </ul>
                 </div> -->
-                <div class="col-sm-5  text-right" >
-                        <ul class="list-inline">
-                          <a style="color:black;" routerLink="/tnc">
-                                Terms & Conditions |</a> &nbsp;                
-              
-                          <a style="color:black;" routerLink="/privacypolicy">
-                           Privacy Policy |</a>&nbsp;
-              
-                          <a style="color:black;"  routerLink="/cookiepolicy" >
-                              Cookie Policy</a>&nbsp;
-                           </ul>
-                           <ng-template #cookieModal let-c="close" let-d="dismiss">
-                                <div class="modal-header">
-                                    <h6 class="modal-title" id="cookieModal"style="color:black">Cookie Policy</h6>
-                                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>ValueQuo website uses Google Analytics, a web analytics service provided by Google, Inc. ("Google"). Google Analytics uses cookies that are text files containing small amounts of information (this does not include personal sensitive information) which are downloaded to your device when you visit a website in order to provide a personalized browsing experience. Cookies do lots of different jobs, like allowing users to navigate between pages efficiently, remembering their preferences, and generally improving their browsing experience. </p>
-                                    <p>These cookies collect information analytics about how users use a website, for instance often visited pages. All information collected by third party cookies is aggregated and therefore anonymous. By using our website user/s agree that these types of cookies can be placed on his/her device. User/s is free to disable/delete these cookies by changing his/her web browser settings. 
-                                    </p>
-                                    <p>ValueQuo is not responsible for cookies placed in the device of user/s by any other website and information collected thereto. The Customer authorizes ValueQuo to exchange, share, part with all information related to the details and transaction history of the Customers to its Affiliates / banks / financial institutions / credit bureaus / agencies/participation in any telecommunication or electronic clearing network as may be required by law, customary practice, statistical analysis, verification or risk management and shall not hold ValueQuo liable for use or disclosure of this information.  
-                                    </p>
-                                </div>
-                                
-                            </ng-template>
-                            <ng-template #privacyModal let-c="close" let-d="dismiss">
-                                    <div class="modal-header">
-                                        <h6 class="modal-title" id="privacyModal"style="color:black"> Privacy Policy</h6>
-                                        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                           <p>In the course of using this website, mobile applications or its custom extensions or availing the products and services vide the online application forms and questionnaires, ValueQuo and its Affiliates may become privy to the personal information of its customers, including information that is of a confidential nature. </p>
-                                           <p>ValueQuo is strongly committed to protecting the privacy of its customers and has taken all necessary and reasonable measures to protect the confidentiality of the customer information and its transmission through the world wide web and it shall not be held liable for disclosure of the confidential information when in accordance with this privacy Commitment or in terms of the agreements, if any, with the Customers.</p>
-                                           <p>ValueQuo endeavours to safeguard and ensure the security of the information provided by the Customer. ValueQuo uses 128-bit encryption, for the transmission of the information, which is currently the permitted level of encryption in India. When the information provided by the Customers is not transmitted through this encryption, the Customers' system (if configured accordingly) will display an appropriate message ensuring the best level of secrecy for the Customer's information. </p>
-                                           <p>The Customer would be required to cooperate with ValueQuo in order to ensure the security of the information, and it is recommended that the Customers necessarily choose their passwords carefully such that no unauthorised access is made by a third party. To make the password complex and difficult for others to guess, the Customers should use combination of alphabets, numbers and special characters (like !, @, #, $ etc.). The Customers should undertake not to disclose their password to anyone or keep any written or other record of the password such that a third party could access it. </p>
-                                           <p>ValueQuo undertakes not to disclose the information provided by the Customers to any person, unless such action is necessary to: </p>
-                                          <ul><li>Conform to legal requirements or comply with legal process;</li>
-                                           <li>Protect and defend ValueQuo's or its Affiliates' rights, interests or property; </li>
-                                           <li>Enforce the terms and conditions of the products or services; or </li>
-                                           <li>Act to protect the interests of ValueQuo, its Affiliates, or its members, constituents or of other persons. </li>
-                                         </ul>  <p>The Customers shall not disclose to any other person, in any manner whatsoever, any information relating to ValueQuo or its Affiliates of a confidential nature obtained in the course of availing the services through the website. Failure to comply with this obligation shall be deemed a serious breach of the terms herein and shall entitle ValueQuo or its Affiliates to terminate the services, without prejudice to any damages, to which the customer may be entitled otherwise. 
-                                        </p>
-                                        <p>ValueQuo will limit the collection and use of customer information only on a need-to-know basis to deliver better service to the customers. ValueQuo may use and share the information provided by the Customers with its Affiliates and third parties for providing services and any service-related activities such as collecting subscription fees for such services, and notifying or contacting the Customers regarding any problem with, or the expiration of, such services. In this regard, it may be necessary to disclose the customer information to one or more agents and contractors of ValueQuo and their sub-contractors, but such agents, contractors, and sub-contractors will be required to agree to use the information obtained from ValueQuo only for these purposes.  </p>
-                                    </div>
-                                    
-                                </ng-template>
-                                <ng-template #termModal let-c="close" let-d="dismiss">
-                                        <div class="modal-header">
-                                            <h6 class="modal-title" id="termModal"style="color:black"> Terms & Conditions</h6>
-                                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>This website is owned and managed by ValueQuo Solutions Pvt Ltd. By accessing and using the www.buckswise.com web site, (the "Web Site"), you are agreeing to be legally bound by these Terms & Conditions. The terms "you" and "User" refer to anyone who accesses the Web Site.</p>
-                                            <p>As you browse through the website and ValueQuo Solutions Pvt Ltd sites you may access other web sites that are subject to different terms of use. When you use those sites, you will be legally bound by the specific terms of use posted on such sites. If there is a conflict between these Terms & Conditions and the other terms and conditions, the other terms & conditions will govern with respect to use of such pages</p>
-                                            <p>ValueQuo Solutions Pvt Ltd may change these Terms & Conditions at any time without notice. Changes will be posted on the website under "Terms & Conditions".</p>
-                                            <p>Your use of the Web Site after any changes have been posted will constitute your agreement to the modified Terms & Conditions and all of the changes. Therefore, you should read these Terms & Conditions from time to time for changes.</p>
-                                            <h6>1)	USE OF THE WEB SITE</h6>
-                                            <p>ValueQuo Solutions Pvt Ltd hereby grants you a non-exclusive, non-transferable, limited license to access and use the Web Site for the fees, if applicable, and under the terms set forth below.</p>
-                                            <p>The Web Site and the content, including, but not limited to, text, data, reports, opinions, images, photos, graphics, graphs, charts, animations and video (the "Content"), displayed on the Web Site, may be used only for your personal and non-commercial use. Except as otherwise permitted under these Terms & Conditions, you agree not to copy, reproduce, modify, create derivative works from, or store any Content, in whole or in part, from the Web Site or to display, perform, publish, distribute, transmit, broadcast or circulate any Content to anyone, or for any commercial purpose, without the express prior written consent of ValueQuo Solutions Pvt Ltd.</p>
-                                            <p>The Content is the exclusive property of ValueQuo Solutions Pvt Ltd or its licensors, and is protected by copyright and other intellectual property laws. All trade names, trademarks, service marks and other product and service names and logos on the Web Site and within the Content are proprietary to their respective owners and are protected by applicable trademark and copyright laws. Any of the trademarks, service marks or logos (collectively, the "Marks") displayed on the Web Site may be registered or unregistered marks of ValueQuo Solutions Pvt Ltd or others. Nothing contained on this Web Site should be construed as granting any license or right to use any of the Marks displayed on the Web Site without the express written permission of ValueQuo Solutions Pvt Ltd or a third party owner of such Marks. Any unauthorized uses of the Marks or any other Content are strictly prohibited. To request permission to use any Content or other ValueQuo material, please contact ValueQuo Solutions Pvt Ltd at contact@valuequo.com</p>
-                                            <p>You may not use the Web Site for any unlawful purpose. You shall honor all reasonable requests by the website to protect ValueQuo's proprietary interests in the website.</p>
-                                            <h6>2)	REGISTRATION</h6>
-                                            <p>As part of the registration process, you must select a username and password and provide the website with accurate, complete, and updated information. Failure to do so constitutes a breach of this Agreement, which may result in immediate termination of your access.</p>
-                                            <h6>3)	LIMITATION OF LIABILITY</h6>
-                                            <p>You are entirely liable for activities conducted by you in connection with your browsing and use of the Web Site. If you are dissatisfied with the Content or the Web Site or with these Terms of Use, your sole and exclusive remedy is to stop using the Content and the Web Site. The website  will not pay you any damages in connection with your browsing or use of the Web</p>
-                                            <p>Due to the number of sources from which the Content is obtained and the potential hazards of electronic distribution, there may be delays, omissions or inaccuracies in such Content and the Web Site. THE CONTENT AND THE WEB SITE ARE PROVIDED "AS IS", WITHOUT ANY WARRANTIES. NEITHER THE WEBSITE NOR VALUEQUO MAKES ANY GUARANTEES OR WARRANTIES AS TO THE ACCURACY, COMPLETENESS, TIMELINESS OR CURRENTNESS OF OR RESULTS TO BE OBTAINED FROM, ACCESSING AND USING THE WEB SITE, THE WEB SITE'S OWN CONTENT, THE OTHER CONTENT, NOR ANY MATERIAL THAT CAN BE ACCESSED (VIA A DIRECT OR INDIRECT HYPERLINK OR OTHERWISE) THROUGH THE WEB SITE. THE WEBSITE HEREBY DISCLAIMS ANY AND ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE OR USE AND OF NONINFRINGEMENT. NEITHER THE WEBSITE NOR VALUEQUO SHALL BE LIABLE TO THE USER OR ANYONE ELSE FOR ANY INACCURACY, DELAY, INTERRUPTION IN SERVICE, ERROR OR OMISSION, REGARDLESS OF CAUSE, OR FOR ANY DAMAGES RESULTING THEREFROM. IN NO EVENT WILL THE WEBSITE, VALUEQUO NOR ANY OF THEIR THIRD PARTY LICENSORS BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES, INCLUDING BUT NOT LIMITED TO, LOST TIME, LOST MONEY, LOST PROFITS OR GOOD WILL, WHETHER IN CONTRACT, TORT, STRICT LIABILITY OR OTHERWISE, AND WHETHER OR NOT SUCH DAMAGES ARE FORESEEN OR UNFORESEEN WITH RESPECT TO ANY USE OF THE WEB SITE. NEITHER THE WEBSITE NOR ANY OF ITS AFFILIATES, AGENTS OR LICENSORS WILL BE LIABLE TO YOU OR ANYONE ELSE FOR ANY LOSS OR INJURY RESULTING FROM USE OF THE WEB SITE, IN WHOLE OR PART, WHETHER CAUSED BY NEGLIGENCE, CONTINGENCIES BEYOND ITS CONTROL IN PROCURING, COMPILING, INTERPRETING, REPORTING OR DELIVERING THE WEB SITE AND ANY CONTENT AT THE WEB SITE OR OTHERWISE. IN NO EVENT WILL THE WEBSITE, ITS AFFILIATES, AGENTS OR LICENSORS BE LIABLE TO YOU OR ANYONE ELSE FOR ANY DECISION MADE OR ACTION TAKEN BY YOU IN RELIANCE ON SUCH CONTENT OR THE WEB SITE.</p>
-                                            <p>The website assumes no responsibility for the use of third party software on the website and shall have no liability whatsoever to any person or entity for the accuracy or completeness of any outcome generated by such software.</p>
-                                            <h6>4)	LINKS TO OTHER WEB SITES</h6>
-                                            <p>You may, through hypertext or other computer links, gain access to web sites operated by persons other than the website Such hyperlinks are provided for your reference and convenience only, and are the exclusive responsibility of such web sites' owners. You agree that the website is not responsible for the content or operation of such web sites, and that the website shall have no liability to you or any other person or entity for the use of third party web sites. Except as described below, a hyperlink from this Web Site to another web site does not imply or mean that the website endorses the content on that web site or the operator or operations of that site. You are solely responsible for determining the extent to which you may use any content at any other web sites to which you link from the Web Site.</p>
-                                            <h6>5)	THE USER'S CONTENT</h6>
-                                            <p>The User grants to ValueQuo Solutions Pvt Ltd the non-exclusive right to use all material entered into the Web site by the User (other than third-party material transmitted through private electronic mail) in any of The ValueQuo's print or electronic publications ("Other Content").</p>
-                                            <p>Users entering material into the Web site are responsible for the Other Content. Neither the website nor ValueQuo has any responsibility for Other Content, including the content of any messages or information posted by Users or others, or for the content of information accessible via direct or indirect hyperlinks from the Web Site. However, the website retains the right, which it may or may not exercise in its sole discretion, to review, edit, or delete Other Content that the website deems to be illegal, offensive, or otherwise inappropriate.</p>
-                                            <p>You may not input or distribute any material through the Web Site that is promotional in nature, including solicitations for funds or business, without the prior written authorization of the website</p>
-                                            <p>The User agrees to indemnify the website and ValueQuo from all damages, liabilities, costs, charges and expenses, including reasonable attorneys' fees, that the website, ValueQuo, their affiliates, employees, and authorized representatives may incur as a result of either: (i) the User's breach of this Agreement; or (ii) material entered into the Web site with the use of the User's screen name or password.</p>
-                                            <h6>6)	PAYMENTS, CANCELLATION & REFUNDS</h6>
-                                            <p>All information, reports, content and access rights purchased on the website are non refundable.</p>
-                                            <p>We as a merchant shall be under no liability whatsoever in respect of any loss or damage arising directly or indirectly out of the decline of authorization for any Transaction, on Account of the Cardholder having exceeded the preset limit mutually agreed by us with our acquiring bank from time to time</p>
-                                            <h6>7)	ADDITIONAL LEGAL TERMS</h6>
-                                            <p>This Agreement will continue until terminated by either ValueQuo or you. Either party can terminate the Agreement by notifying the other party by telephone or electronic mail of the decision to terminate.</p>
-                                            <p>ValueQuo Solutions Pvt Ltd may discontinue or change the Web Site or its availability to you, at any time.</p>
-                                            <p>This Agreement constitutes the entire agreement between the parties relating to Web site and supersedes any and all other agreements, oral or in writing, with respect to the Web Site. The failure of the website, to insist upon strict compliance with any term of this Agreement shall not be construed as a waiver with regard to any subsequent failure to comply with such term or provision. This Agreement is personal to you, and you may not assign your rights or obligations to anyone. If any provision in this Agreement is invalid or unenforceable under applicable law, the remaining provisions will continue in full force and effect. This Agreement, your rights and obligations, and all actions contemplated by this Agreement shall be governed by the laws of India and subject to jurisdiction of courts of Bangalore, as if the Agreement was a contract wholly entered into and wholly performed within Bangalore, and any litigation related to this Agreement shall be brought exclusively in the courts of Bangalore. All rights not expressly granted herein are reserved.</p>
-                                            <h6>8)	ANTI-HACKING PROVISION</h6>
-                                            <p>You expressly agree not to use this Web Site in any manner or for any purpose that is prohibited by these terms and conditions. In addition, you expressly agree not to:</p>
-                                            <p>(1) use the Web Site for any purpose that is prohibited by any law or regulation, or to facilitate the violation of any law or regulation;</p>
-                                            <p>(2) use or attempt to use any "deep-link," "scraper," "robot," "bot," "spider," "data mining," "computer code" or any other automated device, program, tool, algorithm, process or methodology or manual process having similar processes or functionality, to access, ac-quire, copy, or monitor any portion of the Web Site or any data or content found on or accessed through the Web Site without prior express written consent;</p>
-                                            <p>(3) obtain or attempt to obtain through any means any materials or information on the Web Site that have not been intentionally made publicly available either by their public display on the Web Site or through their accessibility by a visible link on the Web Site;</p>
-                                            <p>(4) in any way bypass or circumvent any other measure employed to limit or pre-vent access to the Web Site or its content;</p>
-                                            <p>(5) violate the security of the Web Site or attempt to gain unauthorized access to the Web Site, data, materials, information, computer systems or networks connected to any server associated with this Web Site, through hacking, password mining or any other means;</p>
-                                            <p>(6) interfere or attempt to interfere with the proper working of the Web Site or any activities conducted on or through the Web Site, including accessing any data, content or other information prior to the time that it is intended to be available to the public on the Web Site;</p>
-                                            <p>(7) take or attempt any action that, in the sole discretion of this Web Site's operators, imposes or may impose an unreasonable or disproportionately large load or burden on the Web Site or such operation's infrastructure.</p>
-                                        </div>
-                                        
-                                    </ng-template>
-                      </div>
+                <div class="col-sm-5  text-right">
+                    <ul class="list-inline">
+                        <a style="color:black;" routerLink="/tnc">
+                            Terms & Conditions |</a> &nbsp;
 
+                        <a style="color:black;" routerLink="/privacypolicy">
+                            Privacy Policy |</a>&nbsp;
+
+                        <a style="color:black;" routerLink="/cookiepolicy">
+                            Cookie Policy</a>&nbsp;
+                    </ul>
+                    <ng-template #cookieModal let-c="close" let-d="dismiss">
+                        <div class="modal-header">
+                            <h6 class="modal-title" id="cookieModal" style="color:black">Cookie Policy</h6>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>ValueQuo website uses Google Analytics, a web analytics service provided by Google, Inc.
+                                ("Google"). Google Analytics uses cookies that are text files containing small amounts
+                                of information (this does not include personal sensitive information) which are
+                                downloaded to your device when you visit a website in order to provide a personalized
+                                browsing experience. Cookies do lots of different jobs, like allowing users to navigate
+                                between pages efficiently, remembering their preferences, and generally improving their
+                                browsing experience. </p>
+                            <p>These cookies collect information analytics about how users use a website, for instance
+                                often visited pages. All information collected by third party cookies is aggregated and
+                                therefore anonymous. By using our website user/s agree that these types of cookies can
+                                be placed on his/her device. User/s is free to disable/delete these cookies by changing
+                                his/her web browser settings.
+                            </p>
+                            <p>ValueQuo is not responsible for cookies placed in the device of user/s by any other
+                                website and information collected thereto. The Customer authorizes ValueQuo to
+                                exchange, share, part with all information related to the details and transaction
+                                history of the Customers to its Affiliates / banks / financial institutions / credit
+                                bureaus / agencies/participation in any telecommunication or electronic clearing
+                                network as may be required by law, customary practice, statistical analysis,
+                                verification or risk management and shall not hold ValueQuo liable for use or
+                                disclosure of this information.
+                            </p>
+                        </div>
+
+                    </ng-template>
+                    <ng-template #privacyModal let-c="close" let-d="dismiss">
+                        <div class="modal-header">
+                            <h6 class="modal-title" id="privacyModal" style="color:black"> Privacy Policy</h6>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>In the course of using this website, mobile applications or its custom extensions or
+                                availing the products and services vide the online application forms and
+                                questionnaires, ValueQuo and its Affiliates may become privy to the personal
+                                information of its customers, including information that is of a confidential nature.
+                            </p>
+                            <p>ValueQuo is strongly committed to protecting the privacy of its customers and has taken
+                                all necessary and reasonable measures to protect the confidentiality of the customer
+                                information and its transmission through the world wide web and it shall not be held
+                                liable for disclosure of the confidential information when in accordance with this
+                                privacy Commitment or in terms of the agreements, if any, with the Customers.</p>
+                            <p>ValueQuo endeavours to safeguard and ensure the security of the information provided by
+                                the Customer. ValueQuo uses 128-bit encryption, for the transmission of the
+                                information, which is currently the permitted level of encryption in India. When the
+                                information provided by the Customers is not transmitted through this encryption, the
+                                Customers' system (if configured accordingly) will display an appropriate message
+                                ensuring the best level of secrecy for the Customer's information. </p>
+                            <p>The Customer would be required to cooperate with ValueQuo in order to ensure the
+                                security of the information, and it is recommended that the Customers necessarily
+                                choose their passwords carefully such that no unauthorised access is made by a third
+                                party. To make the password complex and difficult for others to guess, the Customers
+                                should use combination of alphabets, numbers and special characters (like !, @, #, $
+                                etc.). The Customers should undertake not to disclose their password to anyone or keep
+                                any written or other record of the password such that a third party could access it.
+                            </p>
+                            <p>ValueQuo undertakes not to disclose the information provided by the Customers to any
+                                person, unless such action is necessary to: </p>
+                            <ul>
+                                <li>Conform to legal requirements or comply with legal process;</li>
+                                <li>Protect and defend ValueQuo's or its Affiliates' rights, interests or property;
+                                </li>
+                                <li>Enforce the terms and conditions of the products or services; or </li>
+                                <li>Act to protect the interests of ValueQuo, its Affiliates, or its members,
+                                    constituents or of other persons. </li>
+                            </ul>
+                            <p>The Customers shall not disclose to any other person, in any manner whatsoever, any
+                                information relating to ValueQuo or its Affiliates of a confidential nature obtained in
+                                the course of availing the services through the website. Failure to comply with this
+                                obligation shall be deemed a serious breach of the terms herein and shall entitle
+                                ValueQuo or its Affiliates to terminate the services, without prejudice to any damages,
+                                to which the customer may be entitled otherwise.
+                            </p>
+                            <p>ValueQuo will limit the collection and use of customer information only on a
+                                need-to-know basis to deliver better service to the customers. ValueQuo may use and
+                                share the information provided by the Customers with its Affiliates and third parties
+                                for providing services and any service-related activities such as collecting
+                                subscription fees for such services, and notifying or contacting the Customers
+                                regarding any problem with, or the expiration of, such services. In this regard, it may
+                                be necessary to disclose the customer information to one or more agents and contractors
+                                of ValueQuo and their sub-contractors, but such agents, contractors, and
+                                sub-contractors will be required to agree to use the information obtained from ValueQuo
+                                only for these purposes. </p>
+                        </div>
+
+                    </ng-template>
+                    <ng-template #termModal let-c="close" let-d="dismiss">
+                        <div class="modal-header">
+                            <h6 class="modal-title" id="termModal" style="color:black"> Terms & Conditions</h6>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>This website is owned and managed by ValueQuo Solutions Pvt Ltd. By accessing and using
+                                the www.buckswise.com web site, (the "Web Site"), you are agreeing to be legally bound
+                                by these Terms & Conditions. The terms "you" and "User" refer to anyone who accesses
+                                the Web Site.</p>
+                            <p>As you browse through the website and ValueQuo Solutions Pvt Ltd sites you may access
+                                other web sites that are subject to different terms of use. When you use those sites,
+                                you will be legally bound by the specific terms of use posted on such sites. If there
+                                is a conflict between these Terms & Conditions and the other terms and conditions, the
+                                other terms & conditions will govern with respect to use of such pages</p>
+                            <p>ValueQuo Solutions Pvt Ltd may change these Terms & Conditions at any time without
+                                notice. Changes will be posted on the website under "Terms & Conditions".</p>
+                            <p>Your use of the Web Site after any changes have been posted will constitute your
+                                agreement to the modified Terms & Conditions and all of the changes. Therefore, you
+                                should read these Terms & Conditions from time to time for changes.</p>
+                            <h6>1) USE OF THE WEB SITE</h6>
+                            <p>ValueQuo Solutions Pvt Ltd hereby grants you a non-exclusive, non-transferable, limited
+                                license to access and use the Web Site for the fees, if applicable, and under the terms
+                                set forth below.</p>
+                            <p>The Web Site and the content, including, but not limited to, text, data, reports,
+                                opinions, images, photos, graphics, graphs, charts, animations and video (the
+                                "Content"), displayed on the Web Site, may be used only for your personal and
+                                non-commercial use. Except as otherwise permitted under these Terms & Conditions, you
+                                agree not to copy, reproduce, modify, create derivative works from, or store any
+                                Content, in whole or in part, from the Web Site or to display, perform, publish,
+                                distribute, transmit, broadcast or circulate any Content to anyone, or for any
+                                commercial purpose, without the express prior written consent of ValueQuo Solutions Pvt
+                                Ltd.</p>
+                            <p>The Content is the exclusive property of ValueQuo Solutions Pvt Ltd or its licensors,
+                                and is protected by copyright and other intellectual property laws. All trade names,
+                                trademarks, service marks and other product and service names and logos on the Web Site
+                                and within the Content are proprietary to their respective owners and are protected by
+                                applicable trademark and copyright laws. Any of the trademarks, service marks or logos
+                                (collectively, the "Marks") displayed on the Web Site may be registered or unregistered
+                                marks of ValueQuo Solutions Pvt Ltd or others. Nothing contained on this Web Site
+                                should be construed as granting any license or right to use any of the Marks displayed
+                                on the Web Site without the express written permission of ValueQuo Solutions Pvt Ltd or
+                                a third party owner of such Marks. Any unauthorized uses of the Marks or any other
+                                Content are strictly prohibited. To request permission to use any Content or other
+                                ValueQuo material, please contact ValueQuo Solutions Pvt Ltd at contact@valuequo.com</p>
+                            <p>You may not use the Web Site for any unlawful purpose. You shall honor all reasonable
+                                requests by the website to protect ValueQuo's proprietary interests in the website.</p>
+                            <h6>2) REGISTRATION</h6>
+                            <p>As part of the registration process, you must select a username and password and provide
+                                the website with accurate, complete, and updated information. Failure to do so
+                                constitutes a breach of this Agreement, which may result in immediate termination of
+                                your access.</p>
+                            <h6>3) LIMITATION OF LIABILITY</h6>
+                            <p>You are entirely liable for activities conducted by you in connection with your browsing
+                                and use of the Web Site. If you are dissatisfied with the Content or the Web Site or
+                                with these Terms of Use, your sole and exclusive remedy is to stop using the Content
+                                and the Web Site. The website will not pay you any damages in connection with your
+                                browsing or use of the Web</p>
+                            <p>Due to the number of sources from which the Content is obtained and the potential
+                                hazards of electronic distribution, there may be delays, omissions or inaccuracies in
+                                such Content and the Web Site. THE CONTENT AND THE WEB SITE ARE PROVIDED "AS IS",
+                                WITHOUT ANY WARRANTIES. NEITHER THE WEBSITE NOR VALUEQUO MAKES ANY GUARANTEES OR
+                                WARRANTIES AS TO THE ACCURACY, COMPLETENESS, TIMELINESS OR CURRENTNESS OF OR RESULTS TO
+                                BE OBTAINED FROM, ACCESSING AND USING THE WEB SITE, THE WEB SITE'S OWN CONTENT, THE
+                                OTHER CONTENT, NOR ANY MATERIAL THAT CAN BE ACCESSED (VIA A DIRECT OR INDIRECT
+                                HYPERLINK OR OTHERWISE) THROUGH THE WEB SITE. THE WEBSITE HEREBY DISCLAIMS ANY AND ALL
+                                WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY OR FITNESS FOR
+                                A PARTICULAR PURPOSE OR USE AND OF NONINFRINGEMENT. NEITHER THE WEBSITE NOR VALUEQUO
+                                SHALL BE LIABLE TO THE USER OR ANYONE ELSE FOR ANY INACCURACY, DELAY, INTERRUPTION IN
+                                SERVICE, ERROR OR OMISSION, REGARDLESS OF CAUSE, OR FOR ANY DAMAGES RESULTING
+                                THEREFROM. IN NO EVENT WILL THE WEBSITE, VALUEQUO NOR ANY OF THEIR THIRD PARTY
+                                LICENSORS BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES,
+                                INCLUDING BUT NOT LIMITED TO, LOST TIME, LOST MONEY, LOST PROFITS OR GOOD WILL, WHETHER
+                                IN CONTRACT, TORT, STRICT LIABILITY OR OTHERWISE, AND WHETHER OR NOT SUCH DAMAGES ARE
+                                FORESEEN OR UNFORESEEN WITH RESPECT TO ANY USE OF THE WEB SITE. NEITHER THE WEBSITE NOR
+                                ANY OF ITS AFFILIATES, AGENTS OR LICENSORS WILL BE LIABLE TO YOU OR ANYONE ELSE FOR ANY
+                                LOSS OR INJURY RESULTING FROM USE OF THE WEB SITE, IN WHOLE OR PART, WHETHER CAUSED BY
+                                NEGLIGENCE, CONTINGENCIES BEYOND ITS CONTROL IN PROCURING, COMPILING, INTERPRETING,
+                                REPORTING OR DELIVERING THE WEB SITE AND ANY CONTENT AT THE WEB SITE OR OTHERWISE. IN
+                                NO EVENT WILL THE WEBSITE, ITS AFFILIATES, AGENTS OR LICENSORS BE LIABLE TO YOU OR
+                                ANYONE ELSE FOR ANY DECISION MADE OR ACTION TAKEN BY YOU IN RELIANCE ON SUCH CONTENT OR
+                                THE WEB SITE.</p>
+                            <p>The website assumes no responsibility for the use of third party software on the website
+                                and shall have no liability whatsoever to any person or entity for the accuracy or
+                                completeness of any outcome generated by such software.</p>
+                            <h6>4) LINKS TO OTHER WEB SITES</h6>
+                            <p>You may, through hypertext or other computer links, gain access to web sites operated by
+                                persons other than the website Such hyperlinks are provided for your reference and
+                                convenience only, and are the exclusive responsibility of such web sites' owners. You
+                                agree that the website is not responsible for the content or operation of such web
+                                sites, and that the website shall have no liability to you or any other person or
+                                entity for the use of third party web sites. Except as described below, a hyperlink
+                                from this Web Site to another web site does not imply or mean that the website endorses
+                                the content on that web site or the operator or operations of that site. You are solely
+                                responsible for determining the extent to which you may use any content at any other
+                                web sites to which you link from the Web Site.</p>
+                            <h6>5) THE USER'S CONTENT</h6>
+                            <p>The User grants to ValueQuo Solutions Pvt Ltd the non-exclusive right to use all
+                                material entered into the Web site by the User (other than third-party material
+                                transmitted through private electronic mail) in any of The ValueQuo's print or
+                                electronic publications ("Other Content").</p>
+                            <p>Users entering material into the Web site are responsible for the Other Content. Neither
+                                the website nor ValueQuo has any responsibility for Other Content, including the
+                                content of any messages or information posted by Users or others, or for the content of
+                                information accessible via direct or indirect hyperlinks from the Web Site. However,
+                                the website retains the right, which it may or may not exercise in its sole discretion,
+                                to review, edit, or delete Other Content that the website deems to be illegal,
+                                offensive, or otherwise inappropriate.</p>
+                            <p>You may not input or distribute any material through the Web Site that is promotional in
+                                nature, including solicitations for funds or business, without the prior written
+                                authorization of the website</p>
+                            <p>The User agrees to indemnify the website and ValueQuo from all damages, liabilities,
+                                costs, charges and expenses, including reasonable attorneys' fees, that the website,
+                                ValueQuo, their affiliates, employees, and authorized representatives may incur as a
+                                result of either: (i) the User's breach of this Agreement; or (ii) material entered
+                                into the Web site with the use of the User's screen name or password.</p>
+                            <h6>6) PAYMENTS, CANCELLATION & REFUNDS</h6>
+                            <p>All information, reports, content and access rights purchased on the website are non
+                                refundable.</p>
+                            <p>We as a merchant shall be under no liability whatsoever in respect of any loss or damage
+                                arising directly or indirectly out of the decline of authorization for any Transaction,
+                                on Account of the Cardholder having exceeded the preset limit mutually agreed by us
+                                with our acquiring bank from time to time</p>
+                            <h6>7) ADDITIONAL LEGAL TERMS</h6>
+                            <p>This Agreement will continue until terminated by either ValueQuo or you. Either party
+                                can terminate the Agreement by notifying the other party by telephone or electronic
+                                mail of the decision to terminate.</p>
+                            <p>ValueQuo Solutions Pvt Ltd may discontinue or change the Web Site or its availability to
+                                you, at any time.</p>
+                            <p>This Agreement constitutes the entire agreement between the parties relating to Web site
+                                and supersedes any and all other agreements, oral or in writing, with respect to the
+                                Web Site. The failure of the website, to insist upon strict compliance with any term of
+                                this Agreement shall not be construed as a waiver with regard to any subsequent failure
+                                to comply with such term or provision. This Agreement is personal to you, and you may
+                                not assign your rights or obligations to anyone. If any provision in this Agreement is
+                                invalid or unenforceable under applicable law, the remaining provisions will continue
+                                in full force and effect. This Agreement, your rights and obligations, and all actions
+                                contemplated by this Agreement shall be governed by the laws of India and subject to
+                                jurisdiction of courts of Bangalore, as if the Agreement was a contract wholly entered
+                                into and wholly performed within Bangalore, and any litigation related to this
+                                Agreement shall be brought exclusively in the courts of Bangalore. All rights not
+                                expressly granted herein are reserved.</p>
+                            <h6>8) ANTI-HACKING PROVISION</h6>
+                            <p>You expressly agree not to use this Web Site in any manner or for any purpose that is
+                                prohibited by these terms and conditions. In addition, you expressly agree not to:</p>
+                            <p>(1) use the Web Site for any purpose that is prohibited by any law or regulation, or to
+                                facilitate the violation of any law or regulation;</p>
+                            <p>(2) use or attempt to use any "deep-link," "scraper," "robot," "bot," "spider," "data
+                                mining," "computer code" or any other automated device, program, tool, algorithm,
+                                process or methodology or manual process having similar processes or functionality, to
+                                access, ac-quire, copy, or monitor any portion of the Web Site or any data or content
+                                found on or accessed through the Web Site without prior express written consent;</p>
+                            <p>(3) obtain or attempt to obtain through any means any materials or information on the
+                                Web Site that have not been intentionally made publicly available either by their
+                                public display on the Web Site or through their accessibility by a visible link on the
+                                Web Site;</p>
+                            <p>(4) in any way bypass or circumvent any other measure employed to limit or pre-vent
+                                access to the Web Site or its content;</p>
+                            <p>(5) violate the security of the Web Site or attempt to gain unauthorized access to the
+                                Web Site, data, materials, information, computer systems or networks connected to any
+                                server associated with this Web Site, through hacking, password mining or any other
+                                means;</p>
+                            <p>(6) interfere or attempt to interfere with the proper working of the Web Site or any
+                                activities conducted on or through the Web Site, including accessing any data, content
+                                or other information prior to the time that it is intended to be available to the
+                                public on the Web Site;</p>
+                            <p>(7) take or attempt any action that, in the sole discretion of this Web Site's
+                                operators, imposes or may impose an unreasonable or disproportionately large load or
+                                burden on the Web Site or such operation's infrastructure.</p>
+                        </div>
+
+                    </ng-template>
+                </div>
+
+            </div>
         </div>
-    </div>
-</section> 
-                <section class="section-small footer">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-6" style="margin-top:15px">
-                                        <p>Copyright &copy; 2018 <a style="color:white;"href=""> ValueQuo Solutions Pvt. Ltd.</a> | All rights reserved.</p>                        
-                                    </div> 
+    </section>
+    <section class="section-small footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6" style="margin-top:15px">
+                    <p>Copyright &copy; 2018 <a style="color:white;" href=""> ValueQuo Solutions Pvt. Ltd.</a> | All
+                        rights reserved.</p>
+                </div>
                 <div class="col-sm-6 col-sm-offset-1 text-right" style="margin-top:15px">
-                        <ul class="list-inline">
-                          <a style="color:white;" href="https://twitter.com/valuequo"target="_blank">
-                              <i class="fa fa-twitter fa-fw fa-lg"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;                
-              
-                          <a style="color:white;"href="https://www.facebook.com/valuequo"target="_blank">
-                              <i class="fa fa-facebook fa-fw fa-lg"></i></a>  &nbsp;&nbsp;&nbsp;&nbsp;
-              
-                          <a style="color:white;"href="https://plus.google.com/communities/105935515489375984153"target="_blank">
-                              <i class="fa fa-google-plus fa-fw fa-lg"></i></a>   &nbsp;&nbsp;&nbsp;&nbsp;
-              
-                          <!-- <a href="https://valuequosolutionspvtltd.business.site/?bw=true">
+                    <ul class="list-inline">
+                        <a style="color:white;" href="https://twitter.com/valuequo" target="_blank">
+                            <i class="fa fa-twitter fa-fw fa-lg"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <a style="color:white;" href="https://www.facebook.com/valuequo" target="_blank">
+                            <i class="fa fa-facebook fa-fw fa-lg"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <a style="color:white;" href="https://plus.google.com/communities/105935515489375984153" target="_blank">
+                            <i class="fa fa-google-plus fa-fw fa-lg"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <!-- <a href="https://valuequosolutionspvtltd.business.site/?bw=true">
                               <i class="fa fa-google fa-fw fa-lg"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;
                                -->
-              
-                          <a style="color:white;"href="https://www.linkedin.com/company/valuequo/"target="_blank">
-                              <i class="fa fa-linkedin fa-fw fa-lg"></i></a>       &nbsp;&nbsp;&nbsp;&nbsp;
-                           </ul>
-                      </div>
+
+                        <a style="color:white;" href="https://www.linkedin.com/company/valuequo/" target="_blank">
+                            <i class="fa fa-linkedin fa-fw fa-lg"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;
+                    </ul>
+                </div>
             </div>
         </div>
     </section>

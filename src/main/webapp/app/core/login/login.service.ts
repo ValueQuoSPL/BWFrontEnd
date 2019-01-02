@@ -19,8 +19,7 @@ export class LoginService {
         private principal: Principal,
         private authServerProvider: AuthServerProvider,
         private _cookieService: CookieService,
-        private sc: CommonSidebarService,
-        private userIdle: UserIdleService
+        private sc: CommonSidebarService
     ) {}
 
     login(credentials, callback?) {
@@ -33,7 +32,6 @@ export class LoginService {
                         this.account = account;
 
                         this.sc.account.next(this.account);
-                        this.startWatching();
 
                         this.id = this.account.id;
                         this.putCookie('1', this.account);
@@ -49,10 +47,6 @@ export class LoginService {
                 }
             );
         });
-    }
-
-    startWatching() {
-        this.userIdle.startWatching();
     }
 
     loginWithToken(jwt, rememberMe) {

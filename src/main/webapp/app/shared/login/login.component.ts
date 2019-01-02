@@ -11,6 +11,8 @@ import { AccountService, Principal } from 'app/core';
 import { PlanService } from 'app/pratik/common/plan.service';
 import { CookieService } from 'ngx-cookie';
 import { UserPlanService } from 'app/home/subscriber/userplan.service';
+import { NotifierService } from 'angular-notifier';
+import { NotificationService } from 'app/pratik/notification/notification.service';
 
 @Component({
     selector: 'jhi-login-modal',
@@ -47,7 +49,9 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
         private planService: PlanService,
         private principal: Principal,
         private _cookieService: CookieService,
-        private userPlanService: UserPlanService
+        private userPlanService: UserPlanService,
+        private notifier: NotifierService,
+        private notifyService: NotificationService
     ) {
         this.credentials = {};
     }
@@ -107,9 +111,12 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
                 } else {
                     this.router.navigate(['/dashboard']);
                 }
-            } else {
-                // alert('You have not subscribed for any plan. Please Subscribe before proceeding.');
             }
+
+            console.log(date);
+
+            // this.notifier.notify('success', 'login successfull');
+            // this.notifyService.showNotification('success', 'Your plan will expired in 15 days');
         });
     }
 

@@ -15,8 +15,8 @@ export class PaymentComponent implements OnInit {
     amount: any;
     disablePaymentButton1 = false;
     disablePaymentButton2 = true;
-    sUrl = 'https://www.buckswise.com:8111/api/success';
-    fUrl = 'https://www.buckswise.com:8111/api/fail';
+    sUrl = 'https://www.buckswise.com:8443/api/success';
+    fUrl = 'https://www.buckswise.com:8443/api/fail';
     public paymentDetail: any = [];
 
     @Input() offer;
@@ -34,7 +34,7 @@ export class PaymentComponent implements OnInit {
     ) {
         const plan = this.route.snapshot.params['plan'];
         this.location.onPopState(() => {
-            const url = 'http://localhost:9000/#/subscriber/' + plan;
+            const url = 'https://www.buckswise.com/#/subscriber/' + plan;
             history.pushState(null, null, url);
         });
     }

@@ -3,6 +3,7 @@ import { HttpClient, HttpParams, HttpEvent, HttpRequest } from '@angular/common/
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from 'app/app.constants';
 import { Utility, Credit, General, Health, House, Income, Life, Loan, Misc, Travel } from 'app/pratik/spending/spending.model';
+import { map, filter } from 'rxjs/operators';
 
 @Injectable()
 export class IncomeService {
@@ -206,7 +207,12 @@ export class HealthService {
 
 @Injectable()
 export class LifeService {
+    response: any;
     constructor(private http: HttpClient) {}
+
+    public getUrl() {
+        return this.http.get(SERVER_API_URL + 'api/google-drive/drive');
+    }
 
     public PostLife(data) {
         const url = SERVER_API_URL + 'api/life/postlife';
@@ -236,25 +242,25 @@ export class LifeService {
     //     return this.http.post(url, data, options);
     // }
 
-    uploadFile2(file): Observable<HttpEvent<any>> {
-        console.log(file);
-
-        const url = SERVER_API_URL + 'api/life/uploadFile';
-
+    uploadFile2(file, tid, uid, type, fileName): Observable<HttpEvent<any>> {
+        const url = SERVER_API_URL + 'api/google-drive/call/' + tid + '/' + uid + '/' + type + '/' + fileName;
         const formData = new FormData();
-        formData.append('upload', file);
-        console.log(formData);
-
+        formData.append('file', file);
         const params = new HttpParams();
 
         const options = {
             params,
             reportProgress: true
         };
-
         const req = new HttpRequest('POST', url, formData, options);
-        console.log(req);
-
         return this.http.request(req);
+    }
+
+    getFile(uid: any): Observable<any> {
+        return this.http.get(SERVER_API_URL + 'api/google-drive/drive/' + uid);
+    }
+
+    deleteFile(id) {
+        return this.http.delete(SERVER_API_URL + 'api/google-drive/drive/' + id);
     }
 }

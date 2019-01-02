@@ -10,6 +10,7 @@ import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { PlanService } from 'app/pratik/common/plan.service';
 import { SuccessService } from 'app/success/success.service';
 import { JhiLoginModalComponent } from 'app/shared';
+import { UserIdleService } from 'angular-user-idle';
 
 @Component({
     selector: 'jhi-main',
@@ -54,7 +55,8 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         private cd: ChangeDetectorRef,
         private sc: CommonSidebarService,
         private paymentCheck: SuccessService,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private userIdle: UserIdleService
     ) {
         this.epicFunction();
     }
@@ -89,6 +91,8 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
 
         this.account = this.ac;
         if (this.account) {
+            this.startWatching();
+
             this.loggedIn = true;
 
             this.sc.account.next(this.account);
@@ -128,6 +132,11 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                 this.loggedIn = false;
             }
         });
+    }
+
+    startWatching() {
+        console.log('idle watching start');
+        this.userIdle.startWatching();
     }
 
     checkSuccess(uid) {

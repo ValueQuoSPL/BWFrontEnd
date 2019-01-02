@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core';
 import { NgbDatepickerConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2Webstorage, LocalStorageService, SessionStorageService } from 'ngx-webstorage';
@@ -27,9 +27,18 @@ import { ErrorHandlerInterceptor } from 'app/blocks/interceptor/errorhandler.int
 import { NotificationInterceptor } from 'app/blocks/interceptor/notification.interceptor';
 import { FooterpageModule } from './footer-pages/footerpage/footerpage.module';
 // From Inbuilt Component
-import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ErrorComponent } from 'app/layouts';
+import {
+    JhiMainComponent,
+    NavbarComponent,
+    FooterComponent,
+    PageRibbonComponent,
+    ErrorComponent,
+    SessionTimeoutComponent,
+    IdleAlertComponent
+} from 'app/layouts';
 
 // From Downloaded Package
+import { NotifierModule, NotifierOptions } from 'angular-notifier';
 import { ChartsModule } from 'ng2-charts';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { DeviceDetectorModule } from 'ngx-device-detector';
@@ -102,8 +111,51 @@ import { cookieRoute } from './footer-pages/footerpage/cookie-policy/cookie-poli
 import { termRoute } from './footer-pages/footerpage/terms-condition/terms-condition.route';
 import { FailPaymentComponent } from './fail-payment/fail-payment.component';
 import { failRoute } from './fail-payment/fail-payment.route';
+import { NotificationComponent } from './pratik/notification/notification.component';
+import { DocumentComponent } from './document/document.component';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
+
+const customNotifierOptions: NotifierOptions = {
+    position: {
+        horizontal: {
+            position: 'right',
+            distance: 12
+        },
+        vertical: {
+            position: 'top',
+            distance: 12,
+            gap: 10
+        }
+    },
+    theme: 'material',
+    behaviour: {
+        autoHide: 3000,
+        onClick: 'hide',
+        onMouseover: 'pauseAutoHide',
+        showDismissButton: true,
+        stacking: 4
+    },
+    animations: {
+        enabled: true,
+        show: {
+            preset: 'slide',
+            speed: 300,
+            easing: 'ease'
+        },
+        hide: {
+            preset: 'fade',
+            speed: 300,
+            easing: 'ease',
+            offset: 50
+        },
+        shift: {
+            speed: 300,
+            easing: 'ease'
+        },
+        overlap: 150
+    }
+};
 
 @NgModule({
     imports: [
@@ -123,7 +175,7 @@ import { failRoute } from './fail-payment/fail-payment.route';
         * Default values: `idle` is 600 (10 minutes),
         * `timeout` is 300 (5 minutes)
         * and `ping` is 120 (2 minutes). */
-        UserIdleModule.forRoot({ idle: 600, timeout: 5, ping: 120 }),
+        UserIdleModule.forRoot({ idle: 300, timeout: 60, ping: 120 }),
         RouterModule.forChild(pratikState),
         RouterModule.forRoot([DashRoute], { useHash: true }),
         RouterModule.forRoot([advisorRoot], { useHash: true }),
@@ -141,6 +193,7 @@ import { failRoute } from './fail-payment/fail-payment.route';
         FontAwesomeModule,
         NgbDropdownModule.forRoot(),
         ChartsModule,
+        NotifierModule.withConfig(customNotifierOptions),
         NgCircleProgressModule.forRoot({
             radius: 60,
             space: -10,
@@ -178,6 +231,7 @@ import { failRoute } from './fail-payment/fail-payment.route';
         PageRibbonComponent,
         FooterComponent,
         ActiveMenuDirective,
+        DocumentComponent,
         // Production Component
         SidebarComponent,
         SuccessComponent,
@@ -194,7 +248,11 @@ import { failRoute } from './fail-payment/fail-payment.route';
         GeneralComponent,
         AdvisorFilterPipe,
         SubscriptionComponent,
-        FailPaymentComponent
+        FailPaymentComponent,
+        NotificationComponent,
+        IdleAlertComponent,
+        SessionTimeoutComponent
+
         // Production directive
     ],
     providers: [
@@ -217,6 +275,8 @@ import { failRoute } from './fail-payment/fail-payment.route';
         WINDOW_PROVIDERS,
         SidebarComponent,
         SpendingComponent,
+        JhiMainComponent,
+        // ChangeDetectorRef,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,
@@ -242,7 +302,7 @@ import { failRoute } from './fail-payment/fail-payment.route';
             deps: [Injector]
         }
     ],
-    entryComponents: [SpendingComponent],
+    entryComponents: [SpendingComponent, IdleAlertComponent, SessionTimeoutComponent, DocumentComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [JhiMainComponent]
 })
