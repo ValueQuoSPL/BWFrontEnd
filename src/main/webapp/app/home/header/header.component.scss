@@ -240,3 +240,12 @@ span a {
         font-size: 15px;
     }
 }
+
+@media only screen and (max-device-width: 480px) {
+    #container {
+        left: -36%;
+        top: 84%;
+    }
+}
+// @media (min-width: 1000px) {
+// }
