@@ -154,6 +154,9 @@
                         <td><button class="btn btn-outline-danger"  type="button" (click)="RemoveLoan(i, field.id)" >
                             <span> <fa-icon [icon]="'trash'"></fa-icon></span></button>
                         </td>
+                        <td>
+                            <button mat-raised-button (click)="openDialog(field.id, 'Loan')">Upload/View</button>
+                        </td> 
                     </tr>
                 </tbody>
                 <tfoot>

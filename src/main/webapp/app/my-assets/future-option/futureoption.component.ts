@@ -5,6 +5,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FutureOptionService } from 'app/my-assets/future-option/futureoption.service';
 import { CommonSidebarService } from '../../pratik/common/sidebar.service';
+import { DocumentComponent } from 'app/document/document.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
     selector: 'jhi-futureoption',
@@ -27,7 +29,8 @@ export class FutureOptionComponent implements OnInit {
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
         public futureOptionService: FutureOptionService,
-        public commonService: CommonSidebarService
+        public commonService: CommonSidebarService,
+        private dialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -135,5 +138,14 @@ export class FutureOptionComponent implements OnInit {
         this.fao.contract_m_value = null;
         this.fao.as_of_date = '';
         this.fao.notes = '';
+    }
+
+    openDialog(id, type): void {
+        console.log(type);
+        const dialogRef = this.dialog.open(DocumentComponent, {
+            data: { tid: id, Type: type }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {});
     }
 }

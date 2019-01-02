@@ -4,6 +4,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ChitFundService } from './chitfund.service';
 import { CommonSidebarService } from '../../pratik/common/sidebar.service';
+import { DocumentComponent } from 'app/document/document.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
     selector: 'jhi-chitfund',
@@ -26,7 +28,8 @@ export class ChitFundComponent implements OnInit {
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
         public chitfundService: ChitFundService,
-        public commonService: CommonSidebarService
+        public commonService: CommonSidebarService,
+        private dialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -131,5 +134,14 @@ export class ChitFundComponent implements OnInit {
         this.chitfund.current_value = null;
         this.chitfund.isCashed = '';
         this.chitfund.notes = '';
+    }
+
+    openDialog(id, type): void {
+        console.log(type);
+        const dialogRef = this.dialog.open(DocumentComponent, {
+            data: { tid: id, Type: type }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {});
     }
 }

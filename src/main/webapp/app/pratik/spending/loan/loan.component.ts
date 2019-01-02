@@ -7,6 +7,8 @@ import { LoanService } from 'app/pratik/spending/spending.service';
 import { MyprofileService } from 'app/family/myprofile/myprofile.service';
 import { FamilyprofileService } from 'app/family/familyprofile/familyprofile.service';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { DocumentComponent } from 'app/document/document.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
     selector: 'jhi-loan',
@@ -60,7 +62,8 @@ export class LoanComponent implements OnInit {
         private accountService: AccountService,
         private myProfileService: MyprofileService,
         private familyProfileService: FamilyprofileService,
-        private commonService: CommonSidebarService
+        private commonService: CommonSidebarService,
+        public dialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -290,5 +293,17 @@ export class LoanComponent implements OnInit {
     RemoveLoan(index, id) {
         this.loanService.DeleteLoan(id).subscribe(responce => {});
         this.dynamicLoanArray.splice(index, 1);
+    }
+
+    openDialog(id, type): void {
+        console.log(type);
+        const dialogRef = this.dialog.open(DocumentComponent, {
+            data: { tid: id, Type: type }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            // console.log('The dialog was closed');
+            //   this.animal = result;
+        });
     }
 }

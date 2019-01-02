@@ -4,6 +4,8 @@ import { FormControl } from '@angular/forms';
 import { Health, PrevHealth } from 'app/pratik/spending/spending.model';
 import { HealthService } from 'app/pratik/spending/spending.service';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { MatDialog } from '@angular/material';
+import { DocumentComponent } from 'app/document/document.component';
 
 @Component({
     selector: 'jhi-health',
@@ -42,7 +44,12 @@ export class HealthComponent implements OnInit {
     account: any;
     isFieldChanged: boolean;
     update: boolean;
-    constructor(private healthService: HealthService, private modalService: NgbModal, private commonService: CommonSidebarService) {}
+    constructor(
+        private healthService: HealthService,
+        private modalService: NgbModal,
+        private commonService: CommonSidebarService,
+        private dialog: MatDialog
+    ) {}
 
     ngOnInit() {
         this.getUserid();
@@ -294,5 +301,14 @@ export class HealthComponent implements OnInit {
                 this.isFieldChanged = false;
             }
         }
+    }
+
+    openDialog(id, type): void {
+        console.log(type);
+        const dialogRef = this.dialog.open(DocumentComponent, {
+            data: { tid: id, Type: type }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {});
     }
 }
