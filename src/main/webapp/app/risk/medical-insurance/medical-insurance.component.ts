@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Principal, AccountService } from 'app/core';
+import { Principal, AccountService, LoginService } from 'app/core';
 import { Router } from '@angular/router';
 import { RiskService } from 'app/risk/risk.service';
 import { MedicalInsurance } from 'app/risk/risk.model';
@@ -29,7 +29,8 @@ export class MedicalInsuranceComponent implements OnInit {
         private accountService: AccountService,
         private router: Router,
         private modalService: NgbModal,
-        private riskService: RiskService
+        private riskService: RiskService,
+        private loginService: LoginService
     ) {}
 
     ngOnInit() {
@@ -42,19 +43,11 @@ export class MedicalInsuranceComponent implements OnInit {
     }
 
     getUserid() {
-        // retrieve the userIdentity data from the server, update the identity object, and then resolve.
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    this.onGetMedical();
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.account = this.loginService.getCookie();
+        if (this.account) {
+            this.uid = this.account.id;
+            this.onGetMedical();
+        }
     }
 
     openMedical(lifeContent) {

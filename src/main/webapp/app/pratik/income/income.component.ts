@@ -6,6 +6,7 @@ import { CanComponentDeactivate } from 'app/pratik/common/can-deactivate-guard.s
 import { Observable, Subject } from 'rxjs';
 import { CommonSidebarService } from '../common/sidebar.service';
 import { debounceTime } from 'rxjs/operators';
+import { LoginService } from 'app/core';
 
 class NewIncome {
     dynamicIncome: any = [];
@@ -53,7 +54,12 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     private _success = new Subject<string>();
     maxlength = false;
 
-    constructor(private modalService: NgbModal, private incomeService: IncomeService, private commonService: CommonSidebarService) {}
+    constructor(
+        private modalService: NgbModal,
+        private incomeService: IncomeService,
+        private commonService: CommonSidebarService,
+        private loginService: LoginService
+    ) {}
 
     ngOnInit() {
         this.getUserid();
@@ -80,11 +86,11 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     }
 
     getUserid() {
-        this.commonService.account.subscribe(account => {
-            this.account = account;
+        this.account = this.loginService.getCookie();
+        if (this.account) {
             this.uid = this.account.id;
             this.onIncomeGet(this.uid);
-        });
+        }
     }
 
     onIncomeGet(uid) {

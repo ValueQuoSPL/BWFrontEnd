@@ -16,12 +16,6 @@ export class EightydService {
     ServiceAPIParam: string;
     constructor(private http: HttpClient, private account: AccountService) {}
 
-    // return this.account.get().toPromise().then((response) => {
-    //  const account = response.body;
-    // },
-    // public ServiceEightyd(eightyd) {
-
-    // id: any;
     save(eightyd: any): Observable<any> {
         return this.http.post(SERVER_API_URL + 'api/eightyds', eightyd);
     }

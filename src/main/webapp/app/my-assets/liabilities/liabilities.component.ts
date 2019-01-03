@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { LiabilitiesService } from 'app/my-assets/liabilities/liabilities.service';
-import { AccountService, Principal, LoginModalService } from 'app/core';
+import { AccountService, Principal, LoginModalService, LoginService } from 'app/core';
 import { FormControl } from '@angular/forms';
 import { Loan } from 'app/pratik/spending/spending.model';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -46,29 +46,19 @@ export class LiabilitiesComponent implements OnInit {
         private liabilitiesService: LiabilitiesService,
         private accountService: AccountService,
         private principal: Principal,
-        private loginModalService: LoginModalService
+        private loginModalService: LoginModalService,
+        private loginService: LoginService
     ) {}
 
     ngOnInit() {
         this.getUserid();
     }
     getUserid() {
-        console.log('calling account');
-
-        // retrieve the userIdentity data from the server, update the identity object, and then resolve.
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    // this.onIncomeGet(this.uid);
-                    this.getLoanandDebt(this.uid);
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.account = this.loginService.getCookie();
+        if (this.account) {
+            this.uid = this.account.id;
+            this.getLoanandDebt(this.uid);
+        }
     }
     getLoanandDebt(uid) {
         this.liabilitiesService.getloan(this.uid).subscribe(data => {

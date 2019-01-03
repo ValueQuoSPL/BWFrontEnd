@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Health, PrevHealth } from 'app/pratik/spending/spending.model';
 import { HealthService } from 'app/pratik/spending/spending.service';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { LoginService } from 'app/core';
 
 @Component({
     selector: 'jhi-health',
@@ -42,18 +43,23 @@ export class HealthComponent implements OnInit {
     account: any;
     isFieldChanged: boolean;
     update: boolean;
-    constructor(private healthService: HealthService, private modalService: NgbModal, private commonService: CommonSidebarService) {}
+    constructor(
+        private healthService: HealthService,
+        private modalService: NgbModal,
+        private commonService: CommonSidebarService,
+        private loginService: LoginService
+    ) {}
 
     ngOnInit() {
         this.getUserid();
     }
 
     getUserid() {
-        this.commonService.account.subscribe(account => {
-            this.account = account;
+        this.account = this.loginService.getCookie();
+        if (this.account) {
             this.uid = this.account.id;
             this.onGetHealth();
-        });
+        }
     }
 
     clear() {

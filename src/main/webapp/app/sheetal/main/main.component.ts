@@ -12,7 +12,7 @@ import { EightydService } from 'app/sheetal/main/Services/eightyd.service';
 import { Other } from 'app/sheetal/main/Services/other.model';
 import { OtherService } from 'app/sheetal/main/Services/other.service';
 // import { error } from 'util';
-import { AccountService } from 'app/core';
+import { AccountService, LoginService } from 'app/core';
 import { NgbModalRef, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -57,7 +57,8 @@ export class MainComponent implements OnInit {
         private homeService: HomeService,
         private eightydService: EightydService,
         private otherService: OtherService,
-        private account: AccountService
+        private account: AccountService,
+        private loginService: LoginService
     ) {}
     // conso
     ngOnInit() {
@@ -114,23 +115,14 @@ export class MainComponent implements OnInit {
         this.other.donation = 0;
     }
 
-    FetchID(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.uid = this.user.id;
-                // this.onGrossGet(this.id);
-                // this.onEightycGet(this.id);
-                // this.onHomeGet(this.id);
-                // this.onEightydGet(this.id);
-                // this.onOtherGet(this.id);
-                this.eightyd.uid = this.uid;
-                this.onEightydGet();
-            });
+    FetchID() {
+        this.account2 = this.loginService.getCookie();
+        if (this.account2) {
+            this.uid = this.account2.id;
+            this.eightyd.uid = this.uid;
+            this.onEightydGet();
+        }
     }
-
     // gross call function
     onGrossSave() {}
     // eightyc call function

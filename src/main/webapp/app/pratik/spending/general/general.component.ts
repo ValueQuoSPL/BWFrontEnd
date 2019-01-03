@@ -4,6 +4,7 @@ import { GeneralService } from 'app/pratik/spending/spending.service';
 import { General, PrevGeneral } from 'app/pratik/spending/spending.model';
 import { FormControl } from '@angular/forms';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { LoginService } from 'app/core';
 
 @Component({
     selector: 'jhi-general',
@@ -44,18 +45,23 @@ export class GeneralComponent implements OnInit {
     isFieldChanged: boolean;
     update: boolean;
 
-    constructor(private generalService: GeneralService, private modalService: NgbModal, private commonService: CommonSidebarService) {}
+    constructor(
+        private generalService: GeneralService,
+        private modalService: NgbModal,
+        private commonService: CommonSidebarService,
+        private loginService: LoginService
+    ) {}
 
     ngOnInit() {
         this.getUserid();
     }
 
     getUserid() {
-        this.commonService.account.subscribe(account => {
-            this.account = account;
+        this.account = this.loginService.getCookie();
+        if (this.account) {
             this.uid = this.account.id;
             this.onGetGeneral();
-        });
+        }
     }
 
     clear() {
