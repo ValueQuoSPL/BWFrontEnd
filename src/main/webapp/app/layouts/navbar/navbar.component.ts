@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, Injectable, ChangeDetectorRef, Input } from '@angular/core';
+import { Component, OnInit, DoCheck, Injectable, ChangeDetectorRef, Input, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModalRef, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HostListener } from '@angular/core';
@@ -22,7 +22,7 @@ import { NotificationService } from 'app/pratik/notification/notification.servic
     styleUrls: ['navbar.scss']
 })
 @Injectable()
-export class NavbarComponent implements OnInit, DoCheck {
+export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
     inProduction: boolean;
     isNavbarCollapsed: boolean;
     languages: any[];
@@ -143,6 +143,32 @@ export class NavbarComponent implements OnInit, DoCheck {
         });
     }
 
+    ngDoCheck() {
+        setTimeout(() => {
+            this.param = this.router.url;
+            if (this.param === '/contact') {
+                this.router.navigate(['/contact']);
+            }
+            if (this.param === '/') {
+                this.isHomePage = true;
+                this.solid = 'solid';
+                this.transparent = 'transparent';
+                if (this.isMobile) {
+                    this.transparent = 'solid';
+                }
+            } else {
+                this.isHomePage = false;
+                this.solid = 'solid';
+                this.transparent = 'solid';
+            }
+        });
+
+        this.cd.detectChanges();
+    }
+
+    ngOnDestroy() {
+        console.log('navbar destroyed');
+    }
     // idle start
     stop() {
         this.userIdle.stopTimer();
@@ -211,6 +237,8 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.isPaid = false;
         this.isAdmin = false;
         this.loggedIn = false;
+        this.notifyArray.length = 0;
+        this.notify_count = 0;
 
         this.loginService.logout();
         this.commonService.logout.next(1);
@@ -252,29 +280,6 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.router.navigate(['/contact']);
     }
 
-    ngDoCheck() {
-        setTimeout(() => {
-            this.param = this.router.url;
-            if (this.param === '/contact') {
-                this.router.navigate(['/contact']);
-            }
-            if (this.param === '/') {
-                this.isHomePage = true;
-                this.solid = 'solid';
-                this.transparent = 'transparent';
-                if (this.isMobile) {
-                    this.transparent = 'solid';
-                }
-            } else {
-                this.isHomePage = false;
-                this.solid = 'solid';
-                this.transparent = 'solid';
-            }
-        });
-
-        this.cd.detectChanges();
-    }
-
     collapseNavbar() {
         this.isNavbarCollapsed = true;
     }
@@ -289,6 +294,8 @@ export class NavbarComponent implements OnInit, DoCheck {
         this.isPaid = false;
         this.isAdmin = false;
         this.loggedIn = false;
+        this.notifyArray.length = 0;
+        this.notify_count = 0;
         this.collapseNavbar();
         this.stopWatching();
 

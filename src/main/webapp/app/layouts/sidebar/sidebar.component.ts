@@ -145,7 +145,10 @@ export class SidebarComponent implements OnInit, AfterViewInit {
         this.epicFunction();
         this.planService.isPaid.subscribe(flag => {
             if (flag) {
-                document.getElementById('main-menu').classList.toggle('expanded');
+                const x = document.getElementById('main-menu');
+                if (x) {
+                    x.classList.toggle('expanded');
+                }
             }
         });
     }
