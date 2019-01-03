@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { AccountService } from 'app/core';
+import { AccountService, LoginService } from 'app/core';
 import { Observable } from 'rxjs';
 import { Utility } from 'app/pratik/spending/spending.model';
 import { UtilityService } from 'app/pratik/spending/spending.service';
@@ -39,6 +39,7 @@ export class UtilityComponent implements OnInit {
     prevValue: any;
     globalflag: boolean;
     isFieldChange = false;
+    account: any;
 
     constructor(
         private utilityService: UtilityService,
@@ -46,7 +47,8 @@ export class UtilityComponent implements OnInit {
         private accountService: AccountService,
         private routeGuard: SpendingRouteGuardService,
         private notifier: NotifierService,
-        private notifyService: NotificationService
+        private notifyService: NotificationService,
+        private loginService: LoginService
     ) {}
 
     ngOnInit() {
@@ -75,18 +77,11 @@ export class UtilityComponent implements OnInit {
     }
 
     getUserid() {
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    this.GetUtility();
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.account = this.loginService.getCookie();
+        if (this.account) {
+            this.uid = this.account.id;
+            this.GetUtility();
+        }
     }
 
     clear() {

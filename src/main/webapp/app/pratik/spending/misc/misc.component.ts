@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { AccountService, Principal } from 'app/core';
+import { AccountService, Principal, LoginService } from 'app/core';
 import { Misc } from 'app/pratik/spending/spending.model';
 import { MiscService } from 'app/pratik/spending/spending.service';
 import { SpendingRouteGuardService } from 'app/pratik/common/spending-route-guard.service';
@@ -34,13 +34,15 @@ export class MiscComponent implements OnInit {
     prevValue: any;
     globalflag: boolean;
     isFieldChange: boolean;
+    account: any;
 
     constructor(
         private miscService: MiscService,
         private principal: Principal,
         private modalService: NgbModal,
         private accountService: AccountService,
-        private routeGuard: SpendingRouteGuardService
+        private routeGuard: SpendingRouteGuardService,
+        private loginService: LoginService
     ) {}
 
     ngOnInit() {
@@ -71,19 +73,13 @@ export class MiscComponent implements OnInit {
         return this.principal.isAuthenticated();
     }
     getUserid() {
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    this.GetMisc();
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.account = this.loginService.getCookie();
+        if (this.account) {
+            this.uid = this.account.id;
+            this.GetMisc();
+        }
     }
+
     clear() {
         this.resource = '';
         this.amount = '';

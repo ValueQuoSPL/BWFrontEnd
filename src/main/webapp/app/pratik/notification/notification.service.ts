@@ -29,13 +29,11 @@ export class NotificationService {
         // this.obj.type = type;
         // this.obj.message = message;
         this.showNotifier.next(message);
-        this.notifier.notify(type, message);
+        // this.notifier.notify(type, message);
     }
 
     getNotification(uid: number): any {
         const url = `${SERVER_API_URL}api/notifications/get/${uid}`;
-        console.log(url);
-
-        // return this.http.get(url);
+        return this.http.get(url);
     }
 }

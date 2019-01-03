@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { AccountService, Principal } from 'app/core';
+import { AccountService, Principal, LoginService } from 'app/core';
 import { FormControl } from '@angular/forms';
 import { Loan } from 'app/pratik/spending/spending.model';
 import { LoanService } from 'app/pratik/spending/spending.service';
@@ -63,6 +63,7 @@ export class LoanComponent implements OnInit {
         private myProfileService: MyprofileService,
         private familyProfileService: FamilyprofileService,
         private commonService: CommonSidebarService,
+        private loginService: LoginService,
         public dialog: MatDialog
     ) {}
 
@@ -115,11 +116,11 @@ export class LoanComponent implements OnInit {
     }
 
     getUserid() {
-        this.commonService.account.subscribe(account => {
-            this.account = account;
+        this.account = this.loginService.getCookie();
+        if (this.account) {
             this.uid = this.account.id;
             this.getdata();
-        });
+        }
     }
 
     getdata() {

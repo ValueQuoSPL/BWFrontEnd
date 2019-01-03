@@ -19,7 +19,7 @@ export class NotificationComponent implements OnInit {
     account: any;
     authority: any;
     uid: any;
-    isAdmin: boolean;
+    isAdmin = false;
     // emit value in sequence every 1 second
     // source = interval(1000);
     timer: number;
@@ -38,8 +38,6 @@ export class NotificationComponent implements OnInit {
         // });
 
         this.notifyService.showNotifier.subscribe(data => {});
-
-        // this.getUserID();
         this.registerAuthenticationSuccess();
     }
 
@@ -54,10 +52,8 @@ export class NotificationComponent implements OnInit {
         this.notifyService.onClearNotify();
     }
 
-    getUserID() {}
-
     registerAuthenticationSuccess() {
-        this.eventManager.subscribe('authenticationSuccess', message => {
+        this.eventManager.subscribe('authenticationSuccess', (message: any) => {
             this.account = this.loginService.getCookie();
 
             if (this.account) {
@@ -79,7 +75,10 @@ export class NotificationComponent implements OnInit {
     }
 
     checkNotification() {
-        // this.notifyService.getNotification(this.uid).subscribe(data => {
-        // });
+        this.notifyService.getNotification(this.uid).subscribe((data: any) => {
+            data.forEach((element: any) => {
+                this.notifyService.showNotification('warning', element);
+            });
+        });
     }
 }

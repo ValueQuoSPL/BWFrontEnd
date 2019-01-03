@@ -113,7 +113,7 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
                 }
             }
 
-            console.log(date);
+            // console.log(date);
 
             // this.notifier.notify('success', 'login successfull');
             // this.notifyService.showNotification('success', 'Your plan will expired in 15 days');

@@ -152,16 +152,6 @@ export class MyAssetsComponent {
     //     }
     // }
 
-    // FetchId(): Promise<any> {
-    //     return this.account
-    //         .get()
-    //         .toPromise()
-    //         .then(response => {
-    //             this.user = response.body;
-    //             this.uid = this.user.id;
-    //             // this.stock();
-    //         });
-    // }
     // stock() {
     //     this.stockService.getStockById(this.uid).subscribe(res => {
     //         this.stockResponse = res;

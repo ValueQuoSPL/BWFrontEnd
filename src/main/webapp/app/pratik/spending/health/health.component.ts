@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Health, PrevHealth } from 'app/pratik/spending/spending.model';
 import { HealthService } from 'app/pratik/spending/spending.service';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { LoginService } from 'app/core';
 import { MatDialog } from '@angular/material';
 import { DocumentComponent } from 'app/document/document.component';
 
@@ -48,6 +49,7 @@ export class HealthComponent implements OnInit {
         private healthService: HealthService,
         private modalService: NgbModal,
         private commonService: CommonSidebarService,
+        private loginService: LoginService,
         private dialog: MatDialog
     ) {}
 
@@ -56,11 +58,11 @@ export class HealthComponent implements OnInit {
     }
 
     getUserid() {
-        this.commonService.account.subscribe(account => {
-            this.account = account;
+        this.account = this.loginService.getCookie();
+        if (this.account) {
             this.uid = this.account.id;
             this.onGetHealth();
-        });
+        }
     }
 
     clear() {

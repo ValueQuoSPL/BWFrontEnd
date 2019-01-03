@@ -4,8 +4,9 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CashService } from 'app/my-assets/cash/cash.service';
 import { CommonSidebarService } from '../../pratik/common/sidebar.service';
-import { DocumentComponent } from 'app/document/document.component';
+import { LoginService } from 'app/core';
 import { MatDialog } from '@angular/material';
+import { DocumentComponent } from 'app/document/document.component';
 
 @Component({
     selector: 'jhi-cash',
@@ -32,23 +33,14 @@ export class CashComponent implements OnInit {
         public activeModal: NgbActiveModal,
         public cashservice: CashService,
         public commonService: CommonSidebarService,
+        private loginService: LoginService,
         private dialog: MatDialog
     ) {}
 
     ngOnInit() {
         this.FetchId();
     }
-    // FetchId(): Promise<any> {
-    //     return this.account
-    //         .get()
-    //         .toPromise()
-    //         .then(response => {
-    //             this.user = response.body;
-    //             this.cash.userid = this.user.id;
-    //             this.uid = this.user.id;
-    //             this.getCashDetailsByuid(this.uid);
-    //         });
-    // }
+
     FetchId() {
         this.commonService.account.subscribe(account => {
             this.account = account;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { AccountService, Principal } from 'app/core';
+import { AccountService, Principal, LoginService } from 'app/core';
 import { House } from 'app/pratik/spending/spending.model';
 import { HouseService } from 'app/pratik/spending/spending.service';
 import { Observable } from 'rxjs/Observable';
@@ -46,7 +46,8 @@ export class HouseholdComponent implements OnInit {
         private modalService: NgbModal,
         private accountService: AccountService,
         private routeGuard: SpendingRouteGuardService,
-        private commonService: CommonSidebarService
+        private commonService: CommonSidebarService,
+        private loginService: LoginService
     ) {}
 
     ngOnInit() {
@@ -86,11 +87,11 @@ export class HouseholdComponent implements OnInit {
     }
 
     getUserid() {
-        this.commonService.account.subscribe(account => {
-            this.account = account;
+        this.account = this.loginService.getCookie();
+        if (this.account) {
             this.uid = this.account.id;
             this.GetHousehold();
-        });
+        }
     }
 
     GetHousehold(): void {

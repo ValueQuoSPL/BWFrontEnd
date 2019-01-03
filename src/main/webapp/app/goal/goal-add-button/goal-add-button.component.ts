@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AccountService } from 'app/core';
+import { AccountService, LoginService } from 'app/core';
 
 @Component({
     selector: 'jhi-goal-add-button',
@@ -23,6 +23,7 @@ export class GoalAddButtonComponent implements OnInit {
     user: any;
     uid: any;
     dialogRef;
+    account2: any;
     onNoClick() {
         this.dialogRef.close();
     }
@@ -39,7 +40,8 @@ export class GoalAddButtonComponent implements OnInit {
         public cashService: CashService,
         public chitFundService: ChitFundService,
         public propertyService: PropertyService,
-        public futureOptionService: FutureOptionService
+        public futureOptionService: FutureOptionService,
+        private loginService: LoginService
     ) {}
 
     ngOnInit() {
@@ -112,14 +114,10 @@ export class GoalAddButtonComponent implements OnInit {
         });
         // this.getSavingSchemeUid(this.uid);
     }
-    FetchId(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.uid = this.user.id;
-                // this.getMyProfilebyid(this.uid);
-            });
+    FetchId() {
+        this.account2 = this.loginService.getCookie();
+        if (this.account2) {
+            this.uid = this.account2.id;
+        }
     }
 }

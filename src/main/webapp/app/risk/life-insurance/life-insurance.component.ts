@@ -5,7 +5,7 @@ import { RiskService } from 'app/risk/risk.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CreditService, LoanService } from 'app/pratik/spending/spending.service';
 import { GoalselectService } from 'app/goal/goal-select/goalselect.service';
-import { Principal, AccountService } from 'app/core';
+import { Principal, AccountService, LoginService } from 'app/core';
 import { MyprofileService } from 'app/family/myprofile/myprofile.service';
 import { IncomeService } from 'app/pratik/spending/spending.service';
 
@@ -16,7 +16,7 @@ import { IncomeService } from 'app/pratik/spending/spending.service';
 })
 export class LifeInsuranceComponent implements OnInit {
     account: Account;
-    uid;
+    uid: any;
     lifeInsurance: LifeInsurance = new LifeInsurance();
     lifeArray = [];
     deleteFieldValue: any;
@@ -68,7 +68,8 @@ export class LifeInsuranceComponent implements OnInit {
         private loanService: LoanService,
         private goalService: GoalselectService,
         private MyProfileSer: MyprofileService,
-        private incomeService: IncomeService
+        private incomeService: IncomeService,
+        private loginService: LoginService
     ) {}
 
     ngOnInit() {
@@ -101,22 +102,15 @@ export class LifeInsuranceComponent implements OnInit {
     }
 
     getUserid() {
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    this.getGoal();
-                    this.getCredit();
-                    this.getLoan();
-                    this.onGetLife();
-                    this.onIncomeGet();
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.account = this.loginService.getCookie();
+        if (this.account) {
+            this.uid = this.account.id;
+            this.getGoal();
+            this.getCredit();
+            this.getLoan();
+            this.onGetLife();
+            this.onIncomeGet();
+        }
     }
 
     getGoal() {
