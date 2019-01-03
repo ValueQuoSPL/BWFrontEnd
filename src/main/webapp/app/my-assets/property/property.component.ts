@@ -4,6 +4,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { PropertyService } from 'app/my-assets/property/property.service';
 import { CommonSidebarService } from '../../pratik/common/sidebar.service';
+import { MatDialog } from '@angular/material';
+import { DocumentComponent } from 'app/document/document.component';
 
 @Component({
     selector: 'jhi-property',
@@ -28,7 +30,8 @@ export class PropertyComponent implements OnInit {
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
         public propertyservice: PropertyService,
-        public commonService: CommonSidebarService
+        public commonService: CommonSidebarService,
+        private dialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -127,5 +130,14 @@ export class PropertyComponent implements OnInit {
         this.property.current_m_value = null;
         this.property.as_of_date = '';
         this.property.notes = '';
+    }
+
+    openDialog(id, type): void {
+        console.log(type);
+        const dialogRef = this.dialog.open(DocumentComponent, {
+            data: { tid: id, Type: type }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {});
     }
 }

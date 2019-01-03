@@ -4,6 +4,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { MutualFund } from 'app/my-assets/mutual/mutual.modal';
 import { MutualfundService } from 'app/my-assets/mutual/mutual.service';
 import { CommonSidebarService } from '../../pratik/common/sidebar.service';
+import { DocumentComponent } from 'app/document/document.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
     selector: 'jhi-mutualfund',
@@ -26,7 +28,8 @@ export class MutualComponent implements OnInit {
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
         public mutualFundService: MutualfundService,
-        public commonService: CommonSidebarService
+        public commonService: CommonSidebarService,
+        private dialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -150,5 +153,14 @@ export class MutualComponent implements OnInit {
         this.mutualfund.gainloss = null;
         this.mutualfund.absolutereturn = null;
         this.mutualfund.cagr = null;
+    }
+
+    openDialog(id, type): void {
+        console.log(type);
+        const dialogRef = this.dialog.open(DocumentComponent, {
+            data: { tid: id, Type: type }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {});
     }
 }

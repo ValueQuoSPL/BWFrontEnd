@@ -5,6 +5,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { CashService } from 'app/my-assets/cash/cash.service';
 import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 import { LoginService } from 'app/core';
+import { MatDialog } from '@angular/material';
+import { DocumentComponent } from 'app/document/document.component';
 
 @Component({
     selector: 'jhi-cash',
@@ -31,7 +33,8 @@ export class CashComponent implements OnInit {
         public activeModal: NgbActiveModal,
         public cashservice: CashService,
         public commonService: CommonSidebarService,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private dialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -164,5 +167,14 @@ export class CashComponent implements OnInit {
         this.cash.accoounttype = '';
         this.cash.accountname = '';
         this.cash.handloanname = '';
+    }
+
+    openDialog(id, type): void {
+        console.log(type);
+        const dialogRef = this.dialog.open(DocumentComponent, {
+            data: { tid: id, Type: type }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {});
     }
 }

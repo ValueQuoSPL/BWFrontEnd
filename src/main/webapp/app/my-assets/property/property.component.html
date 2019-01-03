@@ -308,6 +308,9 @@
                     <span> <fa-icon [icon]="'trash'"></fa-icon></span>
                 </button>
             </td>
+            <td>
+                <button mat-raised-button (click)="openDialog(prop.id, 'Property')">Upload/View</button>
+            </td>
         </tr> 
     </tbody>
 </table>

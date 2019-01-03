@@ -5,6 +5,8 @@ import { SavingScheme } from 'app/my-assets/saving-scheme/savingscheme.modal';
 import { SavingSchemeService } from 'app/my-assets/saving-scheme/savingscheme.service';
 import { CommonSidebarService } from '../../pratik/common/sidebar.service';
 import { DatePipe } from '@angular/common';
+import { DocumentComponent } from 'app/document/document.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
     selector: 'jhi-savingscheme',
@@ -61,7 +63,8 @@ export class SavingSchemeComponent implements OnInit {
         public activeModal: NgbActiveModal,
         public savingSchemeService: SavingSchemeService,
         public commonService: CommonSidebarService,
-        private datePipe: DatePipe
+        private datePipe: DatePipe,
+        private dialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -182,5 +185,14 @@ export class SavingSchemeComponent implements OnInit {
         this.savingScheme.as_of_date = '';
         this.savingScheme.userId = null;
         this.savingScheme.id = null;
+    }
+
+    openDialog(id, type): void {
+        console.log(type);
+        const dialogRef = this.dialog.open(DocumentComponent, {
+            data: { tid: id, Type: type }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {});
     }
 }

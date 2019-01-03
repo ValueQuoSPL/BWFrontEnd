@@ -3,6 +3,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AccountService, Principal, LoginService } from 'app/core';
 import { Credit } from 'app/pratik/spending/spending.model';
 import { CreditService } from 'app/pratik/spending/spending.service';
+import { DocumentComponent } from 'app/document/document.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
     selector: 'jhi-credit',
@@ -36,7 +38,8 @@ export class CreditComponent implements OnInit {
         private principal: Principal,
         private modalService: NgbModal,
         private accountService: AccountService,
-        private loginService: LoginService
+        private loginService: LoginService,
+        public dialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -187,5 +190,17 @@ export class CreditComponent implements OnInit {
     RemoveCredit(index, id) {
         this.creditService.DeleteCredit(id).subscribe(responce => {});
         this.dynamicCredit.splice(index, 1);
+    }
+
+    openDialog(id, type): void {
+        console.log(type);
+        const dialogRef = this.dialog.open(DocumentComponent, {
+            data: { tid: id, Type: type }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            // console.log('The dialog was closed');
+            //   this.animal = result;
+        });
     }
 }

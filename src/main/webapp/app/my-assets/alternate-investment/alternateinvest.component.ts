@@ -4,6 +4,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlternateService } from 'app/my-assets/alternate-investment/alternateinvest.service';
 import { CommonSidebarService } from '../../pratik/common/sidebar.service';
+import { DocumentComponent } from 'app/document/document.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
     selector: 'jhi-alternative',
@@ -27,7 +29,8 @@ export class AlternativeComponent implements OnInit {
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
         public alternateservice: AlternateService,
-        public commonService: CommonSidebarService
+        public commonService: CommonSidebarService,
+        private dialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -130,5 +133,14 @@ export class AlternativeComponent implements OnInit {
         this.altInvest.notes = '';
         this.altInvest.investor_name = '';
         this.altInvest.investment_type = '';
+    }
+
+    openDialog(id, type): void {
+        console.log(type);
+        const dialogRef = this.dialog.open(DocumentComponent, {
+            data: { tid: id, Type: type }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {});
     }
 }

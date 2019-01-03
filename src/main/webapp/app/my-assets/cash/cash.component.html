@@ -511,6 +511,9 @@
                     <span> <fa-icon [icon]="'trash'"></fa-icon></i></span>
                 </button>
             </td>
+            <td>
+                <button mat-raised-button (click)="openDialog(cash.id, 'Cash')">Upload/View</button>
+            </td>
         </tr>
     </tbody>
 </table>

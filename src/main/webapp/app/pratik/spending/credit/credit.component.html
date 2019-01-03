@@ -38,6 +38,9 @@
               <td><button class="btn  btn-outline-danger"  type="button" (click)="RemoveCredit(i, field.id)" >
                   <span> <fa-icon [icon]="'trash'"></fa-icon></span></button>
               </td>
+              <td>
+                <button mat-raised-button (click)="openDialog(field.id, 'Credit')">Upload/View</button>
+            </td>
           </tr>
       </tbody>
   </table>

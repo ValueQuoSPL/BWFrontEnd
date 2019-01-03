@@ -5,6 +5,8 @@ import { General, PrevGeneral } from 'app/pratik/spending/spending.model';
 import { FormControl } from '@angular/forms';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { LoginService } from 'app/core';
+import { MatDialog } from '@angular/material';
+import { DocumentComponent } from 'app/document/document.component';
 
 @Component({
     selector: 'jhi-general',
@@ -49,7 +51,8 @@ export class GeneralComponent implements OnInit {
         private generalService: GeneralService,
         private modalService: NgbModal,
         private commonService: CommonSidebarService,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private dialog: MatDialog
     ) {}
 
     ngOnInit() {
@@ -312,5 +315,14 @@ export class GeneralComponent implements OnInit {
                 this.isFieldChanged = false;
             }
         }
+    }
+
+    openDialog(id, type): void {
+        console.log(type);
+        const dialogRef = this.dialog.open(DocumentComponent, {
+            data: { tid: id, Type: type }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {});
     }
 }
