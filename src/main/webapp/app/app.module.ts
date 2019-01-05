@@ -113,6 +113,7 @@ import { FailPaymentComponent } from './fail-payment/fail-payment.component';
 import { failRoute } from './fail-payment/fail-payment.route';
 import { NotificationComponent } from './pratik/notification/notification.component';
 import { DocumentComponent } from './document/document.component';
+import { MutualFundManageComponent } from './pratik/mutual-fund-manage/mutual-fund-manage.component';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -251,7 +252,8 @@ const customNotifierOptions: NotifierOptions = {
         FailPaymentComponent,
         NotificationComponent,
         IdleAlertComponent,
-        SessionTimeoutComponent
+        SessionTimeoutComponent,
+        MutualFundManageComponent
 
         // Production directive
     ],

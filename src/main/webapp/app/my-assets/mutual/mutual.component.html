@@ -22,27 +22,26 @@
         <div class=" rowjustify-content-center">
             <form name="editForm" role="form" novalidate  #editForm="ngForm">
                 <!-- <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width" 
+                    <input
+                        matInput
+                        class="full-width"
                         required
-                        type="number" 
-                        jhiNumberOnly 
-                        placeholder="mutualfundId" 
-                        [(ngModel)]="mutualfund.mutualfundid" 
+                        type="number"
+                        jhiNumberOnly
+                        placeholder="mutualfundId"
+                        [(ngModel)]="mutualfund.mutualfundid"
                         name="mutualfundid"
                     >
                 </mat-form-field>&nbsp;&nbsp; -->
                 <mat-form-field>
-                    <input 
-                        matInput 
-                        class="full-width" 
-                        requiredtype="text" 
+                    <input
+                        matInput
+                        class="full-width"
+                        requiredtype="text"
                         jhiCharsOnly
-                        placeholder="MFScheme" 
-                        [(ngModel)]="mutualfund.mfscheme" 
-                        name="mfscheme"
-                    >
+                        placeholder="MFScheme"
+                        [(ngModel)]="mutualfund.mfscheme"
+                        name="mfscheme">
                 </mat-form-field>&nbsp;&nbsp;
                 <mat-form-field>
                     <input
@@ -50,105 +49,47 @@
                         class="full-width"
                         required type="number"
                         jhiNumberOnly
-                        placeholder="Folio Number" 
-                        [(ngModel)]="mutualfund.folionumber" 
-                        name="folionumber"  
-                    >
+                        placeholder="Folio Number"
+                        [(ngModel)]="mutualfund.folionumber"
+                        name="folionumber">
                 </mat-form-field>&nbsp;&nbsp;
                 <mat-form-field>
-                    <input 
-                        matInput 
-                        style="width: 100%;" 
-                        type="number" 
-                        jhiNumberOnly 
-                        placeholder="Holding Days" 
-                        name="holdingdays" 
-                        id="holdingdays" 
-                        [(ngModel)]="mutualfund.holdingdays" 
-                        required
-                     />
+                    <input
+                        matInput
+                        style="width: 100%;"
+                        type="number"
+                        jhiNumberOnly
+                        placeholder="Holding Days"
+                        name="holdingdays"
+                        id="holdingdays"
+                        [(ngModel)]="mutualfund.holdingdays"
+                        required>
                 </mat-form-field>&nbsp;&nbsp;
                 <mat-form-field>
-                    <input 
-                        matInput 
-                        style="width: 100%;" 
-                        type="number" 
-                        jhiNumberOnly 
-                        placeholder="Purches Price" 
-                        name="purchesprice" 
-                        id="purchesprice" 
+                    <input
+                        matInput
+                        style="width: 100%;"
+                        type="number"
+                        jhiNumberOnly
+                        placeholder="Purches Price"
+                        name="purchesprice"
+                        id="purchesprice"
                         [(ngModel)]="mutualfund.purchesprice"
-                        required
-                    />
+                        required>
                 </mat-form-field>&nbsp;&nbsp;
                 <mat-form-field>
-                    <input 
-                        matInput 
-                        style="width: 100%;" 
-                        type="number" 
-                        jhiNumberOnly 
-                        placeholder="current value" 
-                        name="currentvalue" 
-                        id="currentvalue" 
-                        [(ngModel)]="mutualfund.currentvalue" 
+                    <input
+                        matInput
+                        style="width: 100%;"
+                        type="number"
+                        jhiNumberOnly
+                        placeholder="current value"
+                        name="currentvalue"
+                        id="currentvalue"
+                        [(ngModel)]="mutualfund.currentvalue"
                     />
                 </mat-form-field>&nbsp;&nbsp;
-                <!-- <mat-form-field>
-                    <input 
-                        matInput 
-                        style="width: 100%;" 
-                        type="number" 
-                        jhiNumberOnly 
-                        placeholder="Gain/Loss" 
-                        name="gainloss" 
-                        id="gainloss" 
-                        [(ngModel)]="mutualfund.gainloss"
-                    />
-                </mat-form-field>&nbsp;&nbsp; -->
-                <!-- <mat-form-field>
-                    <input 
-                        matInput 
-                        style="width: 100%;" 
-                        type="number" 
-                        jhiNumberOnly 
-                        placeholder="Absolute Return(%)" 
-                        name="absolutereturn" 
-                        id="absolutereturn" 
-                        [(ngModel)]="mutualfund.absolutereturn"
-                    />
-                </mat-form-field>&nbsp;&nbsp; -->
-                <!-- <mat-form-field>
-                    <input 
-                        matInput 
-                        style="width: 100%;" 
-                        type="number" 
-                        jhiNumberOnly 
-                        placeholder="CAGR(%)" 
-                        name="cagr" 
-                        id="cagr"
-                        [(ngModel)]="mutualfund.cagr"
-                    />
-                </mat-form-field> -->
-                <!-- <div class="modal-footer">
-                    <button 
-                    type="submit" 
-                    [disabled]="editForm.form.invalid || isSaving" 
-                    class="btn btn-primary" data-dismiss="modal"
-                    (click)="c('Save click')" 
-                    (click)="update()">
-                        <span class="fa fa-save"></span>&nbsp;
-                        <span>Save</span>
-                    </button>
-                    <button 
-                        type="submit" 
-                        class="btn btn-secondary" 
-                        data-dismiss="modal" 
-                        (click)="d('Cross click')">
-                            <span class="fa fa-ban"></span>&nbsp;
-                            <span>Cancel</span>
-                    </button>
-                   
-                </div> -->
+
                 <div class="modal-footer">
                     <button
                         mat-raised-button
@@ -160,16 +101,16 @@
                         <span class="fa fa-save"></span>&nbsp;
                         <span>Save</span>
                     </button>
-                    <button 
+                    <button
                         mat-raised-button
                         class="btnCancel"
-                        data-dismiss="modal" 
+                        data-dismiss="modal"
                         (click)="d('Cross click')">
                         <span class="fa fa-ban"></span>&nbsp;
                         <span>Cancel</span></button>&nbsp;
-                    <button 
-                        mat-raised-button 
-                        type="button" 
+                    <button
+                        mat-raised-button
+                        type="button"
                         class="btnReset"
                         (click)=" resetFieldValue()">
                         <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
@@ -180,6 +121,7 @@
         </div>
     </div>
 </ng-template>
+
 <!-- editMutualModal start -->
 <ng-template #editMutualModal let-c="close" let-d="dismiss">
         <div class="modal-header">
@@ -192,13 +134,13 @@
             <div class=" rowjustify-content-center">
                 <form name="editForm" role="form" novalidate  #editForm="ngForm">
                     <mat-form-field>
-                        <input 
-                            matInput 
-                            class="full-width" 
-                            requiredtype="text" 
-                            jhiCharsOnly 
-                            placeholder="MFScheme" 
-                            [(ngModel)]="mutualfund.mfscheme" 
+                        <input
+                            matInput
+                            class="full-width"
+                            requiredtype="text"
+                            jhiCharsOnly
+                            placeholder="MFScheme"
+                            [(ngModel)]="mutualfund.mfscheme"
                             name="mfscheme"
                         >
                     </mat-form-field>&nbsp;&nbsp;
@@ -208,85 +150,50 @@
                             class="full-width"
                             required type="number"
                             jhiNumberOnly
-                            placeholder="Folio Number" 
-                            [(ngModel)]="mutualfund.folionumber" 
+                            placeholder="Folio Number"
+                            [(ngModel)]="mutualfund.folionumber"
                             name="folionumber"
                         >
                     </mat-form-field>&nbsp;&nbsp;
                     <mat-form-field>
-                        <input 
-                            matInput 
-                            style="width: 100%;" 
-                            type="number" 
-                            jhiNumberOnly 
-                            placeholder="Holding Days" 
-                            name="holdingdays" 
-                            id="holdingdays" 
-                            [(ngModel)]="mutualfund.holdingdays" 
+                        <input
+                            matInput
+                            style="width: 100%;"
+                            type="number"
+                            jhiNumberOnly
+                            placeholder="Holding Days"
+                            name="holdingdays"
+                            id="holdingdays"
+                            [(ngModel)]="mutualfund.holdingdays"
                             required
                          />
                     </mat-form-field>&nbsp;&nbsp;
                     <mat-form-field>
-                        <input 
-                            matInput 
-                            style="width: 100%;" 
-                            type="number" 
-                            jhiNumberOnly 
-                            placeholder="Purches Price" 
-                            name="purchesprice" 
-                            id="purchesprice" 
+                        <input
+                            matInput
+                            style="width: 100%;"
+                            type="number"
+                            jhiNumberOnly
+                            placeholder="Purches Price"
+                            name="purchesprice"
+                            id="purchesprice"
                             [(ngModel)]="mutualfund.purchesprice"
                             required
                         />
                     </mat-form-field>&nbsp;&nbsp;
                     <mat-form-field>
-                        <input 
-                            matInput 
-                            style="width: 100%;" 
-                            type="number" 
-                            jhiNumberOnly 
-                            placeholder="current value" 
-                            name="currentvalue" 
-                            id="currentvalue" 
-                            [(ngModel)]="mutualfund.currentvalue" 
+                        <input
+                            matInput
+                            style="width: 100%;"
+                            type="number"
+                            jhiNumberOnly
+                            placeholder="current value"
+                            name="currentvalue"
+                            id="currentvalue"
+                            [(ngModel)]="mutualfund.currentvalue"
                         />
                     </mat-form-field>&nbsp;&nbsp;
-                    <!-- <mat-form-field>
-                        <input 
-                            matInput 
-                            style="width: 100%;" 
-                            type="number" 
-                            jhiNumberOnly 
-                            placeholder="Gain/Loss" 
-                            name="gainloss" 
-                            id="gainloss" 
-                            [(ngModel)]="mutualfund.gainloss"
-                        />
-                    </mat-form-field>&nbsp;&nbsp; -->
-                    <!-- <mat-form-field>
-                        <input 
-                            matInput 
-                            style="width: 100%;" 
-                            type="number" 
-                            jhiNumberOnly 
-                            placeholder="Absolute Return(%)" 
-                            name="absolutereturn" 
-                            id="absolutereturn" 
-                            [(ngModel)]="mutualfund.absolutereturn"
-                        />
-                    </mat-form-field>&nbsp;&nbsp; -->
-                    <!-- <mat-form-field>
-                        <input 
-                            matInput 
-                            style="width: 100%;" 
-                            type="number" 
-                            jhiNumberOnly 
-                            placeholder="CAGR(%)" 
-                            name="cagr" 
-                            id="cagr"
-                            [(ngModel)]="mutualfund.cagr"
-                        />
-                    </mat-form-field> -->
+
                     <div class="modal-footer">
                         <button
                             mat-raised-button
@@ -298,16 +205,16 @@
                             <span class="fa fa-save"></span>&nbsp;
                             <span>Update</span>
                         </button>
-                        <button 
+                        <button
                             mat-raised-button
-                            class="btnCancel" 
-                            data-dismiss="modal" 
+                            class="btnCancel"
+                            data-dismiss="modal"
                             (click)="d('Cross click')">
                             <span class="fa fa-ban"></span>&nbsp;
                             <span>Cancel</span></button>&nbsp;
-                        <button 
-                            mat-raised-button 
-                            type="button" 
+                        <button
+                            mat-raised-button
+                            type="button"
                             class="btnReset"
                             (click)="resetFieldValue()">
                             <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
@@ -318,6 +225,8 @@
             </div>
         </div>
 </ng-template>
+
+
 <!-- table starts here -->
 <table class="table-responsive-md table table-hover table-striped  table-sm">
     <thead>
@@ -345,16 +254,16 @@
             <td>{{mf.absolutereturn}}%</td>
             <td>{{mf.cagr}}%</td>
             <td>
-                <button 
-                class="btn btn-outline-info btn-sm" 
-                type="button" 
+                <button
+                class="btn btn-outline-info btn-sm"
+                type="button"
                 (click)="openEditMutual(editMutualModal,mf.id)">
                 <span> <fa-icon [icon]="'edit'"></fa-icon></span>
-                </button>             
+                </button>
             </td>
             <td>
-                <button 
-                    class="btn btn-outline-danger btn-sm" 
+                <button
+                    class="btn btn-outline-danger btn-sm"
                     type="button"
                     (click)="opendeleteStocks(mf.id)"
                     >

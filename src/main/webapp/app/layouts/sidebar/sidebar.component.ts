@@ -136,7 +136,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
         if (this.isMobile) {
             const x = document.getElementById('main-menu');
             if (x) {
-                x.classList.add('expanded');
+                x.classList.toggle('expanded');
             }
         }
     }

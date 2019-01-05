@@ -42,6 +42,13 @@ export class MutualComponent implements OnInit {
             this.mutualfund.userid = this.account.id;
             this.getMutualFundByUid(this.uid);
         });
+        this.getNAVdata();
+    }
+
+    getNAVdata() {
+        this.mutualFundService.onGetNAVdata().subscribe(data => {
+            console.log(data);
+        });
     }
 
     openMutual(mutualModel) {
