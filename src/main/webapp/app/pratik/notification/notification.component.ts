@@ -22,7 +22,7 @@ export class NotificationComponent implements OnInit {
     isAdmin = false;
     // emit value in sequence every 1 second
     // source = interval(1000);
-    // timer: number;
+    timer: number;
 
     constructor(
         private notifyService: NotificationService,
