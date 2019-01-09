@@ -33,7 +33,7 @@
                         name="mutualfundid"
                     >
                 </mat-form-field>&nbsp;&nbsp; -->
-                <mat-form-field>
+                <!-- <mat-form-field>
                     <input
                         matInput
                         class="full-width"
@@ -42,7 +42,14 @@
                         placeholder="MFScheme"
                         [(ngModel)]="mutualfund.mfscheme"
                         name="mfscheme">
-                </mat-form-field>&nbsp;&nbsp;
+                </mat-form-field>&nbsp;&nbsp; -->
+                <mat-form-field>
+                    <mat-select placeholder="Choose MFScheme" name="mfscheme" [(ngModel)]="mutualfund.mfscheme">
+                      <mat-option value="ABC">ABC Scheme</mat-option>
+                      <mat-option value="PQR">PQR Scheme</mat-option>
+                      <mat-option value="Xyz">XYZ Scheme</mat-option>
+                    </mat-select>
+                  </mat-form-field>&nbsp;&nbsp;
                 <mat-form-field>
                     <input
                         matInput
@@ -54,6 +61,52 @@
                         name="folionumber">
                 </mat-form-field>&nbsp;&nbsp;
                 <mat-form-field>
+                    <mat-select placeholder="Choose Type" name="type" [(ngModel)]="type">
+                      <mat-option value="sip">SIP</mat-option>
+                      <mat-option value="lump sum">Lump Sum</mat-option>
+                    </mat-select>
+                  </mat-form-field>&nbsp;&nbsp;
+                  <mat-form-field>
+                    <input 
+                        required 
+                        matInput
+                        name="p_date"
+                        [matDatepicker]="picker1" 
+                        placeholder="Purchase/Start Date" 
+                        [(ngModel)]="mutualfund.p_date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+                    <mat-datepicker #picker1 ></mat-datepicker>
+                </mat-form-field>&nbsp;
+                  <!-- <mat-form-field>
+                    <mat-select placeholder="Frequency" name="frequency" [(ngModel)]="mutualfund.frequency">
+                      <mat-option value="Weekly">Weekly</mat-option>
+                      <mat-option value="Monthly">Monthly</mat-option>
+                      <mat-option value="quarterly">Quarterly</mat-option>
+                    </mat-select>
+                  </mat-form-field>&nbsp;&nbsp; -->
+                  <div [ngSwitch]="type"><!--start of ngSwitch div-->
+                    <div *ngSwitchCase="'sip'">
+                        <mat-form-field>
+                            <mat-select placeholder="Frequency" name="frequency" [(ngModel)]="mutualfund.frequency">
+                                <mat-option value="Weekly">Weekly</mat-option>
+                                <mat-option value="Monthly">Monthly</mat-option>
+                                <mat-option value="quarterly">Quarterly</mat-option>
+                              </mat-select>
+                        </mat-form-field>&nbsp;&nbsp;
+                    </div>
+                    </div>
+                  <!-- <mat-form-field>
+                    <input 
+                        required 
+                        matInput
+                        name="p_date"
+                        [matDatepicker]="picker1" 
+                        placeholder="Purchase/Start Date" 
+                        [(ngModel)]="mutualfund.p_date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+                    <mat-datepicker #picker1 ></mat-datepicker>
+                </mat-form-field>&nbsp; -->
+                <!-- <mat-form-field>
                     <input
                         matInput
                         style="width: 100%;"
@@ -64,7 +117,7 @@
                         id="holdingdays"
                         [(ngModel)]="mutualfund.holdingdays"
                         required>
-                </mat-form-field>&nbsp;&nbsp;
+                </mat-form-field>&nbsp;&nbsp; -->
                 <mat-form-field>
                     <input
                         matInput
@@ -83,12 +136,24 @@
                         style="width: 100%;"
                         type="number"
                         jhiNumberOnly
+                        placeholder="Unit Balance"
+                        name="unitbalance"
+                        id="unitbalance"
+                        [(ngModel)]="mutualfund.unitbalance"
+                    />
+                </mat-form-field>&nbsp;&nbsp;
+                <!-- <mat-form-field>
+                    <input
+                        matInput
+                        style="width: 100%;"
+                        type="number"
+                        jhiNumberOnly
                         placeholder="current value"
                         name="currentvalue"
                         id="currentvalue"
                         [(ngModel)]="mutualfund.currentvalue"
                     />
-                </mat-form-field>&nbsp;&nbsp;
+                </mat-form-field>&nbsp;&nbsp; -->
 
                 <div class="modal-footer">
                     <button

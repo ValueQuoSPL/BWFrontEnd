@@ -6,7 +6,7 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
-    <div class="table-responsive" *ngIf="users">
+    <div  class="table table-bordered table-striped table-responsive-md" style="align-content: text-center" *ngIf="users">
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
@@ -21,8 +21,6 @@
                 <th jhiSortBy="lastModifiedBy"><span>Last Modified By</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="lastModifiedDate"><span>Last Modified Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="SelectMailTemplate"><span>Select Mail Template</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                
-                <th></th>
             </tr>
             </thead>
             <tbody *ngIf ="users">
