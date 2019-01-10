@@ -14,6 +14,7 @@ import { MatDialog } from '@angular/material';
 })
 export class MutualComponent implements OnInit {
     user: any;
+    type: any;
     uid: any;
     output: any;
     getdata: any;
@@ -41,6 +42,13 @@ export class MutualComponent implements OnInit {
             this.uid = this.account.id;
             this.mutualfund.userid = this.account.id;
             this.getMutualFundByUid(this.uid);
+        });
+        this.getNAVdata();
+    }
+
+    getNAVdata() {
+        this.mutualFundService.onGetNAVdata().subscribe(data => {
+            console.log(data);
         });
     }
 

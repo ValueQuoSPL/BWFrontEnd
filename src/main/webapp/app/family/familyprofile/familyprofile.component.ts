@@ -81,10 +81,15 @@ export class FamilyprofileComponent implements OnInit {
             this.familyProfile.firstname = this.output.firstname;
             this.familyProfile.middlename = this.output.middlename;
             this.familyProfile.lastname = this.output.lastname;
+            // this.date = this.output.dateOfBirth;
+            // const finalDate = this.datePipe.transform(this.date, 'd/M/yy');
+            // this.familyProfile.dateOfBirth = new Date(finalDate);
             this.date = this.output.dateOfBirth;
+            console.log('date is', this.date);
             const finalDate = this.datePipe.transform(this.date, 'd/M/yy');
+            console.log('finaldate is', finalDate);
             this.familyProfile.dateOfBirth = new Date(finalDate);
-            this.familyProfile.dateOfBirth = this.output.dateOfBirth;
+            console.log('date in familyProfile', this.familyProfile.dateOfBirth);
             this.familyProfile.email = this.output.email;
             this.familyProfile.phonenumber = this.output.phonenumber;
             this.familyProfile.uid = this.uid;

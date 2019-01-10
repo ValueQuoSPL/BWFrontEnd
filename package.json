@@ -24,6 +24,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.4.1",
     "@fortawesome/free-solid-svg-icons": "5.3.1",
     "@ng-bootstrap/ng-bootstrap": "3.0.0",
+    "amfinav": "0.0.6",
     "angular-calendar": "^0.26.3",
     "angular-notifier": "^4.1.1",
     "angular-user-idle": "^2.0.0",

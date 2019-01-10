@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { Gross } from 'app/sheetal/main/Services/gross.model';
-import { AccountService } from 'app/core';
+import { AccountService, LoginService } from 'app/core';
 
 @Injectable()
 export class GrossService {
@@ -15,19 +15,18 @@ export class GrossService {
     // id: any;
     model: Gross = new Gross();
     ServiceAPIParam: string;
-    constructor(private http: HttpClient, private account: AccountService) {}
+    account2: any;
+    constructor(private http: HttpClient, private account: AccountService, private loginService: LoginService) {}
 
     save(gross: any): Observable<any> {
         return this.http.post(SERVER_API_URL + 'api/grosses', gross);
     }
-    FetchID(): Promise<any> {
-        return this.account
-            .get()
-            .toPromise()
-            .then(response => {
-                this.user = response.body;
-                this.userID = this.user.id;
-            });
+
+    FetchID() {
+        this.account2 = this.loginService.getCookie();
+        if (this.account2) {
+            this.userID = this.account2.id;
+        }
     }
     public getgross(id) {
         this.ServiceAPIParam = 'api/grosses' + '/' + id;

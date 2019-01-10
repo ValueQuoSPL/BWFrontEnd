@@ -16,15 +16,7 @@ export class OtherService {
     save(other: any): Observable<any> {
         return this.http.post(SERVER_API_URL + 'api/others', other);
     }
-    // FetchID(): Promise<any> {
-    //   return this.account
-    //     .get()
-    //     .toPromise()
-    //     .then(response => {
-    //       this.user = response.body;
-    //       this.userID = this.user.id;
-    //     });
-    // }
+
     public getother(id) {
         this.ServiceAPIParam = 'api/others' + '/' + id;
         return this.http.get(SERVER_API_URL + this.ServiceAPIParam);

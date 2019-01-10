@@ -75,8 +75,11 @@ export class MyprofileComponent implements OnInit {
         this.myProfile.company = this.output[0].company;
         this.myProfile.country = this.output[0].country;
         this.date = this.output[0].dob;
+        console.log('date is', this.date);
         const finalDate = this.datePipe.transform(this.date, 'd/M/yy');
+        console.log('date is', finalDate);
         this.myProfile.dob = new Date(finalDate);
+        console.log('date is', this.myProfile.dob);
         this.myProfile.emailId = this.output[0].emailId;
         this.myProfile.firstName = this.output[0].firstName;
         this.myProfile.gender = this.output[0].gender;

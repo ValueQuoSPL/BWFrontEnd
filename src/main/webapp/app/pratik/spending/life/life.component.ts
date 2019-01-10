@@ -7,6 +7,7 @@ import { LifeService } from 'app/pratik/spending/spending.service';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DocumentComponent } from 'app/document/document.component';
+import { LoginService } from 'app/core';
 
 @Component({
     selector: 'jhi-life',
@@ -57,7 +58,8 @@ export class LifeComponent implements OnInit {
         private lifeService: LifeService,
         private modalService: NgbModal,
         private commonService: CommonSidebarService,
-        public dialog: MatDialog
+        public dialog: MatDialog,
+        private loginService: LoginService
     ) {}
 
     ngOnInit() {
@@ -65,11 +67,11 @@ export class LifeComponent implements OnInit {
     }
 
     getUserid() {
-        this.commonService.account.subscribe(account => {
-            this.account = account;
+        this.account = this.loginService.getCookie();
+        if (this.account) {
             this.uid = this.account.id;
             this.onGetLife();
-        });
+        }
     }
 
     clear() {

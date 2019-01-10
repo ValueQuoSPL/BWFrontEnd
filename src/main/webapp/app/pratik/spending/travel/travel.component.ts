@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { AccountService, Principal } from 'app/core';
+import { AccountService, Principal, LoginService } from 'app/core';
 import { Travel } from 'app/pratik/spending/spending.model';
 import { TravelService } from 'app/pratik/spending/spending.service';
 import { SpendingRouteGuardService } from 'app/pratik/common/spending-route-guard.service';
@@ -35,13 +35,15 @@ export class TravelComponent implements OnInit {
     prevValue: any;
     globalflag: boolean;
     isFieldChange: boolean;
+    account: any;
 
     constructor(
         private travelService: TravelService,
         private principal: Principal,
         private modalService: NgbModal,
         private accountService: AccountService,
-        private routeGuard: SpendingRouteGuardService
+        private routeGuard: SpendingRouteGuardService,
+        private loginService: LoginService
     ) {}
 
     ngOnInit() {
@@ -71,18 +73,11 @@ export class TravelComponent implements OnInit {
     }
 
     getUserid() {
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    this.GetTravel();
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.account = this.loginService.getCookie();
+        if (this.account) {
+            this.uid = this.account.id;
+            this.GetTravel();
+        }
     }
 
     GetTravel(): void {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { AccountService, Principal } from 'app/core';
+import { AccountService, Principal, LoginService } from 'app/core';
 import { Credit } from 'app/pratik/spending/spending.model';
 import { CreditService } from 'app/pratik/spending/spending.service';
 import { DocumentComponent } from 'app/document/document.component';
@@ -32,11 +32,13 @@ export class CreditComponent implements OnInit {
     _credit: any = [];
 
     CardTypeArray = [{ name: 'Gold' }, { name: 'Platinum' }, { name: 'Silver' }, { name: 'Titanium ' }];
+    account: any;
     constructor(
         private creditService: CreditService,
         private principal: Principal,
         private modalService: NgbModal,
         private accountService: AccountService,
+        private loginService: LoginService,
         public dialog: MatDialog
     ) {}
 
@@ -45,18 +47,10 @@ export class CreditComponent implements OnInit {
     }
 
     getUserid() {
-        return this.accountService
-            .get()
-            .toPromise()
-            .then(response => {
-                const account = response.body;
-                if (account) {
-                    this.uid = account.id;
-                    this.onGetCredit();
-                } else {
-                }
-            })
-            .catch(err => {});
+        this.account = this.loginService.getCookie();
+        if (this.account) {
+            this.uid = this.account.id;
+        }
     }
 
     onGetCredit(): void {

@@ -36,16 +36,6 @@ export class EightycComponent implements OnInit {
         this.changesSaved = true;
     }
 
-    // FetchID(): Promise<any> {
-    //     return this.Accountservice.get()
-    //         .toPromise()
-    //         .then(response => {
-    //             this.user = response.body;
-    //             this.eightyc.uid = this.user.id;
-    //             this.uid = this.eightyc.uid;
-    //             this.onEightycGet();
-    //         });
-    // }
     // FetchIdMethod to to get Info Of Current Logged User
     FetchId() {
         this.commonService.account.subscribe(account => {

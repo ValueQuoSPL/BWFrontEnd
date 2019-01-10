@@ -9,6 +9,11 @@ export class MutualfundService {
     public ServiceAPI: any;
 
     constructor(private http: HttpClient) {}
+    onGetNAVdata(): any {
+        const url = `${SERVER_API_URL}api/getnav`;
+        console.log(url);
+        return this.http.get(url);
+    }
     public SubmitUser(mutualfund) {
         return this.http.post<MutualFund[]>(SERVER_API_URL + 'api/mutualfund', mutualfund);
     }

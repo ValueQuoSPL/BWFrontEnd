@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { SuccessService } from 'app/success/success.service';
-import { AccountService, Principal, LoginModalService } from 'app/core';
+import { AccountService, Principal, LoginModalService, LoginService } from 'app/core';
 import { JhiEventManager } from 'ng-jhipster';
 import { Router } from '@angular/router';
 import { UserPlanService } from 'app/home/subscriber/userplan.service';
@@ -45,7 +45,8 @@ export class SuccessComponent implements OnInit, AfterViewInit {
         private router: Router,
         private userPlanService: UserPlanService,
         private promoCodeService: PromoCodeService,
-        private planService: PlanService
+        private planService: PlanService,
+        private loginService: LoginService
     ) {}
 
     ngOnInit() {
