@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AccountService, Principal, LoginModalService, LoginService } from 'app/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Principal, LoginModalService, LoginService } from 'app/core';
 import { DashboardService } from 'app/pratik/dashboard/dashboard.service';
 import { Color } from 'ng2-charts';
 // tslint:disable-next-line:max-line-length
@@ -18,6 +18,7 @@ import {
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { CommonSidebarService } from '../common/sidebar.service';
+import { UserPlanService } from 'app/home/subscriber/userplan.service';
 
 @Component({
     selector: 'jhi-dashboard',
@@ -91,6 +92,7 @@ export class DashboardComponent implements OnInit {
     shortLiability: any = [];
     longLiability: any = [];
     ac: any;
+    userplan: any = [];
 
     public chartClicked(e: any): void {}
 
@@ -100,7 +102,7 @@ export class DashboardComponent implements OnInit {
         // private main: MainComponent,
         private router: Router,
         private dashboardService: DashboardService,
-        private accountService: AccountService,
+        private route: ActivatedRoute,
         private principal: Principal,
         private generalService: GeneralService,
         private healthService: HealthService,
@@ -113,13 +115,19 @@ export class DashboardComponent implements OnInit {
         private incomeService: IncomeService,
         private loginModalService: LoginModalService,
         private commonService: CommonSidebarService,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private userPlanService: UserPlanService
     ) {}
 
     ngOnInit() {
         this.getUserid();
         this.expenseTotal = 0;
-        // this.main.toggleSide(true);
+        this.userPlanService.data.subscribe(INIT_DATA => {
+            this.userplan = INIT_DATA;
+            if (this.userplan === 'trial') {
+                window.location.reload();
+            }
+        });
     }
 
     isAuthenticated() {

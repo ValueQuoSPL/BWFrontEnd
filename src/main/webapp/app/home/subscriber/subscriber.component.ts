@@ -10,6 +10,11 @@ import { PromoCodeManageService } from 'app/admin';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { PlanService } from 'app/pratik/common/plan.service';
 
+import { DatePipe } from '@angular/common';
+import { addDays, addWeeks, addMonths } from 'date-fns';
+import { CalendarView } from 'angular-calendar';
+import { BehaviorSubject } from 'rxjs';
+
 class Offer {
     payable;
     plan;
@@ -57,7 +62,9 @@ export class SubscriberComponent implements OnInit {
     loggedIn = false;
     validity: number;
     fullAccess: boolean;
-
+    isTrial = false;
+    view: CalendarView = CalendarView.Day;
+    viewDate: Date = new Date();
     constructor(
         private zone: NgZone,
         private router: Router,
@@ -71,7 +78,8 @@ export class SubscriberComponent implements OnInit {
         private promoCodeService: PromoCodeService,
         private loginModalService: LoginModalService,
         private promoCodeModalService: PromoCodeModalService,
-        private commonservice: CommonSidebarService
+        private commonservice: CommonSidebarService,
+        private datePipe: DatePipe
     ) {}
 
     ngOnInit() {
@@ -101,7 +109,16 @@ export class SubscriberComponent implements OnInit {
         const plan = this.route.snapshot.params['plan'];
         this.plan = plan;
         this.offer.plan = plan;
-
+        if (this.plan === 'TRIAL') {
+            if ((this.isTrial = true)) {
+                this.TrailUserPlanData();
+                this.saveTransaction();
+                this.userPlanService.SaveUserPlan(this.user).subscribe(data => {
+                    this.router.navigate(['dashboard']);
+                    this.userPlanService.data.next('trial');
+                });
+            }
+        }
         if (this.plan === 'WISE') {
             this.payable = 999;
             this.oldAmount = this.payable;
@@ -121,6 +138,7 @@ export class SubscriberComponent implements OnInit {
     get() {
         this.userPlanService.GetUserPlan(this.uid).subscribe(response => {
             this.userPlan = response;
+            this.userPlanService.data.next(this.userPlan);
             if (this.userPlan.length !== 0) {
                 this.isSubscribed = true;
                 this.user.id = this.userPlan[0].id;
@@ -196,5 +214,29 @@ export class SubscriberComponent implements OnInit {
         this.user.paid = this.payable;
         this.user.promocode = this.dynamicPromo.promocode;
         this.subscriber.user.next(this.user);
+    }
+
+    // Trail Data
+    TrailUserPlanData() {
+        this.user.uid = this.uid;
+        this.user.applyDate = new Date();
+        this.user.expiryDate = this.increment();
+        this.user.plan = 'WISEST';
+        this.user.paid = '0';
+    }
+    // calculate Date for 7 days
+    increment(): any {
+        const addFn: any = {
+            day: addDays,
+            week: addWeeks,
+            month: addMonths
+        }[this.view];
+        this.viewDate = addFn(this.viewDate, 6);
+        const formatDate = this.datePipe.transform(this.viewDate, 'yyyy-MM-dd');
+        return formatDate;
+    }
+
+    saveTransaction() {
+        this.userPlanService.saveTransaction(this.uid, 'success', 'WISEST').subscribe();
     }
 }
