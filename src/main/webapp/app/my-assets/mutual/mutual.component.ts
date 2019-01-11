@@ -14,7 +14,6 @@ import { MatDialog } from '@angular/material';
 })
 export class MutualComponent implements OnInit {
     user: any;
-    type: any;
     uid: any;
     output: any;
     getdata: any;
