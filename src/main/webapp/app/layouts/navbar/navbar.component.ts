@@ -243,6 +243,8 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
         this.loginService.logout();
         this.commonService.logout.next(1);
         this.planService.isPaid.next(false);
+        this.planService.isTrial.next(true);
+
         // this.router.navigate(['/']);
     }
 
@@ -304,6 +306,7 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
         this.main.toggleSide(true);
         this.commonService.logout.next(1);
         this.planService.isPaid.next(false);
+        this.planService.isTrial.next(true);
 
         this.router.navigate(['/']);
     }

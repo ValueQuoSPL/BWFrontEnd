@@ -11,6 +11,7 @@ import { PlanService } from 'app/pratik/common/plan.service';
 import { SuccessService } from 'app/success/success.service';
 import { JhiLoginModalComponent } from 'app/shared';
 import { UserIdleService } from 'angular-user-idle';
+import { UserPlanService } from 'app/home/subscriber/userplan.service';
 
 @Component({
     selector: 'jhi-main',
@@ -42,6 +43,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     authority: any;
     change;
     loggedIn = false;
+    trialData: any = [];
 
     constructor(
         private titleService: Title,
@@ -56,7 +58,8 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
         private sc: CommonSidebarService,
         private paymentCheck: SuccessService,
         private loginService: LoginService,
-        private userIdle: UserIdleService
+        private userIdle: UserIdleService,
+        private userPlanService: UserPlanService
     ) {
         this.epicFunction();
     }
@@ -101,6 +104,13 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
             if (this.account.authorities[1]) {
                 this.authority = this.account.authorities[1];
             }
+            this.userPlanService.GetUserPlan(this.uid).subscribe(data => {
+                // console.log(data);
+                this.trialData = data;
+                if (this.trialData[0].uid === this.uid) {
+                    this.planService.isTrial.next(false);
+                }
+            });
             this.checkSuccess(this.uid);
         } else {
             this.loginService.logout();

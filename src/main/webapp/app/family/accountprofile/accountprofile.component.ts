@@ -3,6 +3,7 @@ import { UserPlanService } from 'app/home/subscriber/userplan.service';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { AccountProfileSerivce } from 'app/family/accountprofile/accountProfile.service';
 import { Router } from '../../../../../../node_modules/@angular/router';
+import { differenceInCalendarDays } from 'date-fns';
 
 class UserAccount {
     plan;
@@ -20,6 +21,9 @@ export class AccountprofileComponent implements OnInit {
     uid: any;
     userAccount: UserAccount = new UserAccount();
     profile: Object;
+    startDate: any;
+    endDate: any;
+
     constructor(
         private userPlanService: UserPlanService,
         private commonService: CommonSidebarService,
@@ -39,9 +43,19 @@ export class AccountprofileComponent implements OnInit {
         this.userPlanService.GetUserPlan(this.uid).subscribe(data => {
             if (data) {
                 this.profile = data;
-                this.userAccount.plan = this.profile[0].plan;
-                this.userAccount.applyDate = this.profile[0].applyDate;
-                this.userAccount.expiryDate = this.profile[0].expiryDate;
+                this.startDate = new Date(this.profile[0].applyDate).getTime();
+                this.endDate = new Date(this.profile[0].expiryDate).getTime();
+                const re = Math.abs(this.startDate - this.endDate);
+                const result = Math.ceil(re / (1000 * 3600 * 24));
+                if (result < 7) {
+                    this.userAccount.plan = 'Free Trial';
+                    this.userAccount.applyDate = this.profile[0].applyDate;
+                    this.userAccount.expiryDate = this.profile[0].expiryDate;
+                } else {
+                    this.userAccount.plan = this.profile[0].plan;
+                    this.userAccount.applyDate = this.profile[0].applyDate;
+                    this.userAccount.expiryDate = this.profile[0].expiryDate;
+                }
             }
         });
     }

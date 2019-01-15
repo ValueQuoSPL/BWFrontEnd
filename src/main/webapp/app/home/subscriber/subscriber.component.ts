@@ -6,14 +6,12 @@ import { PromoCodeModalService } from 'app/home/subscriber/promo-code/promo-code
 import { PromoCodeService } from 'app/home/subscriber/promo-code';
 import { NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserPlanService } from 'app/home/subscriber/userplan.service';
-import { PromoCodeManageService } from 'app/admin';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { PlanService } from 'app/pratik/common/plan.service';
 
 import { DatePipe } from '@angular/common';
 import { addDays, addWeeks, addMonths } from 'date-fns';
 import { CalendarView } from 'angular-calendar';
-import { BehaviorSubject } from 'rxjs';
 
 class Offer {
     payable;
@@ -111,8 +109,8 @@ export class SubscriberComponent implements OnInit {
         this.offer.plan = plan;
         if (this.plan === 'TRIAL') {
             if ((this.isTrial = true)) {
-                this.TrailUserPlanData();
                 this.saveTransaction();
+                this.TrailUserPlanData();
                 this.userPlanService.SaveUserPlan(this.user).subscribe(data => {
                     this.router.navigate(['dashboard']);
                     this.userPlanService.data.next('trial');

@@ -1,3 +1,4 @@
+
 <div style="top: -30px; ">
   <div class="small-header bg-img2">
     <div class="container">
@@ -9,8 +10,22 @@
     </div>
   </div>
 </div>
+
 <!-- Pricing Tables Dark-->
 <section class="bg-light">
+  <!-- <div *ngIf= "isDataSaved">
+    <mat-card class=" container example-card" style="background-color:#f1592a">
+      <mat-card-content>
+          <div class="row justify-content-md-center">
+            <div class="col-md-6" >
+              <div class="bwaccordtitle" style="height:80%; width: 150%;" >
+                <strong>Please Subscribe for a plan to proceed further</strong>
+              </div>
+            </div>
+          </div>
+      </mat-card-content>
+    </mat-card>
+  </div> -->
   <div class="container pricing text-center"><i class="ion-bag icon-big"></i>
     <h3>Subscription Table</h3>
     <div class="row my">
@@ -77,10 +92,15 @@
   </div>
   <div>
     <div class="container">
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center" *ngIf="istrial">
             <p>7 Days FREE Trail</p>&nbsp;
             <a class="btn btt-md btn-warning" [routerLink]="['/subscriber', 'TRIAL']" routerLinkActive="router-link-active"  routerLinkActive="router-link-active" style="height:30px;" routerLinkActive="router-link-active">Get
               Started</a>
         </div>
+        <!-- <div class="row justify-content-md-center" *ngIf="istrial">
+            <p>7 Days FREE Trail</p>&nbsp;
+            <a class="btn btt-md btn-warning" [routerLink]="['/subscriber', 'TRIAL']" routerLinkActive="router-link-active"  routerLinkActive="router-link-active" style="height:30px;" routerLinkActive="router-link-active">Get
+              Started</a>
+        </div> -->
     </div>
 </section>
