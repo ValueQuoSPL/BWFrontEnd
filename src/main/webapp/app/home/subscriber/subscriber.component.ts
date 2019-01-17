@@ -229,7 +229,7 @@ export class SubscriberComponent implements OnInit {
             week: addWeeks,
             month: addMonths
         }[this.view];
-        this.viewDate = addFn(this.viewDate, 6);
+        this.viewDate = addFn(this.viewDate, 7);
         const formatDate = this.datePipe.transform(this.viewDate, 'yyyy-MM-dd');
         return formatDate;
     }

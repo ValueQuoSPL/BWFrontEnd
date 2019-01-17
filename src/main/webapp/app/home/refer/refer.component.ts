@@ -8,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./refer.component.css', '../../css/universal.css']
 })
 export class ReferComponent implements OnInit {
+    isDisable: Boolean = false;
     user: UserContact = new UserContact();
     constructor(private contactService: ContactService) {}
     // isDataSaved: Boolean = false;
     submitUser() {
         this.contactService.refferSave(this.user).subscribe();
+        this.isDisable = !this.isDisable;
         // this.isDataSaved = true;
         // alert('Thank you for your Intrest we will shortly contact you');
     }

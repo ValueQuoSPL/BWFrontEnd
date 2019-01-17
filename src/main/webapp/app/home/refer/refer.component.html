@@ -55,7 +55,7 @@
                 </div>
               </div>
               <div id="success"></div>
-              <button type="submit" class="btn btn-dark btn-lg" (click)="submitUser()">Send</button>
+              <button type="submit" class="btn btn-dark btn-lg" [disabled] = "isDisable"  (click)="submitUser()">Send</button>
             </form>
           </div>
         </div>

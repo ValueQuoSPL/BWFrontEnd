@@ -25,7 +25,6 @@ export class SubscriptionComponent implements OnInit {
             }
         });
         this.userPlan.isTrial.subscribe(data => {
-            console.log(data);
             this.istrial = data;
         });
         // this.userPlan.isExpire.subscribe( data => {

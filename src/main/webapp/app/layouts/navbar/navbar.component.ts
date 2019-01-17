@@ -109,7 +109,7 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
         if (this.account) {
             this.loggedIn = true;
             if (this.account.firstName !== null) {
-                this.FirstName = this.account.firstName;
+                this.FirstName = 'Hi ' + this.account.firstName;
             } else {
                 this.FirstName = 'Account';
             }
@@ -257,7 +257,7 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
                 this.startWatching();
                 this.loggedIn = true;
                 if (this.account.firstName !== null) {
-                    this.FirstName = this.account.firstName;
+                    this.FirstName = 'Hi ' + this.account.firstName;
                 } else {
                     this.FirstName = 'Account';
                 }
@@ -338,7 +338,7 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
     selector: 'jhi-ngbd-modal-content',
     template: `
       <div class="modal-header">
-        <h4 class="modal-title">Hi there!</h4>
+        <h4 class="modal-title">Hi {{firstName}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -352,7 +352,12 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
     `
 })
 export class IdleAlertComponent {
-    constructor(public activeModal: NgbActiveModal, public idle: PlanService) {}
+    userDetail: any;
+    firstName;
+    constructor(public activeModal: NgbActiveModal, public idle: PlanService, private loginService: LoginService) {
+        this.userDetail = this.loginService.getCookie();
+        this.firstName = this.userDetail.firstName;
+    }
 
     onHereClick() {
         this.idle.idle.next(0);
@@ -363,7 +368,7 @@ export class IdleAlertComponent {
     selector: 'jhi-ngbd-modal-content',
     template: `
       <div class="modal-header">
-        <h4 class="modal-title">Hi there!</h4>
+        <h4 class="modal-title">Hi {{firstName}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -377,5 +382,10 @@ export class IdleAlertComponent {
     `
 })
 export class SessionTimeoutComponent {
-    constructor(public activeModal: NgbActiveModal) {}
+    userDetail: any;
+    firstName;
+    constructor(public activeModal: NgbActiveModal, private loginService: LoginService) {
+        this.userDetail = this.loginService.getCookie();
+        this.firstName = this.userDetail.firstName;
+    }
 }
