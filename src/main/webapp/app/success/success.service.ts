@@ -6,6 +6,10 @@ import { SERVER_API_URL } from 'app/app.constants';
     providedIn: 'root'
 })
 export class SuccessService {
+    saveTransaction(expire): any {
+        const url = SERVER_API_URL + 'api/saveupdate';
+        return this._http.post(url, expire);
+    }
     constructor(private _http: HttpClient) {}
 
     getTransactionData(uid, from) {

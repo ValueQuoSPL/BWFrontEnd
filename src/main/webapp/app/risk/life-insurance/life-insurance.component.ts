@@ -57,6 +57,7 @@ export class LifeInsuranceComponent implements OnInit {
     annualIncome = 0;
     totalIncomeYearly: number;
     showAdd = false;
+    totalValue: any;
 
     constructor(
         private principal: Principal,
@@ -73,8 +74,6 @@ export class LifeInsuranceComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        console.log('calling account');
-
         this.principal.identity().then(account => {
             this.account = account;
             this.uid = account.id;
@@ -82,23 +81,35 @@ export class LifeInsuranceComponent implements OnInit {
         this.getUserid();
     }
     checklife(checked, id, cost) {
-        this.lifeInsurance.total = 0;
-        if (checked) {
-            this.futurecost = +this.futurecost + +cost;
-            this.lifeInsurance.total = +this.futurecost + +this.outstandingpricipal;
-            this.lifeInsurance.total = +this.lifeInsurance.total + +this.totalIncomeYearly;
-        } else {
-            this.futurecost = +this.futurecost - +cost;
-            this.lifeInsurance.total = +this.futurecost + +this.outstandingpricipal;
-            this.lifeInsurance.total = +this.lifeInsurance.total + +this.totalIncomeYearly;
-        }
         this.goalId = id;
         this.checkLife = checked;
         this.updateGoalArray.push({
             id: this.goalId,
             check: this.checkLife
         });
-        this.riskService.updateGoal(this.updateGoalArray).subscribe(data => {});
+        this.salaryPecent();
+        if (this.goalLife.length === 0) {
+            this.lifeInsurance.total = 0;
+            if (checked) {
+                this.futurecost = +this.futurecost + +cost;
+                this.lifeInsurance.total = +this.futurecost + +this.outstandingpricipal;
+                this.lifeInsurance.total = +this.lifeInsurance.total + +this.totalIncomeYearly;
+            } else {
+                this.futurecost = +this.futurecost - +cost;
+                this.lifeInsurance.total = +this.futurecost + +this.outstandingpricipal;
+                this.lifeInsurance.total = +this.lifeInsurance.total + +this.totalIncomeYearly;
+            }
+        } else {
+            if (checked) {
+                const value1 = +this.totalValue + +cost;
+                this.totalValue = value1;
+                this.lifeInsurance.total = value1;
+            } else {
+                const value2 = +this.totalValue - +cost;
+                this.totalValue = value2;
+                this.lifeInsurance.total = value2;
+            }
+        }
     }
 
     getUserid() {
@@ -191,11 +202,24 @@ export class LifeInsuranceComponent implements OnInit {
 
     detectChange(value) {
         this.totalIncomeYearly = 0;
+        this.lifeInsurance.total = 0;
         this.percentage = value;
-        this.totalIncomeYearly = this.annualIncome * this.percentage / 100;
+        this.totalIncomeYearly = Math.round(this.annualIncome * this.percentage / 100);
+        this.lifeInsurance.total = this.outstandingpricipal + +this.totalIncomeYearly;
     }
 
+    salaryPecent() {
+        this.totalIncomeYearly = 0;
+        this.percentage = this.lifeInsurance.expense_cover;
+        this.totalIncomeYearly = Math.round(this.annualIncome * this.percentage / 100);
+    }
+
+    // saving life insurance
     saveLifeInsurance() {
+        // setting flag of GoalSet
+        this.riskService.updateGoal(this.updateGoalArray).subscribe(data => {});
+
+        // saving Details of Life Insurance
         this.lifeInsurance.userid = this.uid;
         this.lifeArray.push({
             risk_coverage: this.lifeInsurance.risk_coverage,
@@ -209,6 +233,7 @@ export class LifeInsuranceComponent implements OnInit {
     }
 
     opnLife(id, lifeContent) {
+        this.reset();
         this.edit = true;
         this.lifeInsurance.total = 0;
         this.getGoal1();
@@ -232,6 +257,9 @@ export class LifeInsuranceComponent implements OnInit {
     onGetLife() {
         this.riskService.getLifeInsurance(this.uid).subscribe(data => {
             this.goalLife = data;
+            for (let i = 0; i < this.goalLife.length; i++) {
+                this.totalValue = this.goalLife[i].total;
+            }
             if (this.goalLife.length === 0) {
                 this.showAdd = false;
             } else {
@@ -241,6 +269,9 @@ export class LifeInsuranceComponent implements OnInit {
     }
     // update service for lifeInsurance
     update() {
+        // setting flag of GoalSet
+        this.riskService.updateGoal(this.updateGoalArray).subscribe(data => {});
+
         this.lifeInsurance.id = this.commanId;
         this.lifeInsurance.userid = this.uid;
         this.riskService.updatelifeInsurance(this.lifeInsurance).subscribe(data => {
@@ -319,5 +350,10 @@ export class LifeInsuranceComponent implements OnInit {
         this.lifeInsurance.total = null;
         this.lifeInsurance.risk_coverage = null;
         this.lifeInsurance.name = null;
+    }
+
+    reset() {
+        this.lifeInsurance.total = 0;
+        this.futurecost = 0;
     }
 }

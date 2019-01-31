@@ -5,15 +5,18 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { LoginService } from 'app/core/login/login.service';
 import { StateStorageService } from 'app/core/auth/state-storage.service';
-import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { SuccessService } from 'app/success/success.service';
-import { AccountService, Principal } from 'app/core';
 import { PlanService } from 'app/pratik/common/plan.service';
-import { CookieService } from 'ngx-cookie';
 import { UserPlanService } from 'app/home/subscriber/userplan.service';
-import { NotifierService } from 'angular-notifier';
-import { NotificationService } from 'app/pratik/notification/notification.service';
+import { Principal } from 'app/core';
+import { SidebarComponent } from 'app/layouts/sidebar/sidebar.component';
+import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 
+class Expire {
+    id;
+    uid;
+    status;
+}
 @Component({
     selector: 'jhi-login-modal',
     templateUrl: './login.component.html'
@@ -34,6 +37,11 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
     admin: any;
     account: any;
     checkData: any = [];
+    trialData: any = [];
+    transac: any = [];
+    date: any;
+    expire: Expire = new Expire();
+    isExpired: boolean;
 
     constructor(
         private stateStorageService: StateStorageService,
@@ -43,15 +51,11 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
         private elementRef: ElementRef,
         private router: Router,
         public activeModal: NgbActiveModal,
-        private commonService: CommonSidebarService,
         private paymentCheck: SuccessService,
-        private accountService: AccountService,
         private planService: PlanService,
         private principal: Principal,
-        private _cookieService: CookieService,
         private userPlanService: UserPlanService,
-        private notifier: NotifierService,
-        private notifyService: NotificationService
+        private commonSidebarService: CommonSidebarService
     ) {
         this.credentials = {};
     }
@@ -90,9 +94,46 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
         this.account = this.loginService.getCookie();
         if (this.account) {
             this.uid = this.account.id;
+            this.checkExpiryTrial();
             this.CheckPlanSelected();
-            this.checkExpiryDate();
+            // this.checkExpiryDate();
         }
+    }
+
+    checkExpiryTrial() {
+        const formate = new Date().getTime();
+        this.userPlanService.GetUserPlan(this.uid).subscribe(data => {
+            this.trialData = data;
+            this.trialData.forEach(element => {
+                this.date = new Date(element.expiryDate).getTime();
+                if (formate > this.date) {
+                    this.planService.isPaid.next(false);
+                    // start it publish that plan is Expired (check main, sidebar component)
+                    this.commonSidebarService.Expiry.next(false);
+                    this.isPayment = false;
+                    this.isExpired = true;
+                    // end here
+                    this.router.navigate(['/subscription']);
+
+                    // this.paymentCheck.getTransactionData(this.uid, 'login').subscribe(result => {
+                    //     this.transac = result;
+                    //     this.transac.forEach(ele => {
+                    //         this.expire.id = ele.id;
+                    //         this.expire.uid = ele.userid;
+                    //         this.expire.status = 'expire_plan';
+                    //     });
+                    //     this.paymentCheck.saveTransaction(this.expire).subscribe();
+                    //     this.userPlanService.data.next('expire');
+                    //     // this.planService.isExpire.next(true);
+                    //     this.router.navigate(['/subscription']);
+                    // });
+                }
+            });
+            this.trialData = data;
+            if (this.trialData[0].uid === this.uid) {
+                this.planService.isTrial.next(false);
+            }
+        });
     }
 
     checkExpiryDate() {
@@ -109,14 +150,11 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
                 if (new Date() === date) {
                     this.router.navigate(['/subscription']);
                 } else {
-                    this.router.navigate(['/dashboard']);
+                    if (this.isPayment) {
+                        this.router.navigate(['/dashboard']);
+                    }
                 }
             }
-
-            // console.log(date);
-
-            // this.notifier.notify('success', 'login successfull');
-            // this.notifyService.showNotification('success', 'Your plan will expired in 15 days');
         });
     }
 
@@ -133,6 +171,7 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
         });
     }
 
+    // checking payment of user and make payment flag true else false
     CheckPayment() {
         let status;
         this.PaymentArray.forEach(element => {
@@ -140,6 +179,7 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
         });
         if (status === 'success') {
             this.isPayment = true;
+            // // console.log('payment', this.isPayment);
             this.planService.plan.next(true);
             this.routing();
         } else {
@@ -148,14 +188,19 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
             this.routing();
         }
     }
-
+    // if user click on plan after login it redirect to that plan only
     routing() {
+        // check payment if it success get into if condition
         if (this.isPayment) {
-            this.router.navigate(['/dashboard']);
+            // if not expire then redirect to dashboard
+            if (!this.isExpired) {
+                this.router.navigate(['/dashboard']);
+            }
         } else {
             this.router.navigate(['/subscription']);
         }
 
+        // take current url of page in browser
         const url = this.router.url;
 
         if (url === '/subscriber/WISE') {
@@ -176,7 +221,13 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
             this.router.navigate(['/advisor']);
         }
         if (this.admin === 'ROLE_ADMIN') {
-            this.router.navigate(['/dashboard']);
+            if (this.isPayment) {
+                // if not expire then redirect to dashboard
+                if (!this.isExpired) {
+                    // console.log('call dash');
+                    this.router.navigate(['/dashboard']);
+                }
+            }
         }
     }
 

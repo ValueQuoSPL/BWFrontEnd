@@ -14,7 +14,7 @@ h1,
 h2,
 h3,
 h4 {
-    font-weight: 300;
+    font-weight: 600;
 }
 
 a {
@@ -463,16 +463,6 @@ hr {
     background-color: #f1592a;
     text-align: center;
 }
-// .setmar{
-//     margin: 0 0 35px;
-//     text-transform: uppercase;
-//     letter-spacing: 0.1em;
-//     line-height: 1.7;
-//     font-weight: 800;
-//     margin-top: -323px;
-//     margin-left: 66px;
-// }
-
 .modal-content2 {
     position: relative;
     display: flex;
@@ -510,4 +500,27 @@ hr {
 .responsive {
     width: 100%;
     height: auto;
+}
+.btn-general {
+    font-family: sans-serif;
+    color: #fff;
+    background-color: #f1592a;
+    // border-radius: 28px;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin: o 6px;
+    // padding: 12px 46px 12px 46px;
+    transition: all 0.5;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+.btn-home {
+    color: #fff;
+    border: 1px solid #2e3192;
+}
+.btn-home:hover,
+.btn-home-focus {
+    color: #fff;
+    background-color: #2e3192;
+    border: 3px solid #f1592a;
 }

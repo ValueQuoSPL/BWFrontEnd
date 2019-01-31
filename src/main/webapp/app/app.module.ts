@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER } from '@angular/core';
+import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA, APP_INITIALIZER, ChangeDetectorRef } from '@angular/core';
 import { NgbDatepickerConfig, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Ng2Webstorage, LocalStorageService, SessionStorageService } from 'ngx-webstorage';
@@ -34,7 +34,8 @@ import {
     PageRibbonComponent,
     ErrorComponent,
     SessionTimeoutComponent,
-    IdleAlertComponent
+    IdleAlertComponent,
+    navbarRoute
 } from 'app/layouts';
 
 // From Downloaded Package
@@ -114,6 +115,7 @@ import { failRoute } from './fail-payment/fail-payment.route';
 import { NotificationComponent } from './pratik/notification/notification.component';
 import { DocumentComponent } from './document/document.component';
 import { MutualFundManageComponent } from './pratik/mutual-fund-manage/mutual-fund-manage.component';
+import { AuthGuard } from './auth.guard';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -186,6 +188,7 @@ const customNotifierOptions: NotifierOptions = {
         RouterModule.forRoot([termRoute], { useHash: true }),
         RouterModule.forRoot([privacyRoute], { useHash: true }),
         RouterModule.forRoot([cookieRoute], { useHash: true }),
+        RouterModule.forRoot([navbarRoute], { useHash: true }),
         BuckswiseFrontEndSharedModule,
         BuckswiseFrontEndCoreModule,
         BuckswiseFrontEndHomeModule,
@@ -254,12 +257,12 @@ const customNotifierOptions: NotifierOptions = {
         IdleAlertComponent,
         SessionTimeoutComponent,
         MutualFundManageComponent
-
         // Production directive
     ],
     providers: [
         NavbarComponent,
         CookieService,
+        AuthGuard,
         // Production Services
         CanDeactivateGuard,
         IncomeService,
@@ -278,7 +281,6 @@ const customNotifierOptions: NotifierOptions = {
         SidebarComponent,
         SpendingComponent,
         JhiMainComponent,
-        // ChangeDetectorRef,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: AuthInterceptor,

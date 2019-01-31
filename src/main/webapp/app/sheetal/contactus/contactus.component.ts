@@ -36,5 +36,6 @@ export class ContactusComponent implements OnInit {
         this.user.phone = '';
         this.user.email = '';
         this.user.msg = '';
+        this.user.yourname = '';
     }
 }
