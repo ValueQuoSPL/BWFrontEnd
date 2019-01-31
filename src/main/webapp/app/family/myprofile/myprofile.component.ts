@@ -4,12 +4,43 @@ import { Myprofile } from 'app/family/family.model';
 import { MyprofileService } from 'app/family/myprofile/myprofile.service';
 import { FormControl } from '@angular/forms';
 import { CommonSidebarService } from '../../pratik/common/sidebar.service';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import * as _moment from 'moment';
+
+// import {default as _rollupMoment} from 'moment';
+
+// const moment = _rollupMoment || _moment;
+
+const moment = _moment;
+
+export const MY_FORMATS = {
+    parse: {
+        dateInput: 'LL'
+    },
+    display: {
+        dateInput: 'LL',
+        monthYearLabel: 'MMM YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'MMMM YYYY'
+    }
+};
+
 @Component({
     selector: 'jhi-myprofile',
     templateUrl: './myprofile.component.html',
-    styleUrls: []
+    styleUrls: [],
+    providers: [
+        // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
+        // application's root module. We provide it at the component level here, due to limitations of
+        // our example generation script.
+        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+
+        { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
+    ]
 })
 export class MyprofileComponent implements OnInit {
+    datee = new FormControl(moment());
     myProfile: any;
     output: any = [];
     user: any;
@@ -50,6 +81,7 @@ export class MyprofileComponent implements OnInit {
     getMyProfilebyid() {
         this.MyProfileSer.getMyProfileByUid(this.uid).subscribe(res => {
             this.output = res;
+            console.log(this.output);
             // for (let i = 0; i < this.output.length; i++) {
             //   const element = this.output[i];
             //   if (element.uid === 0) {
@@ -75,11 +107,8 @@ export class MyprofileComponent implements OnInit {
         this.myProfile.company = this.output[0].company;
         this.myProfile.country = this.output[0].country;
         this.date = this.output[0].dob;
-        console.log('date is', this.date);
-        const finalDate = this.datePipe.transform(this.date, 'd/M/yy');
-        console.log('date is', finalDate);
+        const finalDate = this.datePipe.transform(this.date, 'M/d/yyyy');
         this.myProfile.dob = new Date(finalDate);
-        console.log('date is', this.myProfile.dob);
         this.myProfile.emailId = this.output[0].emailId;
         this.myProfile.firstName = this.output[0].firstName;
         this.myProfile.gender = this.output[0].gender;

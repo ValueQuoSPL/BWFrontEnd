@@ -44,6 +44,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     change;
     loggedIn = false;
     trialData: any = [];
+    isExpired: boolean;
 
     constructor(
         private titleService: Title,
@@ -90,14 +91,47 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
 
     // after every load/reload
     ngAfterViewInit() {
-        this.ac = this.loginService.getCookie();
+        // for expiry plan hide side bar, disable toggle flag button
+        this.sc.Expiry.subscribe(flag => {
+            if (flag === false) {
+                // this.showSidebar('from login');
+                this.isPaid = false;
+                this.flag = false;
+                this.isExpired = true;
+            } else {
+                this.ac = this.loginService.getCookie();
+                this.account = this.ac;
+                if (this.account) {
+                    this.startWatching();
+                    this.loggedIn = true;
+                    this.sc.account.next(this.account);
+                    this.uid = this.account.id;
 
+                    if (this.account.authorities[1]) {
+                        this.authority = this.account.authorities[1];
+                    }
+                    this.userPlanService.GetUserPlan(this.uid).subscribe(data => {
+                        // // console.log(data);
+                        this.trialData = data;
+                        if (this.trialData[0].uid === this.uid) {
+                            this.planService.isTrial.next(false);
+                        }
+                    });
+                    this.checkSuccess(this.uid);
+                } else {
+                    this.loginService.logout();
+                    this.loggedIn = false;
+                }
+            }
+            // this.toggleSide(false);
+        });
+
+        // for normal condition when plan is not expire
+        this.ac = this.loginService.getCookie();
         this.account = this.ac;
         if (this.account) {
             this.startWatching();
-
             this.loggedIn = true;
-
             this.sc.account.next(this.account);
             this.uid = this.account.id;
 
@@ -105,7 +139,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                 this.authority = this.account.authorities[1];
             }
             this.userPlanService.GetUserPlan(this.uid).subscribe(data => {
-                // console.log(data);
+                // // console.log(data);
                 this.trialData = data;
                 if (this.trialData[0].uid === this.uid) {
                     this.planService.isTrial.next(false);
@@ -116,7 +150,6 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
             this.loginService.logout();
             this.loggedIn = false;
         }
-
         this.registerAuthenticationSuccess();
 
         this.change = this.cd.detectChanges();
@@ -145,7 +178,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     }
 
     startWatching() {
-        console.log('idle watching start');
+        // console.log('idle watching start');
         this.userIdle.startWatching();
     }
 
@@ -155,10 +188,15 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
             this.last = this.result.pop();
             if (this.last) {
                 if (this.last.status === 'success') {
-                    this.isPaid = true;
-
+                    // if not Expired set flag show the sidebar
+                    if (!this.isExpired) {
+                        this.isPaid = true;
+                    }
                     if (!this.isMobile) {
-                        this.flag = true;
+                        // if not Expired set flag show the sidebar
+                        if (!this.isExpired) {
+                            this.flag = true;
+                        }
                     }
                     this.planService.isPaid.next(true);
                 } else {
@@ -172,6 +210,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                     this.isPaid = true;
                     if (!this.isMobile) {
                         this.flag = true;
+                        console.log('pull', this.flag);
                     }
                 }
             }
@@ -196,6 +235,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                 this.flag = false;
             } else {
                 this.flag = true;
+                console.log('pull', this.flag);
                 // element.setAttribute('style', 'margin-left: 200px;');
             }
         }

@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck, Injectable, ChangeDetectorRef, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, DoCheck, Injectable, ChangeDetectorRef, Input, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModalRef, NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { HostListener } from '@angular/core';
@@ -49,6 +49,7 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
     notification: any;
     timerflag: boolean;
     idleModalRef: NgbModalRef;
+    isExpired: boolean;
 
     constructor(
         @Inject(DOCUMENT) private document: Document,
@@ -87,6 +88,13 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
     }
 
     ngOnInit() {
+        this.planService.logg.next(this.logout());
+
+        this.commonService.Expiry.subscribe(flag => {
+            this.isPaid = false;
+            this.isExpired = true;
+            // console.log('expired');
+        });
         this.registerAuthenticationSuccess();
 
         this.languageHelper.getAll().then(languages => {
@@ -99,7 +107,10 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
 
         this.planService.isPaid.subscribe(flag => {
             if (flag === true) {
-                this.isPaid = true;
+                if (!this.isExpired) {
+                    this.isPaid = true;
+                    // console.log('paid', this.isPaid);
+                }
             } else {
                 this.isPaid = false;
             }
@@ -117,6 +128,7 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
                 if (this.account.authorities[1] === 'ROLE_ADMIN') {
                     this.isAdmin = true;
                     this.isPaid = true;
+                    // console.log('paid', this.isPaid);
                 }
             }
         } else {
@@ -167,7 +179,7 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
     }
 
     ngOnDestroy() {
-        console.log('navbar destroyed');
+        // console.log('navbar destroyed');
     }
     // idle start
     stop() {
@@ -265,6 +277,7 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
                     if (this.account.authorities[1] === 'ROLE_ADMIN') {
                         this.isAdmin = true;
                         this.isPaid = true;
+                        // console.log('paid', this.isPaid);
                     }
                 }
             } else {
@@ -289,6 +302,10 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
     login() {
         this.collapseNavbar();
         this.modalRef = this.loginModalService.open();
+    }
+
+    sample() {
+        console.log('hii from nav component');
     }
 
     logout() {
@@ -320,10 +337,13 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
     }
 
     toggle() {
-        // let flag = false;
-        this.flag = !this.flag;
-        this.main.toggleSide(this.flag);
-        this.sidebar.showSidebar('navbar toggle()');
+        if (!this.isExpired) {
+            // let flag = false;
+            this.flag = !this.flag;
+            this.main.toggleSide(this.flag);
+            // if there is sidebar then it hide, else show
+            this.sidebar.showSidebar('navbar toggle()');
+        }
     }
     register1() {
         this.router.navigate(['register']);

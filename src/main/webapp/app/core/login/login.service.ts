@@ -5,6 +5,7 @@ import { AuthServerProvider } from 'app/core/auth/auth-jwt.service';
 import { CookieService } from 'ngx-cookie';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
 import { UserIdleService } from 'angular-user-idle';
+import { PlanService } from 'app/pratik/common/plan.service';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
@@ -19,7 +20,8 @@ export class LoginService {
         private principal: Principal,
         private authServerProvider: AuthServerProvider,
         private _cookieService: CookieService,
-        private sc: CommonSidebarService
+        private sc: CommonSidebarService,
+        private planService: PlanService
     ) {}
 
     login(credentials, callback?) {
@@ -65,6 +67,16 @@ export class LoginService {
         //    this.all = this._cookieService.getAll();
         this.single = this._cookieService.getObject('1');
         return this.single;
+    }
+
+    // Checking Token
+    isLoggedIn() {
+        const details = this._cookieService.getObject('1');
+        if (details) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     putCookie(key, data) {
