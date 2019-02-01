@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { MutualFund } from 'app/my-assets/mutual/mutual.modal';
 import { SERVER_API_URL } from 'app/app.constants';
 
+/**
+ * Author - Sanjay
+ */
 @Injectable()
 export class MutualfundService {
     public ServiceAPIParam: any;
@@ -32,7 +35,14 @@ export class MutualfundService {
         this.ServiceAPI = 'api/deletemutualfund' + '/' + id;
         return this.http.delete<MutualFund[]>(SERVER_API_URL + this.ServiceAPI);
     }
-
+    public CallAmcMethod(data) {
+        this.ServiceAPI = 'api/getAmcName' + '/' + data;
+        return this.http.get(SERVER_API_URL + this.ServiceAPI);
+    }
+    public getAllAmc() {
+        this.ServiceAPI = 'api/getAllAmcode';
+        return this.http.get(SERVER_API_URL + this.ServiceAPI);
+    }
     /**
      * Author - Pratik
      * @param data
