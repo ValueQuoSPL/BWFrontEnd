@@ -88,8 +88,6 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
     }
 
     ngOnInit() {
-        this.planService.logg.next(this.logout());
-
         this.commonService.Expiry.subscribe(flag => {
             this.isPaid = false;
             this.isExpired = true;
