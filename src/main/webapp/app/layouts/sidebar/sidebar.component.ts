@@ -37,6 +37,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     authority: any;
     encrypt: number;
     loggedIn = false;
+    isExpired: boolean;
 
     constructor(
         private principal: Principal,
@@ -88,6 +89,16 @@ export class SidebarComponent implements OnInit, AfterViewInit {
                 }
             }
         });
+
+        // start subscriber of plan expired which is send from login componenet
+        this.commonService.Expiry.subscribe(() => {
+            this.showSidebarAfterLogin();
+            // this.showSidebar('from login');
+
+            this.isExpired = true;
+        });
+        // end here
+
         this.commonService.logout.subscribe(() => {
             this.loggedIn = false;
             this.isPaid = false;
@@ -102,6 +113,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
                 this.isSubscribed = true;
                 const plan = this.userPlan[0].plan;
 
+                // According to plan give the access to user.
                 if (plan === 'WISE') {
                     this.fullAccess = false;
                     if (this.authority === 'ROLE_ADMIN') {
@@ -141,6 +153,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
         }
     }
 
+    // use for show and hide sidebar while press button
     showSidebar(from) {
         this.epicFunction();
         this.planService.isPaid.subscribe(flag => {

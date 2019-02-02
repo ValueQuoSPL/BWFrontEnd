@@ -13,6 +13,7 @@ export class PlanService {
     isTrial = new BehaviorSubject(true);
     isExpire = new BehaviorSubject(true);
     idle = new Subject();
+    logg = new Subject<any>();
 
     constructor() {}
 }

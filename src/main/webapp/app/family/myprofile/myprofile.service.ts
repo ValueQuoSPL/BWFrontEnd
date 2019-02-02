@@ -24,6 +24,7 @@ export class MyprofileService {
         return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
     }
     public updateProfile(myProfile: any): Observable<any> {
+        console.log(myProfile);
         return this.http.put(SERVER_API_URL + 'api/myprofile', myProfile);
     }
 }
