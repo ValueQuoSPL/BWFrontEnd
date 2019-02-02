@@ -73,7 +73,7 @@
                             </mat-select>
                         </mat-form-field>&nbsp;&nbsp;
                         <mat-form-field>
-                            <mat-select placeholder="Select SIP Day" name="sipname" [(ngModel)]="mutualfund.sipname">
+                            <mat-select placeholder="Select SIP Day">
                                 <mat-option *ngFor="let sip of siparray; let i= index;" value="{{sip.sipname}}" (click)="getSipDay(sip,i)">
                                     {{sip.sipname}}
                                 </mat-option>
@@ -245,7 +245,7 @@
                                 </mat-select>
                         </mat-form-field>&nbsp;&nbsp;
                         <mat-form-field>
-                            <mat-select placeholder="Select SIP Day" name="sipname" [(ngModel)]="mutualfund.sipname">
+                            <mat-select placeholder="Select SIP Day">
                                 <mat-option *ngFor="let sip of siparray; let i= index;" value="{{sip.sipname}}" (click)="getSipDay(sip,i)">
                                 {{sip.sipname}}</mat-option>
                             </mat-select>

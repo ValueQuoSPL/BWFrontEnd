@@ -18,4 +18,5 @@ export class MutualFund {
     public sipamount?: string;
     public schemecode?: string;
     public navatpurchase?: string;
+    public sipname?: string;
 }

@@ -75,6 +75,7 @@ export class MutualComponent implements OnInit {
     siparr: any;
     schemeCodeArr: any;
     x: any;
+    sipname: any;
     constructor(
         private modalService: NgbModal,
         public activeModal: NgbActiveModal,
