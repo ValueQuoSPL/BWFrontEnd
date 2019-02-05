@@ -26,6 +26,8 @@ import { AuthExpiredInterceptor } from 'app/blocks/interceptor/auth-expired.inte
 import { ErrorHandlerInterceptor } from 'app/blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from 'app/blocks/interceptor/notification.interceptor';
 import { FooterpageModule } from './footer-pages/footerpage/footerpage.module';
+import { TaxFilingModule } from './TaxFiling/taxfiling.module';
+
 // From Inbuilt Component
 import {
     JhiMainComponent,
@@ -172,6 +174,7 @@ const customNotifierOptions: NotifierOptions = {
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         DeviceDetectorModule.forRoot(),
         FooterpageModule,
+        TaxFilingModule,
         /* Optionally you can set time for `idle`, `timeout` and `ping` in seconds.
         * Default values: `idle` is 600 (10 minutes),
         * `timeout` is 300 (5 minutes)
