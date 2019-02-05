@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Income } from 'app/pratik/spending/spending.model';
 import { IncomeService } from 'app/pratik/spending/spending.service';
 import { NgbModal, ModalDismissReasons, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -6,7 +6,7 @@ import { CanComponentDeactivate } from 'app/pratik/common/can-deactivate-guard.s
 import { Observable, Subject } from 'rxjs';
 import { CommonSidebarService } from '../common/sidebar.service';
 import { debounceTime } from 'rxjs/operators';
-import { LoginService } from 'app/core';
+import { LoginService, LoginModalService } from 'app/core';
 
 class NewIncome {
     dynamicIncome: any = [];
@@ -58,7 +58,8 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         private modalService: NgbModal,
         private incomeService: IncomeService,
         private commonService: CommonSidebarService,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private loginModalService: LoginModalService
     ) {}
 
     ngOnInit() {
@@ -90,7 +91,19 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         if (this.account) {
             this.uid = this.account.id;
             this.onIncomeGet(this.uid);
+        } else {
+            // this.login();
         }
+    }
+
+    // ngDoCheck() {
+    //     this.account = this.loginService.getCookie();
+    //     if (this.account === 0) {
+    //         this.login();
+    //     }
+    // }
+    login() {
+        this.modalRef = this.loginModalService.open();
     }
 
     onIncomeGet(uid) {

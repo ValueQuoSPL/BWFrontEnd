@@ -21,28 +21,19 @@
     <div class="modal-body ">
         <div class=" rowjustify-content-center">
             <form name="editForm" role="form" novalidate  #editForm="ngForm">
-                <!-- <mat-form-field>
-                    <input
-                        matInput
-                        class="full-width"
-                        required
-                        type="number"
-                        jhiNumberOnly
-                        placeholder="mutualfundId"
-                        [(ngModel)]="mutualfund.mutualfundid"
-                        name="mutualfundid"
-                    >
-                </mat-form-field>&nbsp;&nbsp; -->
-                <mat-form-field>
-                    <input
-                        matInput
-                        class="full-width"
-                        requiredtype="text"
-                        jhiCharsOnly
-                        placeholder="MFScheme"
-                        [(ngModel)]="mutualfund.mfscheme"
-                        name="mfscheme">
-                </mat-form-field>&nbsp;&nbsp;
+                <mat-form-field class="example-full-width"  style="width: 100%;">
+                    <input type="text" placeholder="AMC Name" aria-label="Number"  matInput [formControl]="myControl" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptions | async; let i= index;" value="{{option.amc_name}}" (click)="callAmc(option,i)" >
+                            {{option.amc_name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field  style="width: 100%;">
+                    <mat-select placeholder="Select MFScheme" name="mfscheme" [(ngModel)]="mutualfund.mfscheme">
+                        <mat-option *ngFor="let mfscheme of arr; let i = index;" value="{{mfscheme.schemeName}}" (click)="getSchemeCode(mfscheme,i)" >{{mfscheme.schemeName}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
                 <mat-form-field>
                     <input
                         matInput
@@ -52,26 +43,77 @@
                         placeholder="Folio Number"
                         [(ngModel)]="mutualfund.folionumber"
                         name="folionumber">
-                </mat-form-field>&nbsp;&nbsp;
+                </mat-form-field>&nbsp;
+                <mat-form-field>
+                    <input 
+                        required 
+                        matInput
+                        name="p_date"
+                        [matDatepicker]="picker1" 
+                        placeholder="Purchase/Start Date" 
+                        [(ngModel)]="mutualfund.p_date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1" >
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #picker1>
+                    </mat-datepicker>
+                </mat-form-field>&nbsp;
+                <mat-form-field>
+                    <mat-select placeholder="Choose Type" name="type" [(ngModel)]="type">
+                      <mat-option value="Sip">SIP</mat-option>
+                      <mat-option value="LumpSum">Lump Sum</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div [ngSwitch]="type"><!--start of ngSwitch div-->
+                    <div *ngSwitchCase="'Sip'"><!--start of ngSwitchCaseSip div-->
+                        <mat-form-field>
+                            <mat-select placeholder="Frequency" name="frequency" [(ngModel)]="mutualfund.frequency">
+                                <mat-option value="Weekly">Weekly</mat-option>
+                                <mat-option value="Monthly">Monthly</mat-option>
+                                <mat-option value="Quarterly">Quarterly</mat-option>
+                            </mat-select>
+                        </mat-form-field>&nbsp;&nbsp;
+                        <mat-form-field>
+                            <mat-select placeholder="Select SIP Day">
+                                <mat-option *ngFor="let sip of siparray; let i= index;" value="{{sip.sipname}}" (click)="getSipDay(sip,i)">
+                                    {{sip.sipname}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>&nbsp;&nbsp;
+                        <mat-form-field>
+                            <input
+                                matInput
+                                style="width: 100%;"
+                                type="number"
+                                jhiNumberOnly
+                                placeholder="SIP Amount"
+                                name="sipamount"
+                                id="sipamount"
+                                [(ngModel)]="mutualfund.sipamount"
+                                required>
+                        </mat-form-field>&nbsp;&nbsp;
+                    </div><!--End of ngSwitchCaseSip div-->
+                    <div *ngSwitchCase="'LumpSum'"><!--start of ngSwitchCaselumpsum div-->
+                        <mat-form-field>
+                            <input
+                                matInput
+                                style="width: 100%;"
+                                type="number"
+                                jhiNumberOnly
+                                placeholder="Nav At Purchase"
+                                name="navatpurchase"
+                                id="navatpurchase"
+                                [(ngModel)]="mutualfund.navatpurchase"
+                                required>
+                        </mat-form-field>&nbsp;&nbsp;
+                    </div><!--End of ngSwitchCaselumpsum div-->
+                </div><!--End of ngSwitchCase div-->
                 <mat-form-field>
                     <input
                         matInput
                         style="width: 100%;"
                         type="number"
                         jhiNumberOnly
-                        placeholder="Holding Days"
-                        name="holdingdays"
-                        id="holdingdays"
-                        [(ngModel)]="mutualfund.holdingdays"
-                        required>
-                </mat-form-field>&nbsp;&nbsp;
-                <mat-form-field>
-                    <input
-                        matInput
-                        style="width: 100%;"
-                        type="number"
-                        jhiNumberOnly
-                        placeholder="Purches Price"
+                        placeholder="Purchase Price"
                         name="purchesprice"
                         id="purchesprice"
                         [(ngModel)]="mutualfund.purchesprice"
@@ -83,13 +125,12 @@
                         style="width: 100%;"
                         type="number"
                         jhiNumberOnly
-                        placeholder="current value"
-                        name="currentvalue"
-                        id="currentvalue"
-                        [(ngModel)]="mutualfund.currentvalue"
+                        placeholder="Unit Balance"
+                        name="unitbalance"
+                        id="unitbalance"
+                        [(ngModel)]="mutualfund.unitbalance"
                     />
                 </mat-form-field>&nbsp;&nbsp;
-
                 <div class="modal-footer">
                     <button
                         mat-raised-button
@@ -121,112 +162,165 @@
         </div>
     </div>
 </ng-template>
-
 <!-- editMutualModal start -->
 <ng-template #editMutualModal let-c="close" let-d="dismiss">
-        <div class="modal-header">
-            <h4 class="modal-title" id="editMutualModal">Mutual Funds</h4>
-            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body ">
-            <div class=" rowjustify-content-center">
-                <form name="editForm" role="form" novalidate  #editForm="ngForm">
-                    <mat-form-field>
-                        <input
-                            matInput
-                            class="full-width"
-                            requiredtype="text"
-                            jhiCharsOnly
-                            placeholder="MFScheme"
-                            [(ngModel)]="mutualfund.mfscheme"
-                            name="mfscheme"
-                        >
-                    </mat-form-field>&nbsp;&nbsp;
-                    <mat-form-field>
-                        <input
-                            matInput
-                            class="full-width"
-                            required type="number"
-                            jhiNumberOnly
-                            placeholder="Folio Number"
-                            [(ngModel)]="mutualfund.folionumber"
-                            name="folionumber"
-                        >
-                    </mat-form-field>&nbsp;&nbsp;
-                    <mat-form-field>
-                        <input
-                            matInput
-                            style="width: 100%;"
-                            type="number"
-                            jhiNumberOnly
-                            placeholder="Holding Days"
-                            name="holdingdays"
-                            id="holdingdays"
-                            [(ngModel)]="mutualfund.holdingdays"
-                            required
-                         />
-                    </mat-form-field>&nbsp;&nbsp;
-                    <mat-form-field>
-                        <input
-                            matInput
-                            style="width: 100%;"
-                            type="number"
-                            jhiNumberOnly
-                            placeholder="Purches Price"
-                            name="purchesprice"
-                            id="purchesprice"
-                            [(ngModel)]="mutualfund.purchesprice"
-                            required
-                        />
-                    </mat-form-field>&nbsp;&nbsp;
-                    <mat-form-field>
-                        <input
-                            matInput
-                            style="width: 100%;"
-                            type="number"
-                            jhiNumberOnly
-                            placeholder="current value"
-                            name="currentvalue"
-                            id="currentvalue"
-                            [(ngModel)]="mutualfund.currentvalue"
-                        />
-                    </mat-form-field>&nbsp;&nbsp;
-
-                    <div class="modal-footer">
-                        <button
-                            mat-raised-button
-                            type="submit"
-                            [disabled]="editForm.form.invalid || isSaving"
-                            class="btnSave"
-                            (click)="c('Save click')"
-                            (click)="update()">
-                            <span class="fa fa-save"></span>&nbsp;
-                            <span>Update</span>
-                        </button>
-                        <button
-                            mat-raised-button
-                            class="btnCancel"
-                            data-dismiss="modal"
-                            (click)="d('Cross click')">
-                            <span class="fa fa-ban"></span>&nbsp;
-                            <span>Cancel</span></button>&nbsp;
-                        <button
-                            mat-raised-button
-                            type="button"
-                            class="btnReset"
-                            (click)="resetFieldValue()">
-                            <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
-                            <span>Reset</span></span>
-                        </button>
+    <div class="modal-header">
+        <h4 class="modal-title" id="editMutualModal">Mutual Funds</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body ">
+        <div class=" rowjustify-content-center">
+            <form name="editForm" role="form" novalidate  #editForm="ngForm">
+                <mat-form-field 
+                    class="example-full-width"  
+                    style="width: 100%;">
+                    <input type="text" placeholder="AMC Name"
+                    aria-label="Number"  
+                    matInput 
+                    [matAutocomplete]="auto"
+                    name="amcname"
+                    [(ngModel)]="mutualfund.amcname">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option 
+                            *ngFor="let option of filteredOptions | async; let i= index;"
+                            value="{{option.amc_name}}" 
+                            (click)="callAmc(option,i)" >
+                            {{option.amc_name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field 
+                    class="example-full-width"  
+                    style="width: 100%;">
+                <input type="text" placeholder="MF Scheme"
+                    aria-label="Number"  
+                    matInput 
+                    [matAutocomplete]="aute"
+                    name="mfscheme"
+                    [(ngModel)]="mutualfund.mfscheme">
+                    <mat-autocomplete #aute="matAutocomplete">
+                        <mat-option 
+                            *ngFor="let mfscheme of arr; let i = index;" 
+                            value="{{mfscheme.schemeName}}" 
+                            (click)="getSchemeCode(mfscheme,i)">{{mfscheme.schemeName}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+                <mat-form-field>
+                    <input
+                        matInput
+                        class="full-width"
+                        required type="number"
+                        jhiNumberOnly
+                        placeholder="Folio Number"
+                        [(ngModel)]="mutualfund.folionumber"
+                        name="folionumber">
+                </mat-form-field>&nbsp;
+                <mat-form-field>
+                    <input 
+                        required 
+                        matInput
+                        name="p_date"
+                        [matDatepicker]="picker1" 
+                        placeholder="Purchase/Start Date" 
+                        [(ngModel)]="mutualfund.p_date">
+                    <mat-datepicker-toggle matSuffix [for]="picker1" ></mat-datepicker-toggle>
+                    <mat-datepicker #picker1 ></mat-datepicker>
+                </mat-form-field>&nbsp;
+                <mat-form-field>
+                    <mat-select placeholder="Choose Type" name="type" [(ngModel)]="type">
+                        <mat-option value="Sip">SIP</mat-option>
+                        <mat-option value="LumpSum">Lump Sum</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div [ngSwitch]="type"><!--start of ngSwitch div-->
+                    <div *ngSwitchCase="'Sip'">
+                        <mat-form-field>
+                            <mat-select placeholder="Frequency" name="frequency" [(ngModel)]="mutualfund.frequency">
+                                <mat-option value="Weekly">Weekly</mat-option>
+                                <mat-option value="Monthly">Monthly</mat-option>
+                                <mat-option value="Quarterly">Quarterly</mat-option>
+                                </mat-select>
+                        </mat-form-field>&nbsp;&nbsp;
+                        <mat-form-field>
+                            <mat-select placeholder="Select SIP Day">
+                                <mat-option *ngFor="let sip of siparray; let i= index;" value="{{sip.sipname}}" (click)="getSipDay(sip,i)">
+                                {{sip.sipname}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>&nbsp;&nbsp;
+                        <mat-form-field>
+                            <input
+                                matInput
+                                style="width: 100%;"
+                                type="number"
+                                jhiNumberOnly
+                                placeholder="SIP Amount"
+                                name="sipamount"
+                                id="sipamount"
+                                [(ngModel)]="mutualfund.sipamount"
+                                required>
+                        </mat-form-field>&nbsp;&nbsp;
                     </div>
-                </form>
-            </div>
+                    <div *ngSwitchCase="'LumpSum'">
+                        <mat-form-field>
+                            <input
+                                matInput
+                                style="width: 100%;"
+                                type="number"
+                                jhiNumberOnly
+                                placeholder="Purchase Price"
+                                name="purchesprice"
+                                id="purchesprice"
+                                [(ngModel)]="mutualfund.purchesprice"
+                                required>
+                        </mat-form-field>&nbsp;&nbsp;
+                    </div>
+                </div>
+                <mat-form-field>
+                    <input
+                        matInput
+                        style="width: 100%;"
+                        type="number"
+                        jhiNumberOnly
+                        placeholder="Unit Balance"
+                        name="unitbalance"
+                        id="unitbalance"
+                        [(ngModel)]="mutualfund.unitbalance"
+                    />
+                </mat-form-field>&nbsp;&nbsp;
+                <div class="modal-footer">
+                    <button
+                        mat-raised-button
+                        type="submit"
+                        [disabled]="editForm.form.invalid || isSaving"
+                        class="btnSave"
+                        (click)="c('Save click')"
+                        (click)="update()">
+                        <span class="fa fa-save"></span>&nbsp;
+                        <span>Update</span>
+                    </button>
+                    <button
+                        mat-raised-button
+                        class="btnCancel"
+                        data-dismiss="modal"
+                        (click)="d('Cross click')">
+                        <span class="fa fa-ban"></span>&nbsp;
+                        <span>Cancel</span></button>&nbsp;
+                    <button
+                        mat-raised-button
+                        type="button"
+                        class="btnReset"
+                        (click)="resetFieldValue()">
+                        <span><i class="fas fa-sync fa-spin" aria-hidden="true"></i>
+                        <span>Reset</span></span>
+                    </button>
+                </div>
+            </form>
+        </div>
         </div>
 </ng-template>
-
-
 <!-- table starts here -->
 <table class="table-responsive-md table table-hover table-striped  table-sm">
     <thead>
@@ -234,13 +328,13 @@
             <th scope="col">MFScheme</th>
             <th scope="col">Folio Number</th>
             <th scope="col">Holding Days</th>
-            <th scope="col">Purches Price</th>
             <th scope="col">Current Value</th>
             <th scope="col">Gain/Loss</th>
             <th scope="col">Absolute Return(%)</th>
             <th scope="col">CAGR(%)</th>
             <th scope="col">Update</th>
             <th scope="col">Delete</th>
+            <th scope="col">View</th>
         </tr>
     </thead>
     <tbody>
@@ -248,7 +342,6 @@
             <td>{{mf.mfscheme}}</td>
             <td>{{mf.folionumber}}</td>
             <td>{{mf.holdingdays}}</td>
-            <td>{{mf.purchesprice}}</td>
             <td>{{mf.currentvalue}}</td>
             <td>{{mf.gainloss}}</td>
             <td>{{mf.absolutereturn}}%</td>
@@ -265,9 +358,16 @@
                 <button
                     class="btn btn-outline-danger btn-sm"
                     type="button"
-                    (click)="opendeleteStocks(mf.id)"
+                    (click)="opendeleteMutual(mf.id)"
                     >
                     <span> <fa-icon [icon]="'trash'"></fa-icon></i></span>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-outline-warning" (click)="viewMutualFund(viewMutualModal,mf.id)">
+                    <span>
+                        <fa-icon [icon]="'eye'"></fa-icon>
+                    </span>
                 </button>
             </td>
             <td>
@@ -276,4 +376,70 @@
         </tr>
     </tbody>
 </table>
-<!-- table starts here -->
+<!-- table Ends here -->
+<!-- view Modal start here -->
+<ng-template #viewMutualModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="viewMutualModal">All Mutual Funds</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body ">
+        <div>
+            <table class="table  table-responsive-md">
+                <tbody>
+                    <tr>
+                        <th class="subheading">AMC Name:</th>
+                        <td class="tddata">{{getdata.amcname}}</td>
+                        <th class="subheading">MFScheme:</th>
+                        <td class="tddata">{{getdata.mfscheme}}</td>
+                    </tr>
+                    <tr>
+                        <th class="subheading">Type</th>
+                        <td class="tddata">{{getdata.type}}</td>
+                        <th class="subheading">Frequency</th>
+                        <td class="tddata">{{getdata.frequency}}</td>
+                    </tr>
+                    <tr>
+                        <th class="subheading">SIP Day</th>
+                        <td class="tddata">{{getdata.sipday}}</td>
+                        <th class="subheading">SIP Amount</th>
+                        <td class="tddata">{{getdata.sipamount}}</td>
+                    </tr>
+                    <tr>
+                        <th class="subheading">Unit Balance</th>
+                        <td class="tddata">{{getdata.unitbalance}}</td>
+                        <th  class="subheading">Holding Days</th>
+                        <td class="tddata">{{getdata.holdingdays}}</td>
+                    </tr>
+                    <tr>
+                        <th class="subheading">Purchase Price</th>
+                        <td class="tddata">{{getdata.purchesprice}}</td>
+                        <th class="subheading">Current Value</th>
+                        <td class="tddata">{{getdata.currentvalue}}</td>
+                    </tr>
+                    <tr>
+                        <th class="subheading">Gain/Loss</th>
+                        <td class="tddata">{{getdata.gainloss}}</td>
+                        <th class="subheading">Absolute Return(%)</th>
+                        <td class="tddata">{{getdata.absolutereturn}}</td>
+                    </tr>
+                    <tr>
+                        <th class="subheading">CAGR(%)</th>
+                        <td  class="tddata">{{getdata.cagr}}%</td>
+                        <th class="subheading">Folio Number</th>
+                        <td  class="tddata">{{getdata.folionumber}}</td>
+                    </tr>
+                    <tr>
+                        <th class="subheading">Purchase Date</th>
+                        <td class="tddata">{{getdata.p_date}}</td>
+                        <th class="subheading">Nav At Purchase</th>
+                        <td class="tddata">{{getdata.navatpurchase}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-template>
+<!-- view Modal ends here -->

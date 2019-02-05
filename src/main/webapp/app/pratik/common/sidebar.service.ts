@@ -10,6 +10,7 @@ export class CommonSidebarService {
     // newlogin = new ReplaySubject(0);
     account = new ReplaySubject(this.a);
     logout = new ReplaySubject(0);
+    Expiry = new ReplaySubject(0);
 
     constructor() {}
 }
