@@ -118,6 +118,7 @@ import { NotificationComponent } from './pratik/notification/notification.compon
 import { DocumentComponent } from './document/document.component';
 import { MutualFundManageComponent } from './pratik/mutual-fund-manage/mutual-fund-manage.component';
 import { AuthGuard } from './auth.guard';
+import { TaxService } from './TaxFiling/tax-filing.service';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -283,6 +284,7 @@ const customNotifierOptions: NotifierOptions = {
         WINDOW_PROVIDERS,
         SidebarComponent,
         SpendingComponent,
+        TaxService,
         JhiMainComponent,
         {
             provide: HTTP_INTERCEPTORS,

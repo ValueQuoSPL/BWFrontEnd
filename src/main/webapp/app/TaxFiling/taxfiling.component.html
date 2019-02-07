@@ -1,7 +1,10 @@
 <div class="form-group row justify-content-center bwtitle">
     <span class="animated zoomIn">Tax Filing</span></div>
     <div style="background-color:#99ff99;margin-left:20px;margin-right: 20px;">
-    <button mat-raised-button (click)="openDialog(1, 'TaxFile')">Upload/View</button>
+    <!-- <button mat-raised-button (click)="openDialog(1, 'TaxFile')">Upload/View</button> -->
+    <div class="col-md-4">
+        <input type="file" (change)="onFileSelected($event)" style="margin-top: 16px;"><br>
+    </div>
     <div style="margin-left:150px;">
     <p></p>
     <p></p>
