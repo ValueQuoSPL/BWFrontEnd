@@ -25,6 +25,7 @@ import { AppointmentManageComponent } from 'app/admin/appointment-manage/appoint
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
+import { SystemMaintenanceComponent } from './system-maintenance/system-maintenance.component';
 library.add(fas, far);
 
 @NgModule({
@@ -48,7 +49,8 @@ library.add(fas, far);
         JhiMetricsMonitoringComponent,
         JhiMetricsMonitoringModalComponent,
         PromoCodeManageComponent,
-        AppointmentManageComponent
+        AppointmentManageComponent,
+        SystemMaintenanceComponent
     ],
     entryComponents: [UserMgmtDeleteDialogComponent, JhiHealthModalComponent, JhiMetricsMonitoringModalComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

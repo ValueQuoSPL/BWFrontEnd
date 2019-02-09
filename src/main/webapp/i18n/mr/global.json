@@ -34,6 +34,7 @@
                 "database": "डेटाबेस",
                 "promocode": "प्रोमोकोड व्यवस्थापन",
                 "appointment": "नियुक्ती व्यवस्थापन",
+                "maintenance": "System Maintenance",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
             "language": "भाषा"

@@ -5,6 +5,7 @@ import { auditsRoute, configurationRoute, docsRoute, healthRoute, logsRoute, met
 import { UserRouteAccessService } from 'app/core';
 import { promoRoute } from 'app/admin/promo-code-manage/promo-code.route';
 import { appointmentRoute } from 'app/admin/appointment-manage/appointment.route';
+import { sysMaintenance } from './system-maintenance/system-maintenance.route';
 
 const ADMIN_ROUTES = [
     auditsRoute,
@@ -15,7 +16,8 @@ const ADMIN_ROUTES = [
     ...userMgmtRoute,
     metricsRoute,
     promoRoute,
-    appointmentRoute
+    appointmentRoute,
+    sysMaintenance
 ];
 
 export const adminState: Routes = [
