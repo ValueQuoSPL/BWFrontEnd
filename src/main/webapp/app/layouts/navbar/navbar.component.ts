@@ -213,7 +213,8 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
     timeOut() {
         this.userIdle.onTimeout().subscribe(() => {
             this.openSessionTimeout();
-            this.logout();
+            // this.logout();
+            this.logoutForIdle();
         });
     }
 
@@ -318,6 +319,26 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
 
         this.sidebar.showSidebar('navbar logout()');
         this.loginService.logout();
+        this.main.toggleSide(true);
+        this.commonService.logout.next(1);
+        this.planService.isPaid.next(false);
+        this.planService.isTrial.next(true);
+
+        this.router.navigate(['/']);
+    }
+
+    logoutForIdle() {
+        this.FirstName = 'Account';
+        this.isPaid = false;
+        this.isAdmin = false;
+        this.loggedIn = false;
+        this.notifyArray.length = 0;
+        this.notify_count = 0;
+        this.collapseNavbar();
+        this.stopWatching();
+
+        this.sidebar.showSidebar('navbar logout()');
+        // this.loginService.logout();
         this.main.toggleSide(true);
         this.commonService.logout.next(1);
         this.planService.isPaid.next(false);

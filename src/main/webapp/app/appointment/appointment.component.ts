@@ -255,7 +255,7 @@ export class AppointmentComponent implements OnInit {
         this.isBooked = false;
     }
 
-    // updateStatus click on cnacel button
+    // updateStatus click on cancel button
     updateStatus() {
         const response = confirm('Are you sure want to cancel appointment');
         if (response) {
