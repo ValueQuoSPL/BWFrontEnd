@@ -7,132 +7,178 @@
           <h4>Refer Your Friends</h4>
           <!-- <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis pulvinar vestibulum. Doneceleifend, sem sed dictum. Lorem ipsum dolor sit amet, consectetur adipiscing elits</h6> -->
       </div>
+    <div *ngIf="!isDataSaved">
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-md-offset-3">
-            <form id="contactForm" name="sentMessage" novalidate="">
-               <div class="control-group">
+              <form class="Contact" #submitform="ngForm">
+
+                  <div class="Control-group">
+                  <div class="form-group floating-label-form-group controls">
+                      <label for="name" class="sr-only control-label"> Your Name</label>
+                      <input
+
+                        id="yourname"
+                        type="text"
+                        name="yourname"
+                        value=""
+                        #yourname="ngModel"
+                        placeholder="Your name"
+                        [(ngModel)]="user.yourname"
+                        pattern="[a-zA-Z][a-zA-Z ]+"
+                        required class="form-control input-lg"
+
+                      >
+
+                    <div [hidden]="yourname.valid || yourname.pristine">
+                      <div  [hidden]="!yourname.hasError('required')"><small class="text-danger">Your name is required</small></div>
+                  <div class="c" [hidden]="!yourname.hasError('pattern')" class="text-danger">only alphabets are allowed</div>
+                    </div>
+                    </div>
+
+                  </div>
+
+                    <div class="Control-group">
+                  <div class="form-group floating-label-form-group controls">
+                      <input
+
+                        id="name"
+                        type="text"
+                        name="name"
+                        value=""
+                        #name="ngModel"
+                        placeholder="Friend's Name"
+                        [(ngModel)]="user.name"
+                        pattern="[a-zA-Z][a-zA-Z ]+"
+                        required
+                        class="form-control input-lg"
+                      >
+
+                    <div [hidden]="name.valid || name.pristine">
+                      <div class="c" [hidden]="!name.hasError('required')"><small  class="text-danger">Your Friend's Name is required</small></div>
+                  <div class="c" [hidden]="!name.hasError('pattern')" class="text-danger">only alphabets are allowed</div>
+                    </div>
+                    </div>
+                  </div>
+
+                    <div class="Control-group">
+                    <div class="form-group floating-label-form-group controls">
+                      <input
+
+                        id="email"
+                        type="text" 
+                        name="email"
+                        value=""
+                        #email="ngModel"
+                        placeholder="Friend's Email"
+                        [(ngModel)]="user.email"
+                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                        required
+                        class="form-control input-lg"
+                      >
+
+                    <div class="c" [hidden]="email.valid || email.pristine">
+                      <div class="c" [hidden]="!email.hasError('required')" class="text-danger">Email is required</div>
+                      <div class="c"[hidden]="!email.hasError('pattern')" class="text-danger">Email format should be <small class="text-danger"><b>joe@abc.com</b></small>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+
+                  <div class="Control-group">
+                  <div class="form-group floating-label-form-group controls">
+
+                      <input
+                      class="form-control input-lg"
+                      jhiNumberOnly
+                      required
+                      placeholder="Friend's phone"
+                      id="phone"
+                      type="number"
+                      maxlength="10"
+                      name="phone"
+                      #phone="ngModel"
+                      value=""
+                      [(ngModel)]="user.phone"
+                      minlength="10" maxlength="10"
+                      pattern="^[_'.@A-Za-z0-9-]*$"required>
+
+
+                    <div *ngIf="phone.touched && !phone.valid" class="text-danger">
+                      <div class="c" *ngIf="phone.errors.required">
+                        MobileNumber is required
+                      </div>
+                      <div class="c" *ngIf="phone.errors.minlength">
+                        MobileNumber should be min {{phone.errors.minlength.requiredLength}} char
+                      </div>
+                      <div class="c" *ngIf="phone.errors.pattern">
+                        pattern not match
+                        <div class="c" [hidden]="!phone.hasError('pattern')">Mobile number should be only numbers</div>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- end div mobilenumber-->
+
+                  <div class="control-group">
+                      <div class="form-group floating-label-form-group controls">
+                        <label for="message" class="sr-only control-label">Message</label>
+                        <textarea id="message" rows="2" placeholder="Your message for your Friend. e.g. I stongly recommend you to subscribe for www.buckwise.com..."
+                          required="" data-validation-required-message="Please enter a message." aria-invalid="false" class="form-control input-lg"
+                          name="msg" [(ngModel)]="user.msg"></textarea><span class="help-block text-danger"></span>
+                      </div>
+
+            <!-- <form id="contactForm" name="sentMessage"> -->
+
+
+              <!-- "your name" field add by ranjan ,--start -->
+              <!-- <div class="Control-group">
                 <div class="form-group floating-label-form-group controls">
                   <label for="name" class="sr-only control-label"> Your Name</label>
                   <input id="yourname" type="text" placeholder="Your Name" required="" name="yourname" [(ngModel)]="user.yourname"
                     data-validation-required-message="Please enter your name" class="form-control input-lg"><span class="help-block text-danger"></span>
                 </div>
-              </div>
-              <div class="control-group">
+              </div> -->
+
+              <!-- --end -->
+              <!-- <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
                   <label for="name" class="sr-only control-label">Name</label>
                   <input id="name" type="text" placeholder="Friend's Name" required="" name="name" [(ngModel)]="user.name"
-                  data-validation-required-message="Please enter name"
-                  class="form-control input-lg"><span class="help-block text-danger"></span>
+                    data-validation-required-message="Please enter name" class="form-control input-lg"><span class="help-block text-danger"></span>
                 </div>
               </div>
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
                   <label for="email" class="sr-only control-label">Email</label>
-                  <input id="email" type="email" placeholder="Friend's Email" 
-                  required=""
-                  name="email" [(ngModel)]="user.email" 
-                  data-validation-required-message="Please enter email" 
-                  class="form-control input-lg"><span class="help-block text-danger"></span>
+                  <input id="email" type="email" placeholder="Friend's Email" required="" name="email" [(ngModel)]="user.email"
+                    data-validation-required-message="Please enter email" class="form-control input-lg"><span class="help-block text-danger"></span>
                 </div>
               </div>
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
                   <label for="phone" class="sr-only control-label">Phone</label>
-                  <input id="phone" type="tel" placeholder="Friend's Phone" required="" 
-                  data-validation-required-message="Please enter phone number" 
-                  class="form-control input-lg"
-                  name="phone" [(ngModel)]="user.phone"><span class="help-block text-danger"></span>
+                  <input id="phone" type="tel" placeholder="Friend's Phone" required=""
+                    data-validation-required-message="Please enter phone number" class="form-control input-lg" name="phone"
+                    [(ngModel)]="user.phone"><span class="help-block text-danger"></span>
                 </div>
               </div>
+
               <div class="control-group">
                 <div class="form-group floating-label-form-group controls">
                   <label for="message" class="sr-only control-label">Message</label>
-                  <textarea id="message" rows="2" placeholder="Your message for your Friend. e.g. I stongly recommend you to subscribe for www.buckwise.com..." 
-                  required="" data-validation-required-message="Please enter a message." 
-                  aria-invalid="false" class="form-control input-lg"
-                  name="msg" [(ngModel)]="user.msg"></textarea><span class="help-block text-danger"></span>
+                  <textarea id="message" rows="2" placeholder="Your message for your Friend. e.g. I stongly recommend you to subscribe for www.buckwise.com..."
+                    required="" data-validation-required-message="Please enter a message." aria-invalid="false" class="form-control input-lg"
+                    name="msg" [(ngModel)]="user.msg"></textarea><span class="help-block text-danger"></span>
                 </div>
-              </div>
+              </div> -->
               <div id="success"></div>
-              <button type="submit" class="btn btn-dark btn-lg" [disabled] = "isDisable"  (click)="submitUser()">Send</button>
+              <button type="submit" class="btn btn-dark btn-lg" (click)="submitUser(); submitform.reset()" [disabled]="submitform.form.invalid || isDisabled">Send</button>
+
             </form>
           </div>
         </div>
       </div>
+      </div>
     </div>
   </header>
 </div>
-
-
-<!-- 
-<header class="img7 refer-intro refer-intro-fullscreen">
-   refer-intro Header-->
-  <!-- <div class="refer-intro-body"> -->
-    <!-- Login-->
-    <!-- <div class="col-md-6">
-        <h1>Refer Friend</h1>
-
-    </div>
-   
-   
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4 col-md-offset-3">
-
-            
-            <label>Name:</label>
-            <mat-form-field >
-
-                <input
-
-                  matInput
-
-                  type="text"
-
-
-                  name="name"
-
-
-                >
-              </mat-form-field><br>
-              <label>Email:</label>
-              <mat-form-field >
-
-                  <input
-
-                    matInput
-
-                    type="email"
-
-
-                    name="email"
-  
-
-                  >
-                </mat-form-field><br>
-                <label>Phone:</label>
-                <mat-form-field >
-
-                    <input
-
-                      matInput
-
-                      type="text"
-
-
-                      name="phone"
-
-
-                    >
-                  </mat-form-field>
-            <div><input type="submit" value="Submit" class="btnSave"></div>
-
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</header> -->
-
