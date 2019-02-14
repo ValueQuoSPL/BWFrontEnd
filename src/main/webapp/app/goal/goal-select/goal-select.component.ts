@@ -512,7 +512,11 @@ export class GoalSelectComponent implements OnInit {
      */
     getMapValue(assetid, value, available) {
         this.availableValue = Number(available);
-
+        // Add by Sanjay---start
+        if (this.availableValue === 0) {
+            alert('Asset available value is 0 as it is mapped to some other goal. Please select another asset');
+        }
+        // Add by Sanjay---close
         if (this.availableValue !== 0) {
             this.valtomap = prompt('Enter value to map ');
 
@@ -575,9 +579,10 @@ export class GoalSelectComponent implements OnInit {
             } else {
                 alert('Please unmap this value before re-map');
             }
-        } else {
-            alert('Congratulation! Your Goal is Completed!');
         }
+        // else {
+        //     alert('Congratulation! Your Goal is Completed!');
+        // }
     }
 
     calculateSingleAssetTotal() {
