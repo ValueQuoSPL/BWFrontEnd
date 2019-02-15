@@ -50,7 +50,7 @@
                         <form class="example-container" #incomeAdd="ngForm">
                             <div>
                                 <mat-form-field class="example-full-width">
-                                    <input matInput required placeholder="Name" type="number" value="" maxlength="25"  #resource_name="ngModel" [(ngModel)]="resource" name="resource_name" jhiCharsOnly>
+                                    <input matInput required placeholder="Name" type="text" value="" maxlength="25"  #resource_name="ngModel" [(ngModel)]="resource" name="resource_name" jhiCharsOnly>
                                     <mat-hint *ngIf="!resource_name.dirty " >Please enter your resource of income </mat-hint>
                                 </mat-form-field>
                             </div>

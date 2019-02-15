@@ -512,7 +512,9 @@ export class GoalSelectComponent implements OnInit {
      */
     getMapValue(assetid, value, available) {
         this.availableValue = Number(available);
-
+        if (this.availableValue === 0) {
+            alert('Your Avilable Value Is 0');
+        }
         if (this.availableValue !== 0) {
             this.valtomap = prompt('Enter value to map ');
 
@@ -719,21 +721,21 @@ export class GoalSelectComponent implements OnInit {
         this.isAssetSelected = true;
         this.isLoaded = false;
 
-        if (this.assettype === 'stocks') {
+        if (this.assettype === 'Stocks') {
             this.getStockById(this.uid);
-        } else if (this.assettype === 'mutual') {
+        } else if (this.assettype === 'Mutual Fund') {
             this.getMutualFundByUid(this.uid);
-        } else if (this.assettype === 'ChitFund') {
+        } else if (this.assettype === 'Chit Fund') {
             this.getChitFund();
-        } else if (this.assettype === 'FutureandOption') {
+        } else if (this.assettype === 'Future And Option') {
             this.getFAO();
-        } else if (this.assettype === 'SavingScheme') {
+        } else if (this.assettype === 'Saving Scheme') {
             this.getSaving();
-        } else if (this.assettype === 'AlternativeInvestment') {
+        } else if (this.assettype === 'Alternative Investment') {
             this.getAlt();
-        } else if (this.assettype === 'cash') {
+        } else if (this.assettype === 'Cash') {
             this.getCash();
-        } else if (this.assettype === 'Propertyandhousehold') {
+        } else if (this.assettype === 'Property And Household') {
             this.getProperty();
         }
     }

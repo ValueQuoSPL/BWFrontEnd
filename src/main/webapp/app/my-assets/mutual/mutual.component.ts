@@ -105,7 +105,7 @@ export class MutualComponent implements OnInit {
 
     openMutual(mutualModel) {
         this.resetFieldValue();
-        this.modalService.open(mutualModel, { ariaLabelledBy: 'mutualModal' }).result.then(
+        this.modalService.open(mutualModel, { ariaLabelledBy: 'mutualModal', size: 'lg' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
                 this.saveMutual();
@@ -118,7 +118,7 @@ export class MutualComponent implements OnInit {
     openEditMutual(editMutualModal, id) {
         this.commonid = id;
         this.getMutualFundByid(this.commonid);
-        this.modalService.open(editMutualModal, { ariaLabelledBy: 'editMutualModal' }).result.then(
+        this.modalService.open(editMutualModal, { ariaLabelledBy: 'editMutualModal', size: 'lg' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
                 this.update();
@@ -208,6 +208,14 @@ export class MutualComponent implements OnInit {
     getViewMutualFundByid(commonid) {
         this.mutualFundService.getMutualFundByid(this.commonid).subscribe(res => {
             this.getdata = res;
+            if (this.getdata.type === 'Sip') {
+                this.getdata.navatpurchase = 'NA';
+            }
+            if (this.getdata.type === 'LumpSum') {
+                this.getdata.sipday = 'NA';
+                this.getdata.sipamount = 'NA';
+                this.getdata.frequency = 'NA';
+            }
             console.log(this.getdata);
             this.x = this.cal(this.getdata.currentvalue, this.getdata.purchesprice);
             this.getdata.gainloss = this.x;

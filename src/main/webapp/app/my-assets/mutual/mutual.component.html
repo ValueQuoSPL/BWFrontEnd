@@ -38,8 +38,9 @@
                     <input
                         matInput
                         class="full-width"
-                        required type="number"
-                        jhiNumberOnly
+                        required 
+                        type="text"
+                        maxlength="10"
                         placeholder="Folio Number"
                         [(ngModel)]="mutualfund.folionumber"
                         name="folionumber">
@@ -396,45 +397,45 @@
                         <td class="tddata">{{getdata.mfscheme}}</td>
                     </tr>
                     <tr>
-                        <th class="subheading">Type</th>
+                        <th class="subheading">Type:</th>
                         <td class="tddata">{{getdata.type}}</td>
-                        <th class="subheading">Frequency</th>
+                        <th class="subheading">Frequency:</th>
                         <td class="tddata">{{getdata.frequency}}</td>
                     </tr>
                     <tr>
-                        <th class="subheading">SIP Day</th>
+                        <th class="subheading">SIP Day:</th>
                         <td class="tddata">{{getdata.sipday}}</td>
-                        <th class="subheading">SIP Amount</th>
+                        <th class="subheading">SIP Amount:</th>
                         <td class="tddata">{{getdata.sipamount}}</td>
                     </tr>
                     <tr>
-                        <th class="subheading">Unit Balance</th>
+                        <th class="subheading">Unit Balance:</th>
                         <td class="tddata">{{getdata.unitbalance}}</td>
-                        <th  class="subheading">Holding Days</th>
+                        <th  class="subheading">Holding Days:</th>
                         <td class="tddata">{{getdata.holdingdays}}</td>
                     </tr>
                     <tr>
-                        <th class="subheading">Purchase Price</th>
+                        <th class="subheading">Purchase Price:</th>
                         <td class="tddata">{{getdata.purchesprice}}</td>
-                        <th class="subheading">Current Value</th>
+                        <th class="subheading">Current Value:</th>
                         <td class="tddata">{{getdata.currentvalue}}</td>
                     </tr>
                     <tr>
-                        <th class="subheading">Gain/Loss</th>
+                        <th class="subheading">Gain/Loss:</th>
                         <td class="tddata">{{getdata.gainloss}}</td>
-                        <th class="subheading">Absolute Return(%)</th>
+                        <th class="subheading">Absolute Return(%):</th>
                         <td class="tddata">{{getdata.absolutereturn}}</td>
                     </tr>
                     <tr>
-                        <th class="subheading">CAGR(%)</th>
+                        <th class="subheading">CAGR(%):</th>
                         <td  class="tddata">{{getdata.cagr}}%</td>
-                        <th class="subheading">Folio Number</th>
+                        <th class="subheading">Folio Number:</th>
                         <td  class="tddata">{{getdata.folionumber}}</td>
                     </tr>
                     <tr>
-                        <th class="subheading">Purchase Date</th>
+                        <th class="subheading">Purchase Date:</th>
                         <td class="tddata">{{getdata.p_date}}</td>
-                        <th class="subheading">Nav At Purchase</th>
+                        <th class="subheading">Nav At Purchase:</th>
                         <td class="tddata">{{getdata.navatpurchase}}</td>
                     </tr>
                 </tbody>
