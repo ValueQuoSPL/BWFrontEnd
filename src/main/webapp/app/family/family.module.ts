@@ -19,6 +19,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { AccountprofileComponent } from './accountprofile/accountprofile.component';
 import { AccountProfileSerivce } from './accountprofile/accountProfile.service';
+import { MatTooltipModule } from '@angular/material/tooltip';
 library.add(fas, far);
 // import { MyprofileRouteService } from 'app/family/myprofile/myprofileRoute.service';
 
@@ -29,7 +30,8 @@ library.add(fas, far);
         CommonModule,
         CustomMaterialModule,
         CustomDirectiveModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        MatTooltipModule
         // BsDatepickerModule.forRoot()
     ],
     declarations: [FamilyComponent, MyprofileComponent, AssumptionComponent, FamilyprofileComponent, AccountprofileComponent],

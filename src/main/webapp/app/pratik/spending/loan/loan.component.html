@@ -36,7 +36,7 @@
                   </mat-form-field>
 
                   <mat-form-field style="width: 100%;">
-                      <input required matInput maxlength="5" type="text" jhiNumberOnly placeholder="Rate of Interest" name="roi" [(ngModel)]="loan.roi" maxlength=2>
+                      <input required matInput maxlength="7" type="text" jhiNumberOnly placeholder="Rate of Interest" name="roi" [(ngModel)]="loan.roi">
                   </mat-form-field>
 
                   <mat-form-field style="width: 100%;">
@@ -59,11 +59,11 @@
 
                   <mat-checkbox [(ngModel)]="loan.check" name="check">Is Loan Insured</mat-checkbox>
                   <mat-form-field style="width: 100%;">
-                      <input required matInput maxlength="7" type="text" jhiNumberOnly placeholder="Amount of Loan" name="amnt" [(ngModel)]="loan.amnt">
+                      <input required matInput maxlength="20" type="text" jhiNumberOnly placeholder="Amount of Loan" name="amnt" [(ngModel)]="loan.amnt">
                   </mat-form-field>
 
                   <mat-form-field style="width: 100%;">
-                      <input required matInput maxlength="2" type="text" jhiNumberOnly placeholder="Loan Tenure" name="tenure" [(ngModel)]="loan.tenure">
+                      <input required matInput maxlength="5" type="text" jhiNumberOnly placeholder="Loan Tenure" name="tenure" [(ngModel)]="loan.tenure">
                   </mat-form-field>
 
                   <mat-form-field style="width: 100%;">

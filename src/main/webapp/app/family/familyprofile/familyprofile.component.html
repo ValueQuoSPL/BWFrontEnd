@@ -98,6 +98,14 @@
             <div class="col-md-4"><!--start of row2.col3-->
 
                     <mat-checkbox    (change)="familyaccessfunction()" > Family account access</mat-checkbox>
+                    <button
+        matTooltip="By checking this checkbox, you will give access of your account to this family member. A separate account
+         will be created for him/her. An email will be sent to his/her email to reset password. 
+         Avoid giving access to minors">
+        <i class="fa fa-info" aria-hidden="true"></i>
+</button>
+
+
 
             </div><!--end of row2.col3-->
         </div><!--end of row2-->
@@ -114,7 +122,6 @@
                         minlength="5" 
                         maxlength="30" 
                         pattern="^[_'.@A-Za-z0-9-]*$"
-                        required
                     >
                 </mat-form-field>
                 <div *ngIf=" email?.touched && !email?.valid">
@@ -164,6 +171,7 @@
                         <mat-option value="ReadOnly">ReadOnly</mat-option>
                     </mat-select>
                 </mat-form-field>
+                
             </div><!--end of row3.col3-->
          </div><!--end of row3-->
          <div class="row">
