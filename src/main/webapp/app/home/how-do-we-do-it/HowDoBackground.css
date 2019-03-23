@@ -1,0 +1,21 @@
+.backgroundImage {
+    background-image: url('../../img/HowDoBackground.png');
+    background-repeat: no-repeat;
+    background-size: 1487px;
+    height: 546px;
+}
+.mixwidth {
+    max-width: 1492px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.carousel-contro {
+    display: none;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    display: none;
+}
