@@ -109,6 +109,14 @@
                             </a>
                         </li>
                         <li>
+                            <a class="dropdown-item" routerLink="admin/SystemMaintenance" routerLinkActive="active"
+                                (click)="collapseNavbar()">
+                                <i class="fa fa-cog fa-spin" style="font-size:20px"></i>
+                                <!-- <fa-icon [icon]="'handshake'" [fixedWidth]="true"></fa-icon> -->
+                                <span jhiTranslate="global.menu.admin.maintenance">System Maintenance</span>
+                            </a>
+                        </li>
+                        <li>
                             <a class="dropdown-item" routerLink="admin/jhi-metrics" routerLinkActive="active" (click)="collapseNavbar()">
                                 <fa-icon [icon]="'tachometer-alt'" [fixedWidth]="true"></fa-icon>
                                 <span jhiTranslate="global.menu.admin.metrics">Metrics</span>

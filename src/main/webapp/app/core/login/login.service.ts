@@ -81,7 +81,7 @@ export class LoginService {
 
     putCookie(key, data) {
         this.expiry = new Date();
-        this.expiry.setMinutes(this.expiry.getMinutes() + 10);
+        this.expiry.setMinutes(this.expiry.getMinutes() + 1440);
         this.options.expires = this.expiry;
 
         return this._cookieService.putObject(key, data, this.options);

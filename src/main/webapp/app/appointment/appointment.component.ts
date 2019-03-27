@@ -1,3 +1,4 @@
+import { LoginService } from './../core/login/login.service';
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Principal, LoginModalService, AccountService } from 'app/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -97,6 +98,8 @@ export class AppointmentComponent implements OnInit {
     public loading = false;
     customLoadingTemplate;
     hangoutlink: any;
+    account1: any;
+    LogedIn = false;
 
     constructor(
         private appointmentService: AppointmentService,
@@ -107,7 +110,8 @@ export class AppointmentComponent implements OnInit {
         private loginModalService: LoginModalService,
         private route: Router,
         private ref: ChangeDetectorRef,
-        private _route: ActivatedRoute
+        private _route: ActivatedRoute,
+        private loginService: LoginService
     ) {
         this.appointmentResult = this._route.snapshot.data['appointment'];
         for (let index = 0; index < this.appointmentResult.length; index++) {
@@ -237,9 +241,6 @@ export class AppointmentComponent implements OnInit {
         return this.principal.isAuthenticated();
     }
 
-    login() {
-        this.modalRef = this.loginModalService.open();
-    }
     // route to appointment page
     gotoAppointment() {
         this.status = 'Reschedule';
@@ -255,7 +256,7 @@ export class AppointmentComponent implements OnInit {
         this.isBooked = false;
     }
 
-    // updateStatus click on cnacel button
+    // updateStatus click on cancel button
     updateStatus() {
         const response = confirm('Are you sure want to cancel appointment');
         if (response) {
@@ -396,5 +397,16 @@ export class AppointmentComponent implements OnInit {
     }
     value6() {
         this.val = '9PM';
+    }
+    login() {
+        this.modalRef = this.loginModalService.open();
+    }
+    checkLogIn() {
+        this.account1 = this.loginService.getCookie();
+        if (this.account1) {
+            this.LogedIn = true;
+        } else {
+            this.LogedIn = false;
+        }
     }
 }

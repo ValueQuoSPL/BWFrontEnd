@@ -1,3 +1,6 @@
+import { mainRoute } from './sheetal/main/main.route';
+import { AdvisorViewComponent } from 'app/advisorview/advisorview.component';
+import { advisorview } from './advisorview/advisor.route';
 import './vendor.ts';
 import * as moment from 'moment';
 
@@ -26,6 +29,8 @@ import { AuthExpiredInterceptor } from 'app/blocks/interceptor/auth-expired.inte
 import { ErrorHandlerInterceptor } from 'app/blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from 'app/blocks/interceptor/notification.interceptor';
 import { FooterpageModule } from './footer-pages/footerpage/footerpage.module';
+import { TaxFilingModule } from './TaxFiling/taxfiling.module';
+
 // From Inbuilt Component
 import {
     JhiMainComponent,
@@ -116,6 +121,11 @@ import { NotificationComponent } from './pratik/notification/notification.compon
 import { DocumentComponent } from './document/document.component';
 import { MutualFundManageComponent } from './pratik/mutual-fund-manage/mutual-fund-manage.component';
 import { AuthGuard } from './auth.guard';
+import { TaxService } from './TaxFiling/tax-filing.service';
+import { CurrentportfolioComponent } from './advisorview/currentportfolio/currentportfolio.component';
+import { InsuranceanalysisComponent } from './advisorview/insuranceanalysis/insuranceanalysis.component';
+import { TaxanalysisComponent } from './advisorview/taxanalysis/taxanalysis.component';
+import { GoalanalysisComponent } from './advisorview/goalanalysis/goalanalysis.component';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -174,6 +184,7 @@ const customNotifierOptions: NotifierOptions = {
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         DeviceDetectorModule.forRoot(),
         FooterpageModule,
+        TaxFilingModule,
         /* Optionally you can set time for `idle`, `timeout` and `ping` in seconds.
         * Default values: `idle` is 600 (10 minutes),
         * `timeout` is 300 (5 minutes)
@@ -189,6 +200,8 @@ const customNotifierOptions: NotifierOptions = {
         RouterModule.forRoot([privacyRoute], { useHash: true }),
         RouterModule.forRoot([cookieRoute], { useHash: true }),
         RouterModule.forRoot([navbarRoute], { useHash: true }),
+        RouterModule.forRoot([advisorview], { useHash: true }),
+        RouterModule.forRoot([mainRoute], { useHash: true }),
         BuckswiseFrontEndSharedModule,
         BuckswiseFrontEndCoreModule,
         BuckswiseFrontEndHomeModule,
@@ -256,7 +269,12 @@ const customNotifierOptions: NotifierOptions = {
         NotificationComponent,
         IdleAlertComponent,
         SessionTimeoutComponent,
-        MutualFundManageComponent
+        MutualFundManageComponent,
+        AdvisorViewComponent,
+        CurrentportfolioComponent,
+        InsuranceanalysisComponent,
+        TaxanalysisComponent,
+        GoalanalysisComponent
         // Production directive
     ],
     providers: [
@@ -280,6 +298,7 @@ const customNotifierOptions: NotifierOptions = {
         WINDOW_PROVIDERS,
         SidebarComponent,
         SpendingComponent,
+        TaxService,
         JhiMainComponent,
         {
             provide: HTTP_INTERCEPTORS,

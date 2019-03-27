@@ -78,7 +78,10 @@ export class DocumentComponent implements OnInit {
     getFilesData() {
         this.lifeService.getFile(this.uid).subscribe(data => {
             this.fileResult = data.filter(data1 => {
-                return data1.type === this.data.Type;
+                if (data1.type === this.data.Type) {
+                    console.log(data1.tid);
+                    return data1.tid === this.data.tid;
+                }
             });
         });
     }
