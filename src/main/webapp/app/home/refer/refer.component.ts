@@ -10,12 +10,12 @@ import * as $ from 'jquery';
 })
 export class ReferComponent implements OnInit {
     user: UserContact = new UserContact();
-    constructor(private contactService: ContactService) {}
-    // isDataSaved: Boolean = false;
+    isDataSaved: Boolean = false;
     isDisabled: Boolean = false; // added by ranjan
+    constructor(private contactService: ContactService) {}
     submitUser() {
         this.contactService.refferSave(this.user).subscribe();
-        // this.isDataSaved = true;
+        this.isDataSaved = true;
         // alert('Thank you for your Intrest we will shortly contact you');
         this.isDisabled = !this.isDisabled; // added by ranjan
         alert('Thank you for reffering. Your message has been emailed to your friend'); // added by ranjan
