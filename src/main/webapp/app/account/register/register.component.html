@@ -1,16 +1,11 @@
-<div class="image" >
-    <br>
     <mat-card class="container example-card">
         <mat-card-header>
-          <!-- <div mat-card-avatar class="example-header-image"></div> -->
           <mat-card-subtitle></mat-card-subtitle>
         </mat-card-header>
-        <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
         <mat-card-content>
             <div class="row justify-content-md-center" style="background-color: #f1592a;height: 39px;">
                 <div class="col-md-6"  style="background-color: #f1592a;height: 39px;">
-                    <div class="form-group row justify-content-center bwtitle">Registration</div><br>
-                <!-- <h1>Registration</h1> <br> -->
+                    <div class="form-group row justify-content-md-center bwtitle">Registration</div><br>
                     <div class="alert alert-success" *ngIf="success" style="height:328%; width: 107%;">
                         <strong>You are successfully registered!</strong> <br>
                         We have sent you an activation email on your registered email id
@@ -29,17 +24,16 @@
                     </div>
                 </div>
             </div>
-
             <div class="row justify-content-md-center">
                 <div class="col-md-8">
                     <form name="form" role="form" (ngSubmit)="register()" #registerForm="ngForm" *ngIf="!success">
-                         <div class="form-group">
+                         <!-- <div class="form-group"> -->
                         <!--   <mat-form-field style="width: 100%;">
                                 <input matInput [(ngModel)]="registerAccount.login" id="login" name="login" #login="ngModel" placeholder="Login Id" required
                                     minlength="3" maxlength="40" pattern="^[_.@A-Za-z0-9-]*$">
                             </mat-form-field>
                             </div> -->
-                            <div>
+                            <!-- <div>
                                 <mat-form-field style="width: 100%;">
                                     <input matInput [(ngModel)]="registerAccount.firstName" id="fname" name="fname" #login="ngModel" placeholder="First Name" required
                                         minlength="3" maxlength="40" pattern="^[_.@A-Za-z0-9-]*$">
@@ -60,24 +54,44 @@
                                     Your username can only contain letters and digits.
                                 </small>
                             </div>
+                        </div> -->
+                        <div class="form-group">
+                            <mat-form-field style="width: 100%;">
+                                <input matInput [(ngModel)]="registerAccount.firstName" id="firstName" name="firstName"  #firstName="ngModel" placeholder="First Name" required
+                                    minlength="3" maxlength="40" pattern="^[_.@A-Za-z0-9-]*$">
+                            </mat-form-field>
+                            <div *ngIf="firstName.dirty && firstName.invalid">
+                                <small class="form-text text-danger" *ngIf="firstName.errors.required">
+                                    Your First Name is required.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="firstName.errors.invalid">
+                                    Your First Name is invalid.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="firstName.errors.minlength">
+                                    Your First Name is required to be at least 5 characters.
+                                </small>
+                                <small class="form-text text-danger" *ngIf="firstName.errors.maxlength">
+                                    Your First Name cannot be longer than 100 characters.
+                                </small>
+                            </div>
                         </div>
                         <div class="form-group">
                             <mat-form-field style="width: 100%;">
-                                <input matInput [(ngModel)]="registerAccount.lastName" id="lname" name="lname" #login="ngModel"  placeholder="Last Name" required
+                                <input matInput [(ngModel)]="registerAccount.lastName" id="lastName" name="lastName" #lastName="ngModel"  placeholder="Last Name" required
                                     minlength="3" maxlength="40" pattern="^[_.@A-Za-z0-9-]*$">
                             </mat-form-field>
-                            <div *ngIf="email.dirty && email.invalid">
-                                <small class="form-text text-danger" *ngIf="email.errors.required">
-                                    Your email is required.
+                            <div *ngIf="lastName.dirty && lastName.invalid">
+                                <small class="form-text text-danger" *ngIf="lastName.errors.required">
+                                    Your Last Name is required.
                                 </small>
-                                <small class="form-text text-danger" *ngIf="email.errors.invalid">
-                                    Your email is invalid.
+                                <small class="form-text text-danger" *ngIf="lastName.errors.invalid">
+                                    Your Last Name is invalid.
                                 </small>
-                                <small class="form-text text-danger" *ngIf="email.errors.minlength">
-                                    Your email is required to be at least 5 characters.
+                                <small class="form-text text-danger" *ngIf="lastName.errors.minlength">
+                                    Your Last Name is required to be at least 5 characters.
                                 </small>
-                                <small class="form-text text-danger" *ngIf="email.errors.maxlength">
-                                    Your email cannot be longer than 100 characters.
+                                <small class="form-text text-danger" *ngIf="lastName.errors.maxlength">
+                                    Your Last Name cannot be longer than 100 characters.
                                 </small>
                             </div>
                         </div>
@@ -249,6 +263,5 @@
             </div>
         </mat-card-content>
       </mat-card>
-</div>
 
 

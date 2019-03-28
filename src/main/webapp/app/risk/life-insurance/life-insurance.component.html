@@ -43,7 +43,7 @@
 
                     <mat-form-field style="width: 100%;">
                         <label>How much of Expense(%) would you want to be replaced through insurance cover?</label>
-                        <input matInput type="number" (ngModelChange)="detectChange($event)" [(ngModel)]="lifeInsurance.expense_cover" [ngModelOptions]="{standalone: true}"
+                        <input matInput type="number" maxlength="3" (ngModelChange)="detectChange($event)" [(ngModel)]="lifeInsurance.expense_cover" [ngModelOptions]="{standalone: true}"
                             required>
                     </mat-form-field>
 

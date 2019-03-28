@@ -1,7 +1,7 @@
 import { GoalResolveService } from './goal-selectResolve.service';
 import { StockService } from 'app/my-assets/stocks/stocks.service';
 import { Component, OnInit } from '@angular/core';
-import { Principal, LoginModalService } from 'app/core';
+import { Principal, LoginModalService, LoginService } from 'app/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { GoalselectService } from 'app/goal/goal-select/goalselect.service';
@@ -80,8 +80,9 @@ export class GoalSelectComponent implements OnInit {
     HTMLArray: any = [];
     deletegoaltype;
     conformkey: Boolean;
-
+    account: any;
     mappingTemp: any;
+    LogedIn = false;
 
     goalselect: GoalSelect = new GoalSelect();
     Educationselect: EducationSelect = new EducationSelect();
@@ -167,7 +168,8 @@ export class GoalSelectComponent implements OnInit {
         public faoService: FutureOptionService,
         public savingService: SavingSchemeService,
         private _route: ActivatedRoute,
-        private commonService: CommonSidebarService
+        private commonService: CommonSidebarService,
+        private loginService: LoginService
     ) {
         // let id = this._route.paramMap.get("id");
         this.GoalArray = this._route.snapshot.data['goaldata'];
@@ -202,9 +204,6 @@ export class GoalSelectComponent implements OnInit {
     }
     isAuthenticated() {
         return this.principal.isAuthenticated();
-    }
-    login() {
-        this.modalRef = this.loginModalService.open();
     }
     Home() {
         this.goalselect.goaltype = this.goaltype;
@@ -724,21 +723,21 @@ export class GoalSelectComponent implements OnInit {
         this.isAssetSelected = true;
         this.isLoaded = false;
 
-        if (this.assettype === 'stocks') {
+        if (this.assettype === 'Stocks') {
             this.getStockById(this.uid);
-        } else if (this.assettype === 'mutual') {
+        } else if (this.assettype === 'Mutual Fund') {
             this.getMutualFundByUid(this.uid);
-        } else if (this.assettype === 'ChitFund') {
+        } else if (this.assettype === 'Chit Fund') {
             this.getChitFund();
-        } else if (this.assettype === 'FutureandOption') {
+        } else if (this.assettype === 'Future And Option') {
             this.getFAO();
-        } else if (this.assettype === 'SavingScheme') {
+        } else if (this.assettype === 'Saving Scheme') {
             this.getSaving();
-        } else if (this.assettype === 'AlternativeInvestment') {
+        } else if (this.assettype === 'Alternative Investment') {
             this.getAlt();
-        } else if (this.assettype === 'cash') {
+        } else if (this.assettype === 'Cash') {
             this.getCash();
-        } else if (this.assettype === 'Propertyandhousehold') {
+        } else if (this.assettype === 'Property And Household') {
             this.getProperty();
         }
     }
@@ -1171,5 +1170,17 @@ export class GoalSelectComponent implements OnInit {
     }
     updateStock(): any {
         this.stockService.updateAvailable(this.available).subscribe();
+    }
+
+    login() {
+        this.modalRef = this.loginModalService.open();
+    }
+    checkLogIn() {
+        this.account = this.loginService.getCookie();
+        if (this.account) {
+            this.LogedIn = true;
+        } else {
+            this.LogedIn = false;
+        }
     }
 }

@@ -1,3 +1,6 @@
+import { mainRoute } from './sheetal/main/main.route';
+import { AdvisorViewComponent } from 'app/advisorview/advisorview.component';
+import { advisorview } from './advisorview/advisor.route';
 import './vendor.ts';
 import * as moment from 'moment';
 
@@ -119,6 +122,10 @@ import { DocumentComponent } from './document/document.component';
 import { MutualFundManageComponent } from './pratik/mutual-fund-manage/mutual-fund-manage.component';
 import { AuthGuard } from './auth.guard';
 import { TaxService } from './TaxFiling/tax-filing.service';
+import { CurrentportfolioComponent } from './advisorview/currentportfolio/currentportfolio.component';
+import { InsuranceanalysisComponent } from './advisorview/insuranceanalysis/insuranceanalysis.component';
+import { TaxanalysisComponent } from './advisorview/taxanalysis/taxanalysis.component';
+import { GoalanalysisComponent } from './advisorview/goalanalysis/goalanalysis.component';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -193,6 +200,8 @@ const customNotifierOptions: NotifierOptions = {
         RouterModule.forRoot([privacyRoute], { useHash: true }),
         RouterModule.forRoot([cookieRoute], { useHash: true }),
         RouterModule.forRoot([navbarRoute], { useHash: true }),
+        RouterModule.forRoot([advisorview], { useHash: true }),
+        RouterModule.forRoot([mainRoute], { useHash: true }),
         BuckswiseFrontEndSharedModule,
         BuckswiseFrontEndCoreModule,
         BuckswiseFrontEndHomeModule,
@@ -260,7 +269,12 @@ const customNotifierOptions: NotifierOptions = {
         NotificationComponent,
         IdleAlertComponent,
         SessionTimeoutComponent,
-        MutualFundManageComponent
+        MutualFundManageComponent,
+        AdvisorViewComponent,
+        CurrentportfolioComponent,
+        InsuranceanalysisComponent,
+        TaxanalysisComponent,
+        GoalanalysisComponent
         // Production directive
     ],
     providers: [
