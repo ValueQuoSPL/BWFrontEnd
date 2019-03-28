@@ -63,7 +63,7 @@
          <div class="row">
               <div class="col-md-6">
                   <mat-form-field  style="width: 100%;">
-                      <input required matInput jhiNumberOnly maxlength="7" type="text" placeholder="Policy Number" name="polno" [(ngModel)]="health.policy_no" (ngModelChange)="ChangeDetector($event, 'number')">
+                      <input required matInput maxlength="40" type="text" placeholder="Policy Number" name="polno" [(ngModel)]="health.policy_no" (ngModelChange)="ChangeDetector($event, 'number')">
                   </mat-form-field>
                   <mat-form-field style="width: 100%;">
                       <input required matInput maxlength="25" type="text" placeholder="Policy issuer Name" name="h_pol_issuer" [(ngModel)]="health.issuer" (ngModelChange)="ChangeDetector($event, 'issuer')">

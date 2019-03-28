@@ -2,7 +2,7 @@
     <div><!--start of navbar3 div -->
         <h5  class="heading">Enter Relationship Details<span class="glyphicons glyphicons-remove-circle"></span></h5>  
     </div><!--end of navbar3 div -->
-    <form  name="form" role="form" #familyproForm="ngForm"><!--start of form-->
+    <form  name="form" role="form" (ngSubmit)="requestReset()" #familyproForm="ngForm"><!--start of form-->
         <mat-form-field>
             <mat-select placeholder="Choose Relation" name="relationship" [(ngModel)]="familyProfile.relationship">
                 <mat-option value="Mother">Mother</mat-option>
@@ -90,9 +90,23 @@
                 </mat-form-field>
             </div><!--end of row2.col1-->
             <div class="col-md-2"><!--start of row2.col2-->
-                <mat-checkbox [(ngModel)]="earncheck" (change)="newFunction()" name="earncheck" checked="unchecked" >Is Earning?</mat-checkbox>
+
+
+                        <mat-checkbox  (change)="newFunction()" name="earncheck" checked="unchecked" >Is Earning?</mat-checkbox>
+
             </div><!--end of row2.col2-->
             <div class="col-md-4"><!--start of row2.col3-->
+
+                    <mat-checkbox    (change)="familyaccessfunction()" > Family account access</mat-checkbox>
+                    <button
+        matTooltip="By checking this checkbox, you will give access of your account to this family member. A separate account
+         will be created for him/her. An email will be sent to his/her email to reset password. 
+         Avoid giving access to minors">
+        <i class="fa fa-info" aria-hidden="true"></i>
+</button>
+
+
+
             </div><!--end of row2.col3-->
         </div><!--end of row2-->
         <div class="row"><!--start of row3-->
@@ -108,7 +122,6 @@
                         minlength="5" 
                         maxlength="30" 
                         pattern="^[_'.@A-Za-z0-9-]*$"
-                        required
                     >
                 </mat-form-field>
                 <div *ngIf=" email?.touched && !email?.valid">
@@ -151,6 +164,15 @@
                     </div>
                 </div>
             </div><!--end of row3.col2-->
+            <div class="col-md-4"><!--start of row3.col3-->
+                <mat-form-field>
+                    <mat-select placeholder="Acess type" name="accesstype" [(ngModel)]="familyProfile.accesstype">
+                        <mat-option value="Full">Full(read/edit/delete)</mat-option>
+                        <mat-option value="ReadOnly">ReadOnly</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+            </div><!--end of row3.col3-->
          </div><!--end of row3-->
          <div class="row">
             <div class="col-md-8"></div>
@@ -196,7 +218,7 @@
     <table class="table  table-responsive-md"  style=" border-collapse: collapse;">
         <thead>
             <tr>
-                <td  class="heading"><strong>Relationship Details</strong></td>
+                <h5 class="heading"><strong>Relationship Details</strong></h5>
                 <td></td><td></td><td></td><td></td><td></td>
                 <td>
                     <button type="button" class="btn btn-sm  btn-link" (click)="AddNewMember()">
@@ -207,11 +229,16 @@
             </tr>
         </thead>
         <tbody *ngFor="let profile of output">
-                <th>Relation Ship:</th>
-                <td>{{profile.relationship}}</td>
-                <td></td><td></td><td></td><td></td>
+                <tr><th>Relationship:</th>
+                    <td class="tddata">{{profile.relationship}}</td>
+                 <!-- family account access  start edited by ranjan-->
+                <th class="subheading">Family account access:</th>
+                <td class="tddata">{{profile.familyaccess}}</td>
+                <!-- family account access  ends edited by ranjan-->
+                <th class="subheading">Access type:</th>
+                <td class="tddata">{{profile.accesstype}}</td>
                 <td>
-                    <button 
+                    <button
                     class="btn btn-outline-info btn-sm" 
                     type="button" 
                     (click)="editDetail(profile.id)">
@@ -242,8 +269,9 @@
                 <td class="tddata">{{profile.phonenumber}}</td>
                 <th class="subheading">Email Id:&nbsp;</th>
                 <td class="tddata">{{profile.email}}</td>
-                <td></td> 
+                <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
             </tr>
+            <hr>
         </tbody>
     </table><!--end of table-->
 </div><!--end of container view div-->

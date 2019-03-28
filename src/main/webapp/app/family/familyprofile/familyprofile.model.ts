@@ -9,4 +9,13 @@ export class FamilyProfile {
     public uid: string;
     public earncheck: string;
     public id: any;
+    // added by ranjan..................................
+    public accesstype: string;
+    public familyaccess: string;
+
+    // public login: string;
+    // public firstName: string;
+
+    // public lastName: string;
+    // public password: string;
 }
