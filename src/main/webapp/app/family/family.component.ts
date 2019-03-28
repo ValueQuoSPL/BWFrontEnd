@@ -1,3 +1,4 @@
+import { LoginService } from 'app/core/login/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginModalService, Principal } from 'app/core';
@@ -15,9 +16,18 @@ export class FamilyComponent implements OnInit {
     panelFamilyprofileState = false;
     servers: any;
     modalRef: NgbModalRef;
-    constructor(private principal: Principal, private loginModalService: LoginModalService) {}
+    notLogIn = false;
+    account2: any;
+    constructor(
+        private principal: Principal,
+        private loginModalService: LoginModalService,
+        private loginService: LoginService,
+        private router: Router
+    ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.checkLogIn();
+    }
     isAuthenticated() {
         return this.principal.isAuthenticated();
     }
@@ -80,5 +90,14 @@ export class FamilyComponent implements OnInit {
     // }
     login() {
         this.modalRef = this.loginModalService.open();
+    }
+    checkLogIn() {
+        this.account2 = this.loginService.getCookie();
+        if (this.account2) {
+            this.notLogIn = true;
+        } else {
+            // this.notLogIn = false;
+            this.router.navigate(['/main']);
+        }
     }
 }
