@@ -1,211 +1,251 @@
-    <div class="overlay-white bg-img4" ></div>
+    <section class="bg-light">
+    <!-- <section id="services" class="bg-img text-center">
+      <div class="overlay"></div> -->
             <div class="text-center backgroundImage">
               <div class="row ">
                 <div class="col-lg-12 col-lg-offset-2">
                   <h3 style="color:#f1592a">How IT Works</h3>
-<ngb-carousel *ngIf="images">
-  <ng-template ngbSlide>
-      <div class="row">
-        <!-- <div class="col-md-1"></div> -->
-              <div class="col-md-6">
-    <img src="../../img/gif/Goals.gif"  class="responsive" style="border-radius: 2px;
-    border-style: solid;
-   border-color: coral;
-   border-width: thick;
-   margin-left: 15%;
-   height: 27rem;
-   width: 46rem;">
-    </div>
-    <div class="col-md-2"></div>
-    <!-- <div class="col-md-1"></div> -->
-    <div class="col-md-4">
-        <h5 style="color: white">Goals</h5>
-        <ul style="color: white">
-            <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>sadhejhd hfdsfh</p> 
-            <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> 2.ghh hfdhf gfhfh</p>
-            <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>3.gdhfgh fhdg vfh</p>
-            <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> 4.fghd nfhgd vfhd</p>
-            <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>5.hdghd fhgdf dvs</p>
-        </ul>
-    </div></div>
-  </ng-template>
+<ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
+    <ng-template ngbSlide>
+        <div class="row">
+          <!-- <div class="col-md-1"></div> -->
+                <div class="col-md-8 col-sm-12" >
+      <img src="../../img/gif/Goals.gif" class="responsive" style="border-radius: 25px;
+      border-radius: 2px;
+       border-style: solid;
+      border-color: coral;
+      border-width: thick;
+      margin-left: 15%;height: auto;
+  width: 80%;">
+      </div>
+      <!-- <div class="col-md-1"></div> -->
+      <div class="col-md-4" style="border-radius: 25px;
+      border-radius: 2px;
+      border-color: white;
+      border-width: thick;">
+        <h5 style="color:coral">Goals</h5>
+          <ul style="color: blue">
+            <table>
+              <tr>
+             <td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> User can set Financial Goals </p> </td></tr>
+            <tr><td><img src="../../img/icon_right.png"  style="width: 20px"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> System suggests Investment required to achieve those Goals </p></td></tr>
+           <tr><td> <img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> User can tag/untag existing assets to any Goals</p></td></tr>
+           <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> User can view Linked asset to any Goals </p> </td></tr>
+           <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Keep track of how much Percentage of Goals are achieved </p> </td></tr> 
+          </table>
+          </ul>
+      </div></div>
+    </ng-template>
   <ng-template ngbSlide>
     <div class="row">
       <!-- <div class="col-md-1"></div> -->
-            <div class="col-md-8">
+            <div class="col-md-8" >
   <img src="../../img/gif/DashBoard.gif" class="responsive" style="border-radius: 25px;
   border-radius: 2px;
    border-style: solid;
   border-color: coral;
   border-width: thick;
   margin-left: 15%;
-  height: 27rem;
-  width: 46rem;">
+  height: auto;
+  width: 80%;">
   </div>
   <!-- <div class="col-md-1"></div> -->
-  <div class="col-md-4">
-      <h5 style="color: white">Dashboard</h5>
-      <ul style="color: white">
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>Total Income from all sources</p> 
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>Sum of all Personal/Family Expenses</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>Breakup of all Assets types, their current value
-            with a Pie chart presentation</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> Break up of all Short Term and Long Term
-            Liabilities with a Pie chart presentation</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>Networth at any given point in time</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>Goals view with status in %age of goal
-            achieved </p> 
+  <div class="col-md-4" style="border-radius: 25px;
+  border-radius: 2px;
+  border-color: white;
+  border-width: thick">
+    <h5 style="color: coral">Dashboard</h5>
+      <ul style="color: blue">
+        <table>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Total Income from all sources</p> </td></tr>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Sum of all Personal/Family Expenses</p></td></tr>
+        <tr><td> <img src="../../img/icon_right.png" style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Breakup of all Assets types, their current value with a Pie chart presentation</p></td></tr>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Break up of all Short Term and Long Term Liabilities with a Pie chart presentation</p></td></tr>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Networth at any given point in time</p></td></tr>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Goals view with status in %age of goal achieved </p> </td></tr>
+        </table>
       </ul>
   </div></div>
 </ng-template>
 <ng-template ngbSlide>
     <div class="row">
       <!-- <div class="col-md-1"></div> -->
-            <div class="col-md-8">
-  <img src="../../img/gif/Expense.gif" class="responsive" style="
- border-radius: 2px;
+            <div class="col-md-8" >
+  <img src="../../img/gif/Expense.gif" class="responsive" style="border-radius: 25px;
+  border-radius: 2px;
    border-style: solid;
   border-color: coral;
-  border-width: thick ;
+  border-width: thick;
   margin-left: 15%;
-  height: 27rem;
-  width: 46rem;">
+  height: auto;
+  width: 80%;">
   </div>
   <!-- <div class="col-md-1"></div> -->
-  <div class="col-md-4">
-      <h5 style="color: white">Expense</h5>
-      <ul style="color: white">
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>sadhejhd hfdsfh</p> 
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> 2.ghh hfdhf gfhfh</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>3.gdhfgh fhdg vfh</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> 4.fghd nfhgd vfhd</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>5.hdghd fhgdf dvs</p>
+  <div class="col-md-4" style="border-radius: 25px;
+  border-radius: 2px;
+  border-color: white;
+  border-width: thick">
+    <h5 style="color:coral">Expense</h5>
+      <ul style="color: blue">
+        <table>
+          <tr>
+         <td><img src="../../img/icon_right.png"    style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Details of Expenses from each and every sources  </p> </td></tr>
+        <tr><td><img src="../../img/icon_right.png" style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Includes money paid as Premium, EMIs etc. </p></td></tr>
+       <tr><td> <img src="../../img/icon_right.png" style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">  All Insurances details with feature to upload related documents like Policy document.Keep track of all your monthly and yearly Expences</p></td></tr>
+       <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Helps you in taking control on overspending </p> </td></tr>  
+      </table>
       </ul>
   </div></div>
 </ng-template>
 <ng-template ngbSlide>
     <div class="row">
       <!-- <div class="col-md-1"></div> -->
-            <div class="col-md-8">
-  <img src="../../img/gif/Income.gif" class="responsive" style="
- border-radius: 2px;
+            <div class="col-md-8" >
+  <img src="../../img/gif/Income.gif" class="responsive" style="border-radius: 25px;
+  border-radius: 2px;
    border-style: solid;
   border-color: coral;
-  border-width: thick ;
+  border-width: thick;
   margin-left: 15%;
-  height: 27rem;
-  width: 46rem;">
+  height: auto;
+  width: 80%;">
   </div>
   <!-- <div class="col-md-1"></div> -->
-  <div class="col-md-4">
-      <h5 style="color: white">Income</h5>
-      <ul style="color: white">
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>Details of Income from all sources</p> 
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>Any new source which are not predefined can
-            be added by clicking Add button.</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>Details of Expenses from each and every
-            sources</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> Included money paid as Premium, EMIs etc.</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>All Insurances details with feature to upload
-            related documents like Policy document.</p>
+  <div class="col-md-4" style="border-radius: 25px;
+  border-radius: 2px;
+  border-color: white;
+  border-width: thick">
+    <h5 style="color: coral">Income</h5>
+      <ul style="color: blue">
+        <table>
+          <tr>
+         <td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Details of Income from all sources</p> </td></tr>
+        <tr><td><img src="../../img/icon_right.png" style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Any new source which are not predefined can be added by clicking Add button.</p></td></tr>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Income of Family memberscan also be added </p> </td></tr>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Keep track of your Monthly and Yearly Income </p> </td></tr>  
+      </table>
       </ul>
   </div></div>
 </ng-template>
 <ng-template ngbSlide>
     <div class="row">
       <!-- <div class="col-md-1"></div> -->
-            <div class="col-md-8">
-  <img src="../../img/gif/Assets.gif" class="responsive" style="border-radius: 2px;
-  border-style: solid;
- border-color: coral;
- border-width: thick ;
- margin-left: 15%;
- height: 27rem;
- width: 46rem;">
+            <div class="col-md-8" >
+  <img src="../../img/gif/Assets.gif" class="responsive" style="border-radius: 25px;
+  border-radius: 2px;
+   border-style: solid;
+  border-color: coral;
+  border-width: thick;
+  margin-left: 15%;
+  height: auto;
+  width: 80%;">
   </div>
   <!-- <div class="col-md-1"></div> -->
-  <div class="col-md-4">
-      <h5 style="color: white">Assets</h5>
-      <ul style="color: white">
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>Details of all Assets – Stocks, Mutual Funds, Saving
-            Schemes, Cash, Properties, Jewelries etc.</p> 
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> Every day update of Mutual Fund NAV</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>Auto fetch from source of Investment (upcoming)</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>Details of Short term and Long Term Liabilities</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>System automatically categorizes Liabilities</p>
+  <div class="col-md-4" style="border-radius: 25px;
+  border-radius: 2px;
+  border-color: white;
+  border-width: thick">
+    <h5 style="color: coral">Assets</h5>
+      <ul style="color: blue">
+        <table>
+          <tr>
+         <td><img src="../../img/icon_right.png"     style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Details of all Assets – Stocks, Mutual Funds, Saving Schemes, Cash, Properties, Jewelries etc.</p> </td></tr>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Every day update of Mutual Fund NAV</p></td></tr>
+       <tr><td> <img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Upload all your documents against each Assets</p></td></tr>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Uploaded documents are also available on your own Google drive</p></td></tr>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Upload limit of Google Drive applies</p></td></tr>
+        </table>
       </ul>
   </div></div>
 </ng-template>
 <ng-template ngbSlide>
     <div class="row">
       <!-- <div class="col-md-1"></div> -->
-            <div class="col-md-8">
-  <img src="../../img/gif/Liabilities.gif" class="responsive" style="border-radius: 2px;
-  border-style: solid;
- border-color: coral;
- border-width: thick ;
- margin-left: 15%;
- height: 27rem;
- width: 46rem;">
+            <div class="col-md-8" >
+  <img src="../../img/gif/Liabilities.gif" class="responsive" style="border-radius: 25px;
+  border-radius: 2px;
+   border-style: solid;
+  border-color: coral;
+  border-width: thick;
+  margin-left: 15%;
+  height: auto;
+  width: 80%;">
   </div>
   <!-- <div class="col-md-1"></div> -->
-  <div class="col-md-4">
-      <h5 style="color: white">Liabilities</h5>
-      <u style="color: white">
-         <p><span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> 1.sadhejhd hfdsfh</p> 
-         <p><span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> 2.ghh hfdhf gfhfh</p>
-         <p><span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> 3.gdhfgh fhdg vfh</p>
-         <p><span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> 4.fghd nfhgd vfhd</p>
-         <p><span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> 5.hdghd fhgdf dvs</p>
+  <div class="col-md-4" style="border-radius: 25px;
+  border-radius: 2px;
+  border-color: white;
+  border-width: thick">
+    <h5 style="color: coral">Liabilities</h5>
+      <ul style="color: blue">
+        <table>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Details of Short term and Long Term Liabilities</p> </td></tr>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">System automatically categorizes Liabilities </p></td></tr>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Keep track of all your Liabilities at one place</p> </td></tr>  
+      </table>
       </ul>
   </div></div>
 </ng-template>
 <ng-template ngbSlide>
     <div class="row">
       <!-- <div class="col-md-1"></div> -->
-            <div class="col-md-8">
-  <img src="../../img/risk.png"  class="responsive" style="border-radius: 2px;
-  border-style: solid;
- border-color: coral;
- border-width: thick ;
- margin-left: 15%;
- height: 27rem;
- width: 46rem;">
+            <div class="col-md-8" >
+  <img src="../../img/risk.png" class="responsive" style="border-radius: 25px;
+  border-radius: 2px;
+   border-style: solid;
+  border-color: coral;
+  border-width: thick;
+  margin-left: 15%;
+  height: auto;
+  width: 80%;">
   </div>
   <!-- <div class="col-md-1"></div> -->
-  <div class="col-md-4">
-      <h5 style="color: white">Risk</h5>
-      <ul style="color: white">
-         <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>sadhejhd hfdsfh</p> 
-         <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> 2.ghh hfdhf gfhfh</p>
-         <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>3.gdhfgh fhdg vfh</p>
-         <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> 4.fghd nfhgd vfhd</p>
-         <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>5.hdghd fhgdf dvs</p>
+  <div class="col-md-4" style="border-radius: 25px;
+  border-radius: 2px;
+  border-color: white;
+  border-width: thick">
+    <h5 style="color: coral">Risk</h5>
+      <ul style="color: blue">
+        <table>
+          <tr>
+        <td><img src="../../img/icon_right.png"   style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Based on Income and life Goals Cost, system calculates Life risk cover amount. </p> </td></tr>
+        <tr><td><img src="../../img/icon_right.png"   style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Based on Hospital Type, Room type and no. of family members, system calculates the Health Cover amount.</p></td></tr>
+        <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Our unique Algorithm tells you YOUR Insurance cover Required which sufficiently covers your life and health </p> </td></tr>  
+      </table>
       </ul>
   </div></div>
 </ng-template>
 <ng-template ngbSlide>
     <div class="row">
       <!-- <div class="col-md-1"></div> -->
-            <div class="col-md-8">
-  <img src="../../img/appointment.png" class="responsive" style="border-radius: 2px;
-  border-style: solid;
- border-color: coral;
- border-width: thick ;
- margin-left: 15%;
- height: 27rem;
- width: 46rem;">
+            <div class="col-md-8" >
+  <img src="../../img/appointment.png" class="responsive" style="border-radius: 25px;
+  border-radius: 2px;
+   border-style: solid;
+  border-color: coral;
+  border-width: thick;
+  margin-left: 15%;
+  height: auto;
+  width: 80%;">
   </div>
   <!-- <div class="col-md-1"></div> -->
-  <div class="col-md-4">
-      <h5 style="color: white">Appointment</h5>
-      <ul style="color: white">
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>sadhejhd hfdsfh</p> 
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> 2.ghh hfdhf gfhfh</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>3.gdhfgh fhdg vfh</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span> 4.fghd nfhgd vfhd</p>
-        <p> <span class="label"><img src="../../img/icon_right.png"  class="responsive" style="width: 4%;"></span>5.hdghd fhgdf dvs</p>
+  <div class="col-md-4" style="border-radius: 25px;
+  border-radius: 2px;
+  border-color: white;
+  border-width: thick">
+    <h5 style="color: coral">Appointment</h5>
+      <ul style="color:blue">
+        <table>
+          <tr>
+        <td align="top"><img src="../../img/icon_right.png"       style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">  Book appointment online as per available time slot with Adviser  </p> </td></tr>
+        <tr><td align="top"><img src="../../img/icon_right.png"   style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> At the time of appointment, on click of ‘Start Now’ button system starts a ‘Live Session’ with Advisor</p></td></tr>
+        <tr><td align="top"><img src="../../img/icon_right.png"   style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Advises are logged under Advise link Which can be reffered anytime </p></td></tr>
+        <tr><td align="top"><img src="../../img/icon_right.png"   style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> User can Screen Share his/her portfolio with Advisor  </p></td></tr>
+        <tr><td align="top"><img src="../../img/icon_right.png"   style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> User can accept/reject Advise and provide his/her comments </p></td></tr>
+         
+      </table>
       </ul>
   </div></div>
 </ng-template>
 </ngb-carousel>
+</section>
