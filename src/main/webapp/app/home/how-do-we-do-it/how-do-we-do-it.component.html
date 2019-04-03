@@ -1,41 +1,12 @@
-    <section class="bg-light">
+    <section class="bg-dark">
     <!-- <section id="services" class="bg-img text-center">
       <div class="overlay"></div> -->
             <div class="text-center backgroundImage">
               <div class="row ">
                 <div class="col-lg-12 col-lg-offset-2">
                   <h3 style="color:#f1592a">How IT Works</h3>
-<ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows" [showNavigationIndicators]="showNavigationIndicators">
-    <ng-template ngbSlide>
-        <div class="row">
-          <!-- <div class="col-md-1"></div> -->
-                <div class="col-md-8 col-sm-12" >
-      <img src="../../img/gif/Goals.gif" class="responsive" style="border-radius: 25px;
-      border-radius: 2px;
-       border-style: solid;
-      border-color: coral;
-      border-width: thick;
-      margin-left: 15%;height: auto;
-  width: 80%;">
-      </div>
-      <!-- <div class="col-md-1"></div> -->
-      <div class="col-md-4" style="border-radius: 25px;
-      border-radius: 2px;
-      border-color: white;
-      border-width: thick;">
-        <h5 style="color:coral">Goals</h5>
-          <ul style="color: blue">
-            <table>
-              <tr>
-             <td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> User can set Financial Goals </p> </td></tr>
-            <tr><td><img src="../../img/icon_right.png"  style="width: 20px"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> System suggests Investment required to achieve those Goals </p></td></tr>
-           <tr><td> <img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> User can tag/untag existing assets to any Goals</p></td></tr>
-           <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> User can view Linked asset to any Goals </p> </td></tr>
-           <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Keep track of how much Percentage of Goals are achieved </p> </td></tr> 
-          </table>
-          </ul>
-      </div></div>
-    </ng-template>
+<ngb-carousel *ngIf="images" [showNavigationArrows]="showNavigationArrows">
+    
   <ng-template ngbSlide>
     <div class="row">
       <!-- <div class="col-md-1"></div> -->
@@ -55,7 +26,7 @@
   border-color: white;
   border-width: thick">
     <h5 style="color: coral">Dashboard</h5>
-      <ul style="color: blue">
+      <ul style="color: white">
         <table>
         <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Total Income from all sources</p> </td></tr>
         <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Sum of all Personal/Family Expenses</p></td></tr>
@@ -66,6 +37,37 @@
         </table>
       </ul>
   </div></div>
+</ng-template>
+<ng-template ngbSlide>
+  <div class="row">
+    <!-- <div class="col-md-1"></div> -->
+          <div class="col-md-8 col-sm-12" >
+<img src="../../img/gif/Goals.gif" class="responsive" style="border-radius: 25px;
+border-radius: 2px;
+ border-style: solid;
+border-color: coral;
+border-width: thick;
+margin-left: 15%;height: auto;
+width: 80%;">
+</div>
+<!-- <div class="col-md-1"></div> -->
+<br>
+<div class="col-md-4" style="border-radius: 25px;
+border-radius: 2px;
+border-color: white;
+border-width: thick;">
+  <h5 style="color:coral">Goals</h5>
+    <ul style="color: white">
+      <table>
+        <tr>
+       <td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> User can set Financial Goals </p> </td></tr>
+      <tr><td><img src="../../img/icon_right.png"  style="width: 20px"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> System suggests Investment required to achieve those Goals </p></td></tr>
+     <tr><td> <img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> User can tag/untag existing assets to any Goals</p></td></tr>
+     <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> User can view Linked asset to any Goals </p> </td></tr>
+     <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Keep track of how much Percentage of Goals are achieved </p> </td></tr> 
+    </table>
+    </ul>
+</div></div>
 </ng-template>
 <ng-template ngbSlide>
     <div class="row">
@@ -86,7 +88,7 @@
   border-color: white;
   border-width: thick">
     <h5 style="color:coral">Expense</h5>
-      <ul style="color: blue">
+      <ul style="color: white">
         <table>
           <tr>
          <td><img src="../../img/icon_right.png"    style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Details of Expenses from each and every sources  </p> </td></tr>
@@ -116,7 +118,7 @@
   border-color: white;
   border-width: thick">
     <h5 style="color: coral">Income</h5>
-      <ul style="color: blue">
+      <ul style="color: white">
         <table>
           <tr>
          <td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Details of Income from all sources</p> </td></tr>
@@ -146,7 +148,7 @@
   border-color: white;
   border-width: thick">
     <h5 style="color: coral">Assets</h5>
-      <ul style="color: blue">
+      <ul style="color: white">
         <table>
           <tr>
          <td><img src="../../img/icon_right.png"     style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">Details of all Assets – Stocks, Mutual Funds, Saving Schemes, Cash, Properties, Jewelries etc.</p> </td></tr>
@@ -177,7 +179,7 @@
   border-color: white;
   border-width: thick">
     <h5 style="color: coral">Liabilities</h5>
-      <ul style="color: blue">
+      <ul style="color: white">
         <table>
         <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Details of Short term and Long Term Liabilities</p> </td></tr>
         <tr><td><img src="../../img/icon_right.png"  style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">System automatically categorizes Liabilities </p></td></tr>
@@ -205,7 +207,7 @@
   border-color: white;
   border-width: thick">
     <h5 style="color: coral">Risk</h5>
-      <ul style="color: blue">
+      <ul style="color: white">
         <table>
           <tr>
         <td><img src="../../img/icon_right.png"   style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Based on Income and life Goals Cost, system calculates Life risk cover amount. </p> </td></tr>
@@ -234,18 +236,16 @@
   border-color: white;
   border-width: thick">
     <h5 style="color: coral">Appointment</h5>
-      <ul style="color:blue">
+      <ul style="color:white">
         <table>
           <tr>
         <td align="top"><img src="../../img/icon_right.png"       style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;">  Book appointment online as per available time slot with Adviser  </p> </td></tr>
         <tr><td align="top"><img src="../../img/icon_right.png"   style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> At the time of appointment, on click of ‘Start Now’ button system starts a ‘Live Session’ with Advisor</p></td></tr>
         <tr><td align="top"><img src="../../img/icon_right.png"   style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> Advises are logged under Advise link Which can be reffered anytime </p></td></tr>
         <tr><td align="top"><img src="../../img/icon_right.png"   style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> User can Screen Share his/her portfolio with Advisor  </p></td></tr>
-        <tr><td align="top"><img src="../../img/icon_right.png"   style="width: 20px;"></td><td><p style="text-align:left;line-height:1.6em;margin:8px;"> User can accept/reject Advise and provide his/her comments </p></td></tr>
-         
       </table>
       </ul>
-  </div></div>
+  </div></div></div>
 </ng-template>
 </ngb-carousel>
 </section>

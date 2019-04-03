@@ -1946,6 +1946,7 @@ blockquote:after {
     text-align: left;
     width: 100%;
     position: static;
+    color: coral;
 }
 #carousel-shop .carousel-indicators img {
     max-width: 104px;
@@ -2858,6 +2859,9 @@ li .shop-cart a:hover {
     }
     .bg-light {
         background-color: #f8f9fa !important;
+    }
+    .bg-dark {
+        background-color: #18191b;
     }
 }
 /*# sourceMappingURL=universal.css.map */
