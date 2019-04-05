@@ -63,3 +63,7 @@ header .icon-big {
     background-color: white;
     color: white;
 }
+.SuccessMsg {
+    height: 50%;
+    width: auto;
+}
