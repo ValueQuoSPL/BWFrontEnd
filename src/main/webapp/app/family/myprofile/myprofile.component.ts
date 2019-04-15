@@ -72,6 +72,7 @@ export class MyprofileComponent implements OnInit {
             this.getMyProfilebyid();
         });
     }
+    // Get method to fetch all data(not in use)
     getMyProfile() {
         this.MyProfileSer.getMyProfile().subscribe(res => {
             this.output = res;

@@ -11,6 +11,7 @@ import { UserPlanService } from 'app/home/subscriber/userplan.service';
 import { Principal } from 'app/core';
 import { SidebarComponent } from 'app/layouts/sidebar/sidebar.component';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { FamilyprofileService } from 'app/family/familyprofile/familyprofile.service';
 
 class Expire {
     id;
@@ -42,6 +43,10 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
     date: any;
     expire: Expire = new Expire();
     isExpired: boolean;
+    parentData: any;
+    parentid: any;
+    parentData1: any;
+    id: any;
 
     constructor(
         private stateStorageService: StateStorageService,
@@ -55,26 +60,31 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
         private planService: PlanService,
         private principal: Principal,
         private userPlanService: UserPlanService,
-        private commonSidebarService: CommonSidebarService
+        private commonSidebarService: CommonSidebarService,
+        private familyprofileService: FamilyprofileService
     ) {
         this.credentials = {};
     }
 
     ngOnInit() {
+        console.log('login oninit');
         this.admin = null;
 
-        this.principal.getAuthenticationState().subscribe(identity => {
-            if (identity) {
-                this.route = identity.authorities[0];
-                if (identity.authorities[1]) {
-                    this.admin = identity.authorities[1];
-                } else {
-                    this.admin = null;
-                }
-                // this.routing();
-            }
-        });
+        // this.principal.getAuthenticationState().subscribe(identity => {
+        //     console.log('oninit getAuthenticationState()');
+        //     if (identity) {
+        //         console.log('oninit identity', identity);
+        //         this.route = identity.authorities[0];
+        //         console.log('oninit route', this.route);
+        //         if (identity.authorities[1]) {
+        //             this.admin = identity.authorities[1];
+        //         } else {
+        //             this.admin = null;
+        //         }
+        // this.routing();
     }
+    // });
+    // }
 
     ngAfterViewInit() {
         setTimeout(() => this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#username'), 'focus', []), 0);
@@ -92,15 +102,64 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
 
     getUserid() {
         this.account = this.loginService.getCookie();
+        this.id = this.account.id;
+        console.log('login getUserid');
+        console.log('in checkParentSvc.....');
+        this.familyprofileService.checkParentSvc(this.id).subscribe(res => {
+            this.parentData = res;
+            console.log('in checkParent() parent data is', this.parentData);
+            this.parentid = this.parentData.uid;
+            console.log(' checkParent() parentid', this.parentid);
+        });
+        console.log('out checkParentSvc.....');
+        console.log('in getParentData().....');
+        this.familyprofileService.getParentData(this.parentid).subscribe(resp => {
+            this.parentData1 = resp;
+            console.log('in getdata() ParentData1 ', this.parentData1);
+            this.commonSidebarService.account.next(this.parentData1);
+            this.loginService.deleteCookie('1');
+            console.log('after delete cookie value ', this.loginService.getCookie());
+            this.loginService.putCookie('1', this.parentData1);
+            console.log('cookie value ', this.loginService.getCookie());
+            // this.getCookie();
+        });
+        console.log('out getParentData().....');
+        this.account = this.loginService.getCookie();
+        console.log(' in userid account data', this.account);
         if (this.account) {
             this.uid = this.account.id;
             this.checkExpiryTrial();
             this.CheckPlanSelected();
-            // this.checkExpiryDate();
+            this.checkExpiryDate();
         }
+    }
+    checkParent() {
+        console.log('in checkParent() id is', this.id);
+        this.account = this.loginService.getCookie();
+        this.id = this.account.id;
+        this.familyprofileService.checkParentSvc(this.id).subscribe(res => {
+            this.parentData = res;
+            console.log('in checkParent() parent data is', this.parentData);
+            this.parentid = this.parentData.uid;
+            console.log(' checkParent() parentid', this.parentid);
+        });
+        this.getdata();
+    }
+    getdata() {
+        console.log('in getdata() parentid', this.parentid);
+        this.familyprofileService.getParentData(this.parentid).subscribe(resp => {
+            this.parentData1 = resp;
+            console.log('in getdata() ParentData1 ', this.parentData1);
+            this.commonSidebarService.account.next(this.parentData1);
+            this.loginService.putCookie('1', this.parentData1);
+            console.log('cookie value ', this.loginService.getCookie());
+            // this.getCookie();
+        });
+        this.getUserid();
     }
 
     checkExpiryTrial() {
+        console.log(' 1...in  checkExpiryTrial()');
         const formate = new Date().getTime();
         this.userPlanService.GetUserPlan(this.uid).subscribe(data => {
             this.trialData = data;
@@ -137,6 +196,7 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
     }
 
     checkExpiryDate() {
+        console.log('in 3....checkExpiryDate()');
         let date;
         let plan;
         this.userPlanService.GetUserPlan(this.uid).subscribe(data => {
@@ -156,9 +216,11 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
                 }
             }
         });
+        console.log('out 3....checkExpiryDate()');
     }
 
     CheckPlanSelected() {
+        console.log(' 2...in  CheckPlanSelected()');
         this.paymentCheck.getTransactionData(this.uid, 'login').subscribe(paymentData => {
             if (paymentData) {
                 this.isPlan = true;
@@ -169,6 +231,7 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
                 this.isPayment = false;
             }
         });
+        console.log(' 2...out  CheckPlanSelected()');
     }
 
     // checking payment of user and make payment flag true else false
@@ -232,6 +295,7 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
     }
 
     login() {
+        console.log('login()');
         this.loginService
             .login({
                 username: this.username,
@@ -239,9 +303,11 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
                 rememberMe: this.rememberMe
             })
             .then(() => {
+                console.log('login() then');
                 this.authenticationError = false;
                 this.activeModal.dismiss('login success');
 
+                this.checkParent();
                 this.getUserid();
 
                 this.eventManager.broadcast({
@@ -252,6 +318,7 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
                 // previousState was set in the authExpiredInterceptor before being redirected to login modal.
                 // since login is succesful, go to stored previousState and clear previousState
                 const redirect = this.stateStorageService.getUrl();
+                console.log('redirect is ', redirect);
                 if (redirect) {
                     this.stateStorageService.storeUrl(null);
                     this.router.navigate([redirect]);

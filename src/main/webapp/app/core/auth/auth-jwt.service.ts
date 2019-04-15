@@ -8,20 +8,24 @@ import { SERVER_API_URL } from 'app/app.constants';
 
 @Injectable({ providedIn: 'root' })
 export class AuthServerProvider {
+    ServiceAPIParam: string;
+    temp: any;
     constructor(private http: HttpClient, private $localStorage: LocalStorageService, private $sessionStorage: SessionStorageService) {}
 
     getToken() {
         return this.$localStorage.retrieve('authenticationToken') || this.$sessionStorage.retrieve('authenticationToken');
     }
-
     login(credentials): Observable<any> {
         const data = {
             username: credentials.username,
             password: credentials.password,
             rememberMe: credentials.rememberMe
         };
-        return this.http.post(SERVER_API_URL + 'api/authenticate', data, { observe: 'response' }).pipe(map(authenticateSuccess.bind(this)));
-
+        this.temp = this.http
+            .post(SERVER_API_URL + 'api/authenticate', data, { observe: 'response' })
+            .pipe(map(authenticateSuccess.bind(this)));
+        console.log('in authprovider ', this.temp);
+        return this.temp;
         function authenticateSuccess(resp) {
             const bearerToken = resp.headers.get('Authorization');
             if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {
@@ -56,4 +60,14 @@ export class AuthServerProvider {
             observer.complete();
         });
     }
+    // checkParent(id) {
+    //     console.log('in  checkParent service id is', id);
+    //     this.ServiceAPIParam = 'api/getparentUid' + '/' + id;
+    //     return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
+    //     }
+    // getParentData(id) {
+    //     id = 3;
+    //     this.ServiceAPIParam = 'api/user' + '/' + id;
+    //     return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
+    //     }
 }

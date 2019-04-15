@@ -67,6 +67,7 @@ export class SuccessComponent implements OnInit, AfterViewInit {
             this.principal.identity().then(account => {
                 this.account = account;
                 this.userid = this.account.id;
+                console.log('registerAuthenticationSuccess()', this.userid);
             });
         });
         this.getUserid();
@@ -80,6 +81,7 @@ export class SuccessComponent implements OnInit, AfterViewInit {
                 const account = response.body;
                 if (account) {
                     this.uid = account.id;
+                    console.log('getUserid()', this.uid);
                     this.successService.getTransactionData(this.uid, 'success').subscribe(data => {
                         this.result = data;
                         this.last = this.result.pop();

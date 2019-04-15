@@ -280,7 +280,7 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
         this.errorEmailNotExists = null;
         this.resetAccount.email = this.familyProfile.email;
 
-        this.passwordResetInitService.Familyaccesssave(this.resetAccount.email).subscribe(
+        this.passwordResetInitService.save(this.resetAccount.email).subscribe(
             () => {
                 this.success = 'OK';
             },

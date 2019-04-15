@@ -159,6 +159,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
     registerAuthenticationSuccess() {
         this.eventManager.subscribe('authenticationSuccess', message => {
             this.account = this.loginService.getCookie();
+            console.log('registerAuthenticationSuccess()', this.account);
             if (this.account) {
                 this.loggedIn = true;
                 this.sc.account.next(this.account);
