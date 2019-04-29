@@ -11,6 +11,9 @@ import { UserPlanService } from 'app/home/subscriber/userplan.service';
 import { Principal } from 'app/core';
 import { SidebarComponent } from 'app/layouts/sidebar/sidebar.component';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
+import { AppointmentManageService } from 'app/admin/appointment-manage/appointment-manage.service';
+import { CookieService } from 'ngx-cookie';
+import { FamilyprofileService } from 'app/family/familyprofile/familyprofile.service';
 
 class Expire {
     id;
@@ -42,7 +45,12 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
     date: any;
     expire: Expire = new Expire();
     isExpired: boolean;
+    // id: any;
 
+    // account1: any;
+    // parentData: any;
+    // parentData1: any;
+    // parentid: any;
     constructor(
         private stateStorageService: StateStorageService,
         private renderer: Renderer,
@@ -55,7 +63,10 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
         private planService: PlanService,
         private principal: Principal,
         private userPlanService: UserPlanService,
-        private commonSidebarService: CommonSidebarService
+        private commonSidebarService: CommonSidebarService,
+        private appointment: AppointmentManageService,
+        private _cookieService: CookieService,
+        private familyprofileService: FamilyprofileService
     ) {
         this.credentials = {};
     }
@@ -239,6 +250,23 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
                 rememberMe: this.rememberMe
             })
             .then(() => {
+                // for cookies data swap
+                // const account = this.loginService.getCookie();
+                // this.id = account.id
+
+                // this.familyprofileService.getFamilyProfile().subscribe(res => {
+                //     console.log('below family service', res)
+                //     this.parentData = res;
+                //     this.parentid = 4;
+                //     this.familyprofileService.getParentData(this.parentid).subscribe(resp => {
+                //         this.parentData1 = resp;
+                //         console.log('under getParentData ', this.parentData1);
+                //         this.loginService.putCookie('1', this.parentData1);
+                //         const account1 = this.loginService.getCookie();
+                //         console.log(account1);
+                //     });
+                // });
+
                 this.authenticationError = false;
                 this.activeModal.dismiss('login success');
 

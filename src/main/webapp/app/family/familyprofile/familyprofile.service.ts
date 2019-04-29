@@ -30,6 +30,18 @@ export class FamilyprofileService {
         this.ServiceAPIParam = 'api/familyprofiles' + '/' + id;
         return this.http.delete<FamilyProfile[]>(SERVER_API_URL + this.ServiceAPIParam);
     }
+
+    checkParentSvc(id) {
+        console.log('in  checkParent service id is', id);
+        this.ServiceAPIParam = 'api/getparentUid' + '/' + id;
+        return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
+    }
+    getParentData(id) {
+        // id = 3;
+        this.ServiceAPIParam = 'api/user' + '/' + id;
+        return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
+    }
+
     // added by ranjan.......................
     // save(account: any): Observable<any> {
     //     return this.http.post(SERVER_API_URL + 'api/register', account);
