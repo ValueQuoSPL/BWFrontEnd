@@ -50,7 +50,7 @@ const colors: any = {
     selector: 'jhi-appointment',
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './appointment.component.html',
-    styleUrls: []
+    styleUrls: ['./appointment.component.css']
 })
 export class AppointmentComponent implements OnInit {
     postData: any = [];
@@ -99,7 +99,8 @@ export class AppointmentComponent implements OnInit {
     customLoadingTemplate;
     hangoutlink: any;
     account1: any;
-    LogedIn = false;
+    LoggedIn = false;
+    bookedDate: number;
 
     constructor(
         private appointmentService: AppointmentService,
@@ -180,12 +181,14 @@ export class AppointmentComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.today();
-        this.getUserid();
-        this.principal.identity().then(account => {
-            this.account = account;
-        });
-        this.validation();
+        // this.today();
+        // this.getUserid();
+        // this.principal.identity().then(account => {
+        //     this.account = account;
+        // });
+        // this.validation();
+        this.checkLogIn();
+        this.checkDate();
     }
 
     validation() {
@@ -403,10 +406,34 @@ export class AppointmentComponent implements OnInit {
     }
     checkLogIn() {
         this.account1 = this.loginService.getCookie();
+        this.uid = this.account1.id;
         if (this.account1) {
-            this.LogedIn = true;
+            this.LoggedIn = true;
+            this.today();
+            this.getUserid();
+            this.principal.identity().then(account => {
+                this.account = account;
+            });
+            this.validation();
         } else {
-            this.LogedIn = false;
+            this.route.navigate(['/']);
         }
+    }
+    checkDate() {
+        console.log('in checkedDate()');
+        const currentDate = new Date().getTime();
+        console.log('current date', currentDate);
+        this.appointmentService.getCalendarByUid(this.uid).subscribe(data => {
+            this.appointmentResult = data;
+            for (let index = 0; index < this.appointmentResult.length; index++) {
+                console.log('in checkedDate() for');
+                this.bookedDate = new Date(this.appointmentResult.date).getTime();
+                console.log('booked date', this.bookedDate);
+                if (currentDate > this.bookedDate && currentDate !== this.bookedDate) {
+                    console.log('in checkedDate() if');
+                    this.isBooked = false;
+                }
+            }
+        });
     }
 }
