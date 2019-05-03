@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { SERVER_API_URL } from 'app/app.constants';
 import { Observable } from '../../../../../node_modules/rxjs';
 import { CommonSidebarService } from 'app/pratik/common/sidebar.service';
-import { promise } from '../../../../../node_modules/protractor';
 
 @Injectable({
     providedIn: 'root'

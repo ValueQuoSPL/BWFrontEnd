@@ -16,7 +16,8 @@
                                     <h5>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h5>
                                 </mat-toolbar>
                                 <div class="col-md-3 text-center">
-                                    <button mat-raised-button (click)="increment()" (click)="getCalendar()" class="btnReset">
+                                    <button mat-raised-button (click)="increment()" (click)="getCalendar()"
+                                        class="btnReset">
                                         Next
                                     </button>
                                 </div>
@@ -51,7 +52,23 @@
                                         (click)="value6()" (click)="openAppointment(dateOfAppointment, '9:00 P.M', 'confirm')">9:00 P.M. </button>
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="row justify-content-md-center">
+                                    <button [hidden]="diableTimeSlot9" [disabled]="isAppointmentData9" mat-button
+                                        style="border: 1px solid grey; margin-right:16px;"
+                                        matTooltip="Book your TimeSlot" (click)="value6()"
+                                        (click)="openAppointment(dateOfAppointment, '9:00 P.M', 'confirm')">9:00 P.M
+                                    </button>
+                                </div>
+                            </div>
                         </form>
+                    </div>
+                    <ng-template #dateOfAppointment let-c="close" let-d="dismiss">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="dateOfAppointment">Confirm Appointment</h5>
+                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                         <ng-template #dateOfAppointment let-c="close" let-d="dismiss">
                             <div class="modal-header">
@@ -74,15 +91,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Confirm</button>
-                            </div>
-                        </ng-template>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark"
+                                (click)="c('Save click')">Confirm</button>
+                        </div>
+                    </ng-template>
                 </mat-card-content>
             </mat-card>
-            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px'}" [template]="customLoadingTemplate"></ngx-loading>
+            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px'}" [template]="customLoadingTemplate">
+            </ngx-loading>
         </div>
         <!-- <div *ngIf="loading" class="loading">
             <h1>loading</h1>
@@ -117,7 +137,9 @@
                             <!-- <div class="row">
                                 <div class="col-md-4 col-sm-4 col-xs-4" >
                                     <button mat-raised-button class="btnReset">
-                                        <a href="{{result.hangoutlink}}" target="_blank" style="color: white; font: 'Tahoma'; font-size: 14px; font-weight: 100;">Start Now</a>
+                                        <a href="{{result.hangoutlink}}" target="_blank"
+                                            style="color: white; font: 'Tahoma'; font-size: 14px; font-weight: 100;">Start
+                                            Now</a>
                                     </button>
                                 </div>
                                 <div class="col-md-4 col-sm-4 col-xs-4" (click)="gotoAppointment()" >

@@ -26,13 +26,20 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { SystemMaintenanceComponent } from './system-maintenance/system-maintenance.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+
 library.add(fas, far);
 
 @NgModule({
     imports: [
         BuckswiseFrontEndSharedModule,
         RouterModule.forChild(adminState),
-        CustomMaterialModule
+        CustomMaterialModule,
+        CalendarModule.forRoot({
+            provide: DateAdapter,
+            useFactory: adapterFactory
+        })
         /* jhipster-needle-add-admin-module - JHipster will add admin modules here */
     ],
     declarations: [

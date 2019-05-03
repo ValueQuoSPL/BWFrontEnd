@@ -160,6 +160,9 @@ export class MutualComponent implements OnInit {
         this.mutualFundService.getMutualFund(this.uid).subscribe(res => {
             this.output = res;
             this.output.forEach(element => {
+                if (element.holdingdays < 365) {
+                    element.holdingdays = 'NA';
+                }
                 this.x = this.cal(element.currentvalue, element.purchesprice);
                 element.gainloss = this.x;
                 element.absolutereturn = this.absoluteReturn(element.currentvalue, element.purchesprice);
@@ -172,13 +175,16 @@ export class MutualComponent implements OnInit {
     }
 
     absoluteReturn(currentValue, purchasePrice) {
-        return Math.round(+currentValue - +purchasePrice) / purchasePrice * 100;
+        const absolute = Math.round(+currentValue - +purchasePrice) / purchasePrice * 100;
+        return absolute.toFixed(2);
     }
 
     cagr(currentValue, purchasePrice, days) {
-        const years = days / 365;
-        const x = Math.round(((currentValue / purchasePrice) ** (1 / years) - 1) * 100);
-        return x;
+        if (days != 'NA') {
+            const years = days / 365;
+            const x = Math.round(((currentValue / purchasePrice) ** (1 / years) - 1) * 100);
+            return x;
+        }
     }
     getMutualFundByid(commonid) {
         this.mutualFundService.getMutualFundByid(this.commonid).subscribe(res => {
@@ -216,7 +222,6 @@ export class MutualComponent implements OnInit {
                 this.getdata.sipamount = 'NA';
                 this.getdata.frequency = 'NA';
             }
-            console.log(this.getdata);
             this.x = this.cal(this.getdata.currentvalue, this.getdata.purchesprice);
             this.getdata.gainloss = this.x;
             this.getdata.absolutereturn = this.absoluteReturn(this.getdata.currentvalue, this.getdata.purchesprice);
