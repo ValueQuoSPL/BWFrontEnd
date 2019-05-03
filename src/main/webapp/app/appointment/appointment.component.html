@@ -64,8 +64,14 @@
                                 <form class="example-container" #appointmentAdd="ngForm">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <p>{{val}}</p>
-                                            <h5>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h5>
+                                            <h6>Your Appointment Schedule</h6>
+                                            <br>
+                                            <div style="width: 100%;" style="margin-left: 10px;">
+                                                <div class="row">
+                                                    <span><b>Time: </b>{{val}}</span>
+                                                    <span><b>Day: </b>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </form>
