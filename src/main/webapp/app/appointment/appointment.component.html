@@ -70,12 +70,26 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-                            <form class="example-container" #appointmentAdd="ngForm">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <p>{{val}}</p>
-                                        <h5>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h5>
+                        <ng-template #dateOfAppointment let-c="close" let-d="dismiss">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="dateOfAppointment">Confirm Appointment</h5>
+                                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="example-container" #appointmentAdd="ngForm">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h6>Your Appointment Schedule</h6>
+                                            <br>
+                                            <div style="width: 100%;" style="margin-left: 10px;">
+                                                <div class="row">
+                                                    <span><b>Time: </b>{{val}}</span>
+                                                    <span><b>Day: </b>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
