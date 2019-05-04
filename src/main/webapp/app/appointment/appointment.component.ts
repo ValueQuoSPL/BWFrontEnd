@@ -61,6 +61,7 @@ export class AppointmentComponent implements OnInit {
     CalendarView = CalendarView;
     viewDate: Date = new Date();
     appointment: Appointment = new Appointment();
+    c;
     val: any;
     uid: any;
     tempAppointmentData: any = [];

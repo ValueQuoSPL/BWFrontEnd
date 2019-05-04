@@ -36,6 +36,23 @@ export class AppointmentManageComponent implements OnInit {
     formatDate: any;
     closeResult;
     val: string;
+
+    isAppointmentData;
+    isAppointmentData11;
+    isAppointmentData1;
+    isAppointmentData3;
+    isAppointmentData5;
+    isAppointmentData7;
+    isAppointmentData9;
+
+    diableTimeSlot = false;
+    diableTimeSlot11 = false;
+    diableTimeSlot1 = false;
+    diableTimeSlot3 = false;
+    diableTimeSlot5 = false;
+    diableTimeSlot7 = false;
+    diableTimeSlot9 = false;
+
     appointment: Appointment = new Appointment();
 
     constructor(
