@@ -147,13 +147,14 @@ export class AppointmentManageComponent implements OnInit {
                 const time = this.tempAppointmentManage[index].time;
                 const date = this.tempAppointmentManage[index].date;
                 const id = this.tempAppointmentManage[index].id;
+                const email = this.tempAppointmentManage[index].email;
 
                 this.tempUserId = this.tempAppointmentManage[index].uid;
                 this.appointmentManageService.getUserdata(this.tempUserId).subscribe(res => {
                     this.userInfo = res;
                     for (let i = 0; i < this.userInfo.length; i++) {
                         const name = this.userInfo[i].firstName;
-                        const email = this.userInfo[i].email;
+                        // const email = this.userInfo[i].email;
                         this.appointmentManage.push({
                             name,
                             email,
