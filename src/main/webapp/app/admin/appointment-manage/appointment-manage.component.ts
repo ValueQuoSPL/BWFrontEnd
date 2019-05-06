@@ -92,6 +92,7 @@ export class AppointmentManageComponent implements OnInit {
                 this.closeResult = `Closed with: ${result}`;
                 // this.loading = true;
                 this.postCalendar(time, appointmentStatus);
+                this.clear();
                 // this.getCalendar();
             },
             reason => {
@@ -167,8 +168,11 @@ export class AppointmentManageComponent implements OnInit {
     }
 
     RemoveAppointment(index, id) {
-        this.appointmentManageService.deleteData(id).subscribe();
-        this.appointmentManage.splice(index, 1);
+        let retVal = confirm('Do you want to delete this Appointment');
+        if (retVal === true) {
+            this.appointmentManageService.deleteData(id).subscribe();
+            this.appointmentManage.splice(index, 1);
+        }
     }
 
     value() {
@@ -191,5 +195,10 @@ export class AppointmentManageComponent implements OnInit {
     }
     value6() {
         this.val = '9PM';
+    }
+
+    clear() {
+        this.appointment.email = '';
+        this.appointment.description = '';
     }
 }
