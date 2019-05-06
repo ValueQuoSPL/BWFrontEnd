@@ -1,5 +1,5 @@
 <div *ngIf="LoggedIn">
-    <div >
+    <div>
         <div *ngIf="!isBooked">
             <mat-card class="container-fluid example-card1">
                 <mat-card-content class="container-fluid">
@@ -22,119 +22,135 @@
                                     </button>
                                 </div>
                             </div>
-                                <br>
-                                <div [ngSwitch]="view">
-                                   <div class="row justify-content-md-center">
-                                        <button [hidden]="diableTimeSlot" [disabled]="isAppointmentData" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot"
-                                        data-toggle="modal" (click)="value()" (click)="openAppointment(dateOfAppointment, '9:00 A.M.', 'confirm')">
+                            <br>
+                            <div [ngSwitch]="view">
+                                <div class="row justify-content-md-center">
+                                    <button [hidden]="diableTimeSlot" [disabled]="isAppointmentData" mat-button
+                                        style="border: 1px solid grey; margin-right:16px;"
+                                        matTooltip="Book your TimeSlot" data-toggle="modal" (click)="value()"
+                                        (click)="openAppointment(dateOfAppointment, '9:00 A.M.', 'confirm')">
                                         9:00 A.M
-                                        </button>
-                                        <button [hidden]="diableTimeSlot11" [disabled]="isAppointmentData11" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot"
-                                        (click)="value1()" (click)="openAppointment(dateOfAppointment, '11:00 A.M', 'confirm')">11:00 A.M.</button> 
-                                   </div>
-                                   <hr>
-                                   <div class="row justify-content-md-center">
-                                        <button [hidden]="diableTimeSlot1" [disabled]="isAppointmentData1" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot"
-                                        (click)="value2()" (click)="openAppointment(dateOfAppointment, '1:00 P.M', 'confirm')">1:00 P.M.</button>
-                                        <button [hidden]="diableTimeSlot3" [disabled]="isAppointmentData3" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot"
-                                        (click)="value3()" (click)="openAppointment(dateOfAppointment, '3:00 P.M', 'confirm')">3:00 P.M.</button>
-                                   </div> 
-                                   <hr>  
-                                    <div class="row justify-content-md-center">
-                                        <button [hidden]="diableTimeSlot5" [disabled]="isAppointmentData5" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot"
-                                        (click)="value4()" (click)="openAppointment(dateOfAppointment, '5:00 P.M', 'confirm')">5:00 P.M. </button>
-                                        <button [hidden]="diableTimeSlot7" [disabled]="isAppointmentData7" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot"
-                                        (click)="value5()" (click)="openAppointment(dateOfAppointment, '7:00 P.M', 'confirm')">7:00 P.M. </button>
-                                    </div>
-                                   <hr>  
-                                    <div class="row justify-content-md-center">
-                                        <button [hidden]="diableTimeSlot9" [disabled]="isAppointmentData9" mat-button style="border: 1px solid grey; margin-right:16px;" matTooltip="Book your TimeSlot"
-                                        (click)="value6()" (click)="openAppointment(dateOfAppointment, '9:00 P.M', 'confirm')">9:00 P.M. </button>
-                                    </div>
+                                    </button>
+                                    <button [hidden]="diableTimeSlot11" [disabled]="isAppointmentData11" mat-button
+                                        style="border: 1px solid grey; margin-right:16px;"
+                                        matTooltip="Book your TimeSlot" (click)="value1()"
+                                        (click)="openAppointment(dateOfAppointment, '11:00 A.M', 'confirm')">11:00
+                                        A.M.</button>
+                                </div>
+                                <hr>
+                                <div class="row justify-content-md-center">
+                                    <button [hidden]="diableTimeSlot1" [disabled]="isAppointmentData1" mat-button
+                                        style="border: 1px solid grey; margin-right:16px;"
+                                        matTooltip="Book your TimeSlot" (click)="value2()"
+                                        (click)="openAppointment(dateOfAppointment, '1:00 P.M', 'confirm')">1:00
+                                        P.M.</button>
+                                    <button [hidden]="diableTimeSlot3" [disabled]="isAppointmentData3" mat-button
+                                        style="border: 1px solid grey; margin-right:16px;"
+                                        matTooltip="Book your TimeSlot" (click)="value3()"
+                                        (click)="openAppointment(dateOfAppointment, '3:00 P.M', 'confirm')">3:00
+                                        P.M.</button>
+                                </div>
+                                <hr>
+                                <div class="row justify-content-md-center">
+                                    <button [hidden]="diableTimeSlot5" [disabled]="isAppointmentData5" mat-button
+                                        style="border: 1px solid grey; margin-right:16px;"
+                                        matTooltip="Book your TimeSlot" (click)="value4()"
+                                        (click)="openAppointment(dateOfAppointment, '5:00 P.M', 'confirm')">5:00 P.M.
+                                    </button>
+                                    <button [hidden]="diableTimeSlot7" [disabled]="isAppointmentData7" mat-button
+                                        style="border: 1px solid grey; margin-right:16px;"
+                                        matTooltip="Book your TimeSlot" (click)="value5()"
+                                        (click)="openAppointment(dateOfAppointment, '7:00 P.M', 'confirm')">7:00 P.M.
+                                    </button>
                                 </div>
                                 <hr>
                                 <div class="row justify-content-md-center">
                                     <button [hidden]="diableTimeSlot9" [disabled]="isAppointmentData9" mat-button
                                         style="border: 1px solid grey; margin-right:16px;"
                                         matTooltip="Book your TimeSlot" (click)="value6()"
-                                        (click)="openAppointment(dateOfAppointment, '9:00 P.M', 'confirm')">9:00 P.M
+                                        (click)="openAppointment(dateOfAppointment, '9:00 P.M', 'confirm')">9:00 P.M.
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
-                    <ng-template #dateOfAppointment let-c="close" let-d="dismiss">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="dateOfAppointment">Confirm Appointment</h5>
-                            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <ng-template #dateOfAppointment let-c="close" let-d="dismiss">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="dateOfAppointment">Confirm Appointment</h5>
-                                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form class="example-container" #appointmentAdd="ngForm">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h6>Your Appointment Schedule</h6>
-                                            <br>
-                                            <div style="width: 100%;" style="margin-left: 10px;">
-                                                <div class="row">
-                                                    <span><b>Time: </b>{{val}}</span>
-                                                    <span><b>Day: </b>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-dark"
-                                (click)="c('Save click')">Confirm</button>
-                        </div>
-                    </ng-template>
                 </mat-card-content>
             </mat-card>
-            <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px'}" [template]="customLoadingTemplate">
-            </ngx-loading>
         </div>
-        <!-- <div *ngIf="loading" class="loading">
+        <ng-template #dateOfAppointment let-c="close" let-d="dismiss">
+            <!-- <div class="modal-header">
+                <h5 class="modal-title" id="dateOfAppointment">Confirm Appointment</h5>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div> -->
+            <!-- <ng-template #dateOfAppointment let-c="close" let-d="dismiss"> -->
+            <div class="modal-header">
+                <h5 class="modal-title" id="dateOfAppointment">Confirm Appointment</h5>
+                <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="example-container" #appointmentAdd="ngForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Your Appointment Schedule</h6>
+                            <br>
+                            <div style="width: 100%;" style="margin-left: 10px;">
+                                <div class="row">
+                                    <span><b>Time: </b>{{val}}</span>
+                                    <span><b>Day: </b>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Confirm</button>
+            </div>
+        </ng-template>
+    </div>
+    <!-- </ng-template>
+    </mat-card-content>
+    </mat-card> -->
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px'}" [template]="customLoadingTemplate">
+    </ngx-loading>
+</div>
+<!-- <div *ngIf="loading" class="loading">
             <h1>loading</h1>
         </div>     -->
-            <div *ngIf="isBooked">
-                <div>
-                    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate"></ngx-loading>
-                    <mat-card class="container-fluid example-card1" class="container">
-                        <mat-card-content class="container-fluid">
-                            <form>
-                                <div class="row justify-content-center colored  text-center  bwaccordtitle bwtitle heading">Booked Appointment</div>
-                                <br>
+<div *ngIf="isBooked">
+    <div>
+        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
+        </ngx-loading>
+        <mat-card class="container-fluid example-card1" class="container">
+            <mat-card-content class="container-fluid">
+                <form>
+                    <div class="row justify-content-center colored  text-center  bwaccordtitle bwtitle heading">Booked
+                        Appointment</div>
+                    <br>
 
-                                <h5 class="row justify-content-center colored  text-center  bwaccordtitle" style="color:black">Your Booked Appointment Details</h5>
-                                <div class="row text-center">
-                                    
-                                </div>
-                            </form>
-                            <div *ngFor="let result of appointmentResult">
-                                <table class="table table-bordered table-striped table-responsive-md tab">
-                                    <tbody>
-                                        <tr>
-                                            <th>Date</th>
-                                            <td>{{result.date | date: 'dd/MM/yyyy'}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Time</th>
-                                            <td>{{result.time}}</td>
-                                        </tr>
-                                    </tbody>
-                            </table>
-                            <!-- <div class="row">
+                    <h5 class="row justify-content-center colored  text-center  bwaccordtitle" style="color:black">Your
+                        Booked Appointment Details</h5>
+                    <div class="row text-center">
+
+                    </div>
+                </form>
+                <div *ngFor="let result of appointmentResult">
+                    <table class="table table-bordered table-striped table-responsive-md tab">
+                        <tbody>
+                            <tr>
+                                <th>Date</th>
+                                <td>{{result.date | date: 'dd/MM/yyyy'}}</td>
+                            </tr>
+                            <tr>
+                                <th>Time</th>
+                                <td>{{result.time}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- <div class="row">
                                 <div class="col-md-4 col-sm-4 col-xs-4" >
                                     <button mat-raised-button class="btnReset">
                                         <a href="{{result.hangoutlink}}" target="_blank"
@@ -153,26 +169,30 @@
                                     </button>
                                 </div>
                             </div> -->
-                            <!-- </div> -->
-                            <!--Start Added by sanjay -->
-                            <div class="row">
-                                <div class="col-xs-4 col-sm-3 col-md-4 col-lg-2">
-                                    <button class="btnReset my-button" mat-raised-button >
-                                        <a href="{{result.hangoutlink}}" target="_blank" style="color: white; font: 'Tahoma'; font-size: 14px; font-weight: 100;">Start Now</a>
-                                    </button>
-                                </div>
-                                <div class="col-xs-4 col-sm-3 col-md-4 col-lg-2">
-                                    <button mat-raised-button class="btnSave my-button" (click)="gotoAppointment()">Reschedule</button>
-                                </div>
-                                <div class="col-xs-4 col-sm-3 col-md-4 col-lg-2">
-                                    <button mat-raised-button (click)="updateStatus()" class="btnCancel my-button">Cancel</button>
-                                </div>
-                            </div>
-                            <!-- End Added by sanjay -->
+                    <!-- </div> -->
+                    <!--Start Added by sanjay -->
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-3 col-md-4 col-lg-2">
+                            <button class="btnReset my-button" mat-raised-button>
+                                <a href="{{result.hangoutlink}}" target="_blank"
+                                    style="color: white; font: 'Tahoma'; font-size: 14px; font-weight: 100;">Start
+                                    Now</a>
+                            </button>
                         </div>
-                        </mat-card-content>
-                    </mat-card>
+                        <div class="col-xs-4 col-sm-3 col-md-4 col-lg-2">
+                            <button mat-raised-button class="btnSave my-button"
+                                (click)="gotoAppointment()">Reschedule</button>
+                        </div>
+                        <div class="col-xs-4 col-sm-3 col-md-4 col-lg-2">
+                            <button mat-raised-button (click)="updateStatus()"
+                                class="btnCancel my-button">Cancel</button>
+                        </div>
+                    </div>
+                    <!-- End Added by sanjay -->
                 </div>
-            </div>
-        </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+</div>
 </div>
