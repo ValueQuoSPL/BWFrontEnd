@@ -12,9 +12,14 @@
                                         Today
                                     </button>
                                 </div>
-                                <mat-toolbar class="col-md-5 text-center" style="margin-top:-10px;">
+                                <div class="col-md-5 text-center">
+                                    <button mat-raised-button class="btnSave">
+                                        <h5>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h5>
+                                    </button>
+                                </div>
+                                <!--<mat-toolbar class="col-md-5 text-center" style="margin-top:-10px;">
                                     <h5>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h5>
-                                </mat-toolbar>
+                                </mat-toolbar>-->
                                 <div class="col-md-3 text-center">
                                     <button mat-raised-button (click)="increment()" (click)="getCalendar()"
                                         class="btnReset">

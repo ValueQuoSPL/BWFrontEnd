@@ -5,7 +5,8 @@
                 <div class="row justify-content-md-center  text-center  bwtitle">Appointment Booking</div>
                 <div class="row text-center" style="margin-top:15px;">
                     <div class="col-md-3 text center">
-                        <button mat-raised-button (click)="today()" (click)="getCalendar()" class="btnSave">
+                        <!--<button mat-raised-button (click)="today()" (click)="getCalendar()" class="btnSave">-->
+                        <button mat-raised-button (click)="today()" class="btnSave">
                             Today
                         </button>
                     </div>
@@ -13,7 +14,8 @@
                         <h5>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h5>
                     </mat-toolbar>
                     <div class="col-md-3 text-center">
-                        <button mat-raised-button (click)="increment()" (click)="getCalendar()" class="btnReset">
+                        <!--<button mat-raised-button (click)="increment()" (click)="getCalendar()" class="btnReset">-->
+                        <button mat-raised-button (click)="increment()" class="btnReset">
                             Next
                         </button>
                     </div>

@@ -346,7 +346,8 @@
             <td>{{mf.currentvalue}}</td>
             <td>{{mf.gainloss}}</td>
             <td>{{mf.absolutereturn}}%</td>
-            <td>{{mf.cagr}}%</td>
+            <td *ngIf="showCagr">{{mf.cagr}}%</td>
+            <td *ngIf="!showCagr">NA</td>
             <td>
                 <button
                 class="btn btn-outline-info btn-sm"
