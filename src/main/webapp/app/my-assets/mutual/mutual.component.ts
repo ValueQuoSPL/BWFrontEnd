@@ -163,12 +163,15 @@ export class MutualComponent implements OnInit {
             let days;
             this.output.forEach(element => {
                 if (element.holdingdays < 365) {
-                    days = 'NA';
+                    this.showCagr = false;
+                } else {
+                    days = element.holdingdays;
+                    element.cagr = this.cagr(element.currentvalue, element.purchesprice, days);
+                    this.showCagr = true;
                 }
                 this.x = this.cal(element.currentvalue, element.purchesprice);
                 element.gainloss = this.x;
                 element.absolutereturn = this.absoluteReturn(element.currentvalue, element.purchesprice);
-                element.cagr = this.cagr(element.currentvalue, element.purchesprice, days);
             });
         });
     }
@@ -182,12 +185,9 @@ export class MutualComponent implements OnInit {
     }
 
     cagr(currentValue, purchasePrice, days) {
-        if (days !== 'NA') {
-            this.showCagr = true;
-            const years = days / 365;
-            const x = Math.round(((currentValue / purchasePrice) ** (1 / years) - 1) * 100);
-            return x;
-        }
+        const years = days / 365;
+        const x = Math.round(((currentValue / purchasePrice) ** (1 / years) - 1) * 100);
+        return x;
     }
     getMutualFundByid(commonid) {
         this.mutualFundService.getMutualFundByid(this.commonid).subscribe(res => {
