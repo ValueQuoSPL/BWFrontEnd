@@ -23,4 +23,9 @@ export class AppointmentManageService {
         const url = SERVER_API_URL + 'api/appointments/' + id;
         return this._http.delete(url);
     }
+
+    postAppointment(appointment) {
+        // const url = SERVER_API_URL + 'api/appointments',  appointment
+        return this._http.post<any>(SERVER_API_URL + 'api/appointments', appointment);
+    }
 }

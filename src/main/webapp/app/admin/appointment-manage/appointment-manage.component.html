@@ -130,7 +130,7 @@
                 <td>{{l.name}}</td>
                 <td>{{l.email}}</td>
                 <td>
-                    <button class="btn btn-outline-info" type="button">
+                    <button class="btn btn-outline-info" type="button" data-toggle="modal" (click)="openEditAppointment(editAppointmentManagement, l)">
                         <span>
                             <fa-icon [icon]="'edit'"></fa-icon>
                         </span>
@@ -143,4 +143,41 @@
             </tr>
         </tbody>
     </table>
+
+    <ng-template #editAppointmentManagement let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h5 class="modal-title" id="editAppointmentManagement">Appointment</h5>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form class="example-container" #appointmentEdit="ngForm">
+                <div class="form-group">
+                    <mat-form-field style="width: 100%">
+                        <mat-label>Time</mat-label>
+                        <input matInput type="text" name="time" [(ngModel)]="appointment.time">
+                    </mat-form-field>
+                    <mat-form-field style="width: 100%">
+                            <mat-label>Date</mat-label>
+                            <input matInput type="text" name="date" [(ngModel)]="appointment.date">
+                        </mat-form-field>
+                    <mat-form-field style="width: 100%">
+                        <mat-label>User Name</mat-label>
+                        <input matInput type="text" name="username" [(ngModel)]="appointment.name">
+                    </mat-form-field>
+                    <mat-form-field style="width: 100%">
+                        <mat-label>Enter User Email</mat-label>
+                        <input matInput type="text" name="email" [(ngModel)]="appointment.email">
+                    </mat-form-field>
+                    
+                </div>
+            
+            </form>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-save" (click)="c('Save click')">Update</button>
+        </div>
+    </ng-template>
 </div>
