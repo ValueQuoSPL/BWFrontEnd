@@ -14,6 +14,7 @@ export class Appointment {
     time;
     status;
     email;
+    name;
     description;
 }
 
@@ -102,6 +103,27 @@ export class AppointmentManageComponent implements OnInit {
         );
     }
 
+    openEditAppointment(editAppointmentManagement, l) {
+        console.log('under edit appointment');
+        this.appointment.id = l.id;
+        this.appointment.uid = l.uid;
+        this.appointment.time = l.time;
+        this.appointment.date = this.datepipe.transform(l.date, 'yyyy-MM-dd');
+        this.appointment.name = l.name;
+        this.appointment.email = l.email;
+        this.modalService.open(editAppointmentManagement, { ariaLabelledBy: 'editAppointmentManagement' }).result.then(
+            result => {
+                this.closeResult = `Closed with: ${result}`;
+                console.log('appointment object', this.appointment);
+                this.updateAppointment(this.appointment);
+            },
+            reason => {
+                // this.clear();
+                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+            }
+        );
+    }
+
     getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
             return 'by pressing ESC';
@@ -127,6 +149,13 @@ export class AppointmentManageComponent implements OnInit {
             this.getData();
         });
     }
+
+    updateAppointment(appointment) {
+        this.appointmentManageService.postAppointment(appointment).subscribe(response => {
+            console.log(response);
+        });
+    }
+
     // next day's date
     increment(): void {
         const addFn: any = {
@@ -148,6 +177,7 @@ export class AppointmentManageComponent implements OnInit {
                 const date = this.tempAppointmentManage[index].date;
                 const id = this.tempAppointmentManage[index].id;
                 const email = this.tempAppointmentManage[index].email;
+                const uid = this.tempAppointmentManage[index].uid;
 
                 this.tempUserId = this.tempAppointmentManage[index].uid;
                 this.appointmentManageService.getUserdata(this.tempUserId).subscribe(res => {
@@ -160,6 +190,7 @@ export class AppointmentManageComponent implements OnInit {
                             email,
                             time,
                             date,
+                            uid,
                             id
                         });
                     }
