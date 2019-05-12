@@ -382,25 +382,25 @@ export class AppointmentComponent implements OnInit {
     }
 
     value() {
-        this.val = '9AM';
+        this.val = '9 AM';
     }
     value1() {
-        this.val = '11AM';
+        this.val = '11 AM';
     }
     value2() {
-        this.val = '1PM';
+        this.val = '1 PM';
     }
     value3() {
-        this.val = '3AM';
+        this.val = '3 PM';
     }
     value4() {
-        this.val = '5PM';
+        this.val = '5 PM';
     }
     value5() {
-        this.val = '7PM';
+        this.val = '7 PM';
     }
     value6() {
-        this.val = '9PM';
+        this.val = '9 PM';
     }
     login() {
         this.modalRef = this.loginModalService.open();

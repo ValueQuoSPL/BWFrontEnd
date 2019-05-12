@@ -202,7 +202,7 @@ export class AppointmentManageComponent implements OnInit {
     }
 
     RemoveAppointment(index, id) {
-        let retVal = confirm('Do you want to delete this Appointment');
+        const retVal = confirm('Do you want to delete this Appointment');
         if (retVal === true) {
             this.appointmentManageService.deleteData(id).subscribe();
             this.appointmentManage.splice(index, 1);

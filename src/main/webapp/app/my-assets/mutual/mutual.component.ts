@@ -20,6 +20,7 @@ export interface ArrAmc {}
 })
 export class MutualComponent implements OnInit {
     arr: any = [];
+    showCagr = false;
     siparray: any = [
         { sipday: 1, sipname: '1st Day of Month' },
         { sipday: 2, sipname: '2nd Day of Month' },
@@ -159,14 +160,18 @@ export class MutualComponent implements OnInit {
     getMutualFundByUid(uid) {
         this.mutualFundService.getMutualFund(this.uid).subscribe(res => {
             this.output = res;
+            let days;
             this.output.forEach(element => {
                 if (element.holdingdays < 365) {
-                    element.holdingdays = 'NA';
+                    this.showCagr = false;
+                } else {
+                    days = element.holdingdays;
+                    element.cagr = this.cagr(element.currentvalue, element.purchesprice, days);
+                    this.showCagr = true;
                 }
                 this.x = this.cal(element.currentvalue, element.purchesprice);
                 element.gainloss = this.x;
                 element.absolutereturn = this.absoluteReturn(element.currentvalue, element.purchesprice);
-                element.cagr = this.cagr(element.currentvalue, element.purchesprice, element.holdingdays);
             });
         });
     }
@@ -180,11 +185,9 @@ export class MutualComponent implements OnInit {
     }
 
     cagr(currentValue, purchasePrice, days) {
-        if (days != 'NA') {
-            const years = days / 365;
-            const x = Math.round(((currentValue / purchasePrice) ** (1 / years) - 1) * 100);
-            return x;
-        }
+        const years = days / 365;
+        const x = Math.round(((currentValue / purchasePrice) ** (1 / years) - 1) * 100);
+        return x;
     }
     getMutualFundByid(commonid) {
         this.mutualFundService.getMutualFundByid(this.commonid).subscribe(res => {
