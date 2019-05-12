@@ -21,7 +21,7 @@ export interface ArrAmc {}
 })
 export class MutualComponent implements OnInit {
     arr: any = [];
-    showCagr = false;
+    showCagr;
     siparray: any = [
         { sipday: 1, sipname: '1st Day of Month' },
         { sipday: 2, sipname: '2nd Day of Month' },
@@ -63,7 +63,7 @@ export class MutualComponent implements OnInit {
     AmcVar: any;
     type: any;
     uid: any;
-    output: any;
+    output: any = [];
     getdata: any;
     commonid: any;
     conformkey: any;
@@ -168,11 +168,12 @@ export class MutualComponent implements OnInit {
             let days;
             this.output.forEach(element => {
                 if (element.holdingdays < 365) {
-                    this.showCagr = false;
+                    this.showCagr = true;
+                    console.log(element.cagr);
                 } else {
+                    this.showCagr = false;
                     days = element.holdingdays;
                     element.cagr = this.cagr(element.currentvalue, element.purchesprice, days);
-                    this.showCagr = true;
                 }
                 this.x = this.cal(element.currentvalue, element.purchesprice);
                 element.gainloss = this.x;
