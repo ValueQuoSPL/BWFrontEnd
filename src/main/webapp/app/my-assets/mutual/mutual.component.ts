@@ -155,7 +155,7 @@ export class MutualComponent implements OnInit {
     saveMutual(): void {
         this.mutualfund.userid = this.uid;
         this.mutualfund.type = this.type;
-        const purchaseDate = this.datePipe.transform(this.mutualfund.p_date, 'dd/MM/yyyy');
+        const purchaseDate = this.datePipe.transform(this.mutualfund.p_date, 'yyyy-MM-dd');
         console.log(purchaseDate);
         this.mutualfund.p_date = purchaseDate;
         this.mutualFundService.SubmitUser(this.mutualfund).subscribe(data => {
@@ -244,6 +244,9 @@ export class MutualComponent implements OnInit {
     }
     update() {
         this.mutualfund.id = this.commonid;
+        const purchaseDate = this.datePipe.transform(this.mutualfund.p_date, 'yyyy-MM-dd');
+        console.log(purchaseDate);
+        this.mutualfund.p_date = purchaseDate;
         this.mutualFundService.UpdateMutualFund(this.mutualfund).subscribe(data => {
             this.getMutualFundByUid(this.uid);
         });

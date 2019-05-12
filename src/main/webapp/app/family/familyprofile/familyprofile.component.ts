@@ -74,7 +74,7 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
     systemMailOtp;
     VerifyButtonClicked = false;
     isVerify = false;
-
+    emailExt: string;
     act = true;
 
     itemsPerPage: any;
@@ -293,5 +293,13 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
                 }
             }
         );
+    }
+
+    emailExist() {
+        this.emailExt = this.familyProfile.email;
+        console.log(this.emailExt);
+        this.Familypro.emailExist(this.emailExt).subscribe(res => {
+            console.log(res);
+        });
     }
 }

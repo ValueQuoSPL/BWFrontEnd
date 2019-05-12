@@ -58,4 +58,8 @@ export class FamilyprofileService {
     postDetailsForAccess(access) {
         return this.http.post(SERVER_API_URL + 'api/access', access);
     }
+
+    emailExist(email) {
+        return this.http.post(SERVER_API_URL + 'api/email', email);
+    }
 }
