@@ -10,6 +10,7 @@ import { DocumentComponent } from 'app/document/document.component';
 import { MatDialog } from '@angular/material';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { DatePipe } from '@angular/common';
 
 export interface ArrAmc {}
 
@@ -82,7 +83,8 @@ export class MutualComponent implements OnInit {
         public activeModal: NgbActiveModal,
         public mutualFundService: MutualfundService,
         public commonService: CommonSidebarService,
-        private dialog: MatDialog
+        private dialog: MatDialog,
+        private datePipe: DatePipe
     ) {}
 
     ngOnInit() {
@@ -153,6 +155,9 @@ export class MutualComponent implements OnInit {
     saveMutual(): void {
         this.mutualfund.userid = this.uid;
         this.mutualfund.type = this.type;
+        const purchaseDate = this.datePipe.transform(this.mutualfund.p_date, 'dd/MM/yyyy');
+        console.log(purchaseDate);
+        this.mutualfund.p_date = purchaseDate;
         this.mutualFundService.SubmitUser(this.mutualfund).subscribe(data => {
             this.getMutualFundByUid(this.uid);
         });
