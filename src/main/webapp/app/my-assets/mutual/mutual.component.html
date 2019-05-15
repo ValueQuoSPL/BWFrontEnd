@@ -40,7 +40,7 @@
                         class="full-width"
                         required 
                         type="text"
-                        maxlength="10"
+                        maxlength="50"
                         placeholder="Folio Number"
                         [(ngModel)]="mutualfund.folionumber"
                         name="folionumber">
@@ -214,8 +214,8 @@
                     <input
                         matInput
                         class="full-width"
-                        required type="number"
-                        jhiNumberOnly
+                        required type="text"
+                        maxlength="50"
                         placeholder="Folio Number"
                         [(ngModel)]="mutualfund.folionumber"
                         name="folionumber">
@@ -348,7 +348,7 @@
             <td>{{mf.gainloss}}</td>
             <td>{{mf.absolutereturn}}%</td>
             <td *ngIf="mf.cagr !== null">{{mf.cagr}}%</td>
-            <td *ngIf="mf.cagr === null">NA</td>
+            <td *ngIf="mf.cagr === null">NA(Less than 1 yr)</td>
             <!-- <td>NA</td> -->
             <td>
                 <button
@@ -431,7 +431,8 @@
                     </tr>
                     <tr>
                         <th class="subheading">CAGR(%):</th>
-                        <td  class="tddata">{{getdata.cagr}}%</td>
+                        <td *ngIf="getdata.cagr !== null" class="tddata">{{getdata.cagr}}%</td>
+                        <td *ngIf="getdata.cagr === null" class="tddata">NA(Less than 1 yr)</td>
                         <th class="subheading">Folio Number:</th>
                         <td  class="tddata">{{getdata.folionumber}}</td>
                     </tr>

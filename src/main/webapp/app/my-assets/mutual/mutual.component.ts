@@ -234,7 +234,9 @@ export class MutualComponent implements OnInit {
             this.x = this.cal(this.getdata.currentvalue, this.getdata.purchesprice);
             this.getdata.gainloss = this.x;
             this.getdata.absolutereturn = this.absoluteReturn(this.getdata.currentvalue, this.getdata.purchesprice);
-            this.getdata.cagr = this.cagr(this.getdata.currentvalue, this.getdata.purchesprice, this.getdata.holdingdays);
+            if (this.getdata.holdingdays > 365) {
+                this.getdata.cagr = this.cagr(this.getdata.currentvalue, this.getdata.purchesprice, this.getdata.holdingdays);
+            }
             // this.getdata.gainloss = this.getdata.currentvalue;
         });
     }
