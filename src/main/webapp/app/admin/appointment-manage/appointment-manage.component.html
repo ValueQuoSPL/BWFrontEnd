@@ -139,7 +139,7 @@
                 <td>{{l.email}}</td>
                 <td>{{l.description}}</td>
                 <td>
-                    <button class="btn btn-outline-info" type="button" data-toggle="modal" (click)="openEditAppointment(editAppointmentManagement, l)">
+                    <button class="btn btn-outline-info" type="button" data-toggle="modal" (click)="openEditAppointment(editAppointmentManagement, l, 'confirm')">
                         <span>
                             <fa-icon [icon]="'edit'"></fa-icon>
                         </span>
@@ -178,6 +178,10 @@
                     <mat-form-field style="width: 100%">
                         <mat-label>Enter User Email</mat-label>
                         <input matInput type="text" name="email" [(ngModel)]="appointment.email">
+                    </mat-form-field>
+                    <mat-form-field style="width: 100%">
+                        <mat-label>Description</mat-label>
+                        <input matInput type="text" name="description" [(ngModel)]="appointment.description">
                     </mat-form-field>
                     
                 </div>

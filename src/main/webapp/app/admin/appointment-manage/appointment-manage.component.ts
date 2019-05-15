@@ -86,6 +86,8 @@ export class AppointmentManageComponent implements OnInit {
 
     // Open Modal OF Appointment for Book
     openAppointment(appointmentModal, time, appointmentStatus) {
+        this.appointment.email = '';
+        this.appointment.description = '';
         console.log(time, appointmentStatus);
 
         this.modalService.open(appointmentModal, { ariaLabelledBy: 'appointmentModal' }).result.then(
@@ -103,14 +105,16 @@ export class AppointmentManageComponent implements OnInit {
         );
     }
 
-    openEditAppointment(editAppointmentManagement, l) {
-        console.log('under edit appointment');
+    openEditAppointment(editAppointmentManagement, l, appointmentStatus) {
+        console.log('under edit appointment', l);
         this.appointment.id = l.id;
         this.appointment.uid = l.uid;
         this.appointment.time = l.time;
         this.appointment.date = this.datepipe.transform(l.date, 'yyyy-MM-dd');
         this.appointment.name = l.name;
         this.appointment.email = l.email;
+        this.appointment.description = l.description;
+        this.appointment.status = appointmentStatus;
         this.modalService.open(editAppointmentManagement, { ariaLabelledBy: 'editAppointmentManagement' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
@@ -152,7 +156,8 @@ export class AppointmentManageComponent implements OnInit {
 
     updateAppointment(appointment) {
         this.appointmentManageService.postAppointment(appointment).subscribe(response => {
-            console.log(response);
+            // console.log(response);
+            this.getData();
         });
     }
 
@@ -170,6 +175,7 @@ export class AppointmentManageComponent implements OnInit {
     }
 
     getData() {
+        this.appointmentManage = [];
         this.appointmentManageService.getAppointmentData().subscribe(data => {
             this.tempAppointmentManage = data;
             for (let index = 0; index < this.tempAppointmentManage.length; index++) {
