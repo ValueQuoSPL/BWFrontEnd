@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { Income } from 'app/pratik/spending/spending.model';
 import { IncomeService } from 'app/pratik/spending/spending.service';
@@ -53,13 +54,16 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
     successMessage: string;
     private _success = new Subject<string>();
     maxlength = false;
+    account2: any;
+    LoggedIn: any;
 
     constructor(
         private modalService: NgbModal,
         private incomeService: IncomeService,
         private commonService: CommonSidebarService,
         private loginService: LoginService,
-        private loginModalService: LoginModalService
+        private loginModalService: LoginModalService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -84,6 +88,7 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
         this._success.pipe(debounceTime(2000)).subscribe(() => {
             this.successMessage = null;
         });
+        this.checkLogIn();
     }
 
     getUserid() {
@@ -407,6 +412,15 @@ export class IncomeComponent implements OnInit, CanComponentDeactivate {
             return confirm('Do you want to leave this page Before changes saved ? ' + '<Cancel> to cancel leaving <OK> to leave page');
         } else {
             return true;
+        }
+    }
+    checkLogIn() {
+        this.account2 = this.loginService.getCookie();
+        if (this.account2) {
+            this.LoggedIn = true;
+        } else {
+            // this.notLogIn = false;
+            this.router.navigate(['/../']);
         }
     }
 }

@@ -93,6 +93,8 @@ export class DashboardComponent implements OnInit {
     longLiability: any = [];
     ac: any;
     userplan: any = [];
+    loginData: any;
+    LoggedIn: any;
 
     public chartClicked(e: any): void {}
 
@@ -128,6 +130,7 @@ export class DashboardComponent implements OnInit {
                 window.location.reload();
             }
         });
+        this.checkLogIn();
     }
 
     isAuthenticated() {
@@ -581,5 +584,12 @@ export class DashboardComponent implements OnInit {
         this.color = [{ backgroundColor: ['#808080', '#00CED1', '#FF69B4', '#696969', '#00FF00', '#FF4500'] }];
     }
 
-    // this.subject.next(1);
+    checkLogIn() {
+        this.loginData = this.loginService.getCookie();
+        if (this.loginData) {
+            this.LoggedIn = true;
+        } else {
+            this.router.navigate(['/']);
+        }
+    }
 }

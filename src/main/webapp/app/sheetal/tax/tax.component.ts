@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { LoginService } from 'app/core/login/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Principal, LoginModalService } from 'app/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
@@ -14,14 +16,31 @@ export class TaxComponent implements OnInit {
     panelEightyDState = false;
     panelHomeState = false;
     panelOtherState = false;
+    loginData: any;
+    LoggedIn: any;
 
-    constructor(private principal: Principal, private loginModalService: LoginModalService) {}
+    constructor(
+        private principal: Principal,
+        private loginModalService: LoginModalService,
+        private loginService: LoginService,
+        private router: Router
+    ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.checkLogIn();
+    }
     isAuthenticated() {
         return this.principal.isAuthenticated();
     }
     login() {
         this.modalRef = this.loginModalService.open();
+    }
+    checkLogIn() {
+        this.loginData = this.loginService.getCookie();
+        if (this.loginData) {
+            this.LoggedIn = true;
+        } else {
+            this.router.navigate(['/']);
+        }
     }
 }

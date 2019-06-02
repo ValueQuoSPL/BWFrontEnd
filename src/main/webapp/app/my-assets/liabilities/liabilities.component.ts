@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { LiabilitiesService } from 'app/my-assets/liabilities/liabilities.service';
@@ -29,6 +30,8 @@ export class LiabilitiesComponent implements OnInit {
     modalRef: NgbModalRef;
     panelLongTerm = false;
     panelShortTerm = false;
+    LoggedIn: any;
+    loginData: any;
 
     LoanTypeArray = [
         { name: 'Home Loan' },
@@ -44,14 +47,15 @@ export class LiabilitiesComponent implements OnInit {
     constructor(
         private modalService: NgbModal,
         private liabilitiesService: LiabilitiesService,
-        private accountService: AccountService,
         private principal: Principal,
         private loginModalService: LoginModalService,
-        private loginService: LoginService
+        private loginService: LoginService,
+        private router: Router
     ) {}
 
     ngOnInit() {
         this.getUserid();
+        this.checkLogIn();
     }
     getUserid() {
         this.account = this.loginService.getCookie();
@@ -222,5 +226,13 @@ export class LiabilitiesComponent implements OnInit {
     }
     login() {
         this.modalRef = this.loginModalService.open();
+    }
+    checkLogIn() {
+        this.loginData = this.loginService.getCookie();
+        if (this.loginData) {
+            this.LoggedIn = true;
+        } else {
+            this.router.navigate(['/']);
+        }
     }
 }

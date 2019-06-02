@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="LogedIn">
   <div>
     <div>
       <div *ngIf="!isValid">
@@ -638,3 +638,14 @@
     <br>
   </div>
 </div>
+<!-- <div  *ngIf="!LogedIn">
+  <div class="container">
+      <div class="alert alert-warning text-center">
+          Please log-in First
+          <br>
+          <button (click)="login()" class="btnProceed">
+              Sign in
+          </button>
+      </div>
+  </div>
+</div> -->

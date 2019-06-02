@@ -21,6 +21,10 @@ export class UserPlanService {
         const url = SERVER_API_URL + 'api/getuser/' + uid;
         return this.http.get(url);
     }
+    getAllUserPlans() {
+        const url = SERVER_API_URL + 'api/userplans/';
+        return this.http.get(url);
+    }
 
     // for saving trail transaction in database
     saveTransaction(uid, status, productinfo) {
