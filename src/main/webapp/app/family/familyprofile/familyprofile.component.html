@@ -1,8 +1,12 @@
-<div class="container" *ngIf="!isValid"  ><!--start of container div -->
-    <div><!--start of navbar3 div -->
-        <h5  class="heading">Enter Relationship Details<span class="glyphicons glyphicons-remove-circle"></span></h5>  
-    </div><!--end of navbar3 div -->
-    <form  name="form" role="form" (ngSubmit)="requestReset()" #familyproForm="ngForm"><!--start of form-->
+<div class="container" *ngIf="!isValid">
+    <!--start of container div -->
+    <div>
+        <!--start of navbar3 div -->
+        <h5 class="heading">Enter Relationship Details<span class="glyphicons glyphicons-remove-circle"></span></h5>
+    </div>
+    <!--end of navbar3 div -->
+    <form name="form" role="form" (ngSubmit)="requestReset()" #familyproForm="ngForm">
+        <!--start of form-->
         <mat-form-field>
             <mat-select placeholder="Choose Relation" name="relationship" [(ngModel)]="familyProfile.relationship">
                 <mat-option value="Mother">Mother</mat-option>
@@ -12,43 +16,32 @@
                 <mat-option value="Daughter">Daughter</mat-option>
             </mat-select>
         </mat-form-field><br>
-        <div class="row"><!--start of row1-->
-            <div class="col-md-4"><!--start of row1.col1-->
+        <div class="row">
+            <!--start of row1-->
+            <div class="col-md-4">
+                <!--start of row1.col1-->
                 <mat-form-field>
-                    <input matInput
-                        jhiCharsOnly
-                        placeholder="First Name"
-                        type="text" 
-                        id="firstname"
-                        [(ngModel)]="familyProfile.firstname"
-                        name="firstname" 
-                        #firstname="ngModel"
-                        minlength="2" 
-                        maxlength="30"
-                        required>
+                    <input matInput jhiCharsOnly placeholder="First Name" type="text" id="firstname"
+                        [(ngModel)]="familyProfile.firstname" name="firstname" #firstname="ngModel" minlength="2"
+                        maxlength="30" required>
                 </mat-form-field>
                 <div *ngIf=" firstname?.touched && !firstname?.valid">
-                    <div *ngIf="firstname.errors.required" class="form-text text-danger" >
+                    <div *ngIf="firstname.errors.required" class="form-text text-danger">
                         First Name is required
                     </div>
                     <div *ngIf="firstname.errors.minlength" class="form-text text-danger">
-                            First Name should be min {{firstname.errors.minlength.requiredLength}} char
+                        First Name should be min {{firstname.errors.minlength.requiredLength}} char
                     </div>
                 </div>
-            </div><!--end of row1.col1-->
-            <div class="col-md-4"><!--start of col2-->
+            </div>
+            <!--end of row1.col1-->
+            <div class="col-md-4">
+                <!--start of col2-->
                 <mat-form-field>
-                    <input
-                        jhiCharsOnly 
-                        matInput 
-                        placeholder="Middle Name" 
-                        id="middlename"  
-                        [(ngModel)]="familyProfile.middlename"
-                        name="middlename" 
-                        #middlename="ngModel"
-                    >
-              </mat-form-field>
-              <!-- <div *ngIf="middlename?.touched && !middlename?.valid">
+                    <input jhiCharsOnly matInput placeholder="Middle Name" id="middlename"
+                        [(ngModel)]="familyProfile.middlename" name="middlename" #middlename="ngModel">
+                </mat-form-field>
+                <!-- <div *ngIf="middlename?.touched && !middlename?.valid">
                     <div *ngIf="middlename.errors.required" style="color: red">
                         Middle name is required
                     </div>
@@ -56,22 +49,16 @@
                        Middle name should be min {{middlename.errors.minlength.requiredLength}} char
                     </div>
                 </div> -->
-            </div><!--end of  row1.col2-->
-            <div class="col-md-4"><!--start of row1.col3-->
+            </div>
+            <!--end of  row1.col2-->
+            <div class="col-md-4">
+                <!--start of row1.col3-->
                 <mat-form-field>
-                    <input
-                        jhiCharsOnly
-                        matInput 
-                        placeholder="Last Name"
-                        id="lastname"
-                        [(ngModel)]="familyProfile.lastname"
-                        name="lastname" 
-                        #lastname="ngModel"
-                        minlength="2" 
-                        maxlength="30"
-                        required>
+                    <input jhiCharsOnly matInput placeholder="Last Name" id="lastname"
+                        [(ngModel)]="familyProfile.lastname" name="lastname" #lastname="ngModel" minlength="2"
+                        maxlength="30" required>
                 </mat-form-field>
-                <div *ngIf="lastname?.touched && !lastname?.valid" >
+                <div *ngIf="lastname?.touched && !lastname?.valid">
                     <div *ngIf="lastname.errors.required" class="form-text text-danger">
                         Last name is required
                     </div>
@@ -79,50 +66,54 @@
                         Last name should be min {{lastname.errors.minlength.requiredLength}} char
                     </div>
                 </div>
-            </div><!--end of row1.col3-->
-        </div><!--end of row1-->
-        <div class="row"><!--start of row2-->
-            <div class="col-md-6"><!--start of row2.col1-->
+            </div>
+            <!--end of row1.col3-->
+        </div>
+        <!--end of row1-->
+        <div class="row">
+            <!--start of row2-->
+            <div class="col-md-6">
+                <!--start of row2.col1-->
                 <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Date Of Birth" name="dateOfBirth" [(ngModel)]="familyProfile.dateOfBirth">
+                    <input matInput [matDatepicker]="picker" placeholder="Date Of Birth" name="dateOfBirth"
+                        [(ngModel)]="familyProfile.dateOfBirth">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
-            </div><!--end of row2.col1-->
-            <div class="col-md-2"><!--start of row2.col2-->
+            </div>
+            <!--end of row2.col1-->
+            <div class="col-md-2">
+                <!--start of row2.col2-->
 
 
-                        <mat-checkbox  (change)="newFunction()" name="earncheck" checked="unchecked" >Is Earning?</mat-checkbox>
+                <mat-checkbox (change)="newFunction()" name="earncheck" checked="unchecked">Is Earning?</mat-checkbox>
 
-            </div><!--end of row2.col2-->
-            <div class="col-md-4"><!--start of row2.col3-->
+            </div>
+            <!--end of row2.col2-->
+            <div class="col-md-4">
+                <!--start of row2.col3-->
 
-                    <mat-checkbox    (change)="familyaccessfunction()" > Family account access</mat-checkbox>
-                    <button
-        matTooltip="By checking this checkbox, you will give access of your account to this family member. A separate account
-         will be created for him/her. An email will be sent to his/her email to reset password. 
-         Avoid giving access to minors">
-        <i class="fa fa-info" aria-hidden="true"></i>
-</button>
+                <mat-checkbox (change)="familyaccessfunction()"> Family account access</mat-checkbox>
+                <button matTooltip="By checking this checkbox, you will give access of your account to this family member. A separate account
+                             will be created for him/her. An email will be sent to his/her email to reset password. 
+                             Avoid giving access to minors">
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                </button>
 
 
 
-            </div><!--end of row2.col3-->
-        </div><!--end of row2-->
-        <div class="row"><!--start of row3-->
-            <div class="col-md-4"><!--start of row3.col1-->
+            </div>
+            <!--end of row2.col3-->
+        </div>
+        <!--end of row2-->
+        <div class="row">
+            <!--start of row3-->
+            <div class="col-md-4">
+                <!--start of row3.col1-->
                 <mat-form-field>
-                    <input 
-                        matInput 
-                        placeholder="Email-Id"
-                        id="email" 
-                        [(ngModel)]="familyProfile.email"
-                        name="email" 
-                        #email="ngModel"
-                        minlength="5" 
-                        maxlength="30" 
-                        pattern="^[_'.@A-Za-z0-9-]*$"
-                    >
+                    <input matInput placeholder="Email-Id" id="email" [(ngModel)]="familyProfile.email" name="email"
+                        #email="ngModel" minlength="5" maxlength="30" pattern="^[_'.@A-Za-z0-9-]*$"
+                        (keyup)="checkEmail()">
                 </mat-form-field>
                 <div *ngIf=" email?.touched && !email?.valid">
                     <div *ngIf="email.errors.required" class="form-text text-danger">
@@ -131,127 +122,119 @@
                     <div *ngIf="email.errors.minlength" class="form-text text-danger">
                         Email should be min {{email.errors.minlength.requiredLength}} char
                     </div>
-                    <div *ngIf="email.errors.pattern" class="form-text text-danger"> 
+                    <div *ngIf="email.errors.pattern" class="form-text text-danger">
                         pattern not match
                     </div>
                 </div>
-            </div><!--end of row3.col1-->
-            <div class="col-md-4"><!--start of row3.col2-->
+                <div *ngIf="isEmail" class="form-text text-danger">
+                    Email is already exist, kindly use another email id
+                </div>
+
+            </div>
+            <!--end of row3.col1-->
+            <div class="col-md-4">
+                <!--start of row3.col2-->
                 <mat-form-field>
-                    <input 
-                        matInput 
-                        jhiNumberOnly 
-                        placeholder="Mobile Number"
-                        id="phonenumber"   
-                        [(ngModel)]="familyProfile.phonenumber"
-                        name="phonenumber" 
-                        #phonenumber="ngModel"
-                        minlength="10" 
-                        maxlength="10" 
-                        pattern="^[_'.@A-Za-z0-9-]*$"
-                        required
-                    >
+                    <input matInput jhiNumberOnly placeholder="Mobile Number" id="phonenumber"
+                        [(ngModel)]="familyProfile.phonenumber" name="phonenumber" #phonenumber="ngModel" minlength="10"
+                        maxlength="10" pattern="^[_'.@A-Za-z0-9-]*$" required>
                 </mat-form-field>
                 <div *ngIf="phonenumber?.touched && !phonenumber?.valid">
                     <div *ngIf="phonenumber.errors.required" class="form-text text-danger">
                         Mobile Number is required
                     </div>
                     <div *ngIf="phonenumber.errors.minlength" class="form-text text-danger">
-                            Mobile Number should be min {{phonenumber.errors.minlength.requiredLength}} char
+                        Mobile Number should be min {{phonenumber.errors.minlength.requiredLength}} char
                     </div>
-                    <div *ngIf="phonenumber.errors.pattern" class="form-text text-danger"> 
+                    <div *ngIf="phonenumber.errors.pattern" class="form-text text-danger">
                         pattern not match
                     </div>
                 </div>
-            </div><!--end of row3.col2-->
-            <div class="col-md-4"><!--start of row3.col3-->
+            </div>
+            <!--end of row3.col2-->
+            <div class="col-md-4">
+                <!--start of row3.col3-->
                 <mat-form-field>
                     <mat-select placeholder="Acess type" name="accesstype" [(ngModel)]="familyProfile.accesstype">
                         <mat-option value="Full">Full(read/edit/delete)</mat-option>
                         <mat-option value="ReadOnly">ReadOnly</mat-option>
                     </mat-select>
                 </mat-form-field>
-                
-            </div><!--end of row3.col3-->
-         </div><!--end of row3-->
-         <div class="row">
+
+            </div>
+            <!--end of row3.col3-->
+        </div>
+        <!--end of row3-->
+        <div class="row">
             <div class="col-md-8"></div>
             <div class="col-md-4">
-                <div *ngIf="show" >
-                    <button 
-                        mat-raised-button 
-                        class="btnSave" 
-                        [disabled]="familyproForm.form.invalid" 
+                <div *ngIf="show">
+                    <button mat-raised-button class="btnSave" [disabled]="familyproForm.form.invalid"
                         (click)="saveFamilyProfile()">Save
                     </button>&nbsp;
-                    <button *ngIf="!Addmember" 
-                        mat-raised-button 
-                        class="btnCancel" 
-                        (click)="formpage()">Cancel
+                    <button *ngIf="!Addmember" mat-raised-button class="btnCancel" (click)="formpage()">Cancel
                     </button>
-                    <button *ngIf="Addmember" 
-                        mat-raised-button 
-                        class="btnCancel" 
-                        (click)="viewpage()">Cancel
+                    <button *ngIf="Addmember" mat-raised-button class="btnCancel" (click)="viewpage()">Cancel
                     </button>
                 </div>
                 <div *ngIf="!show">
-                    <button 
-                        mat-raised-button 
-                        class="btnSave" 
-                        [disabled]="familyproForm.form.invalid" 
+                    <button mat-raised-button class="btnSave" [disabled]="familyproForm.form.invalid"
                         (click)="update()">update
                     </button>&nbsp;
-                    <button 
-                        mat-raised-button 
-                        class="btnCancel" 
-                        (click)="viewpage()">Cancel
+                    <button mat-raised-button class="btnCancel" (click)="viewpage()">Cancel
                     </button>
                 </div>
             </div>
-         </div>
-    </form><!--end of form-->
-</div><!--end of container div -->
+        </div>
+    </form>
+    <!--end of form-->
+</div>
+<!--end of container div -->
 
 <!--start of view page-->
-<div class="container" *ngIf="isValid"><!--start of container div-->
-    <table class="table  table-responsive-md"  style=" border-collapse: collapse;">
+<div class="container" *ngIf="isValid">
+    <!--start of container div-->
+    <table class="table  table-responsive-md" style=" border-collapse: collapse;">
         <thead>
             <tr>
                 <h5 class="heading"><strong>Relationship Details</strong></h5>
-                <td></td><td></td><td></td><td></td><td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 <td>
                     <button type="button" class="btn btn-sm  btn-link" (click)="AddNewMember()">
                         <fa-icon [icon]="'plus'"></fa-icon>
                         <span>Add</span>
-                    </button> 
+                    </button>
                 </td>
             </tr>
         </thead>
         <tbody *ngFor="let profile of output">
-                <tr><th>Relationship:</th>
-                    <td class="tddata">{{profile.relationship}}</td>
-                 <!-- family account access  start edited by ranjan-->
+            <tr>
+                <th>Relationship:</th>
+                <td class="tddata">{{profile.relationship}}</td>
+                <!-- family account access  start edited by ranjan-->
                 <th class="subheading">Family account access:</th>
                 <td class="tddata">{{profile.familyaccess}}</td>
                 <!-- family account access  ends edited by ranjan-->
                 <th class="subheading">Access type:</th>
                 <td class="tddata">{{profile.accesstype}}</td>
                 <td>
-                    <button
-                    class="btn btn-outline-info btn-sm" 
-                    type="button" 
-                    (click)="editDetail(profile.id)">
-                    <span><fa-icon [icon]="'edit'"></fa-icon></span>
-                </button>
+                    <button class="btn btn-outline-info btn-sm" type="button" (click)="editDetail(profile.id)">
+                        <span>
+                            <fa-icon [icon]="'edit'"></fa-icon>
+                        </span>
+                    </button>
                 </td>
                 <td>
-                    <button 
-                        class="btn btn-outline-danger btn-sm" 
-                        type="button"
+                    <button class="btn btn-outline-danger btn-sm" type="button"
                         (click)="deletefamilyProfile(profile.id)">
-                        <span> <fa-icon [icon]="'trash'"></fa-icon></i></span>
-                    </button>             
+                        <span>
+                            <fa-icon [icon]="'trash'"></fa-icon></i>
+                        </span>
+                    </button>
                 </td>
             </tr>
             <tr>
@@ -269,10 +252,16 @@
                 <td class="tddata">{{profile.phonenumber}}</td>
                 <th class="subheading">Email Id:&nbsp;</th>
                 <td class="tddata">{{profile.email}}</td>
-                <td></td>  <td></td>  <td></td>  <td></td>  <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
             <hr>
         </tbody>
-    </table><!--end of table-->
-</div><!--end of container view div-->
+    </table>
+    <!--end of table-->
+</div>
+<!--end of container view div-->
 <!--end of view page-->

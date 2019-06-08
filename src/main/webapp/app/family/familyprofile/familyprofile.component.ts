@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { ITEMS_PER_PAGE } from 'app/shared';
 import { PasswordResetInitService } from 'app/account/password-reset/init/password-reset-init.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'jhi-familyprofile',
@@ -67,6 +68,7 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
     doNotMatch: string;
 
     errorEmailExists: string;
+    isEmail: boolean = false;
     errorUserExists: string;
 
     submitEvent = false;
@@ -133,6 +135,38 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
             this.getFamilyProfilebyid();
         });
     }
+
+    checkEmail() {
+        console.log(this.familyProfile.email);
+        this.Familypro.emailExist(this.familyProfile.email).subscribe(
+            () => {
+                console.log('email not exist');
+            },
+            response => {
+                if (response.error.text === this.familyProfile.email) {
+                    this.isEmail = true;
+                } else {
+                    this.isEmail = false;
+                }
+            }
+        );
+    }
+
+    private processError(response: HttpErrorResponse) {
+        this.success = null;
+        // if ( response.status === 400 && response.error.type === LOGIN_ALREADY_USED_TYPE ) {
+        if (response.error.errorKey === 'userexists') {
+            this.errorUserExists = 'ERROR';
+            console.log(this.errorEmailExists);
+            // } else if ( response.status === 400 && response.error.type === EMAIL_ALREADY_USED_TYPE ) {
+        } else if (response.error.errorKey === 'emailexists') {
+            this.errorEmailExists = 'ERROR';
+        } else {
+            this.error = 'ERROR';
+            // this.success = true;
+        }
+    }
+
     getFamilyProfile() {
         this.Familypro.getFamilyProfile().subscribe(res => {
             this.output = res;
@@ -194,11 +228,15 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
     // update Method to Update Info of Familyprofile
 
     update() {
-        this.familyProfile.id = this.commonid;
-        console.log('family access', this.familyProfile);
-        this.Familypro.updateProfile(this.familyProfile).subscribe(responce => {
-            this.getFamilyProfilebyid();
-        });
+        if (this.isEmail) {
+        } else if (!this.isEmail) {
+            this.isEmail = false;
+            this.familyProfile.id = this.commonid;
+            console.log('family access', this.familyProfile);
+            this.Familypro.updateProfile(this.familyProfile).subscribe(responce => {
+                this.getFamilyProfilebyid();
+            });
+        }
     }
     formpage() {
         this.isValid = false;

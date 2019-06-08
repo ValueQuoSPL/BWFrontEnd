@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from 'app/app.constants';
 import { Register } from 'app/account/register/register.service';
+
 @Injectable()
 export class FamilyprofileService {
     ServiceAPIParam: any;
@@ -59,7 +60,7 @@ export class FamilyprofileService {
         return this.http.post(SERVER_API_URL + 'api/access', access);
     }
 
-    emailExist(email) {
+    emailExist(email): Observable<any> {
         return this.http.post(SERVER_API_URL + 'api/email', email);
     }
 }
