@@ -1,0 +1,80 @@
+<div >
+    <div >
+        <div class="container">
+            <div>
+                <div class="form-group row justify-content-center bwtitle">
+                        <span class="animated zoomIn">Advisor</span>
+                </div>
+                <mat-accordion>
+                    <!-- 1st -->
+                    <mat-expansion-panel  class="accordcol" 
+                    (opened)="panelcurrentportfolio = true"
+                    (closed)="panelcurrentportfolio = false" >
+                        <mat-expansion-panel-header class="specific-class accordcol  right-aligned-header">
+                            <mat-panel-title class="bwaccordtitle">Current Portfolio</mat-panel-title>
+                            <!-- <mat-panel-description class="bwaccordtitle">Total Stock Value&nbsp;&nbsp;{{totalshareprice}}</mat-panel-description> -->
+                            <mat-panel-description  class="bwaccordtitle setmarginstock" >
+                                    {{panelcurrentportfolio ? 'Collapse' : 'Expand'}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <!--write selector here--> 
+                         <jhi-currentportfolio></jhi-currentportfolio>
+                        <router-outlet></router-outlet>
+                    </mat-expansion-panel>
+                </mat-accordion>&nbsp;
+                <mat-accordion>
+                    <!-- 1st -->
+                    <mat-expansion-panel  class="accordcolor" 
+                    (opened)="panelinsuranceanalysis = true"
+                    (closed)="panelinsuranceanalysis = false" >
+                        <mat-expansion-panel-header class="specific-class accordcolor  right-aligned-header">
+                            <mat-panel-title class="bwaccordtitle">Insurance Analysis</mat-panel-title>
+                            <!-- <mat-panel-description class="bwaccordtitle">Total Stock Value&nbsp;&nbsp;{{totalshareprice}}</mat-panel-description> -->
+                            <mat-panel-description  class="bwaccordtitle setmarginstock" >
+                                    {{panelinsuranceanalysis ? 'Collapse' : 'Expand'}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <!--write selector here--> 
+                         <jhi-insuranceanalysis></jhi-insuranceanalysis>
+                        <router-outlet></router-outlet>
+                    </mat-expansion-panel>
+                </mat-accordion>&nbsp;
+                <mat-accordion>
+                    <!-- 1st -->
+                    <mat-expansion-panel  class="accordcol" 
+                    (opened)="paneltaxanalysis = true"
+                    (closed)="paneltaxanalysis = false" >
+                        <mat-expansion-panel-header class="specific-class accordcol  right-aligned-header">
+                            <mat-panel-title class="bwaccordtitle">Tax Analysis</mat-panel-title>
+                            <!-- <mat-panel-description class="bwaccordtitle">Total Stock Value&nbsp;&nbsp;{{totalshareprice}}</mat-panel-description> -->
+                            <mat-panel-description  class="bwaccordtitle setmarginstock" >
+                                    {{paneltaxanalysis ? 'Collapse' : 'Expand'}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <!--write selector here--> 
+                         <jhi-taxanalysis></jhi-taxanalysis>
+                        <router-outlet></router-outlet>
+                    </mat-expansion-panel>
+                </mat-accordion>&nbsp;
+                <mat-accordion>
+                    <!-- 1st -->
+                    <mat-expansion-panel  class="accordcolor" 
+                    (opened)="panelgoalanalysis = true"
+                    (closed)="panelgoalanalysis = false" >
+                        <mat-expansion-panel-header class="specific-class accordcolor  right-aligned-header">
+                            <mat-panel-title class="bwaccordtitle">Goal Analysis</mat-panel-title>
+                            <!-- <mat-panel-description class="bwaccordtitle">Total Stock Value&nbsp;&nbsp;{{totalshareprice}}</mat-panel-description> -->
+                            <mat-panel-description  class="bwaccordtitle setmarginstock" >
+                                    {{panelgoalanalysis ? 'Collapse' : 'Expand'}}
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                        <!--write selector here--> 
+                         <jhi-goalanalysis></jhi-goalanalysis>
+                        <router-outlet></router-outlet>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </div>
+        </div>
+    </div>
+   
+</div>

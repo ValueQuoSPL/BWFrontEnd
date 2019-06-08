@@ -201,6 +201,7 @@ export class GoalSelectComponent implements OnInit {
         this.savingTotal = 0;
         this.faoTotal = 0;
         this.FetchId();
+        this.checkLogIn();
     }
     isAuthenticated() {
         return this.principal.isAuthenticated();
@@ -1180,7 +1181,7 @@ export class GoalSelectComponent implements OnInit {
         if (this.account) {
             this.LogedIn = true;
         } else {
-            this.LogedIn = false;
+            this.router.navigate(['/']);
         }
     }
 }

@@ -1,10 +1,10 @@
-import { LoginModalService, Principal } from 'app/core';
+import { LoginModalService, Principal, LoginService } from 'app/core';
 import { Component, OnInit } from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { SpendingRouteGuardService } from 'app/pratik/common/spending-route-guard.service';
-import { RouterModule, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { CanComponentDeactivate } from 'app/pratik/common/can-deactivate-guard.service';
 
 export interface DialogData {
@@ -60,12 +60,15 @@ export class SpendingComponent implements OnInit, CanComponentDeactivate {
     creditState: boolean;
     travelState: boolean;
     miscState: boolean;
+    loginData: any;
+    LoggedIn: any;
 
     constructor(
         private router: Router,
         private principal: Principal,
         private loginModalService: LoginModalService,
-        private routeGuard: SpendingRouteGuardService
+        private routeGuard: SpendingRouteGuardService,
+        private loginService: LoginService
     ) {}
 
     ngOnInit() {
@@ -76,6 +79,7 @@ export class SpendingComponent implements OnInit, CanComponentDeactivate {
             this.commonState = route;
             this.panelState(this.commonState);
         });
+        this.checkLogIn();
     }
 
     panelState(route) {
@@ -180,5 +184,14 @@ export class SpendingComponent implements OnInit, CanComponentDeactivate {
     }
     general() {
         this.router.navigate(['spend/general']);
+    }
+    checkLogIn() {
+        this.loginData = this.loginService.getCookie();
+        if (this.loginData) {
+            this.LoggedIn = true;
+        } else {
+            // this.notLogIn = false;
+            this.router.navigate(['/']);
+        }
     }
 }

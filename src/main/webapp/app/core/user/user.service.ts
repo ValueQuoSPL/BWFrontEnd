@@ -41,4 +41,8 @@ export class UserService {
     sendMail(user): Observable<any> {
         return this.http.post<any>(SERVER_API_URL + 'api/sendmail', user);
     }
+    // get all users
+    getAllUsers() {
+        return this.http.get(this.resourceUrl);
+    }
 }

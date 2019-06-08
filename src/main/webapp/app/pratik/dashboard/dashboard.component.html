@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="LoggedIn">
     <div class="container">
 
         <div class="row justify-content-md-center bwtitle">
@@ -231,8 +231,8 @@
                                         [animationDuration]="10" [maxPercent]="50" [toFixed]="0" [showUnits]="true"
                                         [animation]="false" [startFromZero]="true" [showSubtitle]="false"></circle-progress>
                                 </td>
-                                <td>{{ item.cost }}</td>
-                                <td>{{ item.tagged }}</td>
+                                <td>{{ item.cost | currency:"INR"}}</td>
+                                <td>{{ item.tagged | currency:"INR"}}</td>
                             </tr>
                         </tbody>
                     </table>

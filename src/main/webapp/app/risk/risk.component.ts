@@ -1,3 +1,4 @@
+import { LoginService } from 'app/core/login/login.service';
 import { Component, OnInit } from '@angular/core';
 import { Principal, LoginModalService } from 'app/core';
 import { Router } from '@angular/router';
@@ -13,8 +14,15 @@ export class RiskComponent implements OnInit {
     modalRef: NgbModalRef;
     panelLifeState = false;
     panelMedicleState = false;
+    loginData: any;
+    LoggedIn: any;
 
-    constructor(private principal: Principal, private loginModalService: LoginModalService, private router: Router) {}
+    constructor(
+        private principal: Principal,
+        private loginService: LoginService,
+        private loginModalService: LoginModalService,
+        private router: Router
+    ) {}
 
     ngOnInit() {
         console.log('calling account');
@@ -22,6 +30,7 @@ export class RiskComponent implements OnInit {
         this.principal.identity().then(account => {
             this.account = account;
         });
+        this.checkLogIn();
     }
     isAuthenticated() {
         return this.principal.isAuthenticated();
@@ -36,5 +45,13 @@ export class RiskComponent implements OnInit {
     }
     gotoMedical() {
         this.router.navigate(['medical']);
+    }
+    checkLogIn() {
+        this.loginData = this.loginService.getCookie();
+        if (this.loginData) {
+            this.LoggedIn = true;
+        } else {
+            this.router.navigate(['/']);
+        }
     }
 }

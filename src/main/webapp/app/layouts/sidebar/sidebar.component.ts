@@ -38,6 +38,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     encrypt: number;
     loggedIn = false;
     isExpired: boolean;
+    onlyAdvisor = false;
 
     constructor(
         private principal: Principal,
@@ -57,6 +58,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.principal.getAuthenticationState().subscribe(authority => {
+            console.log('authority is', authority);
             if (authority) {
                 if (authority.authorities[1]) {
                     this.authority = authority.authorities[1];
@@ -84,6 +86,10 @@ export class SidebarComponent implements OnInit, AfterViewInit {
                     if (this.authority === 'ROLE_ADMIN') {
                         this.showSidebarAfterLogin();
                         this.fullAccess = true;
+                    } else if (this.authority === 'ROLE_ADVICER') {
+                        this.showSidebarAfterLogin();
+                        // this.fullAccess = true;
+                        this.onlyAdvisor = true;
                     }
                 } else {
                 }
@@ -107,6 +113,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
     get(uid) {
         this.userPlanService.GetUserPlan(uid).subscribe(response => {
+            console.log('uid is', this.uid);
             this.userPlan = response;
 
             if (this.userPlan.length !== 0) {
@@ -118,6 +125,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
                     this.fullAccess = false;
                     if (this.authority === 'ROLE_ADMIN') {
                         this.fullAccess = true;
+                    } else if (this.authority === 'ROLE_ADVICER') {
+                        this.onlyAdvisor = true;
                     }
                 } else {
                     this.fullAccess = true;
@@ -129,6 +138,10 @@ export class SidebarComponent implements OnInit, AfterViewInit {
                 if (this.authority === 'ROLE_ADMIN') {
                     this.showSidebarAfterLogin();
                     this.fullAccess = true;
+                } else if (this.authority === 'ROLE_ADVICER') {
+                    this.showSidebarAfterLogin();
+                    //  this.fullAccess = true;
+                    this.onlyAdvisor = true;
                 }
             }
         });
