@@ -106,7 +106,6 @@ import { ActiveMenuDirective } from 'app/layouts/navbar/active-menu.directive';
 import { pratikState, SpendingComponent, CanDeactivateGuard, SubscriptionComponent } from 'app/pratik';
 import { DashRoute } from 'app/pratik/dashboard/dashboard.routes';
 import { advisorRoot } from 'app/advisor/advisor.route';
-import { AdvisorComponent } from 'app/advisor/advisor.component';
 import { AdvisorFilterPipe } from 'app/advisor/advisor-filter.pipe';
 import { successRoute } from 'app/success/success.route';
 import { appointRoot } from 'app/appointment';
@@ -126,6 +125,7 @@ import { CurrentportfolioComponent } from './advisorview/currentportfolio/curren
 import { InsuranceanalysisComponent } from './advisorview/insuranceanalysis/insuranceanalysis.component';
 import { TaxanalysisComponent } from './advisorview/taxanalysis/taxanalysis.component';
 import { GoalanalysisComponent } from './advisorview/goalanalysis/goalanalysis.component';
+import { AdvisorModule } from './advisor/advisor.module';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -230,6 +230,7 @@ const customNotifierOptions: NotifierOptions = {
         CustomDirectiveModule,
         CustomMaterialModule,
         AppointmentModule,
+        AdvisorModule,
         SubscriberModule,
         PromoCodeModule,
         FamilyModule,
@@ -241,7 +242,6 @@ const customNotifierOptions: NotifierOptions = {
     ],
     declarations: [
         DashboardComponent,
-        AdvisorComponent,
         JhiMainComponent,
         NavbarComponent,
         ErrorComponent,
