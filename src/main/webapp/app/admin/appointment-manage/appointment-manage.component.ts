@@ -38,6 +38,11 @@ export class AppointmentManageComponent implements OnInit {
     closeResult;
     val: string;
 
+    tempAppointmentData: any = [];
+    _day: any;
+    _time: any;
+    _status: any;
+
     isAppointmentData;
     isAppointmentData11;
     isAppointmentData1;
@@ -54,6 +59,9 @@ export class AppointmentManageComponent implements OnInit {
     diableTimeSlot7 = false;
     diableTimeSlot9 = false;
 
+    date = new Date();
+    currentDate: any;
+
     appointment: Appointment = new Appointment();
 
     constructor(
@@ -66,8 +74,9 @@ export class AppointmentManageComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        this.getData();
         this.getUserid();
+        this.getData();
+        this.today();
     }
 
     getUserid() {
@@ -82,13 +91,15 @@ export class AppointmentManageComponent implements OnInit {
         this.viewDate = new Date();
         this.currentTime = this.datepipe.transform(this.viewDate, 'HH:mm:ss');
         this.formatDate = this.datepipe.transform(this.viewDate, 'yyyy-MM-dd');
+        this.validation();
+        this.getCalendar();
     }
 
     // Open Modal OF Appointment for Book
     openAppointment(appointmentModal, time, appointmentStatus) {
         this.appointment.email = '';
         this.appointment.description = '';
-        console.log(time, appointmentStatus);
+        // console.log(time, appointmentStatus);
 
         this.modalService.open(appointmentModal, { ariaLabelledBy: 'appointmentModal' }).result.then(
             result => {
@@ -96,7 +107,7 @@ export class AppointmentManageComponent implements OnInit {
                 // this.loading = true;
                 this.postCalendar(time, appointmentStatus);
                 this.clear();
-                // this.getCalendar();
+                this.getCalendar();
             },
             reason => {
                 // this.clear();
@@ -105,8 +116,93 @@ export class AppointmentManageComponent implements OnInit {
         );
     }
 
+    validation() {
+        this.currentDate = this.datepipe.transform(this.date, 'yyyy-MM-dd');
+        if (this.currentDate === this.formatDate) {
+            if (this.currentTime > '09:00:00 am') {
+                this.diableTimeSlot = true;
+            } else {
+                this.diableTimeSlot = false;
+            }
+            if (this.currentTime > '11:00:00 a.m') {
+                this.diableTimeSlot11 = true;
+            } else {
+                this.diableTimeSlot11 = false;
+            }
+            if (this.currentTime > '13:00:00 p.m') {
+                this.diableTimeSlot1 = true;
+            } else {
+                this.diableTimeSlot1 = false;
+            }
+            if (this.currentTime > '15:00:00 p.m') {
+                this.diableTimeSlot3 = true;
+            } else {
+                this.diableTimeSlot3 = false;
+            }
+            if (this.currentTime > '17:00:00 p.m') {
+                this.diableTimeSlot5 = true;
+            } else {
+                this.diableTimeSlot5 = false;
+            }
+            if (this.currentTime > '19:00:00 p.m') {
+                this.diableTimeSlot7 = true;
+            } else {
+                this.diableTimeSlot7 = false;
+            }
+            if (this.currentTime > '21:00:00 p.m') {
+                this.diableTimeSlot9 = true;
+            } else {
+                this.diableTimeSlot9 = false;
+            }
+        } else {
+            this.diableTimeSlot = false;
+            this.diableTimeSlot11 = false;
+            this.diableTimeSlot1 = false;
+            this.diableTimeSlot3 = false;
+            this.diableTimeSlot5 = false;
+            this.diableTimeSlot7 = false;
+            this.diableTimeSlot9 = false;
+        }
+    }
+
+    getCalendar() {
+        this.appointmentService.getCalendar().subscribe(data => {
+            this.tempAppointmentData = data;
+            this.isAppointmentData = false;
+            this.isAppointmentData11 = false;
+            this.isAppointmentData1 = false;
+            this.isAppointmentData3 = false;
+            this.isAppointmentData5 = false;
+            this.isAppointmentData7 = false;
+            this.isAppointmentData9 = false;
+            for (let index = 0; index < this.tempAppointmentData.length; index++) {
+                this._day = this.tempAppointmentData[index].date;
+                const onlyDate = this.datepipe.transform(this._day, 'yyyy-MM-dd');
+                this._status = this.tempAppointmentData[index].status;
+                this._time = this.tempAppointmentData[index].time;
+                if (this.formatDate === onlyDate) {
+                    if (this._status === 'confirm' && this._time === '9:00 A.M') {
+                        this.isAppointmentData = true;
+                    } else if (this._status === 'confirm' && this._time === '11:00 A.M') {
+                        this.isAppointmentData11 = true;
+                    } else if (this._status === 'confirm' && this._time === '1:00 P.M') {
+                        this.isAppointmentData1 = true;
+                    } else if (this._status === 'confirm' && this._time === '3:00 P.M') {
+                        this.isAppointmentData3 = true;
+                    } else if (this._status === 'confirm' && this._time === '5:00 P.M') {
+                        this.isAppointmentData5 = true;
+                    } else if (this._status === 'confirm' && this._time === '7:00 P.M') {
+                        this.isAppointmentData7 = true;
+                    } else if (this._status === 'confirm' && this._time === '9:00 A.M') {
+                        this.isAppointmentData9 = true;
+                    }
+                }
+            }
+        });
+    }
+
     openEditAppointment(editAppointmentManagement, l, appointmentStatus) {
-        console.log('under edit appointment', l);
+        // console.log('under edit appointment', l);
         this.appointment.id = l.id;
         this.appointment.uid = l.uid;
         this.appointment.time = l.time;
@@ -118,7 +214,7 @@ export class AppointmentManageComponent implements OnInit {
         this.modalService.open(editAppointmentManagement, { ariaLabelledBy: 'editAppointmentManagement' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;
-                console.log('appointment object', this.appointment);
+                // console.log('appointment object', this.appointment);
                 this.updateAppointment(this.appointment);
             },
             reason => {
@@ -140,7 +236,7 @@ export class AppointmentManageComponent implements OnInit {
 
     // post data
     postCalendar(time, appointmentStatus) {
-        console.log('under appointment management', this.appointment);
+        // console.log('under appointment management', this.appointment);
         const hour = time.split(':', 1);
         this.viewDate.setHours(hour);
         this.viewDate.setMinutes(0, 0);
@@ -156,7 +252,6 @@ export class AppointmentManageComponent implements OnInit {
 
     updateAppointment(appointment) {
         this.appointmentManageService.postAppointment(appointment).subscribe(response => {
-            // console.log(response);
             this.getData();
         });
     }
@@ -171,7 +266,7 @@ export class AppointmentManageComponent implements OnInit {
 
         this.viewDate = addFn(this.viewDate, 1);
         this.formatDate = this.datepipe.transform(this.viewDate, 'yyyy-MM-dd');
-        // this.validation();
+        this.validation();
     }
 
     getData() {

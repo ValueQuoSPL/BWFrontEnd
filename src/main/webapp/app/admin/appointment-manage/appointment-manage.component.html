@@ -103,10 +103,23 @@
                         <div class="form-group">
                             <mat-form-field style="width: 100%">
                                 <mat-label>Enter User Email</mat-label>
-                                <input matInput type="text" name="email" [(ngModel)]="appointment.email">
+                                <input matInput  type="text" name="email" 
+                                [(ngModel)]="appointment.email" pattern="^[_'.@A-Za-z0-9-]*$" 
+                                id="email" #email="ngModel" minlength="5" maxlength="30" required>
                             </mat-form-field>
+                            <div *ngIf=" email?.touched && !email?.valid">
+                                <div *ngIf="email.errors.required" class="form-text text-danger">
+                                    Email is required
+                                </div>
+                                <div *ngIf="email.errors.minlength" class="form-text text-danger">
+                                    Email should be min {{email.errors.minlength.requiredLength}} char
+                                </div>
+                                <div *ngIf="email.errors.pattern" class="form-text text-danger">
+                                    pattern not match
+                                </div>
+                            </div>
                             <mat-form-field style="width: 100%">
-                                <textarea matInput placeholder="Description" name="description" [(ngModel)]="appointment.description"></textarea>
+                                <textarea matInput placeholder="Description" name="description" [(ngModel)]="appointment.description" required></textarea>
                             </mat-form-field>
                         </div>
                     </form>

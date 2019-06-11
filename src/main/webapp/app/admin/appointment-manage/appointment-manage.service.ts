@@ -26,6 +26,6 @@ export class AppointmentManageService {
 
     postAppointment(appointment) {
         // const url = SERVER_API_URL + 'api/appointments',  appointment
-        return this._http.post<any>(SERVER_API_URL + 'api/appointments', appointment);
+        return this._http.put<any>(SERVER_API_URL + 'api/appointments', appointment);
     }
 }

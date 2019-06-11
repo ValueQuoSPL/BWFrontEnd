@@ -58,7 +58,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.principal.getAuthenticationState().subscribe(authority => {
-            console.log('authority is', authority);
+            // console.log('authority is', authority);
             if (authority) {
                 if (authority.authorities[1]) {
                     this.authority = authority.authorities[1];
@@ -86,7 +86,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
                     if (this.authority === 'ROLE_ADMIN') {
                         this.showSidebarAfterLogin();
                         this.fullAccess = true;
-                    } else if (this.authority === 'ROLE_ADVICER') {
+                    } else if (this.authority === 'ROLE_ADVISOR') {
                         this.showSidebarAfterLogin();
                         // this.fullAccess = true;
                         this.onlyAdvisor = true;
