@@ -5,10 +5,10 @@
         <h5 class="heading">Enter Relationship Details<span class="glyphicons glyphicons-remove-circle"></span></h5>
     </div>
     <!--end of navbar3 div -->
-    <form name="form" role="form" (ngSubmit)="requestReset()" #familyproForm="ngForm">
+    <form name="form" role="form" #familyproForm="ngForm">
         <!--start of form-->
         <mat-form-field>
-            <mat-select placeholder="Choose Relation" name="relationship" [(ngModel)]="familyProfile.relationship">
+            <mat-select placeholder="Choose Relation" name="relationship" [(ngModel)]="familyProfile.relationship" required>
                 <mat-option value="Mother">Mother</mat-option>
                 <mat-option value="Father">Father</mat-option>
                 <mat-option value="Spouce">Spouse</mat-option>
@@ -76,7 +76,7 @@
                 <!--start of row2.col1-->
                 <mat-form-field>
                     <input matInput [matDatepicker]="picker" placeholder="Date Of Birth" name="dateOfBirth"
-                        [(ngModel)]="familyProfile.dateOfBirth">
+                        [(ngModel)]="familyProfile.dateOfBirth" required>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -84,23 +84,18 @@
             <!--end of row2.col1-->
             <div class="col-md-2">
                 <!--start of row2.col2-->
-
-
-                <mat-checkbox (change)="newFunction()" name="earncheck" checked="unchecked">Is Earning?</mat-checkbox>
-
+                <mat-checkbox (change)="newFunction()" name="earncheck" [checked]="unchecked" required>Is Earning?</mat-checkbox>
             </div>
             <!--end of row2.col2-->
             <div class="col-md-4">
                 <!--start of row2.col3-->
 
-                <mat-checkbox (change)="familyaccessfunction()"> Family account access</mat-checkbox>
+                <mat-checkbox (change)="familyaccessfunction($event)"> Family account access</mat-checkbox>
                 <button matTooltip="By checking this checkbox, you will give access of your account to this family member. A separate account
                              will be created for him/her. An email will be sent to his/her email to reset password. 
                              Avoid giving access to minors">
                     <i class="fa fa-info" aria-hidden="true"></i>
                 </button>
-
-
 
             </div>
             <!--end of row2.col3-->
@@ -113,7 +108,7 @@
                 <mat-form-field>
                     <input matInput placeholder="Email-Id" id="email" [(ngModel)]="familyProfile.email" name="email"
                         #email="ngModel" minlength="5" maxlength="30" pattern="^[_'.@A-Za-z0-9-]*$"
-                        (keyup)="checkEmail()">
+                        (keyup)="checkEmail()" [required]="conditionalEmail">
                 </mat-form-field>
                 <div *ngIf=" email?.touched && !email?.valid">
                     <div *ngIf="email.errors.required" class="form-text text-danger">

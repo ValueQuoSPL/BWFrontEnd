@@ -30,6 +30,7 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
     isValid: boolean;
     show = true;
     earncheck = 'notearning';
+    unchecked = false;
     users: User[];
 
     account: any;
@@ -42,6 +43,7 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
     temppsw: string;
     possible: any;
     login: string;
+    conditionalEmail: false;
 
     // isChecked: false; // added by ranjan
     // isActivated = true;
@@ -120,27 +122,28 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
     }
     // saveMethod to saveFamilyprofile
     saveFamilyProfile() {
-        this.familyProfile.uid = this.uid;
-        this.familyProfile.earncheck = this.earncheck;
-        this.familyProfile.familyaccess = this.familyaccess;
-        // this.email = this.familyProfile.email;
+        if (this.isEmail) {
+        } else if (!this.isEmail) {
+            this.familyProfile.uid = this.uid;
+            this.familyProfile.earncheck = this.earncheck;
+            this.familyProfile.familyaccess = this.familyaccess;
+            // this.email = this.familyProfile.email;
 
-        this.makeid();
-        if (this.checkaccesstype === this.familyProfile.accesstype) {
+            this.makeid();
             this.register();
-            // this.requestReset();
-        }
 
-        this.Familypro.save(this.familyProfile).subscribe(data => {
-            this.getFamilyProfilebyid();
-        });
+            this.Familypro.save(this.familyProfile).subscribe(data => {
+                this.getFamilyProfilebyid();
+            });
+        }
     }
 
     checkEmail() {
-        console.log(this.familyProfile.email);
+        // console.log(this.familyProfile.email);
         this.Familypro.emailExist(this.familyProfile.email).subscribe(
             () => {
                 console.log('email not exist');
+                this.isEmail = false;
             },
             response => {
                 if (response.error.text === this.familyProfile.email) {
@@ -191,9 +194,12 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
     }
     newFunction() {
         this.earncheck = 'Earning';
+        this.unchecked = true;
     }
-    familyaccessfunction() {
+    familyaccessfunction(event: any) {
         this.familyaccess = 'Yes';
+        this.conditionalEmail = event.checked;
+        console.log(this.conditionalEmail);
     }
     // editDetail Method to Edit Info of Familyprofile
     editDetail(id) {
@@ -209,20 +215,16 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
             // const finalDate = this.datePipe.transform(this.date, 'd/M/yy');
             // this.familyProfile.dateOfBirth = new Date(finalDate);
             this.date = this.output.dateOfBirth;
-            console.log('date is', this.date);
             const finalDate = this.datePipe.transform(this.date, 'd/M/yy');
-            console.log('finaldate is', finalDate);
             this.familyProfile.dateOfBirth = new Date(finalDate);
-            console.log('date in familyProfile', this.familyProfile.dateOfBirth);
             this.familyProfile.email = this.output.email;
             this.familyProfile.phonenumber = this.output.phonenumber;
             this.familyProfile.uid = this.uid;
             this.show = false;
+            this.unchecked = true;
             // added by ranjan.............................
             this.familyProfile.accesstype = this.output.accesstype;
             this.familyProfile.familyaccess = this.output.familyaccess;
-
-            console.log('family access', this.familyProfile.accesstype);
         });
     }
     // update Method to Update Info of Familyprofile
@@ -299,6 +301,7 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
     AfterOtpValidation(): any {
         throw new Error('Method not implemented.');
     }
+
     makeid() {
         this.temppsw = '';
         this.possible = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789@';
@@ -313,6 +316,7 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         this.renderer.invokeElementMethod(this.elementRef.nativeElement.querySelector('#email'), 'focus', []);
     }
+
     requestReset() {
         this.error = null;
         this.errorEmailNotExists = null;
@@ -331,13 +335,5 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
                 }
             }
         );
-    }
-
-    emailExist() {
-        this.emailExt = this.familyProfile.email;
-        console.log(this.emailExt);
-        this.Familypro.emailExist(this.emailExt).subscribe(res => {
-            console.log(res);
-        });
     }
 }
