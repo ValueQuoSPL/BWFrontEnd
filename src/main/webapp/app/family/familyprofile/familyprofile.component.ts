@@ -206,6 +206,7 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
         this.commonid = id;
         this.Familypro.updateProfileById(this.commonid).subscribe(res => {
             this.output = res;
+            console.log(this.output);
             this.isValid = false;
             this.familyProfile.relationship = this.output.relationship;
             this.familyProfile.firstname = this.output.firstname;
@@ -221,7 +222,9 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
             this.familyProfile.phonenumber = this.output.phonenumber;
             this.familyProfile.uid = this.uid;
             this.show = false;
-            this.unchecked = true;
+            if (this.output.earncheck === 'Earning') {
+                this.unchecked = true;
+            }
             // added by ranjan.............................
             this.familyProfile.accesstype = this.output.accesstype;
             this.familyProfile.familyaccess = this.output.familyaccess;
