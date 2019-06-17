@@ -71,6 +71,7 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
 
     errorEmailExists: string;
     isEmail: boolean = false;
+    is_Valid: boolean = false;
     errorUserExists: string;
 
     submitEvent = false;
@@ -140,19 +141,26 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
 
     checkEmail() {
         // console.log(this.familyProfile.email);
-        this.Familypro.emailExist(this.familyProfile.email).subscribe(
-            () => {
-                console.log('email not exist');
-                this.isEmail = false;
-            },
-            response => {
-                if (response.error.text === this.familyProfile.email) {
-                    this.isEmail = true;
-                } else {
+
+        let EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (this.familyProfile.email != '' && (this.familyProfile.email.length <= 5 || !EMAIL_REGEXP.test(this.familyProfile.email))) {
+            this.is_Valid = true;
+        } else {
+            this.Familypro.emailExist(this.familyProfile.email).subscribe(
+                () => {
+                    this.is_Valid = false;
                     this.isEmail = false;
+                },
+                response => {
+                    this.is_Valid = false;
+                    if (response.error.text === this.familyProfile.email) {
+                        this.isEmail = true;
+                    } else {
+                        this.isEmail = false;
+                    }
                 }
-            }
-        );
+            );
+        }
     }
 
     private processError(response: HttpErrorResponse) {
