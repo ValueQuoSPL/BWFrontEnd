@@ -46,6 +46,7 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
     expire: Expire = new Expire();
     isExpired: boolean;
     id: any;
+    userData: any;
 
     account1: any;
     parentData: any;
@@ -250,24 +251,23 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
                 rememberMe: this.rememberMe
             })
             .then(() => {
-                // for cookies data swap
+                // for cookies id swap
                 const account = this.loginService.getCookie();
                 this.id = account.id;
-
-                this.familyprofileService.getFamilyProfile().subscribe(res => {
-                    console.log('below family service', res);
-                    this.parentData = res;
-                    this.parentid = this.parentData.id;
-                    if (this.parentid !== null) {
-                        this.familyprofileService.getParentData(this.parentid).subscribe(resp => {
-                            this.parentData1 = resp;
-                            console.log('under getParentData ', this.parentData1);
-                            this.loginService.putCookie('1', this.parentData1);
-                            const account1 = this.loginService.getCookie();
-                            console.log(account1);
+                this.familyprofileService.checkParentSvc(this.id).subscribe(
+                    resp => {
+                        this.parentData1 = resp;
+                        this.familyprofileService.getParentData(this.parentData1.uid).subscribe(res => {
+                            this.userData = res;
+                            account.id = this.userData.id;
+                            this.loginService.putCookie('1', account);
+                            window.location.reload();
                         });
+                    },
+                    err => {
+                        console.error(err.error);
                     }
-                });
+                );
 
                 this.authenticationError = false;
                 this.activeModal.dismiss('login success');

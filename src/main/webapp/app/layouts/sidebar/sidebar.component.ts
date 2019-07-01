@@ -113,7 +113,6 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
     get(uid) {
         this.userPlanService.GetUserPlan(uid).subscribe(response => {
-            console.log('uid is', this.uid);
             this.userPlan = response;
 
             if (this.userPlan.length !== 0) {

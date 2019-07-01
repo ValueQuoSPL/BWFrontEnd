@@ -32,6 +32,7 @@ export class LoginService {
                 data => {
                     this.principal.identity(true).then(account => {
                         this.account = account;
+                        // console.log(this.account);
                         this.sc.account.next(this.account);
 
                         this.id = this.account.id;
@@ -55,7 +56,7 @@ export class LoginService {
     }
 
     logout() {
-        // console.log('login service logout');
+        // // console.log('login service logout');
 
         this.authServerProvider.logout().subscribe();
         this.principal.authenticate(null);

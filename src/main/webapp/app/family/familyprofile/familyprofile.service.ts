@@ -32,8 +32,12 @@ export class FamilyprofileService {
         return this.http.delete<FamilyProfile[]>(SERVER_API_URL + this.ServiceAPIParam);
     }
 
+    public FamilyProfile(id) {
+        this.ServiceAPIParam = 'api/familypro' + '/' + id;
+        return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
+    }
+
     checkParentSvc(id) {
-        console.log('in  checkParent service id is', id);
         this.ServiceAPIParam = 'api/getparentUid' + '/' + id;
         return this.http.get(SERVER_API_URL + this.ServiceAPIParam);
     }

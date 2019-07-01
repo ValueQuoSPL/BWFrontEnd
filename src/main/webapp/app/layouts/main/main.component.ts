@@ -139,7 +139,7 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
                 this.authority = this.account.authorities[1];
             }
             this.userPlanService.GetUserPlan(this.uid).subscribe(data => {
-                // // console.log(data);
+                console.log(data);
                 this.trialData = data;
                 if (this.trialData[0].uid === this.uid) {
                     this.planService.isTrial.next(false);
