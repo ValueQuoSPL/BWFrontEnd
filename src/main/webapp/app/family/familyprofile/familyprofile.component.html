@@ -112,17 +112,17 @@
                 </mat-form-field>
                 <div *ngIf=" email?.touched && !email?.valid">
                     <div *ngIf="email.errors.required" class="form-text text-danger">
-                        Email is required
+                        Email is required.
                     </div>
                     <div *ngIf="email.errors.minlength" class="form-text text-danger">
-                        Email should be min {{email.errors.minlength.requiredLength}} char
+                        Email should be min {{email.errors.minlength.requiredLength}} character.
                     </div>
                     <div *ngIf="email.errors.pattern" class="form-text text-danger">
-                        pattern not match
+                        pattern not match.
                     </div>
                 </div>
                 <div *ngIf="isEmail" class="form-text text-danger">
-                    Email is already exist, kindly use another email id
+                    Email already exist, kindly use another email id.
                 </div>
                 <div *ngIf="is_Valid" class="form-text text-danger">
                     Please Enter Valid Email.

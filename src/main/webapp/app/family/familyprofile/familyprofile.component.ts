@@ -143,7 +143,7 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
         // console.log(this.familyProfile.email);
 
         let EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (this.familyProfile.email != '' && (this.familyProfile.email.length <= 5 || !EMAIL_REGEXP.test(this.familyProfile.email))) {
+        if (this.familyProfile.email !== '' && (this.familyProfile.email.length <= 5 || !EMAIL_REGEXP.test(this.familyProfile.email))) {
             this.is_Valid = true;
         } else {
             this.Familypro.emailExist(this.familyProfile.email).subscribe(
