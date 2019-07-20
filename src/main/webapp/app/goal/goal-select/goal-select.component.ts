@@ -495,6 +495,8 @@ export class GoalSelectComponent implements OnInit {
                 if (this.commonid === db.goalid) {
                     if (this.assettype === db.assettype && html.id === db.assetid) {
                         html.mappedvalue = db.valuetomap;
+                        // available value calcualted by minus mapped value by sandeep on 20/7/2019
+                        html.available = html.available - html.mappedvalue;
                         break;
                     }
                 }
@@ -775,16 +777,18 @@ export class GoalSelectComponent implements OnInit {
         this.Mutualfundservice.getMutualFund(this.uid).subscribe(res => {
             this.mutualres = res;
             this.AssetArray = res;
-            this.AssetArray.forEach(element => {
+            for (let i = 0; i < this.AssetArray.length; i++) {
+                // this.AssetArray.forEach(element => {
                 this.HTMLArray.push({
-                    id: element.id,
-                    assetname: element.mfscheme,
-                    assetvalue: element.currentvalue,
+                    id: this.AssetArray[i].id,
+                    assetname: this.AssetArray[i].mfscheme,
+                    assetvalue: this.AssetArray[i].currentvalue,
                     mappedvalue: 0,
-                    available: element.available,
+                    available: this.AssetArray[i].currentvalue, // added by sandeep available value as current valu on 20/7/2019
                     disable: true
                 });
-            });
+            }
+            // });
             this.getMappedAsset();
         });
     }

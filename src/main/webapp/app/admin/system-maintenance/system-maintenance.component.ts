@@ -18,7 +18,7 @@ export class SystemMaintenanceComponent implements OnInit {
             this.upload = 'ok';
             if (this.upload === 'ok') {
                 console.log('u press ok');
-                this._systemmaintenance.uploadExcel().subscribe();
+                this._systemmaintenance.uploadExcel().subscribe(res => console.log(res));
             }
         } else {
             this.upload = 'Cancel';
