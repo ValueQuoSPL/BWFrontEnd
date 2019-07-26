@@ -17,6 +17,7 @@ export class AdvisorComponent implements OnInit {
     AllUserPlans: any = [];
     filteredOptions: Observable<string[]>;
     myControl = new FormControl();
+    userPlanDetails: any = [];
 
     constructor(
         private advisorService: AdvisorService,
@@ -26,9 +27,7 @@ export class AdvisorComponent implements OnInit {
     ) {}
 
     ngOnInit() {
-        console.log('in oninit method of adviser ');
         this.getAllUsers();
-        this.getAllUserPlans();
         // this.CommonService.allUserdata.subscribe(data => {
         //     this.users = data;
         //     console.log('all users data ', this.users);
@@ -41,13 +40,25 @@ export class AdvisorComponent implements OnInit {
         // });
         this.userService.getAllUsers().subscribe(res => {
             this.users = res;
-            console.log('data of all user', this.users);
+            this.getAllUserPlans();
         });
     }
     public getAllUserPlans() {
         this.UserPlan.getAllUserPlans().subscribe(data => {
             this.AllUserPlans = data;
-            console.log('user plan data', this.AllUserPlans);
+            for (let i = 0; i < this.users.length; i++) {
+                for (let j = 0; j < this.AllUserPlans.length; j++) {
+                    if (this.AllUserPlans[j].uid === this.users[i].id) {
+                        this.userPlanDetails.push({
+                            firstName: this.users[i].firstName,
+                            lastName: this.users[i].lastName,
+                            plan: this.AllUserPlans[j].plan,
+                            reviewDate: this.AllUserPlans[j].expiryDate,
+                            uid: this.AllUserPlans[j].uid
+                        });
+                    }
+                }
+            }
         });
     }
     private _filter(value: string): string[] {

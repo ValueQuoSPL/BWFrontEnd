@@ -134,17 +134,20 @@ export class JhiMainComponent implements OnInit, AfterViewInit {
             this.loggedIn = true;
             this.sc.account.next(this.account);
             this.uid = this.account.id;
-
             if (this.account.authorities[1]) {
                 this.authority = this.account.authorities[1];
             }
-            this.userPlanService.GetUserPlan(this.uid).subscribe(data => {
-                console.log(data);
-                this.trialData = data;
-                if (this.trialData[0].uid === this.uid) {
-                    this.planService.isTrial.next(false);
-                }
-            });
+            if (this.uid) {
+                this.userPlanService.GetUserPlan(this.uid).subscribe(data => {
+                    this.trialData = data;
+                    if (this.trialData.length > 0) {
+                        if (this.trialData[0].uid === this.uid) {
+                            this.planService.isTrial.next(false);
+                        }
+                    }
+                });
+            }
+
             this.checkSuccess(this.uid);
         } else {
             this.loginService.logout();

@@ -9,37 +9,40 @@
 </div> -->
 
 <div>
-    <mat-form-field>
-        <input type="text" placeholder="Search User" aria-label="Number" matInput [formControl]="myControl"
-            [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async; let i= index;" value="{{option.firstName}}">
-                {{option.firstName}}
-            </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
-    <button mat-raised-button type="submit" class="btn btn-primary">Search
-    </button>
-
-    <table class="table table-bordered table-striped table-responsive-md" style="align-content: text-center">
-        <thead>
-            <tr>
-                <th scope="col">User Name</th>
-                <th scope="col">Plan</th>
-                <th scope="col">Review Date</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let users of AllUserPlans; let i = index">
-                <td>{{users.uid}}</td>
-                <td>{{users.plan}}</td>
-                <td>{{users.expiryDate}}</td>
-                <td>
-                    <button class="btn btn-outline-info btn-sm" type="button" value="Select"
-                        routerLink="/advisorview">Select
-                    </button>
-                </td>
-        </tbody>
-    </table>
+    <div style="padding: 16px;">
+        <div style="margin-left: 79%;">
+            <mat-form-field>
+                <input type="text" placeholder="Search User" aria-label="Number" matInput [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async; let i= index;" value="{{option.firstName}}">
+                        {{option.firstName}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <button mat-raised-button type="submit" class="btn btn-primary">Search</button>
+        </div>
+  
+        <table class="table table-bordered table-striped table-responsive-md" style="align-content: text-center">
+            <thead>
+                <tr>
+                    <th scope="col">User Name</th>
+                    <th scope="col">Plan</th>
+                    <th scope="col">Review Date</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let users of userPlanDetails; let i = index">
+                    <td>{{users.firstName}}</td>
+                    <td>{{users.plan}}</td>
+                    <td>{{users.reviewDate}}</td>
+                    <td>
+                        <button class="btn btn-outline-info btn-sm" type="button" value="Select"
+                            routerLink="/advisorview/{{users.uid}}">Select
+                        </button>
+                    </td>
+            </tbody>
+        </table>
+    </div>
 </div>

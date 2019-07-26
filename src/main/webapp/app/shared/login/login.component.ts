@@ -142,8 +142,10 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
                 }
             });
             this.trialData = data;
-            if (this.trialData[0].uid === this.uid) {
-                this.planService.isTrial.next(false);
+            if (this.trialData.length > 0) {
+                if (this.trialData[0].uid === this.uid) {
+                    this.planService.isTrial.next(false);
+                }
             }
         });
     }
@@ -265,7 +267,7 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
                         });
                     },
                     err => {
-                        console.error(err.error);
+                        // console.error(err.error);
                     }
                 );
 

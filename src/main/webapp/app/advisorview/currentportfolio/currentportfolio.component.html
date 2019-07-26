@@ -1,4 +1,47 @@
 <div>
-<h1>Recomandation</h1>
-
+    <h4>Recomandation</h4>
+    <div>
+        <div class="row pull-right">
+            <span [ngSwitch]="isRecommendData" class="btn-right">
+                <p *ngSwitchCase="true">
+                    <button type="button" class="btn btn-sm  btn-link" (click)="updateIncome()"
+                        [disabled]="!globalflag">
+                        <fa-icon [icon]="'save'"></fa-icon>
+                        <span>Update</span>
+                    </button>
+                </p>
+                <p *ngSwitchCase="false">
+                    <button type="button" class="btn btn-sm  btn-link" (click)="saveRecommendation()">
+                        <fa-icon [icon]="'save'"></fa-icon>
+                        <span>Save</span>
+                    </button>
+                </p>
+            </span>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped table-responsive-md" style="align-content: text-center">
+        <thead>
+            <tr>
+                <td scope="col" style="width: 100px;">Sr.No.</td>
+                <td scope="col">Recomandation</td>
+                <td scope="col">Add</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let recmd of recommend; index as i">
+                <td>{{i+1}}</td>
+                <td>
+                    <input type="text" [(ngModel)]="recommend[i].reco" style="width: 100%;">
+                </td>
+                <td style="cursor: pointer;">
+                    <button class="btn" (click)="addRecommendation(i)">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn" (click)="remove(recmd.id)" *ngIf="i!==0">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
