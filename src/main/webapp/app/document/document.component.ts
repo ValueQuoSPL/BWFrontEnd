@@ -49,7 +49,6 @@ export class DocumentComponent implements OnInit {
     }
 
     onFileSelected(event) {
-        console.log(event.target.files[0]);
         this.selectedFile = null;
         this.selectedFile = event.target.files[0];
         this.onFileUpload();
@@ -79,7 +78,6 @@ export class DocumentComponent implements OnInit {
         this.lifeService.getFile(this.uid).subscribe(data => {
             this.fileResult = data.filter(data1 => {
                 if (data1.type === this.data.Type) {
-                    console.log(data1.tid);
                     return data1.tid === this.data.tid;
                 }
             });

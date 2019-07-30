@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from 'app/core';
-import { AdvisorService } from 'app/advisor/advisor.service';
 import { AdvisorViewService } from '../advisorview.service';
+import { MatDialog } from '@angular/material/dialog';
+import { RecommendationComponent } from '../recommendation/recommendation.component';
 
 @Component({
     selector: 'jhi-currentportfolio',
@@ -19,7 +20,12 @@ export class CurrentportfolioComponent implements OnInit {
     advisorId: any;
     date = new Date();
 
-    constructor(private _route: ActivatedRoute, private loginService: LoginService, private advisorService: AdvisorViewService) {
+    constructor(
+        private _route: ActivatedRoute,
+        private loginService: LoginService,
+        private advisorService: AdvisorViewService,
+        private dialog: MatDialog
+    ) {
         this.uid = this._route.snapshot.paramMap.get('id');
     }
 
@@ -61,12 +67,19 @@ export class CurrentportfolioComponent implements OnInit {
         this.recommendation['uid'] = this.uid;
         this.recommendation['aid'] = this.advisorId;
         this.recommendation['recotype'] = 'Portfolio';
-        this.recommendation['reco'] = this.recommend;
         this.recommendation['recoby'] = this.account.firstName;
         this.recommendation['recodate'] = this.date;
-        this.advisorService.saveRecommendation(this.recommendation).subscribe(res => {
-            console.log(res);
-            this.getAdvisorDetails();
+        const dialogRef = this.dialog.open(RecommendationComponent, {
+            data: {
+                type: 'save',
+                recommendObject: this.recommendation
+            },
+            width: '500px'
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.getAdvisorDetails();
+            }
         });
     }
 }

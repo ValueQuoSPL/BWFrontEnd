@@ -121,11 +121,8 @@ import { DocumentComponent } from './document/document.component';
 import { MutualFundManageComponent } from './pratik/mutual-fund-manage/mutual-fund-manage.component';
 import { AuthGuard } from './auth.guard';
 import { TaxService } from './TaxFiling/tax-filing.service';
-import { CurrentportfolioComponent } from './advisorview/currentportfolio/currentportfolio.component';
-import { InsuranceanalysisComponent } from './advisorview/insuranceanalysis/insuranceanalysis.component';
-import { TaxanalysisComponent } from './advisorview/taxanalysis/taxanalysis.component';
-import { GoalanalysisComponent } from './advisorview/goalanalysis/goalanalysis.component';
 import { AdvisorModule } from './advisor/advisor.module';
+import { AdvisorViewModule } from './advisorview/advisorview.module';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -237,7 +234,8 @@ const customNotifierOptions: NotifierOptions = {
         GoalModule,
         BuckswiseAppSheetalModule,
         BuckswiseFrontEndRiskModule,
-        BuckswiseFrontEndMyAssetsModule
+        BuckswiseFrontEndMyAssetsModule,
+        AdvisorViewModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
@@ -263,18 +261,13 @@ const customNotifierOptions: NotifierOptions = {
         LifeComponent,
         HealthComponent,
         GeneralComponent,
-        AdvisorViewComponent,
         AdvisorFilterPipe,
         SubscriptionComponent,
         FailPaymentComponent,
         NotificationComponent,
         IdleAlertComponent,
         SessionTimeoutComponent,
-        MutualFundManageComponent,
-        CurrentportfolioComponent,
-        InsuranceanalysisComponent,
-        TaxanalysisComponent,
-        GoalanalysisComponent
+        MutualFundManageComponent
         // Production directive
     ],
     providers: [

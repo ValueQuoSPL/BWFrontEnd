@@ -13,7 +13,7 @@
                 <p *ngSwitchCase="false">
                     <button type="button" class="btn btn-sm  btn-link" (click)="saveRecommendation()">
                         <fa-icon [icon]="'save'"></fa-icon>
-                        <span>Save</span>
+                        <span>Add</span>
                     </button>
                 </p>
             </span>
@@ -31,13 +31,13 @@
             <tr *ngFor="let recmd of recommend; index as i">
                 <td>{{i+1}}</td>
                 <td>
-                    <input type="text" [(ngModel)]="recommend[i].reco" style="width: 100%;">
+                    {{ recmd.reco }}
                 </td>
                 <td style="cursor: pointer;">
-                    <button class="btn" (click)="addRecommendation(i)">
+                    <button class="btn">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </button>
-                    <button class="btn" (click)="remove(recmd.id)" *ngIf="i!==0">
+                    <button class="btn" (click)="remove(recmd.id)">
                         <i class="fa fa-trash" aria-hidden="true"></i>
                     </button>
                 </td>
