@@ -7,5 +7,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveRecommendation()">Save</button>
+  <button *ngIf="buttonType === 'save'" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="saveRecommendation()">Save</button>
+  <button *ngIf="buttonType === 'update'" mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="updateRecommendation()">Update</button>
 </mat-dialog-actions>

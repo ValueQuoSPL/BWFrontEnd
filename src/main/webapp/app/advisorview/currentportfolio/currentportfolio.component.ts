@@ -63,6 +63,10 @@ export class CurrentportfolioComponent implements OnInit {
         }
     }
 
+    /**
+     *  Date: 27/07/2019
+     *  Save recommendation
+     */
     saveRecommendation(): void {
         this.recommendation['uid'] = this.uid;
         this.recommendation['aid'] = this.advisorId;
@@ -73,6 +77,26 @@ export class CurrentportfolioComponent implements OnInit {
             data: {
                 type: 'save',
                 recommendObject: this.recommendation
+            },
+            width: '500px'
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            if (result) {
+                this.getAdvisorDetails();
+            }
+        });
+    }
+
+    /**
+     *  Date: 30/07/2019
+     *  update recommendation
+     * @param recmd: for update Object.
+     */
+    updateRecommendation(recmd): void {
+        const dialogRef = this.dialog.open(RecommendationComponent, {
+            data: {
+                type: 'update',
+                recommendObject: recmd
             },
             width: '500px'
         });

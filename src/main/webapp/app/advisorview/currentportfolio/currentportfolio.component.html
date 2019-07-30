@@ -23,8 +23,8 @@
         <thead>
             <tr>
                 <td scope="col" style="width: 100px;">Sr.No.</td>
-                <td scope="col">Recomandation</td>
-                <td scope="col">Add</td>
+                <td scope="col" style="width: 401px;">Recomandation</td>
+                <td scope="col">Action</td>
             </tr>
         </thead>
         <tbody>
@@ -34,8 +34,8 @@
                     {{ recmd.reco }}
                 </td>
                 <td style="cursor: pointer;">
-                    <button class="btn">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    <button class="btn" (click)="updateRecommendation(recmd)">
+                        <i class="far fa-edit"></i>
                     </button>
                     <button class="btn" (click)="remove(recmd.id)">
                         <i class="fa fa-trash" aria-hidden="true"></i>
