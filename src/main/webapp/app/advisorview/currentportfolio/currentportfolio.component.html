@@ -4,8 +4,7 @@
         <div class="row pull-right">
             <span [ngSwitch]="isRecommendData" class="btn-right">
                 <p *ngSwitchCase="true">
-                    <button type="button" class="btn btn-sm  btn-link" (click)="updateIncome()"
-                        [disabled]="!globalflag">
+                    <button type="button" class="btn btn-sm  btn-link">
                         <fa-icon [icon]="'save'"></fa-icon>
                         <span>Update</span>
                     </button>
