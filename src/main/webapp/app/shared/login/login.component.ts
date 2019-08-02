@@ -255,21 +255,23 @@ export class JhiLoginModalComponent implements OnInit, AfterViewInit {
             .then(() => {
                 // for cookies id swap
                 const account = this.loginService.getCookie();
-                this.id = account.id;
-                this.familyprofileService.checkParentSvc(this.id).subscribe(
-                    resp => {
-                        this.parentData1 = resp;
-                        this.familyprofileService.getParentData(this.parentData1.uid).subscribe(res => {
-                            this.userData = res;
-                            account.id = this.userData.id;
-                            this.loginService.putCookie('1', account);
-                            window.location.reload();
-                        });
-                    },
-                    err => {
-                        // console.error(err.error);
-                    }
-                );
+                if (account.authorities[0] !== 'ROLE_ADVISOR') {
+                    this.id = account.id;
+                    this.familyprofileService.checkParentSvc(this.id).subscribe(
+                        resp => {
+                            this.parentData1 = resp;
+                            this.familyprofileService.getParentData(this.parentData1.uid).subscribe(res => {
+                                this.userData = res;
+                                account.id = this.userData.id;
+                                this.loginService.putCookie('1', account);
+                                window.location.reload();
+                            });
+                        },
+                        err => {
+                            // console.error(err.error);
+                        }
+                    );
+                }
 
                 this.authenticationError = false;
                 this.activeModal.dismiss('login success');

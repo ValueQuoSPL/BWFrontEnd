@@ -8,9 +8,10 @@ import { InsuranceanalysisComponent } from './insuranceanalysis/insuranceanalysi
 import { TaxanalysisComponent } from './taxanalysis/taxanalysis.component';
 import { RecommendationComponent } from './recommendation/recommendation.component';
 import { AdvisorViewComponent } from './advisorview.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
-    imports: [FormsModule, CommonModule, CustomMaterialModule],
+    imports: [FormsModule, CommonModule, CustomMaterialModule, FontAwesomeModule],
     declarations: [
         CurrentportfolioComponent,
         GoalanalysisComponent,

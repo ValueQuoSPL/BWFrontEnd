@@ -15,12 +15,12 @@
                 <input type="text" placeholder="Search User" aria-label="Number" matInput [formControl]="myControl"
                     [matAutocomplete]="auto">
                 <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of filteredOptions | async; let i= index;" value="{{option.firstName}}">
+                    <mat-option *ngFor="let option of filteredOptions | async; let i= index;" value="{{option.firstName}}" (click)="getsearchName(option)">
                         {{option.firstName}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
-            <button mat-raised-button type="submit" class="btn btn-primary">Search</button>
+            <button mat-raised-button type="submit" class="btn btn-primary" (click)="getUserDetailBySearch()">Search</button>
         </div>
   
         <table class="table table-bordered table-striped table-responsive-md" style="align-content: text-center">

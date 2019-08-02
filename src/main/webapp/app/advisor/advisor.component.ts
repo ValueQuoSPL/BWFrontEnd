@@ -18,6 +18,7 @@ export class AdvisorComponent implements OnInit {
     filteredOptions: Observable<string[]>;
     myControl = new FormControl();
     userPlanDetails: any = [];
+    userName: any;
 
     constructor(
         private advisorService: AdvisorService,
@@ -43,6 +44,35 @@ export class AdvisorComponent implements OnInit {
             this.getAllUserPlans();
         });
     }
+
+    /**
+     *
+     * @param option: user name detail
+     */
+    getsearchName(option): void {
+        this.userName = option;
+    }
+
+    /**
+     * Date: 01/07/2019
+     */
+    public getUserDetailBySearch(): void {
+        let userPlan: any = [];
+        this.UserPlan.GetUserPlan(this.userName.id).subscribe(data => {
+            userPlan = data;
+            if (userPlan[0].uid === this.userName.id) {
+                this.userPlanDetails = [];
+                this.userPlanDetails.push({
+                    firstName: this.userName.firstName,
+                    lastName: this.userName.lastName,
+                    plan: userPlan[0].plan,
+                    reviewDate: userPlan[0].expiryDate,
+                    uid: userPlan[0].uid
+                });
+            }
+        });
+    }
+
     public getAllUserPlans() {
         this.UserPlan.getAllUserPlans().subscribe(data => {
             this.AllUserPlans = data;

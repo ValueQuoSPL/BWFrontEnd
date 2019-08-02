@@ -26,6 +26,11 @@ export class UserPlanService {
         return this.http.get(url);
     }
 
+    getUserByUid(id: any) {
+        const url = SERVER_API_URL + 'api/user/' + id;
+        return this.http.get(url);
+    }
+
     // for saving trail transaction in database
     saveTransaction(uid, status, productinfo) {
         const url = SERVER_API_URL + 'api/trail/' + uid + '/' + status + '/' + productinfo;
