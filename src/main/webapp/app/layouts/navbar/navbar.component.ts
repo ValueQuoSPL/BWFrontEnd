@@ -123,10 +123,14 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
                 this.FirstName = 'Account';
             }
             if (this.account.authorities[1]) {
-                if (this.account.authorities[1] === 'ROLE_ADMIN') {
+                // change date: 03/08/2019
+                // Changes to admin and advisor tag on html
+                if (
+                    this.account.authorities[1] === 'ROLE_ADMIN' ||
+                    (this.account.authorities[1] === 'ROLE_ADMIN' && this.account.authorities[1] === 'ROLE_ADVISOR')
+                ) {
                     this.isAdmin = true;
                     this.isPaid = true;
-                    // console.log('paid', this.isPaid);
                 }
             }
         } else {
@@ -273,7 +277,12 @@ export class NavbarComponent implements OnInit, DoCheck, OnDestroy {
                     this.FirstName = 'Account';
                 }
                 if (this.account.authorities[1]) {
-                    if (this.account.authorities[1] === 'ROLE_ADMIN') {
+                    // change date: 03/08/2019
+                    // Changes to admin and advisor tag on html
+                    if (
+                        this.account.authorities[1] === 'ROLE_ADMIN' ||
+                        (this.account.authorities[1] === 'ROLE_ADMIN' && this.account.authorities[1] === 'ROLE_ADVISOR')
+                    ) {
                         this.isAdmin = true;
                         this.isPaid = true;
                         // console.log('paid', this.isPaid);
