@@ -70,8 +70,8 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
     doNotMatch: string;
 
     errorEmailExists: string;
-    isEmail: boolean = false;
-    is_Valid: boolean = false;
+    isEmail: Boolean = false;
+    is_Valid: Boolean = false;
     errorUserExists: string;
 
     submitEvent = false;
@@ -142,8 +142,8 @@ export class FamilyprofileComponent implements OnInit, AfterViewInit {
     checkEmail() {
         // console.log(this.familyProfile.email);
 
-        let EMAIL_REGEXP = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (this.familyProfile.email !== '' && (this.familyProfile.email.length <= 5 || !EMAIL_REGEXP.test(this.familyProfile.email))) {
+        const EMAIL = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (this.familyProfile.email !== '' && (this.familyProfile.email.length <= 5 || !EMAIL.test(this.familyProfile.email))) {
             this.is_Valid = true;
         } else {
             this.Familypro.emailExist(this.familyProfile.email).subscribe(
