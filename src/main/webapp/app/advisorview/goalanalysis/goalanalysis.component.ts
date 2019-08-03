@@ -36,7 +36,7 @@ export class GoalanalysisComponent implements OnInit {
     }
 
     getAdvisorDetails() {
-        this.advisorService.getAdvisorDetails(this.advisorId, this.uid, 'Goal Recommendation').subscribe(res => {
+        this.advisorService.getAdvisorDetails(this.uid, 'goalreco').subscribe(res => {
             this.recommend = res;
         });
     }
@@ -44,7 +44,7 @@ export class GoalanalysisComponent implements OnInit {
     saveGoalRecommendation(): void {
         this.goalRecommendation['uid'] = this.uid;
         this.goalRecommendation['aid'] = this.advisorId;
-        this.goalRecommendation['recotype'] = 'Goal Recommendation';
+        this.goalRecommendation['recotype'] = 'goalreco';
         this.goalRecommendation['recoby'] = this.account.firstName;
         this.goalRecommendation['recodate'] = this.date;
         const dialogRef = this.dialog.open(RecommendationComponent, {

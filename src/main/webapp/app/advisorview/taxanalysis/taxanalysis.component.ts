@@ -36,7 +36,7 @@ export class TaxanalysisComponent implements OnInit {
     }
 
     getAdvisorDetails() {
-        this.advisorService.getAdvisorDetails(this.advisorId, this.uid, 'Tax Recommendation').subscribe(res => {
+        this.advisorService.getAdvisorDetails(this.uid, 'taxreco').subscribe(res => {
             this.recommend = res;
         });
     }
@@ -44,7 +44,7 @@ export class TaxanalysisComponent implements OnInit {
     saveTaxRecommendation(): void {
         this.goalRecommendation['uid'] = this.uid;
         this.goalRecommendation['aid'] = this.advisorId;
-        this.goalRecommendation['recotype'] = 'Tax Recommendation';
+        this.goalRecommendation['recotype'] = 'taxreco';
         this.goalRecommendation['recoby'] = this.account.firstName;
         this.goalRecommendation['recodate'] = this.date;
         const dialogRef = this.dialog.open(RecommendationComponent, {

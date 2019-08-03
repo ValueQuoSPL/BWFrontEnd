@@ -24,8 +24,8 @@ export class AdvisorViewService {
         return this._http.put(SERVER_API_URL + 'api/advisors', data);
     }
 
-    getAdvisorDetails(id, uid, type) {
-        return this._http.get(SERVER_API_URL + 'api/advisor/' + id + '/' + uid + '/' + type);
+    getAdvisorDetails(uid, type) {
+        return this._http.get(SERVER_API_URL + 'api/advisor/' + uid + '/' + type);
     }
 
     delete(id) {

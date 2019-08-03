@@ -36,7 +36,7 @@ export class InsuranceanalysisComponent implements OnInit {
     }
 
     getAdvisorDetails() {
-        this.advisorService.getAdvisorDetails(this.advisorId, this.uid, 'Insurance Recommendation').subscribe(res => {
+        this.advisorService.getAdvisorDetails(this.uid, 'insreco').subscribe(res => {
             this.recommend = res;
         });
     }
@@ -44,7 +44,7 @@ export class InsuranceanalysisComponent implements OnInit {
     saveInsuranceRecommendation(): void {
         this.goalRecommendation['uid'] = this.uid;
         this.goalRecommendation['aid'] = this.advisorId;
-        this.goalRecommendation['recotype'] = 'Insurance Recommendation';
+        this.goalRecommendation['recotype'] = 'insreco';
         this.goalRecommendation['recoby'] = this.account.firstName;
         this.goalRecommendation['recodate'] = this.date;
         const dialogRef = this.dialog.open(RecommendationComponent, {

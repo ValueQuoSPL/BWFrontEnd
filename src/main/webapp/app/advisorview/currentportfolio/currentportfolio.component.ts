@@ -42,7 +42,7 @@ export class CurrentportfolioComponent implements OnInit {
     }
 
     getAdvisorDetails() {
-        this.advisorService.getAdvisorDetails(this.advisorId, this.uid, 'Portfolio').subscribe(res => {
+        this.advisorService.getAdvisorDetails(this.uid, 'Portfolio').subscribe(res => {
             this.recommend = res;
         });
     }
