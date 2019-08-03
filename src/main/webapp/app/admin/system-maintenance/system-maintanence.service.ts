@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 export class SystemMaintenanceService {
     constructor(private _http: HttpClient) {}
     uploadExcel(): any {
-        return this._http.get('http://www.buckswise.com:8441/api/uploadNav');
+        return this._http.get('http://www.buckswise.com:8080/api/uploadNav');
     }
     editNavTable(): any {
         return this._http.get(SERVER_API_URL + 'api/putAmcCode');
