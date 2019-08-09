@@ -8,7 +8,6 @@ export class AdvisorFilterPipe implements PipeTransform {
         if (!payment || !searchName) {
             return payment;
         }
-
         return payment.filter(payments => payments.status.toLowerCase().indexOf(searchName.toLowerCase()) !== -1);
     }
 }

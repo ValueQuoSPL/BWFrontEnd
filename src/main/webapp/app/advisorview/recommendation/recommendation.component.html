@@ -2,7 +2,11 @@
 <mat-dialog-content class="mat-typograpgy">
   <mat-form-field style="width: 436px;">
     <mat-label>Type Recommendation</mat-label>
-    <textarea matInput [(ngModel)]="recoData" ></textarea>
+    <textarea matInput [(ngModel)]="recoData" maxlength="250" #uname="ngModel">
+    </textarea>
+    <div *ngIf="uname.error?.maxlength" class="alert alert-danger">
+      character limit is 250 words
+    </div>
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

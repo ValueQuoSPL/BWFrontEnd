@@ -102,15 +102,15 @@
                                 </span>
                             </a>
                         </li>
-                    <!--    <li>
+                    <li>
                     <li *ngIf="fullAccess">
-                        <a routerLink="advisor" routerLinkActive="active">
+                        <a [routerLink]="['/advisorview',uid]" routerLinkActive="active">
                             <i class="fa fa-info fa-2x"></i>
                             <span class="nav-text">
                                 Advice
                             </span>
                         </a>
-                    </li>-->
+                    </li>
 
                 </ul>
         </div>

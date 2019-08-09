@@ -20,6 +20,10 @@ export class AdvisorViewService {
         return this._http.post(SERVER_API_URL + 'api/advisors', data);
     }
 
+    saveUserComments(data) {
+        return this._http.put(SERVER_API_URL + 'api/advisors', data);
+    }
+
     updateRecommendation(data) {
         return this._http.put(SERVER_API_URL + 'api/advisors', data);
     }

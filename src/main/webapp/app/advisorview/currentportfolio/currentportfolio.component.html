@@ -3,13 +3,13 @@
     <div>
         <div class="row pull-right">
             <span [ngSwitch]="isRecommendData" class="btn-right">
-                <p *ngSwitchCase="true">
-                    <button type="button" class="btn btn-sm  btn-link">
+                <p *ngSwitchCase="'ROLE_USER'">
+                    <button type="button" class="btn btn-sm  btn-link" (click)="saveUserComments()">
                         <fa-icon [icon]="'save'"></fa-icon>
-                        <span>Update</span>
+                        <span>save</span>
                     </button>
                 </p>
-                <p *ngSwitchCase="false">
+                <p *ngSwitchCase="'ROLE_ADMIN'">
                     <button type="button" class="btn btn-sm  btn-link" (click)="saveRecommendation()">
                         <fa-icon [icon]="'save'"></fa-icon>
                         <span>Add</span>
@@ -23,9 +23,11 @@
             <tr>
                 <td scope="col" style="width: 50px;">Sr.No.</td>
                 <td scope="col" style="width: 700px;">Recommendation</td>
-                <td scope="col" style="width: 100px;">status</td>
-                <td scope="col" style="width: 200px;">user comments</td>
+                
+                <td scope="col" style="width: 100px;" *ngIf="authority === 'ROLE_ADMIN'">status</td>
+                <td scope="col" style="width: 200px;" *ngIf="authority === 'ROLE_ADMIN'">user comments</td>
                 <td scope="col" style="width: 97px;">Date</td>
+                <td scope="col" style="width: 700px;" *ngIf="authority === 'ROLE_USER'"></td>
                 <td scope="col" style="width: 130px;">Action</td>
             </tr>
         </thead>
@@ -35,9 +37,16 @@
                 <td>
                     {{ recmd.reco }}
                 </td>
+                <td *ngIf="authority === 'ROLE_ADMIN'"></td>
+                <td *ngIf="authority === 'ROLE_ADMIN'"></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td *ngIf="authority === 'ROLE_USER'">
+                    <mat-checkbox class="col-4" [(ngModel)]="recmd.approveValue">{{recmd.approve}}</mat-checkbox>
+                    <mat-checkbox class="col-4" [(ngModel)]="recmd.rejectValue">{{recmd.reject}}</mat-checkbox>
+                    <mat-form-field class="col-4">
+                        <input type="text" matInput [(ngModel)]="recmd.comment" placeholder="type comments">
+                    </mat-form-field>
+                </td>
                 <td style="cursor: pointer;">
                     <button class="btn btn-sm btn-outline-info" type="button" (click)="updateRecommendation(recmd)">
                         <span>

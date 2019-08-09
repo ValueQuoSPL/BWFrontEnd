@@ -14,10 +14,11 @@ export class CurrentportfolioComponent implements OnInit {
     uid: any;
     recommend: any = [];
     newRecord: any = {};
-    isRecommendData = false;
+    isRecommendData: string;
     recommendation = {};
     account: any;
     advisorId: any;
+    authority: string;
     date = new Date();
 
     constructor(
@@ -33,6 +34,9 @@ export class CurrentportfolioComponent implements OnInit {
         this.newRecord = { reco: '' };
         this.recommend.push(this.newRecord);
         this.account = this.loginService.getCookie();
+        this.authority = this.account.authorities[0];
+        this.isRecommendData = this.authority;
+
         if (this.account) {
             this.advisorId = this.account.id;
         } else {
@@ -44,6 +48,18 @@ export class CurrentportfolioComponent implements OnInit {
     getAdvisorDetails() {
         this.advisorService.getAdvisorDetails(this.uid, 'Portfolio').subscribe(res => {
             this.recommend = res;
+            for (let i = 0; i < this.recommend.length; i++) {
+                (this.recommend[i].approve = 'Approve'),
+                    (this.recommend[i].approveValue = false),
+                    (this.recommend[i].reject = 'Reject'),
+                    (this.recommend[i].rejectValue = false);
+            }
+        });
+    }
+
+    saveUserComments(): void {
+        this.advisorService.saveUserComments(this.recommend).subscribe(res => {
+            console.log(res);
         });
     }
 
