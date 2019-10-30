@@ -1,52 +1,95 @@
 <div>
-  <h4>Recommendation</h4>
-  <div>
-      <div class="row pull-right">
-          <span class="btn-right">
-              <p>
-                  <button type="button" class="btn btn-sm  btn-link" (click)="saveGoalRecommendation()">
-                      <fa-icon [icon]="'save'"></fa-icon>
-                      <span>Add</span>
-                  </button>
-              </p>
-          </span>
-      </div>
-  </div>
-  <table class="table table-bordered table-striped table-responsive-md" style="align-content: text-center">
-      <thead>
-          <tr>
-              <td scope="col" style="width: 50px;">Sr.No.</td>
-              <td scope="col" style="width: 700px;">Recommendation</td>
-              <td scope="col" style="width: 100px;">status</td>
-              <td scope="col" style="width: 200px;">user comments</td>
-              <td scope="col" style="width: 97px;">Date</td>
-              <td scope="col" style="width: 130px;">Action</td>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let recmd of recommend; index as i">
-              <td>
-                {{i+1}}
-              </td>
-              <td>
-                  {{ recmd.reco }}
-              </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td style="cursor: pointer;">
-                  <button class="btn btn-sm btn-outline-info" type="button" (click)="updateGoalRecommendation(recmd)">
-                      <span>
-                          <fa-icon [icon]="'edit'"></fa-icon>
-                      </span>
-                  </button>
-                  <button class="btn btn-sm btn btn-outline-danger" (click)="remove(recmd.id)">
-                      <span>
-                          <fa-icon [icon]="'trash'"></fa-icon></i>
-                      </span>
-                  </button>
-              </td>
-          </tr>
-      </tbody>
-  </table>
+    <h4>Recommendation</h4>
+    <div>
+        <div class="row pull-right">
+            <span class="btn-right">
+                <p>
+                    <button type="button" class="btn btn-sm  btn-link" (click)="saveGoalRecommendation()">
+                        <fa-icon [icon]="'save'"></fa-icon>
+                        <span>Add</span>
+                    </button>
+                </p>
+            </span>
+        </div>
+    </div>
+    <table class="table table-bordered table-striped table-responsive-md" style="align-content: text-center">
+        <thead>
+            <tr>
+                <td scope="col" style="width: 50px;">Sr.No.</td>
+                <td scope="col" style="width: 700px;">Recommendation</td>
+                <td scope="col" style="width: 150px;">Date</td>
+                <td scope="col" style="width: 100px;">status</td>
+                <td scope="col" style="width: 200px;" *ngIf="authority === 'ROLE_USER' || 'ROLE_ADIM'">user comments
+                </td>
+                <td scope="col" style="width: 130px;">Action</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let recmd of recommend; index as i">
+                    <td>{{i+1}}</td>
+                    <td>{{ recmd.reco }}</td>
+                    <td>{{ recmd.recodate | date: 'dd-MM-yyyy'}}</td>
+                    <td *ngIf="authority === 'ROLE_USER' || 'ROLE_ADIM' || 'ROLE_ADVISOR'">
+                        <mat-checkbox class="col-4" [disabled]="recmd.reject" [(ngModel)]="recmd.approve">Approve</mat-checkbox>
+                        <mat-checkbox class="col-4" [disabled]="recmd.approve" [(ngModel)]="recmd.reject">Reject</mat-checkbox>
+                    </td>
+                    <td>
+                        <mat-form-field>
+                            <textarea [disabled]="recmd.edit === true" matInput [(ngModel)]="recmd.usercomment" placeholder="Leave a comment"></textarea>
+                        </mat-form-field>
+                    </td>
+                    
+                    <td style="cursor: pointer;" *ngIf="authority === 'ROLE_USER'">
+                        <button *ngIf="!recmd.edit" class="btn btn-sm btn-outline-info" type="button" (click)="saveUserComment(recmd)">
+                            <span>
+                                <fa-icon [icon]="'save'"></fa-icon>
+                            </span>
+                        </button>
+                        <button *ngIf="recmd.edit" class="btn btn-sm btn-outline-info" type="button" (click)="updateUserComment(recmd)">
+                            <span>
+                                <fa-icon [icon]="'edit'"></fa-icon>
+                            </span>
+                        </button>
+                        <button class="btn btn-sm btn btn-outline-danger" (click)="removeByUser(recmd)">
+                            <span>
+                                <fa-icon [icon]="'trash'"></fa-icon></i>
+                            </span>
+                        </button>
+                    </td>
+                    <td *ngIf="authority === 'ROLE_ADVISOR'">
+                        <button class="btn btn-sm btn-outline-info" type="button" (click)="updateGoalRecommendation(recmd)">
+                            <span>
+                                <fa-icon [icon]="'edit'"></fa-icon>
+                            </span>
+                        </button>
+                        <button class="btn btn-sm btn btn-outline-danger" (click)="remove(recmd.id)">
+                            <span>
+                                <fa-icon [icon]="'trash'"></fa-icon></i>
+                            </span>
+                        </button>
+                    </td>
+                <!-- <td>
+                    {{i+1}}
+                </td>
+                <td>
+                    {{ recmd.reco }}
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="cursor: pointer;">
+                    <button class="btn btn-sm btn-outline-info" type="button" (click)="updateGoalRecommendation(recmd)">
+                        <span>
+                            <fa-icon [icon]="'edit'"></fa-icon>
+                        </span>
+                    </button>
+                    <button class="btn btn-sm btn btn-outline-danger" (click)="remove(recmd.id)">
+                        <span>
+                            <fa-icon [icon]="'trash'"></fa-icon></i>
+                        </span>
+                    </button>
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
 </div>

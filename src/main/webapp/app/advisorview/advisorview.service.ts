@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '../../../../../node_modules/@angular/common/http';
 import { SERVER_API_URL } from 'app/app.constants';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
