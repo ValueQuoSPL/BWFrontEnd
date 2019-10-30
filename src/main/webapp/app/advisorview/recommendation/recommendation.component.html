@@ -4,7 +4,7 @@
     <mat-label>Type Recommendation</mat-label>
     <textarea matInput [(ngModel)]="recoData" maxlength="250" #uname="ngModel">
     </textarea>
-    <div *ngIf="uname.error?.maxlength" class="alert alert-danger">
+    <div *ngIf="uname.errors?.maxlength" class="alert alert-danger">
       character limit is 250 words
     </div>
   </mat-form-field>
