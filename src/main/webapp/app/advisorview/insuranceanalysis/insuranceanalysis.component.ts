@@ -43,28 +43,53 @@ export class InsuranceanalysisComponent implements OnInit, OnDestroy {
     }
 
     getAdvisorDetails() {
-        this.advisorService.getAdvisorDetails(this.uid, 'insreco').subscribe(res => {
-            this.recommend = res;
-            for (let i = 0; i < this.recommend.length; i++) {
-                if (this.recommend[i].approve === 'true') {
-                    this.recommend[i].approve = true;
-                } else {
-                    this.recommend[i].approve = false;
-                }
+        if (this.isRecommendData === 'ROLE_ADVISOR') {
+            this.advisorService.getAdvisorDetails(this.uid, 'insreco').subscribe(res => {
+                this.recommend = res;
+                for (let i = 0; i < this.recommend.length; i++) {
+                    if (this.recommend[i].approve === 'true') {
+                        this.recommend[i].approve = true;
+                    } else {
+                        this.recommend[i].approve = false;
+                    }
 
-                if (this.recommend[i].reject === 'true') {
-                    this.recommend[i].reject = true;
-                } else {
-                    this.recommend[i].reject = false;
-                }
+                    if (this.recommend[i].reject === 'true') {
+                        this.recommend[i].reject = true;
+                    } else {
+                        this.recommend[i].reject = false;
+                    }
 
-                if (this.recommend[i].approve === true || this.recommend[i].reject === true) {
-                    this.recommend[i].edit = true;
-                } else {
-                    this.recommend[i].edit = false;
+                    if (this.recommend[i].approve === true || this.recommend[i].reject === true) {
+                        this.recommend[i].edit = true;
+                    } else {
+                        this.recommend[i].edit = false;
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            this.advisorService.showadvise(this.uid, 'insreco').subscribe(res => {
+                this.recommend = res;
+                for (let i = 0; i < this.recommend.length; i++) {
+                    if (this.recommend[i].approve === 'true') {
+                        this.recommend[i].approve = true;
+                    } else {
+                        this.recommend[i].approve = false;
+                    }
+
+                    if (this.recommend[i].reject === 'true') {
+                        this.recommend[i].reject = true;
+                    } else {
+                        this.recommend[i].reject = false;
+                    }
+
+                    if (this.recommend[i].approve === true || this.recommend[i].reject === true) {
+                        this.recommend[i].edit = true;
+                    } else {
+                        this.recommend[i].edit = false;
+                    }
+                }
+            });
+        }
     }
 
     saveInsuranceRecommendation(): void {

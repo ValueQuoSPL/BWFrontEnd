@@ -33,6 +33,10 @@ export class AdvisorViewService {
         return this._http.get(SERVER_API_URL + 'api/advisor/' + uid + '/' + type);
     }
 
+    showadvise(uid, type) {
+        return this._http.get(SERVER_API_URL + 'api/showadvise/' + uid + '/' + type);
+    }
+
     delete(id) {
         return this._http.delete(SERVER_API_URL + 'api/advisors/' + id);
     }

@@ -123,6 +123,7 @@ import { AuthGuard } from './auth.guard';
 import { TaxService } from './TaxFiling/tax-filing.service';
 import { AdvisorModule } from './advisor/advisor.module';
 import { AdvisorViewModule } from './advisorview/advisorview.module';
+import { AdviceModule } from './advice/advice.module';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -235,7 +236,9 @@ const customNotifierOptions: NotifierOptions = {
         BuckswiseAppSheetalModule,
         BuckswiseFrontEndRiskModule,
         BuckswiseFrontEndMyAssetsModule,
-        AdvisorViewModule
+        AdvisorViewModule,
+        AdviceModule
+
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [

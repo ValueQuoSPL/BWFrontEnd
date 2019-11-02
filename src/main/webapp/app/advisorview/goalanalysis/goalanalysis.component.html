@@ -2,8 +2,8 @@
     <h4>Recommendation</h4>
     <div>
         <div class="row pull-right">
-            <span class="btn-right">
-                <p>
+            <span [ngSwitch]="isRecommendData" class="btn-right">
+                <p *ngSwitchCase="'ROLE_ADVISOR'">
                     <button type="button" class="btn btn-sm  btn-link" (click)="saveGoalRecommendation()">
                         <fa-icon [icon]="'save'"></fa-icon>
                         <span>Add</span>
