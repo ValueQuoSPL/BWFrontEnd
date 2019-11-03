@@ -47,10 +47,12 @@ export class RecommendationComponent implements OnInit {
     }
 
     saveRecommendation(): void {
-        this.data.recommendObject.reco = this.recoData;
-        this.advisorService.saveRecommendation(this.data.recommendObject).subscribe(res => {
-            // console.log(res);
-        });
+        if (this.recoData) {
+            this.data.recommendObject.reco = this.recoData;
+            this.advisorService.saveRecommendation(this.data.recommendObject).subscribe(res => {
+                // console.log(res);
+            });
+        }
     }
 
     /**

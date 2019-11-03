@@ -18,8 +18,9 @@
                 <td scope="col" style="width: 50px;">Sr.No.</td>
                 <td scope="col" style="width: 700px;">Recommendation</td>
                 <td scope="col" style="width: 150px;">Date</td>
-                <td scope="col" style="width: 100px;">status</td>
-                <td scope="col" style="width: 200px;" *ngIf="authority === 'ROLE_USER' || 'ROLE_ADIM'">user comments
+                <td scope="col" style="width: 100px;" *ngIf="authority === 'ROLE_USER'">status</td>
+                <td scope="col" style="width: 100px;" *ngIf="authority === 'ROLE_ADVISOR'">status</td>
+                <td scope="col" style="width: 200px;">user comments
                 </td>
                 <td scope="col" style="width: 130px;">Action</td>
             </tr>
@@ -29,13 +30,23 @@
                     <td>{{i+1}}</td>
                     <td>{{ recmd.reco }}</td>
                     <td>{{ recmd.recodate | date: 'dd-MM-yyyy'}}</td>
-                    <td *ngIf="authority === 'ROLE_USER' || 'ROLE_ADIM' || 'ROLE_ADVISOR'">
-                        <mat-checkbox class="col-4" [disabled]="recmd.reject" [(ngModel)]="recmd.approve">Approve</mat-checkbox>
-                        <mat-checkbox class="col-4" [disabled]="recmd.approve" [(ngModel)]="recmd.reject">Reject</mat-checkbox>
-                    </td>
+                    <td *ngIf="authority === 'ROLE_USER'">
+                            <mat-checkbox class="col-4" [disabled]="recmd.reject" [(ngModel)]="recmd.approve">Approve
+                            </mat-checkbox>
+                            <mat-checkbox class="col-4" [disabled]="recmd.approve" [(ngModel)]="recmd.reject">Reject
+                            </mat-checkbox>
+                        </td>
+                        <td *ngIf="authority === 'ROLE_ADVISOR'">
+                            <mat-checkbox class="col-4" [disabled]="authority === 'ROLE_ADVISOR'" [(ngModel)]="recmd.approve">
+                                Approve
+                            </mat-checkbox>
+                            <mat-checkbox class="col-4" [disabled]="authority === 'ROLE_ADVISOR'" [(ngModel)]="recmd.reject">
+                                Reject
+                            </mat-checkbox>
+                        </td>
                     <td>
                         <mat-form-field>
-                            <textarea [disabled]="recmd.edit === true" matInput [(ngModel)]="recmd.usercomment" placeholder="Leave a comment"></textarea>
+                            <textarea [disabled]="authority === 'ROLE_ADVISOR'" [disabled]="recmd.edit === true" matInput [(ngModel)]="recmd.usercomment" placeholder="Leave a comment"></textarea>
                         </mat-form-field>
                     </td>
                     

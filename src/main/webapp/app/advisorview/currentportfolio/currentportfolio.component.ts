@@ -6,12 +6,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { RecommendationComponent } from '../recommendation/recommendation.component';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs/internal/Subject';
-import { truncate } from 'fs';
 
 @Component({
     selector: 'jhi-currentportfolio',
     templateUrl: './currentportfolio.component.html',
-    styles: []
+    styleUrls: ['currentportfolio.component.css']
 })
 export class CurrentportfolioComponent implements OnInit, OnDestroy {
     uid: any;
