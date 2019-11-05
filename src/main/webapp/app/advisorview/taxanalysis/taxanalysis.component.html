@@ -25,7 +25,7 @@
                 <td scope="col" style="width: 130px;">Action</td>
             </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="recommend.length === 0">
             <tr *ngFor="let recmd of recommend; index as i">
                 <td>{{i+1}}</td>
                 <td>{{ recmd.reco }}</td>
@@ -87,6 +87,13 @@
                             <fa-icon [icon]="'trash'"></fa-icon></i>
                         </span>
                     </button>
+                </td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="recommend.length === 0">
+            <tr>
+                <td colspan="6">
+                    No Recommendation Available
                 </td>
             </tr>
         </tbody>
