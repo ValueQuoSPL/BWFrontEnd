@@ -31,23 +31,29 @@
                 <td>{{ recmd.reco }}</td>
                 <td>{{ recmd.recodate | date: 'dd-MM-yyyy'}}</td>
                 <td *ngIf="authority === 'ROLE_USER'">
-                        <mat-checkbox class="col-4" [disabled]="recmd.reject" [(ngModel)]="recmd.approve">Approve
-                        </mat-checkbox>
-                        <mat-checkbox class="col-4" [disabled]="recmd.approve" [(ngModel)]="recmd.reject">Reject
-                        </mat-checkbox>
-                    </td>
-                    <td *ngIf="authority === 'ROLE_ADVISOR'">
-                        <mat-checkbox class="col-4" [disabled]="authority === 'ROLE_ADVISOR'" [(ngModel)]="recmd.approve">
-                            Approve
-                        </mat-checkbox>
-                        <mat-checkbox class="col-4" [disabled]="authority === 'ROLE_ADVISOR'" [(ngModel)]="recmd.reject">
-                            Reject
-                        </mat-checkbox>
-                    </td>
-                <td>
+                    <mat-checkbox class="col-4" [disabled]="recmd.reject" [(ngModel)]="recmd.approve">Approve
+                    </mat-checkbox>
+                    <mat-checkbox class="col-4" [disabled]="recmd.approve" [(ngModel)]="recmd.reject">Reject
+                    </mat-checkbox>
+                </td>
+                <td *ngIf="authority === 'ROLE_ADVISOR'">
+                    <mat-checkbox class="col-4" [disabled]="authority === 'ROLE_ADVISOR'" [(ngModel)]="recmd.approve">
+                        Approve
+                    </mat-checkbox>
+                    <mat-checkbox class="col-4" [disabled]="authority === 'ROLE_ADVISOR'" [(ngModel)]="recmd.reject">
+                        Reject
+                    </mat-checkbox>
+                </td>
+                <td *ngIf="authority === 'ROLE_USER'">
                     <mat-form-field>
-                        <textarea [disabled]="authority === 'ROLE_ADVISOR'" [disabled]="recmd.edit === true" matInput [(ngModel)]="recmd.usercomment"
+                        <textarea [disabled]="recmd.edit === true" matInput [(ngModel)]="recmd.usercomment"
                             placeholder="Leave a comment"></textarea>
+                    </mat-form-field>
+                </td>
+                <td *ngIf="authority === 'ROLE_ADVISOR'">
+                    <mat-form-field>
+                        <textarea [disabled]="authority === 'ROLE_ADVISOR'" [disabled]="recmd.edit === true" matInput
+                            [(ngModel)]="recmd.usercomment" placeholder="Leave a comment"></textarea>
                     </mat-form-field>
                 </td>
 

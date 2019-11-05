@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { LoginService } from 'app/core';
 
 @Component({
     selector: 'jhi-advisorview',
@@ -6,8 +7,23 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: []
 })
 export class AdvisorViewComponent {
+    account: any;
+    authority: any;
+    title: any;
     panelcurrentportfolio = false;
     panelinsuranceanalysis = false;
     paneltaxanalysis = false;
     panelgoalanalysis = false;
+
+    constructor(private loginService: LoginService) {
+        this.account = this.loginService.getCookie();
+        this.authority = this.account.authorities[0];
+        console.log(this.authority);
+
+        if (this.authority === 'ROLE_ADVISOR' || this.authority === 'ROLE_ADMIN') {
+            this.title = 'ADVISOR';
+        } else {
+            this.title = 'ADVISE';
+        }
+    }
 }

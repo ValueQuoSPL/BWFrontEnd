@@ -58,9 +58,15 @@
                         Reject
                     </mat-checkbox>
                 </td>
-                <td>
+                <td *ngIf="authority === 'ROLE_USER'">
                     <mat-form-field>
                         <textarea [disabled]="recmd.edit === true" matInput [(ngModel)]="recmd.usercomment"
+                            placeholder="Leave a comment"></textarea>
+                    </mat-form-field>
+                </td>
+                <td *ngIf="authority === 'ROLE_ADVISOR'">
+                    <mat-form-field>
+                        <textarea [disabled]="authority === 'ROLE_ADVISOR'" [disabled]="recmd.edit === true" matInput [(ngModel)]="recmd.usercomment"
                             placeholder="Leave a comment"></textarea>
                     </mat-form-field>
                 </td>
