@@ -8,12 +8,15 @@
       <div *ngIf="uname.errors?.maxlength" class="alert alert-danger">
         character limit is 250 words
       </div>
+      <!-- <div *ngIf="uname.length === 0" class="alert alert-danger">
+        please enter Recommendation
+      </div> -->
     </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
     <button *ngIf="buttonType === 'save'" mat-button [mat-dialog-close]="true" cdkFocusInitial
-      (click)="saveRecommendation()">Save</button>
+      (click)="saveRecommendation()" [disabled]="!recoData">Save</button>
     <button *ngIf="buttonType === 'update'" mat-button [mat-dialog-close]="true" cdkFocusInitial
       (click)="updateRecommendation()">Update</button>
   </mat-dialog-actions>

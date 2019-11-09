@@ -18,7 +18,6 @@ export class AdvisorViewComponent {
     constructor(private loginService: LoginService) {
         this.account = this.loginService.getCookie();
         this.authority = this.account.authorities[0];
-        console.log(this.authority);
 
         if (this.authority === 'ROLE_ADVISOR' || this.authority === 'ROLE_ADMIN') {
             this.title = 'ADVISOR';
