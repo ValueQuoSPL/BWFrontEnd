@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { AdvisorService } from 'app/advisor/advisor.service';
 import { map, startWith } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'jhi-advisor',
@@ -24,7 +25,8 @@ export class AdvisorComponent implements OnInit {
         private advisorService: AdvisorService,
         private CommonService: CommonSidebarService,
         private userService: UserService,
-        private UserPlan: UserPlanService
+        private UserPlan: UserPlanService,
+        private _snackBar: MatSnackBar
     ) {}
 
     ngOnInit() {
@@ -60,14 +62,21 @@ export class AdvisorComponent implements OnInit {
         let userPlan: any = [];
         this.UserPlan.GetUserPlan(this.userName.id).subscribe(data => {
             userPlan = data;
-            if (userPlan[0].uid === this.userName.id) {
-                this.userPlanDetails = [];
-                this.userPlanDetails.push({
-                    firstName: this.userName.firstName,
-                    lastName: this.userName.lastName,
-                    plan: userPlan[0].plan,
-                    reviewDate: userPlan[0].expiryDate,
-                    uid: userPlan[0].uid
+            if (userPlan.length > 0) {
+                if (userPlan[0].uid === this.userName.id) {
+                    this.userPlanDetails = [];
+                    this.userPlanDetails.push({
+                        firstName: this.userName.firstName,
+                        lastName: this.userName.lastName,
+                        plan: userPlan[0].plan,
+                        reviewDate: userPlan[0].expiryDate,
+                        uid: userPlan[0].uid
+                    });
+                }
+            } else {
+                this._snackBar.open('No Data Available!', '', {
+                    duration: 2000,
+                    horizontalPosition: 'right'
                 });
             }
         });

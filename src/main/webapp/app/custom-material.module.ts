@@ -19,6 +19,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     imports: [],
@@ -44,7 +45,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
         MatTableModule,
         MatTooltipModule,
         MatProgressSpinnerModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatSnackBarModule
     ]
 })
 export class CustomMaterialModule {}

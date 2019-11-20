@@ -421,17 +421,12 @@ export class AppointmentComponent implements OnInit {
         }
     }
     checkDate() {
-        console.log('in checkedDate()');
         const currentDate = new Date().getTime();
-        console.log('current date', currentDate);
         this.appointmentService.getCalendarByUid(this.uid).subscribe(data => {
             this.appointmentResult = data;
             for (let index = 0; index < this.appointmentResult.length; index++) {
-                console.log('in checkedDate() for');
                 this.bookedDate = new Date(this.appointmentResult.date).getTime();
-                console.log('booked date', this.bookedDate);
                 if (currentDate > this.bookedDate && currentDate !== this.bookedDate) {
-                    console.log('in checkedDate() if');
                     this.isBooked = false;
                 }
             }

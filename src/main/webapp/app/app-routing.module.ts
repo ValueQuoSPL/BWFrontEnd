@@ -33,6 +33,10 @@ const Spend_Routes: Routes = [
             { outlet: 'misc', path: '', component: MiscComponent }
         ]
     }
+    // {
+    //     path: 'advisorview',
+    //     loadChildren: './advisorview/advisorview.module#AdvisorViewModule'
+    // }
 ];
 
 const custom_routes: Routes = [
@@ -40,6 +44,34 @@ const custom_routes: Routes = [
     { path: 'privacypolicy', component: PrivacyPolicyComponent },
     { path: 'tnc', component: TermsConditionComponent },
     { path: 'notify', component: NotificationComponent }
+];
+
+const risk: Routes = [
+    {
+        path: 'risk',
+        loadChildren: './risk/risk.module#BuckswiseFrontEndRiskModule'
+    }
+];
+
+const appointment: Routes = [
+    {
+        path: 'appointment/:id',
+        loadChildren: './appointment/appointment.module#AppointmentModule'
+    }
+];
+
+const advisorview: Routes = [
+    {
+        path: 'advisorview/:id',
+        loadChildren: './advisorview/advisorview.module#AdvisorViewModule'
+    }
+];
+
+const tax: Routes = [
+    {
+        path: 'advisorview/:id',
+        loadChildren: './advisorview/advisorview.module#BuckswiseTaxModule'
+    }
 ];
 
 @NgModule({
@@ -55,7 +87,11 @@ const custom_routes: Routes = [
             { useHash: true, enableTracing: DEBUG_INFO_ENABLED }
         ),
         RouterModule.forChild(Spend_Routes),
-        RouterModule.forRoot(custom_routes)
+        RouterModule.forRoot(custom_routes),
+        RouterModule.forRoot(risk),
+        RouterModule.forRoot(appointment),
+        RouterModule.forRoot(advisorview),
+        RouterModule.forRoot(tax)
     ],
     exports: [RouterModule]
 })

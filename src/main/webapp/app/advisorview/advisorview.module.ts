@@ -9,9 +9,11 @@ import { TaxanalysisComponent } from './taxanalysis/taxanalysis.component';
 import { RecommendationComponent } from './recommendation/recommendation.component';
 import { AdvisorViewComponent } from './advisorview.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
+import { advisorview } from './advisor.route';
 
 @NgModule({
-    imports: [FormsModule, CommonModule, CustomMaterialModule, FontAwesomeModule],
+    imports: [FormsModule, CommonModule, CustomMaterialModule, FontAwesomeModule, RouterModule.forChild([advisorview])],
     declarations: [
         CurrentportfolioComponent,
         GoalanalysisComponent,

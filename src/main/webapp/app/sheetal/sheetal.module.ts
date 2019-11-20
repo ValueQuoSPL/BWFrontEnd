@@ -13,7 +13,7 @@ import { BuckswiseTaxModule } from 'app/sheetal/tax/tax.module';
 import { BuckswiseContactModule } from 'app/sheetal/contactus/contact.module';
 
 @NgModule({
-    imports: [FormsModule, BuckswiseFrontEndSharedModule, CustomMaterialModule, MatInputModule, BuckswiseTaxModule, BuckswiseContactModule],
+    imports: [FormsModule, BuckswiseTaxModule, BuckswiseFrontEndSharedModule, CustomMaterialModule, MatInputModule, BuckswiseContactModule],
     declarations: [MainComponent, RequestmeetingComponent, AdviceComponent, SheetalComponent],
     providers: [MeetService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

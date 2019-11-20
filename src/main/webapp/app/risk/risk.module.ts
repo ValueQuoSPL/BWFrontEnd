@@ -18,7 +18,7 @@ import { RiskComponent } from 'app/risk/risk.component';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-    imports: [BuckswiseFrontEndSharedModule, RouterModule.forRoot([riskRoute], { useHash: true }), CustomMaterialModule, FormsModule],
+    imports: [BuckswiseFrontEndSharedModule, RouterModule.forChild([riskRoute]), CustomMaterialModule, FormsModule],
     declarations: [LifeInsuranceComponent, MedicalInsuranceComponent, QuestionnaireComponent, RiskComponent],
     providers: [NgbActiveModal, RiskService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

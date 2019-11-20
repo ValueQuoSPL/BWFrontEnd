@@ -16,7 +16,8 @@ import { NgxLoadingModule } from 'ngx-loading';
 
 @NgModule({
     imports: [
-        RouterModule.forRoot([appointRoot], { useHash: true }),
+        // RouterModule.forRoot([appointRoot], { useHash: true }),
+        RouterModule.forChild([appointRoot]),
         FormsModule,
         CommonModule,
         CustomMaterialModule,

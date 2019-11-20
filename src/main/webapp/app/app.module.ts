@@ -63,7 +63,7 @@ import { FamilyModule } from 'app/family/family.module';
 import { PromoCodeModule } from 'app/home/subscriber/promo-code';
 import { SidebarComponent } from 'app/layouts/sidebar/sidebar.component';
 import { SubscriberModule } from 'app/home/subscriber/subscriber.module';
-import { BuckswiseFrontEndRiskModule } from 'app/risk/risk.module';
+// import { BuckswiseFrontEndRiskModule } from 'app/risk/risk.module';
 import { GoalModule } from 'app/goal/goal.module';
 import { BuckswiseFrontEndMyAssetsModule } from 'app/my-assets/my-assets.module';
 import { AppointmentModule } from 'app/appointment/appointment.module';
@@ -122,7 +122,7 @@ import { MutualFundManageComponent } from './pratik/mutual-fund-manage/mutual-fu
 import { AuthGuard } from './auth.guard';
 import { TaxService } from './TaxFiling/tax-filing.service';
 import { AdvisorModule } from './advisor/advisor.module';
-import { AdvisorViewModule } from './advisorview/advisorview.module';
+// import { AdvisorViewModule } from './advisorview/advisorview.module';
 import { AdviceModule } from './advice/advice.module';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
@@ -193,12 +193,10 @@ const customNotifierOptions: NotifierOptions = {
         RouterModule.forRoot([advisorRoot], { useHash: true }),
         RouterModule.forRoot([successRoute], { useHash: true }),
         RouterModule.forRoot([failRoute], { useHash: true }),
-        RouterModule.forRoot([appointRoot], { useHash: true }),
         RouterModule.forRoot([termRoute], { useHash: true }),
         RouterModule.forRoot([privacyRoute], { useHash: true }),
         RouterModule.forRoot([cookieRoute], { useHash: true }),
         RouterModule.forRoot([navbarRoute], { useHash: true }),
-        RouterModule.forRoot([advisorview], { useHash: true }),
         RouterModule.forRoot([mainRoute], { useHash: true }),
         BuckswiseFrontEndSharedModule,
         BuckswiseFrontEndCoreModule,
@@ -234,9 +232,9 @@ const customNotifierOptions: NotifierOptions = {
         FamilyModule,
         GoalModule,
         BuckswiseAppSheetalModule,
-        BuckswiseFrontEndRiskModule,
+        // BuckswiseFrontEndRiskModule,
         BuckswiseFrontEndMyAssetsModule,
-        AdvisorViewModule,
+        // AdvisorViewModule,
         AdviceModule
 
         // jhipster-needle-angular-add-module JHipster will add new module here
