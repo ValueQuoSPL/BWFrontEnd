@@ -20,9 +20,9 @@ export class AdvisorViewComponent {
         this.authority = this.account.authorities[0];
 
         if (this.authority === 'ROLE_ADVISOR' || this.authority === 'ROLE_ADMIN') {
-            this.title = 'ADVISOR';
+            this.title = 'Advisor Recomend Here';
         } else {
-            this.title = 'ADVISE';
+            this.title = 'Advice';
         }
     }
 }
