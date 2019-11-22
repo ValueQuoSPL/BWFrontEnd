@@ -43,6 +43,7 @@ export class AdvisorComponent implements OnInit {
         // });
         this.userService.getAllUsers().subscribe(res => {
             this.users = res;
+            console.log(this.users);
             this.getAllUserPlans();
         });
     }
@@ -59,15 +60,23 @@ export class AdvisorComponent implements OnInit {
      * Date: 01/07/2019
      */
     public getUserDetailBySearch(): void {
+        let user;
         let userPlan: any = [];
-        this.UserPlan.GetUserPlan(this.userName.id).subscribe(data => {
+        if (this.userName) {
+            user = this.users.find(val => {
+                if (val.firstName === this.userName) {
+                    return val;
+                }
+            });
+        }
+        this.UserPlan.GetUserPlan(user.id).subscribe(data => {
             userPlan = data;
             if (userPlan.length > 0) {
-                if (userPlan[0].uid === this.userName.id) {
+                if (userPlan[0].uid === user.id) {
                     this.userPlanDetails = [];
                     this.userPlanDetails.push({
-                        firstName: this.userName.firstName,
-                        lastName: this.userName.lastName,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
                         plan: userPlan[0].plan,
                         reviewDate: userPlan[0].expiryDate,
                         uid: userPlan[0].uid
