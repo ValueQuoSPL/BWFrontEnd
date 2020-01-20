@@ -294,8 +294,8 @@
     <tbody>
         <tr *ngFor="let altInvest of alternateinvest; let i = index">
             <td> {{altInvest.investor_name}} </td>
-            <td>{{altInvest.amount_invested}} </td>
-            <td>{{altInvest.market_value}}</td>
+            <td>{{altInvest.amount_invested | currency:"INR"}} </td>
+            <td>{{altInvest.market_value | currency:"INR"}}</td>
             <td>
                 <button 
                     class="btn btn-outline-info btn-sm" 

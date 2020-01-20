@@ -124,7 +124,7 @@
                   <td></td>
                   <td></td>
                   <td>
-                    {{eightydout.medself}}
+                    {{eightydout.medself | currency:"INR"}}
                   </td>
                   <td><button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditStaticField('Medical Insurance for Self', eightydEditContent )" >
                     <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -135,7 +135,7 @@
                   <td></td>
                   <td></td>
                   <td>
-                    {{eightydout.medparents}}
+                    {{eightydout.medparents | currency:"INR"}}
                   </td>
                   <td><button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditStaticField('Medical Insurance for Parents', eightydEditContent)" >
                     <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -146,7 +146,7 @@
                   <td></td>
                   <td></td>
                   <td>
-                    {{eightydout.healthcheck}}
+                    {{eightydout.healthcheck | currency:"INR"}}
                   </td>
                   <td><button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditStaticField('Preventive Health Checkup', eightydEditContent)" >
                     <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>

@@ -140,12 +140,12 @@
                     <tr *ngFor="let field of dynamicLoanArray; let i = index">
                         <td> {{ field.ltype }}</td>
                         <td> {{ field.lenderName }} </td>
-                        <td> {{ field.amount }} </td>
+                        <td> {{ field.amount | currency:"INR"}} </td>
                         <td> {{ field.ldate | date:'shortDate' }}</td>
                         <td> {{ field.tenure }} </td>
-                        <td> {{ field.outstandingpricipal }} </td>
+                        <td> {{ field.outstandingpricipal | currency:"INR"}} </td>
                         <td> {{ field.roi }} </td>
-                        <td> {{ field.emi }} </td>
+                        <td> {{ field.emi | currency:"INR" }} </td>
                         <td>
                             <button class="btn btn-outline-info" type="button" (click)="onEditLoan(field.id, loanModal)">
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>
@@ -162,7 +162,7 @@
                 <tfoot>
                     <tr>
                         <th>Total Emi For this Month</th>
-                        <th >{{totalEmi}}</th>
+                        <th >{{totalEmi | currency:"INR"}}</th>
                     </tr>
                 </tfoot>
             </table>

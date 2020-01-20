@@ -134,10 +134,10 @@
                 <td> {{ field.issuer }}</td>
                 <td> {{ field.insuranceName }}</td>
                 <td> {{ field.pName }} </td>
-                <td> {{ field.premium }} </td>
+                <td> {{ field.premium | currency:"INR"}} </td>
                 <td> {{ field.term }} </td>
                 <td> {{ field.pterm }} </td>
-                <td> {{ field.sum }} </td>
+                <td> {{ field.sum | currency:"INR"}} </td>
                 <td><button class="btn btn-sm btn-outline-info" type="button" (click)="onEditLife(field.id, lifeModal)">
                         <span>
                             <fa-icon [icon]="'edit'"></fa-icon></i>

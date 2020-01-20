@@ -323,9 +323,9 @@
                 <td>{{chit.chit_name}}</td>
                 <td>{{chit.chit_holder_name}}</td>
                 <td>{{chit.chit_start_date| date : 'shortDate'}}</td>
-                <td>{{chit.chit_value}}</td>
+                <td>{{chit.chit_value | currency:"INR"}}</td>
                 <td>{{chit.tenure}}</td>
-                <td>{{chit.current_value}} </td>
+                <td>{{chit.current_value | currency:"INR"}} </td>
                 <td>
                     <button 
                     class="btn btn-outline-info btn-sm" 

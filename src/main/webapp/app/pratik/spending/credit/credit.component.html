@@ -29,7 +29,7 @@
               <td> {{ field.type }}</td>
               <td> {{ field.bank }} </td>
               <td> {{ field.roi }} </td>
-              <td> {{ field.balance }} </td>
+              <td> {{ field.balance | currency:"INR" }} </td>
               <td>
                 <button class="btn btn-outline-info" type="button" (click)="openCredit(field.id, creditModal)">
                     <span> <fa-icon [icon]="'edit'"></fa-icon></i></span>

@@ -222,11 +222,11 @@
                                     <th>
                                         {{ income.incomeSalary + income.incomeAward + income.incomeBonus +
                                         income.incomePension + income.incomeSaving + income.incomeDeposit +
-                                        income.incomeRental + dynamicTotal }}
+                                        income.incomeRental + dynamicTotal | currency:"INR"}}
                                     </th>
                                     <th> {{( income.incomeSalary + +income.incomeAward + income.incomeBonus +
                                         income.incomePension + +income.incomeSaving +income.incomeDeposit +
-                                        income.incomeRental + dynamicTotal ) * 12 }}
+                                        income.incomeRental + dynamicTotal ) * 12 | currency:"INR"}}
                                     </th>
                                     <th></th>
                                 </tr>
@@ -305,11 +305,11 @@
                                     <th *ngIf="!loadIncome">
                                         {{ income.incomeSalary + income.incomeAward + income.incomeBonus +
                                         income.incomePension + income.incomeSaving + income.incomeDeposit +
-                                        income.incomeRental + dynamicTotal }}
+                                        income.incomeRental + dynamicTotal | currency:"INR"}}
                                     </th>
                                     <th> {{( income.incomeSalary + +income.incomeAward + income.incomeBonus +
                                         income.incomePension + +income.incomeSaving +income.incomeDeposit +
-                                        income.incomeRental + dynamicTotal ) * 12 }}
+                                        income.incomeRental + dynamicTotal ) * 12 | currency:"INR" }}
                                     </th>
                                     <th></th>
                                 </tr>

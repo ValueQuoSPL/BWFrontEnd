@@ -365,9 +365,9 @@
         <tr *ngFor="let saving of SavingDetails; let i = index">
             <td>{{saving.organisation_name}}</td>
             <td>{{saving.investor_name}}</td>
-            <td>{{saving.amount_invested}}</td>
+            <td>{{saving.amount_invested | currency:"INR"}}</td>
             <td>{{saving.rate_of_interest}}</td>
-            <td>{{saving.fund_value}}</td>
+            <td>{{saving.fund_value | currency:"INR"}}</td>
             <td>{{saving.start_date}}</td>
             <td>{{saving.end_date}}</td>
             <td>

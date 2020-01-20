@@ -269,7 +269,7 @@
           <td></td>
           <td></td>
           <td>
-              {{otherout.selfedu}}
+              {{otherout.selfedu | currency:"INR"}}
           </td>
           <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditOtherField('Repayment', otherEditContent)" >
               <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -293,7 +293,7 @@
           <td></td>
           <td></td>
           <td>
-              {{otherout.nps}}
+              {{otherout.nps | currency:"INR"}}
           </td>
           <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditOtherField('nps', otherEditContent)" >
               <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -317,7 +317,7 @@
           <td></td>
           <td></td>
           <td>
-              {{otherout.rgess}}
+              {{otherout.rgess | currency:"INR"}}
           </td>
           <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditOtherField('rgess', otherEditContent)" >
               <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -341,7 +341,7 @@
           <td></td>
           <td></td>
           <td>
-              {{otherout.donation}}
+              {{otherout.donation | currency:"INR"}}
                 </td>
                 <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditOtherField('donation', otherEditContent)" >
                     <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>

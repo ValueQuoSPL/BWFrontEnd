@@ -237,7 +237,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output.bsalary}}
+                            {{output.bsalary | currency:"INR"}}
                             </td>
                         <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('bsalary', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -248,7 +248,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output.da}}
+                            {{output.da | currency:"INR"}}
                             </td>
                             <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('da', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -259,7 +259,7 @@
                             <!-- <input type="checkbox"> -->
                             </td>
                             <td></td>
-                            <td>{{output.hra}}</td>
+                            <td>{{output.hra | currency:"INR"}}</td>
                             <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('hra', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
@@ -267,8 +267,8 @@
                             <td scope="row">Conveyance</td>
                             <td></td>
                             <td></td>
-                            <td>{{output.conveyance}}</td>
-                            <button class="btn btn-outline-info"  type="button" (click)="onEditGrossField('convey', grossEditContent)" >
+                            <td>{{output.conveyance | currency:"INR"}}</td>
+                            <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('convey', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
                         <tr>
@@ -276,7 +276,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output.childedu}}                           
+                            {{output.childedu | currency:"INR"}}                           
                             </td>
                             <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('ce', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -286,7 +286,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output.medical}}
+                            {{output.medical | currency:"INR"}}
                             </td>
                             <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('med', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -295,7 +295,7 @@
                             <td scope="row">LTA</td>
                             <td></td>
                             <td></td>
-                            <td>{{output.lta}}</td>
+                            <td>{{output.lta | currency:"INR"}}</td>
                             <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('lta', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
                         </tr>
@@ -304,7 +304,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output.otherallown}}
+                            {{output.otherallown | currency:"INR"}}
                             </td>
                             <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('oa', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -314,7 +314,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output.bonus}}
+                            {{output.bonus | currency:"INR"}}
                             </td>
                             <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('bonus', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -343,7 +343,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output.rentincome}}
+                            {{output.rentincome | currency:"INR"}}
                             </td>
                             <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('rent', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -373,7 +373,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output.saving}}
+                            {{output.saving | currency:"INR"}}
                             </td>
                             <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('saving', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -383,7 +383,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output.bonds}}
+                            {{output.bonds | currency:"INR"}}
                             </td>
                             <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('bonds', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>
@@ -393,7 +393,7 @@
                             <td></td>
                             <td></td>
                             <td>
-                            {{output.conveyanceother}}
+                            {{output.conveyanceother | currency:"INR"}}
                             </td>
                             <button class="btn btn-outline-info btn-sm"  type="button" (click)="onEditGrossField('conveyance', grossEditContent)" >
                                 <span> <fa-icon [icon]="'edit'"></fa-icon></span></button>

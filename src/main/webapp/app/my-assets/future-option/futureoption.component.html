@@ -417,8 +417,8 @@
             <td>{{fao.asset_name}} </td>
             <td>{{fao.no_of_contracts}} </td>
             <td>{{fao.p_date}} </td>
-            <td>{{fao.contract_p_value}} </td>
-            <td>{{fao.contract_m_value}} </td>
+            <td>{{fao.contract_p_value | currency:"INR"}} </td>
+            <td>{{fao.contract_m_value | currency:"INR"}} </td>
             <td>{{fao.as_of_date}} </td>
             <td>
                 <button 

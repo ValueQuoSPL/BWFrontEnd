@@ -290,7 +290,7 @@
         <tr *ngFor="let prop of propertyDetail; let i = index">
             <td>{{prop.prop_name}} </td>
             <td>{{prop.prop_type}} </td>
-            <td>{{prop.current_m_value}} </td>
+            <td>{{prop.current_m_value | currency:"INR"}} </td>
             <td>
                 <button 
                 class="btn btn-outline-info btn-sm" 

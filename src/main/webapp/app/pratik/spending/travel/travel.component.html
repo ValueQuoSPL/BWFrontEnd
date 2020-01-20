@@ -155,8 +155,8 @@
     <tfoot>
           <tr>
             <th scope="col">Total</th>
-            <th> {{travel.food+ travel.entertainment+ travel.dineout+ travel.vacation+ travel.hobby+ totalTravel}}</th>
-            <th> {{ (travel.food+travel.entertainment+travel.dineout+travel.vacation+travel.hobby + totalTravel) * 12}}</th>
+            <th> {{travel.food+ travel.entertainment+ travel.dineout+ travel.vacation+ travel.hobby+ totalTravel | currency:"INR"}}</th>
+            <th> {{ (travel.food+travel.entertainment+travel.dineout+travel.vacation+travel.hobby + totalTravel) * 12 | currency:"INR"}}</th>
             <th></th>
             <th></th>
           </tr>
@@ -223,8 +223,8 @@
         <tfoot>
               <tr>
                 <th scope="col">Total</th>
-                <th> {{travel.food+ travel.entertainment+ travel.dineout+ travel.vacation+ travel.hobby+ totalTravel}}</th>
-                <th> {{ (travel.food+travel.entertainment+travel.dineout+travel.vacation+travel.hobby + totalTravel) * 12}}</th>
+                <th> {{travel.food+ travel.entertainment+ travel.dineout+ travel.vacation+ travel.hobby+ totalTravel | currency:"INR"}}</th>
+                <th> {{ (travel.food+travel.entertainment+travel.dineout+travel.vacation+travel.hobby + totalTravel) * 12 | currency:"INR"}}</th>
                 <th></th>
                 <th></th>
               </tr>

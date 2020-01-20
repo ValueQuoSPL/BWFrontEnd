@@ -32,9 +32,9 @@
               <td> {{ field.issuer }}</td>
               <td> {{ field.insureName }}</td>
               <td> {{ field.policyName }} </td>
-              <td> {{ field.premium }} </td>
+              <td> {{ field.premium | currency:"INR" }} </td>
               <td> {{ field.premiumTerm }} </td>
-              <td> {{ field.sum }} </td>
+              <td> {{ field.sum | currency:"INR" }} </td>
               <td><button class="btn btn-sm btn-outline-info"  type="button" (click)="onEditHealth(field.id, healthModal)" >
                   <span> <fa-icon [icon]="'edit'"></fa-icon></i></span></button>
               </td>
