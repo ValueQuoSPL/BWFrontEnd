@@ -59,13 +59,13 @@ import { CustomMaterialModule } from 'app/custom-material.module';
 import { CustomDirectiveModule } from 'app/pratik/directive/directive.module';
 import { DraggableModule } from 'app/pratik/draggable/draggable.module';
 
-import { FamilyModule } from 'app/family/family.module';
+// import { FamilyModule } from 'app/family/family.module';
 import { PromoCodeModule } from 'app/home/subscriber/promo-code';
 import { SidebarComponent } from 'app/layouts/sidebar/sidebar.component';
 import { SubscriberModule } from 'app/home/subscriber/subscriber.module';
 // import { BuckswiseFrontEndRiskModule } from 'app/risk/risk.module';
 import { GoalModule } from 'app/goal/goal.module';
-import { BuckswiseFrontEndMyAssetsModule } from 'app/my-assets/my-assets.module';
+// import { BuckswiseFrontEndMyAssetsModule } from 'app/my-assets/my-assets.module';
 import { AppointmentModule } from 'app/appointment/appointment.module';
 import { BuckswiseAppSheetalModule } from 'app/sheetal/sheetal.module';
 
@@ -124,6 +124,10 @@ import { TaxService } from './TaxFiling/tax-filing.service';
 import { AdvisorModule } from './advisor/advisor.module';
 // import { AdvisorViewModule } from './advisorview/advisorview.module';
 import { AdviceModule } from './advice/advice.module';
+import { MyprofileService } from './family/myprofile/myprofile.service';
+import { FamilyprofileService } from './family/familyprofile/familyprofile.service';
+import { FamilyserviceService } from './family/familyservice.service';
+import { AccountProfileSerivce } from './family/accountprofile/accountProfile.service';
 
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 
@@ -172,12 +176,11 @@ const customNotifierOptions: NotifierOptions = {
     imports: [
         BrowserModule,
         FormsModule,
-        CommonModule,
         ReactiveFormsModule,
         NgbModule,
         BrowserModule,
         BrowserAnimationsModule,
-        CommonModule,
+        //  CommonModule,
         BuckswiseFrontEndAppRoutingModule,
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-' }),
         DeviceDetectorModule.forRoot(),
@@ -229,11 +232,11 @@ const customNotifierOptions: NotifierOptions = {
         AdvisorModule,
         SubscriberModule,
         PromoCodeModule,
-        FamilyModule,
+        // FamilyModule,
         GoalModule,
         BuckswiseAppSheetalModule,
         // BuckswiseFrontEndRiskModule,
-        BuckswiseFrontEndMyAssetsModule,
+        // BuckswiseFrontEndMyAssetsModule,
         // AdvisorViewModule,
         AdviceModule
 
@@ -272,6 +275,10 @@ const customNotifierOptions: NotifierOptions = {
         // Production directive
     ],
     providers: [
+        MyprofileService,
+        FamilyprofileService,
+        FamilyserviceService,
+        AccountProfileSerivce,
         NavbarComponent,
         CookieService,
         AuthGuard,

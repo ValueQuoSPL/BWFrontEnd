@@ -11,7 +11,7 @@ import { AlternativeComponent } from 'app/my-assets/alternate-investment/alterna
 import { MutualComponent } from 'app/my-assets/mutual/mutual.component';
 
 export const myasstsRoute: Route = {
-    path: 'assets',
+    path: '',
     component: MyAssetsComponent,
     children: [
         { outlet: 'stock', path: '', component: StockComponent },

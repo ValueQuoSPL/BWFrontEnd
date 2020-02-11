@@ -4,8 +4,8 @@ import { BuckswiseFrontEndSharedModule } from 'app/shared';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { myasstsRoute } from 'app/my-assets/my-assets.route';
 import { CustomMaterialModule } from 'app/custom-material.module';
-import { LiabilitiesComponent } from 'app/my-assets/liabilities/liabilities.component';
-import { liRoute } from 'app/my-assets/liabilities/liabilities.route';
+// import { LiabilitiesComponent } from 'app/my-assets/liabilities/liabilities.component';
+// import { liRoute } from 'app/my-assets/liabilities/liabilities.route';
 import { StockComponent } from 'app/my-assets/stocks/stocks.component';
 import { PropertyComponent } from 'app/my-assets/property/property.component';
 import { SavingSchemeComponent } from 'app/my-assets/saving-scheme/savingscheme.component';
@@ -36,8 +36,8 @@ library.add(fas, far);
         FormsModule,
         ReactiveFormsModule,
         BuckswiseFrontEndSharedModule,
-        RouterModule.forRoot([myasstsRoute], { useHash: true }),
-        RouterModule.forRoot([liRoute], { useHash: true }),
+        RouterModule.forChild([myasstsRoute]),
+        //  RouterModule.forChild([liRoute]),
         CustomMaterialModule,
         CommonModule,
         CustomDirectiveModule,
@@ -45,7 +45,7 @@ library.add(fas, far);
     ],
     declarations: [
         MutualComponent,
-        LiabilitiesComponent,
+        //  LiabilitiesComponent,
         AlternativeComponent,
         CashComponent,
         ChitFundComponent,

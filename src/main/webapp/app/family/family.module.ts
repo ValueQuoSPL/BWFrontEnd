@@ -25,7 +25,7 @@ library.add(fas, far);
 
 @NgModule({
     imports: [
-        RouterModule.forRoot([familyRoute], { useHash: true }),
+        RouterModule.forChild([familyRoute]),
         FormsModule,
         CommonModule,
         CustomMaterialModule,

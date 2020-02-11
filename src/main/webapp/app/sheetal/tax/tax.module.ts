@@ -18,13 +18,7 @@ import { OtherService } from 'app/sheetal/tax/other/other.service';
 import { TaxComponent } from 'app/sheetal/tax/tax.component';
 import { taxRoute } from 'app/sheetal/tax/tax.route';
 @NgModule({
-    imports: [
-        FormsModule,
-        BuckswiseFrontEndSharedModule,
-        RouterModule.forRoot([taxRoute], { useHash: true }),
-        CustomMaterialModule,
-        MatInputModule
-    ],
+    imports: [FormsModule, BuckswiseFrontEndSharedModule, RouterModule.forChild([taxRoute]), CustomMaterialModule, MatInputModule],
     declarations: [TaxComponent, GrossComponent, EightycComponent, HomeComponent, EightydComponent, OtherComponent],
     providers: [GrossService, EightycService, HomeService, EightydService, OtherService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

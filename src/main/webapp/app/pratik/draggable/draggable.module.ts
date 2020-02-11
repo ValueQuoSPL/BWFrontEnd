@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ViewContainerRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DraggableDirective } from 'app/pratik/draggable/draggable.directive';
@@ -10,7 +10,7 @@ import { SortableDirective } from 'app/pratik/draggable/sortable.directive';
 import { SortableListDirective } from 'app/pratik/draggable/sortable-list.directive';
 
 @NgModule({
-    imports: [CommonModule, BrowserModule],
+    imports: [CommonModule],
     declarations: [
         DraggableDirective,
         DraggableRxDirective,

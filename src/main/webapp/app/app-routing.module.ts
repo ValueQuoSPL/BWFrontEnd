@@ -73,6 +73,42 @@ const tax: Routes = [
         loadChildren: './advisorview/advisorview.module#BuckswiseTaxModule'
     }
 ];
+const profile: Routes = [
+    {
+        path: 'profile',
+        loadChildren: './family/family.module#FamilyModule'
+    }
+];
+const liabilities: Routes = [
+    {
+        path: 'liability',
+        loadChildren: './my-assets/liabilities/liabilities.module#LiabilitiesModule'
+    }
+];
+const assets: Routes = [
+    {
+        path: 'assets',
+        loadChildren: './my-assets/my-assets.module#BuckswiseFrontEndMyAssetsModule'
+    }
+];
+const taxcom: Routes = [
+    {
+        path: 'tax',
+        loadChildren: './sheetal/tax/tax.module#BuckswiseTaxModule'
+    }
+];
+// const goaladd: Routes = [
+//     {
+//         path: 'goal',
+//         loadChildren: './goal/goal.module#GoalModule'
+//     }
+// ];
+// const goalselect: Routes = [
+//     {
+//         path: 'goal/5979',
+//         loadChildren: './goal/goal.module#GoalMOdule'
+//     }
+// ];
 
 @NgModule({
     imports: [
@@ -91,7 +127,13 @@ const tax: Routes = [
         RouterModule.forRoot(risk),
         RouterModule.forRoot(appointment),
         RouterModule.forRoot(advisorview),
-        RouterModule.forRoot(tax)
+        RouterModule.forRoot(tax),
+        RouterModule.forRoot(profile),
+        RouterModule.forRoot(assets),
+        RouterModule.forRoot(liabilities),
+        RouterModule.forRoot(taxcom)
+        // RouterModule.forRoot(goaladd),
+        // RouterModule.forRoot(goalselect)
     ],
     exports: [RouterModule]
 })
